@@ -1,7 +1,8 @@
 ﻿# Grimorio — Multi-Agent AI Development Pipeline
 
-> A production-ready multi-agent system for VS Code GitHub Copilot Chat.  
-> 8 specialized agents collaborating to take a user request from idea to tested, verified code.
+> A proof-of-concept multi-agent system for VS Code GitHub Copilot Chat.  
+> 8 specialized agents collaborating to take a user request from idea to tested, verified code.  
+> Built to solve a specific problem: closing the feedback loop when developing with AI assistants.
 
 ---
 
@@ -19,6 +20,28 @@ Grimorio is a structured multi-agent workflow built on top of **GitHub Copilot C
 - **Orchestrator** — routes between agents, manages rework cycles, decides SHIP or ESCALATE
 
 The pipeline is **not linear by convention**. The orchestrator reads each agent's output and decides dynamically what comes next. A bug routes differently than a feature. A security finding may loop back to the architect before reaching the developer.
+
+**Status:** This is a working proof of concept built for a specific app I was developing — not a general-purpose framework. The skill files contain hardcoded context (credentials, app-specific conventions, project structure) that made sense for that case and haven't been abstracted out. It works, but it's not reusable out of the box. A cleaner, project-agnostic version is in progress. This repo is published as a snapshot of the design and approach, not as a ready-to-use tool.
+
+---
+
+## Why This Exists
+
+There are two separate problems this addresses.
+
+**Problem 1: Attention cost.**  
+With a single AI agent, you have to be fully present the entire time. You write the plan, read the tasks, wait for implementation, review the output, copy-paste errors, re-prompt. For large features there are 30-minute gaps where you can step away — but for smaller or mid-size changes, the overhead is disproportionate. You're not delegating, you're supervising.
+
+This system lets the orchestrator own the process. Once you describe what you want, agents hand off to each other, route failures back to the right role, and only surface something to you when it genuinely needs a decision. The goal is that smaller changes don't require your presence at all.
+
+**Problem 2: Hallucination without ground truth.**  
+The typical failure mode isn't bad code generation — it's undetected gaps between what the AI *thinks* it built and what actually works. Tests pass but the real feature fails. The AI says "it's working" because it can't see the browser. You find out at the end, after you've already moved on.
+
+Having a manual verifier that opens a real browser and verifies against named UX states (not just "does the page load?") closes that loop without requiring you to be the one doing it.
+
+After working with this on real features — including one I'd been fighting for two weeks before this system closed it in hours — a third pattern became clear: once the process is defined precisely enough, the system can verify its own output. The agents don't need to guess what "correct" looks like because the PO brief, UX spec, and architecture decision define it explicitly before any code is written.
+
+It works better for **iteration and refactoring** than for greenfield features on unfamiliar domains. That distinction matters and is intentional, not a limitation to fix.
 
 ---
 
@@ -149,6 +172,17 @@ General-purpose AI assistants make architectural decisions silently, mix concern
 - The security agent proves vulnerabilities **with real payloads** — not just warnings
 
 The result is a development process where each step is auditable, each output has a defined format, and failures route back to the right agent — not to a blank chat window.
+
+---
+
+## Known Limitations
+
+These are not bugs to fix — they're constraints I found by using the system:
+
+- **Greenfield features on unfamiliar domains are harder.** The system works best when there's existing code to analyze and iterate on. Starting from zero in an unknown domain produces more hallucination and more rework cycles.
+- **Environment setup is manual.** The manual verifier needs a running service with valid test accounts, env vars, and seeded data. That's intentional isolation — but it means setup time before the first run.
+- **Orchestration complexity grows fast.** Adding more agents or more routing rules compounds the prompt surface area. There's a ceiling where the orchestrator itself becomes the fragile piece.
+- **This is a POC, not production infrastructure.** No retry policies, no persistent state between sessions, no observability. The system is designed for a single developer iterating — not for teams or CI pipelines yet.
 
 ---
 
