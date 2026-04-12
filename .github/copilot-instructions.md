@@ -1,4 +1,4 @@
----
+﻿---
 commands:
   - feature
 description: Grimorio multi-agent pipeline for software development
@@ -26,14 +26,14 @@ Routes your request through the multi-agent pipeline:
 
 | Agent | Responsibility |
 |---|---|
-| `grimorio.feature-orchestrator` | Dynamic router. Classifies requests, selects pipeline, manages REWORK cycles (max 2), decides SHIP/ESCALATE. Does NOT write code. Skills: `feature-workflow`. |
-| `grimorio.po` | Translates request into user stories (Gherkin), acceptance criteria, and out-of-scope list. Skills: `feature-workflow`. |
-| `grimorio.ux` | Screen specs, named states, navigation flow, i18n keys. Skills: `feature-workflow`. |
-| `grimorio.architect` | ADRs, implementation blueprints with TypeScript interfaces, API contracts, Mermaid diagrams, security constraints. Skills: `feature-workflow`, `development-patterns`, `javascript`. |
-| `grimorio.js-developer` | Implements following arch-decision + ux-spec exactly. Skills: `javascript`, `development-patterns`, `feature-workflow`. |
-| `grimorio.qa` | Tests per layer, per acceptance criterion, per named UX state. Regression check. Skills: `feature-workflow`, `development-patterns`, `javascript`. |
-| `grimorio.security` | Adversarial OWASP audit. Real payloads. Classifies findings as `[CODE FIX]` or `[ARCH ISSUE]`. Skills: `feature-workflow`, `development-patterns`. |
-| `grimorio.manual-verifier` | Opens real browser. Screenshots per named UX state. Visual acceptance verification. Skills: `feature-workflow`. |
+| `feature-orchestrator` | Dynamic router. Classifies requests, selects pipeline, manages REWORK cycles (max 2), decides SHIP/ESCALATE. Does NOT write code. Skills: `feature-workflow`. |
+| `po` | Translates request into user stories (Gherkin), acceptance criteria, and out-of-scope list. Skills: `feature-workflow`. |
+| `ux` | Screen specs, named states, navigation flow, i18n keys. Skills: `feature-workflow`. |
+| `architect` | ADRs, implementation blueprints with TypeScript interfaces, API contracts, Mermaid diagrams, security constraints. Skills: `feature-workflow`, `development-patterns`, `javascript`. |
+| `js-developer` | Implements following arch-decision + ux-spec exactly. Skills: `javascript`, `development-patterns`, `feature-workflow`. |
+| `qa` | Tests per layer, per acceptance criterion, per named UX state. Regression check. Skills: `feature-workflow`, `development-patterns`, `javascript`. |
+| `security` | Adversarial OWASP audit. Real payloads. Classifies findings as `[CODE FIX]` or `[ARCH ISSUE]`. Skills: `feature-workflow`, `development-patterns`. |
+| `manual-verifier` | Opens real browser. Screenshots per named UX state. Visual acceptance verification. Skills: `feature-workflow`. |
 
 ---
 

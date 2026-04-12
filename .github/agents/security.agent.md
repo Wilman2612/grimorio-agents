@@ -1,5 +1,5 @@
----
-name: grimorio.security
+﻿---
+name: security
 description: "Evil Genius / Security Auditor agent. Performs adversarial security testing: OWASP Top 10 code review, generates and executes real attack payloads (SQLi, XSS, auth bypass, path traversal, SSRF), writes security tests. Tries to BREAK the code."
 skills:
   - feature-workflow

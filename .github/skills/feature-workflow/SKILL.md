@@ -1,4 +1,4 @@
-# Skill: feature-workflow
+﻿# Skill: feature-workflow
 
 **Use when**: Any agent in the multi-agent pipeline needs to read or write artifacts. This skill defines the shared communication protocol, file formats, status codes, and escalation rules that ALL agents follow.
 
@@ -18,15 +18,15 @@ This project uses an **Orchestrator-Workers** pattern (per [Anthropic's "Buildin
 
 | Agent | Role | Input Artifacts | Output Artifact |
 |---|---|---|---|
-| `grimorio.feature-orchestrator` | Router + coordinator | User request | `orchestrator-log.md` |
-| `grimorio.po` | Product Owner | User request | `po-brief.md` |
-| `grimorio.ux` | UX Designer | `po-brief.md` + existing UI | `ux-spec.md` |
-| `grimorio.architect` | Software Architect | `po-brief.md` + `ux-spec.md` + codebase (+ `security-report.md` if rework) | `arch-decision.md` (ADR + Blueprint + Contracts + Security Constraints) |
-| `grimorio.js-developer` | Developer | `arch-decision.md` + `ux-spec.md` | `dev-notes.md` + code changes |
-| `grimorio.qa` | QA Engineer | `po-brief.md` + `ux-spec.md` + `arch-decision.md` + `dev-notes.md` + code | `qa-report.md` + test files |
-| `grimorio.mutation-reviewer` | Test Quality Auditor | `qa-report.md` + test files + `arch-decision.md` + source files | `mutation-report.md` + counter-test files |
-| `grimorio.security` | Evil Genius | `arch-decision.md` + `dev-notes.md` + code | `security-report.md` + security tests → feeds back to `grimorio.architect` if structural issues found |
-| `grimorio.manual-verifier` | Visual Acceptance Tester | `po-brief.md` + `ux-spec.md` + `dev-notes.md` + running app | `verification-report.md` |
+| `feature-orchestrator` | Router + coordinator | User request | `orchestrator-log.md` |
+| `po` | Product Owner | User request | `po-brief.md` |
+| `ux` | UX Designer | `po-brief.md` + existing UI | `ux-spec.md` |
+| `architect` | Software Architect | `po-brief.md` + `ux-spec.md` + codebase (+ `security-report.md` if rework) | `arch-decision.md` (ADR + Blueprint + Contracts + Security Constraints) |
+| `js-developer` | Developer | `arch-decision.md` + `ux-spec.md` | `dev-notes.md` + code changes |
+| `qa` | QA Engineer | `po-brief.md` + `ux-spec.md` + `arch-decision.md` + `dev-notes.md` + code | `qa-report.md` + test files |
+| `mutation-reviewer` | Test Quality Auditor | `qa-report.md` + test files + `arch-decision.md` + source files | `mutation-report.md` + counter-test files |
+| `security` | Evil Genius | `arch-decision.md` + `dev-notes.md` + code | `security-report.md` + security tests → feeds back to `architect` if structural issues found |
+| `manual-verifier` | Visual Acceptance Tester | `po-brief.md` + `ux-spec.md` + `dev-notes.md` + running app | `verification-report.md` |
 
 ---
 
@@ -58,12 +58,12 @@ The orchestrator classifies the user's request and selects a **starting point**.
 
 | Request Type | Starting Point | Default Flow |
 |---|---|---|
-| **Feature** | `grimorio.po` | `grimorio.po → grimorio.ux → grimorio.architect → grimorio.js-developer → grimorio.qa → grimorio.mutation-reviewer → grimorio.security → (grimorio.architect if structural issues) → grimorio.js-developer (rework if needed) → grimorio.manual-verifier` |
-| **Bug** | `grimorio.security` (triage, text-only) | `grimorio.security → grimorio.architect → grimorio.js-developer → grimorio.manual-verifier (diagnose) → grimorio.ux (if UI touched) → grimorio.js-developer (fix) → grimorio.qa → grimorio.manual-verifier` |
-| **Refactor** | `grimorio.architect` | `grimorio.architect → grimorio.js-developer → grimorio.qa` |
-| **Security Review** | `grimorio.security` solo | `grimorio.security` |
-| **Test Gap** | `grimorio.qa` solo | `grimorio.qa` |
-| **UX Review** | `grimorio.ux` solo | `grimorio.ux` |
+| **Feature** | `po` | `po → ux → architect → js-developer → qa → mutation-reviewer → security → (architect if structural issues) → js-developer (rework if needed) → manual-verifier` |
+| **Bug** | `security` (triage, text-only) | `security → architect → js-developer → manual-verifier (diagnose) → ux (if UI touched) → js-developer (fix) → qa → manual-verifier` |
+| **Refactor** | `architect` | `architect → js-developer → qa` |
+| **Security Review** | `security` solo | `security` |
+| **Test Gap** | `qa` solo | `qa` |
+| **UX Review** | `ux` solo | `ux` |
 
 ### Bug Triage: Progressive Escalation
 
@@ -71,15 +71,15 @@ Steps 1-2 are **text-only** (no browser, no commands). Cheap. Short-circuit ever
 
 | Step | Agent | Task | Skip if |
 |---|---|---|---|
-| 1 | `grimorio.security` | ¿Amenaza integridad / OWASP? | — always run |
-| 2 | `grimorio.architect` | ¿Viola arquitectura? ¿cross-service? ¿DB schema? | security returned CRITICAL → escalate first |
-| 3 | `grimorio.js-developer` | Diagnose: ¿fácil o difícil? ¿qué toca? | — always run |
-| 3b | `grimorio.architect` | Validate approach (solo si step 3 dice "difícil" o "multi-layer") | js-developer dice fácil/contained |
-| 4 | `grimorio.manual-verifier` | Confirm bug is real (diagnosis mode, no po-brief) | — always run |
-| 4b | `grimorio.ux` | Define WHAT to implement and WHERE (si el fix toca UI) | Skip if fix is backend-only / no `.tsx` files touched |
-| 5 | `grimorio.js-developer` | Implement fix | — always run |
-| 6 | `grimorio.qa` | Regression check | — always run |
-| 7 | `grimorio.manual-verifier` | Confirm fix visually | — always run |
+| 1 | `security` | ¿Amenaza integridad / OWASP? | — always run |
+| 2 | `architect` | ¿Viola arquitectura? ¿cross-service? ¿DB schema? | security returned CRITICAL → escalate first |
+| 3 | `js-developer` | Diagnose: ¿fácil o difícil? ¿qué toca? | — always run |
+| 3b | `architect` | Validate approach (solo si step 3 dice "difícil" o "multi-layer") | js-developer dice fácil/contained |
+| 4 | `manual-verifier` | Confirm bug is real (diagnosis mode, no po-brief) | — always run |
+| 4b | `ux` | Define WHAT to implement and WHERE (si el fix toca UI) | Skip if fix is backend-only / no `.tsx` files touched |
+| 5 | `js-developer` | Implement fix | — always run |
+| 6 | `qa` | Regression check | — always run |
+| 7 | `manual-verifier` | Confirm fix visually | — always run |
 
 **Rule for step 4b — When to invoke `ux` in a bug pipeline:**
 Invoke `ux` if the diagnosis (steps 3/3b) identifies that ANY of these are touched:
@@ -96,10 +96,10 @@ After any agent, the orchestrator may insert an unplanned agent:
 
 | Condition | Insert |
 |---|---|
-| Fix touches cross-service boundary or DB schema | `grimorio.architect` validates before grimorio.js-developer implements |
-| Fix touches any `.tsx` file or visible UI element | `grimorio.ux` before grimorio.js-developer implements |
-| Security/QA finds a product-level tradeoff | `grimorio.po` to define scope, or ESCALATE to user |
-| Manual-verifier finds broken UX not in the PO brief | `grimorio.ux` to define correction, then grimorio.js-developer |
+| Fix touches cross-service boundary or DB schema | `architect` validates before js-developer implements |
+| Fix touches any `.tsx` file or visible UI element | `ux` before js-developer implements |
+| Security/QA finds a product-level tradeoff | `po` to define scope, or ESCALATE to user |
+| Manual-verifier finds broken UX not in the PO brief | `ux` to define correction, then js-developer |
 | Any agent BLOCKED on a tech or product decision | ESCALATE to user with the exact question |
 
 ---
@@ -120,7 +120,7 @@ Valid codes:
 | `DONE_WITH_WARNINGS` | Completed but with non-blocking concerns | Proceed, log warnings |
 | `BLOCKED` | Cannot proceed without human decision | ESCALATE to user |
 | `FAIL` | Found actionable code-level problems | Route to REWORK cycle (developer) |
-| `FAIL-ARCH` | Found structural/architectural problems (`[ARCH ISSUE]` from security) | Route to `grimorio.architect` first, then `grimorio.js-developer` for rework |
+| `FAIL-ARCH` | Found structural/architectural problems (`[ARCH ISSUE]` from security) | Route to `architect` first, then `js-developer` for rework |
 | `CLEAR` | No vulnerabilities found (security only) | Proceed to next agent |
 
 ---

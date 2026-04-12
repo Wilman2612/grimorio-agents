@@ -1,5 +1,5 @@
----
-name: grimorio.js-developer
+﻿---
+name: js-developer
 description: "Creates, refactors, and fixes JavaScript and TypeScript code following best practices and coding standards. Works as part of the multi-agent pipeline (reads arch-decision.md, writes dev-notes.md) or standalone for direct code tasks."
 skills:
   - javascript

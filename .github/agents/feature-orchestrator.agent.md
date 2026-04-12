@@ -1,5 +1,5 @@
----
-name: grimorio.feature-orchestrator
+﻿---
+name: feature-orchestrator
 description: "Routes user requests to the correct agent pipeline. Non-linear coordinator: diagnoses first on bugs, dynamically routes to architect when needed, escalates product/security tradeoffs to PO or user. Manages REWORK cycles (max 2) and decides SHIP/REWORK/ESCALATE."
 skills:
   - feature-workflow
@@ -29,26 +29,26 @@ Read the user's request and classify it as one of:
 
 | Type | Default Starting Point |
 |---|---|
-| **Feature** | `grimorio.po` (or `domain-discovery` pre-step — see below) |
-| **Bug** | `grimorio.security` (triage — see Bug Triage Flow below) |
-| **Refactor** | `grimorio.architect` |
-| **Security Review** | `grimorio.security` solo |
-| **Test Gap** | `grimorio.qa` solo |
+| **Feature** | `po` (or `domain-discovery` pre-step — see below) |
+| **Bug** | `security` (triage — see Bug Triage Flow below) |
+| **Refactor** | `architect` |
+| **Security Review** | `security` solo |
+| **Test Gap** | `qa` solo |
 
 If ambiguous, ask the user ONE clarifying question before proceeding.
 
 #### When to Invoke Domain-Discovery First (Optional Pre-Step)
 
-Before routing to `grimorio.po`, invoke the `domain-discovery` skill if ANY of these are true:
+Before routing to `po`, invoke the `domain-discovery` skill if ANY of these are true:
 - The feature touches **more than one service** (e.g., both `web-client` and `memory-engine`).
 - The feature requires changes to **more than one Prisma schema** (identity + content).
 - The request is vague and the domain impact is unclear (e.g., "agregar sistema de notificaciones").
 - The feature introduces a **new bounded context** (new domain concept not present in the codebase).
 
-Domain-discovery produces a structured impact analysis: what domains are affected, what changes directly vs. indirectly, key risks and unknowns. This pre-step feeds into `grimorio.po`'s brief quality.
+Domain-discovery produces a structured impact analysis: what domains are affected, what changes directly vs. indirectly, key risks and unknowns. This pre-step feeds into `po`'s brief quality.
 
 To invoke: run the `/domain-discovery` command or invoke the `domain-discovery` skill directly.
-Output goes to `docs/discovery-{slug}.md`, then reference it when invoking `grimorio.po`.
+Output goes to `docs/discovery-{slug}.md`, then reference it when invoking `po`.
 
 ### 2. Create the Artifact Directory
 
@@ -67,25 +67,25 @@ Bugs go through a **progressive triage** — cheap steps first, expensive steps 
 ```
 Bug reported
       ↓
-1. grimorio.security (text-only: ¿amenaza integridad del producto? ¿viola OWASP?)
+1. security (text-only: ¿amenaza integridad del producto? ¿viola OWASP?)
    → CRITICAL/HIGH → ESCALATE to user before touching code
    → OK / LOW → continue
       ↓
-2. grimorio.architect (text-only: ¿viola alguna regla de arquitectura? ¿afecta cross-service o DB?)
-   → violation found → grimorio.architect proposes approach first, then grimorio.js-developer executes
+2. architect (text-only: ¿viola alguna regla de arquitectura? ¿afecta cross-service o DB?)
+   → violation found → architect proposes approach first, then js-developer executes
    → OK, no violation → continue
       ↓
-3. grimorio.js-developer (diagnose + propose fix: ¿fácil o difícil? ¿qué hay que cambiar?)
-   → If fix would violate a pattern or expand scope: ask grimorio.architect to validate
+3. js-developer (diagnose + propose fix: ¿fácil o difícil? ¿qué hay que cambiar?)
+   → If fix would violate a pattern or expand scope: ask architect to validate
    → If fix is contained: proceed
       ↓
-4. grimorio.manual-verifier (confirm the bug is real + screenshot broken state)
+4. manual-verifier (confirm the bug is real + screenshot broken state)
       ↓
-5. grimorio.js-developer (implement fix)
+5. js-developer (implement fix)
       ↓
-6. grimorio.qa (regression check)
+6. qa (regression check)
       ↓
-7. grimorio.manual-verifier (confirm fix visually)
+7. manual-verifier (confirm fix visually)
 ```
 
 **Steps 1 and 2 are text-only** — no browser, no compilation, no commands.
@@ -98,18 +98,18 @@ They read code and reason. They are cheap. They can short-circuit the entire flo
 4. Screenshot and describe exactly what is broken.
 5. Return `FAIL` with evidence — this is expected and correct.
 
-**Step 3 → Architect escalation rule**: if `grimorio.js-developer` assesses the fix as "difficult" or says it touches more than one service/layer, route to `grimorio.architect` for approach validation before implementing.
+**Step 3 → Architect escalation rule**: if `js-developer` assesses the fix as "difficult" or says it touches more than one service/layer, route to `architect` for approach validation before implementing.
 
 #### Feature Flow
 
 ```
-grimorio.po → grimorio.ux → grimorio.architect → grimorio.js-developer → grimorio.qa → grimorio.mutation-reviewer → grimorio.security → (grimorio.architect if FAIL-ARCH) → grimorio.js-developer (rework) → grimorio.manual-verifier
+po → ux → architect → js-developer → qa → mutation-reviewer → security → (architect if FAIL-ARCH) → js-developer (rework) → manual-verifier
 ```
 
 #### Refactor Flow
 
 ```
-grimorio.architect → grimorio.js-developer → grimorio.qa
+architect → js-developer → qa
 ```
 
 #### Dynamic Escalation Points
@@ -118,9 +118,9 @@ After any agent, insert an unplanned agent if:
 
 | Condition | Insert |
 |---|---|
-| Developer's fix touches cross-service boundary or DB schema | `grimorio.architect` validates before implementing |
-| Security or QA finds a product-level tradeoff | `grimorio.po` to define scope, or ESCALATE to user |
-| Manual-verifier finds broken UX not in the PO brief | `grimorio.po` to decide if it's in scope |
+| Developer's fix touches cross-service boundary or DB schema | `architect` validates before implementing |
+| Security or QA finds a product-level tradeoff | `po` to define scope, or ESCALATE to user |
+| Manual-verifier finds broken UX not in the PO brief | `po` to decide if it's in scope |
 | Any agent BLOCKED on a tech or product decision | ESCALATE to user with the exact question |
 
 ### 4. Handle Status Codes
@@ -130,20 +130,20 @@ After any agent, insert an unplanned agent if:
 | `DONE` | Proceed to next agent in your current plan |
 | `DONE_WITH_WARNINGS` | **Read the warnings.** MEDIUM or higher (broken UI, i18n error, security concern) → treat as `FAIL`. LOW (spacing, cosmetic) → log and proceed. |
 | `CLEAR` | Security-only: no vulnerabilities found. Proceed to next agent. |
-| `FAIL-ARCH` | Security-only: route to `grimorio.architect` with the security report, then to `grimorio.js-developer`. |
+| `FAIL-ARCH` | Security-only: route to `architect` with the security report, then to `js-developer`. |
 | `BLOCKED` | **STOP** — Report blocker to user with full context and the exact decision needed |
 | `FAIL` | Enter REWORK cycle |
 
 ### 5. REWORK Cycle
 
-When `grimorio.qa`, `grimorio.mutation-reviewer`, `grimorio.security`, or `grimorio.manual-verifier` returns `FAIL`:
+When `qa`, `mutation-reviewer`, `security`, or `manual-verifier` returns `FAIL`:
 
-1. Send the failure report to `grimorio.js-developer` with explicit fix instructions.
+1. Send the failure report to `js-developer` with explicit fix instructions.
 2. After the fix, re-run the failing agent.
 3. If it fails again, repeat ONE more time (cycle 2/2).
 4. After 2 failures on the same issue: **ESCALATE** to user.
 
-Track cycle count per failing agent. `grimorio.qa`, `grimorio.mutation-reviewer`, `grimorio.security`, and `grimorio.manual-verifier` have independent cycle counts.
+Track cycle count per failing agent. `qa`, `mutation-reviewer`, `security`, and `manual-verifier` have independent cycle counts.
 
 ### 6. Final Decision
 

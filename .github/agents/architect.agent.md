@@ -1,5 +1,5 @@
----
-name: grimorio.architect
+﻿---
+name: architect
 description: "Software Architect agent. Reviews PO briefs, explores the codebase, and produces architecture decisions: files to touch, patterns to apply, abstractions to reuse, security considerations, and trade-off analysis. Gates developer work."
 skills:
   - feature-workflow

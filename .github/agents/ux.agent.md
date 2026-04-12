@@ -1,5 +1,5 @@
----
-name: grimorio.ux
+﻿---
+name: ux
 description: "UX Designer agent. Reads the PO brief and explores the existing UI to produce a UX spec: screen layouts, navigation flows, required interactive elements, empty/error/loading states, accessibility requirements, and mobile considerations. Runs after PO, before Architect. Output is ux-spec.md — read by developer, architect, and manual-verifier."
 skills:
   - feature-workflow

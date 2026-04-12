@@ -1,4 +1,4 @@
-# Grimorio — Multi-Agent AI Development Pipeline
+﻿# Grimorio — Multi-Agent AI Development Pipeline
 
 > A production-ready multi-agent system for VS Code GitHub Copilot Chat.  
 > 8 specialized agents collaborating to take a user request from idea to tested, verified code.
@@ -31,25 +31,25 @@ User Request
 feature-orchestrator  ──── classifies request type
      │                     selects pipeline
      ▼
-grimorio.po           ──── po-brief.md (user stories, AC, out of scope)
+po           ──── po-brief.md (user stories, AC, out of scope)
      │
      ▼
-grimorio.ux           ──── ux-spec.md (screens, named states, i18n keys)
+ux           ──── ux-spec.md (screens, named states, i18n keys)
      │
      ▼
-grimorio.architect    ──── arch-decision.md (ADRs, blueprint, API contracts)
+architect    ──── arch-decision.md (ADRs, blueprint, API contracts)
      │
      ▼
-grimorio.js-developer ──── code + dev-notes.md
+js-developer ──── code + dev-notes.md
      │
      ▼
-grimorio.qa           ──── qa-report.md + test files
+qa           ──── qa-report.md + test files
      │
      ▼
-grimorio.security     ──── security-report.md ([CODE FIX] or [ARCH ISSUE])
+security     ──── security-report.md ([CODE FIX] or [ARCH ISSUE])
      │
      ▼
-grimorio.manual-verifier ── verification-report.md + screenshots
+manual-verifier ── verification-report.md + screenshots
      │
      ▼
    SHIP ✓           (or REWORK → back to the right agent, max 2 cycles)
@@ -81,14 +81,14 @@ Each agent gets a maximum of 2 rework cycles. If 2 attempts don't resolve a fail
 .github/
 ├── agents/
 │   ├── MANIFEST.md                          ← I/O contracts for all agents
-│   ├── grimorio.feature-orchestrator.agent.md
-│   ├── grimorio.po.agent.md
-│   ├── grimorio.ux.agent.md
-│   ├── grimorio.architect.agent.md
-│   ├── grimorio.js-developer.agent.md
-│   ├── grimorio.qa.agent.md
-│   ├── grimorio.security.agent.md
-│   └── grimorio.manual-verifier.agent.md
+│   ├── feature-orchestrator.agent.md
+│   ├── po.agent.md
+│   ├── ux.agent.md
+│   ├── architect.agent.md
+│   ├── js-developer.agent.md
+│   ├── qa.agent.md
+│   ├── security.agent.md
+│   └── manual-verifier.agent.md
 │
 ├── skills/
 │   └── feature-workflow/
@@ -113,9 +113,9 @@ Each agent gets a maximum of 2 rework cycles. If 2 attempts don't resolve a fail
 2. **Open GitHub Copilot Chat** in VS Code — agents will appear automatically
 3. **Start a feature**:
    ```
-   @grimorio.feature-orchestrator agregar dark mode
-   @grimorio.feature-orchestrator hay un bug en el login
-   @grimorio.feature-orchestrator refactorizar el handler de chat
+   @feature-orchestrator agregar dark mode
+   @feature-orchestrator hay un bug en el login
+   @feature-orchestrator refactorizar el handler de chat
    ```
 4. The orchestrator classifies your request and invokes the first agent in the appropriate pipeline
 5. Each agent tells you what it produced and what comes next

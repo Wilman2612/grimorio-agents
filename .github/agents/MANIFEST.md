@@ -1,4 +1,4 @@
-# Agent I/O Manifest
+﻿# Agent I/O Manifest
 
 > **Single source of truth** for the Grimorio multi-agent pipeline.
 > Lists every agent, what it reads, what it produces, and who depends on it.
@@ -13,16 +13,16 @@
 
 | Agent | Reads | Produces | Consumed By |
 |-------|-------|----------|-------------|
-| `grimorio.po` | User request, `po-memory` skill | `po-brief.md` | `grimorio.ux`, `grimorio.architect` |
-| `grimorio.ux` | `po-brief.md`, existing UI (codebase) | `ux-spec.md` | `grimorio.architect`, `grimorio.js-developer`, `grimorio.manual-verifier` |
-| `grimorio.architect` | `po-brief.md`, `ux-spec.md`, codebase, `security-report.md` (on `FAIL-ARCH` rework — required read) | `arch-decision.md` | `grimorio.js-developer`, `grimorio.qa`, `grimorio.security` (on rework) |
-| `grimorio.js-developer` | `arch-decision.md`, `ux-spec.md`, `po-brief.md` (edge case context), codebase | code changes + `dev-notes.md` | `grimorio.qa`, `grimorio.security`, `grimorio.manual-verifier` |
-| `grimorio.qa` | `po-brief.md`, `ux-spec.md`, `arch-decision.md`, `dev-notes.md`, `security-report.md` (if exists) | `qa-report.md` + test files | `grimorio.mutation-reviewer` |
-| `grimorio.mutation-reviewer` | `qa-report.md`, test files, `arch-decision.md`, `dev-notes.md`, source files | `mutation-report.md` + counter-test files | `grimorio.feature-orchestrator`, `grimorio.js-developer` (if `FAIL`) |
-| `grimorio.security` | code, `arch-decision.md`, `dev-notes.md`, `po-brief.md`, running app (optional) | `security-report.md` | `grimorio.architect` (if `FAIL-ARCH`), `grimorio.js-developer` (if `FAIL`), `grimorio.feature-orchestrator` |
-| `grimorio.manual-verifier` | all `*-report.md` files, `ux-spec.md`, `po-brief.md`, running app | `verification-report.md` + screenshots | `grimorio.feature-orchestrator` |
-| `grimorio.feature-orchestrator` | all `*-report.md`, `orchestrator-log.md` | routing decisions + `orchestrator-log.md` | user |
-| `grimorio.system-keeper` | `{agent}-memory/SKILL.md`, codebase (read), agent files | updated skill files + `system-keeper-report.md` | — (meta-agent, not in feature pipeline) |
+| `po` | User request, `po-memory` skill | `po-brief.md` | `ux`, `architect` |
+| `ux` | `po-brief.md`, existing UI (codebase) | `ux-spec.md` | `architect`, `js-developer`, `manual-verifier` |
+| `architect` | `po-brief.md`, `ux-spec.md`, codebase, `security-report.md` (on `FAIL-ARCH` rework — required read) | `arch-decision.md` | `js-developer`, `qa`, `security` (on rework) |
+| `js-developer` | `arch-decision.md`, `ux-spec.md`, `po-brief.md` (edge case context), codebase | code changes + `dev-notes.md` | `qa`, `security`, `manual-verifier` |
+| `qa` | `po-brief.md`, `ux-spec.md`, `arch-decision.md`, `dev-notes.md`, `security-report.md` (if exists) | `qa-report.md` + test files | `mutation-reviewer` |
+| `mutation-reviewer` | `qa-report.md`, test files, `arch-decision.md`, `dev-notes.md`, source files | `mutation-report.md` + counter-test files | `feature-orchestrator`, `js-developer` (if `FAIL`) |
+| `security` | code, `arch-decision.md`, `dev-notes.md`, `po-brief.md`, running app (optional) | `security-report.md` | `architect` (if `FAIL-ARCH`), `js-developer` (if `FAIL`), `feature-orchestrator` |
+| `manual-verifier` | all `*-report.md` files, `ux-spec.md`, `po-brief.md`, running app | `verification-report.md` + screenshots | `feature-orchestrator` |
+| `feature-orchestrator` | all `*-report.md`, `orchestrator-log.md` | routing decisions + `orchestrator-log.md` | user |
+| `system-keeper` | `{agent}-memory/SKILL.md`, codebase (read), agent files | updated skill files + `system-keeper-report.md` | — (meta-agent, not in feature pipeline) |
 
 ---
 
@@ -131,7 +131,7 @@ Produced by: `qa`
 ```
 
 ### `mutation-report.md`
-Produced by: `grimorio.mutation-reviewer`
+Produced by: `mutation-reviewer`
 ```
 ## Summary
   [tests reviewed | weak tests found | counter-tests added | bugs found]
@@ -210,7 +210,7 @@ Produced by: `feature-orchestrator`
 
 > Note: `REWORK` is not an agent status code — it is an orchestrator process triggered when an agent returns `FAIL`. Agents never output `REWORK`.
 >
-> **REWORK cycles are independent per agent**: Each agent has its own counter (max 2). If `grimorio.qa` triggers two REWORK cycles and then `grimorio.security` also fails, security gets its own 2-cycle budget. Counts are not shared.
+> **REWORK cycles are independent per agent**: Each agent has its own counter (max 2). If `qa` triggers two REWORK cycles and then `security` also fails, security gets its own 2-cycle budget. Counts are not shared.
 
 ---
 
@@ -218,13 +218,13 @@ Produced by: `feature-orchestrator`
 
 | Type | Pipeline |
 |------|---------|
-| Feature | `grimorio.po → grimorio.ux → grimorio.architect → grimorio.js-developer → grimorio.qa → grimorio.mutation-reviewer → grimorio.security → (grimorio.architect if FAIL-ARCH) → grimorio.js-developer (rework) → grimorio.manual-verifier` |
-| Bug | `grimorio.security (triage) → grimorio.architect → grimorio.js-developer (diagnose) → grimorio.manual-verifier (confirm bug) → [grimorio.ux **only if fix touches .tsx or any user-visible state**] → grimorio.js-developer (fix) → grimorio.qa → grimorio.manual-verifier (confirm fix)` |
-| Refactor | `grimorio.architect → grimorio.js-developer → grimorio.qa → grimorio.manual-verifier (if any component touched)` |
-| Security Review | `grimorio.security` solo |
-| Test Gap | `grimorio.qa` solo |
-| UX Review | `grimorio.ux` solo |
-| Small Change (rename/literal/typo) | `grimorio.js-developer` solo — no PO, no UX, no Architect |
-| Memory Scan / Capture Learning / System Audit | `grimorio.system-keeper` solo — invoked on demand, never from feature pipeline |
+| Feature | `po → ux → architect → js-developer → qa → mutation-reviewer → security → (architect if FAIL-ARCH) → js-developer (rework) → manual-verifier` |
+| Bug | `security (triage) → architect → js-developer (diagnose) → manual-verifier (confirm bug) → [ux **only if fix touches .tsx or any user-visible state**] → js-developer (fix) → qa → manual-verifier (confirm fix)` |
+| Refactor | `architect → js-developer → qa → manual-verifier (if any component touched)` |
+| Security Review | `security` solo |
+| Test Gap | `qa` solo |
+| UX Review | `ux` solo |
+| Small Change (rename/literal/typo) | `js-developer` solo — no PO, no UX, no Architect |
+| Memory Scan / Capture Learning / System Audit | `system-keeper` solo — invoked on demand, never from feature pipeline |
 
-**Post-SHIP (all pipelines)**: After `SHIP`, the orchestrator emits a learning trigger. `grimorio.system-keeper` may be invoked to capture new traps or decisions discovered during the run into the relevant memory skills.
+**Post-SHIP (all pipelines)**: After `SHIP`, the orchestrator emits a learning trigger. `system-keeper` may be invoked to capture new traps or decisions discovered during the run into the relevant memory skills.

@@ -1,5 +1,5 @@
----
-name: grimorio.manual-verifier
+﻿---
+name: manual-verifier
 description: "Visual acceptance tester. Launches a real browser, navigates to the implemented feature, takes screenshots, and uses vision to verify that acceptance criteria from the PO brief are met in the actual UI. Catches gaps that automated tests miss."
 skills:
   - feature-workflow

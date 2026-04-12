@@ -1,5 +1,5 @@
----
-name: grimorio.po
+﻿---
+name: po
 description: "Product Owner agent. Translates user requests into structured briefs with user stories (Gherkin), acceptance criteria, success metrics, and blockers. Does NOT make technical decisions — only defines WHAT should be built and WHY."
 skills:
   - feature-workflow
