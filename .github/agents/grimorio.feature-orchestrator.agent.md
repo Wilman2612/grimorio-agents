@@ -1,5 +1,5 @@
-﻿---
-name: feature-orchestrator
+---
+name: grimorio.feature-orchestrator
 description: "Routes user requests to the correct agent pipeline. Non-linear coordinator: diagnoses first on bugs, dynamically routes to architect when needed, escalates product/security tradeoffs to PO or user. Manages REWORK cycles (max 2) and decides SHIP/REWORK/ESCALATE."
 skills:
   - feature-workflow
@@ -17,7 +17,7 @@ Your pipeline is **not rigid top-to-bottom**. You think before routing. You read
 
 ## Loaded Skill
 
-- **`feature-workflow`** ΓÇö Your single source of truth for artifact formats, status codes, REWORK cycle limits, and escalation criteria. Follow every protocol exactly.
+- **`feature-workflow`** — Your single source of truth for artifact formats, status codes, REWORK cycle limits, and escalation criteria. Follow every protocol exactly.
 
 ---
 
@@ -30,7 +30,7 @@ Read the user's request and classify it as one of:
 | Type | Default Starting Point |
 |---|---|
 | **Feature** | `po` |
-| **Bug** | `security` (triage ΓÇö see Bug Triage Flow below) |
+| **Bug** | `security` (triage — see Bug Triage Flow below) |
 | **Refactor** | `architect` |
 | **Security Review** | `security` solo |
 | **Test Gap** | `qa` solo |
@@ -43,39 +43,39 @@ Generate a `{slug}` from the request (kebab-case, max 40 chars).
 Create: `tmp/features/{slug}/`
 If it already exists, append `-2`, `-3`, etc.
 
-### 3. Execute the Pipeline ΓÇö Dynamic Routing
+### 3. Execute the Pipeline — Dynamic Routing
 
 You do NOT follow a fixed sequence. After each agent, **read the output and decide** what comes next.
 
 #### Bug Triage Flow
 
-Bugs go through a **progressive triage** ΓÇö cheap steps first, expensive steps only when needed.
+Bugs go through a **progressive triage** — cheap steps first, expensive steps only when needed.
 
 ```
 Bug reported
-      Γåô
-1. security (text-only: ┬┐amenaza integridad del producto? ┬┐viola OWASP?)
-   ΓåÆ CRITICAL/HIGH ΓåÆ ESCALATE to user before touching code
-   ΓåÆ OK / LOW ΓåÆ continue
-      Γåô
-2. architect (text-only: ┬┐viola alguna regla de arquitectura? ┬┐afecta cross-service o DB?)
-   ΓåÆ violation found ΓåÆ architect proposes approach first, then js-developer executes
-   ΓåÆ OK, no violation ΓåÆ continue
-      Γåô
-3. js-developer (diagnose + propose fix: ┬┐f├ícil o dif├¡cil? ┬┐qu├⌐ hay que cambiar?)
-   ΓåÆ If fix would violate a pattern or expand scope: ask architect to validate
-   ΓåÆ If fix is contained: proceed
-      Γåô
+      ↓
+1. security (text-only: ¿amenaza integridad del producto? ¿viola OWASP?)
+   → CRITICAL/HIGH → ESCALATE to user before touching code
+   → OK / LOW → continue
+      ↓
+2. architect (text-only: ¿viola alguna regla de arquitectura? ¿afecta cross-service o DB?)
+   → violation found → architect proposes approach first, then js-developer executes
+   → OK, no violation → continue
+      ↓
+3. js-developer (diagnose + propose fix: ¿fácil o difícil? ¿qué hay que cambiar?)
+   → If fix would violate a pattern or expand scope: ask architect to validate
+   → If fix is contained: proceed
+      ↓
 4. manual-verifier (confirm the bug is real + screenshot broken state)
-      Γåô
+      ↓
 5. js-developer (implement fix)
-      Γåô
+      ↓
 6. qa (regression check)
-      Γåô
+      ↓
 7. manual-verifier (confirm fix visually)
 ```
 
-**Steps 1 and 2 are text-only** ΓÇö no browser, no compilation, no commands.
+**Steps 1 and 2 are text-only** — no browser, no compilation, no commands.
 They read code and reason. They are cheap. They can short-circuit the entire flow.
 
 **Step 4 (manual-verifier in diagnosis mode)** does NOT need `po-brief.md`. Instruct it to:
@@ -83,20 +83,20 @@ They read code and reason. They are cheap. They can short-circuit the entire flo
 2. Log in with the verifier account.
 3. Navigate to the reported area.
 4. Screenshot and describe exactly what is broken.
-5. Return `FAIL` with evidence ΓÇö this is expected and correct.
+5. Return `FAIL` with evidence — this is expected and correct.
 
-**Step 3 ΓåÆ Architect escalation rule**: if `js-developer` assesses the fix as "difficult" or says it touches more than one service/layer, route to `architect` for approach validation before implementing.
+**Step 3 → Architect escalation rule**: if `js-developer` assesses the fix as "difficult" or says it touches more than one service/layer, route to `architect` for approach validation before implementing.
 
 #### Feature Flow
 
 ```
-po ΓåÆ architect ΓåÆ js-developer ΓåÆ qa ΓåÆ security ΓåÆ manual-verifier
+po → architect → js-developer → qa → security → manual-verifier
 ```
 
 #### Refactor Flow
 
 ```
-architect ΓåÆ js-developer ΓåÆ qa
+architect → js-developer → qa
 ```
 
 #### Dynamic Escalation Points
@@ -115,8 +115,8 @@ After any agent, insert an unplanned agent if:
 | Status | Action |
 |---|---|
 | `DONE` | Proceed to next agent in your current plan |
-| `DONE_WITH_WARNINGS` | **Read the warnings.** MEDIUM or higher (broken UI, i18n error, security concern) ΓåÆ treat as `FAIL`. LOW (spacing, cosmetic) ΓåÆ log and proceed. |
-| `BLOCKED` | **STOP** ΓÇö Report blocker to user with full context and the exact decision needed |
+| `DONE_WITH_WARNINGS` | **Read the warnings.** MEDIUM or higher (broken UI, i18n error, security concern) → treat as `FAIL`. LOW (spacing, cosmetic) → log and proceed. |
+| `BLOCKED` | **STOP** — Report blocker to user with full context and the exact decision needed |
 | `FAIL` | Enter REWORK cycle |
 
 ### 5. REWORK Cycle
@@ -255,7 +255,7 @@ prompt: |
   Visually verify the implemented feature in a real browser against the acceptance criteria.
   
   ## Read First
-  - {path}/po-brief.md (acceptance criteria ΓÇö your test scenarios)
+  - {path}/po-brief.md (acceptance criteria — your test scenarios)
   - {path}/dev-notes.md (what changed, which routes/pages to verify)
   - {path}/qa-report.md (what automated tests already cover)
   

@@ -28,28 +28,28 @@ The pipeline is **not linear by convention**. The orchestrator reads each agent'
 User Request
      │
      ▼
-feature-orchestrator  ──── classifies request type
-     │                     selects pipeline
+grimorio.feature-orchestrator  ──── classifies request type
+     │                               selects pipeline
      ▼
-po           ──── po-brief.md (user stories, AC, out of scope)
+grimorio.po           ──── po-brief.md (user stories, AC, out of scope)
      │
      ▼
-ux           ──── ux-spec.md (screens, named states, i18n keys)
+grimorio.ux           ──── ux-spec.md (screens, named states, i18n keys)
      │
      ▼
-architect    ──── arch-decision.md (ADRs, blueprint, API contracts)
+grimorio.architect    ──── arch-decision.md (ADRs, blueprint, API contracts)
      │
      ▼
-js-developer ──── code + dev-notes.md
+grimorio.js-developer ──── code + dev-notes.md
      │
      ▼
-qa           ──── qa-report.md + test files
+grimorio.qa           ──── qa-report.md + test files
      │
      ▼
-security     ──── security-report.md ([CODE FIX] or [ARCH ISSUE])
+grimorio.security     ──── security-report.md ([CODE FIX] or [ARCH ISSUE])
      │
      ▼
-manual-verifier ── verification-report.md + screenshots
+grimorio.manual-verifier ── verification-report.md + screenshots
      │
      ▼
    SHIP ✓           (or REWORK → back to the right agent, max 2 cycles)
@@ -80,20 +80,24 @@ Each agent gets a maximum of 2 rework cycles. If 2 attempts don't resolve a fail
 ```
 .github/
 ├── agents/
-│   ├── MANIFEST.md                          ← I/O contracts for all agents
-│   ├── feature-orchestrator.agent.md
-│   ├── po.agent.md
-│   ├── ux.agent.md
-│   ├── architect.agent.md
-│   ├── js-developer.agent.md
-│   ├── qa.agent.md
-│   ├── security.agent.md
-│   └── manual-verifier.agent.md
+│   ├── grimorio.feature-orchestrator.agent.md
+│   ├── grimorio.po.agent.md
+│   ├── grimorio.ux.agent.md
+│   ├── grimorio.architect.agent.md
+│   ├── grimorio.js-developer.agent.md
+│   ├── grimorio.qa.agent.md
+│   ├── grimorio.security.agent.md
+│   └── grimorio.manual-verifier.agent.md
 │
 ├── skills/
-│   └── feature-workflow/
-│       └── SKILL.md                         ← Shared protocol: status codes, artifact formats
+│   ├── feature-workflow/
+│   │   └── SKILL.md                         ← Shared protocol: status codes, artifact formats
+│   ├── development-patterns/
+│   │   └── SKILL.md                         ← 14 mandatory patterns (Repository, DI, Result, etc.)
+│   └── javascript/
+│       └── SKILL.md                         ← Language-level rules (naming, async, SOLID)
 │
+├── happy-path.md                            ← Full visual walkthrough of the feature pipeline
 └── copilot-instructions.md                  ← Entry point: custom commands + agent table
 ```
 
@@ -113,9 +117,9 @@ Each agent gets a maximum of 2 rework cycles. If 2 attempts don't resolve a fail
 2. **Open GitHub Copilot Chat** in VS Code — agents will appear automatically
 3. **Start a feature**:
    ```
-   @feature-orchestrator agregar dark mode
-   @feature-orchestrator hay un bug en el login
-   @feature-orchestrator refactorizar el handler de chat
+   @grimorio.feature-orchestrator agregar dark mode
+   @grimorio.feature-orchestrator hay un bug en el login
+   @grimorio.feature-orchestrator refactorizar el handler de chat
    ```
 4. The orchestrator classifies your request and invokes the first agent in the appropriate pipeline
 5. Each agent tells you what it produced and what comes next
@@ -126,8 +130,9 @@ Each agent gets a maximum of 2 rework cycles. If 2 attempts don't resolve a fail
 
 The agents are project-agnostic by default. To adapt them:
 
-1. **Add project context to each agent's memory** — create `{agent}-memory/SKILL.md` files with your stack, conventions, and known traps (see the `feature-workflow` skill for the 3-level memory format)
-2. **Update the MANIFEST** if you add new artifact types
+1. **Set your product context** in `grimorio.po.agent.md` — fill in the `[Your Product Name]` placeholder with your actual product description and users.
+2. **Add project memory** — create `{agent}-memory/SKILL.md` files with your stack, conventions, and known traps (see the `feature-workflow` skill for the 3-level memory format). Reference them in the relevant agent's frontmatter `skills:` list.
+3. **Read the happy path** at [`.github/happy-path.md`](.github/happy-path.md) to understand what each agent produces and consumes before you start modifying anything.
 3. **Adjust the orchestrator's routing rules** for your specific request types
 
 The system is designed so customization never touches the core agent behavior — only the memory layer.
