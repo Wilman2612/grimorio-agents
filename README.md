@@ -45,6 +45,22 @@ It works better for **iteration and refactoring** than for greenfield features o
 
 ---
 
+## Real Examples
+
+Two real pipeline runs, with artifacts.
+
+### Admin Panel — new feature, full pipeline
+The first full feature run: a role-based admin panel (`/admin`, `/admin/users`, `/admin/subscriptions`). This was before the UX agent existed — which is visible in the outputs. Two agents needed rework cycles (QA caught a BOM encoding bug; the manual verifier caught a hardcoded string). The security agent ran 52 adversarial tests and correctly identified pre-existing CVEs as out-of-scope for this feature rather than blocking the ship.
+
+→ [examples/admin-panel/](examples/admin-panel/)
+
+### Fragment Streaming — protocol redesign
+A multi-bubble NDJSON streaming feature that had failed to ship in two prior attempts. The fix required redefining the server→client protocol entirely. The manual verifier caught two edge cases that didn't appear in any test: a 0-bubble state during early stream (expected behavior, but undocumented) and a Send button lock on responses that take >60 seconds.
+
+→ [examples/fragment-streaming/](examples/fragment-streaming/)
+
+---
+
 ## Architecture
 
 ```
