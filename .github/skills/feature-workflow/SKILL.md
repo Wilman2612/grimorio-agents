@@ -10,9 +10,9 @@ This project uses an **Orchestrator-Workers** pattern (per [Anthropic's "Buildin
 
 - A **feature-orchestrator** agent receives the user's request, classifies it, and delegates to specialized worker agents sequentially.
 - Each worker reads upstream artifacts, does its job, writes its own artifact, and exits.
-- Workers are **stateless** — they receive context exclusively via files on disk and the orchestrator's prompt.
+- Workers are **stateless** ΓÇö they receive context exclusively via files on disk and the orchestrator's prompt.
 - Communication between agents happens **only** via the artifact directory. No implicit context sharing.
-- Workers **NEVER use `vscode_askQuestions`** or any interactive question tool. They are stateless — no one will answer. Unresolved decisions → write them as `BLOCKED` in the output artifact and exit. The orchestrator handles escalation to the user.
+- Workers **NEVER use `vscode_askQuestions`** or any interactive question tool. They are stateless ΓÇö no one will answer. Unresolved decisions ΓåÆ write them as `BLOCKED` in the output artifact and exit. The orchestrator handles escalation to the user.
 
 ### Agents in the Pipeline
 
@@ -21,11 +21,10 @@ This project uses an **Orchestrator-Workers** pattern (per [Anthropic's "Buildin
 | `feature-orchestrator` | Router + coordinator | User request | `orchestrator-log.md` |
 | `po` | Product Owner | User request | `po-brief.md` |
 | `ux` | UX Designer | `po-brief.md` + existing UI | `ux-spec.md` |
-| `architect` | Software Architect | `po-brief.md` + `ux-spec.md` + codebase (+ `security-report.md` if rework) | `arch-decision.md` (ADR + Blueprint + Contracts + Security Constraints) |
+| `architect` | Software Architect | `po-brief.md` + `ux-spec.md` + codebase | `arch-decision.md` |
 | `js-developer` | Developer | `arch-decision.md` + `ux-spec.md` | `dev-notes.md` + code changes |
-| `qa` | QA Engineer | `po-brief.md` + `ux-spec.md` + `arch-decision.md` + `dev-notes.md` + code | `qa-report.md` + test files |
-| `mutation-reviewer` | Test Quality Auditor | `qa-report.md` + test files + `arch-decision.md` + source files | `mutation-report.md` + counter-test files |
-| `security` | Evil Genius | `arch-decision.md` + `dev-notes.md` + code | `security-report.md` + security tests → feeds back to `architect` if structural issues found |
+| `qa` | QA Engineer | `po-brief.md` + `ux-spec.md` + `dev-notes.md` + code | `qa-report.md` + test files |
+| `security` | Evil Genius | `arch-decision.md` + `dev-notes.md` + code | `security-report.md` + security tests |
 | `manual-verifier` | Visual Acceptance Tester | `po-brief.md` + `ux-spec.md` + `dev-notes.md` + running app | `verification-report.md` |
 
 ---
@@ -54,13 +53,13 @@ tmp/features/{slug}/
 
 ## Routing Rules (Orchestrator)
 
-The orchestrator classifies the user's request and selects a **starting point**. The pipeline is non-linear — the orchestrator reads each agent's output and decides dynamically what comes next.
+The orchestrator classifies the user's request and selects a **starting point**. The pipeline is non-linear ΓÇö the orchestrator reads each agent's output and decides dynamically what comes next.
 
 | Request Type | Starting Point | Default Flow |
 |---|---|---|
-| **Feature** | `po` | `po → ux → architect → js-developer → qa → mutation-reviewer → security → (architect if structural issues) → js-developer (rework if needed) → manual-verifier` |
-| **Bug** | `security` (triage, text-only) | `security → architect → js-developer → manual-verifier (diagnose) → ux (if UI touched) → js-developer (fix) → qa → manual-verifier` |
-| **Refactor** | `architect` | `architect → js-developer → qa` |
+| **Feature** | `po` | `po ΓåÆ ux ΓåÆ architect ΓåÆ js-developer ΓåÆ qa ΓåÆ security ΓåÆ manual-verifier` |
+| **Bug** | `security` (triage, text-only) | `security ΓåÆ architect ΓåÆ js-developer ΓåÆ manual-verifier (diagnose) ΓåÆ js-developer (fix) ΓåÆ qa ΓåÆ manual-verifier` |
+| **Refactor** | `architect` | `architect ΓåÆ js-developer ΓåÆ qa` |
 | **Security Review** | `security` solo | `security` |
 | **Test Gap** | `qa` solo | `qa` |
 | **UX Review** | `ux` solo | `ux` |
@@ -71,24 +70,14 @@ Steps 1-2 are **text-only** (no browser, no commands). Cheap. Short-circuit ever
 
 | Step | Agent | Task | Skip if |
 |---|---|---|---|
-| 1 | `security` | ¿Amenaza integridad / OWASP? | — always run |
-| 2 | `architect` | ¿Viola arquitectura? ¿cross-service? ¿DB schema? | security returned CRITICAL → escalate first |
-| 3 | `js-developer` | Diagnose: ¿fácil o difícil? ¿qué toca? | — always run |
-| 3b | `architect` | Validate approach (solo si step 3 dice "difícil" o "multi-layer") | js-developer dice fácil/contained |
-| 4 | `manual-verifier` | Confirm bug is real (diagnosis mode, no po-brief) | — always run |
-| 4b | `ux` | Define WHAT to implement and WHERE (si el fix toca UI) | Skip if fix is backend-only / no `.tsx` files touched |
-| 5 | `js-developer` | Implement fix | — always run |
-| 6 | `qa` | Regression check | — always run |
-| 7 | `manual-verifier` | Confirm fix visually | — always run |
-
-**Rule for step 4b — When to invoke `ux` in a bug pipeline:**
-Invoke `ux` if the diagnosis (steps 3/3b) identifies that ANY of these are touched:
-- A `.tsx` component is modified (layout, states, navigation)
-- A new visible element is added (button, indicator, badge, label)
-- A CSS/Tailwind class controlling width, positioning, or visibility changes
-- The fix involves a data state (loading/empty/error) that wasn't previously handled
-
-Skip `ux` if the fix is: API-only, DB migration, cron logic, hook state machine with no JSX output, or a pure logic fix inside a service.
+| 1 | `security` | ┬┐Amenaza integridad / OWASP? | ΓÇö always run |
+| 2 | `architect` | ┬┐Viola arquitectura? ┬┐cross-service? ┬┐DB schema? | security returned CRITICAL ΓåÆ escalate first |
+| 3 | `js-developer` | Diagnose: ┬┐f├ícil o dif├¡cil? ┬┐qu├⌐ toca? | ΓÇö always run |
+| 3b | `architect` | Validate approach (solo si step 3 dice "dif├¡cil" o "multi-layer") | js-developer dice f├ícil/contained |
+| 4 | `manual-verifier` | Confirm bug is real (diagnosis mode, no po-brief) | ΓÇö always run |
+| 5 | `js-developer` | Implement fix | ΓÇö always run |
+| 6 | `qa` | Regression check | ΓÇö always run |
+| 7 | `manual-verifier` | Confirm fix visually | ΓÇö always run |
 
 ### Dynamic Routing Triggers
 
@@ -97,9 +86,8 @@ After any agent, the orchestrator may insert an unplanned agent:
 | Condition | Insert |
 |---|---|
 | Fix touches cross-service boundary or DB schema | `architect` validates before js-developer implements |
-| Fix touches any `.tsx` file or visible UI element | `ux` before js-developer implements |
 | Security/QA finds a product-level tradeoff | `po` to define scope, or ESCALATE to user |
-| Manual-verifier finds broken UX not in the PO brief | `ux` to define correction, then js-developer |
+| Manual-verifier finds broken UX not in the PO brief | `po` to decide scope |
 | Any agent BLOCKED on a tech or product decision | ESCALATE to user with the exact question |
 
 ---
@@ -119,28 +107,26 @@ Valid codes:
 | `DONE` | Work completed successfully, no issues found | Proceed to next agent |
 | `DONE_WITH_WARNINGS` | Completed but with non-blocking concerns | Proceed, log warnings |
 | `BLOCKED` | Cannot proceed without human decision | ESCALATE to user |
-| `FAIL` | Found actionable code-level problems | Route to REWORK cycle (developer) |
-| `FAIL-ARCH` | Found structural/architectural problems (`[ARCH ISSUE]` from security) | Route to `architect` first, then `js-developer` for rework |
-| `CLEAR` | No vulnerabilities found (security only) | Proceed to next agent |
+| `FAIL` | Found actionable problems | Route to REWORK cycle |
 
 ---
 
 ## REWORK Cycle
 
-When `qa`, `mutation-reviewer`, `security`, or `manual-verifier` report `FAIL`:
+When `qa`, `security`, or `manual-verifier` report `FAIL`:
 
 1. The orchestrator sends the failure report back to `js-developer` with instructions to fix.
 2. After the fix, the failing agent re-runs its checks.
 3. **Maximum 2 REWORK cycles** per feature. After 2 failures:
    - The orchestrator writes a summary of all unresolved issues.
-   - Status changes to `ESCALATE` — user must intervene.
+   - Status changes to `ESCALATE` ΓÇö user must intervene.
 
 ### REWORK Prompt Template
 
 When sending a REWORK to js-developer:
 
 ```
-## REWORK Required — Cycle {N}/2
+## REWORK Required ΓÇö Cycle {N}/2
 
 ### Original Architect Decision
 [paste arch-decision.md path]
@@ -192,7 +178,7 @@ After fixing, update dev-notes.md with what you changed and why.
 # UX Spec: {feature title}
 
 ## Scope
-{Which screens this spec covers. If no UI screens: "No UI screens in scope" → Status: DONE}
+{Which screens this spec covers. If no UI screens: "No UI screens in scope" ΓåÆ Status: DONE}
 
 ## Existing Patterns Observed
 - Navigation: {how existing screens handle back/exit}
@@ -210,7 +196,7 @@ After fixing, update dev-notes.md with what you changed and why.
 {Top-to-bottom description of what appears}
 
 #### Navigation
-- Back: `← {t("namespace.back")}` → `{target path}`
+- Back: `ΓåÉ {t("namespace.back")}` ΓåÆ `{target path}`
 
 #### States
 | State | What to show |
@@ -231,20 +217,20 @@ After fixing, update dev-notes.md with what you changed and why.
 | {ns} | {key} | {es value} | {en value} |
 
 #### Mobile Notes
-{Adjustments for 375px, or "Standard layout — no adjustments needed"}
+{Adjustments for 375px, or "Standard layout ΓÇö no adjustments needed"}
 
 ---
 
 ## UX Heuristics Checklist
 | Heuristic | Status | Notes |
 |---|---|---|
-| All screens have exit/back | ✅ / ❌ | |
-| All 4 data states covered | ✅ / ❌ | |
-| No hardcoded strings | ✅ / ❌ | |
-| Mobile layout valid | ✅ / ❌ | |
-| Consistent with existing patterns | ✅ / ❌ | |
-| Accessible labels | ✅ / ❌ | |
-| Destructive actions have confirmation | ✅ / ❌ | |
+| All screens have exit/back | Γ£à / Γ¥î | |
+| All 4 data states covered | Γ£à / Γ¥î | |
+| No hardcoded strings | Γ£à / Γ¥î | |
+| Mobile layout valid | Γ£à / Γ¥î | |
+| Consistent with existing patterns | Γ£à / Γ¥î | |
+| Accessible labels | Γ£à / Γ¥î | |
+| Destructive actions have confirmation | Γ£à / Γ¥î | |
 
 ## Status: DONE | BLOCKED
 ```
@@ -263,10 +249,10 @@ After fixing, update dev-notes.md with what you changed and why.
 | `path/to/file.ts` | CREATE / MODIFY / DELETE | domain / application / infrastructure / presentation |
 
 ## Existing Abstractions to Reuse
-- `{path}` — {what it does and why to reuse it}
+- `{path}` ΓÇö {what it does and why to reuse it}
 
 ## New Abstractions (if any)
-- `{path}` — {what it does and why it's needed}
+- `{path}` ΓÇö {what it does and why it's needed}
 
 ## Patterns Applied
 - {Pattern from development-patterns skill and why}
@@ -283,7 +269,7 @@ After fixing, update dev-notes.md with what you changed and why.
 ## Trade-offs
 | Option | Pros | Cons | Selected |
 |---|---|---|---|
-| A | ... | ... | ✓ / ✗ |
+| A | ... | ... | Γ£ô / Γ£ù |
 
 ## Status: DONE | BLOCKED
 ```
@@ -326,7 +312,7 @@ After fixing, update dev-notes.md with what you changed and why.
 | E2E | N | N | N |
 
 ## Tests Created
-- `path/to/test.ts` — {what it validates}
+- `path/to/test.ts` ΓÇö {what it validates}
 
 ## Failures
 ### Failure 1: {test name}
@@ -370,12 +356,12 @@ After fixing, update dev-notes.md with what you changed and why.
 - **Severity**: CRITICAL / HIGH / MEDIUM / LOW
 
 ## Security Tests Created
-- `path/to/security-test.ts` — {what it validates}
+- `path/to/security-test.ts` ΓÇö {what it validates}
 
 ## Recommendations
 - {actionable fixes, ordered by severity}
 
-## Status: CLEAR | FAIL | FAIL-ARCH
+## Status: CLEAR | FAIL
 ```
 
 ### verification-report.md
@@ -393,9 +379,9 @@ After fixing, update dev-notes.md with what you changed and why.
 
 ### Scenario 1: {description from acceptance criterion}
 - **Criterion**: {exact text from po-brief.md}
-- **Steps**: {what you did — clicked X, navigated to Y, typed Z}
+- **Steps**: {what you did ΓÇö clicked X, navigated to Y, typed Z}
 - **Expected**: {what should appear}
-- **Actual**: {what you saw — describe concretely}
+- **Actual**: {what you saw ΓÇö describe concretely}
 - **Result**: PASS / FAIL
 
 ## Summary
@@ -425,14 +411,14 @@ After fixing, update dev-notes.md with what you changed and why.
 ## Execution Log
 | Step | Agent | Status | Duration | Notes |
 |---|---|---|---|---|
-| 1 | po | DONE | — | — |
-| 2 | architect | DONE | — | — |
-| 3 | js-developer | DONE | — | — |
-| 4 | qa | FAIL | — | 2 test failures |
-| 5 | js-developer (REWORK 1) | DONE | — | Fixed auth check |
-| 6 | qa (REWORK 1) | DONE | — | All tests pass |
-| 7 | security | CLEAR | — | No vulnerabilities |
-| 8 | manual-verifier | DONE | — | All visual checks pass |
+| 1 | po | DONE | ΓÇö | ΓÇö |
+| 2 | architect | DONE | ΓÇö | ΓÇö |
+| 3 | js-developer | DONE | ΓÇö | ΓÇö |
+| 4 | qa | FAIL | ΓÇö | 2 test failures |
+| 5 | js-developer (REWORK 1) | DONE | ΓÇö | Fixed auth check |
+| 6 | qa (REWORK 1) | DONE | ΓÇö | All tests pass |
+| 7 | security | CLEAR | ΓÇö | No vulnerabilities |
+| 8 | manual-verifier | DONE | ΓÇö | All visual checks pass |
 
 ## Final Decision: SHIP | REWORK | ESCALATE
 {Justification}
@@ -444,11 +430,11 @@ After fixing, update dev-notes.md with what you changed and why.
 
 The orchestrator MUST escalate to the user (stop execution) when:
 
-1. **REWORK cycles exhausted** — 2 failures on the same issue.
-2. **PO reports BLOCKED** — External dependency (subscription, API key, business decision).
-3. **Architect reports BLOCKED** — Ambiguous requirement that could go multiple ways with significant trade-offs.
-4. **Security reports CRITICAL** — A vulnerability that cannot be auto-fixed (e.g., fundamental design flaw).
-5. **Destructive DB operation** — DROP, ALTER COLUMN type change, migrate reset (per existing Prisma rules).
+1. **REWORK cycles exhausted** ΓÇö 2 failures on the same issue.
+2. **PO reports BLOCKED** ΓÇö External dependency (subscription, API key, business decision).
+3. **Architect reports BLOCKED** ΓÇö Ambiguous requirement that could go multiple ways with significant trade-offs.
+4. **Security reports CRITICAL** ΓÇö A vulnerability that cannot be auto-fixed (e.g., fundamental design flaw).
+5. **Destructive DB operation** ΓÇö DROP, ALTER COLUMN type change, migrate reset (per existing Prisma rules).
 
 ---
 
@@ -456,7 +442,7 @@ The orchestrator MUST escalate to the user (stop execution) when:
 
 | Need | Tool/Agent |
 |---|---|
-| Spec writing (complex features) | `speckit.specify` → `speckit.plan` |
+| Spec writing (complex features) | `speckit.specify` ΓåÆ `speckit.plan` |
 | Domain analysis | `domain-discovery` skill |
 | Code implementation | `js-developer` agent (with `javascript` + `development-patterns` skills) |
 | DB schema changes | `prisma-operations` skill |
@@ -464,14 +450,14 @@ The orchestrator MUST escalate to the user (stop execution) when:
 | Package.json changes | `npm-package-json-cli` skill |
 | Chat data backup before destructive ops | `chat-backup-reset` skill |
 
-Agents CAN invoke these tools internally when their task requires it. The orchestrator does NOT enforce which internal tools an agent uses — only the artifact output matters.
+Agents CAN invoke these tools internally when their task requires it. The orchestrator does NOT enforce which internal tools an agent uses ΓÇö only the artifact output matters.
 
 ---
 
 ## Memory Consolidation (Post-SHIP)
 
 When the orchestrator decides **SHIP**, before closing the pipeline it triggers a memory consolidation step.
-This is NOT a new agent invocation — it's instructions embedded in the SHIP decision for each agent that participated.
+This is NOT a new agent invocation ΓÇö it's instructions embedded in the SHIP decision for each agent that participated.
 
 ### What the orchestrator writes in `orchestrator-log.md` at SHIP:
 
@@ -479,29 +465,29 @@ This is NOT a new agent invocation — it's instructions embedded in the SHIP de
 ## Memory Consolidation
 
 After shipping, each relevant agent must update their semantic memory file if they discovered
-something new during this feature — including bugs found and fixed during REWORK cycles.
+something new during this feature ΓÇö including bugs found and fixed during REWORK cycles.
 
-### Architect → `.github/skills/architect-memory/SKILL.md` (or detail file)
+### Architect ΓåÆ `.github/skills/architect-memory/SKILL.md` (or detail file)
 Did you discover a tech trap, interaction conflict, or architectural fact that wasn't documented?
-- If yes: append ≤2 lines to the relevant memory file (SKILL.md macro or the detail .md for that area)
+- If yes: append Γëñ2 lines to the relevant memory file (SKILL.md macro or the detail .md for that area)
 - If no: skip
 
-### PO → `.github/skills/po-memory/features-status.md`
+### PO ΓåÆ `.github/skills/po-memory/features-status.md`
 Did this feature change the status of any flag or add a new feature?
 - If yes: update the relevant row in features-status.md
 - If no: skip
 
-### Developer → `.github/skills/developer-memory/SKILL.md`
+### Developer ΓåÆ `.github/skills/developer-memory/SKILL.md`
 Did a REWORK cycle reveal a codebase-specific trap (not covered by general patterns)?
-- If yes: append ≤2 lines to developer-memory/SKILL.md
+- If yes: append Γëñ2 lines to developer-memory/SKILL.md
 - If no: skip
 ```
 
 ### Rules for memory consolidation
 
-1. **Include REWORK findings**: bugs fixed in REWORK cycles are the most valuable entries — they represent real traps. The architect documents the root architectural fact; the developer documents the code-level trap.
-2. **≤2 lines per feature**: If an area needs more, create a detail file (e.g., `architect-memory/billing.md`) and reference it from the macro SKILL.md.
-3. **Level 2 only** (concept + env var, not file paths): "Auth gate checks ALLOWED_EMAIL before admin — admin must bypass it" is good. "`clerk-auth-provider.ts:52` checks email before admin" is too specific and will break on refactors.
+1. **Include REWORK findings**: bugs fixed in REWORK cycles are the most valuable entries ΓÇö they represent real traps. The architect documents the root architectural fact; the developer documents the code-level trap.
+2. **Γëñ2 lines per feature**: If an area needs more, create a detail file (e.g., `architect-memory/billing.md`) and reference it from the macro SKILL.md.
+3. **Level 2 only** (concept + env var, not file paths): "Auth gate checks ALLOWED_EMAIL before admin ΓÇö admin must bypass it" is good. "`clerk-auth-provider.ts:52` checks email before admin" is too specific and will break on refactors.
 4. **No consolidation if nothing was discovered**: Do not add entries for the sake of it. An empty update is correct.
 5. **Timing**: Consolidation happens once, at SHIP. Not during REWORK cycles. Not after each agent step.
 
