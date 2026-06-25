@@ -4,6 +4,11 @@ commands:
 description: Grimorio multi-agent pipeline for software development
 ---
 
+> **⚠️ Legacy (GitHub Copilot Chat).** The current, recommended version of Grimorio lives in
+> [`.claude/`](../.claude/) (Claude Code subagents + skills). It splits the developer role
+> (backend/frontend), reframes UX as an adversarial critic over Storybook, and adds a code-reviewer.
+> This `.github/` variant is kept for reference and for Copilot users. See the root `README.md`.
+
 # Grimorio — Agent System
 
 ## Available Command
