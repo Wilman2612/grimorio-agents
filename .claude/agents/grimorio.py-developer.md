@@ -1,6 +1,6 @@
 ---
 name: grimorio.py-developer
-description: "Backend Python developer. Implements the match runner service layer (FastAPI + the fixed interpreter, turn-loop, budget guard, structured-event emitter, LLM provider client). Scope is services/runner/** only — never services/warsim (go-developer), services/runner-node, apps/web (ui-developer), or packages/shared TS (js-developer). Mirrors the shared contracts into Pydantic and keeps the cross-language drift test green. Reads arch-decision.md / the design docs, writes dev-notes.md. On a bug, writes the failing test first. The runner is money- and DB-blind."
+description: "Backend Python developer. Implements the match runner service layer (FastAPI + the fixed interpreter, turn-loop, budget guard, structured-event emitter, LLM provider client). Scope is services/runner/** only — never services/game-sim (go-developer), services/runner-node, apps/web (ui-developer), or packages/shared TS (js-developer). Mirrors the shared contracts into Pydantic and keeps the cross-language drift test green. Reads arch-decision.md / the design docs, writes dev-notes.md. On a bug, writes the failing test first. The runner is money- and DB-blind."
 model: sonnet
 ---
 

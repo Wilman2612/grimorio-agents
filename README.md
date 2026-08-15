@@ -21,6 +21,11 @@ plainly what's broken rather than polish forever. Concretely, right now:
   fresh repo — several assume directory layout this repo doesn't carry.
 - **No human pass has re-read every exported file** beyond an automated secret scan and targeted greps
   (also in MANIFEST.md). Skim before treating any one file as a finished, polished artifact.
+- **A second pass (2026-08-15) scrubbed 20 files that still named the source project literally**
+  (`arena`/`warsim`) and deleted a leftover working-notes folder the first pass had left in the tree — see
+  MANIFEST.md → "Second pass" for exactly what changed and why some concrete examples were kept and
+  renamed rather than deleted outright. That pass did not re-verify the renamed examples end to end, and
+  did not touch `examples/` or `ROADMAP.md`, same scope boundary as the first pass.
 
 ## What this actually is
 

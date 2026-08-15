@@ -23,7 +23,7 @@ forget. It complements — does not replace — the soft layer (this skill + the
 - Claude Code reviews hook changes for safety; a newly-added/edited hook may not take effect until the session is
   restarted or the hook is approved via `/hooks`. Expect it to bind on the NEXT session, not retroactively.
 - To test the script standalone:
-  `echo '{"session_id":"t","tool_input":{"file_path":"apps/web/src/components/matches/battle/warsim-phaser-continuous/x.ts"}}' | node .claude/hooks/harness-lookup.cjs`
+  `echo '{"session_id":"t","tool_input":{"file_path":"apps/web/src/components/matches/battle/battle-render-continuous/x.ts"}}' | node .claude/hooks/harness-lookup.cjs`
   It should print JSON whose `additionalContext` contains the terrain-brush harness. Run twice with the same
   `session_id` → the second run prints nothing (dedup).
 - The soft layer must stand on its own: never rely on the hook as the ONLY thing that surfaces a harness — always

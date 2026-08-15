@@ -68,7 +68,8 @@ TAG 2025 — see doc 37 G.3). Each is scored vs a designer TARGET, not in the ab
 - **Unit/mechanic values by REGRESSION** — don't hand-assign power; fit it to simulated outcomes.
 
 **Restricted Play** (Jaffe et al. AIIDE 2012) — express a balance goal as "a suitably RESTRICTED agent (one
-strategy subset) should win ~50% vs a full agent." This is THE test for arena's emergence bar (a single static
+strategy subset) should win ~50% vs a full agent." This is THE test the source project (a battle-simulation
+game) used for its own emergence bar (a single static
 tweak must not dominate) — a restricted "one static setting" player must NOT beat a full live-orchestration player.
 
 ## Statistics — turn raw counts into INFERENCE (adopt real methods, do NOT invent)
@@ -97,7 +98,7 @@ mechanic-correctness check with the full statistical machinery meant for the oth
 A metric is a point estimate; a decision needs an INTERVAL and a test. Without this, "51% at N=30" and "51% at
 N=10,000" read identically and a sweep manufactures false levers. Minimum bar for every paper:
 - **Every proportion (win-rate, completion, decisiveness) carries a WILSON SCORE interval** at N — never a bare
-  percentage. (Wilson, not normal-approx: honest at small N and near 0/1, exactly arena's regime.)
+  percentage. (Wilson, not normal-approx: honest at small N and near 0/1, exactly the source project's regime.)
 - **State the minimum detectable effect + power** for the chosen N — "N and why it's enough" is a POWER
   calculation, never a narration. Size N for the effect you need to detect, never for what fits one turn.
 - **MULTIPLE-COMPARISONS CORRECTION is mandatory whenever the experiment sweeps** more than one parameter/arm

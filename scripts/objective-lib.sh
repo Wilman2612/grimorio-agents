@@ -112,8 +112,8 @@ obj_out_of_scope_globs() {
     | sed 's/[[:space:]]*$//' | sed 's/[[:space:]]*#.*$//' | grep -v '^[[:space:]]*$' || true
 }
 
-# Pattern forms, and why the slashless one is not taken literally: an author writes "services/warsim"
-# at least as often as "services/warsim/", and matching only a file of that exact name would leave the
+# Pattern forms, and why the slashless one is not taken literally: an author writes "services/game-sim"
+# at least as often as "services/game-sim/", and matching only a file of that exact name would leave the
 # branch silently unscoped — a gate failing in the dangerous direction. A pattern with no glob
 # metacharacter is therefore treated as BOTH the path itself and everything under it.
 obj_path_violates() {

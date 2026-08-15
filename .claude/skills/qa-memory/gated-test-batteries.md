@@ -2,7 +2,7 @@
 
 > **Placement note.** Same situation as `./concurrency-testing.md`: this lesson is general/portable and belongs
 > conceptually in `SKILL.md`, filed here because `SKILL.md` is governance-locked to this agent. This project's
-> specific instance (the warsim `-tags scenario` battery, its command, and its confirmed status) is recorded in
+> specific instance (the game-sim `-tags scenario` battery, its command, and its confirmed status) is recorded in
 > `./project.md` → "Test frameworks", not duplicated here, so the fact lives in exactly one place.
 > Source: `.claude/grimorio-defects-narrative.md`, captured 2026-08-08.
 >
@@ -27,7 +27,7 @@ Whenever a suite's "proof of done" for some class of change lives behind a non-d
 
 ## Verified instance in this repo
 
-`services/warsim`'s `-tags scenario` integration battery is exactly this shape — see `./project.md` → "Test
+`services/game-sim`'s `-tags scenario` integration battery is exactly this shape — see `./project.md` → "Test
 frameworks" for the command, the specific test, and its confirmed status.
 
 -> Universal testing principles this extends: `./SKILL.md`

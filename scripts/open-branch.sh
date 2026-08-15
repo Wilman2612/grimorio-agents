@@ -128,7 +128,7 @@ modifications, DELETIONS and renames alike — which is what keeps a branch from
 unrelated work. A pattern with no glob character covers the path and everything under it.
 
 \`\`\`paths
-# services/warsim      # a directory and all of it
+# services/game-sim    # a directory and all of it
 # apps/web/src/*.tsx   # a glob, matched against the whole path
 \`\`\`
 

@@ -12,7 +12,7 @@ const GOVERNANCE = [
   // write time any more. This file is the CANONICAL declaration, NOT the only one: scripts/refobl/prefix.cjs
   // and scripts/audit-chain.mjs each hardcode an independent hand-synced copy, so edit all three together.
   // Drifting once let a
-  // directory named `warsim-unit-behavior/` pull every file inside it into governance scope.
+  // directory named `combat-unit-behavior/` pull every file inside it into governance scope.
   /^\.claude\/skills\/(?:[^/]+\/)*[^/]*behavior[^/]*\.md$/i,
   /^objectives\/harness\.md$/,
 ];

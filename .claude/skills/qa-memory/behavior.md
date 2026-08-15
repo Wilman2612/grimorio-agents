@@ -59,7 +59,7 @@ a Test Matrix or any Workflow step to open first — solo is fine, silent solo i
 
 ## The test projects (run each in its own context)
 
--> Exact commands per suite (pnpm scripts for apps/web, `go test ./...` for services/warsim, pytest for
+-> Exact commands per suite (pnpm scripts for apps/web, `go test ./...` for services/game-sim, pytest for
    services/runner): ref:skill/qa-memory/project.md → "Test frameworks" — the single source of truth for these commands.
 
 Each layer runs separately. A frontend test that imports from `src/` (backend) is an architecture failure — report it.

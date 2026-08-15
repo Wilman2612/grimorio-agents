@@ -56,7 +56,7 @@ must be verified against the repo; POPULATION inherits that same standing, not a
    sits beside the extension filter: the scan's ROOTS.** It only walks `ref:repo/.claude/agents` and
    `ref:repo/.claude/skills`, plus the three files pushed in by name at source lines 108-115 — so files that
    ARE markdown miss it too. 15 of the repo's 16 `harness.md` files sit outside those roots (`git ls-files
-   "*harness.md" | wc -l` → 16; only `ref:repo/.claude/skills/po-memory/docs/13-arena-grimorio-harness.md` is
+   "*harness.md" | wc -l` → 16; only `ref:repo/.claude/skills/po-memory/docs/13-grimorio-harness-note.md` is
    inside), `ref:repo/objectives/harness.md` among them — a file `CLAUDE.md` rule 20 itself names a governance
    file, and one the harness-lookup hook injects into context exactly like a skill's text. Widening the corpus
    to `.cjs` was CONSIDERED AND REFUSED, and the decision is settled, not open: the grammar this tool checks
@@ -196,7 +196,7 @@ must be verified against the repo; POPULATION inherits that same standing, not a
    independent, hand-synced copy of the same pattern list and must be updated alongside it — `prefix.cjs`'s
    copy is deliberate, by its own comment, so it fails CLOSED even if it were ever the only one left. A fourth,
    independent declaration existed once (in the now-deleted governance hook) and drifted, and a directory
-   merely named `warsim-unit-behavior/` had its legitimate anchors refused as FABRICATED because of it — with
+   merely named `combat-unit-behavior/` had its legitimate anchors refused as FABRICATED because of it — with
    three live copies still to keep in sync, that risk is exactly as real today, which is why this file stays
    delicate to edit.
 3. `ref:repo/scripts/refobl/read.cjs` — ANSWERS: what does this ONE reference actually address — prints exactly

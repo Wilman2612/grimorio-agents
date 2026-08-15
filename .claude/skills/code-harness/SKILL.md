@@ -142,4 +142,4 @@ Two layers, because instruction-only is the failure mode (agents forget):
   first" so an edit conforms to the signed design instead of re-litigating it.
 
 -> The hook script + settings wiring: `./hook.md`. The first real harness (the terrain brush):
-ref:repo/apps/web/src/components/matches/battle/warsim-phaser-continuous/harness.md.
+ref:repo/apps/web/src/components/matches/battle/battle-render-continuous/harness.md.

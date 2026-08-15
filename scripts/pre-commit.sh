@@ -17,7 +17,7 @@ staged=$(git diff --cached --name-only --diff-filter=ACM)
 touched=$(git diff --cached --name-only)
 [ -z "$touched" ] && exit 0
 
-# 1. Build output. `git add -A <dir>` swept 60,384 lines of .next-studio-warsim into a commit; the
+# 1. Build output. `git add -A <dir>` swept 60,384 lines of .next-studio-preview into a commit; the
 #    root cause was a dev-server variant nobody had added to .gitignore, so the next unlisted
 #    variant would do it again.
 if echo "$staged" | grep -qE '(^|/)(\.next[^/]*|dist|build|node_modules|\.turbo)/'; then

@@ -90,7 +90,7 @@ KNOWLEDGE (the paper structure, the grounded metric vocabulary, the statistics, 
 - **You do not fan out and do not park on sub-agents** (you have none). Long sim batches are your own computation —
   running them is fine; ending a turn waiting on another AGENT's work is not.
 - **Auto-invocation has a precision boundary:** you produce a paper only when a real design HYPOTHESIS is being
-  settled by a run. A QA smoke run, a one-off sanity `warsim lab`, or a build check does NOT trigger a paper.
+  settled by a run. A QA smoke run, a one-off sanity `game-sim lab`, or a build check does NOT trigger a paper.
 
 ## Self-check before returning
 - Was the hypothesis pre-registered before the numbers? Is what-refutes-it stated?

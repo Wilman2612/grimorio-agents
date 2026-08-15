@@ -78,7 +78,7 @@ This is the **behavior file of agent:grimorio.brush-critic** — the full one-pa
 - **NAME your reference FILE, and it must be a canonical one — a third-party screenshot, a promo GIF, or PROSE is
   not a reference (HARD RULE).** Every finding's evidence line must cite the exact reference file path it was
   judged against, and that path must be a file in
-  ref:repo/apps/web/src/components/matches/battle/warsim-phaser-continuous/references/ (the pack's own guide art). If you
+  ref:repo/apps/web/src/components/matches/battle/battle-render-continuous/references/ (the pack's own guide art). If you
   cannot cite such a file for a finding, you may not raise the finding — say the reference is missing and stop.
   Prose (a skill file, a composition guide, this file) describes the reference; it IS NOT the reference, and when
   they disagree the pixels win. Never judge against an image WE generated (see the references README).

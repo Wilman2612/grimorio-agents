@@ -74,7 +74,7 @@ path is actually tracked. If it isn't, migrate the substance into `architect-mem
 FIRST, then cite that instead. `tmp/` is gitignored project-wide and gets pruned in routine cleanups; a
 citation into it is only ever safe for a still-open, not-yet-decided item, or when the doc citing it is
 explicitly a provenance footnote for something ALREADY fully consolidated elsewhere in a tracked file. This
-fired for real 2026-07-18: ./docs/28-arena-war-sim-engine-rescale-v2.md and ./docs/27-arena-v1-action-library-unit-behavior.md cited four dead ref:tmp/features/* folders
+fired for real 2026-07-18: ./docs/28-war-sim-engine-rescale-v2.md and ./docs/27-v1-action-library-unit-behavior.md cited four dead ref:tmp/features/* folders
 (three permanently lost, since the applied design was already consolidated verbatim in the docs themselves —
 no decision content was actually lost), and ./render-terrain-elevation.md cited two folders that were still on
 disk, untracked, and one cleanup away from the same fate — rescued whole into `architect-memory/docs/
@@ -86,7 +86,7 @@ documenting an iterative build against a class — `TinySwordsElevationProfile` 
 tree) were process artifacts whose conclusions had already graduated or been superseded by later code, so they
 were removed rather than kept as a second, competing history. `docs/rescued-tmp/` no longer exists; the pattern
 above remains available for a future rescue. See `./terrain-and-map.md` §"War battle-sim engine" and
-`./docs/28-arena-war-sim-engine-rescale-v2.md`'s header for the worked example.
+`./docs/28-war-sim-engine-rescale-v2.md`'s header for the worked example.
 
 ---
 

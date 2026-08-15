@@ -147,3 +147,45 @@ actual credential):
 
 Also checked and clean: the user's personal email/handle, the source project's Neon/Railway project
 identifiers, and the literal product name "PromptArena" (zero hits on all three).
+
+## Second pass — 2026-08-15: closing the leakage the first pass left open
+
+The first pass above copied and split the corpus correctly but did not finish scrubbing it: 20 files still
+named the source project literally (`arena`, `warsim`, `promptarena`), and this repo's own working notes
+(`tmp/notes/MILESTONE-0-plan.md`) had been left sitting in the tree. This pass closed both, file by file,
+with judgement rather than a blind find-and-replace:
+
+- **Pure leakage, removed.** Internal doc filenames that embedded the product name for no reason a reader
+  here needs (`13-arena-grimorio-harness.md` → `13-grimorio-harness-note.md`;
+  `28-arena-war-sim-engine-rescale-v2.md` → `28-war-sim-engine-rescale-v2.md`;
+  `27-arena-v1-action-library-unit-behavior.md` → `27-v1-action-library-unit-behavior.md`), and one bare
+  mention (`reasoning-principles/SKILL.md`'s "Arena pays ⟶ blocker" → "The product pays ⟶ blocker").
+- **Load-bearing examples, kept and neutralised.** Several files use a REAL path or incident to make a rule
+  concrete — a scope boundary between two developer agents (`services/warsim` → `services/game-sim`, in
+  both `js-developer.md` and `py-developer.md` and their memory skills), a real harness-lookup worked
+  example (`warsim-phaser-continuous/` → `battle-render-continuous/`, across `code-harness/hook.md`,
+  `code-harness/SKILL.md`, `game-development/developer-behavior.md`, `map-design/brush-critic-behavior.md`),
+  a real governance-regex false-positive incident (`warsim-unit-behavior/` → `combat-unit-behavior/`, in
+  `agent-writing/audit-toolchain.md` and `scripts/refobl/governance.cjs`), and a real build-output incident
+  with a measured line count (`.next-studio-warsim` → `.next-studio-preview`, in `scripts/pre-commit.sh`,
+  the `60,384` line count itself unchanged — it is the actual measurement, not the identity). These teach
+  better with a concrete case than with `<your service>`, so the case stayed; only the name changed.
+- **Provenance, stated rather than hidden.** `experiment-method/SKILL.md` cites the source project's own
+  emergence-bar and Wilson-interval regime as where that statistical judgement call was actually earned —
+  reworded to say "the source project (a battle-simulation game)" / "the source project's regime" instead of
+  naming it, so the grounding survives without the identity.
+- **`tmp/` deleted from the tree.** It was already `.gitignore`d (so `git status` was already clean) but the
+  directory itself, including the previous pass's own working notes, still sat on disk — removed outright so
+  it cannot be accidentally force-added back.
+- **`README.md` and `MANIFEST.md` themselves keep the one deliberate, labelled mention of "arena"** — the
+  provenance line in the README's second paragraph and this file's own opening line. Per the instruction that
+  authorized this pass: a stated provenance is more honest than a corpus that pretends to have been born
+  generic, and removing those two lines would only make the origin harder to trace, not less true.
+
+Re-run the check yourself: `grep -rIl -iE "\barena\b|warsim|promptarena" --exclude-dir=.git .` from the repo
+root — as of this pass it returns exactly `README.md` and `MANIFEST.md`, both explained above.
+
+**What this pass did NOT do:** re-verify every renamed path still forms a coherent, working example end to
+end (a human should still skim the renamed sections); re-run the scripts under `scripts/` (already flagged
+non-verified-standalone in "Known limitations" above, unaffected by this pass); or touch `examples/` or
+`ROADMAP.md` (out of scope here exactly as they were out of scope for the first pass).

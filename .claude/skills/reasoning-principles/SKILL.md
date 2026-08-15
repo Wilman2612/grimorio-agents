@@ -227,7 +227,7 @@ building, and turning it into one is the most expensive failure recorded in this
   auditor's standard. An adversarial auditor will ALWAYS return another finding — that is a property of
   the process, not a signal about the code, and rounds without a declared bar cannot converge.
   **Two rework cycles, then decide** (ref:skill/feature-workflow#rework-cycle).
-- **ALWAYS triage a finding into real+blocking / real+debt / not-our-problem, by WHO PAYS.** Arena pays
+- **ALWAYS triage a finding into real+blocking / real+debt / not-our-problem, by WHO PAYS.** The product pays
   ⟶ blocker. The abuser pays ⟶ not a blocker. Nobody pays ⟶ judge by whether it is reachable today.
   The auditor evaluates independently; the verdict belongs to the caller. **NEVER forward an unfiltered
   audit as a work list.**
