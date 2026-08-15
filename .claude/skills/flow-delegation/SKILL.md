@@ -84,7 +84,8 @@ in ref:skill/fan-out#part-2--stay-reachable-report-back-without-parking's Part 2
 
 ## The two operating modes — NORMAL and AUTONOMOUS
 
-*(Moved out of `CLAUDE.md` 2026-07-30. The full CEO ruling: ref:repo/designs/operating-modes-and-flow.md.)*
+*(Moved out of `CLAUDE.md` 2026-07-30. The full CEO ruling lives in the source project's own design-doc
+history — not carried into this export; the operative mechanism is stated in full below.)*
 
 **NORMAL** = interactive, principal ↔ main loop. This is the default and needs no activation.
 
@@ -115,8 +116,9 @@ the guardian obligations, per the failsafe note in "When flow mode applies" belo
   job", never a list of what counts as done.
 - **The main loop: when autonomous mode is activated** — the principal assigns a long task or says he is leaving
   it unattended / to continue automatically. Then the main loop runs its own objective (drain the backlog) until
-  the checks (backlog empty) hold. -> the activation logic: ref:repo/designs/operating-modes-and-flow.md; the two modes
-  themselves: this skill's own "The two operating modes — NORMAL and AUTONOMOUS" section above. `CLAUDE.md` no
+  the checks (backlog empty) hold. -> the activation logic lives in the source project's own design-doc history
+  (not carried into this export); the two modes themselves: this skill's own "The two operating modes — NORMAL
+  and AUTONOMOUS" section above. `CLAUDE.md` no
   longer carries a section of its own — the chain reaches this skill through the rule to load import:skill/flow-delegation
   before raising any delegate.
   > **The autonomous MAIN LOOP needs the same hard failsafe a delegate does — it is the one most likely to be
@@ -270,10 +272,11 @@ Every delegate brief has these seven parts. The first three are the objective; t
    context file (e.g. a plan doc) rather than re-summarizing.
    - **Identify and pass the OWNING design/spec docs as MANDATORY first-reading — not just task/render context.**
      A delegate given only local context (assets, the sim wiring) but NOT the documents that DEFINE the thing
-     builds a generic, wrong version. Proven in-repo (2026-07-22): the god-economy render builder got the render
-     wiring + Tiny Swords assets but NOT ref:repo/designs/resources-and-roster.md#the-one-paragraph-verdict / `economy-mechanics.md`, so it rendered
-     a generic two-faction lawn with decorative static trees and indistinct units — none of the DESIGNED economy
-     (4 resources, depleting wood/iron/stone nodes, the ~16-unit roster, the ~12 buildings). Before briefing,
+     builds a generic, wrong version. Proven in the source project (2026-07-22): a render builder got the render
+     wiring + placeholder art assets but NOT the design docs defining the game's own resource/roster economy, so
+     it rendered a generic two-faction lawn with decorative static trees and indistinct units — none of the
+     DESIGNED economy (4 resources, depleting wood/iron/stone nodes, the ~16-unit roster, the ~12 buildings).
+     Before briefing,
      ASK: which repo docs define what I'm asking for? Pass them by path as required reading. The same failure is
      why the main loop ends up asking the CEO things the docs already answer — read/pass the docs instead.
 3. **Completion checks — a NUMBERED, checkable list it is NOT DONE until every item holds.** Not prose, and not
@@ -478,9 +481,9 @@ on completion:       verify the deliverable exists and the checks actually hold 
 | Handing out a notes folder without setting the watcher | The delegate believes it was heard and it wasn't (fan-out) |
 
 -> Plumbing (per-delegate id, notes folder, watcher, no-park): ref:skill/fan-out#part-2--stay-reachable-report-back-without-parking. Bibliography + all citations:
-   ref:skill/documentation-memory/docs/52-flow-prompt-agentic-loop-completion-checks-referencia.md#raw-source-index-scout-notes-tmp--scratch-not-for-future-citation. The two operating
+   the source project's own research bibliography (not carried into this export). The two operating
    modes live in this skill's own "The two operating modes — NORMAL and AUTONOMOUS" section above; the full CEO
-   ruling + activation logic: ref:repo/designs/operating-modes-and-flow.md.
+   ruling + activation logic lives in the source project's own design-doc history, not carried into this export.
    Intent fidelity in briefs: ref:skill/agent-writing#2-identity-paragraph (PRINCIPAL-INTENT FIDELITY). Tier the spawn: ref:skill/agent-tiers#how-to-apply-it-the-mechanics.
 
 ## Server failures kill delegates. COMMIT AT EVERY COHERENT STEP — measured, not precautionary

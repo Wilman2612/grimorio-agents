@@ -22,8 +22,9 @@ the reviewers, the security auditor, the experimenter, and any delegate that rep
 
 **STATUS: re-tested 2026-08-11 — proven only inside `agent:grimorio.scout`'s narrow closed-spec domain, when
 the CALLER restates the requirement as explicit NUMBERED STEPS in its own invocation prompt; treat any other
-agent, or any task with a real decision surface, as untested.** Full measurement (not restated here):
-ref:repo/.claude/grimorio-defects.md@2654ea9586b16d7a950b3f8e23509e8d8bd9c7ee#a-freshly-written-objectiveexit-condition-form-placed-directly-in-the-readers-own-protocol-steps-fired-zero-of-two-times--2026-08-11-grimoriosystem-keeper.
+agent, or any task with a real decision surface, as untested.** Full measurement (recorded in the source
+project's own defects log, not carried into this export): a freshly-written objective/exit-condition form,
+placed directly in the reader's own protocol steps, fired zero of two times (2026-08-11, `grimorio.system-keeper`).
 
 **WHEN a caller is spawning `agent:grimorio.scout` on a narrow, closed-spec task and needs THIS rule (the objective/exit-condition pre-statement, and the VERIFIED/COULD NOT close) to reliably fire ⟶ restate the requirement as explicit NUMBERED STEPS in that child's own invocation prompt — never rely on the child's own behavior file to produce it unprompted. This is the ONLY domain the mechanism is proven in.**
 

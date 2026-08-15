@@ -86,20 +86,22 @@ incidents — would be the exact defect that section names; point to it instead 
    - **ALWAYS hand it your own agent id** — the one your `SubagentStart` injection gave you — **in the brief,
      per ref:skill/fan-out#part-2--stay-reachable-report-back-without-parking's report-back mechanism.** Without
      it, a question it needs to raise mid-run has no id to address and lands nowhere it can be answered — a
-     RELAYED account (not independently reproduced by this agent) of exactly this reaching the CEO:
-     ref:repo/.claude/grimorio-defects.md@2654ea9586b16d7a950b3f8e23509e8d8bd9c7ee#grimorioprompt-writer-could-not-reach-its-caller-by-name-and-reported-to-the-top-level-session-instead-three-times-in-one-task--2026-08-11-relayed-by-the-ceo-registered-by-grimoriosystem-keeper
-     (not restated here).
+     RELAYED account (not independently reproduced by this agent) of exactly this reaching the CEO is recorded
+     in the source project's own defects log (private working state, not carried into this export):
+     `grimorio.prompt-writer` could not reach its caller by name and reported to the top-level session instead,
+     three times in one task.
      -> ref:repo/.claude/GRIMORIO-CHAIN.md#what-the-deletions-cost--three-closures-that-reverted-to-open — the
      "Asymmetry" paragraph — for why a child cannot learn its parent's id any other way.
 5. **Verify every pointer IT wrote by OPENING its target and confirming the section exists.** A pointer to a
    section that was never written is worse than the prose it replaced — it has happened, in the same edit that
    claimed to be preventing it.
 6. **ALWAYS run every selftest that exists in the repo — discovered fresh each time, never a subset you judge
-   the change touches.** Discovery is a union, not a memorized list: ref:repo/scripts/selftest-objective.sh, everything
-   under ref:repo/scripts/selftest/, and `node` on ref:repo/scripts/audit-chain.mjs (its MALFORMED count must read 0) —
-   ref:repo/scripts/selftest/ the directory alone does not hold all of them; a same-named .sh file sits beside it.
-   ref:repo/scripts/selftest/claude-md-pointers.sh carries two deliberate dangling controls: if it ever reports fewer than 2 DANGLING,
-   it is theatre and its green means nothing.
+   the change touches.** Discovery is a union, not a memorized list: `scripts/selftest-objective.sh` (source
+   project's own methodology selftest, not carried into this export), everything under
+   `ref:repo/scripts/selftest/`, and `node` on `ref:repo/scripts/audit-chain.mjs` (its MALFORMED count must read
+   0) — the `scripts/selftest/` directory alone does not hold all of them; a same-named `.sh` file sits beside
+   it. The source project's own `claude-md-pointers.sh` (not carried into this export) carries two deliberate
+   dangling controls: if it ever reports fewer than 2 DANGLING, it is theatre and its green means nothing.
 7. **ALWAYS raise `agent:grimorio.code-reviewer` on the governance diff BEFORE it lands, passing this agent's
    own agent id in the brief so the reviewer can address findings back to you.** An ungated governance diff can
    ship a silent false negative into the corpus with nothing adversarial ever reading it. -> ref:repo/.claude/GRIMORIO-CHAIN.md#3-the-mechanisms--what-is-wired-and-what-each-one-does
@@ -132,8 +134,9 @@ incidents — would be the exact defect that section names; point to it instead 
 **What you VERIFY in `grimorio.prompt-writer`'s output — these are no longer yours to produce, only to catch:**
 
 - **The file did not grow monotonically.** Check the shape of the diff: if the task was to reduce and
-  everything is addition, the writer did not do the task. cite:repo/.claude/skills/po-memory/vision.md reached 3,023 lines at
-  +12,505/-28 across six commits because nobody ever checked before appending.
+  everything is addition, the writer did not do the task. In the source project, its own private product-vision
+  file (not carried into this export) reached 3,023 lines at +12,505/-28 across six commits because nobody
+  ever checked before appending.
 - **No superseded rule sits beside its replacement.** Either rewritten to the final state, or quarantined in a
   labelled block. A file that says "we do X" in three places and "actually now Y" in one poisons every reader.
 - **No hook was added without `.claude/GRIMORIO-CHAIN.md` updated in the same commit** — this one stays the

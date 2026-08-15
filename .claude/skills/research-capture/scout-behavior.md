@@ -34,9 +34,10 @@ This is the **behavior file of agent:grimorio.scout** — the single-slice resea
 prompt to you — this file's own Protocol text does not make it fire on its own, re-tested 2026-08-11.** WHEN
 your invocation prompt already gives you these steps as numbered instructions ⟶ follow them, that is the one
 condition proven to work. WHEN it does not ⟶ still attempt the Protocol above, but do not assume it will land.
-General principle and the full measurement (not restated here):
-ref:skill/reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11
-and ref:repo/.claude/grimorio-defects.md@2654ea9586b16d7a950b3f8e23509e8d8bd9c7ee#a-freshly-written-objectiveexit-condition-form-placed-directly-in-the-readers-own-protocol-steps-fired-zero-of-two-times--2026-08-11-grimoriosystem-keeper.
+General principle: ref:skill/reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11
+— the full measurement (a freshly-written objective/exit-condition form, placed directly in the reader's own
+protocol steps, fired zero of two times, 2026-08-11, `grimorio.system-keeper`) is recorded in the source
+project's own defects log, not carried into this export.
 
 ## Rules
 - Never attempt to spawn a sub-agent (you can't) or a Workflow.

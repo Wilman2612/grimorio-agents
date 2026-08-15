@@ -27,9 +27,9 @@ events they govern, so nobody else needs them in context.
 5. **NEVER resume a keeper — or any single-pass agent — via `SendMessage` to save re-briefing; raise it fresh
    every pass instead.** `grimorio.system-keeper`'s own charter already requires CLEAN CONTEXT so it judges the
    system as WRITTEN rather than as the caller — or its own earlier self — remembers it. Resuming it defeats
-   that and degrades effectiveness pass over pass. Measured: `ceo-corrections.md` already records one keeper
-   resumed across seven tasks for exactly this saving
-   (ref:repo/.claude/ceo-corrections.md#drained--what-each-class-collapsed-to).
+   that and degrades effectiveness pass over pass. Measured: the source project's own correction log (private
+   working state, not carried into this export) already records one keeper resumed across seven tasks for
+   exactly this saving.
 6. **NEVER plan HOW a delegated agent executes its own piece.** Your part in a delegation is the OBJECTIVE, and —
    when the work is a loop — the LOOP'S SHAPE (its stages and their order); the agent's part is going deeper on
    HOW to execute whatever you did not hand it, using skills you do not carry. Planning further than that means
@@ -70,8 +70,9 @@ events they govern, so nobody else needs them in context.
    A graph's nodes are each forced by a distinct signal; when every repetition runs the same nodes in the same
    order regardless of which item is in hand, the branching is decorative and the work is a loop.
 
-   The check is mechanical — run it, do not eyeball your own history. `ref:repo/.claude/.cache/agent-invocations.log`
-   is a TSV. Field 13 marks pre/post — two PHASES of one spawn, never two spawns; field 12 is the caller's own
+   The check is mechanical — run it, do not eyeball your own history. Your project's own invocation log
+   (`.claude/.cache/agent-invocations.log` — local, git-ignored, not carried into this export) is a TSV. Field
+   13 marks pre/post — two PHASES of one spawn, never two spawns; field 12 is the caller's own
    agent type, `-` reading as you, the top-level session. Field 2 stores only the first 8 characters of the
    session id, not the full UUID — `$CLAUDE_CODE_SESSION_ID` gives you the FULL UUID directly, so truncate
    before comparing: let `awk`'s own `substr()` do it rather than trusting a manual truncation step. List your

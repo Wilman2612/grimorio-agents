@@ -225,7 +225,6 @@ A correction or defect noticed DURING a loop becomes a FINDING inside that loop'
 never a separate ledger append — so the next iteration actually reads it where it is working, not in a file
 nobody re-opens.
 
-**The ledger-write prohibition itself, and whether it is currently in force, is owned by
-ref:repo/.claude/current-objective.md and ref:skill/grimorio-conduct rules 18/26 — read those for the live
-ruling, never this file.** This file states only the loop-methodology half: where a noticed defect goes
-while a loop is running.
+**The ledger-write prohibition itself, and whether it is currently in force, is owned by your project's own
+current-objective file and ref:skill/grimorio-conduct rules 18/26 — read those for the live ruling, never this
+file.** This file states only the loop-methodology half: where a noticed defect goes while a loop is running.

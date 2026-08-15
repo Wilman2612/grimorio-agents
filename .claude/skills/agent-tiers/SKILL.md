@@ -333,8 +333,9 @@ The cheapest correct shape for a big build is a CASCADE, not an all-Opus fleet:
   `model: opus` or `model: fable`.** An agent that cannot spawn cannot delegate, so it can only ever generate
   the work itself — exactly the expensive shape the sentence above already forbids.
 
-  **Why this rule, and not a rule on the CALLER passing `model` upward:** measured 2026-08-08 from
-  `ref:repo/.claude/.cache/agent-invocations.log`, 584 logged spawns, 194 of which passed an explicit `model`.
+  **Why this rule, and not a rule on the CALLER passing `model` upward:** measured 2026-08-08 in the source
+  project, from its own local, gitignored spawn-invocation log (not carried into this export — the finding is
+  restated here in full), 584 logged spawns, 194 of which passed an explicit `model`.
   Of those 194, 69 targeted a type with no agent file and therefore no declared tier to compare against —
   excluded from the ratio below, never counted as zero. **NEVER read this as 1-of-194** — the classifiable
   population is the other 125: 1 upward from the target's own declared tier, 66 downward, 58 equal.
@@ -350,7 +351,7 @@ The cheapest correct shape for a big build is a CASCADE, not an all-Opus fleet:
   lives — so this rule binds the declaration, not the spawn site.
 
   **Enforced by** ref:repo/scripts/check-agent-tiers.mjs, wired into ref:repo/scripts/pre-commit.sh, proven by
-  ref:repo/scripts/selftest/agent-tier-conformance.sh.
+  ref:repo/scripts/selftest/agent-tier-conformance.sh (its selftest).
 
   **The one violation it found the day it was written (2026-08-08):** agent:grimorio.unblocker declared `opus`
   with `disallowedTools: Agent` — corrected to `sonnet` in the same change.

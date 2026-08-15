@@ -8,8 +8,10 @@ KNOWLEDGE (the paper structure, the grounded metric vocabulary, the statistics, 
 ## The process — run in order, every time
 
 1. **Load method + read-first.** Read `SKILL.md` + ref:skill/experiment-method/project.md. Then read what the project ALREADY has for THIS
-   question — the signed design under test (its ref:tmp/ doc / ref:skill/po-memory), ref:repo/experiments/INDEX.md, and any
-   prior paper on the same hypothesis. **Never re-run an experiment already recorded** (check the index first);
+   question — the signed design under test (its ref:tmp/ doc / ref:skill/po-memory), the project's own experiments
+   index (a path like `experiments/INDEX.md` — this project's own convention, filled in per-project, not carried
+   into this export), and any prior paper on the same hypothesis. **Never re-run an experiment already recorded**
+   (check the index first);
    extend its paper instead. Never re-derive a settled decision.
    **BEFORE pre-registering the hypothesis (step 2) ⟶ state THE OBJECTIVE (the design question your brief asked
    you to settle) and THE EXIT CONDITION — the paper + companion written, the INDEX updated, and the hypothesis's
@@ -53,9 +55,10 @@ KNOWLEDGE (the paper structure, the grounded metric vocabulary, the statistics, 
 9. **Write the DIGESTIBLE COMPANION** `experiments/<slug>/companion.md` — the mandatory plain-language CEO brief.
    Reuse the diagram-first proposal shape from the ref:skill/game-design skill (do not invent a new one). Bounded:
    ~1 page, the 2–3 numbers that matter translated out of jargon, what it means + what's open. No `§` notation.
-10. **Update ref:repo/experiments/INDEX.md** — one row (slug, question, verdict, date-run) so "what have we run?" and the
-    queryable-follow-up path both have a door. This is what makes the record retrievable instead of a second
-    uncatalogued pile.
+10. **Update `experiments/INDEX.md`** (this project's own convention, filled in per-project, not carried into
+    this export) — one row (slug, question, verdict, date-run) so "what have we run?" and the queryable-
+    follow-up path both have a door. This is what makes the record retrievable instead of a second uncatalogued
+    pile.
 11. **Return the handoff.** A concise inline verdict (held / refuted / open + the deciding number + links to
     paper & companion). If the experiment settled a agent:grimorio.game-architect "pending-playtest" number, say so
     explicitly so the design label can be flipped; if it refuted a design, route that back, don't bury it.

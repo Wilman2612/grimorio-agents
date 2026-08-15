@@ -107,15 +107,15 @@ into a branch's objective file — which the close-out DELETES by design, so the
 began reporting it as recorded nowhere. That is the general lesson, not a footnote: *"which of these did we
 deliberately skip, and why"* is durable knowledge and belongs in a skill; only the work item belongs in an objective.
 
-The judgement for ref:repo/apps/web/src/domain/ (10 features, re-measured 2026-07-30):
+The judgement for the web app's `src/domain/` tree (10 features, re-measured 2026-07-30, in the source project):
 
 | Feature | Harness | Why |
 |---|---|---|
 | `wallet`, `studio`, `transcript`, `warmap`, `ranking`, `scene` | **own harness** | each carries invariants a reader cannot get from `ls`: a money frontier with open audits, cross-language mirrors, a fragile mode gate, a Go `DisallowUnknownFields` seam |
-| `matchmaking`, `shared` | **deliberately NONE — covered by `wallet`'s** | their load-bearing rules are money rules. `wallet`'s harness states in its own header that it covers `ref:repo/apps/web/src/domain/shared/clampDebit.ts` and the `matchmaking/` coupling. Splitting them would put half a money invariant in each of three files, and the coupling is the thing worth knowing |
+| `matchmaking`, `shared` | **deliberately NONE — covered by `wallet`'s** | their load-bearing rules are money rules. `wallet`'s harness states in its own header that it covers the shared `clampDebit.ts` helper and the `matchmaking/` coupling. Splitting them would put half a money invariant in each of three files, and the coupling is the thing worth knowing |
 | `account`, `admin` | **judged not to need one** | conventional CRUD over the ORM, no cross-language seam, no invariant that survives a rewrite |
 
-**The judgement is enforced in BOTH directions** (ref:repo/scripts/selftest-objective.sh C15): the six must each carry
+**The judgement is enforced in BOTH directions** (the source project's own `selftest-objective.sh`, check C15): the six must each carry
 invariants, seams, a skill pointer and a gate — and the three judged not to need one must NOT have been given one
 anyway, because a harness written to satisfy a count is a directory listing with a header.
 
@@ -141,5 +141,6 @@ Two layers, because instruction-only is the failure mode (agents forget):
 - **arch-decision.md** = the design-of-record for a specific build. A harness names the current one under "read
   first" so an edit conforms to the signed design instead of re-litigating it.
 
--> The hook script + settings wiring: `./hook.md`. The first real harness (the terrain brush):
-ref:repo/apps/web/src/components/matches/battle/battle-render-continuous/harness.md.
+-> The hook script + settings wiring: `./hook.md`. The first real harness (the terrain brush) lives at
+`apps/web/src/components/matches/battle/battle-render-continuous/harness.md` in the source project — not
+carried into this export, since `apps/web` is the source project's own private application code.

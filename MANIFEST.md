@@ -60,7 +60,7 @@ superseded by the current `web-architect` / `game-architect` split and direct on
 | game-development | exported: `SKILL.md`, `conventions-critic-behavior.md`, `developer-behavior.md`; excluded: `conventions.md` | `conventions.md` is an accumulated catalog of the source project's own observed rendering mistakes — code-level, product-specific |
 | game-patterns | exported: everything except `project.md` | ECS/data-oriented-design canon, sourced from Nystrom/Fabian/Gregory, general |
 | golang | exported (full) | |
-| grimorio-conduct | exported (full) | the prohibition/precondition corpus itself; some rules cite the source project's own governance files as evidence anchors — see Known limitations |
+| grimorio-conduct | exported (full) | the prohibition/precondition corpus itself; a few rules are live operational instructions naming this-project's-own working-state files (a defects ledger, a current-objective file) that a new adopter maintains its own copy of — see Known limitations, item 1 |
 | javascript | exported (full) | |
 | loop-and-graph | exported (full) | the CEO's decompose/loop/graph execution machine — general |
 | map-design | exported: everything except `project.md` | the 4 map-agent behavior files + the adversarial map-design canon |
@@ -93,12 +93,14 @@ general: none reference the source project's product, only its own `.claude/` co
 **Scripts — a curated subset, not the whole `scripts/` tree.** The source project's `scripts/` directory
 mixes general grimorio-process tooling with game-specific test/build scripts (`battery-red-green.sh`,
 `smoke.sh` with its Postgres/Prisma seed calls, `port-cutover-order-check.sh`, `labs.mjs`, …). Exported:
-`audit-chain.mjs`, `check-agent-tiers.mjs`, `parked-watch.mjs`, `replan-check.mjs`, `hook-conditions.mjs`,
-`install-hooks.sh`, `pre-commit.sh`, `open-branch.sh`, `close-branch.sh`, `close-landed.sh`,
-`objective-lib.sh`, `objective-current.sh`, `agent-stats.sh`, the `refobl/` reference-grammar toolkit (8
-files), and 3 of the source's `selftest/` scripts (`agent-tier-conformance.sh`, `parked-watch.sh`,
-`replan-check.sh` — the selftests for the three scripts above that have one). Everything else in
-`scripts/` and `scripts/selftest/` was left behind as game-specific.
+`audit-chain.mjs`, `check-agent-tiers.mjs`, `check-comment-blocks.mjs` (added in the third pass below —
+`pre-commit.sh` already called it and it had been left out by mistake), `parked-watch.mjs`,
+`replan-check.mjs`, `hook-conditions.mjs`, `install-hooks.sh`, `pre-commit.sh`, `open-branch.sh`,
+`close-branch.sh`, `close-landed.sh`, `objective-lib.sh`, `objective-current.sh`, `agent-stats.sh`, the
+`refobl/` reference-grammar toolkit (8 files), and 3 of the source's `selftest/` scripts
+(`agent-tier-conformance.sh`, `parked-watch.sh`, `replan-check.sh` — the selftests for the three scripts
+above that have one). Everything else in `scripts/` and `scripts/selftest/` was left behind as
+game-specific.
 
 ## Removed, not just superseded
 
@@ -116,26 +118,46 @@ export; noted here so their staleness isn't silently implied as reviewed.
 
 ## Known limitations — say plainly what is not done
 
-**This ships unfinished, on purpose, per the instruction that authorized it.** Three specific gaps:
+**This ships unfinished, on purpose, per the instruction that authorized it.** The prior version of this
+section claimed "~174 internal citations… point at the private source repo and will not resolve here." That
+number was never measured — it was an estimate carried over from the original export pass — and a full
+verification pass (2026-08-15, walking every `ref:repo/…`/`cite:repo/…` in the tree with a script, not by eye)
+found it wrong in both directions: of 90 unique cited repo-paths, 35 already resolved (mostly because `repo/`
+means "the repository root", which for those citations is this public repo, not the private one), and of the
+55 that were genuinely broken, most were fixable — either by exporting the missing file (scrubbed to the same
+standard as the rest: `CLAUDE.md`, `.claude/GRIMORIO-CHAIN.md`, `.claude/settings.json`,
+`scripts/check-comment-blocks.mjs`, `objectives/harness.md`) or by rewriting the citing sentence to drop the
+unresolvable pointer while keeping the finding or the rule it carried. **After that pass, every remaining
+`ref:repo/…`/`cite:repo/…` in this tree resolves to a file present in this repo.** Two specific, narrower gaps
+remain, both deliberate and stated in full below — not "~174 of something," an exact, checkable population of
+two:
 
-1. **~174 internal `ref:repo/…` and `cite:repo/…` citations remain in the exported files, pointing at the
-   private source repo** (`ref:repo/designs/…`, `ref:repo/objectives/…`, `ref:repo/.claude/current-objective.md`,
-   `ref:repo/.claude/grimorio-defects.md`, and paths under `ref:repo/scripts/…`/`ref:repo/.claude/…` that
-   only partially overlap what this repo curated). These will not resolve here. They were left in place
-   rather than stripped, because they are citations of where a claim was measured or a decision was made —
-   removing them would make several hard-rule sections look invented rather than sourced. Read every such
-   pointer as "evidence exists, in a repo you don't have" — never as a broken link to chase.
-2. **The scripts under `scripts/` are shipped as reference implementations, not verified to run standalone
-   here.** Several assume the source project's directory layout (`apps/web`, `objectives/`) that this repo
-   does not carry. `pre-commit.sh` in particular calls out to checks this repo did not export.
+1. **A small number of paths are cited as LIVE, per-project working state, never as a file this export
+   ships.** `.claude/current-objective.md` and `.claude/grimorio-defects.md` (and their siblings
+   `.claude/ceo-corrections.md`, `.claude/skills/po-memory/vision.md`, the two `.claude/.cache/*.log` files)
+   are the source project's own private transcript/ledger content — not portable, and several of the rules
+   that mention them are genuinely operational instructions ("read your project's own defects ledger before
+   diagnosing," "write to it when the CEO corrects you") meant for whatever project ADOPTS this corpus to
+   maintain its own copy of, not files a reader of this export should expect to open here. Every remaining
+   mention of one of these paths in the exported files is now either an operational instruction phrased that
+   way explicitly, or a measured finding restated in full with the private path stripped rather than a live
+   pointer.
+2. **The scripts under `scripts/` are shipped as reference implementations, not independently verified to run
+   standalone outside the source project's own CI.** The curated subset does not assume any directory this
+   repo doesn't carry (verified: nothing under `scripts/` references `apps/web` or a service tree this repo
+   does not have), but nobody has run `npm run check` against a fresh clone of exactly this repo and watched it
+   pass end to end.
 3. **No file in this export was individually re-verified against the CEO-frustration/product-leak bar
    beyond the automated secret scan and the targeted greps recorded below** — a human familiar with the
    source project should still skim before treating this as a finished public artifact.
 
 ## Secret scan — command and output
 
+Re-run after the third pass to cover the newly-exported `CLAUDE.md`, `.claude/settings.json`, and
+`objectives/`:
+
 ```
-grep -rnIE "(api[_-]?key|secret[_-]?key|password|bearer\s|postgres(ql)?://[^ ]+:[^ ]+@|sk-[a-zA-Z0-9]{16,}|AIza[0-9A-Za-z_-]{20,}|ghp_[0-9A-Za-z]{20,}|xox[baprs]-[0-9A-Za-z-]{10,}|-----BEGIN [A-Z ]*PRIVATE KEY-----)" .claude scripts README.md ROADMAP.md examples
+grep -rnIE "(api[_-]?key|secret[_-]?key|password|bearer\s|postgres(ql)?://[^ ]+:[^ ]+@|sk-[a-zA-Z0-9]{16,}|AIza[0-9A-Za-z_-]{20,}|ghp_[0-9A-Za-z]{20,}|xox[baprs]-[0-9A-Za-z-]{10,}|-----BEGIN [A-Z ]*PRIVATE KEY-----)" .claude scripts README.md ROADMAP.md examples CLAUDE.md MANIFEST.md objectives
 ```
 
 One hit, a false positive (a security-checklist line naming "passwords" as an OWASP category, not an
@@ -189,3 +211,78 @@ root — as of this pass it returns exactly `README.md` and `MANIFEST.md`, both 
 end (a human should still skim the renamed sections); re-run the scripts under `scripts/` (already flagged
 non-verified-standalone in "Known limitations" above, unaffected by this pass); or touch `examples/` or
 `ROADMAP.md` (out of scope here exactly as they were out of scope for the first pass).
+
+## Third pass — 2026-08-15: the citation count was itself wrong, and what closed it
+
+The CEO's own challenge, translated: *if 174 citations need to point at a private repo, what are they even
+citing? At a PRODUCT level that might be defensible; at a GENERAL level there's no reason general-level
+knowledge should cite this project's private state at all — that's a hard rule, not a judgement call.* He was
+right on both counts: the number was never measured (it was an estimate, not a count), and a chunk of what it
+called "leakage" was really two different things needing opposite fixes.
+
+**The measurement, done properly this time:** a script walked every `ref:repo/…`/`cite:repo/…` in the tree,
+extracted the 90 unique cited paths, and tested each for existence. 35 already resolved (`repo/` means "this
+repository's own root" — for a citation written from inside an exported general skill, that's this public
+repo). 55 were genuinely broken. Three more carried a mechanical bug: a sentence-ending period swallowed into
+the path by the citation regex (`…behavior.md.`, `apps/web.`, `…conformance.sh.`) — not missing files, a
+formatting defect in the citing sentence; all three fixed by rewording so the period no longer sits flush
+against the path.
+
+**Of the 55 genuinely broken, two classes, closed with opposite moves:**
+
+- **Real leakage (general-level knowledge citing this project's private state) — closed by REMOVING the
+  citation, not the finding.** `.claude/current-objective.md`, `.claude/ceo-corrections.md`,
+  `.claude/grimorio-defects.md`, `.claude/grimorio-defects-narrative.md`,
+  `.claude/skills/po-memory/vision.md`, `.claude/skills/po-memory/docs/13-…`, `apps/web` (and its children),
+  `services/runner`, `services/runner-node/…`, `.claude/.cache/agent-invocations.log`,
+  `.claude/.cache/agent-completions.log`, `designs/…`, `experiments/…`, `objectives/grimorio-loop-graph-findings.md`,
+  and a long tail of project-specific `scripts/*.sh` entries inside `agent-writing/audit-toolchain.md`
+  (game-sim build/test tooling, LLM-metering selftests, a specific game-pause design's verification script) —
+  every one of these was either (a) a measured finding, where the NUMBER was rewritten in full with the
+  private path dropped (e.g. the agent-tiers 584-spawn measurement, the vision.md 3,023-line growth
+  incident), or (b) a live-operational instruction ("read your project's own defects ledger", "write to your
+  own current-objective file"), reworded to say plainly that these are per-project working state a new
+  adopter maintains its own copy of, never a file this export ships. Nothing here lost its lesson; every one
+  lost only the dead pointer.
+- **Export gaps (should have been exported and were not) — closed by EXPORTING, scrubbed to the same
+  standard as everything else in this repo.** `CLAUDE.md` (rewritten as an explicit fill-in-the-blank
+  template, the same convention `po-memory/project.md` already used), `.claude/GRIMORIO-CHAIN.md` (the
+  chain-documentation file itself — general throughout, scrubbed of the two literal `arena`/`warsim`
+  mentions it still carried and of citations to the same private-state files listed above), `.claude/settings.json`
+  (already fully general — no secrets, no project-specific paths, matches the 9 already-exported hooks
+  exactly), and `objectives/harness.md` (the branch/worktree/commit discipline — cited from eleven places
+  across seven already-exported general skills, which was the signal this one was a genuine miss rather than
+  deliberate exclusion; exported with its two literal CEO-quote sections kept verbatim as provenance, per the
+  same "a stated origin is more honest than a corpus that pretends to be generic" call the second pass already
+  made). One more gap surfaced only by tracing a citation to ground: `scripts/pre-commit.sh` (already
+  exported) calls `scripts/check-comment-blocks.mjs`, which had been left out of the curated `scripts/`
+  subset — exported now too, closing a real functional gap the citation audit happened to surface, not only a
+  broken link.
+
+**What this pass did NOT do:** re-run the exported scripts end to end against a fresh clone (same limitation
+the second pass already flagged, unchanged by this pass); re-verify every renamed/rewritten sentence still
+reads naturally in its surrounding paragraph beyond what the citation checker + a manual pass caught; or
+re-open the question of whether `objectives/harness.md`'s CEO-quote sections should be trimmed further — they
+were kept because the source project's own convention (established in the second pass) is to keep a labelled,
+concrete incident over a generic placeholder.
+
+Re-run the check yourself:
+
+```
+node -e "
+const fs=require('fs');
+const {execSync}=require('child_process');
+const out=execSync('grep -rnoE \"(ref|cite):repo/[A-Za-z0-9_./#-]+\" --include=*.md .',{maxBuffer:10*1024*1024}).toString();
+const lines=out.split('\n').filter(Boolean);
+const paths=new Set();
+for (const l of lines){const m=l.match(/(ref|cite):repo\/([A-Za-z0-9_.\/#-]+)\$/);if(m)paths.add(m[2].split('#')[0]);}
+let broken=[];
+for (const p of paths){if(p==='path')continue; if(!fs.existsSync(p))broken.push(p);}
+console.log('total citation occurrences:',lines.length,'unique cited paths:',paths.size-1,'broken:',broken.length);
+broken.forEach(p=>console.log('BROKEN',p));
+"
+```
+
+As of this pass: 112 citation occurrences, 39 unique cited paths (one 40th match, the syntax-example
+`ref:repo/path` inside `prompt-writing-quality/format-guide.md`'s fenced notation-grammar block, is
+documentation of the notation itself, not a real citation, and is excluded from the count), **zero broken.**

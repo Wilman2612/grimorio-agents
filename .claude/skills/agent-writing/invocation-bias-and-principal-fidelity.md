@@ -54,9 +54,9 @@ that form suppresses.
 
 **This is the more dangerous failure of the two, and it must be named as such: misapplied, this rule lets a
 rule the system authored outrank what the principal actually asked for.** That is not hypothetical — it is a
-registered recurring failure class in this repo, `TREATED-EVERY-AGENT-AS-A-DELEGATE`
-(ref:repo/.claude/ceo-corrections.md#the-standing-count--the-index-update-it-when-a-new-entry-lands-correct-it-on-every-drain, "Let a constraint WE
-authored, after his ask, outrank his ask") — and it collides head-on with
+registered recurring failure class in the source project, `TREATED-EVERY-AGENT-AS-A-DELEGATE` ("Let a
+constraint WE authored, after his ask, outrank his ask", recorded in the source project's own correction log —
+not carried into this export) — and it collides head-on with
 ref:skill/reasoning-principles#measuring-is-not-building--the-bound-on-the-two-sections-below-hard-rule-ceo-2026-07-30
 (never argue viability before building what the CEO asked for; build it, then say whether it holds) and with
 PRINCIPAL-INTENT FIDELITY below in this same file, which requires his words be carried verbatim, structure

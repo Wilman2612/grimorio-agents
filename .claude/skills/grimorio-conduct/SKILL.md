@@ -50,7 +50,8 @@ Three links carry this corpus to a reader. State them as what they are, not as a
   read this as more than n=1 until a second, independent run corroborates it.
 - **Link 3 — NOT measured.** Whether an instruction sitting inside an already-loaded skill (this one, or
   `prompt-reading`) is honoured the way an instruction in a caller's own brief is — or the way an instruction
-  sitting in ambient `CLAUDE.md` context was measured NOT to be. cite:repo/objectives/grimorio-loop-graph-findings.md#f22--measured-mechanically-not-inferred-reasoning-principles-does-not-load-and-the-agents-that-ignore-it-have-just-read-the-rule-saying-they-must
+  sitting in ambient `CLAUDE.md` context was measured NOT to be. A dated finding in the source project's own
+  measurement log (not carried into this export — the finding is restated here in full, only its path is not)
   measured that agents did NOT honour an `import:` sitting in ambient `CLAUDE.md` while honouring an identical
   one placed in a caller's brief, in the same run, seconds after reading the very sentence that obliged them to.
   **Whether THIS placement — inside an already-loaded skill, reached via another skill's own instruction rather
@@ -68,11 +69,14 @@ covered by any of those six and stay here in full.
 
 - **BEFORE you analyse a problem, write a check, or report a measurement ⟶ load
   import:skill/reasoning-principles.**
-- **import:skill/po-memory/features-status.md#current-milestone--m8-the-workflow-builder-drives-the-game → CURRENT MILESTONE, and ref:repo/.claude/current-objective.md, before you choose
-  what to work on.** Not "consult if unsure". Read them, then choose. `grimorio.delegate` self-reads
-  `current-objective.md` for the same reason (ref:repo/.claude/GRIMORIO-CHAIN.md#2-what-crosses-the-boundary-beyond-claudemd)
-  — this precondition is not main-loop-exclusive the way choosing-the-next-task and keeping-the-objective-fresh
-  are, so it stays here rather than moving to `main-loop-only.md`.
+- **Read your product's own features ledger for its CURRENT MILESTONE, and the project's own current-objective
+  file, before you choose what to work on.** Not "consult if unsure". Read them, then choose. Both are this
+  project's own live state — the features ledger lives in `po-memory` (excluded from this export, per its own
+  README note), and the current-objective file is the source project's own private working state, not carried
+  into this export either. `grimorio.delegate` self-reads the current-objective file for the same reason
+  (ref:repo/.claude/GRIMORIO-CHAIN.md#2-what-crosses-the-boundary-beyond-claudemd) — this precondition is not
+  main-loop-exclusive the way choosing-the-next-task and keeping-the-objective-fresh are, so it stays here
+  rather than moving to `main-loop-only.md`.
 
 **A rule with no ALWAYS / NEVER / BEFORE / WHEN is a suggestion, and suggestions have a measured hit rate of
 zero here. A hard rule that is broken anyway earns a MECHANISM — never firmer wording.** -> ref:skill/prompt-writing-quality →
@@ -115,7 +119,8 @@ turn-by-turn CEO conversation) and never sees them.
     each. **WHEN ref:skill/po-memory/vision.md and ref:skill/po-memory/features-status.md would read
     IDENTICALLY under both answers ⟶ the question is TECHNICAL and it is yours to decide, never his.** His own
     phrasing of that test: *"the vision is untouched either way — which is exactly the test for 'this was
-    never his to decide.'"* -> ref:repo/designs/product-replan-2026-08-14.md#the-standing-rule-this-cycle-adopts--ceo-ruling-2026-08-14.
+    never his to decide.'"* -> the full ruling is recorded in the source project's own private design-doc
+    history, not carried into this export; the operative test is stated above in full.
 
     **A SECOND test, cheaper, applied first, that only SHORTLISTS: WHEN the problem has a STANDARD NAME in software ⟶
     treat it as a CANDIDATE for TECHNICAL, then run the invariance test above to CLEAR it.** A standard name
@@ -136,9 +141,12 @@ turn-by-turn CEO conversation) and never sees them.
     gate.
 
     Only what fails BOTH tests AND is life-or-death — two mutually exclusive plans where no sane path takes
-    both — reaches him. That bar already exists at
-    ref:repo/.claude/current-objective.md#every-question-is-an-invitation--the-rule-that-replaces-asking's
-    DECOUPLE → CONFIGURE → REFACTOR ladder; apply it, don't restate it here.
+    both — reaches him. That bar already exists as a standing ladder, run through in order before any question
+    is even considered reportable: **(1) DECOUPLE it** — make the answer swappable later; **(2) CONFIGURE it**
+    — a parameter, spec data; **(3) REFACTOR** so the fork dissolves. Only what survives all three, and is
+    still life-or-death, is reportable. This ladder is the source project's own standing ruling (its own
+    private current-objective file, not carried into this export) — restated here in full since it is the
+    operative rule this section applies.
 
 ### Spawning an agent
 
@@ -215,16 +223,18 @@ turn-by-turn CEO conversation) and never sees them.
 
 16. **NEVER break the `develop`/worktree/commit discipline ref:repo/objectives/harness.md sets for branches** — who
     works `develop` directly, when a worktree is forbidden, and what a commit requires. Open with
-    ref:repo/scripts/open-branch.sh; close with ref:repo/scripts/close-branch.sh. Mechanized already:
+    ref:repo/scripts/open-branch.sh; close with ref:repo/scripts/close-branch.sh (the closer). Mechanized already:
     `scripts/pre-commit.sh` and `scripts/close-branch.sh` refuse a violating commit or close outright — this
     entry is the pointer, not a second copy of the rule. -> ref:repo/objectives/harness.md#who-works-where--ceo-ruling-2026-07-31 → "WHO WORKS
     WHERE".
 17. **NEVER cite a `tmp/` path as the source of a SIGNED decision**, and NEVER write to Claude memory what belongs
     in the repo. No mechanism enforces this. -> ref:skill/working-memory.
-18. **WHEN you notice a process error or confusion, AND ref:repo/.claude/current-objective.md does NOT currently
-    suspend ledger writes ⟶ write two lines that same moment to ref:repo/.claude/grimorio-defects.md** (unsure
-    still counts). REGISTERS only — no fix obligation. **Ledger writes are SUSPENDED as of 2026-08-11** per
-    that file's own standing ruling; check it LIVE before writing, never from memory of a past state — that
+18. **WHEN you notice a process error or confusion, AND your project's own current-objective file does NOT
+    currently suspend ledger writes ⟶ write two lines that same moment to your project's own
+    `.claude/grimorio-defects.md`** (unsure still counts). REGISTERS only — no fix obligation. (Both files are
+    this-project's-own live working state — a new adopter maintains its own copy; neither ships with this
+    export.) In the source project, ledger writes were SUSPENDED at one point per that file's own standing
+    ruling; check your own copy LIVE before writing, never from memory of a past state — that
     check is the whole fix: a reader who skips it appends to a file the CEO's own standing objective forbids
     touching, which is exactly the contradiction this rule used to carry silently.
 19. **NEVER work around a broken grimorio component by doing its job yourself.** Fix the component, re-run it
@@ -265,10 +275,12 @@ turn-by-turn CEO conversation) and never sees them.
 
 ### Recording a correction
 
-26. **WHEN the CEO corrects you, AND ref:repo/.claude/current-objective.md does NOT currently suspend ledger
-    writes ⟶ write the entry to ref:repo/.claude/ceo-corrections.md that same turn, BEFORE you act on the
-    correction.** The two fields that matter are the CLASS and the rule that already covered it; the story is
-    one line. The suspension check is the same LIVE check rule 18 above states in full — not restated here.
+26. **WHEN the CEO corrects you, AND your project's own current-objective file does NOT currently suspend
+    ledger writes ⟶ write the entry to your project's own `.claude/ceo-corrections.md` that same turn, BEFORE
+    you act on the correction.** (Both files are this-project's-own live working state — a new adopter
+    maintains its own copy; neither ships with this export.) The two fields that matter are the CLASS and the
+    rule that already covered it; the story is one line. The suspension check is the same LIVE check rule 18
+    above states in full — not restated here.
 
 ### Planning before execution
 

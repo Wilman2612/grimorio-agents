@@ -23,14 +23,15 @@ must be verified against the repo; POPULATION inherits that same standing, not a
    spawn budget goes to gates vs building, invocation counts and explicit model overrides by agent type, and
    whether an agent type that should be spawning has zero invocations while its area has commits. WHEN: before
    judging the system's process/plan discipline — run it FIRST, not after forming a hypothesis, and never
-   assume it was already run. POPULATION: every line of `ref:repo/.claude/.cache/agent-invocations.log` — LOCAL,
-   git-ignored, single-machine — so the population is whatever this checkout happened to log, not a versioned
-   corpus. CONDITIONAL by block, verified against the source: blocks 1-3 (DEVIATION/CHURN/OFF-PLAN) count only
-   the RICH subset — lines carrying ≥11 tab-fields (plan context, logged from 2026-07-30 on); blocks 4-8 (GATE
-   COST, invocations-by-type, model overrides, brief size, most-recent-20) count EVERY logged line regardless
-   of field count. Quoting a block's number without saying which of those two populations it drew from
-   restates the exact scope-mismatch this file's own POPULATION field exists to prevent. Field 3 of the raw log
-   (`ref:repo/.claude/.cache/agent-invocations.log`) records the literal string `(default)` whenever a spawn's
+   assume it was already run. POPULATION: every line of the invocation log this repo's own agents write locally
+   (`.claude/.cache/agent-invocations.log` — LOCAL, git-ignored, single-machine, not carried into this export)
+   — so the population is whatever this checkout happened to log, not a versioned corpus. CONDITIONAL by block,
+   verified against the source: blocks 1-3 (DEVIATION/CHURN/OFF-PLAN) count only the RICH subset — lines
+   carrying ≥11 tab-fields (plan context, logged from 2026-07-30 on); blocks 4-8 (GATE COST,
+   invocations-by-type, model overrides, brief size, most-recent-20) count EVERY logged line regardless of
+   field count. Quoting a block's number without saying which of those two populations it drew from restates
+   the exact scope-mismatch this file's own POPULATION field exists to prevent. Field 3 of the raw log
+   records the literal string `(default)` whenever a spawn's
    `subagent_type` was omitted — a DISTINCT, separately-queryable value from an explicit `general-purpose` or
    `claude` spawn, never the same signal as either — queryable with
    `grep $'\t(default)\t' .claude/.cache/agent-invocations.log` (the ANSI-C `$'...'` quoting is required so the
@@ -42,8 +43,9 @@ must be verified against the repo; POPULATION inherits that same standing, not a
    `CLAUDE.md`, an agent file, or a skill file; its MALFORMED count must read 0 before trusting the change.
    POPULATION: CONDITIONAL — flag this to `grimorio.system-keeper` before quoting any single number from it.
    The BASE file scan is every `.md` under `ref:repo/.claude/agents` and `ref:repo/.claude/skills` (recursive,
-   excluding `node_modules`/`worktrees`/`.git`), plus `CLAUDE.md`, `ref:repo/.claude/grimorio-defects.md` and
-   `ref:repo/.claude/grimorio-defects-narrative.md@cd44eda69b0d39198bfab74d702e9a922a5ecbd6` pushed in explicitly. But no flag counts that base directly — each
+   excluding `node_modules`/`worktrees`/`.git`), plus `CLAUDE.md` and the source project's own two governance
+   ledgers (its defects log and defects narrative — private working state, not carried into this export) pushed
+   in explicitly. But no flag counts that base directly — each
    one (`--anchors`, `--dead`, `--unprefixed`, `--malformed`, …) further filters it to a different sub-set of
    RULES or REFERENCES extracted from those files, with its own exclusions (fenced code, `VERIFY`/`Usage`
    lines, the ARTIFACT-name vocabulary, governance-owned files, …). The flag's own filter chain in the source
@@ -54,22 +56,25 @@ must be verified against the repo; POPULATION inherits that same standing, not a
    the text those hooks INJECT into a reader's context reaches it exactly as a skill's text does, so an
    absence answer from this tool is silently incomplete about it. **A second, larger boundary
    sits beside the extension filter: the scan's ROOTS.** It only walks `ref:repo/.claude/agents` and
-   `ref:repo/.claude/skills`, plus the three files pushed in by name at source lines 108-115 — so files that
-   ARE markdown miss it too. 15 of the repo's 16 `harness.md` files sit outside those roots (`git ls-files
-   "*harness.md" | wc -l` → 16; only `ref:repo/.claude/skills/po-memory/docs/13-grimorio-harness-note.md` is
-   inside), `ref:repo/objectives/harness.md` among them — a file `CLAUDE.md` rule 20 itself names a governance
+   `ref:repo/.claude/skills`, plus the three files pushed in by name — so files that
+   ARE markdown miss it too. Most of the repo's `harness.md` files sit outside those roots (measured in the
+   source project: 15 of 16, with only one `po-memory` doc-level `harness.md` note inside the scanned roots —
+   that doc is the source project's own private working note and is not carried into this export),
+   `ref:repo/objectives/harness.md` among them — a file `CLAUDE.md` rule 20 itself names a governance
    file, and one the harness-lookup hook injects into context exactly like a skill's text. Widening the corpus
    to `.cjs` was CONSIDERED AND REFUSED, and the decision is settled, not open: the grammar this tool checks
    (the `relation:store/path` reference form, anchors, rule openers) is a PROSE grammar, and running it over
    code produces noise rather than findings. Declaring the boundary is the fix; widening is not, until someone
    shows a check that needs the wider scan.
-3. `ref:repo/scripts/battery-red-green.sh` — ANSWERS: does every probe in `NODE-BATTERY.md` actually go RED,
-   for the RIGHT reason, when the code it guards is mutated — i.e. are they real regression tests, not
-   vacuously green. WHEN: after touching `ref:repo/services/runner-node/src/workflow/graphBridge.ts`, the node
-   catalog, or the battery generator — before trusting any claim `NODE-BATTERY.md` makes.
-4. `ref:repo/scripts/build-committed.sh` — ANSWERS: does the Go sim build from what is actually COMMITTED, not
-   from the working copy. WHEN: wired into `npm run check` as `go:build:committed` — trust a green build claim
-   only after this; the Go sim's HEAD has failed to compile while every working copy looked fine.
+3. `scripts/battery-red-green.sh` (source project's own game-sim tree, NOT carried into this export) —
+   ANSWERS: does every probe in the node-battery spec actually go RED, for the RIGHT reason, when the code it
+   guards is mutated — i.e. are they real regression tests, not vacuously green. WHEN: after touching the game
+   sim's workflow-graph bridge code, the node catalog, or the battery generator — before trusting any claim
+   that spec makes.
+4. `scripts/build-committed.sh` (source project's own Go-sim tooling, NOT carried into this export) — ANSWERS:
+   does the Go sim build from what is actually COMMITTED, not from the working copy. WHEN: wired into `npm run
+   check` as `go:build:committed` — trust a green build claim only after this; the Go sim's HEAD has failed to
+   compile while every working copy looked fine.
 5. `ref:repo/scripts/check-comment-blocks.mjs` — ANSWERS: does this commit add an oversized comment block to a
    source file. WHEN: automatic — wired into `ref:repo/scripts/pre-commit.sh`, fires on every commit.
    POPULATION: files in the STAGED diff only (`git diff --cached`, `--diff-filter=ACM`) whose name matches its
@@ -134,9 +139,9 @@ must be verified against the repo; POPULATION inherits that same standing, not a
 10. `ref:repo/scripts/install-hooks.sh` — ANSWERS: is the local git pre-commit/pre-push hook actually installed
     for this clone/worktree (`.git/hooks` is not versioned). WHEN: once, right after cloning, or if commits are
     landing without being gated.
-11. `ref:repo/scripts/labs.mjs` — ANSWERS: what dev labs/URLs exist right now and what each one is for. WHEN:
-    after `npm run dev`/`npm run labs`, to know what to open and review — wired into `dev`/`dev:fake`/`labs`/
-    `open` in `ref:repo/package.json`.
+11. `scripts/labs.mjs` (source project's own web-app tooling, NOT carried into this export) — ANSWERS: what dev
+    labs/URLs exist right now and what each one is for. WHEN: after `npm run dev`/`npm run labs`, to know what
+    to open and review — wired into `dev`/`dev:fake`/`labs`/`open` in the source project's own `package.json`.
 12. `ref:repo/scripts/objective-current.sh` — ANSWERS: what objective governs the CURRENT branch, right now.
     WHEN: whenever a branch's live objective is needed without re-deriving the lookup rule by hand — the
     commit and close gates both call this resolver, so the gate that refuses against an objective and the
@@ -148,42 +153,42 @@ must be verified against the repo; POPULATION inherits that same standing, not a
 14. `ref:repo/scripts/open-branch.sh` — ANSWERS: how to open a new branch WITH its objective, in one act. WHEN:
     starting any new branch of work — the only sanctioned way a branch gets an objective attached, since a
     branch whose objective is written "later" is the branch that never gets one.
-15. `ref:repo/scripts/port-cutover-order-check.sh` — ANSWERS: has the deleted Python runner tree
-    (`services/runner`) stayed deleted. WHEN: a PERMANENT sentinel — run when touching the runner-port
-    boundary, or to verify the cutover still holds.
-16. `ref:repo/scripts/port-disposition-check.sh` — ANSWERS: does every `tsDestinations` entry in
-    `ref:repo/services/runner-node/port-disposition.json` (the file-by-file record of the Python→Node port)
-    still point at a real file. WHEN: POST-CUTOVER mode now that the Python tree is gone — after refactoring or
-    moving a file the port record claims was ported; it has already caught one real staleness this way (the
-    boundedJson consolidation).
+15. `scripts/port-cutover-order-check.sh` (source project's own migration sentinel, NOT carried into this
+    export) — ANSWERS: has a deleted legacy service tree stayed deleted. WHEN: a PERMANENT sentinel — run when
+    touching the port boundary it guards, or to verify the cutover still holds.
+16. `scripts/port-disposition-check.sh` (source project's own migration tooling, NOT carried into this export)
+    — ANSWERS: does every entry in the file-by-file port record still point at a real file. WHEN: POST-CUTOVER
+    mode now that the legacy tree is gone — after refactoring or moving a file the port record claims was
+    ported; it has already caught one real staleness this way in the source project.
 17. `ref:repo/scripts/pre-commit.sh` — ANSWERS: does this commit pass the build/typecheck content gates AND the
     branch-objective gates (scope fence, milestone). WHEN: automatic — the ONLY thing that blocks an ordinary
     commit.
-18. `ref:repo/scripts/pre-push.sh` — ANSWERS: has this push been reviewed. WHEN: automatic, every push to
-    `develop` — `develop`'s own review boundary, since it never merges so `ref:repo/scripts/pre-commit.sh`
-    (which skips trunk by design) can't be the review point.
-19. `ref:repo/scripts/selftest-objective.sh` — ANSWERS: does the whole branch-and-objective methodology (every
-    open/close/commit gate, every injection point) still work — proven by watching each gate actually REFUSE,
-    never by watching it allow. WHEN: after touching any objective/branch-gate script, and always as part of
-    "run every selftest."
-20. `ref:repo/scripts/status.sh` — ANSWERS: what is the DERIVED progress view — what's open (`objectives/*.md`)
-    vs what's closed (`ref:skill/po-memory/features-status.md`), and where the two have drifted apart. WHEN:
-    whenever asked "what's the inverse of the backlog" — what has actually shipped vs what's merely claimed.
-21. `ref:repo/scripts/verify-mode1-pause-design.sh` — ANSWERS: do the ~13 specific code facts that
-    `ref:repo/designs/mode-1-human-turn-pause.md`'s verdict rests on still hold. WHEN: before trusting that
-    design's conclusion, or after touching sim/runner code near those facts — an "is the doc present" check
-    would stay green through exactly the failure this exists to catch.
+18. `scripts/pre-push.sh` (source project's own review gate, NOT carried into this export) — ANSWERS: has this
+    push been reviewed. WHEN: automatic, every push to the integration branch — that branch's own review
+    boundary, since it never merges so `ref:repo/scripts/pre-commit.sh` (which skips trunk by design) can't be
+    the review point.
+19. `scripts/selftest-objective.sh` (source project's own methodology selftest, NOT carried into this export)
+    — ANSWERS: does the whole branch-and-objective methodology (every open/close/commit gate, every injection
+    point) still work — proven by watching each gate actually REFUSE, never by watching it allow. WHEN: after
+    touching any objective/branch-gate script, and always as part of "run every selftest."
+20. `scripts/status.sh` (source project's own progress view, NOT carried into this export) — ANSWERS: what is
+    the DERIVED progress view — what's open (`objectives/*.md`) vs what's closed (the product's own features
+    ledger), and where the two have drifted apart. WHEN: whenever asked "what's the inverse of the backlog" —
+    what has actually shipped vs what's merely claimed.
+21. `scripts/verify-mode1-pause-design.sh` (source project's own design-verification sentinel, NOT carried into
+    this export) — ANSWERS: do the ~13 specific code facts a particular game-pause design's verdict rests on
+    still hold. WHEN: before trusting that design's conclusion, or after touching sim/runner code near those
+    facts — an "is the doc present" check would stay green through exactly the failure this exists to catch.
 22. `ref:repo/scripts/parked-watch.mjs` — ANSWERS: which PARENT is genuinely parked waiting on a background
-    child that already finished — joining `ref:repo/.claude/.cache/agent-invocations.log` and
-    `ref:repo/.claude/.cache/agent-completions.log` on the parent↔child correlator, per
-    `ref:repo/.claude/GRIMORIO-CHAIN.md#3b-subagentstop--wired-2026-08-12-for-recording-only-the-2026-07-31-blocking-ruling-still-stands`.
+    child that already finished — joining the invocation log and the completion log (both local,
+    git-ignored, single-machine — not carried into this export) on the parent↔child correlator, per
+    `ref:repo/.claude/GRIMORIO-CHAIN.md#3b-subagentstop--wired-for-recording-only-the-blocking-ruling-still-stands`.
     Prints nothing when nothing is newly parked; a printed pair is never re-printed once seen
     (`.claude/.cache/parked-watch-seen.json`, gitignored). WHEN: the top-level session must ARM it — run it,
     e.g. on a poll loop — for a nested-background rescue (`ref:skill/grimorio-conduct#spawning-an-agent` rule
     8) to be real in a given session; nothing invokes it automatically.
-    POPULATION: `ref:repo/.claude/.cache/agent-invocations.log` rows with dispatch status
-    `async_launched`, joined against `ref:repo/.claude/.cache/agent-completions.log` — both LOCAL,
-    git-ignored, single-machine.
+    POPULATION: the invocation log's rows with dispatch status `async_launched`, joined against the
+    completion log — both LOCAL, git-ignored, single-machine, and not carried into this export.
 
 ## `scripts/refobl/` — the reference-obligation toolchain (anchors, resolution, governance patterns) — LIVE, 8 tools
 
@@ -225,8 +230,9 @@ must be verified against the repo; POPULATION inherits that same standing, not a
 
 ## `scripts/selftest/` — LIVE, 9 tools
 
-1. `ref:repo/scripts/selftest/agent-invocation-log.sh` — ANSWERS: does `ref:repo/.claude/hooks/log-agent-invocation.cjs`
-   correctly write the plan-context fields it claims to.
+1. `scripts/selftest/agent-invocation-log.sh` (source project's own selftest, NOT carried into this export) —
+   ANSWERS: does `ref:repo/.claude/hooks/log-agent-invocation.cjs` correctly write the plan-context fields it
+   claims to.
 2. `ref:repo/scripts/selftest/agent-tier-conformance.sh` — ANSWERS: does `ref:repo/scripts/check-agent-tiers.mjs`
    actually REFUSE an agent file missing a `model:` key, or carrying `disallowedTools: Agent` at `opus`/`fable`
    tier (a grunt hard-locked non-recursive has no business running at the expensive orchestrator tier) —
@@ -235,22 +241,25 @@ must be verified against the repo; POPULATION inherits that same standing, not a
    `check-agent-tiers.mjs` or the tier-declaration convention. Runs against a sandbox built fresh per case,
    never the live `.claude/agents/` — that integration coverage is the objective's own C2 check and
    `pre-commit.sh` itself, the real enforcement point.
-3. `ref:repo/scripts/selftest/apply-anchors-cli.sh` — ANSWERS: does `ref:repo/scripts/refobl/apply-anchors.cjs`
-   apply/accept a real anchor correctly END TO END — not just its extracted functions in isolation, which is
-   exactly the gap that once let it condemn 6 legitimate anchors as FABRICATED while staying green.
-4. `ref:repo/scripts/selftest/claude-md-openers.sh` — ANSWERS: does every numbered clause in `CLAUDE.md`'s
-   PROHIBITIONS list still open with one of the four hard-rule openers (ALWAYS/NEVER/BEFORE/WHEN), i.e. has not
-   decayed into prose.
-5. `ref:repo/scripts/selftest/claude-md-pointers.sh` — ANSWERS: does every pointer in `CLAUDE.md` resolve to a
-   section that actually exists. Carries two DELIBERATE dangling controls; if it ever reports fewer than 2
-   DANGLING, the checker itself is broken and none of its PASSes mean anything.
-6. `ref:repo/scripts/selftest/no-caller-passed-cap.sh` — ANSWERS: does every LLM-call surface (the TypeScript
-   input type AND the HTTP request body) refuse a caller that passes no spend cap — sizing a call's worst case
-   is the metering layer's job, never the caller's.
-7. `ref:repo/scripts/selftest/resolve-family.sh` — ANSWERS: does `ref:repo/scripts/refobl/resolve.cjs` (the ONE
-   resolver) still correctly resolve every reference shape that has historically broken — each case here is a
-   bug that shipped once, in three different tools, from three separate reimplementations of the same
-   resolution.
+3. `scripts/selftest/apply-anchors-cli.sh` (source project's own selftest, NOT carried into this export) —
+   ANSWERS: does `ref:repo/scripts/refobl/apply-anchors.cjs` apply/accept a real anchor correctly END TO END —
+   not just its extracted functions in isolation, which is exactly the gap that once let it condemn 6
+   legitimate anchors as FABRICATED while staying green.
+4. `scripts/selftest/claude-md-openers.sh` (source project's own selftest, NOT carried into this export) —
+   ANSWERS: does every numbered clause in `CLAUDE.md`'s PROHIBITIONS list still open with one of the four
+   hard-rule openers (ALWAYS/NEVER/BEFORE/WHEN), i.e. has not decayed into prose.
+5. `scripts/selftest/claude-md-pointers.sh` (source project's own selftest, NOT carried into this export) —
+   ANSWERS: does every pointer in `CLAUDE.md` resolve to a section that actually exists. Carries two
+   DELIBERATE dangling controls; if it ever reports fewer than 2 DANGLING, the checker itself is broken and
+   none of its PASSes mean anything.
+6. `scripts/selftest/no-caller-passed-cap.sh` (source project's own LLM-metering selftest, NOT carried into
+   this export) — ANSWERS: does every LLM-call surface (the TypeScript input type AND the HTTP request body)
+   refuse a caller that passes no spend cap — sizing a call's worst case is the metering layer's job, never the
+   caller's.
+7. `scripts/selftest/resolve-family.sh` (source project's own selftest, NOT carried into this export) —
+   ANSWERS: does `ref:repo/scripts/refobl/resolve.cjs` (the ONE resolver) still correctly resolve every
+   reference shape that has historically broken — each case here is a bug that shipped once, in three
+   different tools, from three separate reimplementations of the same resolution.
 8. `ref:repo/scripts/selftest/parked-watch.sh` — ANSWERS: does `ref:repo/scripts/parked-watch.mjs` report a
    genuinely parked parent AND stay silent on every non-parking case (a parent that acted after its child
    finished, a parent whose own last completion already closed VERIFIED/COULD NOT despite a later stale child

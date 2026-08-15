@@ -13,12 +13,18 @@
 clean what's exportable, ship it even though pieces of the source project are still being built, and say
 plainly what's broken rather than polish forever. Concretely, right now:
 
-- **~174 internal citations (`ref:repo/…`, `cite:repo/…`) point at the private source repo and will not
-  resolve here.** They were left in place because they're evidence trails for specific claims (a measured
-  rate, a dated ruling), not links meant to be clicked — see [MANIFEST.md](MANIFEST.md) → "Known
-  limitations" for the full accounting.
-- **The scripts under `scripts/` are reference implementations**, not verified to run standalone in a
-  fresh repo — several assume directory layout this repo doesn't carry.
+- **Every `ref:repo/…`/`cite:repo/…` citation in this repo resolves.** An earlier version of this line
+  claimed "~174 internal citations… will not resolve here" — that number was never measured, and a real
+  audit (2026-08-15) found it wrong: of 90 unique cited paths at the time, 35 already resolved and 55 were
+  genuinely broken. All 55 are now closed — either by exporting the missing file (scrubbed to the same
+  standard as the rest: `CLAUDE.md`, `.claude/GRIMORIO-CHAIN.md`, `.claude/settings.json`,
+  `scripts/check-comment-blocks.mjs`, `objectives/harness.md`) or by rewriting the citing sentence to drop
+  the unresolvable pointer while keeping whatever finding or rule it carried. See
+  [MANIFEST.md](MANIFEST.md) → "Known limitations" and "Third pass" for the full accounting and the
+  re-runnable check.
+- **The scripts under `scripts/` are reference implementations**, not independently verified to run
+  standalone in a fresh clone end to end, though nothing in the curated subset references a directory this
+  repo doesn't carry (verified).
 - **No human pass has re-read every exported file** beyond an automated secret scan and targeted greps
   (also in MANIFEST.md). Skim before treating any one file as a finished, polished artifact.
 - **A second pass (2026-08-15) scrubbed 20 files that still named the source project literally**
@@ -26,6 +32,9 @@ plainly what's broken rather than polish forever. Concretely, right now:
   MANIFEST.md → "Second pass" for exactly what changed and why some concrete examples were kept and
   renamed rather than deleted outright. That pass did not re-verify the renamed examples end to end, and
   did not touch `examples/` or `ROADMAP.md`, same scope boundary as the first pass.
+- **A third pass (2026-08-15) closed the citation gap above** and exported four files that should have
+  shipped the first time — see MANIFEST.md → "Third pass" for the full split between real leakage (fixed by
+  dropping the pointer) and honest export gaps (fixed by exporting).
 
 ## What this actually is
 

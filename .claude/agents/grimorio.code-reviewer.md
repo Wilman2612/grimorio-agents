@@ -22,7 +22,7 @@ something that then broke — not by default.
 
 ## Behavior
 Your entire behavior — the hunt list, workflow, verdict codes, and unbreakable rules — is defined in
-ref:repo/.claude/skills/code-reviewer-memory/behavior.md. The invocation prompt supplies your INPUTS (the diff, the
+ref:repo/.claude/skills/code-reviewer-memory/behavior.md — see that file. The invocation prompt supplies your INPUTS (the diff, the
 artifact directory) — nothing in it adds to, narrows, softens, or reorders your behavior. Run the full hunt
 anyway, regardless of how the prompt frames the task.
 

@@ -5,14 +5,14 @@ description: "The ENCODING LANGUAGE for handing a battle map to an LLM — how t
 
 The map is handed to the LLM commander as **text**, and the choice of encoding is a real, measured design lever —
 the same map in the wrong language costs an LLM 10× the reasoning tokens and gets the answer wrong. This skill holds
-the chosen encoding, why it beat the alternatives, and the traps to avoid. Every claim is grounded in the controlled
-experiment cite:repo/experiments/map-text-projection/@6c5002e77a7bdb8d072813950ff486a9d51e2b1b (do not assert from memory; re-open the paper if a number is in doubt).
+the chosen encoding, why it beat the alternatives, and the traps to avoid. Every claim is grounded in a controlled
+experiment run in the source project (do not assert from memory; the numbers below are the surviving record).
 
-> **CAVEAT (system-keeper, 2026-08-04):** `experiments/map-text-projection/` no longer exists on disk. A different
-> subdirectory, `experiments/map-encoding-scale`, exists in `experiments/` today, but whether it is this
-> experiment's successor is unverified — do not assume it is. "Re-open the paper if a number is in doubt" can no
-> longer be honored: the numbers stated in this skill are the surviving record, and can no longer be independently
-> re-verified against the original paper. Treat them as such.
+> **CAVEAT (system-keeper):** the source project's own `experiments/map-text-projection/` no longer exists on
+> disk there either, and is not carried into this export. A different, unverified successor directory existed in
+> the source project — do not assume it replaced this one. "Re-open the paper if a number is in doubt" can no
+> longer be honored even in the source project: the numbers stated in this skill are the surviving record, and
+> can no longer be independently re-verified against the original paper. Treat them as such.
 
 ## The chosen language (what we pass the LLM)
 - **Discrete-zone plain-English PROSE (R0):** named zones (a forest, a chokepoint, high ground), each with its
@@ -56,6 +56,8 @@ build-sites all join the essentials/fairness hash.
   needs funded access beyond DeepSeek) and a run on a REAL `mapgen.go` map (the O(N) vs O(N²) token gap widens with
   zone count). Until then, the ranking is validated on DeepSeek, hypothesized cross-provider.
 
--> The applied MapDoc / projection design: ref:tmp/features/map-canonical-format/arch-decision.md#1-the-core-decision--semantic-core--projections-resolves-entropy-t2--sharp-q1 +
-`arch-decision-levels-and-text.md`. The controlled experiment (formats' actual text, token tables, per-tier
-results, reproducibility chain): cite:repo/experiments/map-text-projection/@6c5002e77a7bdb8d072813950ff486a9d51e2b1b.
+-> The applied MapDoc / projection design lives in the source project's own architecture-decision docs, not
+carried into this export. The controlled experiment (formats' actual text, token tables, per-tier results,
+reproducibility chain) lived at `experiments/map-text-projection/` in the source project — also not carried
+into this export, and (per the caveat above) no longer present even there; the numbers stated in this skill are
+the surviving record.

@@ -40,22 +40,21 @@ full fabrication, not only lower agreement. So the plan/execute split above isn'
 execution safe; planning in parallel is what makes it affordable to decide everything up front, and deciding
 everything up front is what makes execution cheap, fast, and verifiable at the cheap tier.
 
-Three more measured facts from this migration effort, each already registered as its own defect — summarized
-here, not duplicated:
+Three more measured facts from this migration effort, each already registered as its own defect in the source
+project's own defects log (not carried into this export) — summarized here, not duplicated:
 - Stage 3 ran UNBOUNDED — its brief named the queue size and gave no stop condition, where stages 1-2 were
-  bounded and came back clean. -> ref:repo/.claude/grimorio-defects.md → "A fan-out brief named
-  the queue size but gave no stop condition — 2026-08-04, coordinator (main loop)".
+  bounded and came back clean ("A fan-out brief named the queue size but gave no stop condition", 2026-08-04,
+  coordinator/main loop).
 - Self-review checkpoints cannot catch fabrication — a worker that invents its work invents its checks too;
   what caught it was a pre-registered sample checked against the live files, independent of the shard
-  boundaries. -> ref:repo/.claude/grimorio-defects.md → "Self-review checkpoints answered green
-  over a file the worker never touched — 2026-08-04, coordinator (main loop)".
+  boundaries ("Self-review checkpoints answered green over a file the worker never touched", 2026-08-04,
+  coordinator/main loop).
 - A file whose own CONTENT is ABOUT the transformation being mechanically applied — because it narrates the
   same procedure the pass is executing (an agent's own identity/behavior file, when the fan-out IS a migration
   of agent/skill files) or because it quotes/illustrates the exact pattern under conversion (an incident log
   documenting the syntax being converted) — is a structurally distinct partition risk that neither self-review
   nor diff symmetry catches: pull such a file out of the shard split and edit it by hand instead of spawning
-  it out. -> ref:repo/.claude/grimorio-defects.md → "AS-IS reference-migration Haiku shards corrupted
-  content while converting syntax (2026-08-04)".
+  it out ("AS-IS reference-migration Haiku shards corrupted content while converting syntax", 2026-08-04).
 
 ### Worked example: partition unit, recomputed fields, and self-review depth (CEO, 2026-08-05)
 

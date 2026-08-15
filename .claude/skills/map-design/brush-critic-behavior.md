@@ -77,8 +77,8 @@ This is the **behavior file of agent:grimorio.brush-critic** — the full one-pa
   "21|7", "18|6") so the finding is unambiguous and directly checkable.
 - **NAME your reference FILE, and it must be a canonical one — a third-party screenshot, a promo GIF, or PROSE is
   not a reference (HARD RULE).** Every finding's evidence line must cite the exact reference file path it was
-  judged against, and that path must be a file in
-  ref:repo/apps/web/src/components/matches/battle/battle-render-continuous/references/ (the pack's own guide art). If you
+  judged against, and that path must be a file under the render's own `references/` folder (the pack's own guide
+  art — a subtree of the source project's private web app, not carried into this export). If you
   cannot cite such a file for a finding, you may not raise the finding — say the reference is missing and stop.
   Prose (a skill file, a composition guide, this file) describes the reference; it IS NOT the reference, and when
   they disagree the pixels win. Never judge against an image WE generated (see the references README).
