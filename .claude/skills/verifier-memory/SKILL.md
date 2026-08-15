@@ -1,11 +1,11 @@
 ---
 name: verifier-memory
-description: "Semantic memory for the manual-verifier agent. SKILL.md (L1) = universal visual-verification principles, the state-machine coverage protocol, scenario planning, error-capture rules, the visual checklist, and the BLOCKED-hardware list. For this project's local setup (L2/L3) read verifier-memory/project.md and verifier-memory/local-setup.md."
+description: "Semantic memory for the manual-verifier agent. SKILL.md (general) = universal visual-verification principles, the state-machine coverage protocol, scenario planning, error-capture rules, the visual checklist, and the BLOCKED-hardware list. For this project's local setup (project/code) read ./project.md and verifier-memory/local-setup.md."
 ---
 
-# Verifier Memory — L1: Universal Verification Principles
+# Verifier Memory — General: Universal Verification Principles
 
-> The `verification-report.md` output format lives in `feature-workflow`. This skill holds the *verification method* the agent applies.
+> The `verification-report.md` output format lives in ./behavior.md → `## OUTPUT`. This skill holds the *verification method* the agent applies.
 
 ## Principles (project-agnostic)
 
@@ -54,7 +54,7 @@ Every error or anomaly is a **finding**; working around it doesn't eliminate it.
 | Expected element (cancel/refund/delete/manage) absent | MEDIUM |
 | Dev error badge ("N Issues") visible in any screenshot | MEDIUM — must be opened and explained before any PASS |
 
-If an `error`-fallback screenshot was saved, it must appear in an Issue; its scenario can't PASS without written justification. PASS integrity: outcome visible + no errors → PASS; outcome visible but errors worked around → DONE_WITH_WARNINGS; outcome not visible or critical error → FAIL; environment unstartable after genuine attempts → BLOCKED.
+If an `error`-fallback screenshot was saved, it must appear in an Issue; its scenario can't PASS without written justification. PASS integrity: outcome visible + no errors → PASS; outcome visible but errors worked around → DONE_WITH_WARNINGS; outcome not visible or critical error → FAIL; environment unstartable after genuine attempts → FAIL (blocker documented), UNLESS the environment itself needs a hardware capability — see "BLOCKED is for hardware only" below.
 
 ---
 
@@ -79,5 +79,5 @@ Automated tests verify presence in the DOM; visual testing verifies that what's 
 
 `BLOCKED` is valid only for hardware-gated features: microphone recording, local file upload, push notifications, camera/video, OS clipboard. For those, write a manual test script instead of a screenshot. UI layout, navigation, data states, streaming, error messages are **never** BLOCKED — browser automation can always verify them.
 
--> This project's local servers, test accounts, seed data: read `verifier-memory/project.md` and `verifier-memory/local-setup.md`
--> The `verification-report.md` output format + screenshot organization: `feature-workflow` skill → Artifact Formats
+-> This project's local servers, test accounts, seed data: read ./project.md and ref:skill/verifier-memory/local-setup.md
+-> The `verification-report.md` output format: ./behavior.md → `## OUTPUT`. Screenshot organization: ref:skill/feature-workflow#artifact-directory-structure skill → Artifact Directory Structure.

@@ -1,60 +1,54 @@
 # Grimorio — Roadmap
 
-> Open design directions. These are **not yet built** — they're where the system is heading. The
-> published `.claude/` set is a working snapshot; the rules below are still being worked out in private
-> harnesses. Listed here so the design intent is legible, not as promises.
+> This file described open design directions as of 2026-06-25. As of the 2026-08-15 export, most of them
+> are resolved — kept here, rewritten to their current state, instead of left as stale open questions next
+> to a corpus that already answers them. New open threads are added at the end.
 
 ---
 
-## 1. Dynamic self-invocation (agents on demand)
+## 1. Dynamic self-invocation (agents on demand) — RESOLVED
 
-**Goal:** the system pulls in an agent *as the work needs it* — a domain analysis when entering an unfamiliar area, an architect when a change crosses a boundary, an adversarial corrector when a diff is risky — instead of running a fixed pipeline for every task.
+Built as `.claude/skills/agent-selection/SKILL.md`: a routing tree (dev/feature routing,
+research/knowledge routing, a two-phase research flow) plus an escalation ladder for five distinct
+distress signals. The default is direct, on-demand agent invocation; a full orchestrated pipeline is the
+maximal case, reached only when a task genuinely needs it.
 
-**Why:** running ten agents for "cada cosita" is too heavy. In real use the agents are invoked directly and adversarially, à la carte. The orchestrated full pipeline is the maximal case, not the default.
+## 2. Agent invocation vs skill triggers — RESOLVED, as a structural split, not a heuristic
 
-**Open questions:**
-- What are the *trigger conditions* for each escalation? (When does "contained change" become "needs an architect"?)
-- Who decides — a thin coordinator, or the main agent reasoning over the change itself?
-- How to keep escalation cheap (text-only triage first) before committing to a full agent run.
+The tension didn't resolve into a heuristic — it resolved into the **four-level split** (behavior ·
+general · project · code, `agent-writing/SKILL.md`). An agent's identity (shell) is never knowledge; a
+skill never carries agent-specific steps. What used to be "is this a skill or an agent" became "which of
+four levels does this piece of content belong to" — a sharper, checkable question.
 
----
+## 3. Project-knowledge harness — RESOLVED, as `code-harness`
 
-## 2. Agent invocation vs skill triggers
+Built as `.claude/skills/code-harness/`: a `harness.md` co-located with the code it governs, read on an
+upward lookup before any edit, enforced by a `PreToolUse` hook (`.claude/hooks/harness-lookup.cjs`). It
+answers a narrower, more mechanical question than the original goal (populating `project.md`) — it's a
+code guardrail, not a project-fact bootstrapper — but it's the thing that got built and shipped.
 
-**The tension:** some capabilities are better as a **skill that triggers** (knowledge surfaced on a keyword, applied in the current context) than as a **full subagent invocation** (a separate reasoning context with its own window).
+## 4. Fast development + adversarial correctors — RESOLVED, and generalized
 
-**Working heuristic (not final):** if it needs an independent adversarial *perspective* → agent. If it's *knowledge* the current context should apply → skill. The boundary is fuzzy for things like a quick architectural sanity check or a lint-style review.
+The adversarial-corrector pattern this item named is now the standing design for every gate in the
+corpus (`code-reviewer`, `security`, `ux`, `qa`, `manual-verifier`, plus domain-specific critics:
+`conventions-critic`, `brush-critic`, `map-aesthetic-critic`, `map-content-critic`). The composition
+question ("how do correctors compose without re-deriving context") resolved into `fan-out`'s decompose /
+spawn-in-parallel / synthesize lifecycle plus `agent-tiers`'s critic-integrity rule (a critic's tier is
+floored at the generator's tier, never lower).
 
-**Open questions:**
-- Which current agents are really "skills with a persona" and should collapse into triggered skills?
-- Cost model: a subagent is a fresh context (isolation, but re-derivation cost); a skill is cheap but shares the caller's context (no independence). When is each worth it?
+## 5. What's actually still open, as of 2026-08-15
 
----
-
-## 3. Project-knowledge harness
-
-**Goal:** a faster, more reliable way to populate and keep current the L2/L3 layers (the `{agent}-memory/project.md` and `{topic}.md` files) — the project-specific knowledge each agent needs.
-
-**Why:** the four-level architecture makes L0/L1 portable, but a new project still has to fill L2/L3 by hand. The harness would bootstrap and refresh that knowledge from the codebase, and flag L3 facts that have gone stale.
-
-**Open questions:**
-- Auto-derive `project.md` from a codebase scan, or keep it human-authored with assisted updates?
-- How to detect when an L3 operational fact (a path, an env var, a trap) has drifted out of date.
-
----
-
-## 4. Fast development + adversarial correctors
-
-**Goal:** lean hard into the pattern that actually works — move fast on the build, then apply sharp, independent **adversarial correctors** (security, code-reviewer, ux, manual-verifier) on the real output.
-
-**Why:** an agent is a poor judge of its own work. The leverage is in the correction pass on real code and rendered UI, not in heavyweight up-front ceremony.
-
-**Open questions:**
-- The right default corrector set per change type (so it's automatic but not bloated).
-- How correctors compose without re-deriving context each time.
-
----
-
-## 5. Beyond
-
-Other threads in flight (intentionally loose): tighter feedback loops between correctors and the developer, per-harness variations, and adversarial setups that go beyond the current cluster. This list is not exhaustive — it's the visible part of an evolving private system.
+- **Obligation placement.** `MEASUREMENTS.md` in this repo documents a real, measured finding: an
+  instruction placed as a step inside an agent's own behavior file gets followed at a measured 16/31; the
+  identical instruction placed as a citation in a bibliography list gets followed 0/37. The fix (move every
+  load obligation into a step, never a citation) is understood but not swept across the whole corpus.
+- **Skill-load visibility.** The measurement instrument behind every rate in `MEASUREMENTS.md` only sees
+  `Skill()` tool calls, not a plain file `Read` of the same content — so every rate reported anywhere in
+  this corpus is a floor, not a settled number. Closing that gap needs a different instrument, not a
+  different rule.
+- **The gate-that-can't-fail problem.** At least four checks in the source project turned out to be
+  structurally incapable of returning a failing verdict. No systematic sweep has been run to find the
+  rest. `reasoning-principles/SKILL.md` → "MEASURING IS NOT PROVING" is the doctrine; applying it to every
+  existing gate is unfinished work.
+- **This export itself.** See [MANIFEST.md](MANIFEST.md) → "Known limitations" — unresolved internal
+  citations, unverified standalone scripts, no full human re-read.

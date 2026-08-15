@@ -5,9 +5,13 @@ description: "Architectural patterns for a Clean Architecture TypeScript codebas
 
 # Skill: development-patterns
 
-Apply these rules on every code write, review, or refactor.
+Apply these rules on every code write, review, or refactor **in a TypeScript / Clean Architecture codebase.**
+For a Go or Python service, this skill does NOT apply — follow ref:skill/golang or ref:skill/python instead:
+their own error-handling convention (Go's values, Python's typed exception hierarchy) and their own Definition
+of Done replace this skill's `Result<T, E>` rule and its TypeScript-specific DoD items (typecheck, TS error
+count) below, which are unsatisfiable outside a TS codebase.
 
-> **Related skill**: `javascript` covers language-level standards (naming, async, formatting, SOLID). This skill covers **architectural patterns**: `javascript` tells you *how to write the code*, this skill tells you *where to put it and how to wire the layers*.
+> **Related skill**: ref:skill/javascript covers language-level standards (naming, async, formatting, SOLID). This skill covers **architectural patterns**: ref:skill/javascript tells you *how to write the code*, this skill tells you *where to put it and how to wire the layers*.
 >
 > These patterns assume a Clean Architecture layout (`domain → application → infrastructure → presentation`). The names of your auth provider, ORM, and DI container are placeholders — keep the *boundaries*, swap the *tools*.
 
@@ -42,6 +46,33 @@ Apply these rules on every code write, review, or refactor.
 - Module function count: max **20**
 - **Zero** direct ORM imports outside the persistence layer
 - **Zero** direct SDK imports outside `infrastructure/`
+
+---
+
+## Comments — for what is ULTERIOR to the code, and nothing else
+
+A comment is not documentation, not an explanation of what the code does, and not a place to narrate how a
+bug was found. **The code must be readable enough that you are not tied to its comments** — if you reach for
+a comment to make a line understandable, rename the thing or split the function instead.
+
+**Legitimate:** a constraint the code cannot express (a protocol requirement, a legal or economic bound and
+its source), a WHY that is genuinely non-derivable from the code (why the obvious approach was rejected, in
+one or two lines), a link to the decision record that owns the reasoning.
+
+**Illegitimate, and all of it common here:** restating what the next line does; a paragraph explaining a
+mechanism the reader can read; an incident narrative — what broke, who found it, what the audit said; a
+citation of a finding id; anything that documents a PAST state of the file.
+
+**Why the incident narrative is the worst of them, specifically.** It is indistinguishable at a glance from
+a comment describing CURRENT behaviour, so it actively misleads. A reader — human or agent — takes the
+narrated past for the present and acts on it. That has already produced a wrong recommendation in this repo:
+an agent read a header describing fixtures that had once been missing, reported the test as skipped, and
+never ran it. **Reasoning and incidents belong in the commit message and in the owning memory skill, where a
+reader knows they are historical. The file states what IS.**
+
+**And a comment that describes a bug you are working around is a debt, not a record.** If the workaround is
+permanent, the comment states the constraint. If it is temporary, it does not survive the fix — and nobody
+ever cleans them, so assume yours will not be cleaned either and do not write it.
 
 ---
 

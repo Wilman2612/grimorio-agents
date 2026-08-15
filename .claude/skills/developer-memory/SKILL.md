@@ -1,11 +1,11 @@
 ---
 name: developer-memory
-description: "Semantic memory for the developer agents. SKILL.md (L1) = universal principles about traps — failures that hide at the boundary between two correct systems. For this project's known traps and operational facts (L2/L3) read developer-memory/project.md and developer-memory/traps.md."
+description: "Semantic memory for the developer agents. SKILL.md (general) = universal principles about traps — failures that hide at the boundary between two correct systems. For this project's known traps and operational facts (project/code) read ./project.md and ./traps.md."
 ---
 
-# Developer Memory — L1: Universal Trap Principles
+# Developer Memory — General: Universal Trap Principles
 
-> Coding standards live in `javascript` and `development-patterns`. This skill is about **traps**: patterns that look correct but fail in a specific context. The deep, project-specific traps live in `developer-memory/traps.md` (L3) — read it before touching a risky zone.
+> Coding standards live in ref:skill/javascript and ref:skill/development-patterns#mandatory-patterns--cheat-sheet. This skill is about **traps**: patterns that look correct but fail in a specific context. The deep, project-specific traps live in `./traps.md` (code) — read it before touching a risky zone.
 
 ## Principles (project-agnostic)
 
@@ -19,9 +19,18 @@ description: "Semantic memory for the developer agents. SKILL.md (L1) = universa
 
 ## Who updates this, and how
 
-- The **developer** owns `developer-memory/traps.md` — add an entry after closing a bug this knowledge would have prevented. The architect may suggest, but the developer owns it.
+- The **developer** owns `./traps.md` — add an entry after closing a bug this knowledge would have prevented. The architect may suggest, but the developer owns it.
 - Keep each entry concise (≤5 lines). If an area needs more, create `developer-memory/{area}.md` and reference it.
-- Entries are L3 (operational, verifiable, can go stale) — name the file, the construct, and the consequence: *"TRAP: {thing} causes {failure} — see {file}."* A trap without a behavioral consequence has no value.
+- Entries are code-level (operational, verifiable, can go stale) — name the file, the construct, and the consequence: *"TRAP: {thing} causes {failure} — see {file}."* A trap without a behavioral consequence has no value.
 
--> This project's stack decisions: read `developer-memory/project.md`
--> This project's concrete traps: read `developer-memory/traps.md`
+## Per-language subfolders (CEO ruling, 2026-08-12)
+
+Behavior and trap files for each developer agent live under their own language subfolder —
+`./go/`, `./javascript/`, `./python/` — never sharing memory across languages, per the CEO's own
+words, translated: *"You have a Go one, a JavaScript one, we have a Python one, .NET, and whatever other
+languages — so subfolders."* A cross-language trap (the SEAM between two correct systems, this skill's own stated
+principle above) lives at skill ROOT instead, in `./cross-language-traps.md`, never inside one language's
+folder. `./traps.md` (this file's sibling) is the index into all of them.
+
+-> This project's stack decisions: read ./project.md
+-> This project's concrete traps: read ./traps.md

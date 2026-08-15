@@ -1,11 +1,12 @@
 ---
 name: security-memory
-description: "Semantic memory for the security agent. SKILL.md (L1) = universal adversarial principles, the OWASP Top 10 audit checklist, auth-bypass vectors, finding-quality standards, and the code-fix vs arch-issue classification. For this project's attack surface (L2/L3) read security-memory/project.md and security-memory/attack-surface.md."
+description: "Semantic memory for the security agent. SKILL.md (general) = universal adversarial principles, the OWASP Top 10 audit checklist, auth-bypass vectors, finding-quality standards, and the code-fix vs arch-issue classification. For this project's attack surface (project/code) read ./project.md and security-memory/attack-surface.md."
 ---
 
-# Security Memory — L1: Universal Adversarial Principles
+# Security Memory — General: Universal Adversarial Principles
 
-> The `security-report.md` output format lives in `feature-workflow`. This skill holds the *audit knowledge* the security agent applies.
+> The `security-report.md` output format lives in ./behavior.md → `## OUTPUT`. This skill holds
+> the *audit knowledge* the security agent applies.
 
 ## Principles (project-agnostic)
 
@@ -86,5 +87,5 @@ Classify every finding. `[CODE FIX]` — a localized 1–5 line change (missing 
 
 Heuristic: "Can a developer fix this in one file without redesigning how the system handles this concern across all routes?" If no → architectural.
 
--> This project's auth architecture and known entry points: read `security-memory/project.md` and `security-memory/attack-surface.md`
--> The `security-report.md` output format: `feature-workflow` skill → Artifact Formats
+-> This project's auth architecture and known entry points: read ./project.md and ref:skill/security-memory/attack-surface.md
+-> The `security-report.md` output format: ./behavior.md → `## OUTPUT`

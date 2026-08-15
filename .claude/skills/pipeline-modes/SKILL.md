@@ -19,6 +19,12 @@ Read **only** the artifacts the prompt names. Do not open the codebase, do not g
 
 Use when: a fast re-run is needed (e.g. a REWORK cycle where the diff is known), or the orchestrator already supplies all context as files and wants a cheap, bounded pass.
 
+**This restricts CODEBASE exploration only** — source reads/greps beyond what the prompt named. It does NOT
+restrict an agent's own Knowledge-list skill/memory reads (e.g. `po-memory/features-status.md`, a `project.md`
+ledger) — those are baseline knowledge read regardless of mode, not codebase exploration.
+
 ## Why two modes exist
 
 Codebase exploration is the expensive part of an agent run. Most of the time it is necessary. Sometimes the orchestrator already knows exactly what changed and just needs the agent to reason over a handful of files — paying for a full exploration there is waste. `LIGERO` makes that cheap path explicit and auditable, instead of hoping the agent "keeps it short."
+
+> These two modes are a **read-scope** axis (how much codebase an agent may read). They are orthogonal to **orchestration shape** (LINEAR vs ADAPTIVE / MILESTONE — how the orchestrator composes agents into a run), which lives in ref:skill/feature-workflow#orchestration-modes-linear-vs-adaptive--milestone. A worker can run in any read-mode under either shape.

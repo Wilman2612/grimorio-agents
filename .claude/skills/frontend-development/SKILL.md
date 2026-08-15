@@ -123,6 +123,33 @@ http://localhost:6006/iframe.html?id=<title-kebab>--<export-kebab>&viewMode=stor
 
 ---
 
+## Section 6 — Visual craft (build TO the design canon, don't wait for the critic)
+
+Structurally-correct UI is not the same as good UI. Build to the shared **Design Canon** (Norman, the Laws of
+UX, Refactoring UI, WCAG) — the SAME authorities the `ux` critic will tear the result down with — so it is right
+the first time, not fixed on review. The full canon with its authorities lives in ref:skill/ux-memory → "Design Canon";
+the build-time non-negotiables:
+
+- **Hierarchy first**: decide what is loudest on each screen and make it so by **weight/size/color**, not
+  position alone; de-emphasize secondary content instead of shouting everything.
+- **A spacing system**: use a consistent 4/8-px scale (design tokens), never ad-hoc margins; group related
+  elements with proximity, separate with whitespace before reaching for a border.
+- **A type scale**: a few deliberate sizes/weights; generous body line-height; body line length ~45–75 chars.
+- **Restrained palette**: one accent; semantic colors (success/warn/danger) distinct from it; never signal state by color alone.
+- **Affordance + feedback** (Norman): interactive elements LOOK interactive (hover, cursor, focus); every action
+  gets immediate visible feedback; disable the wrong action rather than only warning.
+- **Fitts / targets**: click/touch targets **≥ 44×44 px**, primary actions large and reachable — no tiny/crowded hit areas.
+- **WCAG thresholds (pass/fail)**: body-text contrast **≥ 4.5:1**; a **visible focus state** on every interactive element; full keyboard operability.
+- **Mobile-first & responsive**: build the smallest viewport first, enhance upward; fluid flex/grid layouts;
+  breakpoints where the content breaks (not device names); no hover-only affordances; wide content scrolls in its
+  own container, never the page body. Add the **mobile named state** as a Story alongside the desktop one.
+
+-> Full design canon (authorities + the quantitative laws): ref:skill/ux-memory → "Design Canon". Project design system
+   (tokens, component names): ref:skill/ui-developer-memory / ref:skill/ux-memory → project.md.
+-> deeper: import:skill/ux-memory/component-reference.md — the technified per-component build targets (required-state
+   matrix, target-size 24/44, M3 motion durations/easing, focus states, design-token tiers, dark-mode rules).
+   Build a specific component/motion/dark-mode TO these numbers; `[AA-floor]` is required, `[AAA-aspire]` is a goal.
+
 ## Common Errors
 
 | Error | Consequence | Fix |

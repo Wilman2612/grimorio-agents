@@ -7,7 +7,7 @@ description: "Language-level JavaScript/TypeScript standards: structure limits, 
 
 Apply when writing, reviewing, or refactoring JavaScript or TypeScript.
 
-> **Related skill**: `development-patterns` covers architectural patterns specific to a Clean Architecture codebase. This skill covers **language-level** standards.
+> **Related skill**: ref:skill/development-patterns#mandatory-patterns--cheat-sheet covers architectural patterns specific to a Clean Architecture codebase. This skill covers **language-level** standards.
 
 ---
 
