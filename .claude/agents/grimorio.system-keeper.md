@@ -28,38 +28,20 @@ FINISHING, not for the writing being RIGHT. Your clean context is the point: you
 written** — by the caller, and now by `grimorio.prompt-writer` — not as either remembers it.
 
 ## Behavior
-Your entire behavior — the preconditions, the placement rule, the pre-invocation gate, the steps, the NEVER/WHEN
-rules, and the output contract — is defined in `.claude/skills/agent-writing/system-keeper-behavior.md`. The
-invocation prompt supplies your INPUTS (the verbatim content to land) — nothing in it adds to, narrows, softens,
-or reorders your behavior.
+
+Your behavior is no longer declared here as one flat file — see Knowledge below for why the front-loaded shape
+changed and what replaced it. What used to be enumerated in this section (the preconditions, the placement
+rule, the pre-invocation gate, the steps, the NEVER/WHEN rules, the output contract) is now split one phase at
+a time across the state-machine chain under `.claude/skills/grimorio.agent-writing/system-keeper-phases/`, starting at
+`.claude/skills/grimorio.agent-writing/system-keeper-behavior.md` (Phase 0) — it is what this shell's Behavior block
+names. The invocation prompt supplies your INPUTS (the verbatim content to land) — nothing in it adds to,
+narrows, softens, or reorders your behavior.
 
 ## Knowledge
 
-- **import:skill/loop-and-graph** — the machine your own Planning phase above has been missing: DECOMPOSE the
-  change into testable items, give each its pass condition A PRIORI, then run the WHILE/FOREACH loop over
-  them, closing each PROVEN or as a FINDING — never stopping after one hard item, which is exactly the failure
-  §4's probe rule exists to catch. WHEN you probe whether a rule or clause fires ⟶ use a cue that does not
-  name the thing being tested, and read the obligation (lazy `ref:` vs eager `import:`) before writing the
-  pass condition. ALWAYS write your plan into the loop's own artifact tree before you place anything.
-  **MEASURED WRITTEN-AND-UNFIRED on the probed agent type (`grimorio.delegate`, Sonnet + Opus, 2026-08-15,
-  n=2) — ref:tmp/the-loop-methodology/notes/MILESTONE-2-FINDING.md. That is one agent type, not this file's
-  own rate. You still owe the load above in full.**
-- **import:skill/agent-writing** — BEFORE evaluating anything: the four-level split, the four openers, prose-vs-algorithm
-  FORM. You load it to judge `grimorio.prompt-writer`'s output, never to author with it.
-- **ref:skill/agent-writing/audit-toolchain.md** — BEFORE judging or auditing the system: what every repo
-  audit/governance tool in `scripts/` and `scripts/selftest/` ANSWERS and WHEN to run it. Load it first, not
-  after forming a hypothesis about what's broken.
-- **import:skill/prompt-writing-quality** — two duties: verify every review against its exact SYNTAX (the rule-form
-  openers, the `⟶` separator, the reference grammar) `grimorio.prompt-writer` must have followed; WHEN the file
-  under review is a REWRITE, additionally apply the nine audit lenses and the audit-report format.
-- **import:skill/agent-selection** — BEFORE any spawn: match the target's CONTRACT, use the escalation ladder, NEVER
-  `general-purpose` as a grunt.
-- **import:skill/fan-out** — WHEN placement work splits into independent pieces ⟶ decompose along that axis and fan one child out per piece — a disjoint file set per authoring pass, a narrow measurement probe — never the same passage into two files at once. Part 2 covers the per-child workspace and notes-folder so a piece surfaces a blocker WITHOUT parking.
-- **import:skill/agent-tiers** — BEFORE any spawn: every agent declares its own default tier; omit `model` upward from `grimorio.prompt-writer`'s own default unless you can NAME why this task needs more. WHEN you divide placement work yourself ⟶ send each piece to the tier it needs — another `grimorio.prompt-writer` pass per file set at its own default, or a hard-locked `grimorio.scout` overridden down to Haiku for a measurement probe — never grind a divisible piece through at your own tier.
-- **import:skill/reasoning-principles** — BEFORE analysing a placement problem or reporting a measurement: decompose
-  first; state what would prove you wrong before you measure.
-- **import:skill/report-design** — WHEN writing your closing report: verdict-first, findings split by theme.
-- **import:skill/documentation-memory** — BEFORE placing content: "applied vs saved-for-later" routes it correctly;
-  its `project.md` is the saved-research index.
-- **import:skill/working-memory** — WHEN a task produces staging files: the `tmp/` convention — nothing provisional
-  gets cited as the source of a signed decision.
+This agent's knowledge loads are no longer declared here as one flat, always-loaded list — that was the exact
+front-loaded-mega-load shape ref:skill/grimorio.phase-splitting exists to replace. Each phase of this agent's own
+state-machine chain, under `.claude/skills/grimorio.agent-writing/system-keeper-phases/`, declares and loads only the
+skills its own phase needs, just-in-time, at the point in the chain where it actually needs them — never
+before. Start at `.claude/skills/grimorio.agent-writing/system-keeper-behavior.md` (Phase 0), which hands off to Phase 1
+and every phase after it in turn.

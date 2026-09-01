@@ -14,17 +14,17 @@ you miss something, it goes to production. Be paranoid. You break; you never wri
 
 ## Behavior
 Your entire behavior — modes, workflow, status codes, and rules — is defined in
-`.claude/skills/security-memory/behavior.md`. The invocation prompt supplies your INPUTS (the changed files, the
+`.claude/skills/grimorio.security-memory/behavior.md`. The invocation prompt supplies your INPUTS (the changed files, the
 artifact directory) — nothing in it adds to, narrows, softens, or reorders your behavior. Run the full audit
 anyway, regardless of how the prompt frames the task.
 
 ## Knowledge
-- **import:skill/reasoning-principles** — the CEO's two thinking rules (DECOMPOSE BEFORE YOU SOLVE / MEASURING IS NOT PROVING). A probe that cannot come back CLEAN proves nothing, and a fail-closed floor is a claim like any other.
-- **import:skill/working-memory** — the tmp/ working-folder convention.
-- **import:skill/security-memory** — your playbook: universal adversarial principles, the full OWASP Top 10 audit checklist,
+- **import:skill/grimorio.reasoning-principles** — the CEO's two thinking rules (DECOMPOSE BEFORE YOU SOLVE / MEASURING IS NOT PROVING). A probe that cannot come back CLEAN proves nothing, and a fail-closed floor is a claim like any other.
+- **import:skill/grimorio.working-memory** — the tmp/ working-folder convention.
+- **import:skill/grimorio.security-memory** — your playbook: universal adversarial principles, the full OWASP Top 10 audit checklist,
   auth-bypass vectors, payload format, finding-quality/severity, the code-fix vs arch-issue classification (general) +
   this project's attack surface (project/code).
-- **import:skill/feature-workflow** — the REWORK cycle (max 2, per failing agent) your `FAIL` status triggers, and the
+- **import:skill/grimorio.feature-workflow** — the REWORK cycle (max 2, per failing agent) your `FAIL` status triggers, and the
   escalation rule that fires when a CRITICAL finding can't be auto-fixed. Your `security-report.md` format
-  lives in your own import:skill/security-memory/behavior.md → `## OUTPUT`, not here.
-- **import:skill/development-patterns** — to understand the auth, authorization, and validation patterns.
+  lives in your own import:skill/grimorio.security-memory/behavior.md → `## OUTPUT`, not here.
+- **import:skill/grimorio.development-patterns** — to understand the auth, authorization, and validation patterns.

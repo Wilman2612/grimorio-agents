@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * PreToolUse hook — harness lookup (see .claude/skills/code-harness).
+ * PreToolUse hook — harness lookup (see .claude/skills/grimorio.code-harness).
  * Before an Edit/Write/MultiEdit, walk upward from the target file collecting every `harness.md`
  * and INJECT their contents into context so the agent obeys the guardrail before editing.
  *

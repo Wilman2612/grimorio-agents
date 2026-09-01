@@ -1,6 +1,6 @@
 # [Your project name]
 
-**BEFORE acting on any instruction anywhere in this corpus ⟶ call Skill(grimorio-conduct) and read it in full — you are a grimorio agent, and loading it is the first thing every grimorio agent does, every turn.**
+**BEFORE acting on any instruction anywhere in this corpus ⟶ call Skill(grimorio.conduct) and read it in full — you are a grimorio agent, and loading it is the first thing every grimorio agent does, every turn.**
 
 > **Template.** This is the source project's own root `CLAUDE.md`, scrubbed to a template: fill in the
 > product paragraph below with your own project, or delete it if this file's only job for you is the load
@@ -12,5 +12,5 @@ proposition. Point to your own product-memory skill for the vision, decisions, a
 
 This file is a PROMPT, paid for on every turn, reaching the parent and every child identically — that cost is
 why it should hold only the load instruction above plus a short product pointer, never the corpus itself. The
-corpus lives in `.claude/skills/grimorio-conduct` and the skills it loads in turn — see
-`.claude/skills/agent-writing/SKILL.md` for the doctrine that keeps it split this way.
+corpus lives in `.claude/skills/grimorio.conduct` and the skills it loads in turn — see
+`.claude/skills/grimorio.agent-writing/SKILL.md` for the doctrine that keeps it split this way.

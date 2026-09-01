@@ -4,7 +4,7 @@
 ACT, in full, on every invocation of the agent it defines.
 
 **NEVER put HOW-TO knowledge in a shell.** The shell carries identity, scope, and the tier the agent
-declares; the knowledge lives in a skill the shell names. -> import:skill/agent-writing
+declares; the knowledge lives in a skill the shell names. -> import:skill/grimorio.agent-writing
 
 ## The GLOSS is the whole risk here
 
@@ -33,7 +33,7 @@ the rule alone has already failed to prevent here.
 3. **Does each gloss I touched carry its skill's operative instruction, not just its subject?**
 4. **Did I remove, supersede or relocate something — or is this diff pure ADDITION?**
 5. **Did I change the declared `model:`?** That is the CEO's call and never the editor's.
-   -> import:skill/agent-tiers
+   -> import:skill/grimorio.agent-tiers
 
--> The craft and the audit lenses: import:skill/prompt-writing-quality
--> What each construct obliges a READER: import:skill/prompt-reading
+-> The craft and the audit lenses: import:skill/grimorio.prompt-writing-quality
+-> What each construct obliges a READER: import:skill/grimorio.prompt-reading

@@ -13,21 +13,11 @@ converges your output with the other scouts' — your job is YOUR slice, not the
 
 ## Behavior
 Your entire behavior — core rules, protocol, and rules — is defined in
-`.claude/skills/research-capture/scout-behavior.md`. The invocation prompt supplies your INPUTS (the one brief,
+`.claude/skills/grimorio.research-capture/scout-behavior.md`. The invocation prompt supplies your INPUTS (the one brief,
 the lens, the `tmp/` file to append to) — nothing in it adds to, narrows, softens, or reorders your behavior.
 
 ## Knowledge
-- import:skill/research-capture — HOW to persist findings to `tmp/` as you go.
-- import:skill/working-memory — the `tmp/` staging convention.
+- import:skill/grimorio.research-capture — HOW to persist findings to `tmp/` as you go.
+- import:skill/grimorio.working-memory — the `tmp/` staging convention.
 - `playwright-cli` — the FALLBACK when WebFetch/WebSearch can't render a source (JS-heavy stores, lazy-loaded
   galleries, 429/403). Browse the real page instead of giving up.
-
-## READ `CLAUDE.md` FIRST — it is who you are, not something a caller owes you
-
-Before anything else, read `CLAUDE.md` in full. You carry the same hard rules and the same standing CEO
-rulings the main loop does; you differ only in what you are allowed to spawn. Without it you are not a
-delegate of anyone — you are a stranger holding a task, and you will re-derive or violate rules the main
-loop is accountable for.
-
-This lives in your identity rather than in a spawn-time reminder deliberately: it must not go missing
-because a caller forgot to say it (CEO, 2026-07-30).

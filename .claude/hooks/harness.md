@@ -3,6 +3,20 @@
 **NEVER add a hook, and NEVER modify one, without asking the CEO and receiving his answer.** Not
 "flag it and proceed", not "add it and report". Ask, wait, act on what he says. (CEO, 2026-08-09.)
 
+**Why, stated plainly, because a rule whose reason is missing reads as bureaucracy and gets optimised around —
+that is the actual failure this rule exists to stop, not a courtesy note.**
+
+> *"by touching the hooks, you touch my vision."* (CEO, 2026-08-15, translated)
+
+A hook is where the CEO holds his own model of what the system actually does. Every hook an agent adds is
+behaviour he did not put there, running invisibly on every turn — and once he no longer understands his own
+machine, he cannot judge anything an agent reports to him about it. That is why the rule above says ask, wait,
+act on what he says — never flag it and proceed.
+
+This is one evidenced instance of a broader classification rule: WHO decides a change counts as "vision" is
+never the caller asking for it, only the CEO. -> ref:skill/grimorio.conduct#choosing-what-to-work-on → "NEVER
+let a brief decide what counts as VISION" (rule 5c).
+
 **BEFORE asking him ⟶ establish all three. If one fails, there is no hook to ask for.**
 
 1. **The rule REACHES the agent it governs.** An `import:skill/...` line loads nothing — it is a name

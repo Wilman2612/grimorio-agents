@@ -36,7 +36,7 @@
  *      corrupted repo) is unavoidable either way; what must never happen is THIS SCRIPT being
  *      the reason every spawn breaks.
  *
- * TIER 0, ADDED 2026-08-06 (objectives/harness.md, "WHO WORKS WHERE", CEO ruling 2026-07-31, @keep-comment) — the ONE
+ * TIER 0, ADDED 2026-08-06 (.claude/skills/grimorio.objective-harness/SKILL.md, "WHO WORKS WHERE", CEO ruling 2026-07-31, @keep-comment) — the ONE
  * case in this file that refuses ON PURPOSE, checked BEFORE tier 1. Both tier 1 and tier 2 fork the new
  * worktree from a point already sitting in the SHARED tree (develop's tip, or git's own default
  * startpoint) — so anything not yet committed there (staged, unstaged, or untracked) is invisible to the
@@ -49,20 +49,42 @@
  * MACHINERY failure, not a dirty tree, and MUST fall through to tier 1 exactly like every other internal
  * failure in this file — never be read as "dirty".
  *
- * TIER 0B, ADDED 2026-08-06 (objectives/harness.md, "WHO WORKS WHERE", CEO's push/worktree unification
+ * TIER 0B, ADDED 2026-08-06 (.claude/skills/grimorio.objective-harness/SKILL.md, "WHO WORKS WHERE", CEO's push/worktree unification
  * ruling, @keep-comment) — a SECOND, independent Tier 0 deliberate refusal, checked right after the
  * dirty-tree check and still before tier 1. Being clean is not being reviewed: a clean tree can still
  * carry commits nobody has looked at. scripts/pre-push.sh already refuses to push `develop`/`master` when
  * the range touches `.claude/`, `scripts/`, `objectives/`, or `CLAUDE.md` without an approval marker
  * naming the exact HEAD commit — because the push is the moment that work leaves the local tree and
  * becomes shared. Creating a worktree is the OTHER such moment: it hands the same unreviewed commits to a
- * fresh delegate as if they were settled. This tier applies the identical predicate (same guarded paths,
- * same commit-named marker at `.claude/.cache/review-approved`) against `origin/develop..HEAD` instead of
- * a push range, and obeys the exact same safe SHAPE as the dirty-tree check: print nothing on stdout,
- * write the reason to stderr and the log, exit 0. Any git command failing here — `origin/develop`
- * unresolvable, a git failure, anything — is a MACHINERY failure, not a violation, and MUST fall through
- * to tier 1 exactly like every other internal failure in this file. See `guardedChangedFiles`,
- * `readApprovedMarker`, and `refuseUnreviewed` below for the exact predicate and its duplication note.
+ * fresh delegate as if they were settled.
+ *
+ * THE BASELINE, FIXED 2026-08-17 (@keep-comment) — this tier diffs guarded paths since the last APPROVED REVIEW, not
+ * since `origin/develop`. It was built against `origin/develop..HEAD` at first, which is wrong in a
+ * local-first repo where the remote is rarely pushed: a frozen ref nobody updates does not mean "since
+ * last review", it means "since whenever origin last happened to move" — measured 938 commits / 285
+ * guarded files stale — so the range was ALWAYS non-empty regardless of what the latest commit touched,
+ * collapsing the whole gate into "does the marker equal HEAD", which fails after every commit, guarded or
+ * not. The fix diffs `<marker-sha>..HEAD` instead: the range is now "guarded changes since the last
+ * approved review," and it is SELF-HEALING, because the marker is the exact same file the operator already
+ * re-stamps after a grimorio.code-reviewer approval — it can never be MORE stale than the operator's own
+ * last review, independent of whether `origin/develop` is ever pushed. A commit touching no guarded path
+ * now produces an EMPTY range diff and needs no re-stamp; only a commit that genuinely touches a guarded
+ * path does. `EMPTY_TREE_SHA` is the fallback base for TWO cases, both treated identically as "review
+ * everything": a checkout that has never stamped a marker at all — common, not exotic, since the marker
+ * file is gitignored and is NOT shared across `git worktree` checkouts, so every freshly created worktree
+ * starts with none — and a marker whose CONTENT does not resolve to a real commit in this checkout (a
+ * corrupted write, a human typo, a SHA a later history rewrite pruned away). The second case matters on
+ * its own: falling into the generic machinery-failure path would silently DISABLE the gate for that one
+ * invocation instead of falling back to reviewing everything, which is the opposite of what a broken
+ * review-pointer should do — see `isResolvableCommit` below.
+ *
+ * This tier applies the identical predicate (same guarded paths, same commit-named marker at
+ * `.claude/.cache/review-approved`) against that range instead of a push range, and obeys the exact same
+ * safe SHAPE as the dirty-tree check: print nothing on stdout, write the reason to stderr and the log,
+ * exit 0. Any git command failing here — the base unresolvable, a git failure, anything — is a MACHINERY
+ * failure, not a violation, and MUST fall through to tier 1 exactly like every other internal failure in
+ * this file. See `EMPTY_TREE_SHA`, `isResolvableCommit`, `guardedChangedFiles`, `readApprovedMarker`, and
+ * `refuseUnreviewed` below for the exact predicate and its duplication note.
  *
  * INPUT VALIDATION (added after an adversarial review, 2026-07-31, @keep-comment). `name` is
  * used as BOTH a filesystem path segment and a git ref component, and `cwd` is used as BOTH the
@@ -121,7 +143,7 @@ function refuseDirtyTree(repoRoot, lines) {
     `that worktree either rebuilds what already exists or overwrites it from the other side. Both ` +
     `happened in the session that produced this rule.\n\n` +
     `Offending paths (git status --porcelain):\n${shown.map((l) => `  ${l}`).join("\n")}${more}\n\n` +
-    `Commit this work now -- objectives/harness.md, "WHO WORKS WHERE" (CEO, 2026-07-31): the main loop ` +
+    `Commit this work now -- .claude/skills/grimorio.objective-harness/SKILL.md, "WHO WORKS WHERE" (CEO, 2026-07-31): the main loop ` +
     `must commit when it finishes a thing, before launching any delegate worktree. If it genuinely is not ` +
     `ready to commit, stash it deliberately instead: \`git stash push -m "<why>"\`, let the worktree be ` +
     `created, then \`git stash pop\` when you resume.\n\n` +
@@ -141,20 +163,33 @@ function refuseDirtyTree(repoRoot, lines) {
 // a reason the hook breaks. If a single source of truth is ever wanted, it should be a plain-text config
 // BOTH scripts parse defensively (never a `require`) — this file was not the place to build that. Until
 // then the two copies are kept in lockstep by hand; THIS copy is the one that goes stale first if
-// pre-push.sh's predicate ever changes without a matching edit here. @keep-comment
+// pre-push.sh's predicate ever changes without a matching edit here.
+//
+// ONLY GUARDED_RE and the marker PATH are this duplicated surface. The diff-BASE each file diffs from is
+// legitimately DIFFERENT between the two files, and must never be synced: pre-push.sh's own
+// `remote_sha..local_sha` range never goes stale, because git hands it a fresh `remote_sha` at every
+// push; this hook has no push protocol to hand it a fresh base, so it diffs from the marker itself
+// instead (see EMPTY_TREE_SHA and the Tier 0B block in `main()` below) — a different mechanism for a
+// different moment, not a second copy of the same one. @keep-comment
 const GUARDED_RE = /^(\.claude\/|scripts\/|objectives\/|CLAUDE\.md)/;
+
+// The well-known empty-tree object hash — every git repository has this object, so it is always a valid,
+// resolvable diff base. Used only when no marker has ever been stamped in THIS checkout: diffing from the
+// empty tree to HEAD lists every guarded path currently present, i.e. "nothing has been reviewed yet."
+const EMPTY_TREE_SHA = "4b825dc642cb6eb9a060e54bf8d69288fbee4904";
 
 function reviewMarkerPath(repoRoot) {
   return path.join(repoRoot, ".claude", ".cache", "review-approved");
 }
 
-// Tier 0b, part 1. Returns the guarded-path files changed in origin/develop..HEAD (possibly empty =
-// nothing guarded in range) when the diff itself succeeded, or null when it COULD NOT BE RUN
-// (origin/develop unresolvable, git failure, anything) — null must never be treated as a violation; the
-// caller falls through to tier 1 on null, exactly like `dirtyTreeLines`' null does. @keep-comment
-function guardedChangedFiles(cwd) {
+// Tier 0b, part 1. Returns the guarded-path files changed in `baseSha..HEAD` (possibly empty = nothing
+// guarded in range) when the diff itself succeeded, or null when it COULD NOT BE RUN (baseSha
+// unresolvable, git failure, anything) — null must never be treated as a violation; the caller falls
+// through to tier 1 on null, exactly like `dirtyTreeLines`' null does. `baseSha` is either the last
+// approved marker or EMPTY_TREE_SHA — see the Tier 0B block in `main()` for which. @keep-comment
+function guardedChangedFiles(cwd, baseSha) {
   try {
-    const diff = git(["diff", "--name-only", "origin/develop..HEAD"], cwd);
+    const diff = git(["diff", "--name-only", `${baseSha}..HEAD`], cwd);
     if (diff === "") return [];
     return diff.split("\n").filter((f) => GUARDED_RE.test(f));
   } catch (_) {
@@ -175,32 +210,57 @@ function readApprovedMarker(repoRoot) {
   }
 }
 
+// Tier 0b, part 2b. Verifies `sha` (the marker's content) actually resolves to a real commit in THIS
+// checkout — a corrupted write, a human typo, or a SHA a later history rewrite pruned away must NOT be
+// treated as a usable review point. Returns false on ANY failure (not a commit, unresolvable, git itself
+// broken); the caller reads false as "treat this exactly like an UNSET marker" (fall back to
+// EMPTY_TREE_SHA, i.e. review everything) — never as a machinery failure to silently fall through on,
+// which would leave the gate disabled for this one invocation instead. @keep-comment
+function isResolvableCommit(sha, cwd) {
+  try {
+    git(["rev-parse", "--verify", "--quiet", `${sha}^{commit}`], cwd);
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
 // Deliberate refusal, on purpose — the other place in this file that means to stop creation (alongside
 // `refuseDirtyTree`). Still obeys the file's one hard invariant: never a non-zero exit. Prints nothing on
 // stdout (which is what fails THIS creation, per the header) and writes the reason to stderr and the log,
 // then exits 0.
-function refuseUnreviewed(repoRoot, changed, headSha) {
+function refuseUnreviewed(repoRoot, changed, headSha, baseSha, baseIsMarker) {
   const shown = changed.slice(0, 20);
   const more = changed.length > shown.length ? `\n  ... and ${changed.length - shown.length} more` : "";
+  const baseLabel = baseIsMarker
+    ? "the last approved marker"
+    : "git's empty-tree sentinel -- no review has ever been recorded in this checkout";
   const message =
-    `WorktreeCreate REFUSED: ${changed.length} instruction-system file(s) in origin/develop..HEAD have not been reviewed.\n\n` +
+    `WorktreeCreate REFUSED: ${changed.length} instruction-system file(s) in ${baseSha}..HEAD have not been reviewed.\n\n` +
     `The push and worktree-creation moments are the only two places work escapes the local tree, so both now ` +
     `require the same review. scripts/pre-push.sh already gates the push side of this; this is the same gate ` +
-    `applied at worktree-creation time, against the same commit range.\n\n` +
-    `range     origin/develop..HEAD\n` +
+    `applied at worktree-creation time, against the range since ${baseLabel}.\n\n` +
+    `range     ${baseSha}..HEAD\n` +
+    `base      ${baseLabel}\n` +
     `HEAD      ${headSha}\n\n` +
     `Guarded paths in range:\n${shown.map((l) => `  ${l}`).join("\n")}${more}\n\n` +
-    `Run grimorio.code-reviewer on \`git diff origin/develop..HEAD\`, and only if it returns APPROVED, record ` +
+    `Run grimorio.code-reviewer on \`git diff ${baseSha}..HEAD\`, and only if it returns APPROVED, record ` +
     `what it approved:\n\n` +
     `    echo ${headSha} > ${reviewMarkerPath(repoRoot)}\n\n` +
-    `then retry. The marker names a COMMIT, so it cannot be reused: one more commit and this gate fires again.\n\n` +
+    `then retry. The marker names a COMMIT, so a commit that touches a guarded path will re-trigger this gate ` +
+    `again -- but a commit that touches nothing guarded will NOT: the diff against the marker is empty for ` +
+    `guarded paths and this gate passes silently, exactly as it should.\n\n` +
     `IF THIS GATE IS IN YOUR WAY RATHER THAN DOING ITS JOB, DELETE IT -- do not work around it. Remove the ` +
-    `"Tier 0b" block from this file: the \`GUARDED_RE\` constant, the \`reviewMarkerPath\`/` +
-    `\`guardedChangedFiles\`/\`readApprovedMarker\`/\`refuseUnreviewed\` functions, the call to them in \`main\`, ` +
-    `and the "TIER 0B" paragraph in the header comment above. Leave the dirty-tree check (\`dirtyTreeLines\`/` +
-    `\`refuseDirtyTree\`) and tiers 1-3 untouched -- they are different mechanisms. Retiring this deliberately ` +
-    `is legitimate; bypassing it is not.`;
-  log(repoRoot, `REFUSED tier0b unreviewed (${changed.length} guarded paths, HEAD=${headSha}): ${changed.join(" | ")}`);
+    `"Tier 0b" block from this file: the \`GUARDED_RE\` and \`EMPTY_TREE_SHA\` constants, the ` +
+    `\`reviewMarkerPath\`/\`guardedChangedFiles\`/\`readApprovedMarker\`/\`isResolvableCommit\`/` +
+    `\`refuseUnreviewed\` functions, the ` +
+    `call to them in \`main\`, and the "TIER 0B" paragraph in the header comment above. Leave the dirty-tree ` +
+    `check (\`dirtyTreeLines\`/\`refuseDirtyTree\`) and tiers 1-3 untouched -- they are different mechanisms. ` +
+    `Retiring this deliberately is legitimate; bypassing it is not.`;
+  log(
+    repoRoot,
+    `REFUSED tier0b unreviewed (${changed.length} guarded paths, base=${baseSha}${baseIsMarker ? " (marker)" : " (empty-tree)"}, HEAD=${headSha}): ${changed.join(" | ")}`,
+  );
   process.stderr.write(`${message}\n`);
   process.exit(0);
 }
@@ -279,16 +339,22 @@ function main() {
     log(repoRoot, `REJECTED unsafe "name" (len=${String(rawName).length}); using fallback="${name}". Original, JSON-escaped: ${JSON.stringify(rawName)}`);
   }
 
-  const worktreePath = path.join(repoRoot, ".claude", "worktrees", name);
+  // SIBLING path OUTSIDE the repo, not <repo>/.claude/worktrees/<name> (nested). A worktree nested inside the
+  // main working tree makes git discover the parent checkout "above it" and refuse the worktree as an isolation
+  // target ("core.worktree redirect, or a checkout discovered above it"), silently breaking isolation. A direct
+  // sibling `<repo>-wt-<name>` resolves to itself. Measured 2026-08-21, FINDING-E root cause.
+  const worktreePath = path.join(path.dirname(repoRoot), `${path.basename(repoRoot)}-wt-${name}`);
   const branchName = `worktree-${name}`;
 
   // Deliberately does NOT seed objectives/worktree-<name>.md here. Decided, not overlooked:
-  // scripts/objective-lib.sh's obj_resolve() (the only function pre-commit.sh gate 3 calls) checks file
+  // .claude/skills/grimorio.objective-harness/scripts/objective-lib.sh's obj_resolve() (the only function
+  // pre-commit.sh gate 3 calls) checks file
   // EXISTENCE only, so any stub content -- however honestly labeled "UNFILLED" -- would satisfy gate 3
   // exactly as well as a real objective, converting today's loud, correct refusal (gate 3 blocking the
   // first commit until open-branch.sh --here runs) into a permanently silent pass. The real gap this
   // leaves open -- telling a freshly spawned occupant it must look -- is tracked in
-  // .claude/GRIMORIO-CHAIN.md §2/§7 row 6b, not here; re-check scripts/objective-lib.sh before re-proposing
+  // .claude/GRIMORIO-CHAIN.md §2/§7 row 6b, not here; re-check
+  // .claude/skills/grimorio.objective-harness/scripts/objective-lib.sh before re-proposing
   // a stub. @keep-comment
 
   // ---- Tier 0: refuse a dirty tree (deliberate; see the TIER 0 header paragraph) ----
@@ -300,21 +366,30 @@ function main() {
   }
 
   // ---- Tier 0b: refuse unreviewed guarded-path changes (deliberate; see the TIER 0B header paragraph) ----
-  const guardedChanged = guardedChangedFiles(repoRoot);
-  if (guardedChanged === null) {
-    log(repoRoot, "tier0b review-gate check FAILED (machinery failure, not a violation) -- falling through to tier 1");
-  } else if (guardedChanged.length > 0) {
-    let headSha = null;
-    try {
-      headSha = git(["rev-parse", "HEAD"], repoRoot);
-    } catch (e) {
-      log(repoRoot, `tier0b HEAD resolution FAILED (machinery failure, not a violation): ${e && e.message} -- falling through to tier 1`);
+  let headSha = null;
+  try {
+    headSha = git(["rev-parse", "HEAD"], repoRoot);
+  } catch (e) {
+    log(repoRoot, `tier0b HEAD resolution FAILED (machinery failure, not a violation): ${e && e.message} -- falling through to tier 1`);
+  }
+  if (headSha !== null) {
+    const approved = readApprovedMarker(repoRoot);
+    let baseIsMarker = approved !== "";
+    if (!baseIsMarker) {
+      log(repoRoot, "tier0b marker UNSET -- using EMPTY_TREE_SHA (no review recorded yet in this checkout)");
+    } else if (!isResolvableCommit(approved, repoRoot)) {
+      log(
+        repoRoot,
+        `tier0b marker UNRESOLVABLE ("${approved}") -- treating as unset, using EMPTY_TREE_SHA (not a machinery failure)`,
+      );
+      baseIsMarker = false;
     }
-    if (headSha !== null) {
-      const approved = readApprovedMarker(repoRoot);
-      if (approved !== headSha) {
-        refuseUnreviewed(repoRoot, guardedChanged, headSha); // exits — never returns
-      }
+    const baseSha = baseIsMarker ? approved : EMPTY_TREE_SHA;
+    const guardedChanged = guardedChangedFiles(repoRoot, baseSha);
+    if (guardedChanged === null) {
+      log(repoRoot, "tier0b review-gate check FAILED (machinery failure, not a violation) -- falling through to tier 1");
+    } else if (guardedChanged.length > 0) {
+      refuseUnreviewed(repoRoot, guardedChanged, headSha, baseSha, baseIsMarker); // exits — never returns
     }
   }
 

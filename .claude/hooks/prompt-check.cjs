@@ -19,7 +19,7 @@ function isPromptSurface(p) {
 }
 
 const WROTE = (name) =>
-  `${name} is a PROMPT, and it probably does not follow prompt-writing-quality.\n` +
+  `${name} is a PROMPT, and it probably does not follow grimorio.prompt-writing-quality.\n` +
   `Open the skill and check it against what you just wrote — every lens, not the parts you remember. ` +
   `Show what you found, then fix it.`;
 

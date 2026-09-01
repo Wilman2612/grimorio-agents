@@ -20,8 +20,8 @@ const NA = "-";
 
 // TRACKED: skill name -> marker file. A new gate needing "was skill X loaded" adds one line here.
 const TRACKED = {
-  "agent-selection": "agent-selection-loaded",
-  "prompt-writing-quality": "prompt-quality-loaded",
+  "grimorio.agent-selection": "agent-selection-loaded",
+  "grimorio.prompt-writing-quality": "prompt-quality-loaded",
 };
 
 try {

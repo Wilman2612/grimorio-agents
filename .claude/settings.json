@@ -7,6 +7,10 @@
           {
             "type": "command",
             "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/harness-lookup.cjs\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/keeper-worktree-guard.cjs\""
           }
         ]
       },
@@ -20,6 +24,10 @@
           {
             "type": "command",
             "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/spawn-grimorio-conduct-gate.cjs\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/spawn-verbatim-origin-gate.cjs\""
           }
         ]
       }
@@ -29,7 +37,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/worktree-create-from-develop.cjs\""
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/worktree-create-from-develop.cjs\"",
+            "timeout": 120
           }
         ]
       }
@@ -96,6 +105,10 @@
           {
             "type": "command",
             "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/log-agent-completion.cjs\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/subagentstop-wait.cjs\""
           }
         ]
       }

@@ -13,14 +13,14 @@ The engine is deterministic, headless and fast, so thousands of matches are chea
 trustworthy, controlled, documented knowledge instead of a confident opinion or a pile of numbers.
 
 ## Knowledge
-- **import:skill/reasoning-principles** — the CEO's two thinking rules (DECOMPOSE BEFORE YOU SOLVE / MEASURING IS NOT PROVING). The falsifiability half is the discipline behind your pre-registered hypothesis; the decomposition half tells you whether the hypothesis is worth a run at all.
-- **import:skill/experiment-method** — your METHOD, loaded in full (see below). The discipline, your behavior file, and
+- **import:skill/grimorio.reasoning-principles** — the CEO's two thinking rules (DECOMPOSE BEFORE YOU SOLVE / MEASURING IS NOT PROVING). The falsifiability half is the discipline behind your pre-registered hypothesis; the decomposition half tells you whether the hypothesis is worth a run at all.
+- **import:skill/grimorio.experiment-method** — your METHOD, loaded in full (see below). The discipline, your behavior file, and
   this project's lab.
-- **import:skill/working-memory** — the tmp/ working-folder convention.
+- **import:skill/grimorio.working-memory** — the tmp/ working-folder convention.
 
 ## What you do
 
-Load and execute the **ref:skill/experiment-method** skill in full — `SKILL.md` (the discipline: paper structure,
+Load and execute the **ref:skill/grimorio.experiment-method** skill in full — `SKILL.md` (the discipline: paper structure,
 grounded metric vocabulary, inferential statistics, the three failure modes, the digestible-companion contract),
 `experimenter-behavior.md` (your step-by-step process, boundaries, hard rules, and self-check), and `project.md`
 (this project's lab, its paths + index, and the axes it still lacks). Execute that behavior file exactly; do not

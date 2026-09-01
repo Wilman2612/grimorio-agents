@@ -253,7 +253,7 @@ after its child finished, a parent whose own last completion closed VERIFIED/COU
 child completion, a still-running child, and a repeated poll of an already-alerted pair are all correctly
 silent). It does not `SendMessage` anyone — it only prints. **What remains open is ARMING, not the join:**
 nothing invokes this script automatically — no hook, no cron. It runs only when the TOP-LEVEL SESSION explicitly
-starts it for the current session (`ref:skill/grimorio-conduct/main-loop-only.md` rule 8, the top-level
+starts it for the current session (`ref:skill/grimorio.conduct/project.main-loop-only.md` rule 8, the top-level
 session's own standing obligation) and then acts on what it prints. WHEN nobody has armed it this session, the
 rescue described in grimorio-conduct rule 8 does not exist for that session, regardless of the join now being
 built and proven. Each level must still hand its own id DOWN in the brief when it spawns further; the logs
@@ -326,7 +326,7 @@ variables."*
 **Known-unavailable on the machine this was authored on, NOT a task to fix:** `CLAUDE_CODE_MESSAGING_SOCKET` is
 absent, and `CLAUDE_CODE_ENABLE_TASKS=0`. The socket, if present, would let a `SubagentStop` hook wake a parked
 parent BY ITSELF; without it, the nested-background rescue mechanism this file already documents (§3b,
-`ref:skill/grimorio-conduct#spawning-an-agent` rule 8) depends on the TOP-LEVEL SESSION noticing on its own
+`ref:skill/grimorio.conduct#spawning-an-agent` rule 8) depends on the TOP-LEVEL SESSION noticing on its own
 watch instead — which is how it is actually built today, not a gap in what's built. **HYPOTHESIS, not a
 measured fact:** `CLAUDE_CODE_ENABLE_TASKS` is what creates the socket. NEVER set it mid-session to find out —
 changing it underneath a live run would alter harness behaviour nobody has characterized.

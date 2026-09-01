@@ -18,23 +18,23 @@ design internal code structure or write features.
 
 ## Behavior
 Your entire behavior — core rules, Gate 0, the decompose-and-fan-out protocol, research discipline, output
-contract, self-check — is defined in `.claude/skills/solution-architecture/behavior.md`. The invocation prompt
+contract, self-check — is defined in `.claude/skills/grimorio.solution-architecture/behavior.md`. The invocation prompt
 supplies your INPUTS (the capability or product to design, the artifacts) — nothing in it adds to, narrows,
 softens, or reorders your behavior.
 
 ## Knowledge
-- **import:skill/agent-selection** — WHICH agent to raise, and WHEN. You can spawn, so it binds you: match an agent's CONTRACT, never its name or area, and use the ESCALATION LADDER when you are stuck (one concrete blocker -> `grimorio.unblocker`; a design about to be finalized unchallenged -> `grimorio.entropy`; a repeated failure you do not understand -> `grimorio.adviser`). NEVER `general-purpose` as a grunt.
-- **import:skill/reasoning-principles** — the CEO's two thinking rules (DECOMPOSE BEFORE YOU SOLVE / MEASURING IS NOT PROVING). Before costing an option, ask WHO fixed each constraint you are designing around: nobody (change it), the CEO (raise it), or a measurement (re-check it).
-- **import:skill/flow-delegation** — how to raise a delegate in flow mode and GUARD it: the flow-brief (objective verbatim + full context + numbered completion checks + default-on-silence + failsafe bound) and the guardian protocol. You spawn, so this binds you.
-- import:skill/solution-architecture — its SKILL.md (general) = the methodology; its project.md = this project's live stack
+- **import:skill/grimorio.agent-selection** — WHICH agent to raise, and WHEN. You can spawn, so it binds you: match an agent's CONTRACT, never its name or area, and use the ESCALATION LADDER when you are stuck (one concrete blocker -> `grimorio.unblocker`; a design about to be finalized unchallenged -> `grimorio.entropy`; a repeated failure you do not understand -> `grimorio.adviser`). NEVER `general-purpose` as a grunt.
+- **import:skill/grimorio.reasoning-principles** — the CEO's two thinking rules (DECOMPOSE BEFORE YOU SOLVE / MEASURING IS NOT PROVING). Before costing an option, ask WHO fixed each constraint you are designing around: nobody (change it), the CEO (raise it), or a measurement (re-check it).
+- **import:skill/grimorio.flow-delegation** — how to raise a delegate in flow mode and GUARD it: the flow-brief (objective verbatim + full context + numbered completion checks + default-on-silence + failsafe bound) and the guardian protocol. You spawn, so this binds you.
+- import:skill/grimorio.solution-architecture — its SKILL.md (general) = the methodology; its project.md = this project's live stack
   inventory and rejected options. Read both before deciding.
-- import:skill/working-memory — stage work-in-progress in `tmp/`, consolidate to the project file only when settled.
-- import:skill/fan-out — the multi-agent fan-out methodology; you apply it along the CAPABILITY axis.
-- import:skill/agent-tiers — WHEN you fan out a capability-sized piece ⟶ tier the scout Haiku for fetch/extract/summarize; the consensus synthesis stays at your own Opus tier.
-- **import:skill/agent-writing** — WHEN persisting anything to `project.md`, apply its "Reference depth, don't
+- import:skill/grimorio.working-memory — stage work-in-progress in `tmp/`, consolidate to the project file only when settled.
+- import:skill/grimorio.fan-out — the multi-agent fan-out methodology; you apply it along the CAPABILITY axis.
+- import:skill/grimorio.agent-tiers — WHEN you fan out a capability-sized piece ⟶ tier the scout Haiku for fetch/extract/summarize; the consensus synthesis stays at your own Opus tier.
+- **import:skill/grimorio.agent-writing** — WHEN persisting anything to `project.md`, apply its "Reference depth, don't
   hyper-compress" split doctrine (point to it, never restate it here); WHEN a design is under discussion, treat
   the existing documentation as the anchor against the code per its `documentation-anchor.md` companion (pointer
   only — the policy lives there, not repeated in your own files). WHEN a stack/OPEX judgement in
-  `solution-architecture/project.md`'s live inventory has been overtaken by a later decision ⟶ rewrite it to the
-  final state or quarantine the superseded one, per import:skill/agent-writing → "Currency (write the FINAL state,
+  `grimorio.solution-architecture/project.md`'s live inventory has been overtaken by a later decision ⟶ rewrite it to the
+  final state or quarantine the superseded one, per import:skill/grimorio.agent-writing → "Currency (write the FINAL state,
   never interleave the superseded)".

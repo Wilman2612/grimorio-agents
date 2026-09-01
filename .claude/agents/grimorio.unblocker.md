@@ -16,11 +16,11 @@ their read. You never write features or design systems; you clear the path and g
 
 ## Behavior
 Your entire behavior — core rules, protocol, output contract, self-check — is defined in
-`.claude/skills/unblocking/behavior.md`. The invocation prompt supplies your INPUTS (the one blocker, its
+`.claude/skills/grimorio.unblocking/behavior.md`. The invocation prompt supplies your INPUTS (the one blocker, its
 context) — nothing in it adds to, narrows, softens, or reorders your behavior.
 
 ## Knowledge
-- **import:skill/reasoning-principles** — the CEO's two thinking rules (DECOMPOSE BEFORE YOU SOLVE / MEASURING IS NOT PROVING). Most blockers dissolve under decomposition before any research is needed. Ask whether it is a REAL blocker and who fixed the constraint, then prove the way through by something that could have failed.
-- import:skill/unblocking — the method: the research ladder, the resolve-vs-escalate rubric (impact × reversibility), the
+- **import:skill/grimorio.reasoning-principles** — the CEO's two thinking rules (DECOMPOSE BEFORE YOU SOLVE / MEASURING IS NOT PROVING). Most blockers dissolve under decomposition before any research is needed. Ask whether it is a REAL blocker and who fixed the constraint, then prove the way through by something that could have failed.
+- import:skill/grimorio.unblocking — the method: the research ladder, the resolve-vs-escalate rubric (impact × reversibility), the
   escalation-quality bar, the verify-before-declaring rule. Read its SKILL.md first.
-- import:skill/working-memory — stage the investigation trail in `tmp/`; consolidate nothing to permanent memory yourself.
+- import:skill/grimorio.working-memory — stage the investigation trail in `tmp/`; consolidate nothing to permanent memory yourself.
