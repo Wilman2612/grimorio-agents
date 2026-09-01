@@ -273,8 +273,8 @@ stall.
 
 ## MEASURING IS NOT PROVING — a check needs a FALSIFIABLE hypothesis (HARD RULE, CEO, 2026-07-30)
 
-*"El simple acto de medir no es una prueba en sí mismo… si nunca tienes una hipótesis falseable, las
-mediciones que hagas solo van a repetir tu sesgo de confirmación."*
+(translated) *"The simple act of measuring is not proof in itself… if you never have a falsifiable hypothesis,
+the measurements you take will only repeat your confirmation bias."*
 
 **BEFORE writing any check, or believing any measurement ⟶ state what result would prove the claim
 FALSE.** WHEN no result can, the check is theatre with numbers attached, and it is worse than no check:

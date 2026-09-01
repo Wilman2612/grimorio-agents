@@ -520,7 +520,7 @@ nothing to ask has nothing that would make it pause.
 | **Know whether it is converging, derailed, or simply not stopping** | **the CALLER's** | the caller's own REVIEW POINTS, reading the child's commits |
 
 **REVIEW POINTS are the caller's discipline, not a reporting duty placed on the child.** The CEO's framing
-(2026-07-29): *"aunque no se reporte cada hito, podrías poner puntos de revisión"* — the point is to be able to
+(2026-07-29, translated): *"even if not every milestone is reported, you could put in checkpoints"* — the point is to be able to
 **fix a derailed delegate, or at minimum know it has not stopped**. Do not ask a child to remember a cadence;
 schedule your own look.
 

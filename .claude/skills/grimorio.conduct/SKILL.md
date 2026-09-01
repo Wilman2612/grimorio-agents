@@ -5,8 +5,8 @@ description: "Forces the reader to apply grimorio's full prohibition/preconditio
 
 # Grimorio Conduct — the prohibition/precondition corpus
 
-This is grimorio's full prohibition/precondition corpus, moved out of `CLAUDE.md` by CEO ruling (2026-08-11):
-*"lo fijamos como el skill que todos los agentes cargan por defecto... el CLAUDE.md es poco exportable"* — a
+This is grimorio's full prohibition/precondition corpus, moved out of `CLAUDE.md` by CEO ruling (2026-08-11,
+translated): *"we fix it as the skill that all agents load by default... the CLAUDE.md is not very exportable"* — a
 skill is read fresh from disk on every load and travels portably to another project; `CLAUDE.md` is a snapshot
 fixed at session start that no mid-session edit reaches. Everything binding in this file is binding exactly as
 if it were still written inline in `CLAUDE.md` — moving it changed WHERE it is read, not WHETHER it applies.
@@ -107,8 +107,6 @@ turn-by-turn CEO conversation) and never sees them.
     INVERSE: rule 5 catches a PRODUCT question asked without checking `po-memory/` first; this catches a
     TECHNICAL question dressed up as a product decision, at the same decision point, for the same reader.
 
-    > *"si el problema tiene solucion tecnica estandar no tienes ni que preguntarme... son problemas tecnicos
-    > estandard no de vision."*
     > *"if the problem has a standard technical solution you don't even have to ask me... those are standard
     > technical problems, not vision ones."* (CEO, 2026-08-14, translated)
 

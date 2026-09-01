@@ -166,8 +166,8 @@ mínimo cambio"). The CEO's own examples of the RIGHT shape:
 The composition of all these per-mechanic scenarios IS the game; a few whole-economy integration tests come at
 the end. **So when a reviewer flags "no test for this new mechanic," the required fix is the INTEGRATION SCENARIO
 above — NOT a unit test.** (The `code-reviewer` was demanding a unit test per an outdated convention; corrected
-in its memory.) The `mechanics_scenario_test.go` `//go:build scenario` battery and the econ-lab E-series ARE this
-convention; the `economy_wave7_test.go` unit style is NOT the target for a mechanic.
+in its memory.) A scenario battery gated behind a build tag (e.g. Go's `//go:build scenario`) plus an
+economy-lab experiment series ARE this convention; a plain unit-test style is NOT the target for a mechanic.
 
 ## The DIGESTIBLE CEO companion — mandatory final step (do NOT skip)
 

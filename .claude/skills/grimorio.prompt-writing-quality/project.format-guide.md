@@ -206,13 +206,13 @@ cold:handle#anchor                the same, at one section
 A cold handle is FLAT: **no slash, no extension, nothing path-shaped.** It is the only form here whose
 value is what it withholds. The CEO's reason, and it is not about loading at all:
 
-> *"si me lo pones allí, yo voy a suponer que tengo que ir y revisar ese archivo, y tú también."*
+> (translated) *"if you put it there, I'm going to assume I have to go and check that file, and so are you."*
 
 A path-shaped reference is an invitation neither a human nor an agent declines deliberately. A handle
 cannot be opened, so resolving it is a decision. **It stays reconstructible** through
 ref:skill/grimorio.agent-writing/project.cold-store.md — the manifest maps every handle to a live path or a
-`git:<sha>:<path>`, which is what lets `--cold` still report a dead one: *"tiene que ser reconstruible…
-para poder revisar si está muerto o no también"* (same day).
+`git:<sha>:<path>`, which is what lets `--cold` still report a dead one (translated): *"it has to be
+reconstructible… so you can check whether it's dead or not, too"* (same day).
 
 Note the axis this sits on. `cold` is not a fourth RELATION — relation describes the writer's intent,
 and intent cannot be enforced. Reachability is a property of the STORE, so cold is where the file LIVES.
@@ -340,8 +340,8 @@ absolute path breaks the moment it leaves the repo.
 
 **We diverge, and the CEO ruled why (2026-08-04):**
 
-> *"sobre skills y relativo tiene sentido aunque nuestros skills son compartidos... para hacer lo que dice
-> tendríamos que mover los archivos más cerca de su agente pero no serían usables algunos."* — "relative makes
+> (translated) *"regarding skills and relative paths, it makes sense — except our skills are shared... to do
+> what the spec says we'd have to move the files closer to their agent, but some of them wouldn't be usable."* — "relative makes
 > sense for skills — except ours are shared. Doing what the spec says would mean moving files closer to their
 > [single] agent, and some would stop being usable at all."
 

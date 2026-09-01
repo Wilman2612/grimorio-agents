@@ -75,7 +75,7 @@ here: one invocation over 111 files and ~15,300 insertions spanning fifteen comm
 unreviewed commits have piled up, that is a DEBT TO DECLARE, not a gate to run.
 
 > **This is NOT in tension with `CLAUDE.md`'s "review once, at the END, on the whole branch — not per commit"
-> (CEO ruling, 2026-07-30: *"es demasiada revisión, y también estás haciendo más commits ahora"*). They answer
+> (CEO ruling, 2026-07-30, translated: *"that's too much review, and you're also making more commits now"*). They answer
 > different questions. The unit `code-reviewer` gates is the BRANCH — one declared objective, one out-of-scope
 > fence, so by construction one coherent change — never a session's PILE of unrelated commits. "Once at the end"
 > forbids re-running the gate on every single commit inside that one change; "gate the change, never the
@@ -97,8 +97,8 @@ it yet is a different front's job.
 
 **Classify before routing**, and pull in only the agents the change needs — a misclassified request (feature vs bug vs refactor) wastes every downstream agent's context. An architect for a typo is waste; skipping the architect on a cross-service change is a bug.
 
-> **`manual-verifier` is ON-DEMAND only (CEO, 2026-07-28).** With full-stack tests in place it is *"menos
-> necesario — se levanta cuando quieres revisar algo que está fallando, y además ahora tienes Playwright CLI"*.
+> **`manual-verifier` is ON-DEMAND only (CEO, 2026-07-28).** With full-stack tests in place it is (translated) *"less
+> necessary — it's raised when you want to check something that's failing, and besides you now have Playwright CLI"*.
 > Raise it to investigate a FAILURE; for a routine visual check the main loop drives the browser itself via the
 > `playwright-cli` skill. Reaching for an agent where a tool exists is one layer of indirection too many.
 
@@ -343,7 +343,6 @@ decision in any domain — search for a concrete EXEMPLAR of the SHAPE being dec
 that file for the mechanism and the hard rule; it is not restated here.
 
 -> The full post-mortem of this failure mode: this project's own research bibliography
--> How to run visual work by parts (per-brush isolated maps, per-part screenshots): ref:skill/grimorio.map-design skill
 
 ---
 

@@ -1,6 +1,6 @@
 # Grimorio — a Claude Code multi-agent corpus, exported from a live project
 
-> 27 specialized agents + 49 skills, pulled out of a private game-platform project ("arena") and cleaned for
+> 27 specialized agents + 46 skills, pulled out of a private game-platform project ("arena") and cleaned for
 > public use. Re-exported 2026-09-01 from the source's current standard, superseding the first public landing
 > (2026-08-15). See [MANIFEST.md](MANIFEST.md) for exactly what came across and what didn't, and for the delta
 > this pass landed (the `grimorio.` prefix on skills, 6 removed critic agents, per-agent developer memory).
@@ -56,7 +56,7 @@ in full, because it's the meta-skill that made the rest of this export legible.
 
 - **27 agent shells** (`.claude/agents/grimorio.*.md`) — identity only, per the split above: a role, a
   character, a pointer to its behavior file. No steps live in a shell.
-- **49 skills** (`.claude/skills/grimorio.*/`) — some exported whole (pure method: `grimorio.agent-selection`,
+- **46 skills** (`.claude/skills/grimorio.*/`) — some exported whole (pure method: `grimorio.agent-selection`,
   `grimorio.agent-tiers`, `grimorio.fan-out`, `grimorio.flow-delegation`, `grimorio.reasoning-principles`,
   `grimorio.loop-and-graph`, `grimorio.code-harness`, `grimorio.report-design`, `grimorio.working-memory`,
   `grimorio.prompt-reading`, `grimorio.prompt-writing-quality`, and more), some exported partially (a

@@ -116,7 +116,7 @@ when you write any brief that serves a principal's goal:
    11 gaps", "our render", "conventions", any acceptance checklist). Context may MENTION your current
    artifact as background; the objective may never be BOUND to it.
 
-   This is the mechanical form of the rule, proven necessary by the "divergencia" incident (2026-07-22) — it
+   This is the mechanical form of the rule, proven necessary by the "divergence" incident (2026-07-22) — it
    recurred FOUR times in one session because each correction was absorbed as a parameter patch while the
    narrowing compiler stayed live. The principal said, in translation, "divergence · the game in general ·
    max 2D · with AI · real people's experiences" — one noun was dropped per attempt.
@@ -163,11 +163,11 @@ Two obligations, symmetric, neither optional, never a third blended voice:
 
 - **ALWAYS save his claims as his** — verbatim, in the owning memory file, so they survive a context reset
   and travel into every brief that depends on them.
-- **ALWAYS state mine as mine** — "asumí", "propongo", "lo interpreté así" — every time, even when I am
+- **ALWAYS state mine as mine** — "I assumed", "I propose", "I interpreted it this way" — every time, even when I am
   confident, even when it reads weaker.
 
-**ALWAYS apply the mechanical test: if I cannot QUOTE him, the claim is mine.** Before writing "que
-pediste", "como dijiste", "tu regla", "el CEO ordenó" — in a reply, a commit message, a brief, or a skill —
+**ALWAYS apply the mechanical test: if I cannot QUOTE him, the claim is mine.** Before writing "you
+asked for", "as you said", "your rule", "the CEO ordered" — in a reply, a commit message, a brief, or a skill —
 find his actual words. Cannot find them → relabel it as mine. Do not soften it into ambiguity.
 
 **NEVER collapse the three classes: what he said explicitly / what I said or assumed / what he did NOT
@@ -175,7 +175,7 @@ deny.** Silence is omission, never assent.
 
 Why it is not politeness: an unlabelled claim of mine becomes load-bearing the moment it enters a brief — a
 delegate executes it as authoritative and returns finished work nobody asked for. The instance that produced
-this rule: a hook AUDIT was reported as "la auditoría que pediste." He never asked for one — a whole pass of
+this rule: a hook AUDIT was reported as "the audit you asked for." He never asked for one — a whole pass of
 delegate work carried that attribution as its warrant. Conversely, a ruling of his that gets paraphrased
 instead of saved is compressed a layer down and executed as the compression.
 

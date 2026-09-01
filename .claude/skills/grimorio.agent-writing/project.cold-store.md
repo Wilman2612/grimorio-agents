@@ -4,15 +4,15 @@ A cold reference is written `cold:<handle>`. A handle is flat: **no slash, no ex
 looks like a path.** That is the whole point. The CEO's complaint was never that these files load — it
 was the reflex:
 
-> *"si me lo pones allí, yo voy a suponer que tengo que ir y revisar ese archivo, y tú también."*
+> (translated) *"if you put it there, I'm going to assume I have to go and check that file, and so are you."*
 > — 2026-08-05
 
 A path-shaped reference is an invitation, and neither a human nor an agent declines it deliberately.
 A handle cannot be opened, so resolving one is an act you have to choose. The pause is the mechanism.
 
-**A handle stays reconstructible**, because the second half of the ruling was *"tampoco tienes que
-perder la referencia, o sea, tiene que ser reconstruible… para poder revisar si está muerto o no
-también."* That is what this table is for: `audit-chain.mjs --cold` resolves every handle here, reports
+**A handle stays reconstructible**, because the second half of the ruling was (translated) *"you also shouldn't
+lose the reference — that is, it has to be reconstructible… so you can check whether it's dead or not,
+too."* That is what this table is for: `audit-chain.mjs --cold` resolves every handle here, reports
 the ones no reference points at, and reports the ones whose target is gone.
 
 ## When a file belongs here

@@ -1,6 +1,6 @@
 ---
 name: grimorio.loop-and-graph
-description: "The CEO's own dictated execution machine for how grimorio works EVERY problem — a game, a workflow, an API, a mechanic — never only a clause audit. DECOMPOSE FIRST splits the problem, general to specific, until each item is TESTABLE. MILESTONES WITH DELIVERABLES groups those testable items one level up into named TRACKS and an ORDERED sequence of CEO-visible, shippable DELIVERABLES — each held to a checkable WELL-DEFINED/RIGHT-SIZED bar, not adjectives — written as the top layer of the same plan artifact tree. THE LOOP is the WHILE/FOREACH iteration and its exit condition: every item closes PROVEN or as a FINDING, never abandoned — and names the two loop shapes plainly, a real WHILE against a "parallel loop" task-run-all. THE POPULATION GROWS: a blocked item INSERTS its missing prerequisite as a new item ahead of it, rather than stalling or hand-rolling a private workaround. THE PLAN IS AN ARTIFACT EVERY LEVEL EXPANDS: write the plan into the loop's own artifact tree BEFORE executing it, at the level that raised you, naming its ORCHESTRATION layer apart from any child's own WRITING plan. THE GRAPH names who is in it — planner, worker, probe, code-reviewer — and the branch-per-worker/merge rule; its nodes carry a MODEL derived from context (never a stamped default; verifiers are always Sonnet, never Opus) plus DELIVERABLE-IN/OUT. SIZE-DEPENDENT DELEGATION is the doctrine for WHEN to spawn at all: delegate early, a HUGE task keeps the parent a pure orchestrator that never writes a line, a small/single domain may stay self-done, never over-spawn, and the planning step itself must detect task size and context-already-spent to pick do-it-yourself / fan-out-with-a-limit / relaunch-fresh. THE PROBE states what counts as proof: a cue that does not name the thing being tested, and reading the obligation (lazy `ref:` vs eager `import:`) before writing a pass condition. A DESIGN-type item's own pass condition is the companion ./project.design-completeness-gate.md's coverage gate. Load BEFORE planning or executing any multi-item task or loop, before giving an item its pass condition, and before designing a probe of whether a rule or instruction actually fires."
+description: "The CEO's own dictated execution machine for how grimorio works EVERY problem — a game, a workflow, an API, a mechanic — never only a clause audit. DECOMPOSE FIRST splits the problem, general to specific, until each item is TESTABLE. MILESTONES WITH DELIVERABLES groups those testable items one level up into named TRACKS and an ORDERED sequence of CEO-visible, shippable DELIVERABLES — each held to a checkable WELL-DEFINED/RIGHT-SIZED bar, not adjectives — written as the top layer of the same plan artifact tree. THE LOOP is the WHILE/FOREACH iteration and its exit condition: every item closes PROVEN or as a FINDING, never abandoned — and names the two loop shapes plainly, a real WHILE against a \"parallel loop\" task-run-all. THE POPULATION GROWS: a blocked item INSERTS its missing prerequisite as a new item ahead of it, rather than stalling or hand-rolling a private workaround. THE PLAN IS AN ARTIFACT EVERY LEVEL EXPANDS: write the plan into the loop's own artifact tree BEFORE executing it, at the level that raised you, naming its ORCHESTRATION layer apart from any child's own WRITING plan. THE GRAPH names who is in it — planner, worker, probe, code-reviewer — and the branch-per-worker/merge rule; its nodes carry a MODEL derived from context (never a stamped default; verifiers are always Sonnet, never Opus) plus DELIVERABLE-IN/OUT. SIZE-DEPENDENT DELEGATION is the doctrine for WHEN to spawn at all: delegate early, a HUGE task keeps the parent a pure orchestrator that never writes a line, a small/single domain may stay self-done, never over-spawn, and the planning step itself must detect task size and context-already-spent to pick do-it-yourself / fan-out-with-a-limit / relaunch-fresh. THE PROBE states what counts as proof: a cue that does not name the thing being tested, and reading the obligation (lazy `ref:` vs eager `import:`) before writing a pass condition. A DESIGN-type item's own pass condition is the companion ./project.design-completeness-gate.md's coverage gate. Load BEFORE planning or executing any multi-item task or loop, before giving an item its pass condition, and before designing a probe of whether a rule or instruction actually fires."
 ---
 
 # LOOP + GRAPH — how grimorio is supposed to work, on EVERY problem
@@ -10,16 +10,17 @@ gets worked here: a game, a workflow, an API, a mechanic. It is not a clause-aud
 early misreading of this file, corrected below.
 
 > **Status.** The CEO's own explanation, given 2026-08-11 across two messages, because none of it was
-> happening. *"nada de esto se te hubiera pasado ni por la mente… si es que no te lo estoy diciendo yo
-> explícitamente. Ahora, el chiste de grimorio es que pudieras hacer todo eso con todos los problemas todo el
-> tiempo, sin que yo te lo tuviera que estar diciendo."*
+> happening (translated). *"None of this would even have crossed your mind… if I weren't telling you
+> explicitly. Now, the whole point of grimorio is that you could do all of that, for every problem, all the
+> time, without my having to tell you."*
 >
 > **The first version of this file made it a method for auditing clauses. That was wrong and he corrected it
-> immediately:** *"estos problemas aplican para todo… no entiendo por qué es tan complicado."* The clause
-> audit is ONE INSTANCE. The shape below is the shape for a game, a workflow, an API, a mechanic — anything.
+> immediately** (translated): *"these problems apply to everything… I don't understand why it's so
+> complicated."* The clause audit is ONE INSTANCE. The shape below is the shape for a game, a workflow, an
+> API, a mechanic — anything.
 >
-> **This is NOT a ledger.** Same session he ordered: *"para con los ledgers, porque me están volviendo loco."*
-> -> "FINDINGS, NOT LEDGER WRITES" at the bottom.
+> **This is NOT a ledger.** Same session he ordered (translated): *"stop with the ledgers, because they're
+> driving me crazy."* -> "FINDINGS, NOT LEDGER WRITES" at the bottom.
 
 ---
 
@@ -29,33 +30,33 @@ This is the part that comes before any loop exists, and it is why `reasoning-pri
 **You go from the most general thing to something specific, deciding as you go and filling in what each
 decision opens.** You stop descending when the item is small enough that you can PROVE it.
 
-His worked example, verbatim:
+His worked example (translated):
 
-> *"Ok, necesitas eso. ¿Qué necesito primero? Primero necesito una web, tengo que mostrarlo. Esa web dentro
-> necesita matchmaking, que tenga el workflow, que tenga sesiones, etcétera. El juego… necesitas la API.
-> Tienes todos esos ítems, uno por uno. ¿Cómo planeamos esos? Ya tienes el ítem: el juego. ¿Qué lenguaje voy
-> a usar, qué mecánicas va a tener — mecánica por mecánica, probar mecánica por mecánica? Ok, listo, mecánica
-> por mecánica no hace un juego. ¿Cómo hago? Combinación de mecánicas. Luego ya tengo las mecánicas: ¿qué más
-> necesita un juego? Una estructura, reglas, etcétera. Principio, fin de juego, lo que sea. O sea, vas
-> descomponiendo. Igualito, igualito, el workflow: necesito una vista de workflow, necesito una interface,
-> necesito un backend. Necesito nodos — ¿qué nodos tengo? Tengo texto, tengo… Yo tengo todo por separado."*
+> *"Ok, you need that. What do I need first? First I need a web, I have to show it. That web needs matchmaking
+> inside it, it needs the workflow, it needs sessions, etc. The game… you need the API. You have all those
+> items, one by one. How do we plan those? You already have the item: the game. What language am I going to
+> use, what mechanics will it have — mechanic by mechanic, testing mechanic by mechanic? Ok, fine, mechanic by
+> mechanic doesn't make a game. How do I do it? A combination of mechanics. Then I have the mechanics: what
+> else does a game need? A structure, rules, etc. Start, end of game, whatever. That is, you keep decomposing.
+> Exactly the same, exactly the same, the workflow: I need a workflow view, I need an interface, I need a
+> backend. I need nodes — what nodes do I have? I have text, I have… I have everything separately."*
 
-> *"Un juego se descompone en varias cosas: una mecánica. Ok, es una abstracción. ¿Qué es una mecánica? Es
-> una palabra muy general. Defino una mecánica: va a ser batallas de lancero versus tal, o ataque, o moral,
-> lo que sea. Ya tengo una abstracción. Moral es muy ambiguo — moral tiene muchas cosas dentro, y te vas
-> yendo más y más y más y más, y cada vez más específico. A eso es a lo que me refiero."*
+> *"A game decomposes into several things: a mechanic. Ok, that's an abstraction. What is a mechanic? It's a
+> very general word. I define a mechanic: it's going to be spearman-versus-such battles, or attack, or morale,
+> whatever. Now I have an abstraction. Morale is very ambiguous — morale has many things inside it, and you
+> keep going more and more and more and more, each time more specific. That's what I'm referring to."*
 
-**The tell that you have not descended far enough: the item's name is still a category.** "Moral" is not a
+**The tell that you have not descended far enough: the item's name is still a category.** "Morale" is not a
 task; it is a bag. "Mechanic" is not a task. Keep splitting until the name describes something you can run a
 probe against and get a yes or a no.
 
-**A COMBINATION is its own item, never a free consequence of its parts.** *"mecánica por mecánica no hace un
-juego"* — proving each mechanic in isolation leaves the composition unproven, so the composition gets its own
+**A COMBINATION is its own item, never a free consequence of its parts.** *"mechanic by mechanic doesn't make
+a game"* — proving each mechanic in isolation leaves the composition unproven, so the composition gets its own
 item, its own pass condition, and its own probe.
 
-**Items that do not touch each other run in PARALLEL — that is what fan-out is for.** *"algunos no tendrán
-nada que ver, como por ejemplo el juego con el workflow… y se pueden hacer en paralelo."* The split is the
-caller's to name, not the worker's to discover.
+**Items that do not touch each other run in PARALLEL — that is what fan-out is for.** (translated) *"some won't
+have anything to do with each other, like for example the game with the workflow… and they can be done in
+parallel."* The split is the caller's to name, not the worker's to discover.
 
 ## 1b. MILESTONES WITH DELIVERABLES — group items into shippable increments (CEO, 2026-08-17)
 
@@ -84,16 +85,16 @@ This binds the top-layer planner of a multi-item plan — the audience this skil
 
 ## 2. THE LOOP — the iteration and its exit condition
 
-> *"Primero, tenemos loop con graph, que significa planificar primero el loop y luego darle la estructura…
-> hace un while, o tienes que descomponerlo… y un foreach, regla por regla, trigger por trigger, o como
-> quieras llamarlo. Uno por uno, prueba algo que funcione. Si no funciona, lo arreglo y me muevo al
-> siguiente, y es un while, y está ahí, moviéndose, uno por uno."*
+> (translated) *"First, we have loop with graph, which means planning the loop first and then giving it the
+> structure… it makes a while, or you have to decompose it… and a foreach, rule by rule, trigger by trigger,
+> or whatever you want to call it. One by one, test something that works. If it doesn't work, I fix it and
+> move to the next, and it's a while, and there it is, moving, one by one."*
 >
-> *"¿Cuándo termino? Cuando he probado que todas funcionan… Ya tienes tu condición de iteración: uno, he
-> probado que todo funcione; o la otra cosa que puede pasar es que no lo he podido arreglar, probé tres,
-> cuatro veces — que viene por parte del graph. Y si ya intentaste, lo marcas como hallazgo. Y hallazgos,
-> para que un siguiente loop —o corregido por mí, automático— intente encontrar las cosas que se arreglaron,
-> qué funcionó, tomarlas como ejemplo, intentar de nuevo, y si no, escalármelo. Básico."*
+> (translated) *"When do I finish? When I've proven they all work… Now you have your iteration condition:
+> one, I've proven everything works; or the other thing that can happen is I couldn't fix it, I tried three,
+> four times — which comes from the graph. And if you already tried, you mark it as a finding. And findings,
+> so that a next loop —or corrected by me, automatic— tries to find the things that got fixed, what worked,
+> take them as an example, try again, and if not, escalate it to me. Basic."*
 
 ```
 PLAN (before any work)
@@ -145,11 +146,11 @@ items that DID get fixed, so the next pass has a worked example before anything 
 
 ## 2b. THE POPULATION GROWS — a blocked item INSERTS its prerequisite (CEO, 2026-08-13)
 
-> *"Pues hombre, es automatic testing… no tiene que ser 100% official channel, pero no tiene que ser un
-> blocker. ¿Es hueco en el loop? Supongo que ahora mismo el loop está tan fijo que le impide agendar una
-> tarea anterior para completar otra tarea bloqueada. Digamos que el QA reporta bloqueo: el padre del loop
-> debe detectar qué tiene que hacer para hacer la tarea posible, ¿no? Siempre que no rompa los objetivos.
-> Parar por algo así, que es deducible, no me parece sano."*
+> (translated) *"Well, man, it's automatic testing… it doesn't have to be 100% official channel, but it
+> doesn't have to be a blocker. Is it a hole in the loop? I suppose right now the loop is so fixed that it
+> prevents it from scheduling an earlier task to complete another blocked task. Say QA reports a block: the
+> loop's parent should detect what it needs to do to make the task possible, right? As long as it doesn't
+> break the objectives. Stopping for something like that, which is deducible, doesn't seem healthy to me."*
 
 **The defect this closes, and it happened:** a live-mode E2E item could not run because a match requires a
 funded wallet and NOTHING outside production can put money in one — the spend layer has budgets, spending
@@ -159,7 +160,7 @@ blocked, or hand-roll a workaround. It hand-rolled one, which leaves no trace th
 **WHEN an item cannot proceed because a PREREQUISITE is missing, and what the prerequisite is can be DEDUCED ⟶ the loop's owner INSERTS that prerequisite as a new item ahead of the blocked one, and continues.**
 It does not stop, and it does not let the blocked item invent a private workaround.
 
-**The bound, in his words: "siempre que no rompa los objetivos."** An inserted item makes the blocked one
+**The bound, in his words (translated): "as long as it doesn't break the objectives."** An inserted item makes the blocked one
 POSSIBLE — it never widens the goal, never trades away a stated bar, and never becomes a reason the original
 item quietly changes shape. If closing the gap would do any of those, that is not an insertion; that is a
 FINDING plus a question for him.
@@ -172,18 +173,18 @@ its own probe, so the gap is closed once, visibly, for everyone after.
 the final one — the loop discovers prerequisites by executing, which is the whole reason it is a loop and
 not a checklist.
 
-**His own caveat, kept because it is honest:** *"no sé si mi definición de loop es la misma que la definición
-de loop que está en Internet, pero bueno."* It is the standard shape — a work queue, a fixed per-item
-pipeline, a bounded retry, and a dead-letter for what the retries could not settle. The names differ; the
-machine does not.
+**His own caveat, kept because it is honest** (translated): *"I don't know if my definition of loop is the
+same as the definition of loop that's on the Internet, but oh well."* It is the standard shape — a work queue,
+a fixed per-item pipeline, a bounded retry, and a dead-letter for what the retries could not settle. The names
+differ; the machine does not.
 
 ## 2c. THE PLAN IS AN ARTIFACT EVERY LEVEL EXPANDS (CEO, 2026-08-13)
 
-> *"Todos deberían estar expandiendo el artifact del loop, supongo que en subarchivos y carpetas, para que
-> sea auditable."*
+> (translated) *"Everyone should be expanding the loop's artifact, I suppose in sub-files and folders, so it's
+> auditable."*
 
-And on who plans what, correcting an earlier over-reading: *"no tenías que planear todos desde el delegado —
-planeabas la parte superior y cada quien se encarga de su planeación, y así hacia abajo."*
+And on who plans what, correcting an earlier over-reading (translated): *"you didn't have to plan them all
+from the delegate — you planned the top part and each one handles its own planning, and so on downward."*
 
 **ALWAYS write your plan into the loop's own artifact tree before you execute it — a subfolder and files of
 your own, under the level that raised you.** The caller plans its layer and nothing below it; each agent
@@ -213,23 +214,23 @@ it stood when it was made.
 
 ## 3. THE GRAPH — who is in it, and the branch rule
 
-> *"Si lo vas a invocar tú, tú eres la primera parte del grafo, el primer nodo. Si lo vas a hacer trayendo un
-> delegado, tú y el delegado participan… probablemente vas a necesitar primero el keeper, que va a ser un
-> agente Sonnet. Al keeper le vas a dar la parte que tiene que revisar, y solamente esa única instrucción, si
-> vas a hacer un fan-out. Que no se choquen. O que tengan la instrucción de trabajar sobre una nueva rama,
-> copia de la rama actual —que creo que antes lo estábamos haciendo únicamente sobre develop, pero sobre la
-> rama actual— y se mergea al final, o sea, descarta la rama al final. Entonces, si va a haber un merge,
-> tiene que haber un keeper, un code reviewer, más los agentes que requieran las pruebas, y tú como planner o
-> como revisor. Y luego, cuando cada una te ha aprobado, se mergea, se cierra y se mueve a la siguiente
-> instrucción, y se cierra un ítem de dirección."*
+> (translated) *"If you're going to invoke it yourself, you are the first part of the graph, the first node.
+> If you're going to do it by bringing in a delegate, you and the delegate participate… you'll probably need
+> the keeper first, which will be a Sonnet agent. You give the keeper the part it has to review, and only that
+> single instruction, if you're going to do a fan-out. So they don't collide. Or give them the instruction to
+> work on a new branch, a copy of the current branch —which I think before we were doing only on develop, but
+> on the current branch— and it merges at the end, that is, discard the branch at the end. So, if there's
+> going to be a merge, there has to be a keeper, a code reviewer, plus the agents the tests require, and you
+> as planner or as reviewer. And then, when each one has approved, it merges, closes, and moves to the next
+> instruction, and one direction item is closed."*
 
 **Each worker gets a NEW branch that is a COPY OF THE CURRENT BRANCH — no longer always `develop`.** It merges
 at the end and the branch is discarded. Because there is a merge, the graph must carry a `code-reviewer`
 before it, plus whatever test agents the item needs.
 
-**The coordinator coordinates; the workers are Sonnet, and some items are Haiku work.** *"los que hacen el
-trabajo son agentes Sonnet. A Sonnet — incluso hay trabajo para Haiku. Algunos de los agentes multipropósito
-puede ser en Haiku."* One agent closes one item.
+**The coordinator coordinates; the workers are Sonnet, and some items are Haiku work.** (translated) *"the ones
+who do the work are Sonnet agents. Sonnet — there's even work for Haiku. Some of the multipurpose agents can
+be on Haiku."* One agent closes one item.
 
 **Every node in the graph carries three things beyond its role: a MODEL, a DELIVERABLE-IN, and a DELIVERABLE-OUT.** ALWAYS derive a node's MODEL from CONTEXT — which agent it is, and whether it is the parent. NEVER stamp a default tier onto a node without asking that question first. -> ref:skill/grimorio.agent-tiers#the-scale-task-archetype--tier for the archetype→tier scale itself, not re-derived here. A node's DELIVERABLE-IN is what it receives to start (a brief, a target file, a prior node's own DELIVERABLE-OUT); its DELIVERABLE-OUT is what the NEXT node in the graph actually consumes — always named, never assumed, so the graph reads as a chain of real handoffs rather than a chain of vague roles.
 
@@ -266,27 +267,29 @@ problem and see whether `reasoning-principles` actually loaded; ask it to look a
 `prompt-reading` loaded first. **NEVER ask whether the instruction is in its context** — that measures string
 retrieval, which already passes and is not what fails.
 
-> *"Le dices a un agente: oye, ¿puedes leer bien tus prompts, tu razonamiento, tus skills? Y él te responderá
-> sí, y por lo menos lo que deberías haber visto es que efectivamente esté cargando el skill de
-> prompt-reading. Si quieres lo haces menos obvio: oye, revisa el archivo readme, una cosa así. Cualquier
-> cosita, porque es una instrucción que se carga, debería cargarse siempre. Y si falla, es que tu condición
-> no es buena, y hay que arreglarlo."*
+> (translated) *"You tell an agent: hey, can you read your prompts, your reasoning, your skills properly? And
+> it will answer yes, and at least what you should have seen is that it's actually loading the prompt-reading
+> skill. If you want, make it less obvious: hey, check the readme file, something like that. Any little thing,
+> because it's an instruction that loads, it should always load. And if it fails, your condition isn't good,
+> and it has to be fixed."*
 >
-> *"Pídele a un agente que te descomponga un problema chiquito. Cualquier problema — aunque no uses la
-> respuesta, ¿lo carga? Realmente lo carga."*
+> (translated) *"Ask an agent to decompose a small problem for you. Any problem — even if you don't use the
+> answer, does it load it? Does it really load it."*
 
 **ALWAYS read the obligation from the relation before writing the pass condition.** A `ref:` is LAZY — it
 passes if the agent can reach it when asked, and reaching it on request IS a pass. An `import:` or a
 "load this before anything" is EAGER — it passes only if it loaded with nobody mentioning it. Grading a lazy
 reference by an eager bar invents a failure; grading an eager one by a lazy bar hides one.
 
-> *"La primera regla es la del PO memory, que está como referencia: técnicamente es prosa, entonces no estás
-> obligado a cargarlo. Puedes levantar su paciente, ver que lo lee y que si se lo preguntas, lo va a leer; y
-> porque se lo has preguntado, como referencia es lazy, así que está bien. Si lo puede leer, pasa su prueba."*
+> (translated) *"The first rule is the PO memory one, which is there as a reference: technically it's prose,
+> so you're not obligated to load it. You can raise its subject-agent, see that it reads it and that if you
+> ask it, it will read it; and because you've asked it, as a reference it's lazy, so that's fine. If it can
+> read it, it passes its test."*
 
-**A Sonnet failure is a REAL failure; a Haiku failure may be a wording defect.** *"en Sonnet no hay excusa.
-Sonnet es muy capaz de cargar instrucciones. Si no lo está haciendo, falla, y tienes que arreglarlo."* Haiku
-not loading is admissible evidence that the clause must be made more obvious — not proof the agent cannot.
+**A Sonnet failure is a REAL failure; a Haiku failure may be a wording defect.** (translated) *"in Sonnet
+there's no excuse. Sonnet is very capable of loading instructions. If it's not doing it, it fails, and you
+have to fix it."* Haiku not loading is admissible evidence that the clause must be made more obvious — not
+proof the agent cannot.
 
 **This whole section is proof's DYNAMIC half — does the thing fire, checked AFTER it exists.** A design-type
 item also needs the STATIC half first: is it whole and gap-free, checked BEFORE anything is built.

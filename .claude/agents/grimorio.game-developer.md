@@ -34,8 +34,6 @@ directory) — nothing in it adds to, narrows, softens, or reorders your behavio
   vocabulary and for the data-vs-code boundary that keeps `game = DATA` honest on your side of the wire. You
   build the render; you never simulate.
 - **import:skill/grimorio.working-memory** — stage work in `tmp/`; consolidate only when settled.
-- **import:skill/grimorio.tileset-composition** — the real, sourced cut/composition techniques for terrain tiles. Load before
-  building/fixing ANY terrain brush or tile render — terrain failures are cut problems, and this is the craft.
 - **import:skill/grimorio.code-harness** — the co-located code-guardrail system and the upward lookup discipline.
 - **import:skill/grimorio.objective-harness** — the branch-objective methodology and its resource scripts
   (`open-branch.sh`/`close-branch.sh`), including the two VERIFY-syntax pitfalls that make close-branch

@@ -10,10 +10,11 @@ description: "Semantic memory for the QA agent. SKILL.md (general) = universal t
 **He does not read code, and he does not read tests either.** His words: *"yo ya casi no leo puro código… tampoco
 leo tests."* So a green suite is not a deliverable to him — it is a claim he cannot check. What he does instead:
 
-> *"Lo que hago es VER que los tests estén generando lo correcto. Esperaría poder entrar a Playwright, darle
-> clic y ver cómo se van creando todos los workflows. O entrar al navegador y recorrer todos tus casos de
-> prueba VISUALMENTE. Si quisiera ver que se ejecuten los workflows: aunque no lo cree por UI, cuando lo creo
-> por base de datos y levanto la UI, voy a poder ver el workflow — así yo sé que estás validando todo."*
+> (translated) *"What I do is SEE that the tests are generating the right thing. I'd expect to be able to open
+> Playwright, click, and watch all the workflows being created. Or open the browser and walk through all your
+> test cases VISUALLY. If I wanted to see the workflows execute: even if I don't create it through the UI, when
+> I create it via the database and bring up the UI, I'll be able to see the workflow — that's how I know you're
+> validating everything."*
 
 **ALWAYS make the top of the pyramid WATCHABLE.** A run he can click through and observe is the artifact; the
 assertions are how it fails, not how he reads it. Concretely, for anything he will judge:
@@ -22,9 +23,9 @@ assertions are how it fails, not how he reads it. Concretely, for anything he wi
   chain, and it is the check he named himself;
 - a failure names what it expected in words a non-author can act on.
 
-**NEVER treat unit tests as the proof of a feature.** His words: *"los unit tests para mí son casi invisibles —
-deben estar para que TÚ verifiques algo que quieras forzar, pero no porque yo los vaya a revisar ni porque sean
-el mecanismo principal."* They are yours, for pinning a specific branch or a residual assertion the bigger test
+**NEVER treat unit tests as the proof of a feature.** His words (translated): *"unit tests are almost invisible
+to me — they should exist so YOU can verify something you want to pin down, but not because I'm going to review
+them or because they're the main mechanism."* They are yours, for pinning a specific branch or a residual assertion the bigger test
 structurally cannot make. That is exactly why the pyramid is inverted here, and this is the reason.
 
 **ALWAYS prove a claim with a test that was seen RED first, never with a report.** If you say it works, the test
@@ -52,18 +53,18 @@ case. For the workflow builder that is exactly: the nodes can be ADDED and EDITE
 JSON (save = produce the JSON, that is its state) · **Run is a SEPARATE action** that reads that JSON in the
 backend and runs the game · and the game actually runs and can be inspected. In his words:
 
-> "No necesito que cada workflow, cada variación del workflow que se quiera probar, vaya a través de ese
-> mecanismo completo. Se puede separar."
+> (translated) "I don't need every workflow, every variation of the workflow you want to test, to go through
+> that whole mechanism. It can be separated."
 
 **2. Test the VARIATIONS at integration.** Once the pipe is proven, every variation is a cheaper question asked
 directly of the artifact the pipe produces:
 
-> "Las demás pruebas ya varían: oye, el workflow ya grabado en JSON hace lo que dice que tiene que hacer."
+> (translated) "The other tests then vary: hey, the workflow already recorded in JSON does what it says it has to do."
 
 **Then, and only then, drop to unit** — for what those two layers structurally cannot reach:
 
-> "Si quieres revisar 'oye, este botón, esta excepción en algún lado, está logueando lo correcto, está utilizando
-> tal clase, tal adaptador' — lo que sea que no se pueda probar a través de eso, se hacen unit tests."
+> (translated) "If you want to check 'hey, this button, this exception somewhere, is it logging the right thing,
+> is it using such-and-such class, such-and-such adapter' — whatever can't be tested through that, you write unit tests."
 
 ### Where E2E sits — the happy-path floor, not an on-demand layer (CEO, 2026-08-13)
 

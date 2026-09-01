@@ -67,9 +67,9 @@ should have dissolved first**. It is the more common failure and it happens upst
 **The failure, named by the CEO after living through it (2026-07-28).** A build was reported as one large
 interlocking problem — a type system, a template-execution hole, a port-variance rule, a vendoring choice —
 and he had to *"pull the threads until they came apart and there was practically no knot"*. Every thread
-came apart. Several were not problems at all. His words: *"tienes que aprender a dividir los problemas… mucho
-de esto era solo descomponer el problema, revisarlo por partes, revisar la documentación, y pensar si era un
-problema de verdad."*
+came apart. Several were not problems at all. His words (translated): *"you have to learn to divide problems…
+a lot of this was just decomposing the problem, reviewing it in parts, checking the documentation, and thinking
+about whether it was really a problem."*
 
 ### The four moves, in order, before anything is written up
 

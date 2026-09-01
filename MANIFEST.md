@@ -23,6 +23,29 @@ this before trusting any claim that this repo is "the corpus".
 4. **All portable agents/skills were re-exported at the current standard** (graph-first, behavior split,
    de-projectified) and a fresh de-projectify pass removed dangling citations into the project layer (below).
 
+## Polish pass (2026-09-01, CEO ruling) — expanded exclusion + English-only
+
+- **3 arena-game-domain skills REMOVED entirely** (not portable framework — they are the source project's own
+  game-map domain, the support for the removed `project.*` map/brush critics): `grimorio.map-design`,
+  `grimorio.tileset-composition`, `grimorio.map-encoding`. Every `ref:`/`import:` into them was reworded to the
+  generic capability or dropped. The RE-AUDIT of the remaining skills by the same "portable framework vs
+  arena's specific game/maps/domain" test kept the four general game-craft skills — `grimorio.game-patterns`
+  (ECS/data-oriented canon, sourced from Nystrom/Fabian/Gregory), the general layer of `grimorio.game-design`
+  (MDA/tuning method) and `grimorio.game-development` (render canon), and `grimorio.ai-game-dev-methodology`
+  (AI-assisted game-dev methodology, grounded in real papers/studios) — because they teach portable craft any
+  game project could use and support the two KEPT portable roles `game-architect`/`game-developer`; my call is
+  that all four are genuinely portable, not arena-specific. Every other skill is framework/general.
+- **Spanish quotes translated to English.** A portable public skill should not carry untranslated Spanish; the
+  CEO's own quotes were translated in place (kept as quotes, marked "(translated)") across `code-harness`,
+  `loop-and-graph` (~20 blocks), `qa-memory`, `flow-delegation`, `prompt-writing-quality/format-guide`,
+  `code-reviewer-memory`, `conduct`, `report-design`, `reasoning-principles`, `fan-out`, `agent-selection`,
+  `agent-writing`, and `GRIMORIO-CHAIN.md`. Verified: zero unambiguous Spanish remains anywhere under `.claude/`.
+- **Arena-specific measurement/paths generalized.** With `map-encoding` gone its map-measurement provenance is
+  moot; the one remaining arena-code artifact in a kept skill — `experiment-method`'s named Go test files
+  (`mechanics_scenario_test.go` / `economy_wave7_test.go`) — was generalized to "a build-tagged scenario battery
+  / a plain unit-test style." (The frontend-development `web/src/...` examples are generic Next.js/DAL teaching,
+  not arena identity, and were kept.)
+
 ## The mechanism — the four-level split
 
 Every grimorio skill separates into **behavior · general · project · code** (see
@@ -53,7 +76,7 @@ Every shell under `.claude/agents/` is identity-only by the split principle (beh
 so all 27 current `grimorio.*` shells + the agents-tree `harness.md` exported as-is. The 6 `project.*` critics
 were removed (delta item 2).
 
-## Skills — 49 directories
+## Skills — 46 directories
 
 Exported the general + behavior layer of every `grimorio.*` skill. Excluded within each: every `project.md`;
 code-level topic files (architect-memory's 12 service-fact files, po-memory's whole vision/decision/features

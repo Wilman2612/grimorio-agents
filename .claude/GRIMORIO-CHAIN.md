@@ -410,7 +410,6 @@ flowchart TB
         direction LR
         O1["fail-fast"]
         O2["ai-game-dev-methodology"]
-        O3["map-encoding"]
     end
 ```
 
@@ -418,8 +417,8 @@ flowchart TB
 
 ## 7. THE LOSS MAP — every chain, and exactly where it breaks
 
-The principal's own framing, and the reason this section exists: *"tienes que pensar en el flujo de la
-información: dónde va, hasta dónde llega, cómo se pierde."*
+The principal's own framing, and the reason this section exists (translated): *"you have to think about the
+flow of information: where it goes, how far it reaches, how it gets lost."*
 
 ```mermaid
 flowchart TB

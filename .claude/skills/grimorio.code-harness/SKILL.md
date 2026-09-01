@@ -3,13 +3,13 @@ name: grimorio.code-harness
 description: "The co-located, hierarchical CODE-GUARDRAIL system: `harness.md` files that live next to the code they govern, the upward-lookup discipline that reads them BEFORE any modification so an agent doesn't re-discover the architecture or invent/break things, and the hard rule that a folder needing a guardrail gets a real co-located `harness.md`, never a route table added to the lookup hook. Load before creating or modifying files in this repo, and before authoring or editing a harness.md. GENERAL — portable to any project that adopts grimorio."
 ---
 
-**What a harness IS — the CEO's definition, verbatim and authoritative (2026-07-29):**
+**What a harness IS — the CEO's definition, authoritative (2026-07-29, translated from his Spanish):**
 
-> *"El harness teóricamente es cualquier cosa que debería leerse **antes de proponer estructura de archivos**.
-> Puede ser referenciar otros archivos en otro lado del proyecto que sean importantes, leerlos; reglas de 'oye,
-> no modifiques esto sin tocar esto'; reglas de 'no dupliques código'; en fin, cosas que hay que leer. **No
-> tanto sobre los objetivos de la rama.** Es **jerárquico**: lo que aplique de ahí para abajo, o algunas
-> referencias."*
+> *"The harness is, in theory, anything that should be read **before proposing file structure**. It can be
+> referencing other files elsewhere in the project that matter, and reading them; rules like 'hey, don't modify
+> this without touching that'; rules like 'don't duplicate code' — in short, things you have to read. **Not so
+> much about the branch's objectives.** It is **hierarchical**: whatever applies from there downward, plus some
+> references."*
 
 Three things follow, and the second and third are the ones most often missed when authoring one:
 
@@ -79,8 +79,8 @@ whatever it finds. It knows no paths, and must not learn any.
 A route table breaks the mechanism in three ways at once — the guardrail stops living beside what it
 governs, a second source of truth appears that someone must keep in sync, and every new folder now requires
 editing a hook, which is CEO-gated (ref:repo/.claude/hooks/harness.md). The CEO, on the day a delegate added
-one: *"¿Por qué el hook tiene rutas permitidas? Yo nunca puse eso, puse un lookup."* It was reverted the same
-day and the folder got a plain `harness.md` instead.
+one (translated): *"Why does the hook have allowed paths? I never put that there — I put a lookup."* It was
+reverted the same day and the folder got a plain `harness.md` instead.
 
 A coordination conflict — another agent holding that subtree right now — is a reason to WAIT for the subtree,
 never a reason to route around the mechanism.

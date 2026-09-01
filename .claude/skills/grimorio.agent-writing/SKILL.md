@@ -25,7 +25,7 @@ Two kinds of skill content follow from the split:
 | Kind | Answers | Example |
 |---|---|---|
 | **Behavior file** | "What does THIS agent do, step by step, and how does it check itself?" | a single-pass consolidated visual-QA critic (the brush-critic's full review protocol) |
-| **Knowledge (general)** | "What is true about this domain, regardless of who acts on it?" | ref:skill/grimorio.tileset-composition, ref:skill/grimorio.map-design, ref:skill/grimorio.javascript |
+| **Knowledge (general)** | "What is true about this domain, regardless of who acts on it?" | ref:skill/grimorio.game-patterns, ref:skill/grimorio.development-patterns, ref:skill/grimorio.javascript |
 
 A behavior file serves one agent (or one family of agents sharing a method); knowledge serves any agent that needs the domain. Both are project-portable.
 
@@ -143,8 +143,8 @@ itself.**
 
 A survey run this same pass found ZERO current skill-folder names violating this test, checked against the full
 population — `ls .claude/skills` — not only the three cases below: `frontend-development` (not
-"nextjs-development"), `game-development` (not "phaser-development"), `tileset-composition` (not
-"tiled-composition"). The three per-language skill folders (`golang`, `javascript`, `python`) are NOT
+"nextjs-development"), `game-development` (not "phaser-development"), `game-patterns` (not
+"ecs-library"). The three per-language skill folders (`golang`, `javascript`, `python`) are NOT
 violations either, despite naming a specific technology: a language skill's whole purpose IS that one
 language — the same UNLESS exception Storybook gets above, applied to a different tool. This rule is
 PROSPECTIVE — applied at naming time going forward; the survey confirms the corpus already reads this way by
@@ -245,7 +245,7 @@ separate, later pass.
 A behavior file always lives **inside a skill the agent already loads** — an agent loads ONE home skill (its behavior + its own knowledge) plus the SHARED knowledge skills it needs. In order of preference:
 
 1. **The agent's memory skill** — `{role}-memory/behavior.md` for an agent with a memory skill (the architect, PO, QA, security, …).
-2. **The agent's defining method/canon skill** — `{method-skill}/{role}-behavior.md` when the agent's method skill is its natural home: the four map agents' and the brush-critic's behavior files live in ref:skill/grimorio.map-design; the entropy and researcher behavior files live in ref:skill/grimorio.fan-out#part-1--decompose-spawn-in-parallel-synthesize (their protocols ARE fan-outs); the scout's lives in ref:skill/grimorio.research-capture; the unblocker's in ref:skill/grimorio.unblocking.
+2. **The agent's defining method/canon skill** — `{method-skill}/{role}-behavior.md` when the agent's method skill is its natural home: the entropy and researcher behavior files live in ref:skill/grimorio.fan-out#part-1--decompose-spawn-in-parallel-synthesize (their protocols ARE fan-outs); the scout's lives in ref:skill/grimorio.research-capture; the unblocker's in ref:skill/grimorio.unblocking.
 3. **A shared behavior file** when several agents share a method (the developers' shared build protocol in ref:skill/grimorio.developer-memory/project.build-protocol.md) — one canonical copy; per-agent behavior files hold only what differs. Never duplicate a shared method per agent.
 
 **Creating a NEW skill that holds only one agent's behavior is FORBIDDEN (skill-proliferation anti-pattern).** Every skill's name+description loads into every session's listing — a behavior-only skill pays that cost to serve one agent, and makes the agent load two things instead of one home. If an agent has no natural home skill at all, place its behavior in the skill whose convention it genuinely uses (e.g. the adviser's behavior lives in ref:skill/grimorio.working-memory, whose tmp/ convention its verdict follows). Reusing SHARED knowledge skills across agents is fine — that is reuse, not proliferation.

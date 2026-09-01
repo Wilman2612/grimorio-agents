@@ -66,7 +66,7 @@ a capability is added or materially changes, not on every edit.
 **Per-agent memory** — `grimorio.architect-memory` · `grimorio.po-memory` · `grimorio.developer-memory` · `grimorio.code-reviewer-memory` · `grimorio.security-memory` · `grimorio.qa-memory` · `grimorio.ux-memory` · `grimorio.verifier-memory` · `grimorio.ui-developer-memory` · `grimorio.documentation-memory` — semantic memory for each agent.
 
 **Game / product**
-- `grimorio.game-design` · `grimorio.game-development` · `grimorio.game-patterns` · `grimorio.ai-game-dev-methodology` · `grimorio.experiment-method` · `grimorio.map-design` · `grimorio.map-encoding` · `grimorio.tileset-composition`.
+- `grimorio.game-design` · `grimorio.game-development` · `grimorio.game-patterns` · `grimorio.ai-game-dev-methodology` · `grimorio.experiment-method`.
 
 **Language / dev standards**
 - `grimorio.javascript` · `grimorio.python` · `grimorio.golang` · `grimorio.software-craft` · `grimorio.development-patterns` · `grimorio.frontend-development` · `grimorio.unblocking`.

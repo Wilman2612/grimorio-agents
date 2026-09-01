@@ -88,4 +88,4 @@ Evaluate the purpose-built pixel tools before hand-waving an "art ceiling" again
 Playing-critic / agent-playtester design study · knowledge-system evolution (RAGAS-style faithfulness check that
 grounding actually happened, formal design vocabulary — Björk & Holopainen, Game Ontology Project, GraphRAG if
 outgrown) · multi-agent framework failure-taxonomy diff (GameGPT 2310.08067, ChatDev, MetaGPT) · IP/legal review
-before any AI asset ships (Andersen v. Stability AI) · corpus compare (VGLC, GameTileNet) vs our map-encoding.
+before any AI asset ships (Andersen v. Stability AI) · corpus compare (VGLC, GameTileNet) vs a project's own generated maps.

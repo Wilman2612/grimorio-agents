@@ -130,8 +130,8 @@ the guardian obligations, per the failsafe note in "When flow mode applies" belo
   > brief + a watcher on it — with NO "short mechanical patch" exception. You are the SOLE guardian; a plain
   > background spawn with only a completion-notification means a delegate that stalls, hits a fork, or needs a
   > decision goes UNCAUGHT until morning. This convention was silently dropped mid-session (architect / experimenter
-  > / go-developer spawned as plain background agents, no notes, no watcher) and the CEO caught it: "todo delegado
-  > que invoques debería estar escribiéndote y tú poniendo un watcher." The drop happens because a delegate feels
+  > / go-developer spawned as plain background agents, no notes, no watcher) and the CEO caught it (translated): "every
+  > delegate you invoke should be writing to you, and you setting a watcher." The drop happens because a delegate feels
   > "quick" — in autonomous mode that judgment is not yours to make; guard it.**
 - **A GENERIC / recursion-capable orchestrator (`general-purpose`, the default `claude`) does NOT auto-load this
   kit.** It doesn't read CLAUDE.md or the grimorio skills as binding behavior, yet it CAN spawn sub-agents — so a
@@ -303,7 +303,7 @@ Every delegate brief has these seven parts. The first three are the objective; t
 2. **Full context — enough that the delegate could answer FOR you.** Background, prior decisions, and the shared
    source docs it must read FIRST. Section it (background · instructions · what-to-read · output shape); high-
    signal, not everything-just-in-case (Anthropic, *Effective context engineering*). A thin brief is the failure
-   the CEO named — *"lo estás invocando como un agente normal… no como tu delegado."* Point it at the shared
+   the CEO named (translated) — *"you're invoking it like a normal agent… not like your delegate."* Point it at the shared
    context file (e.g. a plan doc) rather than re-summarizing.
    - **Identify and pass the OWNING design/spec docs as MANDATORY first-reading — not just task/render context.**
      A delegate given only local context (assets, the sim wiring) but NOT the documents that DEFINE the thing
@@ -420,8 +420,8 @@ delegate keeps working.
 > not a gap to report upward. Downloading is where ALL our current assets came from; units already render, so
 > distinct looks are just a type→sprite data map.
 >
-> Being a passive spectator of one delegate while a backlog of doable work waits is the failure the CEO named:
-> *"¿desde cuándo tú eres un espectador pasivo?"*
+> Being a passive spectator of one delegate while a backlog of doable work waits is the failure the CEO named
+> (translated): *"since when are you a passive spectator?"*
 
 The industry answer to "watch + redirect" is NOT "read everything and jump in whenever" — that is a documented
 anti-pattern (Devin's "babysitting tax": engineers spent more time steering than the task saved; Anthropic's
@@ -436,8 +436,8 @@ evidence-backed intervention.** Six rules:
    Three causes, three fixes: under-DEFINED brief → put the spec in it; didn't UNDERSTAND the spec → read it
    first; didn't TIE the task to memory → this rule.
 2. **Visibility, not exhaustive gating.** Watch the delegate's MILESTONE/QUESTION checkpoints (set the watcher on
-   its notes folder, per fan-out), NOT every file it writes. *"La idea no es que leas todo ni revises cada
-   archivo — para eso está el delegado; pídele que te reporte en hitos"* (CEO). Reading every working-note is the
+   its notes folder, per fan-out), NOT every file it writes. (translated) *"The idea is not that you read everything
+   or review every file — that's what the delegate is for; ask it to report to you in milestones"* (CEO). Reading every working-note is the
    over-surveillance that defeats delegation.
    - **Set the watcher `persistent: true`, not a timeout.** A `Monitor` with a `timeout_ms` DIES at the deadline
      (max ~60 min) mid-run and leaves the delegate unguarded — this is the "watcher died and I didn't kill it"
@@ -473,9 +473,9 @@ evidence-backed intervention.** Six rules:
    left armed after the task is done is wasted compute and fires spurious wake-ups; leaving it running is a
    guardian defect. Bake this into the flow so completion ALWAYS cancels the watch — do not rely on a timeout.
 
-**Accountability (CEO ruling).** An imperfect invocation is recoverable IF you guard well. *"Ya no me interesa si
-lo invocas mal. ¿Estás comprendiendo bien la tarea y no lo estás vigilando bien tú mismo? Entonces estás haciendo
-mal."* Failing to guard is the real failure — a mis-brief you catch at a milestone and redirect is fine.
+**Accountability (CEO ruling).** An imperfect invocation is recoverable IF you guard well. (translated) *"I no
+longer care if you invoke it badly. Are you understanding the task well and not watching it well yourself? Then
+you're doing it wrong."* Failing to guard is the real failure — a mis-brief you catch at a milestone and redirect is fine.
 
 ---
 
