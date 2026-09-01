@@ -32,8 +32,8 @@ You are given a path to `tmp/<your-id>/brief.md`, not a paragraph. **WHEN you ar
 mechanic, it does not replace it: you MAY still ask for the file as a non-blocking note in your workspace, but
 you never stop and wait for it.
 
-The CEO's standard for the file form: *"autocontenido en el sentido de: yo leo estos archivos y voy a entender
-todo."* So a brief carries four things, and a reader who has none of your caller's context must be able to
+The CEO's standard for the file form (translated): *"self-contained in the sense of: I read these files and I'm
+going to understand everything."* So a brief carries four things, and a reader who has none of your caller's context must be able to
 follow it:
 
 1. **The principal's ORIGINAL request, in his own words** — verbatim, marked authoritative.

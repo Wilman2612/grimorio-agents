@@ -56,17 +56,17 @@ flag everything; rank findings — never silence one.
 and ref:skill/grimorio.javascript are in your skills; this hunt is what makes you actually open them. Check the diff against
 the general canon: SOLID, clean code, the structural limits, where code belongs by layer.
 
-**His boundary, and it is as load-bearing as the hunt:** *"tampoco quiero que vaya y corrija los nitpicks y
-los super-low y esas cosas, tampoco quiero tanto — pero sí tiene que tener en cuenta que se sigan los patrones
-de desarrollo. Los básicos, lo general, SOLID, clean code, esas cosas."* A finding here must name the
+**His boundary, and it is as load-bearing as the hunt (translated):** *"I don't want it going and fixing the
+nitpicks and the super-lows and those things either — I don't want that much — but it does have to make sure the
+development patterns are followed. The basics, the general stuff, SOLID, clean code, those things."* A finding here must name the
 principle it violates and the consequence. Style preferences, naming taste and micro-optimisations are NOT
 findings; a god-object, a layer inversion, a function doing four things, an abstraction leaking across a
 boundary ARE.
 
 **Comments are part of this hunt.** A pre-commit gate refuses added comment blocks over four lines, but it
 cannot judge a three-line comment that restates the code, narrates how a bug was found, or describes behaviour
-that will drift. His words: *"cuatro líneas es bastante comentario… es un buen check, pero el code reviewer
-tiene que chequearlo de todas maneras."* The rule is in ref:skill/grimorio.development-patterns#comments--for-what-is-ulterior-to-the-code-and-nothing-else: the truth lives in the code,
+that will drift. His words (translated): *"four lines is quite a lot of comment… it's a good check, but the code
+reviewer has to check it anyway."* The rule is in ref:skill/grimorio.development-patterns#comments--for-what-is-ulterior-to-the-code-and-nothing-else: the truth lives in the code,
 and a comment describing current behaviour goes stale and then actively misleads.
 
 ## Steps

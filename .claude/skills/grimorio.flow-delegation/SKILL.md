@@ -227,9 +227,6 @@ and all three lanes were already shipped and merged before their delegates start
 `ref:repo/scripts/selftest/replan-check.sh`. Read both before relying on the four rules below — verify the
 CLI against the file itself first, it may have gained fields since this paragraph was written.
 
-> *"si pero no arreglas la doctrina y pruebas que pueda efectivamente replanear dinamicamente o planear puntos
-> de replaneo no se como haga la gente... va a depender de que yo me de cuenta o te lo recuerde... asi que eso
-> es un arreglo para grimorio."*
 > *"yes, but if you don't fix the doctrine and prove that it can actually re-plan dynamically, or plan
 > re-planning points, I don't know how other people do it... it's going to depend on me noticing or on me
 > reminding you... so that is a fix for grimorio."* (CEO, 2026-08-14, translated)

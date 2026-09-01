@@ -109,15 +109,15 @@ it". Most dissolve.
 objective while keeping everything else intact?"* silently promotes every existing line of code, every
 prior decision, and every constraint you invented yourself into an inviolable.
 
-**The order, in his words:** *"desglosar todas las partes. Esto coincide bien con esta parte, pero choca
-con estas otras. ¿Puedo modificar estas otras manteniendo el objetivo global? ¿Afecta partes críticas?
-Entonces pregunto."*
+**The order, in his words (translated):** *"break down all the parts. This one fits well with this part, but
+clashes with these others. Can I modify these others while keeping the global objective? Does it affect
+critical parts? Then I ask."*
 
 1. **ALWAYS split it into parts** — each statable in one sentence without the others.
 2. **ALWAYS name which parts CONFLICT** with the objective, rather than assuming the objective must bend around them.
 3. **BEFORE deciding anything ⟶ for each conflicting part, ask WHO fixed it and WHY.** Three answers, three actions:
    - **Nobody did — it is mine, or it is just how the code happens to be** ⟶ change it. Code is not inviolable.
-   - **He did** ⟶ it can still change; *"aún si fuera mi visión, deberías poder cuestionarme"*. Raise the contradiction as a QUESTION. He votes.
+   - **He did** ⟶ it can still change; (translated) *"even if it were my vision, you should be able to question me"*. Raise the contradiction as a QUESTION. He votes.
    - **A measurement did** ⟶ re-check the measurement before obeying it. Several "facts" that fixed decisions were greps matching comments.
 4. **BEFORE deciding what changes ⟶ search for at least one concrete EXEMPLAR of a problem shaped like this one
    already solved, repo precedent first — a VETTED instance only, never a self-produced one** — a sourced claim

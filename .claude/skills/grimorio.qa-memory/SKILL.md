@@ -7,8 +7,8 @@ description: "Semantic memory for the QA agent. SKILL.md (general) = universal t
 
 ## WHO READS YOUR TESTS, AND WHAT THAT DEMANDS (CEO, 2026-07-30)
 
-**He does not read code, and he does not read tests either.** His words: *"yo ya casi no leo puro código… tampoco
-leo tests."* So a green suite is not a deliverable to him — it is a claim he cannot check. What he does instead:
+**He does not read code, and he does not read tests either.** His words (translated): *"I barely read raw code
+anymore… I don't read tests either."* So a green suite is not a deliverable to him — it is a claim he cannot check. What he does instead:
 
 > (translated) *"What I do is SEE that the tests are generating the right thing. I'd expect to be able to open
 > Playwright, click, and watch all the workflows being created. Or open the browser and walk through all your
@@ -31,8 +31,8 @@ structurally cannot make. That is exactly why the pyramid is inverted here, and 
 **ALWAYS prove a claim with a test that was seen RED first, never with a report.** If you say it works, the test
 proving it exists and you watched it fail for the right reason before it passed.
 
-**And the ideal he stated: he should not have to raise the application at all.** *"El ideal es que no levante la
-aplicación — pero la verdad es que la tengo que levantar para ver que estés haciendo las cosas correctamente."*
+**And the ideal he stated: he should not have to raise the application at all.** (translated) *"The ideal is that
+I don't have to boot the application — but the truth is I have to boot it to see that you're doing things correctly."*
 Every time he has to boot it himself to check something, that is a test you did not write.
 
 
@@ -44,7 +44,7 @@ Every time he has to boot it himself to check something, that is a test you did 
 project-agnostic. It was previously written down only as one milestone's rungs, inside a product ledger the QA
 agent does not read — which is why it kept not being applied.
 
-> "Se empieza desde arriba, no desde abajo."
+> (translated) "You start from the top, not from the bottom."
 
 The two moves, in order:
 
@@ -83,8 +83,8 @@ per VARIATION of it; it never excused a feature's happy path from being proven a
 system, real external services, a real deploy). That tier stays occasional. It never described this floor, and
 the two must not be read as one layer — the mislabeling is the defect this rewrite fixes.
 
-This reconciles with, and does not overturn, the 2026-07-29 ruling above ("Se empieza desde arriba, no desde
-abajo") — both rulings are top-down, full-stack/e2e-first; only the mislabeling is removed here, not the
+This reconciles with, and does not overturn, the 2026-07-29 ruling above ("You start from the top, not from the
+bottom") — both rulings are top-down, full-stack/e2e-first; only the mislabeling is removed here, not the
 method.
 
 **The diagnostic that catches the usual error:** if the same mechanism is being walked end-to-end once per
@@ -171,8 +171,8 @@ asserted the wrong surface.
 **The general rule, and it decides most of what follows in this file:** when every collaborator is replaced
 by a double, the test proves the doubles were configured. It cannot prove anything about how the real pieces
 connect — the caller can change, the route can be reached another way, the wiring can break — and the test
-stays green throughout. *"Estarías probando los mocks. La ruta podría ser llamada de otra forma, o el método
-que la invoca cambiar."*
+stays green throughout. (translated) *"You'd be testing the mocks. The route could be called another way, or the
+method that invokes it could change."*
 
 So a claim of the form *"X is enforced"*, *"Y is reachable only by Z"*, *"A and B agree"* is provable ONLY at
 a layer where the real pieces meet. A solitary unit test asserting it is not weak evidence — it is evidence

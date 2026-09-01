@@ -157,8 +157,8 @@ if one exists.
 One test per mechanic is right — but it is an INTEGRATION/SCENARIO test: **construct a starting condition → run
 the real kernel → assert the behavioral OUTCOME**, not a unit test poking internals. Such a test is STABLE — it
 only changes when the MECHANIC changes, and survives every refactor — whereas a pile of unit tests break on the
-smallest change and never test the real behavior (the CEO: "no me llenes de 800 unit tests que se rompen al
-mínimo cambio"). The CEO's own examples of the RIGHT shape:
+smallest change and never test the real behavior (the CEO, translated: "don't fill me up with 800 unit tests
+that break at the slightest change"). The CEO's own examples of the RIGHT shape:
 - citizens in an empty map with no food → they move, and eventually STARVE;
 - 5 soldiers + 100 wood → their first instinct is to BUILD the thing;
 - a castle produces N units in N minutes;

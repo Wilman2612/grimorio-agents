@@ -127,7 +127,7 @@ SKILL.md              the method canon (universal; how to design)
 designer-behavior.md  this file — what you DO
 project.md            the LIVING SYSTEMS VIEW: how our mechanics actually work (read in phase 1)
 tuning-ledger.md      every balance number + its validation state
-sheets/               the state sheet set — the "ficha técnica"
+sheets/               the state sheet set — the "technical sheet"
   00-README.md          entry point + doc map
   01-technical-sheet.md genre & lineage · pillars (each with a KILL TEST)
   02-mechanics-inventory.md  every mechanism tagged ORIGINAL / BORROWED / ADAPTED

@@ -191,12 +191,8 @@ turn-by-turn CEO conversation) and never sees them.
    **WHEN you weigh backgrounding your OWN child instead, for real parallelism ⟶ take the trade knowingly: a
    parked child is rescued because the TOP-LEVEL SESSION watches dispatch-and-completion records naming parent
    and child, and `SendMessage`s a parked parent that has gone quiet — never because you wake yourself.** This
-   reverses the prior blanket prohibition, per the CEO's own ruling — Spanish governs, translation given for
-   reading only:
+   reverses the prior blanket prohibition, per the CEO's own ruling (translated):
 
-   > *"El paralelismo real también va en su capa de ellos... en realidad ellos pueden, solo que eventualmente
-   > algunos se estancan y tú los despiertas. En teoría funciona, y hay una ventaja: si hay mucho paralelismo,
-   > sigue siendo más rápido eso que ir uno por uno."*
    > *"The real parallelism ALSO belongs in THEIR layer... they actually can do it; it's just that some of them
    > eventually get stuck, and YOU wake them. In theory it works, and there's an advantage: with a lot of
    > parallelism, that is still faster than going one by one."* (CEO)

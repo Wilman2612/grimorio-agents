@@ -555,8 +555,7 @@ row 7 above, its proper home, rather than kept here as its own paragraph.
   design-time search). P1/P2/P3/P6/P7 confirmed unaffected; P5's hand-off SHAPE unchanged (GAP+search is a
   third value within the same one-artifact-per-INCLUDE-row shape). The outer three-layer diagram confirmed
   unchanged — no new phase, edge, or agent-node.
-- **Pass 2 (2026-08-23, on the now-DISCARDED branch `keeper/design-agent-arreglo-2`, commits
-  `14980fd9`/`3d363b87`/`67348fe4`, never merged).** Drew the outer diagram's two new P6 edges and the
+- **Pass 2 (2026-08-23, on a now-DISCARDED design-agent branch, never merged).** Drew the outer diagram's two new P6 edges and the
   `UNBLK`/`ENTROPY` node split, the extended "Reading the three layers" paragraph, the `## A1` paragraph,
   Table 1 row 1, and two Half (b) flowcharts (P1's new step-4b node, P6's CHECK 1/CHECK 3 redraw) — anchored,
   at the time, on a curated Dynamo (SOSP 2007) rubric extract for step 4b, which the CEO explicitly rejected:

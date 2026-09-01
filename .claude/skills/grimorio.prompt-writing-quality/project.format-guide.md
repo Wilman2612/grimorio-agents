@@ -152,9 +152,9 @@ VERIFY the rule is live: `node scripts/audit-chain.mjs --anchorless | tail -1` a
 --anchors | tail -1`.
 
 **NEVER write a path without a relation prefix.** A bare `foo/bar.md` in a sentence is a reference the
-audit cannot see, and the corpus carries thousands of them — the exact hole the CEO named: *"a veces
-solamente mencionas el nombre del archivo, suponiendo que ya fue cargado en otro contexto, y se escapa
-la importación"* (2026-08-05). `audit-chain.mjs --unprefixed` lists every one. Two exemptions, both
+audit cannot see, and the corpus carries thousands of them — the exact hole the CEO named (translated): *"sometimes
+you only mention the file name, assuming it was already loaded in another context, and the import slips
+through"* (2026-08-05). `audit-chain.mjs --unprefixed` lists every one. Two exemptions, both
 narrow: `./file.md` inside a `SKILL.md` (that relative form is what lets a skill be exported), and the
 four-level KIND names — `project.md`, `behavior.md`, `SKILL.md` — when they name a level rather than a
 file, since there is no such file to resolve.
