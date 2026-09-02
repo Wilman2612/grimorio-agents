@@ -175,7 +175,11 @@ across 98 files resolved them by the established convention — replace the POIN
 adopter's own equivalent ("this project's own developer memory", "this project's own feature-status ledger", …),
 dropping the `ref:`/`import:`/`cite:` prefix with it, and keeping the rule the sentence carried fully intact.
 
-**28 unresolved occurrences remain, which is exactly the pre-export baseline, and every one is by design:**
+**27 unresolved occurrences remain in the corpus itself — exactly the pre-export baseline — and every one is by
+design.** (A whole-tree run reports 34: the extra 7 are in THIS file, where the paragraphs below quote the very
+grammar examples and the `playwright-cli` exception they are explaining. Counting a manifest's description of an
+exception as an instance of it would be a measurement artifact, so both numbers are given rather than the
+flattering one.) The 27:
 
 - **19 are notation-grammar examples** — `import:skill/name`, `cite:repo/path`, `agent:name`, `ref:skill/x`,
   `ref:repo/path` in `grimorio.prompt-writing-quality/project.format-guide.md`,
