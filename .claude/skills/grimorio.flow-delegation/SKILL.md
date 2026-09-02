@@ -27,8 +27,10 @@ push through and finish it yourself.**
 Same property, seen from the other side, already measured:
 ref:skill/grimorio.agent-tiers/project.refusal-pattern.md#the-grounding--identity-framing-produces-refusals-not-extra-steps-ceo-ruling-2026-08-12 — identity framing produces a REFUSAL, never a silent extra step.
 
-This skill is the CALLER's side — how you raise and guard a delegate. The delegate's OWN behavior file —
-`./delegate-behavior.md`, executed by agent:grimorio.delegate — lives in this same skill folder as a companion.
+This skill is the CALLER's side — how you raise and guard a delegate. The delegate's OWN behavior — a five-phase
+state machine under `./delegate-phases/`, starting at `./delegate-phases/phase-1-intake-and-objective.md`,
+executed by agent:grimorio.delegate — lives in this same skill folder as a companion (`./delegate-behavior.md` is
+kept only as a redirect stub for older bare pointers to it).
 
 > **A FLOW means the ORCHESTRATOR and EVERY DELEGATE are conscious of the FULL objective — not a slice.** The
 > recurring failure: an open, composite CEO goal gets reduced to a CHECKLIST OF GAPS, each delegate handed
@@ -361,6 +363,8 @@ Every delegate brief has these seven parts. The first three are the objective; t
    doom-looping BEFORE it clears check 1 (it would emit nothing until the failsafe trips — hours, in all-night
    mode). Watching the trajectory for stall, not just milestones, is the Replit decision-time pattern (doc 52 §4).
    Routine working-notes are fine but are NOT the signal you watch — see Part 2.
+
+   **WHEN that channel is a `SendMessage` rather than (or in addition to) the notes folder ⟶ the id it addresses MUST be the delegate's own caller's real, resolvable agentId — captured from the spawn's own return, or the standing parent-id injection — never a bare type-name.** -> the full rule, the injection's measured abstention rate, and the CEO's own originating complaint behind it: ref:skill/grimorio.fan-out#part-2--stay-reachable-report-back-without-parking; this item does not restate any of it.
 7. **Finish-synchronously by DEFAULT; background is a considered trade, not a forbidden one.** Foreground
    remains the safe default: run long work foreground, wait on children synchronously. **WHEN real parallelism
    is worth the parking risk ⟶ the brief may instead sanction backgrounding the delegate's own children**

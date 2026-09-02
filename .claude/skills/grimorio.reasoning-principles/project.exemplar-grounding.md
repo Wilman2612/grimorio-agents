@@ -14,7 +14,7 @@ already carries the keeper's own attribution rather than the CEO's.
 ## Two kinds of grounding — CITATION and EXEMPLAR are not the same thing
 
 **CITATION-grounding already exists, corpus-wide, and this file does not duplicate it.** Sourcing an abstract or
-factual CLAIM is already required everywhere a claim gets made: ref:skill/grimorio.fan-out/researcher-behavior.md's own
+factual CLAIM is already required everywhere a claim gets made: ref:skill/grimorio.fan-out/researcher-phases/phase-3-converge-and-close.md's own
 "Ground every claim in a real, cited source," ref:skill/grimorio.research-capture/scout-behavior.md's identical line, and
 ref:skill/grimorio.solution-architecture/behavior.md's requirement to research a capability "to current, primary
 sources." ref:repo/scripts/audit-chain.mjs's unpinned-cite check enforces the mechanical half of the same discipline —
@@ -118,7 +118,7 @@ exemplar — clearing that gate is not what a citation needs, and is exactly the
   "precedent" must include this: a concrete exemplar of the SOLUTION being decided, never only precedent for
   the ARTIFACT TYPE (has this kind of shell or behavior file been authored before). The two are independent —
   an artifact type can be well-precedented while the solution content inside it is invented from nothing.
-- **ref:skill/grimorio.fan-out/researcher-behavior.md and ref:skill/grimorio.research-capture/scout-behavior.md** — WHEN either is
+- **ref:skill/grimorio.fan-out/researcher-phases/phase-3-converge-and-close.md and ref:skill/grimorio.research-capture/scout-behavior.md** — WHEN either is
   briefed on a topic meant to inform a design or decomposition decision, not only a factual question, the
   report/capture must flag whether a concrete exemplar of the solution shape was found, as a field distinct from
   whether claims were sourced. Neither file's own core rules are restated here; each carries its own one-line

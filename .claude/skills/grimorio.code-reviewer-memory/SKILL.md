@@ -9,3 +9,5 @@ The code-reviewer's universal knowledge already lives in **ref:skill/grimorio.de
 
 -> This project's review conventions, recurring offenders, and must-block patterns: read ./project.md
 -> The `code-review.md` output format: ./behavior.md → `## OUTPUT`
+-> The reviewer's two operating modes (HUNT / FIX-VERIFICATION) and the exact FIX-VERIFICATION brief shape:
+   ./behavior.md → `## Modes` and ./review-brief-template.md

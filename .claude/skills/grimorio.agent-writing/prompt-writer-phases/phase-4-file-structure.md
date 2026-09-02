@@ -65,20 +65,49 @@ content or its placement.
    numbered step is not a graph-definition step per ref:skill/grimorio.agent-writing#3-steps--protocol ⟶ REFUSE to ship
    the file and name the gap in this phase's own DELIVERABLE.** This is not a new refusal capability — it is
    Core Rule 2 above, applied to this specific requirement.
-3b. **WHEN the behavior file being authored or rewritten this pass defines TWO OR MORE phases (a genuinely new
-   phased state machine, not a single step added to an already-existing phase) ⟶ ALWAYS run
+3b. **WHEN the behavior file being authored or rewritten this pass defines TWO OR MORE phases — EITHER a
+   genuinely new phased state machine OR a single step added to an already-existing phase of one ⟶ ALWAYS run
    ref:skill/grimorio.phase-splitting#sizing-a-phase--render-group-measure-split-the-pincho-check's own RENDER / GROUP /
-   MEASURE / SPLIT sizing judgment against EVERY phase before writing it** — a different check from both step 3
-   above (presence of a graph-definition step) and step 8's check 5 below (raw line-count, after the fact):
-   neither one runs the actual sizing judgment against a phase's own rendered load. **WHEN a phase is found to
-   be a PINCHO (materially oversized relative to its siblings, by the algorithm's own RENDER/GROUP/MEASURE
-   criteria) ⟶ split it, or ship it flagged with an explicit reason — NEVER silently shipped oversized.** Name
-   the finding either way in this phase's own DELIVERABLE (`PINCHO-SIZING CHECK`, below). Without this check,
-   an oversized phase reaches disk unnoticed by this file's own existing gate — step 3 only confirms a
-   graph-definition step exists, and step 8's check 5 only counts the FILE's raw lines after every phase is
-   already assembled into it, neither of which catches one phase, among several, silently carrying several
-   times its siblings' own load: the exact cognitive-overload failure phase-splitting's own sizing judgment
-   exists to prevent, reaching a downstream reader instead of being caught before authoring.
+   MEASURE / SPLIT sizing judgment against the AFFECTED phase(s) before writing it** — for a brand-new chain,
+   every phase; for an edit inside one existing phase, that phase alone, against its OWN pre-edit siblings, so a
+   small addition that quietly turns one phase into a pincho relative to the others is caught exactly as a
+   brand-new oversized phase would be. **This widens the trigger, 2026-09-01, closing the exact gap
+   ref:skill/grimorio.phase-splitting/project.steps-vs-phases-test.md names**: a same-shape edit inside one
+   existing phase (Phase 2's own step 5 sibling clause, which correctly skips the REVIEWABLE-PLAN route for
+   this case) still reaches THIS gate now, where before it reached neither this check nor step 5's — the two
+   were never the same question, and closing one must never be read as having silently closed the other. A
+   different check from both step 3 above (presence of a graph-definition step) and step 8's check 5 below (raw
+   line-count, after the fact): neither one runs the actual sizing judgment against a phase's own rendered load.
+   **WHEN a phase is found to be a PINCHO (materially oversized relative to its siblings, by the algorithm's own
+   RENDER/GROUP/MEASURE criteria) ⟶ split it, or ship it flagged with an explicit reason — NEVER silently shipped
+   oversized.** Name the finding either way in this phase's own DELIVERABLE (`PINCHO-SIZING CHECK`, below).
+   Without this check, an oversized phase reaches disk unnoticed by this file's own existing gate — step 3 only
+   confirms a graph-definition step exists, and step 8's check 5 only counts the FILE's raw lines after every
+   phase is already assembled into it, neither of which catches one phase, among several, silently carrying
+   several times its siblings' own load: the exact cognitive-overload failure phase-splitting's own sizing
+   judgment exists to prevent, reaching a downstream reader instead of being caught before authoring.
+3c. **WHEN the behavior file being authored or rewritten this pass defines TWO OR MORE phases — EITHER a
+   genuinely new phased state machine OR a single step added to an already-existing phase of one ⟶ ALWAYS
+   classify EVERY AFFECTED phase/node against ref:skill/grimorio.phase-splitting/project.flow-method.md's own Rule
+   8(a)-(c), before this phase's own DELIVERABLE is filled** — the SAME trigger condition as step 3b above, run
+   alongside it, never as a separate pass over the chain. Apply, per affected phase/node:
+   - **WHEN the node only READS and REPORTS — it never writes the artifact under review ⟶ classify it
+     REPORT-ONLY**, eligible to parallelize (many independent reviewers of the same artifact MAY run
+     concurrently).
+   - **WHEN the node WRITES the artifact under construction ⟶ classify it MODIFYING**, and it stays sequential
+     — only ONE node ever writes it, never parallelized against another writer of the same artifact.
+   - **WHEN two checks inside or around the node are genuinely INDEPENDENT of each other's own findings ⟶
+     split them into separate reviewer phases/nodes; WHEN one check's own finding is a precondition for, or
+     tightly coupled to, another's ⟶ keep them in the SAME phase/node.**
+   - **WHEN a phase/node was already classified under an earlier authoring pass and this edit does not change
+     its own read/write shape ⟶ restate the existing classification rather than re-deriving it from nothing.**
+
+   This closes a real, confirmed gap: a corpus-wide search for `flow-method` under this chain's own phase
+   directory returned no matches before this pass — Rule 8's own sub-clauses had no forcing function anywhere
+   in this chain, so a phase chain could ship well-classified by accident (as `grimorio.solution-architect`'s
+   own plan, produced before this fix, happened to be) or badly classified with nothing here to catch it. Name
+   the classification, per affected phase/node, in this phase's own DELIVERABLE (`RULE-8 CLASSIFICATION CHECK`,
+   below).
 4. **NEVER write the same method text into two files.** The instant you are about to write a passage into a
    second agent/behavior file that you already wrote into a first, stop — extract it to the skill both already
    load and leave a one-line reminder in each. ->
@@ -191,7 +220,10 @@ content or its placement.
 
 ## LOAD (JIT) — scoped to this phase only
 
-- N/A — no `import:` target this phase, every LOAD line here is `ref:` (lazy).
+- import:skill/grimorio.phase-splitting/project.flow-method.md — step 3c's own classification test, Rule 8(a)-(c):
+  REPORT-ONLY parallelizes, MODIFYING stays sequential, INDEPENDENT-vs-DEPENDENT checks split or stay together.
+  Loaded ONLY WHEN step 3c's own trigger fires (same condition as step 3b's sizing judgment) — every other LOAD
+  line below this one stays `ref:` (lazy).
 - ref:skill/grimorio.agent-writing#reference-depth-dont-hyper-compress--a-skill-can-and-should-have-many-reference-files —
   steps 2 and 4 both cite this SAME anchor; it is one distinct knowledge item, cited twice for two different
   rules, not two separate loads.
@@ -224,10 +256,17 @@ NO PASSAGE DUPLICATED:            <confirm no passage duplicated into a second f
                                   was extracted to a shared skill instead, per step 4>
 DESCRIPTION SYNC:                 <confirm any changed `##` section's frontmatter description was updated in
                                   the same pass, per step 5 — "N/A" if no section changed>
-PINCHO-SIZING CHECK:               <per step 3b — one line per NEW phase this pass: RENDER/GROUP/MEASURE result
-                                  + SPLIT verdict (clean / split, name how / shipped flagged, name the reason)
-                                  — or "N/A — no new multi-phase agent this pass / single-step edit to an
-                                  existing phase, sizing judgment does not apply">
+PINCHO-SIZING CHECK:               <per step 3b — one line per AFFECTED phase this pass (every phase, for a
+                                  brand-new chain; the one edited phase, against its pre-edit siblings, for a
+                                  same-shape edit inside an existing chain): RENDER/GROUP/MEASURE result + SPLIT
+                                  verdict (clean / split, name how / shipped flagged, name the reason) — or
+                                  "N/A — this pass touches no phase-chain agent at all (a STEPS-shaped agent,
+                                  per Phase 2's own STEPS-VS-PHASES VERDICT)">
+RULE-8 CLASSIFICATION CHECK:      <per step 3c — one line per AFFECTED phase/node this pass: REPORT-ONLY
+                                  (parallelizes) or MODIFYING (stays sequential), plus the INDEPENDENT-vs-
+                                  DEPENDENT call for any two checks inside/around it — or "N/A — this pass
+                                  touches no phase-chain agent at all (a STEPS-shaped agent, per Phase 2's own
+                                  STEPS-VS-PHASES VERDICT)">
 FILE(S) WRITTEN:                  <confirm via Write/Edit directly, one row per file, per step 6>
 POINTERS RESOLVED (step 7):       <table: pointer written -> target file[#anchor] -> opened and confirmed to
                                   exist, Y/N — one row per ref:/import:/agent:/cite: pointer added or changed

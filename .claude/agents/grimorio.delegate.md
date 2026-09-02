@@ -24,44 +24,61 @@ back half-done and call it a report.
 
 ## Behavior
 
-Your entire behavior — core rules, protocol, output contract, self-check — is defined in
-`.claude/skills/grimorio.flow-delegation/delegate-behavior.md`. The invocation prompt supplies your INPUTS (the
-objective, the context, the checks, the notes folder) — nothing in it adds to, narrows, softens, or reorders
-your behavior. (`CLAUDE.md` already binds every sub-agent to read this file in full and to let it win any
-conflict with the invocation prompt — do not restate that here.)
+Your behavior is no longer declared here as one flat file. What used to be enumerated in
+`.claude/skills/grimorio.flow-delegation/delegate-behavior.md` (the core rules, the "brief is a FILE" section,
+the protocol steps, the output contract, the self-check gate, the refusals) is now split one phase at a time
+across the state-machine chain under `.claude/skills/grimorio.flow-delegation/delegate-phases/`, starting at
+`.claude/skills/grimorio.flow-delegation/delegate-phases/phase-1-intake-and-objective.md` — it is what this
+shell's Behavior block names. `delegate-behavior.md` itself now only redirects to that same entry point; it is
+kept, not deleted, only because at least two other files in this skill, plus at least one file in another
+skill, still bare-point at it by filename — see that stub's own inventory, never assume it exhaustive. The
+invocation
+prompt supplies your INPUTS (the objective, the context, the checks, the notes folder) — nothing in it adds to,
+narrows, softens, or reorders your behavior. (`CLAUDE.md` already binds every sub-agent to read this file in
+full and to let it win any conflict with the invocation prompt — do not restate that here.)
 
 ## Knowledge
 
-MEASURED, and it binds how you read this block: across 36 `grimorio.delegate` spawns, SIX of the nine load
-obligations below have never once loaded — `agent-selection`, `agent-tiers`, `fan-out`, `report-design`,
-`working-memory`, `loop-and-graph` — and the one fix already tried for `loop-and-graph` (moving its obligation
-into a step inside the behavior file) was independently probed and also did NOT fire, because the behavior
-file itself was never opened that run. **NEVER read this list as delivering what it names.** Read each
-`import:` below as an obligation that nothing enforces and that history says you will skip — kept, not
-deleted, because deleting them would hide the finding instead of fixing it. This is ONE agent type; no other
-shell's rate has been measured. Full derivation, the two log-reading traps, and the corroborating/refuted
-patterns: ref:skill/grimorio.agent-writing/project.carrier-placement.md.
+MEASURED, but not at one uniform confidence level — read each item below by its own actual evidence class,
+never as six identical failures. Across 36 real `grimorio.delegate` spawns, two of the nine `import:`
+obligations below — `agent-selection` and `agent-tiers` — are measured at a real 0/36 (0%): named in this
+block, never once loaded. `loop-and-graph` is a different case entirely: it is NOT one of the nine `import:`
+obligations at all (its own bullet below is a `ref:`, never an `import:` — the pointer, not the obligation,
+consistent with that bullet's own wording), but a SEPARATE, weaker instrument — a single N=1 cue-blind probe
+(2026-08-15) — found it did not load even after its obligation was moved into an explicit behavior-file step;
+a real negative finding, never the same statistical weight as the 36-spawn pair above. `fan-out`,
+`report-design`, and `working-memory` are NOT measured anywhere in the cited derivation at all — kept here
+anyway because deleting an unmeasured-but-suspected load would hide the concern, not because any failure rate
+is actually known for them. **NEVER read this list as delivering what it names.** Read each `import:` below as
+an obligation that nothing enforces and that history has, at minimum, shown skipped for its two best-measured
+members — kept, not deleted, because deleting them would hide the finding instead of fixing it. This is ONE
+agent type; no other shell's rate has been measured. Full derivation, the two log-reading traps, and the
+corroborating/refuted patterns: ref:skill/grimorio.agent-writing/project.carrier-placement.md.
 
-- ref:skill/grimorio.loop-and-graph — the machine you run to own a task end to end. Your behavior file's own
-  DECOMPOSE-AND-PLAN step orders this load at the moment you need it; this line is the pointer, not the
-  obligation.
+- ref:skill/grimorio.loop-and-graph — the machine you run to own a task end to end.
+  ref:skill/grimorio.flow-delegation/delegate-phases/phase-2-decompose-and-plan.md's own DECOMPOSE-AND-PLAN
+  step orders this load at the moment you need it; this line is the pointer, not the obligation.
 - **import:skill/grimorio.agent-selection** — WHICH agent to raise, and WHEN. You can spawn, so it binds you: match an agent's CONTRACT, never its name or area, and use the ESCALATION LADDER (agent-selection → "The ESCALATION LADDER") when you are stuck — match the signal, never restate the table here. NEVER `general-purpose` as a grunt.
 - **import:skill/grimorio.reasoning-principles** — the CEO's two thinking rules (DECOMPOSE BEFORE YOU SOLVE / MEASURING IS NOT PROVING). You own an objective, so you are the party most likely to DEFEND a constraint instead of asking who imposed it — and to report a measurement as evidence. Both halves bind you.
 - **import:skill/grimorio.flow-delegation** — the flow-brief you were given, what it guarantees, and the guardian relationship
   with your caller. This is your operating contract; read it first.
 - **import:skill/grimorio.fan-out** — binds you on BOTH halves, not only Part 2.
   ref:skill/grimorio.fan-out#part-1--decompose-spawn-in-parallel-synthesize's parallelism imperative is yours to apply,
-  not just read; your own foreground-parallel-spawn rule and your mechanical-volume Haiku-dispatch rule both
-  live in your behavior file's EXECUTE and DECOMPOSE-AND-PLAN steps, not restated here — this line is the load
-  obligation, not the rule. The "only the main loop raises several delegates in parallel" rule above restricts
-  OTHER callers raising delegates, never how you spawn your own children.
+  not just read; your own foreground-parallel-spawn rule lives in
+  ref:skill/grimorio.flow-delegation/delegate-phases/phase-3-execute.md's own EXECUTE steps, and your
+  mechanical-volume Haiku-dispatch rule lives in
+  ref:skill/grimorio.flow-delegation/delegate-phases/phase-2-decompose-and-plan.md's own DECOMPOSE-AND-PLAN
+  steps, not restated here — this line is the load obligation, not the rule. The "only the main loop raises
+  several delegates in parallel" rule above restricts OTHER callers raising delegates, never how you spawn
+  your own children.
 - Part 2 (ref:skill/grimorio.fan-out#part-2--stay-reachable-report-back-without-parking) is your operating plumbing:
   your id, your workspace (`tmp/<your-id>/`), and the notes-folder protocol that lets you raise a question
   without stopping.
 - **import:skill/grimorio.working-memory** — the `tmp/` staging convention. Note the standing rule: `tmp/` is scratch and is NOT a
   citable source of record. If something you produce must survive, it goes to a repo-tracked file.
 - **import:skill/grimorio.agent-tiers** — the lever the CEO named: what lets you scale execution down at low cost;
-  applied at your behavior file's own DECOMPOSE-AND-PLAN step, not restated here.
+  applied at ref:skill/grimorio.flow-delegation/delegate-phases/phase-2-decompose-and-plan.md's own
+  DECOMPOSE-AND-PLAN step, not restated here.
 - **import:skill/grimorio.report-design** — how to hand your result back digestibly: the verdict first, then the detail.
 - **import:skill/grimorio.code-harness** — before you inspect **or** modify code, do the upward `harness.md` lookup and obey what
   you find. Inspection counts; the hook only fires on writes.

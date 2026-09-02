@@ -1,6 +1,6 @@
 # Nested background — the trade, and how it is rescued
 
-Companion to `./SKILL.md` (Part 1, flow-brief item 7) and `./delegate-behavior.md` (core rule 2). The CEO's own
+Companion to `./SKILL.md` (Part 1, flow-brief item 7) and `./delegate-phases/phase-3-execute.md` (Core Rule 2). The CEO's own
 ruling that reversed the prior blanket prohibition is quoted verbatim, with translation, at its canonical site:
 ref:skill/grimorio.conduct#spawning-an-agent rule 8 — this file does not re-quote it, it carries the mechanism
 the ruling depends on.
@@ -49,6 +49,14 @@ plus the child's new id in `tool_response.agentId` — measured live, both field
 for both a synchronous and an `async_launched` dispatch. Hooks still **cannot invoke tools** (no `SendMessage`)
 nor address an agent by ID — that constraint is unchanged. A hook never wakes anyone; it only supplies the
 who-spawned-whom record the top-level session's watch reads to decide WHO to wake.
+
+## A second, earlier layer — `subagentstop-wait.cjs` blocks the close directly
+
+`.claude/hooks/subagentstop-wait.cjs` fires on `SubagentStop`, at the moment ANY non-main-loop agent's own turn is about to close. **WHEN it dispatched a still-live `async_launched` child ⟶ it WAITS up to 120s (polling every 3s), then — whichever way the wait resolves (the child finished during the wait, or is still live when the wait expires) — it BLOCKS the agent's close and tells it to process the child's result, or keep waiting, rather than letting it close over a live dependency.** Bounded by an `AGENT_CAP` (default 3 re-blocks per agent per run) and a repo-wide kill switch (20 total blocks across the run, fail-open past that).
+
+This is a SEPARATE, EARLIER layer than the top-level session's own `parked-watch.mjs` sweep described above: `subagentstop-wait.cjs` fires at the moment of closing, before a parent ever goes quiet long enough for `parked-watch.mjs` to find it; `parked-watch.mjs` remains the layered BACKSTOP for whatever this earlier layer's own bounded cap eventually lets close anyway.
+
+**NEVER describe a subagent as free to silently close over a live background child with no consequence** — since this hook landed, it cannot: the agent is RE-BLOCKED, not merely reminded, up to its bound. **NEVER describe an older "waits 2 minutes then lets the parent die" behavior as current** — that is superseded.
 
 ## Flatten when you can — nesting is a sanctioned trade now, not a bug to avoid by default
 

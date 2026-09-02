@@ -33,9 +33,18 @@ finding to flag (Phase 7's own refusals), never a scope this phase quietly grant
    import:skill/grimorio.system-design#selection-principle--grounding-which-concern-earns-which-artifact's own
    concern-artifact-trigger map, never invented ad hoc:
 
-   - **INCLUDE** — the concern's own question matches a catalog artifact's job; pick that ONE artifact and cite
-     the concern's own source/trigger from the SELECTION PRINCIPLE map, or, absent a matching row, the same
-     criteria this step already grounds picks in: C4's own "Recommended?" field per diagram type; Kruchten's
+   - **INCLUDE** — the concern's own question matches a catalog artifact's job. **FIRST, name how many
+     identifiable INSTANCES this concern spans** (routes/operations/states/participants/events — whatever unit
+     the concern's own problem TYPE, per
+     ref:skill/grimorio.system-design/scope-completeness-method.md#1-the-spine--the-five-problem-types §1.1,
+     actually enumerates). **WHEN N = 1 (or the concern is not decomposable into instances) ⟶ select ONE
+     artifact, exactly as before.** **WHEN N ≥ 2 ⟶ select an artifact INSTANCE per one of the N — NEVER a
+     single diagram standing in for all N — UNLESS the notation itself is built to hold multiple instances
+     side-by-side inside one diagram** (e.g. one sequence diagram file naming N clearly separated,
+     individually-labelled flows is one artifact correctly covering N instances; one diagram silently merging N
+     unrelated flows into a single blob is NOT). Cite the concern's own source/trigger from the SELECTION
+     PRINCIPLE map, or, absent a matching row, the same criteria this step already grounds picks in: C4's own
+     "Recommended?" field per diagram type; Kruchten's
      4+1 by stakeholder concern; a System Sequence Diagram (black-box) vs a design-level sequence diagram, per
      the concern's own altitude; a state machine ONLY for a reactive/state-dependent object or system
      (import:skill/grimorio.system-design#5-state-machines); an ADR ONLY for an architecturally-significant decision
@@ -49,7 +58,10 @@ finding to flag (Phase 7's own refusals), never a scope this phase quietly grant
      authoring works — never a claim that anything compiles or renders correctly, which is exactly why it earns
      its own artifact-per-purpose slot instead of standing in for one of the other catalog types. ->
      ref:skill/grimorio.system-design/design-orchestrator-phases/phase-5-produce-artifacts.md#sub-mission-a--structuralfunctional-plus-mockups-when-phase-4-selected-one-of-the-original-9-types-or-a-mockup
-     for how a selected mockup actually gets produced — not this phase's own question.
+     for how a selected mockup actually gets produced — not this phase's own question. Ground the per-INSTANCE
+     selection above explicitly as closing a NAMED defect: a prior AS-IS design of a 4-route API surface
+     produced exactly one sequence diagram total, because this step never asked how many instances the concern
+     spanned.
    - **OMIT-with-reason** — a catalog artifact's job matches the concern in principle, but it does not earn its
      keep for THIS concern (too small a decision, too low a risk, redundant with an artifact already selected)
      — the same N/A discipline
@@ -104,10 +116,15 @@ finding to flag (Phase 7's own refusals), never a scope this phase quietly grant
    search RECLASSIFIED to INCLUDE, produced anchored to the identified convention. **NEVER produce anything for
    an OMITted concern, or for a GAP that stayed GAP because step 2b's search found no convention** — the
    written reason (or the recorded bespoke choice) stands in its place instead.
-4. **WHEN this design covers a genuinely multi-part component ⟶ decide its VIEWS using
-   ref:skill/grimorio.report-design/project.complex-systems.md's information-type taxonomy (STRUCTURE / FLOW / CYCLE / INVENTORY
-   / MECHANISM / DYNAMIC / QUANTITY) before naming a single diagram** — one view answers one question, never a
-   fused mega-diagram.
+4. **ALWAYS run the views-taxonomy determination — the same STRUCTURE/FLOW/CYCLE/INVENTORY/MECHANISM/DYNAMIC/
+   QUANTITY taxonomy (ref:skill/grimorio.report-design/project.complex-systems.md) — for EVERY concern, never an
+   escapable conditional.** A concern whose own INSTANCE COVERAGE above named N ≥ 2 is ALREADY multi-part BY
+   DEFINITION and this determination is NEVER a separate, re-litigable judgment call for it. A concern with N =
+   1 (or not instance-decomposable) still runs the determination, which MAY conclude STRUCTURE alone genuinely
+   suffices — **running the determination and concluding "one view" is a legitimate outcome; SKIPPING the
+   determination is not.** Ground this explicitly as closing a NAMED defect: the prior run judged a plainly
+   multi-part (4-route) surface as NOT "genuinely multi-part," because the trigger itself was escapable — this
+   rewrite closes the escape, not merely the judgment call inside it.
 
 ## LOAD (JIT) — scoped to this phase only
 
@@ -140,18 +157,39 @@ PER-CONCERN SELECTION:      <table: concern -> disposition (INCLUDE/OMIT/GAP) ->
                             GAP), one row per concern from Phase 2 — the palette is the FULL catalog
                             (system-design §1-16) PLUS mockups; a mockup counts as a real INCLUDE like
                             any other>
+INSTANCE COVERAGE:          <per concern with N>=2 identifiable instances — N stated explicitly, and
+                            confirmation N artifact-instances (or one explicit multi-instance diagram naming
+                            all N distinctly) were selected — "N/A, N=1 or not instance-decomposable" for
+                            every other concern; never one diagram standing for many, silently>
 TYPES SCOPED OUT:           <every catalog type NOT INCLUDEd for THIS concern, OMIT or GAP-that-stayed-GAP
                             (never a GAP step 2b reclassified to INCLUDE), each with its own written
                             reason — "None scoped out" only if genuinely every type was used; an empty
                             list here is itself a finding per step 2's own standing check, never a silent
-                            pass>
+                            pass. This record is PROCESS PROVENANCE, never reader-facing content — Phase 5
+                            authors it into the family's own PROVENANCE companion file (a file named
+                            `provenance.md`, or one whose own first heading starts "Provenance" — the same
+                            whole-file-exemption convention Gate 6 already uses for
+                            `boundaries.md`/`coverage.md`), NEVER into `00-index.md`, any concern file, or any
+                            other reader-facing view. Phase 6 CHECK 1 reconciles the gate's own N/A-with-reason
+                            demands against THIS provenance file specifically, never against a reader-facing
+                            one.>
 DESIGN-TIME SEARCH RESULTS: <per concern that reached GAP+domain-specific per step 2b — what was
                             searched, the notation/convention identified (a convention found here also
                             RECLASSIFIES that concern to INCLUDE in the PER-CONCERN SELECTION row above,
                             per step 2b) or GAP + the bespoke choice made, named as bespoke — "N/A, no
                             concern reached a domain-specific GAP this pass" otherwise>
-VIEWS DECIDED:               <per multi-part component, per grimorio.report-design/project.complex-systems.md's
-                            taxonomy — "N/A, no multi-part component this pass" otherwise>
+VIEWS DECIDED:               <per concern, EVERY pass — the views-taxonomy determination (step 4 above) runs
+                            unconditionally, never an escapable conditional; a concern with N=1 or not
+                            instance-decomposable still runs it. Record the per-concern OUTCOME: for N>=2
+                            (per INSTANCE COVERAGE above), the views SELECTED via
+                            grimorio.report-design/project.complex-systems.md's own STRUCTURE/FLOW/CYCLE/
+                            INVENTORY/MECHANISM/DYNAMIC/QUANTITY taxonomy; for N=1/non-decomposable, either
+                            the views selected OR an explicit confirmation that STRUCTURE alone was
+                            concluded to suffice — running the determination and concluding "one view" is a
+                            legitimate outcome, SKIPPING the determination is not. "N/A" is correct here ONLY
+                            when this design's whole lifetime produced zero concerns at all — never as a
+                            stand-in for "this concern wasn't multi-part," which is itself a genuine
+                            per-concern OUTCOME to record, never an escape from recording one>
 DECORATION DETECTOR
 (both directions):          <FORWARD — per INCLUDEd artifact: the question class it closes + the stakeholder
                             it frames, or "decoration, removed" if neither could be named; BACKWARD — per

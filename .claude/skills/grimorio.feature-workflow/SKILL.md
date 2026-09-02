@@ -204,7 +204,13 @@ When `qa`, `ux`, `security`, `code-reviewer`, or `manual-verifier` report `FAIL`
 
 1. The composer sends the failure report back to the right developer with instructions to fix.
 2. After the fix, the failing agent re-runs its checks.
-3. **Maximum 2 REWORK cycles per failing agent.** Counters are independent — QA's 2 cycles don't consume security's budget. After 2 failures on the same issue:
+3. **Maximum 2 REWORK cycles per failing agent.** Counters are independent — QA's 2 cycles don't consume
+   security's budget. The cap holds because each cycle's own review is a **FIX-VERIFICATION pass against the
+   specific finding(s) it targets, never a fresh full re-audit of the whole diff cold** — see
+   ref:skill/grimorio.code-reviewer-memory/behavior.md for the two review modes this maps onto, and
+   ref:skill/grimorio.code-reviewer-memory/review-brief-template.md for the exact per-finding context a REWORK
+   Prompt must carry so the re-evaluator checks the fix against the finding it targets, not the whole diff.
+   After 2 failures on the same issue:
    - The composer writes a summary of unresolved issues.
    - Status changes to `ESCALATE` — the user must intervene. Two failures on the same issue is a **specification** problem, not a third-attempt problem.
 
@@ -230,7 +236,9 @@ After fixing, update dev-notes.md / ui-dev-note.md with what you changed and why
 
 The composer MUST escalate to the user (stop execution) when:
 
-1. **REWORK cycles exhausted** — 2 failures on the same issue.
+1. **REWORK cycles exhausted** — 2 failures on the same issue. Per the REWORK Cycle section above, this is a
+   **specification problem, not a third-attempt problem** — **NEVER let any agent unilaterally raise a 3rd
+   cycle to route around this bound;** escalation is the correct outcome here, never a failure to try harder.
 2. **PO reports BLOCKED** — external dependency or business decision.
 3. **Architect reports BLOCKED** — ambiguous requirement with significant trade-offs.
 4. **Security reports CRITICAL** that cannot be auto-fixed.
@@ -243,7 +251,10 @@ The composer MUST escalate to the user (stop execution) when:
 
 1. **Fat composer**: whoever composes the run never writes code, tests, or architecture decisions. It only routes and evaluates status codes.
 2. **Cross-agent context bleeding**: agents assume nothing beyond what's in the artifact files. Every invocation is stateless.
-3. **Infinite loops**: hard cap at 2 REWORK cycles per agent. No exceptions.
+3. **Infinite loops**: hard cap at 2 REWORK cycles per agent. **NEVER lift the cap, by any agent, for any
+   reason.** **WHEN cycle 2 still fails AND the failing agent's report still carries live findings ⟶ those
+   findings are escalated per the Escalation Rules section below (#1), never shipped past silently, and never
+   re-run a third time hoping for a clean pass.**
 4. **Skipping agents**: don't skip unless the request type explicitly excludes them.
 5. **Mixing concerns**: QA never fixes code. Security never writes feature code. Developers never write their own tests (QA does). Manual-verifier and ux never modify code. PO never makes architecture decisions.
 6. **Self-review**: no agent reviews work it produced. The adversarial cluster reviews the developers' output, never its own.

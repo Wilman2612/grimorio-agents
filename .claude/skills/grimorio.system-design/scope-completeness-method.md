@@ -21,6 +21,21 @@ stated side by side, never merged into one confidence level.
 > (https://www.iso.org/standard/72089.html — scope/abstract only). Anyone graduating this file must decide
 > whether that sourcing is acceptable; I flag it rather than launder it.
 
+**STANDING SIZE NOTE — read before touching this file's own length.** This file is 551 lines (measured live
+via `wc -l`, not estimated or frozen — re-run it rather than trusting this number stale; the count already
+includes THIS note), past the ~500-line smell threshold
+(ref:skill/grimorio.conduct#branches-commits-and-knowledge rule 23). It earns the size for now: the content is
+genuinely dense, not padding — seven gates (§3; five sourced from the requirements-engineering literature —
+Gates 1-5 — two CEO-ruled and tagged apart from them — Gates 6-7), a five-type problem taxonomy (§1.1), two
+worked mini-examples (§4) that exercise the whole method end to end, and an honest-gaps ledger (§5) tracking
+exactly what remains unsourced. Splitting it — by gate, by section — would scatter the very cross-references
+that make it usable in one read: the spine (§1) feeds the question→artifact map (§2), which the closure gate
+(§3) checks against, which the worked examples (§4) then apply end to end; a reader following any one gate
+back to its own source question, or forward to how it plays out in a worked example, currently does that
+inside one file.
+
+**WHEN a future pass grows this file further (an eighth gate, a third worked example, or similar) ⟶ that pass owes a real split, never a further silent size-creep leaning on this same justification.**
+
 **Two boundaries with neighbouring content, stated once here so neither is duplicated below.**
 
 - **vs. ref:skill/grimorio.loop-and-graph/project.design-completeness-gate.md#2-the-completeness-gate--8-checks-in-4-groups's
@@ -297,6 +312,20 @@ adopting project leaves this open**: at least one has since ruled, keeping the c
 than adopting the stricter always-a-default alternative — recorded, exactly as this paragraph directs, at that
 project's own decision layer, never here.
 
+**One further, narrower ruling on the SAME divergence, recorded there and cross-referenced here, never
+duplicated.** `grimorio.design-orchestrator`, as an adopting project, has additionally ruled toward
+RESOLVE-then-document specifically: a TBD the bases (the signed vision, product memory, this project's own design records, live code) can
+already decide MUST be resolved, never merely documented; only a genuine CEO-owned call may still stand
+deferred, carrying all four of IEEE 830 cl. 4.3.3.1's own fields above. **This is narrower than, and does not
+replace, the always-a-default alternative this paragraph already names above** — RESOLVE-then-document
+requires a DECIDABLE item to be decided; it does not require every genuinely UNDECIDABLE item to carry a
+stated default, which stays declined exactly as the ruling below states. Read
+this project's own system-design memory's
+own item (a) addendum for the full ruling and its own reconciliation with the paragraph above — never
+duplicated here, and enforced operationally at
+ref:skill/grimorio.system-design/design-orchestrator-phases/phase-6-converge-verify-validate.md#the-loop--this-phases-own-exit-condition-the-per-question-closure-table-replaces-the-old-design-understood-criterion's
+own Gate 4, never at this general-level file.
+
 ### GATE 5 — the two-direction detector
 
 The §2.2 FORWARD/BACKWARD detector above, applied as this gate's own fifth check — never restated here a
@@ -350,9 +379,54 @@ deliverable field carries real content), never a design-file check. **WHEN eithe
 gate ⟶ ALWAYS state both facts above plainly, never imply either is already-institutionalized machinery this
 gate extends.**
 
+### GATE 7 — CLASS COVERAGE
+
+> **[CEO ruling] — NOT literature-sourced, unlike Gates 1-5 above.** Relayed via agent:grimorio.system-keeper,
+> paraphrased from the CEO's own reasoning, never independently quoted, per this corpus's own rule-11
+> discipline (ref:skill/grimorio.conduct#reasoning-and-reporting → "NEVER state a claim of yours as his").
+> Tagged distinctly from the `[P]`/`[S]`/`[SYN]` legend above for the same reason those three are kept apart
+> from one another: never let this gate read as though the requirements-engineering literature said it too.
+
+**SCOPE.** Applies to every non-exempt concern file in a design family — the SAME exemption test Gate 6 already
+defines (`boundaries.md`/`coverage.md`/`provenance.md` by filename, or a leading Negative-Scope/Out-of-
+Scope/Boundaries/Provenance heading).
+
+**THE RULE.** For every problem TYPE (per §1.1's five rows) a design's own elicited concerns classified as, the
+produced family must carry AT LEAST the following diagram CLASS SET, across the family as a whole (not
+necessarily one-per-file):
+
+- **Type A (API/contract):** (i) ≥1 end-to-end FLOW diagram (a representative request's own data-flow, mermaid
+  `flowchart`); (ii) ≥1 per-operation BEHAVIORAL diagram (mermaid `sequenceDiagram`) for EACH operation/instance
+  named in the concern's own INSTANCE COVERAGE (phase-4's own field) — never fewer sequence instances than that
+  field's own N; (iii) a RENDERED combinatorial/decision artifact (a mermaid diagram or an actual markdown
+  table under a matrix/decision-shaped heading) WHENEVER the concern's own question involves combinatorial
+  rules (credential × route, role × permission, or similar); (iv) ≥1 real CONTAINER-level structural diagram
+  (C4-style, or the project's own equivalent) WHENEVER the concern's own boundary spans ≥2 components/services.
+- **Type B (data artifact/lineage):** ≥1 DFD/flow/lineage diagram; a rendered CRUD/where-used matrix.
+- **Type C (process/workflow):** ≥1 swimlane/activity diagram per distinct business event the concern names.
+- **Type D (stateful component):** ≥1 state-transition diagram (mermaid `stateDiagram`/`stateDiagram-v2`).
+- **Type E (UI surface):** ≥1 dialog-map diagram.
+
+**CHECK: for every problem TYPE a design's concerns classified as, is the required CLASS SET above present in
+the produced family?** A missing required class is a STRUCTURAL FAIL. **This gate is DISTINCT FROM, and IN
+ADDITION TO, Gate 6**: Gate 6 asks "is prose crowding out what is already selected" (a RATIO question over what
+exists); this gate asks "is the RIGHT SET of diagram classes present AT ALL" (a COVERAGE question, independent
+of ratio) — a file can PASS Gate 6's own prose-ratio check while FAILING this gate, which is exactly the CEO's
+own observed case: all 7 spend-api files passed Gate 6 (each carried ≥1 diagram/table outweighing its own
+prose) while the family as a whole never produced a per-route sequence for 3 of 4 routes, an end-to-end
+data-flow diagram, a rendered credential×route matrix, or a real C4 container view.
+
+**MECHANISM.** `node scripts/audit-chain.mjs --diagram-classes [filter]` is a DETERMINISTIC INVENTORY tool
+(reports which mermaid TYPE tokens and matrix-shaped tables exist — never judges sufficiency); the SUFFICIENCY
+judgment (does the inventory satisfy THIS gate's own required set for the concern's classified TYPE) is an
+AGENT-BASED VERIFIER step, run by grimorio.scout at Phase 6 CHECK 1 — state this composition explicitly, citing
+ref:skill/grimorio.prompt-writing-quality#the-harness--grounding-an-obligation-into-a-checkable-determination-the-ceos-own-recurring-construct-formalized-here's
+own "exhaust the deterministic measure before judgment" discipline, never presented as if the CLI flag alone
+gates this.
+
 ### THE GATE, as a checkable list
 
-A document of type T is CLOSED when all six hold simultaneously:
+A document of type T is CLOSED when all seven hold simultaneously:
 1. Every question in T's §1 set (spine + type-specific) is **answered**, or **deferred with an owner and a
    date**, or **explicitly excluded**. [Gate 1]
 2. Every requirement statement has a finite, cost-effective check a person or machine can run — or a fit
@@ -365,13 +439,16 @@ A document of type T is CLOSED when all six hold simultaneously:
 6. **DIAGRAM-PRIMACY**: for every non-exempt concern file, at least one diagram or table is present, and its
    own prose line count (excluding an exempt Negative-Scope/Out-of-Scope/Boundaries sub-section) does not
    exceed its diagram+table line count. [Gate 6 — CEO ruling, NOT literature-sourced like Gates 1-5]
+7. **CLASS COVERAGE**: for every problem TYPE this design's concerns classified as, the required diagram CLASS
+   SET (§ Gate 7 above) is present across the family — a missing required class is a STRUCTURAL FAIL. [Gate 7 —
+   CEO ruling, NOT literature-sourced like Gates 1-5, same standing as Gate 6]
 
 **Iteration, composed rather than reinvented here.** Running this gate is not a one-shot pass: a real scope
 document is drafted, gated, reworked on whatever the gate names, then re-gated. That probe→fail→fix→re-probe
 shape is the exact same one
 ref:skill/grimorio.loop-and-graph/project.design-completeness-gate.md#3-the-design-review-pipeline--one-design-items-own-trip-through-the-gate-fagan--ieee-1028's
 own design-review pipeline already runs for a different completeness question — an adopting caller wires THIS
-gate's six checks into that same iterate-until-green shape rather than inventing a second, competing loop
+gate's seven checks into that same iterate-until-green shape rather than inventing a second, competing loop
 mechanism; this file states the checklist and its evidence contract, never the loop that drives it.
 
 ---

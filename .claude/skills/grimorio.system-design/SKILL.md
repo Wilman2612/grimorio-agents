@@ -36,9 +36,12 @@ taste.
   `./design-orchestrator-phases/`.
 - **`./design-orchestrator-phases/`** — the seven phase files agent:grimorio.design-orchestrator's own chain
   loads just-in-time, one at a time, past Phase 0.
-- **`./design-redactor-behavior.md`** — agent:grimorio.design-redactor's protocol: rendering a finished
-  design — `design.md` alone, or the family of files Phase 6 converged to — into the project's one HTML
-  template.
+- **`./design-redactor-behavior.md`** — agent:grimorio.design-redactor's own Phase 0, the entry point of its own
+  4-phase state machine; every phase past Phase 0 lives one file per phase under `./design-redactor-phases/`.
+  Renders a finished design — `design.md` alone, or the family of files Phase 6 converged to — into the
+  project's one HTML template.
+- **`./design-redactor-phases/`** — the four phase files agent:grimorio.design-redactor's own chain loads
+  just-in-time, one at a time, past Phase 0.
 - **`./project.design-orchestrator-quasi-software-view.md`** — agent:grimorio.design-orchestrator's own drawn
   quasi-software view (state machine + loop + graph) for its v1 phase map, landed ahead of the shell, per
   ref:skill/grimorio.phase-splitting#the-agent-design-plans-drawn-view--a-hard-requirement-never-optional's new standing

@@ -12,7 +12,7 @@
 #   1. objective exists      — nothing to measure the branch against otherwise.
 #   2. a usable base         — a branch whose base is ITSELF merges nothing and reports success.
 #   3. clean tree            — the checks must run against exactly what would merge.
-#   4. no open checks        — "hasta que no se cumplan todos los objetivos, no paras."
+#   4. no open checks        — "until all the objectives are met, you don't stop." (translated)
 #   5. (retired 2026-08-09)  — was the ledger drain. It read a two-file ledger that no longer exists,
 #                              so the gate and its three selftests were deleted with it. The numbered
 #                              slot is kept so 6-12 below still name the gates the code labels. The
@@ -68,7 +68,7 @@ git merge-base --is-ancestor "$base" HEAD 2>/dev/null \
 open=$(obj_open_checks "$objfile")
 if [ "${open:-0}" -gt 0 ]; then
   grep -n '^- \[ \] ' "$objfile" >&2
-  fail "$open check(s) are still open. \"Hasta que no se cumplan todos los objetivos, no paras.\""
+  fail "$open check(s) are still open. \"Until all the objectives are met, you don't stop.\" (translated)"
 fi
 closed=$(obj_closed_checks "$objfile")
 [ "${closed:-0}" -gt 0 ] || fail "the objective has no checks at all. An objective nothing can verify is a wish."
@@ -76,7 +76,7 @@ closed=$(obj_closed_checks "$objfile")
 # --- 5. (retired 2026-08-09) --------------------------------------------------------------------
 # The ledger-drain gate read a two-file ledger that no longer exists. Emptied on the CEO's order at
 # 164 entries / 123 OPEN / 5 ever closed, its narrative sibling deleted; the gate and its three
-# selftests went with it. -> ref:repo/.claude/grimorio-defects.md
+# selftests went with it. -> this project's own defect ledger
 
 # --- 6. milestone status -----------------------------------------------------------------------
 ledger=".claude/skills/grimorio.po-memory/project.features-status.md"

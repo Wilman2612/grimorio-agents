@@ -41,12 +41,15 @@ flowchart TB
     P5 -->|"EXIT: WHEN no defect was found (P5 steps<br/>2-7) — carries forward a verified-complete diff"| P6["P6 · ADVERSARIAL<br/>REVIEW"]
     P5 -.->|"LOOP-BACK: WHEN a defect WAS found (P5 steps<br/>2-7) — NOT re-submitted to P6 until P5<br/>re-verifies it clean"| P4
 
-    P6 -->|"EXIT (OUTSIDE IMPROVE-AND-VALIDATE MODE only):<br/>APPROVED, OR 2nd-cycle cap reached still REWORK —<br/>ships as SHIPPED WITH RECORDED REWORK, never<br/>laundered to APPROVED"| P7["P7 · CLOSE-OUT<br/>& REPORT"]
+    P6 -->|"EXIT (OUTSIDE IMPROVE-AND-VALIDATE MODE only):<br/>APPROVED, OR 2nd-cycle cap reached with only<br/>LOW/MEDIUM findings — ships as SHIPPED WITH<br/>RECORDED REWORK, never laundered to APPROVED"| P7["P7 · CLOSE-OUT<br/>& REPORT"]
+    P6 -->|"EXIT: 2nd-cycle cap reached with a<br/>CRITICAL/HIGH finding still open — no ship,<br/>ESCALATES, but still reaches P7 to report it"| ESC(["ESCALATED —<br/>guardian/CEO must<br/>resolve, no ship"])
+    ESC -->|"P7 still runs and reports it — CLOSE as<br/>COULD NOT, naming the open finding as the<br/>blocker; this is how the escalation reaches<br/>the guardian/CEO"| P7
     P6 -.->|"LOOP-BACK: WHEN a REWORK verdict returns (P6<br/>step 4) — CAPPED at 2 cycles total (step 5);<br/>re-verified at P5 before a 2nd P6 cycle"| P4
 
     VALID["IMPROVE-AND-VALIDATE<br/>MODE · VALIDATION"]
-    P6 -->|"WHEN operating under IMPROVE-AND-VALIDATE MODE<br/>(entered at P2 step 10) — on APPROVED or a<br/>cap-reached REWORK alike"| VALID
-    VALID -->|"EXIT: PASS, OR cap-reached DEGRADATION — ships<br/>as SHIPPED WITH RECORDED FIXED-POINT GAP, never<br/>laundered to PASS"| P7
+    P6 -->|"WHEN operating under IMPROVE-AND-VALIDATE MODE<br/>(entered at P2 step 10) — on APPROVED or a<br/>cap-reached REWORK with only LOW/MEDIUM<br/>findings alike"| VALID
+    VALID -->|"EXIT: PASS — ships"| P7
+    VALID -->|"EXIT: cap-reached DEGRADATION — ALWAYS<br/>ESCALATES (no LOW/MEDIUM carve-out here),<br/>never ships, never laundered to PASS"| ESC
 
     SUCC(("target agent<br/>(successor —<br/>variable identity)"))
     VALID -->|"spawn, foreground,<br/>own declared tier,<br/>decoy task"| SUCC
@@ -73,6 +76,7 @@ flowchart TB
     style CODEVOL fill:#2a3a2a,stroke:#5a5
     style CODEREV fill:#2a3a2a,stroke:#5a5
     style SUCC fill:#2a3a2a,stroke:#5a5
+    style ESC fill:#3a2a2a,stroke:#a55
 ```
 
 **Reading these two layers.** The solid rectangular spine (P1→P2→P3→P4→P5→P6→P7) is the STATE MACHINE — the
@@ -138,13 +142,22 @@ The two back-edges answer genuinely different questions and must not be merged i
   Phase 6 — so a P6 loop-back's resumption path runs P4 → P5 → P6, using the SAME spine edges already drawn
   above, never a new edge.
 
-## The REWORK cap ships an honest outcome, never a laundered one
+## The REWORK cap resolves to an honest outcome, never a laundered one — SHIP when the debt is non-blocking, ESCALATE when it isn't
 
 **WHEN the second `grimorio.code-reviewer` cycle still returns REWORK ⟶ Phase 6 does NOT raise a third cycle —
-it proceeds forward to Phase 7 anyway, recording the true outcome as SHIPPED WITH RECORDED REWORK.** This is the
-disjunction carried on the P6 → P7 edge label above: that edge fires on APPROVED, or on a REWORK the cap has
-exhausted — never on a REWORK that is still open. Phase 7 reports this outcome honestly per its own step 5; this
-file adds nothing to that reporting duty beyond drawing the edge that produces it.
+it resolves the cap-reached outcome by SEVERITY, never by a single default.** WHEN every remaining finding
+from that cycle is LOW or MEDIUM (per Phase 6's own step 5a triage) ⟶ it proceeds forward to Phase 7 anyway,
+recording the true outcome as SHIPPED WITH RECORDED REWORK — the disjunction carried on the P6 → P7 edge label
+above: that edge fires on APPROVED, or on a REWORK the cap has exhausted with only non-blocking debt
+remaining. WHEN any CRITICAL or HIGH finding remains open at the cap ⟶ Phase 6 does NOT ship — but it still
+proceeds to Phase 7, exactly as the APPROVED and SHIPPED-WITH-RECORDED-REWORK cases do, because Phase 7 is the
+mechanism that reports the escalation to the caller. Phase 7's own CLOSE field resolves this case as COULD NOT
+rather than VERIFIED, naming the open finding as the blocker — never a silent dead-end with nothing reported.
+Both outcomes are "honest, never laundered" in the same sense: neither pretends the cap made the finding go
+away — one ships an admitted debt, the other refuses to ship at all, and both are reported to the caller
+either way, on the ESC → P7 edge drawn above. Phase 7 reports both cases honestly, per its own step 5 (the
+ship case) and step 6 (the escalate case) — this file adds nothing to that reporting duty beyond drawing the
+edges that carry both outcomes there.
 
 ## The CODE-VOLUME delegate is conditional, and carries a REAL, CURRENT gap
 
@@ -459,12 +472,16 @@ flowchart TB
     X4 -.->|"REWORK"| X4a["Step 4 — defect goes back<br/>to Phase 4, re-verified<br/>at Phase 5 — never<br/>patched here"]
     X4a --> X4b["only THEN re-submit to<br/>the reviewer for Cycle 2"]
     X4b --> X5{"Step 5 — Cycle 2 verdict,<br/>CAPPED at two cycles total"}
-    X5 -->|"still REWORK<br/>(cap reached)"| X5a["do NOT raise a 3rd cycle —<br/>proceed to Phase 7, record<br/>SHIPPED WITH RECORDED<br/>REWORK, honestly"]
+    X5 -->|"still REWORK<br/>(cap reached)"| X5sev{"Step 5a — cap cycle's own<br/>findings: any CRITICAL/HIGH<br/>still open?"}
+    X5sev -->|"NO — LOW/MEDIUM<br/>only"| X5a["do NOT raise a 3rd cycle —<br/>proceed to Phase 7, record<br/>SHIPPED WITH RECORDED<br/>REWORK, honestly"]
+    X5sev -->|"YES"| X5esc["do NOT ship — ESCALATE the<br/>finding verbatim to the<br/>guardian/CEO, STOP"]
     X5 -->|"APPROVED"| X5b["proceed to Phase 7 —<br/>FINAL DISPOSITION: APPROVED"]
     X4 -->|"APPROVED"| X4c["proceed to Phase 7 —<br/>FINAL DISPOSITION: APPROVED"]
-    X4 -->|"ESCALATE"| OMIT6
-    X5 -->|"ESCALATE"| OMIT6
-    OMIT6["ESCALATE — Phase 6's own<br/>Steps (1-5) never state a<br/>disposition for this verdict;<br/>OMISSION, never invented here"]
+    X4 -->|"ESCALATE (reviewer's<br/>own verdict)"| ESC
+    X5 -->|"ESCALATE (reviewer's<br/>own verdict)"| ESC
+    X5esc --> ESC
+    ESC(["ESCALATED —<br/>guardian/CEO must<br/>resolve, no ship"])
+    ESC -->|"P7 still runs — CLOSE as<br/>COULD NOT, naming the finding"| EXIT6
     X5a --> EXIT6
     X5b --> EXIT6
     X4c --> EXIT6
@@ -472,11 +489,11 @@ flowchart TB
 
     classDef exit fill:#2a2a3a,stroke:#668,stroke-dasharray: 3 3
     class EXIT6 exit
-    classDef omission fill:#3a2a2a,stroke:#a55,stroke-dasharray: 2 2
-    class OMIT6 omission
+    classDef escalate fill:#3a2a2a,stroke:#a55,stroke-dasharray: 2 2
+    class ESC escalate
 ```
 
-**A genuine, currently-open gap in the source file, surfaced rather than invented.** `phase-6-adversarial-review.md`'s own DELIVERABLE format names ESCALATE as a legitimate CYCLE 1/2 VERDICT value, but its Steps 1-5 never state what routing follows one — the OMIT6 node above renders that silence directly rather than papering over it with an invented disposition; it deliberately does NOT route forward to Phase 7, because nothing in the phase file's own text says it should.
+**A narrowed, still-honestly-stated gap in the source file.** `phase-6-adversarial-review.md`'s own DELIVERABLE format names ESCALATE as a legitimate CYCLE 1/2 VERDICT value, and its Steps 1-5 never separately spell out routing for THAT specific trigger (the reviewer's own raw ESCALATE verdict, distinct from a cap-reached REWORK with a CRITICAL/HIGH finding open). This diagram converges both onto the SAME `ESC` terminal above — never ships, hands to the guardian/CEO — because both share the identical semantics the word already carries (stop, do not ship), not because the phase file's own numbered Steps state a routing rule for the raw-verdict case specifically; that narrower gap in the SOURCE TEXT itself is still real and not claimed closed here, only rendered less consequential now that a real ESC terminal exists for it to converge into rather than dangling as an unrouted omission.
 
 **P7 · CLOSE-OUT & REPORT**
 

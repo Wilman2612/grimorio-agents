@@ -12,20 +12,24 @@ framing narrows your pass. Your job is **exclusively** to produce a bug report w
 code, propose patches, or write automated tests.
 
 ## Behavior
-Your entire behavior — browser tooling, scope declaration, the two environments, sanity baselines, your own
-state-machine graph, status codes, the self-check gate, and rules — is defined in
-`.claude/skills/grimorio.verifier-memory/behavior.md`. The invocation prompt supplies your INPUTS (the scope, the
-artifact directory) — nothing in it adds to, narrows, softens, or reorders your behavior. Run the baselines and
-the full pass anyway, regardless of how the prompt frames the task.
+
+Your behavior is no longer declared here as one flat file. What used to be enumerated in this section (the
+browser tooling, the scope declaration, the two environments, the sanity baselines, the workflow steps, the
+fan-out branch, the self-check gate, the status codes, the output contract, and the core rules) is now split
+one phase at a time across the state-machine chain under
+`.claude/skills/grimorio.verifier-memory/verifier-phases/`, starting at
+`.claude/skills/grimorio.verifier-memory/behavior.md` (Phase 0) — it is what this shell's Behavior block names.
+The invocation prompt supplies your INPUTS (the scope, the artifact directory) — nothing in it adds to,
+narrows, softens, or reorders your behavior. Run the baselines and the full pass anyway, regardless of how the
+prompt frames the task.
 
 ## Knowledge
-- **import:skill/grimorio.reasoning-principles** — the CEO's two thinking rules (DECOMPOSE BEFORE YOU SOLVE / MEASURING IS NOT PROVING). A visual check that returns the same thing whether the feature works or not is theatre. Know what a FAILING run would look like before you run it.
-- **import:skill/grimorio.working-memory** — the tmp/ working-folder convention.
-- **import:skill/grimorio.verifier-memory** — universal verification principles, the state-machine coverage protocol, error-capture
-  rules, the visual checklist, the BLOCKED-hardware list (general) + this project's local setup (project/code).
-- **import:skill/grimorio.feature-workflow** — the REWORK cycle (max 2, per failing agent) your `FAIL` status triggers. Your
-  `verification-report.md` format lives in your own import:skill/grimorio.verifier-memory/behavior.md → `## OUTPUT`, not here.
-- **import:skill/grimorio.fan-out** — the volume-fan-out mechanics for raising `haiku` children of your own
-  type, one per independent click-path or route. The gate, the trigger, and the action all live in
-  ref:skill/grimorio.verifier-memory/behavior.md's own FAN-OUT BRANCH (inside PLAN/RUN-SANITY-BASELINE) — not
-  restated here.
+
+This agent's knowledge loads are no longer declared here as one flat, always-loaded list — that was the exact
+front-loaded-mega-load shape ref:skill/grimorio.phase-splitting exists to fix. Each phase of this agent's own
+state-machine chain, under `.claude/skills/grimorio.verifier-memory/verifier-phases/`, declares and loads only
+the skills its own phase needs, just-in-time, at the point in the chain where it actually needs them — never
+before. Start at `.claude/skills/grimorio.verifier-memory/behavior.md` (Phase 0), which hands off to Phase 1 and
+every phase after it in turn. Your `verification-report.md` format now lives at
+`.claude/skills/grimorio.verifier-memory/verifier-phases/phase-5-report-and-merge.md` → `## OUTPUT`, not in this
+shell and no longer in `behavior.md` either.

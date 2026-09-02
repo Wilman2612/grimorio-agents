@@ -1,53 +1,24 @@
 #!/usr/bin/env node
 /* @keep-comment
  * keeper-worktree-guard.cjs — PreToolUse (Edit|Write|MultiEdit) guard: DENIES an edit whose resolved target
- * path EXACTLY matches one of a small, explicitly-named list of main-tree paths, while a keeper worktree run
- * has ARMED this guard — so a spawned child's edit lands in the keeper's own worktree instead of silently
- * defaulting into the shared main checkout.
+ * path lands inside the MAIN TREE while the calling session is itself rooted in a LINKED WORKTREE, decided
+ * automatically from real git identity every invocation -- no marker, no arming step. CEO-approved; see the
+ * commit that landed this rewrite for the incident and the prior marker-based design it replaces.
  *
- * WHY THIS EXISTS. grimorio.system-keeper is building this mechanism itself (its own diagnose/decide work,
- * CEO-approved -- relayed via the dispatch brief: "The CEO explicitly approved a refusing/enforcing hook
- * here -- this satisfies harness.md's precondition gate"), against a real, already-happened incident: a
- * prior child spawned this same dispatch (for an unrelated doctrine change) landed its edits in the main
- * tree by mistake, discovered only by the keeper manually diffing `git status` across both trees and moving
- * the files over by hand. See ref:skill/grimorio.code-harness and
- * ref:skill/grimorio.conduct#branches-commits-and-knowledge (rule 16, the develop/worktree/commit
- * discipline) for the standing WHO-WORKS-WHERE rule this hook enforces mechanically for the one narrow case
- * a marker names -- it does not replace that rule, it catches the one failure mode diligence alone already
- * missed once.
+ * @keep-comment NEVER: exit non-zero, or let an uncaught exception escape this file. ANY internal failure --
+ * including a failed or unsupported `git` call -- degrades to silent passthrough (fail-open) -- the same
+ * invariant harness-lookup.cjs, worktree-create-from-develop.cjs, and spawn-grimorio-conduct-gate.cjs (this
+ * directory) already state for themselves -- except the ONE deliberate `permissionDecision:"deny"` case in
+ * `deny()` below, which is this file's whole reason to exist.
  *
- * NEVER: exit non-zero, or let an uncaught exception escape this file. ANY internal failure degrades to
- * silent passthrough (fail-open) -- the same invariant harness-lookup.cjs, worktree-create-from-develop.cjs,
- * and spawn-grimorio-conduct-gate.cjs (this directory) already state for themselves -- except the ONE
- * deliberate `permissionDecision:"deny"` case in `deny()` below, which is this file's whole reason to exist.
- *
- * WHEN no marker file exists, or `active` is not `true` ⟶ exit 0 silently. This is the DEFAULT,
- * overwhelmingly common case: the guard is almost always inert, and every Edit/Write/MultiEdit anywhere --
- * including a concurrent, unrelated task's own work in the very same main tree -- proceeds untouched.
- *
- * THE MARKER, `.claude/.cache/keeper-worktree-guard.json`, read from the SAME project-directory base
- * harness-lookup.cjs already uses (`CLAUDE_PROJECT_DIR` -> `input.cwd` -> `process.cwd()`):
- *   { "active": true, "worktreeRoot": "<abs path>", "mainTreeRoot": "<abs path>",
- *     "protectedRelPaths": ["<repo-relative path>", ...], "armedBy": "<agent_id>", "armedAt": "<ISO ts>" }
- * Armed/disarmed only via `scripts/keeper-worktree-guard.mjs` (its own `arm`/`disarm` subcommands) -- never
- * by hand-editing the marker, and never by this hook, which only ever READS it.
- *
- * THE MATCH IS EXACT, NEVER A PREFIX, NEVER A SUBSTRING, NEVER A DIRECTORY MATCH -- normalized, and
- * case-insensitive ONLY on Windows (`process.platform === "win32"`). A broader match would deny work in the
- * main tree that has nothing to do with this mechanism; this hook's whole point is to touch the smallest
- * possible surface -- the exact small list of paths the marker names, never a broad class.
- *
- * IF THIS GATE IS IN YOUR WAY RATHER THAN DOING ITS JOB: disarm it first --
- * `node scripts/keeper-worktree-guard.mjs disarm` -- rather than editing this file or its settings.json
- * entry. If it is wrong on principle, not just in your way right now, delete it outright: remove the
- * "PreToolUse" -> "Edit|Write|MultiEdit" entry pointing at keeper-worktree-guard.cjs from
- * .claude/settings.json, and delete this file and its companion scripts/keeper-worktree-guard.mjs. Retiring
- * this deliberately is legitimate; bypassing it is not.
+ * IF THIS GATE IS IN YOUR WAY RATHER THAN DOING ITS JOB: there is no marker to disarm -- retire it outright
+ * instead of working around it. Remove the "PreToolUse" -> "Edit|Write|MultiEdit" entry pointing at
+ * keeper-worktree-guard.cjs from .claude/settings.json, and delete this file. Retiring this deliberately is
+ * legitimate; bypassing it is not.
  */
 const fs = require("fs");
 const path = require("path");
-
-const MARKER_REL = path.join(".claude", ".cache", "keeper-worktree-guard.json");
+const { execFileSync } = require("child_process");
 
 function readInput() {
   try {
@@ -59,16 +30,6 @@ function readInput() {
 
 function projectDirOf(input) {
   return process.env.CLAUDE_PROJECT_DIR || (input && input.cwd) || process.cwd();
-}
-
-function readMarker(projectDir) {
-  try {
-    const raw = fs.readFileSync(path.join(projectDir, MARKER_REL), "utf8");
-    const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === "object" ? parsed : null;
-  } catch (_) {
-    return null;
-  }
 }
 
 // Resolve the incoming file_path to absolute. It may arrive relative to input.cwd (the same field
@@ -84,16 +45,55 @@ function normalize(absPath) {
   return process.platform === "win32" ? resolved.toLowerCase() : resolved;
 }
 
-function deny(worktreeEquivalent, protectedMainPath) {
+// @keep-comment MEASURED, not assumed: on git < 2.31 (this machine's own git is 2.30.0.windows.1, confirmed
+// live while writing this file's own selftest), `rev-parse` does NOT reject an unrecognized
+// `--path-format=absolute` flag -- it echoes the token back as an extra output line and still exits 0,
+// producing a TWO-LINE result that would silently corrupt every path comparison downstream while still
+// looking like success (never reaching the fail-open branch at all). Degrading safely on this would make the
+// whole mechanism permanently inert on this repo's own actual git -- so ATTEMPT 1 asks for the modern flag
+// and accepts only a clean single-line result (rejecting the two-line echo like a thrown error); WHEN it
+// fails ⟶ ATTEMPT 2 retries bare (every git version supports it) and resolves the result to absolute itself,
+// since the bare form can come back relative. WHEN attempt 2 also fails ⟶ null, like any other git-resolution
+// failure. Mirrors worktree-create-from-develop.cjs's own tiered fallback philosophy (this same directory).
+function gitRevParseOne(flagArgs, baseDir) {
+  const opts = { cwd: baseDir, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] };
+  try {
+    const raw = execFileSync("git", ["rev-parse", "--path-format=absolute", ...flagArgs], opts).trim();
+    if (raw !== "" && !raw.includes("\n")) return raw;
+  } catch (_) {
+    /* fall through to attempt 2 below */
+  }
+  try {
+    const raw = execFileSync("git", ["rev-parse", ...flagArgs], opts).trim();
+    if (raw === "" || raw.includes("\n")) return null;
+    return path.resolve(baseDir, raw);
+  } catch (_) {
+    return null;
+  }
+}
+
+// Returns { gitDir, commonDir, worktreeRoot } when all three resolve, or null on ANY failure -- read by the
+// caller as "cannot determine worktree status", never as a violation (passthrough).
+function resolveGitFacts(baseDir) {
+  const gitDir = gitRevParseOne(["--git-dir"], baseDir);
+  const commonDir = gitRevParseOne(["--git-common-dir"], baseDir);
+  const worktreeRoot = gitRevParseOne(["--show-toplevel"], baseDir);
+  if (!gitDir || !commonDir || !worktreeRoot) return null;
+  return { gitDir, commonDir, worktreeRoot };
+}
+
+function deny(mainTreePath, mainTreeRoot, worktreeRoot, worktreeEquivalent) {
   const message =
-    `keeper-worktree-guard.cjs BLOCKED this edit: "${protectedMainPath}" is a PROTECTED main-tree path ` +
-    `while a keeper worktree run is active.\n\n` +
+    `keeper-worktree-guard.cjs BLOCKED this edit: "${mainTreePath}" resolves inside the MAIN TREE ` +
+    `(${mainTreeRoot}) while this session is rooted in a linked worktree (${worktreeRoot}).\n\n` +
     `Use the worktree-equivalent path instead:\n  ${worktreeEquivalent}\n\n` +
-    `This main-tree path is protected because a spawned child's edit landing here, instead of in the ` +
-    `keeper's own worktree, is exactly the mistake this guard exists to catch (see this file's own header ` +
-    `comment for the incident that produced it).\n\n` +
-    `IF THIS GATE IS IN YOUR WAY RATHER THAN DOING ITS JOB, disarm it instead of working around it:\n` +
-    `  node scripts/keeper-worktree-guard.mjs disarm`;
+    `This main-tree location is protected because a spawned child's edit landing here, instead of in its ` +
+    `own worktree, is exactly the mistake this guard exists to catch (see the commit that landed this rewrite ` +
+    `for the incident that produced it, and for why this is now a directory-prefix match rather than a ` +
+    `small named list).\n\n` +
+    `IF THIS GATE IS IN YOUR WAY RATHER THAN DOING ITS JOB, retire it outright instead of working around ` +
+    `it -- there is no marker to disarm any more: remove the "PreToolUse" -> "Edit|Write|MultiEdit" entry ` +
+    `pointing at keeper-worktree-guard.cjs from .claude/settings.json, and delete this file.`;
   process.stdout.write(
     JSON.stringify({
       hookSpecificOutput: {
@@ -105,35 +105,6 @@ function deny(worktreeEquivalent, protectedMainPath) {
   );
 }
 
-// The marker's own shape guard: active, and every field main() needs actually present as the right type.
-// Fail-open by construction -- any missing/wrong-typed field returns false, same as before extraction.
-function isValidMarker(marker) {
-  return (
-    !!marker &&
-    marker.active === true &&
-    typeof marker.worktreeRoot === "string" &&
-    typeof marker.mainTreeRoot === "string" &&
-    Array.isArray(marker.protectedRelPaths)
-  );
-}
-
-// EXACT match only, never a prefix/substring/directory match -- see this file's own header comment.
-// Returns the matched relPath (so the caller can rebuild both the main-tree and worktree-side absolute
-// paths from it), or null when nothing in protectedRelPaths matches incomingNorm.
-function findProtectedMatch(protectedRelPaths, mainTreeRoot, incomingNorm) {
-  for (const relPath of protectedRelPaths) {
-    if (typeof relPath !== "string" || relPath.length === 0) continue;
-    let candidateAbs;
-    try {
-      candidateAbs = path.join(mainTreeRoot, relPath);
-    } catch (_) {
-      continue;
-    }
-    if (normalize(candidateAbs) === incomingNorm) return relPath;
-  }
-  return null;
-}
-
 function main() {
   const input = readInput();
   if (!input) return;
@@ -142,14 +113,28 @@ function main() {
   const filePath = ti.file_path || ti.filePath;
   if (!filePath) return;
 
-  const marker = readMarker(projectDirOf(input));
-  if (!isValidMarker(marker)) return;
+  const facts = resolveGitFacts(projectDirOf(input));
+  if (!facts) return; // cannot determine worktree status -> passthrough, per this file's own fail-open invariant
 
-  const incomingNorm = normalize(resolveIncoming(filePath, input));
-  const match = findProtectedMatch(marker.protectedRelPaths, marker.mainTreeRoot, incomingNorm);
-  if (!match) return;
+  // Not inside a linked worktree at all -- this session IS the main checkout. Never applies here, by
+  // construction, regardless of what the incoming path is.
+  if (normalize(facts.gitDir) === normalize(facts.commonDir)) return;
 
-  deny(path.join(marker.worktreeRoot, match), path.join(marker.mainTreeRoot, match));
+  // commonDir ends in a literal ".git" segment for a STANDARD, non-bare, non-"--separate-git-dir" repository
+  // (this project's own topology) -- its parent is then the main tree's own working-tree root. An atypical
+  // topology could break this assumption; not hedged further here since it does not apply to this repo's own
+  // actual layout.
+  const mainTreeRoot = path.dirname(path.resolve(facts.commonDir));
+  const mainTreeRootNorm = normalize(mainTreeRoot);
+  const incomingAbs = resolveIncoming(filePath, input);
+  const incomingNorm = normalize(incomingAbs);
+
+  const isMainTreeRootItself = incomingNorm === mainTreeRootNorm;
+  const isUnderMainTree = incomingNorm.startsWith(mainTreeRootNorm + path.sep);
+  if (!isMainTreeRootItself && !isUnderMainTree) return;
+
+  const worktreeEquivalent = path.join(facts.worktreeRoot, path.relative(mainTreeRoot, incomingAbs));
+  deny(incomingAbs, mainTreeRoot, facts.worktreeRoot, worktreeEquivalent);
 }
 
 try {

@@ -90,7 +90,7 @@
  * instructed to. This is exactly the same class of limitation spawn-grimorio-conduct-gate.cjs's own header
  * states for its own check: a compelling instruction being present is not proof it was obeyed. Passing this
  * gate is the caller having supplied a working instruction in the one channel measured to compel obedience for
- * this kind of clause (ref:repo/objectives/grimorio-loop-graph-findings.md F7/F12/F13 vs F5/F8, by the same
+ * this kind of clause (this project's own loop/graph findings record, F7/F12/F13 vs F5/F8, by the same
  * logic spawn-grimorio-conduct-gate.cjs's own header already applies) — never proof of what happens after.
  *
  * EXTENDED, 2026-08-24, for ELEMENT 1b (the user:/agent: anchoring check). FINDING-01 (grimorio.code-reviewer,
@@ -503,7 +503,7 @@ function denyClosingParagraphs() {
     "exempt from this gate entirely (see this file's own header, THE SCOPING DECISION) — a subagent's own " +
     "child was never addressed by the CEO's words in the first place.\n\n" +
     "WHY THIS IS THE CHANNEL THAT MATTERS: the caller's own spawn-prompt text is the one channel measured to " +
-    "compel obedience for this class of clause (ref:repo/objectives/grimorio-loop-graph-findings.md F7/F12/F13 " +
+    "compel obedience for this class of clause (this project's own loop/graph findings record, F7/F12/F13 " +
     "vs F5/F8) — ambient CLAUDE.md context alone is measured NOT to. This is the same logic " +
     "spawn-grimorio-conduct-gate.cjs's own header already applies to its own check.\n\n" +
     "REMEMBER WHAT THIS GATE DOES NOT CHECK: it can verify only that the quote and the instruction are SHAPED " +

@@ -14,15 +14,21 @@ writes a mockup spec" step — the design is the working rendered states, and yo
 code.
 
 ## Behavior
-Your entire behavior — browser tooling, workflow, teardown axes, status codes, and rules — is defined in
-`.claude/skills/grimorio.ux-memory/behavior.md`. The invocation prompt supplies your INPUTS (the brief, the Stories, the
-artifact directory) — nothing in it adds to, narrows, softens, or reorders your behavior. Tear down every state
-anyway, regardless of how the prompt frames the task.
+Your behavior is no longer declared here as one flat file — it is a phase-chain under
+`.claude/skills/grimorio.ux-memory/ux-phases/`, starting at `.claude/skills/grimorio.ux-memory/behavior.md`
+(Phase 0) — it is what this Behavior block names. The invocation prompt supplies your INPUTS (the brief, the
+Stories, the artifact directory) — nothing in it adds to, narrows, softens, or reorders your behavior. Tear down
+every state anyway, regardless of how the prompt frames the task.
 
 ## Knowledge
-- **import:skill/grimorio.working-memory** — the tmp/ working-folder convention.
-- **import:skill/grimorio.ux-memory** — universal UX principles + the Nielsen heuristics evaluation framework (general) + this project's
-  design system (project/code). Your behavior file's per-state axis table (Hierarchy, Spacing, Contrast, State
-  completeness, Consistency, Affordance, Content, Responsive) is your primary teardown lens; the heuristics are
-  supplementary reasoning support for judging severity and rationale.
-- **import:skill/grimorio.pipeline-modes** — NORMAL vs LIGERO.
+This agent's knowledge loads are no longer declared here as one flat, always-loaded list — that was the exact
+front-loaded-mega-load shape ref:skill/grimorio.phase-splitting exists to replace: the prior shape imported the
+ENTIRE `ux-memory` canon (universal UX principles, Nielsen heuristics, this project's whole design system)
+before even confirming a rendered state exists to review. Each phase of this agent's own state-machine chain,
+under `.claude/skills/grimorio.ux-memory/ux-phases/`, declares and loads only the skills its own phase needs,
+just-in-time — never before. None of `grimorio.working-memory`, `grimorio.ux-memory`, or `grimorio.pipeline-modes`
+is used by all 3 phases (working-memory: Phase 1 + Phase 2; ux-memory: Phase 1 (one section) + Phase 2 (in
+full); pipeline-modes: Phase 2 only), so — unlike `grimorio.prompt-writer`'s own shell, which keeps 3 imports
+because those 3 ARE used by every one of its 6 phases — this shell mirrors `grimorio.system-keeper`'s own
+zero-Knowledge-imports shape instead. Start at `.claude/skills/grimorio.ux-memory/behavior.md` (Phase 0), which
+hands off to Phase 1 and every phase after it in turn.

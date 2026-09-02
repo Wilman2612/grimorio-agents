@@ -121,6 +121,17 @@ as ref:skill/grimorio.loop-and-graph and ref:skill/grimorio.fan-out already forb
 well-scoped single piece. This is that same established principle, applied to the sequential axis: manufacturing
 phases where none are warranted is the mirror failure of collapsing real phases into one oversized pass.
 
+## STEPS vs PHASES — the one decision every authoring/rewrite pass owes
+
+**Two different things share the word "sequence" in this corpus, and confusing them is a MEASURED, named
+incident** — the CEO's own diagnosis: `grimorio.prompt-writer` applied a uniform "graph-first steps" line to
+every agent in a roster rewrite instead of deciding, per agent, whether it needed the STEPS shape (a single
+agent-writing-style numbered list) or the PHASES shape (everything this skill teaches), and a REWRITE of an
+existing agent was never even asked the question. **Deciding between them is never optional and never a
+one-time, brand-new-agent-only judgment — full test, worked against both a new agent AND a rewrite, plus where
+it is actually WIRED (a mandatory step inside `grimorio.prompt-writer`'s own chain):**
+./project.steps-vs-phases-test.md.
+
 ## Sizing a phase — RENDER, GROUP, MEASURE, SPLIT (the pincho check)
 
 The judgment test above decides WHEN a phase boundary is real. This section decides HOW BIG a phase should be
@@ -444,9 +455,10 @@ threshold (ref:skill/grimorio.conduct#branches-commits-and-knowledge rule 23) an
 every existing citation of THIS heading's own anchor still resolves here, to this pointer.
 
 **Named honestly, not hidden: this extraction alone did not bring `SKILL.md` under the ~500-line guideline it
-was measured against** — the file still runs ~525 lines afterward (this very paragraph's own prior wording once
-understated it as "~515"; treat the figure as approximate, since a paragraph that discloses the file's size is
-itself part of what it is counting). The one further candidate this same
+was measured against** — the file runs 547 lines as of this pass (re-measured live via `wc -l`, per
+`grimorio.code-reviewer`'s own FINDING-03, Dispatch F cycle 2: this figure had already drifted stale once
+before, understating "~515" then "~525" against a real, growing count — the fix each time is re-measuring in
+the SAME pass that grows the file, never trusting the prior pass's own number). The one further candidate this same
 reference-depth discipline points to, from an actual read of what remains:
 ref:skill/grimorio.phase-splitting#orchestrator-vs-purpose-driven--the-judgment-tests-own-missing-half, the largest
 single section left (~110 lines) and already a self-contained sub-doctrine (its own four dimensions a-d, its

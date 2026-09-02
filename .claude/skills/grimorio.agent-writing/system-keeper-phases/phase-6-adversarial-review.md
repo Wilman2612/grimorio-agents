@@ -19,6 +19,17 @@ its own knowledge, which an independent agent's signed verdict does by construct
 about the diff, it never becomes grounds to reshape this agent's own charter or tier here — a finding that
 genuinely touches either goes to the CEO as a flag, not to a quiet adjustment in this phase.
 
+## Review PLACEMENT follows the GRAPH — a CALLER'S decision, never this phase's own default
+
+**Review placement — whether adversarial review runs per-agent as each piece of work completes, or once at the
+end of a fan-out — is decided by the plan's own author, at ref:skill/grimorio.fan-out and
+ref:skill/grimorio.feature-workflow's own routing sections, never by this phase.** This phase always gates
+exactly ONE governance diff, arriving already assembled — it never itself chooses between per-agent and
+end-of-fan-out placement. **The default, absent a deliberate call from the plan's own author, is: do the work
+first, run the fan-out, THEN run rework cycles through THIS phase AT THE END — never reflexively per-agent.**
+Per-agent review is a legitimate alternative ONLY when the plan's own author has made sure it is reviewing the
+right thing at that point — never a default reached for out of habit.
+
 ## Steps
 
 1. **ALWAYS state this phase's own graph before doing anything else: SELF (assemble the full diff) →
@@ -29,6 +40,18 @@ genuinely touches either goes to the CEO as a flag, not to a quiet adjustment in
    diff can ship a silent false negative into the corpus with nothing adversarial ever reading it. Brief it
    with the FULL diff, never a summary of it — a summary is exactly the framing that narrows an adversarial
    agent's gaze away from what it would otherwise catch.
+2a. **ALWAYS declare the reviewer's MODE explicitly in the brief, per which cycle this is.**
+   - **WHEN this is CYCLE 1 ⟶ brief it as HUNT** — the full adversarial pass, no accepted-limits list, per
+     `ref:skill/grimorio.code-reviewer-memory/behavior.md`'s own HUNT mode.
+   - **WHEN this is CYCLE 2 (a REWORK re-check) ⟶ brief it as FIX-VERIFICATION** — hand it the PER-FINDING
+     CONTEXT block (original code / what changed / which finding it closes) using the literal shape at
+     `ref:skill/grimorio.code-reviewer-memory/review-brief-template.md`, never a fresh full diff with no
+     context. Scope its own re-check to: does each fix close its own named finding, and what did the fix
+     touch — never a second full re-audit of the whole diff cold.
+
+   This is the CEO's own diagnosed fix for why a rework cycle used to keep finding "one more little thing"
+   forever: an adversary handed no context re-hunts from scratch every time; handed the classified finding
+   plus what changed and why, it verifies a claim instead of re-discovering the world.
 3. **ALWAYS invoke it in the FOREGROUND, never backgrounded, and never pass `model` without a NAMED reason** —
    the same foreground and never-pass-model discipline Phase 4 already carries for its own spawn, restated
    here because this is a second, separate spawn this chain makes, not a fact this phase can assume it still
@@ -38,7 +61,14 @@ genuinely touches either goes to the CEO as a flag, not to a quiet adjustment in
    at ref:skill/grimorio.agent-writing/system-keeper-phases/phase-5-verification.md again, and only then goes back to
    `grimorio.code-reviewer` for a second cycle.** Never patch the diff yourself in this phase and never
    re-submit it to the reviewer without Phase 5 re-verifying it first — a defect fixed without re-verification
-   is a guess that it was fixed correctly, not a proof.
+   is a guess that it was fixed correctly, not a proof. **NEVER let the Phase 4 re-authoring pass touch
+   anything beyond what closes the reviewer's own named finding(s).** Mirror, never duplicate,
+   `grimorio.feature-workflow`'s own existing REWORK Prompt Template
+   (ref:skill/grimorio.feature-workflow#rework-prompt-template — "Fix ONLY the issues listed in the failure
+   report. Do not refactor unrelated code."). This is what makes FIX-VERIFICATION mode's own "never re-hunt
+   the rest of the diff cold" scope-narrowing (step 2a above) SAFE for a cycle-2 reviewer: a re-check that
+   trusts the fix touched only the named finding(s) must actually BE true, or an unrelated change ships into
+   the governance corpus with zero adversarial review.
 5. **ALWAYS CAP adversarial-review gating on this diff at TWO cycles, CUMULATIVE across however many separate
    `grimorio.code-reviewer` instances it takes to reach that count — never reset by raising a fresh reviewer
    instance.** This project's own general REWORK-cycle discipline (ref:skill/grimorio.feature-workflow#rework-cycle)
@@ -59,17 +89,32 @@ genuinely touches either goes to the CEO as a flag, not to a quiet adjustment in
    an honestly recorded REWORK is a truthful outcome this rule accepts on purpose; silently reporting APPROVED
    when the reviewer never said so is not.
 5a. **WHEN this phase's own cumulative count is AT the cap (its second cycle) AND that cycle's own verdict is
-   REWORK ⟶ only a BLOCKING finding — CRITICAL or HIGH severity, in `grimorio.code-reviewer`'s own severity
-   vocabulary — ever justifies recording the outcome as a lingering REWORK; classify every LOW or MEDIUM
-   finding in that same cycle as non-blocking debt instead, and ship.** Reuse this project's own existing
-   triage discipline rather than inventing a second one:
+   REWORK ⟶ classify every LOW or MEDIUM finding in that same cycle as non-blocking debt, and ship past it —
+   this part of the triage is unchanged.** Reuse this project's own existing triage discipline rather than
+   inventing a second one:
    ref:skill/grimorio.reasoning-principles#measuring-is-not-building--the-bound-on-the-two-sections-below-hard-rule-ceo-2026-07-30's
    own "triage a finding into real+blocking / real+debt / not-our-problem, by WHO PAYS" applies here at full
    force — a LOW/MEDIUM finding this project pays nothing to leave open is real+debt, never a blocker.
    **ALWAYS name each finding classified this way, with what and where, in this phase's own DELIVERABLE
    below** — never fold it silently into a bare "REWORK" line, and never let it change CYCLES RUN or the cap
-   itself. The harm: an ungated agent burns real spawn budget re-litigating a narrowing finding past the point
-   of returns, on a gate that already has a bounded number of cycles to spend.
+   itself.
+
+   **WHEN any CRITICAL or HIGH (BLOCKING) finding from that SAME cap cycle remains open ⟶ the cap is NOT
+   LIFTABLE and this dispatch does NOT ship.** ESCALATE it as a FINDING to the guardian/CEO instead: name the
+   finding verbatim (its ID, severity, and required fix), state that the 2-cycle cap has been reached, and
+   STOP. **NEVER let any agent, including this one, unilaterally decide the finding is acceptable and ship
+   past it** — that would be lifting the cap in effect even while leaving its number unchanged. The harm: an
+   ungated agent burns real spawn budget re-litigating a narrowing finding past the point of returns, on a
+   gate that already has a bounded number of cycles to spend — and, for the CRITICAL/HIGH branch specifically,
+   the further harm of shipping a known blocking defect into the corpus because a bounded-cycle number was
+   reached, treating "the cap ran out" as though it meant "the finding doesn't matter."
+
+   Per the CEO's own diagnosis of why a rework cycle used to keep finding "one more little thing" forever,
+   translated: you should have handed it context — this is the original, this is what I changed and why; it
+   is not the same to say "here's what I think will happen, go review it" as handing the actual diff and
+   making it re-discover the defect on its own. The escalate-rather-than-silently-ship fix above closes the
+   other half of that same diagnosis: a cap that can be shipped past silently is a cap that was never really
+   binding.
 
 ## LOAD (JIT) — scoped to this phase only
 
@@ -102,9 +147,11 @@ NON-BLOCKING DEBT AT CAP: <per step 5a — "N/A, cap not reached this pass" / "N
                      finding(s) were all CRITICAL/HIGH, none classified as debt" / one line per LOW/MEDIUM
                      finding from the cap cycle classified as non-blocking debt and deferred, naming what
                      and where — kept distinct from whatever was CRITICAL/HIGH and actually got fixed>
-FINAL DISPOSITION:    <APPROVED (ship) / SHIPPED WITH RECORDED REWORK (cap reached, reviewer's
-                     last verdict was still REWORK after step 5a's own triage, shipped anyway per the cap
-                     rule above) — state which, honestly, never softened toward APPROVED>
+FINAL DISPOSITION:    <APPROVED (ship) / SHIPPED WITH RECORDED REWORK (cap reached, every remaining
+                     finding in that cycle was LOW/MEDIUM per step 5a's own triage, shipped anyway) /
+                     ESCALATED (cap reached, a CRITICAL/HIGH finding remains open, no ship — the
+                     guardian/CEO must resolve it) — state which, honestly, never softened toward APPROVED,
+                     and never toward SHIPPED WITH RECORDED REWORK when what remains is CRITICAL/HIGH>
 ```
 
 ## Hard hand-off

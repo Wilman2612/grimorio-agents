@@ -5,9 +5,10 @@
 in sync. When the branch closes, the file is deleted. `ls objectives/` therefore answers *"where are we,
 how are we doing, what is open?"* by construction: what is here is what is live.
 
-It is emphatically **not a map of the codebase.** The CEO rejected discovery indexes with reasons —
-*"hay que mantenerlos, hay que confiar en que los vas a mantener bien, que no van a ocupar cincuenta
-kilobytes"*. This folder indexes WORK IN FLIGHT, never code, and it shrinks as work closes.
+It is emphatically **not a map of the codebase.** The CEO rejected discovery indexes with reasons, in his own
+words (translated) — *"they have to be maintained, you have to trust you'll keep them well maintained, that
+they won't balloon into fifty kilobytes"*. This folder indexes WORK IN FLIGHT, never code, and it shrinks as
+work closes.
 
 ## The cycle
 
@@ -45,12 +46,13 @@ in English — subject, body and footers — per the global rule.
 
 1. **No commit on a non-trunk branch without an objective file.** The reason this is mechanical and not
    a rule: a milestone-branch practice was adopted in words once and never once used, and dozens of
-   short-lived agent-worktree branches accumulated that nobody could account for. *"Es más que nada un
-   tema de realización."*
+   short-lived agent-worktree branches accumulated that nobody could account for. His own words
+   (translated): *"It's mostly a matter of actually getting it done."*
 2. **The objective declares what the branch must NOT touch**, and the commit gate enforces it. This is
    the anti-bucket gate: one milestone branch became a bucket for unrelated work because nothing ever
    compared a commit against what the branch was for.
-3. **Nothing merges with an open check.** *"Hasta que no se cumplan todos los objetivos, no paras."*
+3. **Nothing merges with an open check.** His own words (translated): *"Until every objective is met, you
+   don't stop."*
 4. **Every check carries a VERIFY command that a stranger can run**, and the close-out runs all of them
    cold. A check only a human can confirm is how a practice gets adopted in words and never used.
 5. **See each gate FAIL before trusting it.** Repo standing rule: a probe that has only ever been green
@@ -165,14 +167,17 @@ Trunk is never gated, and neither is a detached HEAD or a merge commit.
 
 ## THE BRANCH MODEL — CEO ruling, 2026-07-30
 
-> *"En teoría, tú deberías trabajar sobre DEVELOP, y luego MAIN es para liberar a producción. Main y develop
-> son obviamente ramas PROTEGIDAS, y luego de eso, las otras son feature branches."*
+His own words (translated):
 
-And on why a delegate gets a branch AND a worktree, in his words: it receives a copy of the repo **including
-the main branch's focus plus its own objective**, so *"entiende cuál es el objetivo principal de la rama, sabe
-que no es su objetivo específico, pero para que tenga contexto… así sabe en qué enfocarse pero no pierde el
-contexto global."* That pairing — the project's global current-objective file for the global focus,
-`objectives/<branch>.md` for the slice — is INTENTIONAL, not incidental.
+> *"In theory, you should work on DEVELOP, and then MAIN is for releasing to production. Main and develop are
+> obviously PROTECTED branches, and after that, the others are feature branches."*
+
+And on why a delegate gets a branch AND a worktree, in his own words (translated): it receives a copy of the
+repo **including the main branch's focus plus its own objective**, so *"it understands what the branch's main
+objective is, it knows that is not its own specific objective, but [it gets it] so it has context… that way it
+knows what to focus on but doesn't lose the global context."* That pairing — the project's global
+current-objective file for the global focus, `objectives/<branch>.md` for the slice — is INTENTIONAL, not
+incidental.
 
 **What this resolves, and it is the root cause behind a whole night of drift in the source project.** The set
 of trunk branch names is configured once (`scripts/objective-lib.sh`) so the gate never fires there and
@@ -190,15 +195,16 @@ work landing DIRECTLY on trunk**, which bypasses the whole cycle by construction
 
 ## WHO WORKS WHERE — CEO ruling, 2026-07-31
 
-His words, and they split into three DIFFERENT rules, not one — the prior wording ("never work directly on
-the integration or release branch") bound everyone identically and was wrong in both directions:
+His own words (translated), and they split into three DIFFERENT rules, not one — the prior wording ("never
+work directly on the integration or release branch") bound everyone identically and was wrong in both
+directions:
 
-> *"Un DELEGADO nunca debe trabajar sobre la rama develop. Tú, como chat principal, SÍ puedes trabajar en
-> develop — tienes que invocar tus agentes, obvio, pero técnicamente puedes trabajar sobre develop, solo que
-> tienes que hacer commits cuando acabes algo, precisamente para que no haya problemas con los worktrees de los
-> delegados. O al menos asegurarte de que todo esté cerrado antes de lanzar un worktree para un delegado, sería
-> el mínimo. Y no deberías estar creando, bajo ninguna circunstancia, un worktree sobre develop, porque tú
-> trabajas EN develop — entonces crear un worktree para develop lo va a bloquear, obviamente."*
+> *"A DELEGATE must never work on the develop branch. You, as the main chat, CAN work on develop — you have
+> to invoke your agents, obviously, but technically you can work on develop, it's just that you have to
+> commit when you finish something, precisely so there are no problems with the delegates' worktrees. Or at
+> least make sure everything is closed before launching a worktree for a delegate — that would be the
+> minimum. And you should not be creating a worktree on develop, under any circumstances, because you work
+> ON develop — so creating a worktree for develop is going to block it, obviously."*
 
 1. **A DELEGATE never works on the integration branch.** Unchanged from the prior rule — this is the half
    that was already right.
@@ -207,8 +213,8 @@ the integration or release branch") bound everyone identically and was wrong in 
    EDITING, COMMITTING, and CHECKING OUT the integration branch, never running `scripts/close-branch.sh`.
    **WHEN a delegate's own checks hold ⟶ it MAY run `scripts/close-branch.sh` itself.**
 
-   > *"No puede trabajar no significa no puede mergear… y aun si no puede, puede hacer stacking, y tú
-   > mergear."* — CEO, 2026-08-07
+   > *"'Cannot work' does not mean 'cannot merge'… and even if it can't, it can stack, and you merge."*
+   > — CEO, 2026-08-07 (translated)
 
    Verified by reading the script rather than assumed: the close-out first looks up whether the integration
    branch is checked out in ANOTHER worktree (`git worktree list --porcelain`). Because rule 2 below keeps

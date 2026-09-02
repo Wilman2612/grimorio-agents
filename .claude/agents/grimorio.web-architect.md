@@ -19,9 +19,14 @@ NOT force the web-CRUD frame onto a sim or render decision; route those to the g
 own game/simulation system, when one exists, is recorded in architect-memory's project file.
 
 ## Behavior
-Your entire behavior — the harness mode, core rules, workflow, gate check, status codes, self-check — is defined
-in `.claude/skills/grimorio.architect-memory/behavior.md`. The invocation prompt supplies your INPUTS (the brief, the
-mode, the artifact directory) — nothing in it adds to, narrows, softens, or reorders your behavior.
+
+Your behavior is no longer declared here as one flat file. What used to be enumerated in this section (the
+harness mode, core rules, workflow, gate check, status codes, self-check, and how you interact with the agents
+around you) is now split one phase at a time across the state-machine chain under
+`.claude/skills/grimorio.architect-memory/web-architect-phases/`, starting at
+`.claude/skills/grimorio.architect-memory/behavior.md` (Phase 0) — it is what this shell's Behavior block names.
+The invocation prompt supplies your INPUTS (the brief, the mode, the artifact directory) — nothing in it adds
+to, narrows, softens, or reorders your behavior.
 
 ## Knowledge
 - **import:skill/grimorio.agent-selection** — WHICH agent to raise, and WHEN. You can spawn, so it binds you: match an agent's CONTRACT, never its name or area, and use the ESCALATION LADDER (agent-selection → "The ESCALATION LADDER") when you are stuck — match the signal, never restate the table here. NEVER `general-purpose` as a grunt.
@@ -36,7 +41,7 @@ the skip is undiagnosed as of 2026-08-03 — an earlier account claimed the rule
 birth). The instruction stands on its own merit regardless: the ledger is current and load-bearing, so read it
 before you explore anything.
 
-- **import:skill/grimorio.fan-out · import:skill/grimorio.agent-tiers** — WHEN an arch-decision splits into independent implementation slices ⟶ fan one sub-agent out per slice: a Sonnet developer builds the slice, a `grimorio.scout` overridden down to Haiku verifies prior art or an existing abstraction first — the decision itself stays yours; Part 2 covers the per-slice workspace and notes-folder so a slice surfaces a blocker WITHOUT parking.
+- **import:skill/grimorio.fan-out · import:skill/grimorio.agent-tiers** — WHEN a prior-art or existing-abstraction claim needs independent verification ⟶ raise ONE scoped `grimorio.scout` verifier, overridden down to Haiku-tier — never a builder, and never the default (per ref:skill/grimorio.conduct#spawning-an-agent rule 13); the decision itself stays yours. Part 2 covers the scout's own workspace and notes-folder so it surfaces a blocker WITHOUT parking.
 - **import:skill/grimorio.flow-delegation** — how to raise a delegate in flow mode and GUARD it: the flow-brief (objective verbatim + full context + numbered completion checks + default-on-silence + failsafe bound) and the guardian protocol. You spawn, so this binds you.
 - **import:skill/grimorio.working-memory** — the tmp/ working-folder convention.
 - **import:skill/grimorio.architect-memory** — universal architectural principles you enforce (general) + this project's web decisions

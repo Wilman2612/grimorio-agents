@@ -1,11 +1,11 @@
 ---
 name: grimorio.architect-memory
-description: "Semantic memory for the architect agent. SKILL.md (general) = universal architectural principles the architect enforces on every project. For this project's decisions (project) read ./project.md; for operational facts by area (code) read architect-memory/{area}.md."
+description: "Semantic memory for the architect agent. SKILL.md (general) = universal architectural principles the architect enforces on every project. For this project's decisions (project) read this project's own architecture memory; for operational facts by area (code) read architect-memory/{area}.md."
 ---
 
 # Architect Memory — General: Universal Architectural Principles
 
-> **Level note**: principles here are universal (true for any Clean Architecture project). Project-specific decisions (provider names, tier names, topology) live in `./project.md`. File paths, class names, env vars live in the detail files (`architect-memory/{area}.md`).
+> **Level note**: principles here are universal (true for any Clean Architecture project). Project-specific decisions (provider names, tier names, topology) live in this project's own architecture memory. File paths, class names, env vars live in the detail files (`architect-memory/{area}.md`).
 >
 > For the `arch-decision.md` artifact format, see ./behavior.md → `## OUTPUT` — this skill holds the *principles*
 > the architect applies, not the output template.
@@ -67,22 +67,20 @@ Before approving any new abstraction, search the codebase for existing ones (rep
 ## Custody — a SIGNED/ACCEPTED architecture decision must be repo-tracked, not a `tmp/` pointer
 
 **Mechanical check, not an exhortation** (full rule in ref:repo/CLAUDE.md §"Where knowledge lives"). Before writing
-SIGNED/ACCEPTED/APPROVED/"source of record" in ./project.md or a numbered `grimorio.architect-memory/docs/*.md` and
+SIGNED/ACCEPTED/APPROVED/"source of record" in this project's own architecture memory or a numbered `grimorio.architect-memory/docs/*.md` and
 citing a `tmp/features/**` path as where its content lives, verify with `git ls-files <path>` that the cited
 path is actually tracked. If it isn't, migrate the substance into `grimorio.architect-memory/docs/` (or a
 `grimorio.architect-memory/docs/rescued-tmp/<feature>/` verbatim rescue copy for raw working files not yet triaged)
-FIRST, then cite that instead. `tmp/` is gitignored project-wide and gets pruned in routine cleanups; a
-citation into it is only ever safe for a still-open, not-yet-decided item, or when the doc citing it is
-explicitly a provenance footnote for something ALREADY fully consolidated elsewhere in a tracked file. This
-has fired for real: consolidated design docs cited `tmp/features/**` working folders that were later pruned —
-the applied design survived only because it had already been copied verbatim into the tracked doc itself, while
-untracked folders one cleanup from the same fate were rescued into a temporary `docs/rescued-tmp/` quarantine.
-That quarantine was then triaged — settled architecture absorbed into this file's current-state sections above,
-superseded process artifacts removed rather than kept as a second competing history — and deleted. The pattern
-above remains available for a future rescue.
+FIRST, then cite that instead. **Cite a tracked file first — `tmp/` is gitignored project-wide and gets pruned
+in routine cleanups; a citation into it is only ever safe for a still-open, not-yet-decided item**, or when the
+doc citing it is explicitly a provenance footnote for something ALREADY fully consolidated elsewhere in a
+tracked file.
+
+-> The concrete worked example (dates, the doc files that cited dead paths, what was lost vs rescued, how the
+quarantine was triaged closed) lives in this project's own architecture memory, under its custody-incident record.
 
 ---
 
--> This project's architectural decisions (providers, tiers, topology, folder map): read ./project.md
+-> This project's architectural decisions (providers, tiers, topology, folder map): read this project's own architecture memory
 -> Operational detail by area (auth, database, routing, etc.): read `architect-memory/{area}.md`
 -> The `arch-decision.md` output format: ./behavior.md → `## OUTPUT`

@@ -15,7 +15,7 @@ description: "The agent selector — WHICH grimorio agent to invoke, WHEN. Consu
 
 ## Before you route anything: read the capabilities ledger
 
-**this project's own feature-status ledger is the record of what is ALREADY BUILT.** Read it before you
+**This project's own feature-status ledger is the record of what is ALREADY BUILT.** Read it before you
 pick an agent, and STATE what it says already exists in the brief you write, so the agent wires the GAP instead
 of re-deriving the substrate.
 
@@ -75,7 +75,7 @@ here: one invocation over 111 files and ~15,300 insertions spanning fifteen comm
 unreviewed commits have piled up, that is a DEBT TO DECLARE, not a gate to run.
 
 > **This is NOT in tension with `CLAUDE.md`'s "review once, at the END, on the whole branch — not per commit"
-> (CEO ruling, 2026-07-30, translated: *"that's too much review, and you're also making more commits now"*). They answer
+> (CEO ruling, 2026-07-30: *"it's too much review, and you're also making more commits now"* (translated)). They answer
 > different questions. The unit `code-reviewer` gates is the BRANCH — one declared objective, one out-of-scope
 > fence, so by construction one coherent change — never a session's PILE of unrelated commits. "Once at the end"
 > forbids re-running the gate on every single commit inside that one change; "gate the change, never the
@@ -97,10 +97,22 @@ it yet is a different front's job.
 
 **Classify before routing**, and pull in only the agents the change needs — a misclassified request (feature vs bug vs refactor) wastes every downstream agent's context. An architect for a typo is waste; skipping the architect on a cross-service change is a bug.
 
-> **`manual-verifier` is ON-DEMAND only (CEO, 2026-07-28).** With full-stack tests in place it is (translated) *"less
-> necessary — it's raised when you want to check something that's failing, and besides you now have Playwright CLI"*.
+> **`manual-verifier` is ON-DEMAND only (CEO, 2026-07-28).** With full-stack tests in place it is *"less
+> necessary — it gets raised when you want to review something that's failing, and besides now you have Playwright CLI"* (translated).
 > Raise it to investigate a FAILURE; for a routine visual check the main loop drives the browser itself via the
 > `playwright-cli` skill. Reaching for an agent where a tool exists is one layer of indirection too many.
+
+### Render conventions → a visual critic for that surface
+
+A game RENDER (not a map, not one brush) is gated by a visual critic for that surface: it scores the render
+against the sourced P0–P3 game-convention checklist — time/pause, movement/harvest/construction feedback,
+resource/health HUD, camera/load — with BOTH a static per-part image check AND a live FUNCTIONAL traversal
+that operates the controls. It tracks state, so a new fix cannot silently regress a category that already
+passed. Its trigger otherwise lives only inside this project's own game-development conventions record, one hop from where you
+decide which critic to spawn.
+
+Do not confuse it with the two map critics: one judges a MAP's composition, another judges ONE terrain brush.
+This one judges a running render against game conventions.
 
 ### When you need someone to OWN a task while you do something else → `grimorio.delegate` (read this BEFORE raising one)
 
@@ -174,9 +186,9 @@ is split by industry — the failure is defaulting everything to one and designi
 app", or designing grimorio's own machinery like either:
 - a **WEB app** change (the web frontend + its backend) → agent:grimorio.web-architect (reads the PO brief; owns
   the frontend↔backend/DAL contract, OWASP).
-- a **GAME** change (the game's simulation OR its replay render) → agent:grimorio.game-architect. This is ONE agent that runs
-  two sequential phases in one context: it DESIGNS the mechanic first (seeing the code — its `game-design/
-  project.md` mechanics analysis grounds the design in the real sim/render), then LANDS it in game-code
+- a **GAME** change (the game's simulation service OR its replay render) → agent:grimorio.game-architect. This is ONE agent that runs
+  two sequential phases in one context: it DESIGNS the mechanic first (seeing the code — this project's own
+  game-design mechanics analysis grounds the design in the real sim/render), then LANDS it in game-code
   architecture as a subsequent step. For a genuinely new/open mechanic, `entropy` still diverges before its
   design phase.
 - a change to **grimorio itself** — its own agents, skills, hooks, or rules — → agent:grimorio.system-keeper,
@@ -201,7 +213,28 @@ The three architects above decide HOW or WHERE a change lands in code or stack. 
 
 ### If the work needs a GATE, spawn the GATE DIRECTLY — never the builder alone (HARD RULE)
 
-**A builder must never raise its own gate.** Builder agents (`game-developer`, `js-developer`, `ui-developer`, `go-developer`, …) are meant to carry NO `Agent` tool — the anti-recursion invariant that keeps fan-out grunts burn-safe, and each builder's frontmatter must lock this with `disallowedTools: Agent`, the same mechanism the critic/reviewer agents already carry. So a builder spawned DIRECTLY can only build, then report that its output is **UNGATED**, and the burden of running the critic/reviewer falls back on the caller. That is a CALLER bug, not the builder's.
+**NEVER let a builder raise its own gate.** This is a separate invariant from builders fanning out same-type
+`haiku`-tier children for BUILD VOLUME, and the two must never be blurred together. Builder agents
+(`game-developer`, `js-developer`, `ui-developer`, `go-developer`, …) DO carry the `Agent` tool — each one's own
+memory behavior file already states this explicitly — and each MAY spawn `haiku`-tier children of its OWN TYPE,
+only from inside its own phase's dispatch point(s), for build volume; that is sanctioned, current doctrine, and
+nothing here forbids or contradicts it (the full mechanism:
+-> ref:skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm,
+not restated here). Spawning an ADVERSARIAL GATE/REVIEWER OF ITSELF — a builder raising
+`code-reviewer`, `security`, `ux`, or a critic to judge its OWN output — is a different act, on a different agent
+type, and it is exactly what "never raise its own gate" forbids: self-gating, never same-type volume fan-out.
+
+The agents actually hard-locked non-recursive — genuinely carrying `disallowedTools: Agent` on their own
+frontmatter — are exactly: `grimorio.scout`, `grimorio.code-reviewer`, `grimorio.security`, `grimorio.ux`,
+`grimorio.design-redactor`, `grimorio.prompt-writer`, `grimorio.unblocker`, `project.brush-critic`,
+`project.conventions-critic`, `project.map-aesthetic-critic`, `project.map-content-critic`. **NEVER gloss this
+list as "the critic/reviewer agents"** — `qa` and `manual-verifier` are NOT hard-locked, even though this file
+elsewhere names both as the matching adversarial agent to spawn directly (see "Default mode: direct &
+adversarial" above); name the precise set above instead of a category.
+
+So a builder spawned DIRECTLY may build, and may fan out its own same-type children for volume — but it must
+never spawn its own gate. Its output is **UNGATED** until an adversarial agent runs against it, and the burden
+of running that critic/reviewer falls back on the caller. That is a CALLER bug, not the builder's.
 
 So, before spawning: **does this deliverable need an adversarial gate before it can be believed** (a render vs a reference, a risky change needing `code-reviewer`, a feature needing QA)?
 - **Yes → spawn the matching adversarial agent DIRECTLY** (`code-reviewer`, `qa`, `security`, `ux`, the matching
@@ -210,11 +243,18 @@ So, before spawning: **does this deliverable need an adversarial gate before it 
   agent:grimorio.delegate for that.
 - **No → spawn the builder directly.** Fine for a contained, self-verifying change.
 
-Do NOT "solve" this by granting a builder the `Agent` tool so it can spawn its own critic. That re-opens recursion on exactly the agents that must never recurse, and a confused builder then spawns its own tree.
+**NEVER read a builder's own `Agent` tool — held for sanctioned same-type volume fan-out — as license to spawn
+its own critic.** That is self-gating, the exact recursion this rule forbids, on exactly the agent type that
+must never raise its own gate; a confused builder then spawns a gate-tree instead of a build-volume one.
 
 Do NOT have a builder schedule the review back to the caller either — the caller then has to babysit an unfinished task, which is the coordination burden a direct spawn (or a delegate, for the whole arc) is there to absorb.
 
-(Real case: a render fix was handed straight to agent:grimorio.game-developer. It did the work correctly, then had to report "UNGATED — I have no Agent tool", and correctly refused to author its own gate file, because **a self-authored gate is a forged gate — worse than a missing one**. The main loop had to run the critic itself. One direct critic spawn would have made the whole loop self-closing.)
+(Real case: a render fix was handed straight to agent:grimorio.game-developer, before the same-type
+volume-fan-out exception existed for builders. It did the work correctly, then had to report "UNGATED — I have
+no Agent tool", and correctly refused to author its own gate file, because **a self-authored gate is a forged
+gate — worse than a missing one**. The main loop had to run the critic itself. One direct critic spawn would
+have made the whole loop self-closing. The lesson survives even now that builders hold the `Agent` tool for
+volume fan-out: self-gating is still forbidden — the reason today is the invariant itself, never tool absence.)
 
 ---
 
@@ -325,8 +365,8 @@ demonstrably WEAK. The compensating protocol is not optional:
 1. **Gather concrete visual REFERENCES and distil the target look FIRST, before building.** Never build toward a
    vague "make it look good" or "like the pack". If there is no reference, **go get one** — do not leave the CEO
    to supply it.
-2. **Judge against the reference through an ADVERSARIAL visual critic** (a UX critic, or a dedicated
-   visual-comparison critic if the project defines one) — **never** the builder's self-report.
+2. **Judge against the reference through the ADVERSARIAL visual critic** (the matching visual critic for that
+   surface, or a UX critic) — **never** the builder's self-report.
 3. **Open the actual rendered image yourself** and put it beside the reference before accepting it or showing it
    to anyone.
 
@@ -342,7 +382,7 @@ ref:skill/grimorio.reasoning-principles/project.exemplar-grounding.md extends it
 decision in any domain — search for a concrete EXEMPLAR of the SHAPE being decided, not only visual work. Read
 that file for the mechanism and the hard rule; it is not restated here.
 
--> The full post-mortem of this failure mode: this project's own research bibliography
+-> The full post-mortem of this failure mode: this project's own research bibliography, its terrain-render forensic record (read its own "method and its limits" section before trusting anything in it)
 
 ---
 
@@ -368,14 +408,14 @@ to one more agent.
 cheapest-capable default is overridden because its failure mode is "the main loop cannot see its own
 misconception", which is the only one worth the top reasoning tier.
 
-### Carajeo → the Fable adviser (CEO present)
+### Chewed-out → the Fable adviser (CEO present)
 On the frustration signal the main loop must **STOP grinding and spawn the adviser before attempting anything
 more**. The main loop stays on communication and direction; the heavy unblocking reasoning goes to the adviser.
 The adviser **advises only** — it diagnoses the misconception and prescribes the single highest-leverage unblock,
 grounded in evidence and prior-art; the architect and Sonnet builders execute that prescription.
 
 ### Stuck loop → the DELEGATE (CEO absent, self-triggered)
-This is the twin of the carajeo rule for when nobody is present to raise the alarm — and here the delegate
+This is the twin of the chewed-out rule for when nobody is present to raise the alarm — and here the delegate
 **finishes the task rather than advising on it**.
 
 - **The trigger is the churn itself.** Several failed critic/gate passes *plus* the main loop spawning fix after
@@ -493,6 +533,6 @@ Some of what looks like "an agent" might be better as a **skill that triggers** 
 
 ## REWORK rules (when the pipeline does run)
 
-Each adversarial agent has its own counter (max 2), independent of the others. After 2 cycles on the same issue → escalate to the user: it's a specification problem, not a third attempt.
+Each adversarial agent has its own counter (max 2 cycles), independent of the others. **NEVER lift the cap, by any agent, for any reason.** **WHEN cycle 2 still fails AND a finding is still open ⟶ it is ESCALATED, never shipped past silently and never given a third attempt** — the full contract (the NOT-LIFTABLE cap and the escalate-at-cap rule) lives at ref:skill/grimorio.feature-workflow#anti-patterns (#3) — not restated here.
 
 ---

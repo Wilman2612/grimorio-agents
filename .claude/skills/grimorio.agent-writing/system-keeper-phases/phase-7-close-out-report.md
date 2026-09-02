@@ -55,6 +55,10 @@ uncommitted artifact ⟶ commit it now, before closing — never close with it s
    this pass ⟶ say so plainly (written-and-unfired), never silently folded into the VERIFIED line.
    -> ref:skill/grimorio.reasoning-principles#a-rule-is-not-verified-by-reading-it--the-artifact-class-that-needs-an-observation-hard-rule-ceo-2026-08-12,
    not restated here.
+6. **WHEN the carried-forward disposition — Phase 6's own FINAL DISPOSITION, or this mode's own FINAL OUTCOME —
+   is ESCALATED ⟶ this phase still runs and reports it.** CLOSE as COULD NOT, naming the open CRITICAL/HIGH
+   finding (or the failed-transmission technique/COPY detected) as the named blocker, never as VERIFIED — the
+   caller reading this report is exactly how the escalation reaches the guardian/CEO.
 
 ## LOAD (JIT) — scoped to this phase only
 
@@ -110,7 +114,7 @@ PHASE 2 VERDICT RESTATED: <the refuted-or-adopted verdict and true cause, restat
                           reader who has not seen Phase 2's own file>
 MODE OUTCOME:             <WHEN this dispatch operated under IMPROVE-AND-VALIDATE MODE
                           (ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-improve-and-validate-mode.md)
-                          — the mode's own FINAL OUTCOME value (PASS / SHIPPED WITH RECORDED FIXED-POINT GAP),
+                          — the mode's own FINAL OUTCOME value (PASS / ESCALATED),
                           restated verbatim; "N/A — mode not entered this pass" otherwise — never left blank>
 CLOSE:                    <VERIFIED, naming which evidence backs which claim — or COULD NOT,
                           naming what is still open, why, and what the next pass needs — a close with no

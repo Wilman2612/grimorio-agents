@@ -1,22 +1,19 @@
 #!/usr/bin/env node
 /* @keep-comment
  * subagentstop-wait.cjs — on SubagentStop, WAIT (never block-forever) on ONE live async_launched
- * dependency the firing agent itself dispatched, then either interrupt its close once (if the
- * dependency finishes during the wait) or let it close silently (if the wait expires first).
+ * dependency the firing agent itself dispatched, then BLOCK its close either way: once, immediately, if
+ * the dependency finishes during the wait (process the result, then close); once, preventively, if the
+ * wait expires with the dependency still live (you are not the main session — closing now means dying,
+ * not pausing — wait for it). Silent ONLY when no live dependency is found at all.
  *
- * SANCTIONED BY THE CEO, on record, 2026-08-16 — Spanish is the record, translation is for reading:
+ * SANCTIONED BY THE CEO, on record, 2026-08-16 — his own words (translated):
  *
- *   "La separación entre los agentes normales y tú es clara: tú sí puedes cerrar turno, ellos no. Un
- *   subagente que cierra turno no se pausa — se muere. Entonces, por diseño del fan-out, hay que
- *   prohibirles cerrar turno."
- *   ("The separation between ordinary agents and you [the top-level session] is clear: you CAN close
+ *   "The separation between ordinary agents and you [the top-level session] is clear: you CAN close
  *   your turn, they cannot. A subagent that closes its turn does not pause — it dies. So, by the
- *   fan-out's own design, they have to be forbidden from closing their turn.")
+ *   fan-out's own design, they have to be forbidden from closing their turn."
  *
- *   "Tampoco es que se niegue a cerrar turno — solo tienes que hacer que ESPERE. No sé si el hook
- *   puede hacer una espera de un minuto, cinco minutos, algo así."
- *   ("It's not that it refuses to close its turn either — you just have to make it WAIT. I don't know
- *   if the hook can do a wait of a minute, five minutes, something like that.")
+ *   "It's not that it refuses to close its turn either — you just have to make it WAIT. I don't know
+ *   if the hook can do a wait of a minute, five minutes, something like that."
  *
  * Asked to confirm this design, the CEO's own answer (2026-08-16, translated): "Yes, seems reasonable
  * to me, I suppose." — approval with reservation (note the hedge); this hook is built cautious because
@@ -31,17 +28,59 @@
  *
  * SUPERSEDES objectives/proposals/subagentstop-block-park-prevention.md — that proposal was written for
  * a BLOCKING hook (fire `decision:"block"` the instant a live dependency is found, unconditionally) and
- * was handed back undecided because a strictly WEAKER SubagentStop hook already produced an undiagnosed
- * ~559k-token runaway in this repo once. The CEO's actual ruling replaced the BLOCK shape with a WAIT
- * shape: give the dependency a bounded window to finish on its own, and only interrupt the agent's close
- * if it actually does. CARRIED OVER from that proposal, unchanged: the join logic and detector shape
- * (which live dependency is this agent waiting on — same log fields, same reasoning), and every guardrail
- * it named (a hard per-dependency interruption cap, a repo-wide kill switch, fail-open on any internal
- * error, and main-session-never-blocked scoping via `agent_type` presence). DROPPED: the proposal's own
- * unconditional `decision:"block"` fired the instant a live dependency is found — replaced below by
- * wait-then-decide: silent on the common case (no live dependency, or the wait bound expires with the
- * dependency still running — step (j) below explicitly lets the agent close rather than fighting it), and
- * an interruption fires ONLY when the dependency finishes DURING the wait window — step (i) below.
+ * @keep-comment — CEO-authorization and correction material (grimorio-conduct rule 5c), a direct
+ * continuation of this file's own top-of-header marker at line 2; git's own diff treats a rewritten span
+ * as a fresh run, so it needs its own marker too.
+ * was handed back undecided, citing a real incident this repo recorded once: a strictly WEAKER
+ * SubagentStop hook was running around an undiagnosed ~559k-token burn — nothing more is established.
+ * CORRECTED 2026-09-02: this passage used to call that burn a "diagnosed runaway" the weaker hook
+ * "already produced" — a causal claim this repo's own ledger never supported and explicitly retracted the
+ * same day it was written (.claude/skills/grimorio.po-memory/project.features-status.md:1185, :1209-1210:
+ * "rewritten... to what is actually established: an undiagnosed ~559k-token burn, nothing more" /
+ * "corrected the same day to what it actually is, an UNDIAGNOSED ~559k-token burn, not a diagnosed
+ * runaway"). The incident stays named, honestly labeled, per the CEO's own instruction (2026-08-16,
+ * translated: when you have an incident like this, you need a report or a note explaining the exact
+ * mechanism, because it may have happened for many reasons, and theories can be wrong for the wrong
+ * reasons) to keep a note on the exact mechanism rather than let an incident vanish or restate unverified
+ * specifics — never delete it outright. The genuinely established lesson that incident DOES carry, kept
+ * unchanged below: SubagentStop fires multiple times per child before its true terminal stop — see
+ * FINDING-01 further down, unaffected by this correction.
+ *
+ * The CEO's actual ruling replaced the BLOCK shape with a WAIT shape: give the dependency a bounded
+ * window to finish on its own, and only interrupt the agent's close if it actually does. CARRIED OVER
+ * from that proposal, unchanged: the join logic and detector shape (which live dependency is this agent
+ * waiting on — same log fields, same reasoning), and every guardrail it named (a hard per-dependency
+ * interruption cap, a repo-wide kill switch, fail-open on any internal error, and main-session-never-
+ * blocked scoping via `agent_type` presence). DROPPED: the proposal's own unconditional
+ * `decision:"block"` fired the instant a live dependency is found — replaced below by wait-then-decide:
+ * silent ONLY on the no-live-dependency case (the common background-use path — step (f) below).
+ * REVISED 2026-09-02 — CEO ruling, quoted here directly rather than cited self-referentially, in his own
+ * words (translated):
+ *
+ *   "...well, I don't know if it's enough to tell the parent, before the fan-out even starts, that it
+ *   cannot close its turn, because closing turn means dying, and that instead of closing... it has to
+ *   wait and not close... one preventive [check] that it has to wait, because it CAN wait, as far as I
+ *   recall, it just doesn't do it by default — by default it closes the turn. So, well, first a priori,
+ *   and if not, a posteriori, when it closes the turn, tell it: hey, you have children, your duty is to
+ *   wait and not close the turn, that is, [wait] for your children to finish, because otherwise you're
+ *   going to die — here closing the turn means dying — because we know, and it also knows, that it is not
+ *   the main agent, and then, if it does it again, the same wait-and-tell-it-again mechanism kicks in...
+ *   that way we wouldn't even need you [the top-level session] any more."
+ *
+ * This is a LATER, NARROWER ruling than the 2026-08-16 quote already in the SANCTIONED BY THE CEO block
+ * above ("It's not that it refuses to close its turn either — you just have to make it WAIT") — the two
+ * are not in tension; they answer DIFFERENT questions. The 2026-08-16 quote settles whether the hook
+ * should block immediately and
+ * unconditionally the instant a live dependency is found, versus give it a bounded wait first — it chose
+ * the wait, and that design is UNCHANGED: it still governs the FIRST WAIT_MS window below. The 2026-09-02
+ * quote above answers a question the earlier ruling never reached: what happens once that SAME wait
+ * itself expires with the dependency still live. It supersedes the earlier ruling for THAT one sub-case
+ * only — once a live dependency IS found, this hook now BLOCKS on BOTH outcomes of the wait, never lets
+ * the agent close past it — an interruption fires immediately if the dependency finishes DURING the wait
+ * window (step (i) below), and a second, PREVENTIVE block fires if the wait bound expires with the
+ * dependency still running (step (j) below): the agent is told plainly it cannot close a live turn, must
+ * WAIT, and will be re-blocked by this same mechanism if it tries again before the dependency actually
+ * finishes.
  *
  * WHY THE LIVE-DEPENDENCY CHECK BELOW IS FRESH CODE, NOT A SECOND COPY OF `findParked` — read this
  * before assuming duplication. `scripts/parked-watch.mjs`'s own `findParked` answers "has this child
@@ -104,7 +143,10 @@ const LOG_FILE = process.env.SUBAGENTSTOP_WAIT_LOG || path.join(root, ".claude/.
 // @keep-comment
 // Read LOG_FILE fresh and count "BLOCKED" lines — the whole log if agentId is omitted, one agent's own
 // lines if given. LOG_FILE's own line shape (see appendLog below) is tab-separated:
-// [0]=iso-timestamp, [1]=agentId, [2]=childId, [3]=outcome ("BLOCKED"/"TIMED-OUT-LETTING-CLOSE"). Reading
+// [0]=iso-timestamp, [1]=agentId, [2]=childId, [3]=outcome. "BLOCKED" is the only outcome this hook ever
+// writes as of 2026-09-02 (both (i) and (j) now block — see blockAndCount below); a log written before
+// that date may still carry the retired "TIMED-OUT-LETTING-CLOSE" string from the old let-close branch —
+// harmless here, since this filter only ever matches "BLOCKED". Reading
 // this fresh at each decision point (never cached) is what replaces the old JSON state blob — see the
 // header comment's STATE section for why. This can undercount by at most the number of TRULY simultaneous
 // appends still mid-flight when this read runs — a small, self-correcting race, since the very next read
@@ -137,6 +179,45 @@ function appendLog(line) {
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// @keep-comment
+// blockAndCount — shared by BOTH interruption branches below, (i) and (j): append the BLOCKED line,
+// derive agentBlocks/totalBlocks fresh from LOG_FILE (see countBlocked's own comment for why this read
+// is never cached), and trip DISABLED_FLAG at KILL_SWITCH_TRIP_AT exactly once if the fresh total
+// reaches it. ONE definition so (i) and (j) can never diverge into two slightly different copies of the
+// same cap/kill-switch logic — (j) used to skip this path entirely (it let the agent close instead); now
+// that it also blocks, it needs the identical accounting (i) already had, not a re-derived twin of it.
+function blockAndCount(agentId, childId) {
+  appendLog(`${agentId}\t${childId}\tBLOCKED`);
+  const agentBlocks = countBlocked(agentId);
+  const totalBlocks = countBlocked();
+  if (totalBlocks >= KILL_SWITCH_TRIP_AT) {
+    // Trip now so the VERY NEXT invocation of this hook, anywhere, any agent, fails open immediately.
+    // This block itself still proceeds — the cap that matters here already passed.
+    try {
+      fs.mkdirSync(path.dirname(DISABLED_FLAG), { recursive: true });
+      fs.writeFileSync(DISABLED_FLAG, `${new Date().toISOString()} kill switch tripped at ${totalBlocks} total blocks\n`);
+    } catch {
+      /* best-effort; never fatal */
+    }
+  }
+  return { agentBlocks, totalBlocks };
+}
+
+// @keep-comment
+// releaseClaim — best-effort delete of a wait's own claim file (see the (g) comment above for the full
+// SCOPED-LIFETIME reasoning this exists inside). Matches appendLog's own logging-is-best-effort idiom: a
+// failed delete must never escape this hook's fail-open contract, and an absent or already-removed claim
+// file is the exact same neutral, retryable state either way. Called from INSIDE each of (i) and (j)
+// below, always AFTER that branch's own `blockAndCount` call has already logged the BLOCKED outcome —
+// never before (FINDING-02, code-reviewer cycle 1, 2026-09-02).
+function releaseClaim(claimPath) {
+  try {
+    fs.unlinkSync(claimPath);
+  } catch {
+    /* best-effort; never fatal */
+  }
 }
 
 // @keep-comment
@@ -225,12 +306,28 @@ async function main() {
   const dep = findLiveDependency(agentId, invRows, compRows);
   if (!dep) return;
 
-  // @keep-comment
-  // (g) Already attempted this exact dependency before? Hard "at most one interruption per dependency"
-  // bound, enforced BEFORE any wait/block decision, via an ATOMIC per-dependency claim file rather than a
-  // shared JSON map (see header comment's STATE section). `wx` exclusive-create is atomic at the
-  // filesystem level on both POSIX and NTFS — two processes racing the same claimPath can never both
-  // succeed, which is the load-bearing correctness claim for this guard.
+  // @keep-comment (extended 2026-09-02 — the exemplar-citation history that used to close this comment
+  // moved to the commit message; see it there rather than here)
+  // (g) Already attempted this exact dependency, for THIS SAME active wait? A SCOPED-LIFETIME lock, not a
+  // permanent one (REVISED 2026-09-02 — this comment used to read "at most ONE interruption per
+  // dependency," a stronger, permanent claim that no longer holds). The atomic `wx`-created claim file
+  // still dedupes a burst of near-simultaneous SubagentStop firings for the SAME (agentId, childId) pair
+  // down to ONE active wait, exactly as before — `wx` exclusive-create is atomic at the filesystem level
+  // on both POSIX and NTFS, two processes racing the same claimPath can never both succeed, which is the
+  // load-bearing correctness claim for this guard, unchanged. What changed (REVISED AGAIN 2026-09-02,
+  // FINDING-02, code-reviewer cycle 1): the claim file no longer survives past the wait loop's own
+  // resolution ALONE — it now survives the FULL "wait, then its resulting decision durably logged" cycle.
+  // `releaseClaim` (defined below, called from INSIDE each of (i) and (j), always AFTER that branch's own
+  // `blockAndCount` call) deletes it (best-effort) only once the BLOCKED outcome has actually been
+  // appended to LOG_FILE, never merely once the wait loop itself exits. This is a STRICTER version of the
+  // same scoped-lifetime design, not a different one: releasing any earlier left a gap where a second
+  // SubagentStop firing for the exact same (agentId, childId) pair could acquire a fresh claim and run its
+  // own independent wait-then-decide cycle before the FIRST invocation's own BLOCKED line existed for that
+  // second invocation's own countBlocked/AGENT_CAP read to see — self-bounding (it could only trip the
+  // cap/kill-switch SOONER, never fail open silently) but real and unguarded before this fix. A genuinely
+  // LATER SubagentStop firing, after the prior wait already resolved AND its outcome was durably logged,
+  // still finds no claim file and is free to re-enter, bounded only by AGENT_CAP (checked at (d)/(e)
+  // above) and the kill switch (blockAndCount above).
   const claimPath = path.join(ATTEMPTED_DIR, `${safeFilePart(agentId)}__${safeFilePart(dep.childId)}.claim`);
   fs.mkdirSync(ATTEMPTED_DIR, { recursive: true });
   try {
@@ -254,24 +351,11 @@ async function main() {
   }
 
   if (finished) {
-    // (i) The dependency finished DURING the wait — interrupt this close once. Append the BLOCKED line
-    // FIRST, then re-derive both counts from LOG_FILE fresh (this line included) — see countBlocked's
-    // own comment for the bounded, self-correcting race this trades for the old shared-blob loss.
-    appendLog(`${agentId}\t${dep.childId}\tBLOCKED`);
-    const agentBlocks = countBlocked(agentId);
-    const totalBlocks = countBlocked();
-
-    if (totalBlocks >= KILL_SWITCH_TRIP_AT) {
-      // Trip now so the VERY NEXT invocation of this hook, anywhere, any agent, fails open immediately.
-      // This block itself still proceeds — the cap that matters here already passed.
-      try {
-        fs.mkdirSync(path.dirname(DISABLED_FLAG), { recursive: true });
-        fs.writeFileSync(DISABLED_FLAG, `${new Date().toISOString()} kill switch tripped at ${totalBlocks} total blocks\n`);
-      } catch {
-        /* best-effort; never fatal */
-      }
-    }
-
+    // (i) The dependency finished DURING the wait — interrupt this close once. Release the claim only
+    // AFTER blockAndCount has durably logged this branch's own BLOCKED outcome — see releaseClaim's own
+    // comment above for why the release moved here (FINDING-02, code-reviewer cycle 1, 2026-09-02).
+    const { agentBlocks } = blockAndCount(agentId, dep.childId);
+    releaseClaim(claimPath);
     process.stdout.write(
       JSON.stringify({
         decision: "block",
@@ -284,14 +368,29 @@ async function main() {
     return;
   }
 
-  // (j) The wait expired with the dependency still live — LET IT CLOSE. Never fight past the bound.
-  appendLog(`${agentId}\t${dep.childId}\tTIMED-OUT-LETTING-CLOSE`);
+  // @keep-comment
+  // (j) The wait expired with the dependency still live — BLOCK, do not let it close (REVISED
+  // 2026-09-02 — see the header's own REVISED 2026-09-02 paragraph above for the actual CEO quote and its
+  // reconciliation with the older 2026-08-16 ruling; not repeated a third time here). This used to let the
+  // agent close silently past a still-live dependency; it no longer does. Reuses the EXACT same
+  // BLOCKED-outcome/count/kill-switch logic as (i), via blockAndCount, never a second, diverging copy — so
+  // this branch counts toward AGENT_CAP and the kill switch exactly as (i) already does. The reason
+  // carries BOTH halves the CEO named: A-POSTERIORI (name the still-live child, tell the agent to wait and
+  // process its result once it finishes) and PREVENTIVE (remind it it is not the main session, and that
+  // closing now means dying, not pausing). Release the claim only AFTER blockAndCount has durably logged
+  // this branch's own BLOCKED outcome too — see releaseClaim's own comment above.
+  const { agentBlocks } = blockAndCount(agentId, dep.childId);
+  releaseClaim(claimPath);
   process.stdout.write(
     JSON.stringify({
-      systemMessage:
-        `subagentstop-wait: ${agentId} is closing its turn while its background child ${dep.childId} ` +
-        `(${dep.childType}) is still running after a ${WAIT_MS}ms wait. It was not rescued — check ` +
-        `.claude/.cache/subagentstop-wait.log and the top-level session's own parked-watch rescue.`,
+      decision: "block",
+      reason:
+        `You cannot close your turn: your background child ${dep.childType} (${dep.childId}) is still ` +
+        `running after a ${WAIT_MS}ms wait. You are not the main session — closing your turn now does ` +
+        `not pause you, it ENDS you. Your duty is to WAIT: let ${dep.childId} finish, then process its ` +
+        `result before you close. If you try to close again before it finishes, this same ` +
+        `wait-and-reblock mechanism fires again. (subagentstop-wait: ${agentBlocks}/${AGENT_CAP} ` +
+        `interruptions for this agent this run.)`,
     }),
   );
 }

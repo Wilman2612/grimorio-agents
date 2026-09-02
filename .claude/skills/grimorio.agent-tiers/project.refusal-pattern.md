@@ -4,7 +4,7 @@ This file is a topic-reference companion to ref:skill/grimorio.agent-tiers — g
 `./project.reference.md` sibling, **not** a behavior file, because no single agent owns this pattern. Two more
 instantiations of it live in THEIR OWN owning agent's behavior file rather than here, and reference this file
 instead of restating it: `grimorio.delegate`'s task-shape and skip-planning refusals
-(ref:skill/grimorio.flow-delegation/delegate-behavior.md), and the executor developers' missing-plan refusal
+(ref:skill/grimorio.flow-delegation/delegate-phases/phase-1-intake-and-objective.md), and the executor developers' missing-plan refusal
 (ref:skill/grimorio.developer-memory/project.build-protocol.md). WHEN you land here first, read this as one of several places
 the pattern fires, not the only one.
 

@@ -51,7 +51,7 @@ flowchart TB
 
     P1 -.->|"REFUSAL: spec unwritable to standard —<br/>missing content, no clear reader, would invent<br/>policy, or asks to compress the principal's own words"| P6
     P2 -.->|"REFUSAL: handed LEVEL does not survive<br/>Phase 2's own verification against the placement ladder"| P6
-    P2 -.->|"PLAN-FOR-REVIEW (NOT a refusal): a genuinely new<br/>agent's design is not yet understood (step 5) —<br/>produces the reviewable plan artifact and returns to<br/>caller; Phase 3 is never entered this pass"| P6
+    P2 -.->|"PLAN-FOR-REVIEW (NOT a refusal): step 3c's own<br/>STEPS-VS-PHASES verdict is PHASES AND this is a<br/>brand-new chain OR a rewrite changing an existing<br/>chain's phase count/boundaries (step 5) — produces the<br/>reviewable plan artifact and returns to caller; Phase 3<br/>is never entered this pass"| P6
     P4 -.->|"REFUSAL: a behavior file authored/rewritten<br/>this pass does not open its Steps section with<br/>a graph-definition step"| P6
     P5 -.->|"REFUSAL: spec asks the writer to author a<br/>rule the principal never gave"| P6
 
@@ -111,15 +111,22 @@ different trigger, and merging them would hide which check actually produced the
 
 **The fifth edge, also leaving P2, is a genuinely different kind of exit, drawn and named as one.**
 **NEVER fold it into the REFUSAL table above — it fires from a different trigger than Core Rule 2's own four.**
-Phase 2's own step 5 (PRESENT-PLAN-BEFORE-IMPLEMENTING, landed
-this dispatch) fires WHEN the design being authored is a genuinely new agent AND its own designer does not yet
-fully grasp how it reaches its objective — this is not "the spec is unwritable," Core Rule 2's own trigger; the
-spec may be perfectly writable, the design is simply not yet understood well enough to draft executable rule
-text against. The distinction matters for a reader deciding what this exit MEANS: a REFUSAL reports a defect in
-what was handed to this agent; PLAN-FOR-REVIEW reports a legitimate, expected outcome — a reviewable plan
-artifact, produced and returned for `grimorio.system-keeper`'s own review, exactly the two-separate-steps
+Phase 2's own step 5 (PRESENT-PLAN-BEFORE-IMPLEMENTING) fires WHEN step 3c's own STEPS-VS-PHASES TEST
+(ref:skill/grimorio.phase-splitting/project.steps-vs-phases-test.md, wired this dispatch — see "Dispatch F" below)
+concludes PHASES, AND either this is a brand-new phase chain or a REWRITE that changes an existing chain's own
+phase count/boundaries — this is not "the spec is unwritable," Core Rule 2's own trigger; the spec may be
+perfectly writable, the artifact's own SHAPE is what still needs designing before rule text can be drafted
+against it. **Rewired this dispatch, replacing a narrower prior trigger** (a genuinely new agent AND its own
+designer not yet fully grasping how it reaches its objective) **that could never fire on a rewrite of an
+existing agent at all** — exactly the incident that produced this fix (`grimorio.phase-splitting/project.steps-vs-phases-test.md`'s
+own opening section). The distinction matters for a reader deciding what this exit MEANS: a REFUSAL reports a
+defect in what was handed to this agent; PLAN-FOR-REVIEW reports a legitimate, expected outcome — a reviewable
+plan artifact, produced and returned for `grimorio.system-keeper`'s own review, exactly the two-separate-steps
 discipline Phase 2's own step 5 states in full (the plan, THEN, only once reviewed, the rule-text) — never a
-finding that something was wrong with the brief.
+finding that something was wrong with the brief. **WHEN step 3c's own verdict is STEPS, or PHASES with no
+chain-boundary change (a same-shape edit inside one existing phase) ⟶ this edge never fires — the ordinary
+forward spine (P2→P3) already covers both cases, drawn as the solid edge above, never a separate branch of its
+own.**
 
 Only P3 (RULE SYNTAX) and P6 (REPORT & CLOSE, terminal) carry no early-exit edge of their own — P3's own
 nearest analogue is CLONE-EXECUTOR MODE's own refusal, which surfaces THROUGH P3's ordinary step 2 (a clause
@@ -228,6 +235,20 @@ always-loaded skill or behavior file — and its growth past ~500 lines is the d
 newly-landed flowchart mandate above, which trades vertical space for a diagram that is traceable and OBLIGING
 rather than merely informative, the same trade the mandate itself states.**
 
+**Extended re-justification, per `grimorio.code-reviewer`'s own FINDING-05 (Dispatch F, LOW): the load-frequency
+argument above is NOT one of Phase 4 step 2's own two named LAST-RESORT grounds for a skill file that keeps
+growing (ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md's own step 2) — named
+honestly rather than left resting on an argument that doesn't actually satisfy the rule it needs to satisfy.**
+This file DOES meet the SECOND of those two grounds directly: "splitting would sever content that has to be
+read together." Every "Dispatch X" section in this file documents ONE authoring pass's own change AGAINST the
+CURRENT state of the diagrams and tables it sits beside — moving the dispatch log to a companion file would
+force a reader auditing any one change to hold two files open simultaneously, cross-referencing node IDs and
+table rows across a file boundary, exactly the severed-reading cost the ground exists to name. This is the
+SAME shape of justification `SKILL.md` and `system-keeper-quasi-software-view.md` already apply to their own
+size, not a fresh invention for this file. A future pass that adds substantial NEW diagram/table content
+(rather than another dispatch-log entry) still owes a real SPLIT-vs-LAST-RESORT judgment fresh, never a silent
+extension of this paragraph's own count.
+
 **P1 · SEARCH-FIRST**
 
 ```mermaid
@@ -266,13 +287,14 @@ flowchart TB
     B3 --> B3c{"CORE RULE 2 — the<br/>handed level survives this<br/>phase's own verification?"}
     B3c -->|"NO — looks wrong"| B3f["flag the mismatch in the<br/>DELIVERABLE — never silently<br/>relocate, never silently<br/>proceed"]
     B3f --> BREF(["REFUSE here — → Phase 6<br/>(REFUSAL edge, Layers 1+2)"])
-    B3c -->|"YES"| B4["Step 4 — ALWAYS choose<br/>FORM before wording: LITERAL<br/>(algorithm) or LATITUDE<br/>(prose)"]
-    B4 --> B5{"Step 5 — a genuinely NEW<br/>agent AND its design is not<br/>yet fully grasped?"}
+    B3c -->|"YES"| B3s{"Step 3c — STEPS-VS-PHASES<br/>TEST (EVERY pass: new agent<br/>OR rewrite; BEFORE FORM<br/>commits to anything) —<br/>verdict?"}
+    B3s -->|"STEPS"| B4["Step 4 — ALWAYS choose<br/>FORM before wording: LITERAL<br/>(algorithm) or LATITUDE<br/>(prose)"]
+    B3s -->|"PHASES"| B5{"Step 5 — brand-new chain, OR<br/>rewrite changes an existing<br/>chain's own phase<br/>count/boundaries, AND no<br/>ALREADY-REVIEWED plan for this<br/>exact scope was handed in?"}
     B5 -->|"YES"| B5p["do NOT proceed to Phase 3<br/>— produce the REVIEWABLE PLAN<br/>artifact instead, as TWO<br/>separate steps: (a) the plan<br/>of HOW it works, THEN (b) the<br/>rule-text"]
     B5p --> B5b["Step 5b — ALWAYS apply the<br/>anti-plausibility method<br/>explicitly: name what the<br/>plan covers AND what it does<br/>not, against the complete<br/>scope"]
     B5b --> BPLAN(["PLAN-FOR-REVIEW (NOT a<br/>refusal) — → Phase 6 directly,<br/>Phase 3 never entered<br/>(Layers 1+2)"])
-    B5 -->|"NO"| B5n["'N/A — not authoring a new<br/>agent this pass' / 'N/A —<br/>design already fully grasped'<br/>— legitimate answers"]
-    B5n --> B6
+    B5 -->|"NO — same-shape edit<br/>inside one existing phase, OR<br/>an already-reviewed plan for<br/>this exact scope WAS handed<br/>in (the two-pass escape)"| B4
+    B4 --> B6
     B6{"Step 6 — the SYSTEMIC<br/>process/machinery change being<br/>authored into another agent<br/>ALSO applies to this own<br/>chain?"}
     B6 -->|"YES"| B6a["FLAG only — mirrors, never<br/>decides, grimorio.system-<br/>keeper's own SUBJECT-ZERO<br/>rule"]
     B6 -->|"NO"| B6b["'N/A — this pass's own<br/>change does not touch<br/>process/machinery doctrine' /<br/>'N/A — already applied to my<br/>own chain this same dispatch'"]
@@ -318,13 +340,17 @@ flowchart TB
     D3{"Step 3 — artifact IS a<br/>behavior file, AND its Steps<br/>section's first step is NOT a<br/>graph-definition step?"}
     D3 -->|"YES"| DREF(["CORE RULE 2 — REFUSE to<br/>ship the file, name the gap —<br/>→ Phase 6 (REFUSAL edge,<br/>Layers 1+2)"])
     D3 -->|"NO / N/A — not a<br/>behavior file this pass"| D3b
-    D3b{"Step 3b — file being<br/>authored/rewritten this pass<br/>defines TWO OR MORE phases (a<br/>genuinely new state machine)?"}
-    D3b -->|"YES"| D3br["ALWAYS run RENDER / GROUP /<br/>MEASURE / SPLIT sizing against<br/>every phase"]
+    D3b{"Step 3b — file being<br/>authored/rewritten this pass<br/>defines TWO OR MORE phases —<br/>a brand-new state machine, OR<br/>a single step added to an<br/>ALREADY-EXISTING phase of one?"}
+    D3b -->|"YES — either shape"| D3br["ALWAYS run RENDER / GROUP /<br/>MEASURE / SPLIT sizing —<br/>every phase (brand-new chain)<br/>or the ONE affected phase vs<br/>its pre-edit siblings (an<br/>existing-phase edit)"]
     D3br --> D3bp{"a phase is a PINCHO<br/>(materially oversized vs its<br/>siblings)?"}
     D3bp -->|"YES"| D3bs["split it, or ship it flagged<br/>with an explicit reason —<br/>NEVER silently oversized"]
-    D3bp -->|"NO"| D4
-    D3bs --> D4
-    D3b -->|"NO — single step added<br/>to an existing phase, not a<br/>new state machine"| D4
+    D3bp -->|"NO"| D3c
+    D3bs --> D3c
+    D3b -->|"NO — this pass touches no<br/>phase-chain agent at all<br/>(a STEPS-shaped agent)"| D4
+    D3c{"Step 3c — SAME trigger as<br/>3b: classify every AFFECTED<br/>phase/node against Rule<br/>8(a)-(c) of flow-method.md?"}
+    D3c -->|"YES — trigger fires"| D3cr["REPORT-ONLY (reads/reports,<br/>never writes) → parallel-<br/>eligible / MODIFYING (writes<br/>the artifact) → sequential /<br/>two checks INDEPENDENT →<br/>split, DEPENDENT → same node"]
+    D3cr --> D4
+    D3c -->|"NO — same STEPS-shaped<br/>exclusion as 3b"| D4
     D4["Step 4 — NEVER write the<br/>same method text into two<br/>files"] --> D4c{"about to write a passage<br/>already written into a first<br/>file?"}
     D4c -->|"YES"| D4a["extract to the skill both<br/>already load, leave a one-line<br/>reminder in each"]
     D4c -->|"NO"| D5
@@ -410,23 +436,22 @@ flowchart TB
 
 **Reading these six flowcharts as a measurement instrument, not decoration — the pincho check.** Raw step
 counts, re-verified against the six phase files fresh this pass BY DIRECT GREP, not carried forward from any
-prior draft — the fix this paragraph itself needed, per `grimorio.code-reviewer`'s own FINDING-01: P1=7 (incl.
-5b — corrected this same dispatch; the prior count of 6 undercounted it, the identical class of miss
-FINDING-01 caught below, found here by applying that same finding's own instruction to re-verify every count in
-this paragraph, not only the one routed), P2=9 (incl. 2b, 2c, 5, 5b, 6 — five additions landed across three later
-dispatches on top of an original four-step version), P3=4, P4=11 (incl. 3b, 7a, 7b — 7b predates this dispatch
-and was already missing from the count before this pass touched it; 7a is this dispatch's own addition), P5=7
-(incl. the new step 7, this same dispatch), P6=4.
-P4 visibly carries more than double P3's or P6's own load (11 vs 4 each) — but this is not a fresh finding this
+prior draft: P1=7 (incl. 5b), P2=10 (incl. 2b, 2c, 3c, 5, 5b, 6), P3=4, P4=12 (incl. 3b, the new 3c, 7a, 7b),
+P5=7, P6=4.
+P4 visibly carries more than double P3's or P6's own load (12 vs 4 each) — but this is not a fresh finding this
 rendering surfaces: Phase 4's own text already names and defends it explicitly ("This is the largest phase in
 this chain, honestly reported as such... splitting 'shape it' from 'verify it's shaped' would recreate the exact
 mistake this agent's own phase map already corrected once") — a considered, self-aware sizing decision, not an
-omission. P2's own growth from four to eight steps, across two separate dispatches, never triggered its own
-PINCHO-SIZING CHECK (P4 step 3b) — correctly: that check's own trigger is scoped to "a genuinely new phased
-state machine, not a single step added to an already-existing phase," and P2 growing by addition, one step at a
-time, is exactly the case step 3b's own text excludes, never a coverage gap. P4's own new step 7a is the same
-kind of addition-not-a-new-machine growth, for the same reason — this dispatch's own step 3b did not fire
-against Phase 4 or Phase 5 either, correctly, per that check's own identical exclusion.
+omission. **This dispatch's own RENDER/GROUP/MEASURE self-check, applied to its own one edited phase (P4), per
+`grimorio.phase-splitting/project.steps-vs-phases-test.md`'s own worked instance of the very test P4's own step 3c now
+enforces on every OTHER pass, applied here to this pass's OWN edit first:** P4 gains ONE new step (3c),
+classifying phase/node read-write shape — the SAME MISSION as step 3b's own sizing judgment (both are
+"is this phase-chain edit structurally sound before it ships" checks), landing immediately beside its sibling
+rather than opening a new cognitive thread; RENDER (one new WHEN-trigger, four Rule-8(a)-(c) sub-clauses, one
+new DELIVERABLE field) GROUPED against step 3b's own existing load (same trigger condition, same "classify the
+affected phase(s)" mission) MEASURES as one bounded addition, not a multiple of P4's own already-large sibling
+count — not a pincho, the SAME verdict this file's own P2-addition self-check already reached for its own prior
+dispatch, applying the identical discipline rather than a looser one to its own author's own change.
 
 **Table 2 — KNOWN-ERRORS-TO-PHASE mapping.** One row per measured incident/known-error already in this corpus
 that this agent's own kind of work makes relevant. **WHEN a row's own ADDRESSED BY column reads OMISSION ⟶ that
@@ -438,12 +463,13 @@ is a real, currently-true gap, never a placeholder** — no phase in this chain 
 | 2 | THE TELL: a quasi-view requirement authored for `grimorio.design-orchestrator` with no equivalent ever produced for the keeper's own chain OR `prompt-writer-phases/` — this file's own path, named explicitly in the original incident | Addressed by this saved view's own existence, and by THIS SAME DISPATCH's own two-halves deepening (this very table) |
 | 3 | A rule/spec authored with no concrete worked example of correct output ships correct-SHAPED but wrong-content, undetectable from its own rule-form alone — grounded in Design by Contract (Meyer, 1986), Specification by Example (Adzic, 2011), few-shot/exemplar prompting (Brown et al., 2020) | P2 step 2b (EXPECTED-RESULT ARTIFACT) |
 | 4 | A phase-map derivation that produced a single phase carrying roughly 28 distinct requirements before anyone counted it | P4 step 3b (PINCHO-SIZING CHECK, RENDER/GROUP/MEASURE/SPLIT) |
-| 5 | Rule-text drafted for a design its own author does not yet fully grasp — grounded in Architecture Decision Records (Nygard, 2011), design docs at Google, the IETF RFC process | P2 step 5 (PLAN-FOR-REVIEW: produce the reviewable plan before implementation) |
+| 5 | Rule-text drafted for a design whose own shape (STEPS vs PHASES) was never decided, or a design not yet reviewed before implementation — the ORIGINAL incident named an epistemic "author doesn't yet grasp it" trigger; step 5's own condition is now the STRUCTURAL fact (a brand-new or boundary-changing phase chain, per step 3c's own verdict) plus the two-pass escape (an already-reviewed plan handed back skips a second PLAN-FOR-REVIEW round) — grounded in Architecture Decision Records (Nygard, 2011), design docs at Google, the IETF RFC process | P2 step 3c (the decision) + step 5 (PLAN-FOR-REVIEW: produce the reviewable plan before implementation, with the two-pass escape) |
 | 6 | CLAIM-HARDENED-BEYOND-EVIDENCE: an artifact that "looks complete" reads as good by both its own author and its reviewer while a real gap survives — the anti-plausibility incident itself | **ADDRESSED BY THIS SAME DISPATCH**: Target File 1 (this very table, closing this chain's own half-(b) gap) and Target File 2 (P2 step 5b, requiring the PLAN-FOR-REVIEW artifact to carry durable evidence of what was considered) |
 | 7 | RULE-EXISTED-DID-NOT-FIRE (grimorio-defects.md #13): this exact agent type, `grimorio.prompt-writer`, `SendMessage`d an agent-TYPE name instead of an id, three times, and reported to the wrong session | **OMISSION.** No phase in this chain, nor Phase 0, instructs holding or using the parent's agent id when raising a mid-run question via `SendMessage` — searched fresh across every phase file this pass; zero mentions of `SendMessage` or "agent id" anywhere in `.claude/skills/grimorio.agent-writing/prompt-writer-phases/` |
 | 8 | REFERENCE-OUTLIVED-ITS-TARGET: pointer rot caused by an edit in an unrelated file elsewhere in the corpus | **PARTIAL / OMISSION.** P4 step 7 confirms every pointer newly added or changed THIS PASS resolves, but never re-checks a pre-existing pointer that rotted because its TARGET moved elsewhere — live example: this exact dispatch's own trigger, the dead anchor this file itself carried (fixed above), caused by an unrelated move in `grimorio.phase-splitting/SKILL.md`, invisible to any prior pass's own step 7 because that anchor was not "added or changed" by that pass. This dispatch fixes the ONE named instance; it does not close the class, and no step in this chain currently re-checks a pointer it did not itself touch this pass |
 | 9 | "A rule is not verified by reading it" — WRITTEN is not the same fact as WORKS, the distinction `grimorio.system-keeper`'s own P7 step 5 draws explicitly for its report to the CEO (ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md's own Table 2, row 17) | **OMISSION.** P6 step 4's own VERIFIED close names which gate items were confirmed (RULE SYNTAX / FILE STRUCTURE / CONTENT GUARDRAILS — all WRITTEN-side checks) but states no equivalent disclaimer; a reader of this chain's own VERIFIED close could over-read it as proof the shipped rule WORKS, not only that it was written to standard |
 | 10 | The Quality Checklist's own "Examples" item (`grimorio.prompt-writing-quality/SKILL.md`, item 6) was a SOFT bullet — no ALWAYS/NEVER form, no action named inside any task's own Steps anywhere in this chain — and a sibling agent's `## OUTPUT` section (`grimorio.extract-cleaner`, no `Skill` tool, self-contained) described its own output shape in prose only, with no literal sample to copy | **ADDRESSED BY THIS SAME DISPATCH** — the checklist item promoted to a genuine hard rule (`ref:skill/grimorio.prompt-writing-quality#examples-must-be-the-real-output-never-a-description-of-it`), reached by TWO named actions in this chain: P4's own new step 7a (the mechanical `--examples` gate, catching total absence) and P5's own new step 7 (the semantic trigger, catching a present-but-fake example the gate cannot reach) |
+| 11 | `ref:skill/grimorio.phase-splitting/project.flow-method.md`'s own Rule 8(a)-(c) (REPORT-ONLY parallelizes, MODIFYING stays sequential, INDEPENDENT-vs-DEPENDENT checks split or stay together) had NO forcing function anywhere in this chain — confirmed live, `grep -rl "flow-method" .claude/skills/grimorio.agent-writing/prompt-writer-phases/` returned EMPTY before this pass — so a phase chain a future authoring pass designs could ship well- or badly-classified with nothing here to catch it either way; surfaced mid-task by `grimorio.system-keeper` while reviewing `grimorio.solution-architect`'s own new chain, whose plan happened to satisfy Rule 8 correctly by accident, without the mechanism forcing it | **ADDRESSED BY THIS SAME DISPATCH** — P4's own new step 3c (this file's own `D3c` node above), the same trigger as step 3b, classifying every affected phase/node against Rule 8 before the DELIVERABLE is filled |
 
 **Several of the keeper's own 19 known-errors were checked against this chain and found genuinely N/A — named
 here rather than silently dropped.** Anything about spawning, tiering a child, or CODE-VOLUME delegation
@@ -516,9 +542,9 @@ decision onward for someone else to act on."
 | Phase | WORK PRODUCT (what the phase's own action produces) | ORCHESTRATION ACT (what it then routes, and to whom) |
 |---|---|---|
 | P1 · SEARCH-FIRST | The spec held verbatim, every target file's current content, rewrite-lens findings (WHEN a rewrite), surfaced precedent, and the MECHANICAL-VOLUME finding — established FACTS, no judgment applied yet | Hands all of it forward to P2 unmodified (or, on Core Rule 2 refusal, straight to P6) |
-| P2 · UNDERSTAND, VERIFY & PLAN | The stated OBJECTIVE/EXIT CONDITION, the verified (or flagged) LEVEL, the FORM decision, the EXPECTED-RESULT ARTIFACT (step 2b, this dispatch), the GOAL-LEVEL CHECK (step 2c — Cockburn's lunch test on a goal-shaped artifact, or "N/A" otherwise), and, WHEN triggered, the reviewable PLAN artifact itself (step 5, this dispatch) plus the SELF-AWARE flag (step 6, this dispatch) | Routes the plan forward to P3 in the ordinary case — OR, WHEN step 5 fires, routes the reviewable plan artifact directly to P6/the caller instead, Phase 3 never entered |
+| P2 · UNDERSTAND, VERIFY & PLAN | The stated OBJECTIVE/EXIT CONDITION, the verified (or flagged) LEVEL, the FORM decision, the EXPECTED-RESULT ARTIFACT (step 2b), the GOAL-LEVEL CHECK (step 2c), the STEPS-VS-PHASES VERDICT (step 3c, this dispatch — the new/rewrite reasoning and, for a rewrite, whether the chain's own phase count/boundaries change), and, WHEN triggered, the reviewable PLAN artifact itself (step 5) plus the SELF-AWARE flag (step 6) | Routes the plan forward to P3 in the ordinary case (STEPS verdict, or PHASES with no chain-boundary change) — OR, WHEN step 5 fires, routes the reviewable plan artifact directly to P6/the caller instead, Phase 3 never entered |
 | P3 · RULE SYNTAX | The individually well-formed rule set — every rule opener-checked, extension vocabulary applied where needed | Hands the syntactically-verified rule set to P4 |
-| P4 · FILE STRUCTURE | The actual file(s) written to disk, the pointer-resolution table, the HARNESS-VALIDATE result (step 7a, this dispatch — both deterministic gates, per file, plus any retry count), the five-named-check gate result, and the PINCHO-SIZING CHECK finding (step 3b, WHEN a new multi-phase agent is in scope) | Hands the written file(s) plus every check result to P5 |
+| P4 · FILE STRUCTURE | The actual file(s) written to disk, the pointer-resolution table, the HARNESS-VALIDATE result (step 7a — both deterministic gates, per file, plus any retry count), the five-named-check gate result, the PINCHO-SIZING CHECK finding (step 3b, WHEN a new multi-phase agent is in scope), and the RULE-8 CLASSIFICATION CHECK (step 3c, this dispatch — same trigger as 3b) | Hands the written file(s) plus every check result to P5 |
 | P5 · CONTENT GUARDRAILS | The five scan results (doctrine-inlining, level-redirect, non-English, justification-harm, EXAMPLE-AUTHENTICITY per step 7, this dispatch) and, WHEN it fires, the named REFUSAL | Routes scan results and any refusal to P6 |
 | P6 · REPORT & CLOSE | The terminal work-product itself — the per-artifact report and the VERIFIED/COULD-NOT close; unlike the keeper's own P4/P6, this IS the phase's deliverable, not a coordination act standing in for one | Terminal — hands the finished report to `grimorio.system-keeper`'s own AUTHORING-COORDINATION phase; no further phase to route to |
 
@@ -588,6 +614,62 @@ Checked fresh, the same per-item discipline as Dispatch B's, C's, and D's own se
   — the same treatment every prior step-addition (2b, 5, 5b, 6) already received in that same flowchart, since
   Half(b) draws every real step by construction; this is the expected, not exceptional, consequence of a
   genuinely new step landing inside an already-drawn phase.
+
+## Dispatch F's own additions — one changes the drawn shape, one widens an existing node's own condition
+
+Checked fresh, the same per-item discipline as Dispatch B's through E's own sections above. This dispatch is the
+CEO-diagnosed defect this whole chain exists to fix — translated: he assumed `grimorio.prompt-writer` already
+understood phase-design/state-machine/delegation logic because he reviews it by hand, but a roster rewrite
+applied a uniform "graph-first steps" line to every agent instead, and a REWRITE of an existing agent was never
+even asked the STEPS-vs-PHASES question — grounded in full at
+ref:skill/grimorio.phase-splitting/project.steps-vs-phases-test.md, not restated here.
+
+- **Phase 2's new step 3c** (STEPS-VS-PHASES TEST,
+  ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-2-understand-verify-plan.md) **DOES alter the drawn
+  shape** — the P2 flowchart above now carries a new decision node (`B3s`, placed after the pre-existing `B3c`
+  Core-Rule-2 node — a distinct node ID was required precisely BECAUSE `B3c` already named a different branch;
+  a first pass of this same edit reused `B3c` for both, a real node-ID collision caught and fixed in REWORK
+  below), with its STEPS branch feeding `B4` (FORM) directly and its PHASES branch feeding into `B5`'s own
+  (now narrower) condition. This is a genuine new node and new branch, not a relabeling. **Numbering note:**
+  the step is numbered 3c, not 4b, in the actual phase file — it runs BEFORE step 4 (FORM), per a REWORK fix
+  below; this diagram's own node naming and edge order now match that.
+- **Phase 2's own step 5, rewired** (same file) does NOT add a new edge or node of its own — the PLAN-FOR-REVIEW
+  edge it drives already existed (landed in an earlier dispatch); only the CONDITION that fires it changed, from
+  "a genuinely new agent whose designer does not yet fully grasp it" to "step 3c's verdict is PHASES AND (a
+  brand-new chain OR a rewrite changing an existing chain's own boundaries) AND no already-reviewed plan for
+  this exact scope was handed in" — the italicized clause is the REWORK fix below, not part of the original
+  pass. The edge's own LABEL text is updated in Layers 1+2 above to reflect this; the edge itself, and the node
+  it points to, are unchanged.
+- **Phase 4's step 3b, widened trigger** (ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md)
+  does NOT alter the drawn shape at the Layers-1+2 level, and does not add a new node to the P4 flowchart —
+  `D3b`'s own CONDITION text is widened (a single step added to an already-existing phase now also fires the
+  sizing check, closing the exact gap the "Reading these six flowcharts" paragraph above used to describe as a
+  correct exemption) but its own branches (YES → sizing judgment, NO → D4) are structurally unchanged; only what
+  routes into the YES branch grew.
+
+## Dispatch F — REWORK cycle 1, `grimorio.code-reviewer` FINDING-01 and FINDING-04, both fixed
+
+**FINDING-01 (CRITICAL) — the ORIGINAL step 5 rewiring above deadlocked the chain.** A purely STRUCTURAL
+condition ("brand-new chain OR boundary change") cannot ever become false on a later dispatch, because the only
+thing that could flip it — the chain existing on disk with its new shape — is exactly what step 5 was blocking;
+every dispatch, first or Nth, would produce a plan and never implement it. **Fixed** by adding an explicit
+TWO-PASS ESCAPE to step 5's own condition (`AND no ALREADY-REVIEWED PLAN ARTIFACT for this exact scope was
+handed in`), drawn above as the `B5` node's own widened condition and its "NO" branch now routing to `B4`
+(previously it routed to a since-removed `B5n` placeholder node). The caller-side half of this contract —
+`grimorio.system-keeper`'s own Phase 4 (authoring-coordination) now hands back a reviewed plan verbatim, marked
+reviewed, when re-invoking for a scope it already approved a plan for — is a NEW clause in THAT file
+(ref:skill/grimorio.agent-writing/system-keeper-phases/phase-4-authoring-coordination.md's own step 2), outside
+this diagram's own drawn scope (it draws `grimorio.prompt-writer` only, never its caller's internals) but named
+here so a reader knows the escape is not one-sided prose.
+
+**FINDING-04 (MEDIUM) — the step used to claim it ran "before FORM (step 4)" while numbered 4b, AFTER step 4 in
+the same list.** **Fixed** by renumbering it 3c and moving it to sit between step 3's own Core-Rule-2 check and
+step 4 (FORM) in the actual phase file — the diagram above now matches: `B3s` sits between `B3c` and `B4`, never
+after `B4` the way the pre-REWORK version of this diagram drew it.
+
+Both fixes are ALREADY reflected in the diagrams and prose above — this section is the REWORK LOG, read
+alongside "Dispatch F's own review status" near the end of this file for the reviewer's own verdict history,
+not a second description of what changed.
 
 ## Consistency pass — step 7b's own missing flowchart node, found and fixed
 
@@ -659,3 +741,37 @@ description elsewhere) is the only piece of this file that any cycle-2 finding r
 Per ref:skill/grimorio.agent-writing/system-keeper-phases/phase-7-close-out-report.md's own step 5: this SHIPPED state
 covers only that the placement above (and across the sibling files this diff touches) is correctly WRITTEN —
 never that any rule or table entry it describes now WORKS. Writing and firing are separate facts.
+
+## Dispatch F's own review status — CYCLE 1 REWORK, fixes landed, CYCLE 2 pending
+
+**Named honestly rather than left silently implied by the SHIPPED verdict above, which covers only the dispatch
+that ended at "Dispatch E."** This file's own "Dispatch F's own additions" section, the rewired Phase 2 step 5
+trigger, Phase 2's new step 3c, Phase 4's widened step 3b, the new companion file
+`grimorio.phase-splitting/project.steps-vs-phases-test.md`, and the js-developer-memory portability fix are this
+dispatch's own changes, gated by `agent:grimorio.code-reviewer` against the FULL diff (grimorio-conduct rule 20;
+the brief's own C4) — not yet folded into the verdict recorded above, which predates this dispatch entirely.
+
+**CYCLE 1 — REWORK, two blocking findings (CRITICAL FINDING-01, HIGH FINDING-02) plus two secondary findings
+(MEDIUM FINDING-03, FINDING-04), all four fixed this same pass — see "Dispatch F — REWORK cycle 1" above for
+FINDING-01/04's own diagram-level fix, and this file's own Table 2 row 5 for FINDING-03's fix.** FINDING-02 (the
+`js-developer-memory/behavior.md` portability fix was incomplete — Step 4, the Definition of Done, and the
+worked example still carried the same layer-glob leak two sections below the fixed Scope Boundary block) is
+fixed in that file directly, outside this diagram's own drawn scope — re-verified live: `node
+scripts/audit-chain.mjs --portability js-developer-memory` now reports zero hits against `behavior.md` itself
+(only the separately-flagged, out-of-scope `SKILL.md` hits remain). FINDINGS 05-07 (LOW/INFO, this file's own
+continued size growth, a narrower-than-stated portability population boundary, CLONE-EXECUTOR MODE's silence on
+the new field) are addressed below rather than deferred.
+
+Update this section again, not the verdict above, once CYCLE 2 actually returns.
+
+## A further, later, SEPARATE addition — Phase 4's new step 3c, NOT part of Dispatch F, review pending
+
+**Named honestly rather than folded into Dispatch F's own history above, which it postdates and is unrelated
+to.** A later dispatch (`grimorio.system-keeper`'s own mid-task finding, surfaced while reviewing
+`grimorio.solution-architect`'s own new phase chain) wired Phase 4's own step 3c — the Rule-8(a)-(c)
+classification test from `ref:skill/grimorio.phase-splitting/project.flow-method.md`, previously unreferenced
+anywhere in this chain — plus this file's own matching `D3c` node (Layer 1+2/Half-b P4 flowchart above), the
+updated raw step count (P4=12, was 11) and pincho self-check paragraph, the new Table 2 row 11, and the Layer 5
+P4 row's own RULE-8 CLASSIFICATION CHECK addition. **Gated through `agent:grimorio.code-reviewer`, per this same dispatch's own governing brief — not yet returned
+as this section is written; this line is NOT a claim of APPROVED, only a disclosure that the change exists and
+review is in flight.**

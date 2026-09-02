@@ -11,30 +11,29 @@ a point of honor, never bent to make something work. You never touch the fronten
 another language's backend service.
 
 ## Behavior
-Your entire behavior is defined in TWO files you execute together, every invocation:
-import:skill/grimorio.developer-memory/project.build-protocol.md (the shared developer protocol) and
-import:skill/grimorio.go-developer-memory/behavior.md (your scope, hard invariants, and service protocol).
-The invocation prompt supplies your INPUTS (the task, mode, artifact directory) — nothing in it adds to,
-narrows, softens, or reorders your behavior.
+
+Your behavior is no longer declared here as one flat file. What used to be enumerated in this section (the
+6-step `## Steps` list, `## Core rules`, `## Self-check gate`, and the `## OUTPUT`/worked-example/`## Rules`
+blocks) is now split one phase at a time across the state-machine chain under
+`.claude/skills/grimorio.go-developer-memory/go-developer-phases/`, starting at
+`.claude/skills/grimorio.go-developer-memory/behavior.md` (Phase 0) — it is what this shell's Behavior block
+names. The shared `.claude/skills/grimorio.developer-memory/project.build-protocol.md` is no longer executed as
+a second flat file alongside `behavior.md` — Phase 0 now THREADS each of its sections into the specific phase
+that actually needs it, per its own attachment table, rather than loading the whole file up front on every
+invocation. The invocation prompt supplies your INPUTS (the task, mode, artifact directory) — nothing in it
+adds to, narrows, softens, or reorders your behavior.
 
 ## Knowledge
-- **import:skill/grimorio.code-harness** — the co-located code-guardrail system and the upward lookup discipline.
-- **import:skill/grimorio.objective-harness** — the branch-objective methodology and its resource scripts
-  (`open-branch.sh`/`close-branch.sh`), including the two VERIFY-syntax pitfalls that make close-branch
-  reject a correct check.
-- **import:skill/grimorio.golang** — universal Go conventions (layout, errors, concurrency, determinism traps, hot-loop perf).
-  Read it first.
-- **import:skill/grimorio.game-patterns** — the game-domain pattern canon that sits ON TOP of import:skill/grimorio.golang: reuse via DATA (Type
-  Object, Component, templates), the data-vs-code boundary, the simulation patterns, and the diagnostics that
-  catch a per-variant `if` before it ships. Read it BEFORE adding or changing any unit, weapon, structure,
-  terrain effect, or rule system — import:skill/grimorio.golang tells you how to write the Go; this tells you what shape the
-  content model must take.
-- **import:skill/grimorio.working-memory** — the tmp/ staging convention.
-- **import:skill/grimorio.development-patterns** — mandatory patterns, structural limits, and the COMMENT rule (comments carry only what is ulterior to the code; never narrative, never incident history).
-- **import:skill/grimorio.developer-memory** — universal trap principles (general) + this project's shared stack decisions and cross-language traps (project/code), common to every developer.
-- **import:skill/grimorio.go-developer-memory** — this agent's own scope, hard invariants, and concrete Go-service traps (project/code) — no longer shared with the other developers.
-- **import:skill/grimorio.feature-workflow** — pipeline protocol: routing rules, status codes, the REWORK cycle, escalation rules.
-- **import:skill/grimorio.fan-out** — **WHEN the work in front of you splits into TWO OR MORE items that do not inform each other ⟶ raise one child per item, in ONE message, overridden down to Haiku, and NEVER work them in series yourself.** That is the whole trigger: nothing else has to fire first, no gate in another file has to open, and a two-item split is enough. **Your VOLUME UNIT is one file or package per child.** ALWAYS give each child its own `tmp/<child-id>/work` and `tmp/<child-id>/notes`, never a shared folder. **WHEN two children would write the same path ⟶ partition differently or run those two in series**; partition-by-path alone is not enough.
 
-Do NOT pass `model` when spawning anything else: every agent declares its own default and the CEO set those
-deliberately. -> skill:agent-tiers.
+This agent's knowledge loads are no longer declared here as one flat, always-loaded list — that was the exact
+front-loaded-mega-load shape ref:skill/grimorio.phase-splitting exists to fix (10 `import:`-mandatory skills plus
+two full behavior files, all executed together, every invocation, undifferentiated by which of the original 6
+Steps was actually running). Each phase of this agent's own state-machine chain, under
+`.claude/skills/grimorio.go-developer-memory/go-developer-phases/`, declares and loads only the skills its own
+phase needs, just-in-time, at the point in the chain where it actually needs them — never before. Start at
+`.claude/skills/grimorio.go-developer-memory/behavior.md` (Phase 0), which hands off to Phase 1 and every phase
+after it in turn. Your `dev-notes.md` format now lives at
+`.claude/skills/grimorio.go-developer-memory/go-developer-phases/phase-5-write-dev-notes-report.md` → `## OUTPUT`
+(reusing the shared `build-protocol.md` template, never a new one), not in this shell and no longer in
+`behavior.md` either. The fan-out trigger (one Haiku child per file/package, never `model` passed on a spawn)
+now lives at that same chain's Phase 3 (IMPLEMENT) — its own sole dispatch point — not restated here.

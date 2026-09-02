@@ -87,7 +87,7 @@ the SAME final disposition and the SAME full cycle history it would otherwise ha
    state** — per the conditioning above, IT is this very mode file itself WHEN this mode file is the target
    under improvement — **while every other phase file, Phase 0, and (when not itself the target) this mode
    file all stay at HEAD, current.** Two different keepers must never improvise two different setups for this
-   same step. This scratch worktree already IS the SELF-MODIFICATION case ref:skill/grimorio.agent-writing/system-keeper-phases/phase-4-authoring-coordination.md#worktree-isolation-is-for-self-modification-never-a-normal-improvement-pass names — the governed file(s) under improvement are always among this dispatch's own TARGET FILE(S), so that section's own FIRST rule (a worktree is warranted here, since the governed file(s) under improvement are always among this dispatch's own TARGET FILE(S)) already covers this step's own worktree-creation setup, confirmed consistent, never duplicated or contradicted here — NEVER read this as also invoking that section's own THIRD clause (the guard-hook arming instruction): nothing in this VALIDATION STEP arms `keeper-worktree-guard.cjs` before spawning the successor in step 2 below, and this sentence claims no such coverage. **NEVER let the successor read, `git diff`, `git show`, `git log`, or otherwise consult
+   same step. This scratch worktree already IS the SELF-MODIFICATION case ref:skill/grimorio.agent-writing/system-keeper-phases/phase-4-authoring-coordination.md#worktree-isolation-is-for-self-modification-never-a-normal-improvement-pass names — the governed file(s) under improvement are always among this dispatch's own TARGET FILE(S), so that section's own FIRST rule (a worktree is warranted here, since the governed file(s) under improvement are always among this dispatch's own TARGET FILE(S)) already covers this step's own worktree-creation setup, confirmed consistent, never duplicated or contradicted here — `keeper-worktree-guard.cjs` itself now protects the main tree automatically, from real git identity, on every Edit/Write/MultiEdit; its protection applies unconditionally to any edit this VALIDATION STEP or any other step in this chain makes, needing no coordination, arming, or disarming of any kind. **NEVER let the successor read, `git diff`, `git show`, `git log`, or otherwise consult
    `develop`, the improvement branch, or the merged diff that produced the improvement being validated, by ANY
    means, at any point** — state this denial as an instruction the successor's OWN spawn brief must carry
    explicitly, in words to this effect: *"you MUST NOT read, diff, or otherwise consult develop, the
@@ -168,9 +168,18 @@ the SAME final disposition and the SAME full cycle history it would otherwise ha
    2.** CAP this loop at the SAME cumulative cycle cap
    ref:skill/grimorio.agent-writing/system-keeper-phases/phase-6-adversarial-review.md's own step 5 already states for
    its own adversarial-review loop — two cycles, cumulative, never reset by a fresh successor spawn — not a new
-   number invented here. **WHEN the cap is reached and DEGRADATION still stands ⟶ proceed to Phase 7 anyway
-   and record the true outcome honestly, as "SHIPPED WITH RECORDED FIXED-POINT GAP"** — mirroring Phase 6's own
-   SHIPPED-WITH-RECORDED-REWORK naming convention exactly, never laundered into a false PASS.
+   number invented here.
+
+   **WHEN the cap is reached and DEGRADATION still stands ⟶ this is ALWAYS a blocking outcome — do NOT ship.**
+   A cap-reached DEGRADATION here has NO non-blocking-debt equivalent the way Phase 6's own ordinary
+   code-review finding does (ref:skill/grimorio.agent-writing/system-keeper-phases/phase-6-adversarial-review.md's own
+   step 5a): this mode exists specifically to PROVE a doctrine improvement transmits, so a DEGRADATION verdict
+   at the cap has no severity left to triage away. ESCALATE it as a FINDING to the guardian/CEO instead: name
+   which technique(s) failed to transmit (per the PER-TECHNIQUE TABLE), or that a COPY was detected instead of
+   genuine re-derivation (per step 5a's own byte-diff check), and that the 2-cycle cap has been reached.
+   **NEVER launder it into a false PASS, and NEVER ship the improvement anyway on the theory that Phase 6's
+   own adversarial review already approved the diff's prose** — that review never tested transmission, which
+   is this mode's own, separate question.
 7. **NEVER let the successor's own self-assessment count as this step's own PASS verdict** — the parent that
    authored the improvement is structurally biased to bless its own work; only the keeper's independent read of
    the successor's actual output, plus the mechanical firing-log query, may produce a PASS.
@@ -252,9 +261,10 @@ RE-DERIVED-VS-COPIED CHECK: <the actual byte-diff comparison actually run betwee
 CYCLES RUN:                <1 or 2, CUMULATIVE, same cap as
                             ref:skill/grimorio.agent-writing/system-keeper-phases/phase-6-adversarial-review.md's
                             own step 5 — never reset by a fresh successor spawn, per step 6>
-FINAL OUTCOME:              <PASS (ship) / SHIPPED WITH RECORDED FIXED-POINT GAP (cap reached, DEGRADATION
-                            still stands, shipped anyway, honestly recorded per step 6> — never softened
-                            toward PASS>
+FINAL OUTCOME:              <PASS (ship) / ESCALATED (cap reached, DEGRADATION still stands — name the
+                            technique(s) that failed to transmit, or the COPY detected, per step 6; no ship,
+                            the guardian/CEO must resolve it) — never softened toward PASS; the prior
+                            SHIPPED WITH RECORDED FIXED-POINT GAP framing is now retired and never used>
 ```
 
 ## Hard hand-off

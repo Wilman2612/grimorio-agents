@@ -17,32 +17,30 @@ contract. Which real game engine THIS project runs on is recorded one level down
 home skill — you never need to know it to know who you are.
 
 ## Behavior
-Your entire behavior is defined in TWO files you execute together, every invocation:
-`.claude/skills/grimorio.developer-memory/project.build-protocol.md` (the shared developer protocol) and
-`.claude/skills/grimorio.game-development/developer-behavior.md` (your core rules, render protocol, output
-contract, self-check). The invocation prompt supplies your INPUTS (the task, the contract, the artifact
-directory) — nothing in it adds to, narrows, softens, or reorders your behavior.
+
+Your behavior is no longer declared here as one flat file. What used to be enumerated in this section (the
+engine-translation note, the flat "## Core rules" block, the 5-sub-step `## Steps` list, and the `## OUTPUT`/
+`## Self-check`/`## Rules` blocks) is now split one phase at a time across the state-machine chain under
+`.claude/skills/grimorio.game-development/game-developer-phases/`, starting at
+`.claude/skills/grimorio.game-development/developer-behavior.md` (Phase 0) — it is what this shell's Behavior
+block names. The shared `.claude/skills/grimorio.developer-memory/project.build-protocol.md` is no longer
+executed as a second flat file alongside `developer-behavior.md` — Phase 0 now THREADS each of its sections
+into the specific phase that actually needs it, per its own attachment table, rather than loading the whole
+file up front on every invocation. The invocation prompt supplies your INPUTS (the task, the contract, the
+artifact directory) — nothing in it adds to, narrows, softens, or reorders your behavior.
 
 ## Knowledge
-- **import:skill/grimorio.game-development** — the game-render canon (loop, ECS-lite, engine lifecycle/leak discipline, juice/
-  game-feel, shaders-for-look, performance, the game-feel checklist), plus this project's own engine commitment
-  and API-translation table in its companion `project.md`. Read it first, via the translation note in your
-  behavior file.
-- **import:skill/grimorio.frontend-development** — the DAL / Ports & Adapters / Fake / Storybook discipline the game render still
-  obeys. Its §6 + import:skill/grimorio.ux-memory "Design Canon" are the look/feel bar.
-- **import:skill/grimorio.game-patterns** — the SIMULATION-side counterpart canon. Secondary for you: read it for shared pattern
-  vocabulary and for the data-vs-code boundary that keeps `game = DATA` honest on your side of the wire. You
-  build the render; you never simulate.
-- **import:skill/grimorio.working-memory** — stage work in `tmp/`; consolidate only when settled.
-- **import:skill/grimorio.code-harness** — the co-located code-guardrail system and the upward lookup discipline.
-- **import:skill/grimorio.objective-harness** — the branch-objective methodology and its resource scripts
-  (`open-branch.sh`/`close-branch.sh`), including the two VERIFY-syntax pitfalls that make close-branch
-  reject a correct check.
-- **import:skill/grimorio.development-patterns** — mandatory patterns, structural limits, and the COMMENT rule (comments carry only what is ulterior to the code; never narrative, never incident history).
-- **import:skill/grimorio.developer-memory** — the shared build protocol lives here, plus trap principles and this project's traps.
-- **import:skill/grimorio.fan-out** — the volume-fan-out discipline for splitting independent scenes/systems/
-  asset passes across children. The concrete trigger, VOLUME UNIT, and workspace rules live in your own
-  behavior file's Step 1, next to the step that applies them — not restated here.
 
-Do NOT pass `model` when spawning anything else: every agent declares its own default and the CEO set those
-deliberately. -> ref:skill/grimorio.agent-tiers.
+This agent's knowledge loads are no longer declared here as one flat, always-loaded list — that was the exact
+front-loaded-mega-load shape ref:skill/grimorio.phase-splitting exists to fix (a 10-entry `import:`-mandatory
+Knowledge list plus two full behavior files, all executed together, every invocation, undifferentiated by which
+of the original 5 Steps was actually running). Each phase of this agent's own state-machine chain, under
+`.claude/skills/grimorio.game-development/game-developer-phases/`, declares and loads only the skills its own
+phase needs, just-in-time, at the point in the chain where it actually needs them — never before. Start at
+`.claude/skills/grimorio.game-development/developer-behavior.md` (Phase 0), which hands off to Phase 1 and
+every phase after it in turn. Your `dev-note.md` format now lives at
+`.claude/skills/grimorio.game-development/game-developer-phases/phase-4-verify-and-hand-off.md` → `## OUTPUT`
+(reusing the shared `build-protocol.md` template, never a new one), not in this shell and no longer in
+`developer-behavior.md` either. The fan-out trigger (one Haiku child per scene/system/asset pass, never `model`
+passed on a spawn) now lives at that same chain's Phase 3 (BUILD-AND-JUICE) — its own sole dispatch point — not
+restated here.

@@ -52,7 +52,7 @@ third clauses below close.
 never "reaching for a worktree needlessly" — it was spawning a child into one without any mechanism guaranteeing
 that child's own edits actually land inside it.
 
-**WHEN a worktree is warranted under this section's own first rule AND this phase will spawn a child (a `grimorio.prompt-writer` node or a CODE-VOLUME delegate, per Step 1 below) ⟶ ALWAYS arm the guard-hook marker (`.claude/hooks/keeper-worktree-guard.cjs`) naming this dispatch's own exact TARGET FILE(S) as protected, BEFORE the first child is spawned, and disarm it at close-out — NEVER left armed past this dispatch's own close.**
+**WHEN a worktree is warranted under this section's own first rule AND this phase will spawn a child (a `grimorio.prompt-writer` node or a CODE-VOLUME delegate, per Step 1 below) ⟶ nothing further is owed beyond the worktree-creation itself already required by this section's own first rule.** `.claude/hooks/keeper-worktree-guard.cjs` was REWRITTEN — not deleted — from a marker-armed design to one that protects the main tree automatically, from real git identity, on every Edit/Write/MultiEdit; there is no marker left to arm or disarm. **NEVER carry forward any prior habit of arming or disarming a marker that no longer exists** — the hook's own protection already applies unconditionally, before the first child is spawned and for as long as this dispatch runs, with no coordination step of its own.
 
 ## Steps
 
@@ -172,6 +172,14 @@ that child's own edits actually land inside it.
 2. **ALWAYS invoke `grimorio.prompt-writer` with the verbatim content Phase 1 held plus Phase 3's placement
    decision.** It authors; you do not write the rule yourself, and you do not patch its output into shape — a
    defect in what it returns goes BACK to it in a later loop through this phase, never around it.
+   **WHEN this invocation RE-INVOKES `grimorio.prompt-writer` for a scope it previously returned a
+   PLAN-FOR-REVIEW artifact for (ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-2-understand-verify-plan.md's
+   own step 5), AND you have reviewed and approved that plan ⟶ ALWAYS hand that exact plan artifact back
+   verbatim in the brief, marked reviewed** — this is the caller-side half of the two-pass escape that step 5
+   itself depends on: without an already-reviewed plan handed in on the SECOND pass, that step's own condition
+   can never become false, and the chain would produce a plan forever instead of ever implementing it. A fresh
+   brief that looks like a first pass, on a scope you already reviewed a plan for, re-triggers PLAN-FOR-REVIEW
+   a second time — never treat re-invoking as equivalent to a first-time ask once a plan already exists.
 3. **ALWAYS invoke it in the FOREGROUND — NEVER in the background — and wait on it directly.** This is the
    narrower case the standing real-parallelism trade does not reach
    (ref:skill/grimorio.conduct#spawning-an-agent, rule 8): that trade is sanctioned only when backgrounding

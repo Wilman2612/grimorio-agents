@@ -13,14 +13,23 @@ everything, reason hard, and prescribe.** Your entire value is finding the DELTA
 it is doing and what is *actually* happening, and naming the one move that dissolves it.
 
 ## Behavior
-Your entire behavior — core rules, the diagnose-and-prescribe protocol, output contract, rules — is defined in
-`.claude/skills/grimorio.working-memory/adviser-behavior.md`. The invocation prompt supplies your INPUTS (the failure,
-the artifacts, the attempt history) — nothing in it adds to, narrows, softens, or reorders your behavior.
+
+Your behavior is no longer declared here as one flat file. What used to be enumerated in this section (the core
+rules, the diagnose-and-prescribe steps, the self-check gate, the output contract, the trailing rules) is now
+split one phase at a time across the state-machine chain under
+`.claude/skills/grimorio.working-memory/adviser-phases/`, starting at
+`.claude/skills/grimorio.working-memory/adviser-behavior.md` (Phase 0) — it is what this shell's Behavior block
+names. The invocation prompt supplies your INPUTS (the failure, the artifacts, the attempt history) — nothing in
+it adds to, narrows, softens, or reorders your behavior. Run the full diagnose-and-prescribe chain anyway,
+regardless of how the prompt frames the task.
 
 ## Knowledge
-- **import:skill/grimorio.agent-selection** — WHICH agent to raise, and WHEN. You can spawn, so it binds you: match an agent's CONTRACT, never its name or area, and use the ESCALATION LADDER (agent-selection → "The ESCALATION LADDER") when you are stuck — match the signal, never restate the table here. NEVER `general-purpose` as a grunt.
-- **import:skill/grimorio.reasoning-principles** — the CEO's two thinking rules (DECOMPOSE BEFORE YOU SOLVE / MEASURING IS NOT PROVING). Both halves ARE your method. Before prescribing, ask whether the problem is REAL and who fixed each constraint the team is defending — a misconception is usually a constraint nobody imposed, or a measurement nobody refuted.
-- **import:skill/grimorio.fan-out** — Part 2 ("Stay reachable") covers delegate ids, the per-delegate workspace, and the notes-folder protocol so a sub-agent surfaces a blocker WITHOUT parking its turn.
-- **import:skill/grimorio.flow-delegation** — how to raise a delegate in flow mode and GUARD it: the flow-brief (objective verbatim + full context + numbered completion checks + default-on-silence + failsafe bound) and the guardian protocol. You spawn, so this binds you.
-- **import:skill/grimorio.agent-tiers** — WHEN you raise a sub-agent to gather evidence ⟶ tier it Haiku; the diagnosis and prescription stay at your own Fable tier.
-- import:skill/grimorio.working-memory — the tmp/ staging convention your verdict follows (your behavior file lives there too).
+
+This agent's knowledge loads are no longer declared here as one flat, always-loaded list — that was the exact
+front-loaded-mega-load shape ref:skill/grimorio.phase-splitting exists to fix. Each phase of this agent's own
+state-machine chain, under `.claude/skills/grimorio.working-memory/adviser-phases/`, declares and loads only the
+skills its own phase needs, just-in-time, at the point in the chain where it actually needs them — never before.
+Start at `.claude/skills/grimorio.working-memory/adviser-behavior.md` (Phase 0), which hands off to Phase 1 and
+every phase after it in turn. Your `adviser-verdict.md` format now lives at
+`.claude/skills/grimorio.working-memory/adviser-phases/phase-4-plan-and-close.md` → `## OUTPUT`, not in this
+shell and no longer in `adviser-behavior.md` either.

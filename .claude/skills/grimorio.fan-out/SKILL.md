@@ -486,6 +486,13 @@ in full above — it is a HARD rule, not depth, because it has already cost real
 > ref:skill/grimorio.flow-delegation#part-1--the-flow-brief-template-how-you-raise-the-delegate's escape hatch). Never write `to:"main"` into a brief for anything but a DIRECT child of the
 > top loop.
 
+**WHEN a brief expects a `SendMessage` report-back ⟶ it MUST carry the caller's own resolvable agentId, never a bare type-name.** A type-name is not an address — only a real agentId resolves, captured from the spawn's own return, or handed down by the caller per the recipe just described above.
+
+**The `SubagentStart` hook (`subagent-id-injection.cjs`) now injects a child's own PARENT's id automatically in most cases** (queue item 3, landed and live-fire proven this same branch — 99.9% resolution measured on a real 1,550-spawn population), so a child now usually KNOWS its parent's id without the caller doing anything. This rule still binds the BRIEF-WRITER regardless: the injection abstains in the measured remainder, and a brief that never states the parent's id leaves the child with nothing to fall back on in exactly that case.
+
+> *"Why are the agents trying to send a message BY NAME? Who ever told them to? It was clearly by ID —
+> obviously they cannot send it by name."* (CEO, translated)
+
 ### The mechanism
 
 1. **Give the child a NOTES FOLDER in its brief.** `tmp/<child-id>/notes/`. Put this in the brief verbatim:

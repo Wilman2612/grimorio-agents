@@ -246,15 +246,20 @@ turn-by-turn CEO conversation) and never sees them.
     `a5fc1fe6b3fa0ca89` closed its turn anyway, with: *"I'll stop polling and wait for the automatic
     completion notification for `bo1k7t5k3` before proceeding."* **Read this rule as WRITTEN-AND-FAILED-ONCE,
     never as WRITTEN-AND-UNFIRED** — re-wording it again is not a tested fix; that hypothesis was tried and
-    the result above is what it produced. The only enforcement point found for this failure in the harness is
-    a `SubagentStop` hook returning `decision:"block"` — gated behind the CEO's own explicit approval per
-    ref:repo/.claude/hooks/harness.md. A decision-ready proposal for it exists, evidenced and NOT built —
-    this project's own open-branch record carries the exact join logic, guardrails, and the dual-control
-    evidence (fires on the bad case, silent on the good one); a general-level file does not cite
-    project-tree state, so that record is not pointed at from here. Until/unless it is approved and lands,
-    the best available mitigation is ref:repo/scripts/parked-watch.mjs, armed by the top-level session per
-    rule 8 above — this rule stays prose, and prose has a measured non-zero failure rate here, not merely a
-    theoretical one.
+    the result above is what it produced. **The enforcement point for this failure is now BUILT and LIVE:
+    `ref:repo/.claude/hooks/subagentstop-wait.cjs` (CEO-sanctioned 2026-08-16, revised 2026-09-02).** It
+    catches exactly the narrow case the MEASURED FAILURE incident above describes — a non-main-loop agent
+    closing its turn over a live `async_launched` dependency it itself dispatched — by WAITING up to a bounded
+    window (120s) then BLOCKING the close on either outcome (the dependency finished during the wait, or is
+    still live when it expires), bounded by a per-agent cap (default 3 re-blocks) and a repo-wide kill switch
+    (default 20 total blocks, fail-open past that). **Do not overclaim what this catches**: it reads only
+    `.claude/.cache/agent-invocations.log`/`agent-completions.log`, populated only by `Agent`-tool spawns — it
+    does NOT catch a backgrounded Bash/PowerShell call or an armed `Monitor`, both also named above, and it
+    fires only at `SubagentStop`, never mid-turn before a close is even attempted. Until a mid-turn or
+    non-Agent-tool mechanism exists, the best available mitigation for those two remaining gaps is still
+    ref:repo/scripts/parked-watch.mjs, armed by the top-level session per rule 8 above — this rule stays prose
+    for anything outside the hook's own narrow catch, and prose has a measured non-zero failure rate here, not
+    merely a theoretical one.
 9c. **WHEN you must wait on something before continuing ⟶ take the FOREGROUND technique that matches what
     you're waiting on, in the SAME turn, and never end your turn to "wait for the notification" instead:**
     1. Waiting on a **service becoming ready** (a dev server, Storybook, a build watch) ⟶ start it in the

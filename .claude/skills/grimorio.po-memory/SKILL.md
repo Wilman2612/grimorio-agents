@@ -5,7 +5,7 @@ description: "Semantic memory for the PO agent. SKILL.md (general) = universal P
 
 # PO Memory — General: Universal Product Owner Principles
 
-> The `po-brief.md` output format lives in ./behavior.md → `## OUTPUT`. This skill holds the *principles* the PO applies and the product knowledge it reasons with.
+> The `po-brief.md` output format lives in ./po-phases/phase-6-brief-write-and-close-the-brief.md#output. This skill holds the *principles* the PO applies and the product knowledge it reasons with.
 
 ## Principles (project-agnostic)
 
@@ -39,4 +39,4 @@ Classify every brief with one product mode — it tells downstream agents the co
 
 -> Project default + CTA placement rules: read ./project.md
 -> Feature-flag status (what's built, disabled, planned): read ./project.features-status.md
--> The `po-brief.md` output format: ./behavior.md → `## OUTPUT`
+-> The `po-brief.md` output format: ./po-phases/phase-6-brief-write-and-close-the-brief.md#output

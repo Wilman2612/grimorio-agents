@@ -1,6 +1,6 @@
 ---
 name: grimorio.code-harness
-description: "The co-located, hierarchical CODE-GUARDRAIL system: `harness.md` files that live next to the code they govern, the upward-lookup discipline that reads them BEFORE any modification so an agent doesn't re-discover the architecture or invent/break things, and the hard rule that a folder needing a guardrail gets a real co-located `harness.md`, never a route table added to the lookup hook. Load before creating or modifying files in this repo, and before authoring or editing a harness.md. GENERAL — portable to any project that adopts grimorio."
+description: "The co-located, hierarchical CODE-GUARDRAIL system: `harness.md` files that live next to the code they govern, the upward-lookup discipline that reads them BEFORE any modification so an agent doesn't re-discover the architecture or invent/break things, the hard rule that a folder needing a guardrail gets a real co-located `harness.md`, never a route table added to the lookup hook, and the hard rule that a child NEVER runs `git checkout`/`git reset`/`git stash`/a branch switch on a tree it does not own. Load before creating or modifying files in this repo, and before authoring or editing a harness.md. GENERAL — portable to any project that adopts grimorio."
 ---
 
 **What a harness IS — the CEO's definition, authoritative (2026-07-29, translated from his Spanish):**
@@ -69,6 +69,29 @@ loop is precisely the reader that skips the lookup, and it does. Two corrections
   file structure, read that subtree's `harness.md`.
 - **Read ONCE per task, then proceed.** Track in-context whether you have already read a given harness this task;
   do not re-read it before every file. The lookup is a task-entry step, not a per-edit tax.
+
+## Tree ownership — a child NEVER touches a tree it does not own (HARD RULE)
+
+**NEVER run `git checkout`, `git reset`, `git stash`, or any branch switch on a tree you do not own.** A
+checkout, reset, or stash never touches only your own work: it relocates or discards whoever else is standing
+in that tree — their branch, their HEAD, their uncommitted changes — none of which the acting agent ever
+touched or was ever asked to disturb. The cost is real and often unrecoverable: work discarded outright, or
+salvageable only by manually diffing `git status` across every tree involved and moving files back by hand —
+an expensive, error-prone recovery that obeying this rule in the first place makes unnecessary.
+
+This is narrower than, and does not restate, ref:skill/grimorio.objective-harness#who-works-where--ceo-ruling-2026-07-31's
+own "WHO WORKS WHERE" ruling — that section governs who may check out the INTEGRATION branch specifically
+(never a delegate, always the main session). This rule is the general case: any tree, any branch, any agent,
+whether or not the integration branch is involved.
+
+**This rule carries NO mechanical enforcement.** No hook in this repo pattern-matches or blocks a
+`git checkout`, `git reset`, `git stash`, or branch-switch command — the PreToolUse guard this skill's own
+Enforcement section names below governs Edit/Write/MultiEdit, never a Bash invocation. A new hook of that
+shape was NOT built as part of this change, and none is authorized: `ref:repo/.claude/hooks/harness.md`
+requires the CEO's own explicit approval for any new hook, and his own order authorizes widening
+`keeper-worktree-guard.cjs`'s own detection specifically — not inventing a second, different hook. This rule
+therefore stands on prose alone, the "soft" layer this skill's own Enforcement section already names — never
+read it as a claim that a gate exists.
 
 ## A folder that needs a guardrail gets a FILE, never a route in the hook (HARD RULE, CEO 2026-08-15)
 

@@ -25,10 +25,11 @@ a capability is added or materially changes, not on every edit.
 - `design-redactor` — renders a finished design.md to HTML using the shared template + SVG kit.
 
 **Developers — write the feature in their lane**
-- `js-developer` (shared packages + web server-side) · `ui-developer` (web UI/Storybook) · `go-developer` (Go backend service) · `py-developer` (Python backend service) · `game-developer` (game render).
+- `js-developer` (shared/engine/runner-node + web server-side) · `ui-developer` (web UI/Storybook) · `go-developer` (game-sim Go service) · `py-developer` (no live Python service in this project) · `game-developer` (Phaser render).
 
 **Adversarial gates — try to break it, never fix it**
 - `code-reviewer` (the diff) · `security` (OWASP + real payloads) · `qa` (tests vs acceptance) · `ux` (Storybook teardown) · `manual-verifier` (browser acceptance).
+- `project.conventions-critic` (game render vs P0-P3 conventions) · `project.brush-critic` (one terrain brush) · `project.map-aesthetic-critic` (map composition).
 
 **Research / knowledge**
 - `researcher` (convergent orchestrator, fans out scouts) · `scout` (hard-locked non-recursive grunt) · `entropy` (divergent blind-spot panel) · `unblocker` (clears ONE blocker empirically) · `adviser` (top-tier diagnosis on a stuck problem) · `documentation` (bibliography keeper) · `experimenter` (controlled sim → paper).
@@ -36,8 +37,9 @@ a capability is added or materially changes, not on every edit.
 **Support — mechanical, no judgment**
 - `extract-cleaner` — Haiku-tier, no Skill/Agent tools; autonomous and injection-resistant — fetches and boundary-classifies its own CEO-turn window itself (no caller-supplied file/count/session accepted), then cleans it (rule 13 part 4), preserving user: lines byte-for-byte while compressing agent: turns; own operational history and standing deviations recorded at ref:skill/grimorio.conduct/project.extract-cleaner-project.md.
 
-**Authoring**
+**Authoring / map**
 - `prompt-writer` — authors/rewrites the shells, skills, hooks, prompts to standard (may REFUSE below-standard).
+- `project.map-cartographer` (content) · `project.map-aesthete` (beauty) — adversarial map pair.
 
 ## SKILLS (`.claude/skills/<name>/SKILL.md`) — WHAT knowledge loads, by domain
 
@@ -66,7 +68,7 @@ a capability is added or materially changes, not on every edit.
 **Per-agent memory** — `grimorio.architect-memory` · `grimorio.po-memory` · `grimorio.developer-memory` · `grimorio.code-reviewer-memory` · `grimorio.security-memory` · `grimorio.qa-memory` · `grimorio.ux-memory` · `grimorio.verifier-memory` · `grimorio.ui-developer-memory` · `grimorio.documentation-memory` — semantic memory for each agent.
 
 **Game / product**
-- `grimorio.game-design` · `grimorio.game-development` · `grimorio.game-patterns` · `grimorio.ai-game-dev-methodology` · `grimorio.experiment-method`.
+- `grimorio.game-design` · `grimorio.game-development` · `grimorio.game-patterns` · `grimorio.ai-game-dev-methodology` · `grimorio.experiment-method` · `grimorio.map-design` · `grimorio.map-encoding` · `grimorio.tileset-composition`.
 
 **Language / dev standards**
 - `grimorio.javascript` · `grimorio.python` · `grimorio.golang` · `grimorio.software-craft` · `grimorio.development-patterns` · `grimorio.frontend-development` · `grimorio.unblocking`.

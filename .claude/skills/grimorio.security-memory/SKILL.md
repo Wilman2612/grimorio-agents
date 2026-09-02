@@ -5,8 +5,8 @@ description: "Semantic memory for the security agent. SKILL.md (general) = unive
 
 # Security Memory — General: Universal Adversarial Principles
 
-> The `security-report.md` output format lives in ./behavior.md → `## OUTPUT`. This skill holds
-> the *audit knowledge* the security agent applies.
+> The `security-report.md` output format lives in `security-phases/phase-6-classify-and-report.md` → `## OUTPUT`.
+> This skill holds the *audit knowledge* the security agent applies.
 
 ## Principles (project-agnostic)
 
@@ -87,5 +87,5 @@ Classify every finding. `[CODE FIX]` — a localized 1–5 line change (missing 
 
 Heuristic: "Can a developer fix this in one file without redesigning how the system handles this concern across all routes?" If no → architectural.
 
--> This project's auth architecture and known entry points: read ./project.md and this project's own attack-surface record
--> The `security-report.md` output format: ./behavior.md → `## OUTPUT`
+-> This project's auth architecture and known entry points: read this project's own security memory and this project's own attack-surface record
+-> The `security-report.md` output format: `security-phases/phase-6-classify-and-report.md` → `## OUTPUT`

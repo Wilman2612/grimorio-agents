@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /* @keep-comment
- * parked-watch.mjs — find PARENTS that are parked waiting on a background child that already finished.
+ * parked-watch.mjs — find PARENTS that are parked waiting on a background child that already finished,
+ * AND CHILDREN that have gone silent with no completion row at all (presumed dead/stuck).
  *
  * WHY. No documented mechanism wakes a parked parent: not polling, not a callback, not a mid-turn resume
  * (`agent-sdk/subagents.md` documents nested spawning and foreground blocking; the wake half is absent).
@@ -8,7 +9,7 @@
  * and to have the TOP-LEVEL session rescue whoever parks. This script is the "notice" half of that rescue;
  * the main loop (which must ARM it — see below) reads its output and sends the SendMessage that actually
  * wakes the parent. Nothing runs this automatically: it is a Monitor the top-level session starts per
- * session, per `.claude/skills/grimorio-conduct/main-loop-only.md`.
+ * session, per `.claude/skills/grimorio.conduct/project.main-loop-only.md`.
  *
  * THE JOIN, and why it is possible at all. `SubagentStart` and `SubagentStop` carry only the child's OWN
  * id — neither names a parent. `PostToolUse:Agent` carries BOTH the caller's id and the spawned child's id
@@ -27,8 +28,8 @@
  * for a child it had already stopped waiting on (observed live 2026-08-12: a keeper closed VERIFIED and
  * committed, then a stale `grimorio.code-reviewer` child of a SUPERSEDED grep returned nearly an hour
  * later and was misread as something the keeper was still waiting on). The discriminator: a parent's own
- * LAST completion row is its final report; per `skill/reasoning-principles`' VERIFIED-or-COULD-NOT close
- * (owed action 6, `skill/prompt-reading`), that report either closes with an explicit VERIFIED or COULD
+ * LAST completion row is its final report; per `skill/grimorio.reasoning-principles`' VERIFIED-or-COULD-NOT close
+ * (owed action 6, `skill/grimorio.prompt-reading`), that report either closes with an explicit VERIFIED or COULD
  * NOT, or it does not. The one caller in the false-positive incident above carries `## VERIFIED` in its
  * LAST row, and only its last row — establishing that ONE case, not the discriminator's general shape
  * (see DEFECT 3 below for the wider check). This does not hold universally — an
@@ -49,28 +50,30 @@
  * sentence mention as a delivered close (selftest Case G). Anchored to a DECLARATION position instead —
  * see the commit message for the check against the real completions log and constructed cases.
  *
+ * ITEM 4, ADDED — a child with no completion row is invisible to the PARKED check above; checkSilentChild()
+ * below closes that gap via the child's own transcript mtime as the activity signal — see the commit
+ * message for the algorithm, and objectives/measurements/liveness-by-output-recency-feasibility.md for
+ * the measurement that grounds it.
  * Prints one line per NEWLY parked parent. Prints nothing when there is nothing new — silence means no
  * fresh rescue needed, not that no parent is parked (an already-alerted one stays silent by design).
  */
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, statSync, readdirSync } from "node:fs";
+import { homedir } from "node:os";
+import { join } from "node:path";
+import { rows } from "./lib/agent-log-rows.mjs";
 
 const INVOCATIONS = process.env.PARKED_WATCH_INVOCATIONS ?? ".claude/.cache/agent-invocations.log";
 const COMPLETIONS = process.env.PARKED_WATCH_COMPLETIONS ?? ".claude/.cache/agent-completions.log";
 const STATE = process.env.PARKED_WATCH_STATE ?? ".claude/.cache/parked-watch-seen.json";
+const PROJECTS_HOME = process.env.PARKED_WATCH_PROJECTS_HOME ?? join(homedir(), ".claude", "projects");
 // How long a parent may stay silent after its child finished before we call it parked. Generous on
 // purpose: a parent legitimately doing its own work between children must never be reported.
 const GRACE_MS = 4 * 60 * 1000;
-
-function rows(file) {
-  try {
-    return readFileSync(file, "utf8")
-      .split("\n")
-      .filter(Boolean)
-      .map((l) => l.split("\t"));
-  } catch {
-    return [];
-  }
-}
+// How long a dispatched child may go with no transcript growth (or, absent any transcript file yet, no
+// time since dispatch) before it is presumed dead/stuck. The SAME threshold covers "never started yet"
+// and "went silent mid-work" — see checkSilentChild() below for why one constant suffices for both.
+const SILENT_MS_RAW = Number(process.env.PARKED_WATCH_SILENT_MS);
+const SILENT_MS = Number.isFinite(SILENT_MS_RAW) ? SILENT_MS_RAW : 10 * 60 * 1000;
 
 function loadState(file) {
   try {
@@ -154,7 +157,72 @@ function checkRow(r, { finishedAt, lastMessage, lastSeen, seen, now }) {
   return { key, line, alreadySeen };
 }
 
-export function findParked({ invocations, completions, seen, now = Date.now() }) {
+// child id -> { dispatchedAt, caller, childType } — every backgrounded dispatch whose own child never
+// appears in the completions index at all (still genuinely running, or dead/wedged while running).
+// Deliberately does NOT exclude caller "-" the way checkRow does — that exclusion is about a PARENT
+// never needing rescue; this checks the CHILD's own aliveness, independent of who dispatched it.
+function buildOpenChildren(invocations, finishedAt) {
+  const open = new Map();
+  for (const r of invocations) {
+    if (r[16] !== "async_launched") continue;
+    const child = r[15];
+    if (!child || child === "-" || finishedAt.has(child)) continue;
+    const ts = Date.parse(r[0]);
+    if (Number.isNaN(ts)) continue;
+    if (!open.has(child)) {
+      open.set(child, { dispatchedAt: ts, caller: r[13] ?? "-", childType: r[2] ?? "-" });
+    }
+  }
+  return open;
+}
+
+// Scans homeDir/<project>/<session>/subagents/agent-<childId>.jsonl across every project/session dir —
+// child ids are unique per spawn, so no narrower key is needed. Mirrors ceo-transcript-lookup.mjs's own
+// direct-guess-then-scan shape, one directory level deeper (a SUBAGENT transcript, not a session one).
+function findTranscriptMtime(childId, homeDir) {
+  let projectDirs;
+  try {
+    projectDirs = readdirSync(homeDir, { withFileTypes: true });
+  } catch {
+    return null;
+  }
+  for (const proj of projectDirs) {
+    if (!proj.isDirectory()) continue;
+    let sessionDirs;
+    try {
+      sessionDirs = readdirSync(join(homeDir, proj.name), { withFileTypes: true });
+    } catch {
+      continue;
+    }
+    for (const sess of sessionDirs) {
+      if (!sess.isDirectory()) continue;
+      const candidate = join(homeDir, proj.name, sess.name, "subagents", `agent-${childId}.jsonl`);
+      try {
+        return statSync(candidate).mtimeMs;
+      } catch {
+        continue;
+      }
+    }
+  }
+  return null;
+}
+
+// One open child -> a silent-child report line, or null. Silence is measured from the LATER of the
+// child's own dispatch time and its transcript file's own mtime, falling back to dispatch time alone
+// when no transcript is found yet — one threshold covers "never started" (dispatchedAt is recent) and
+// "went silent mid-work" (mtime is stale) without a separate startup-grace constant.
+function checkSilentChild(childId, info, { homeDir, seen, now }) {
+  const mtime = findTranscriptMtime(childId, homeDir);
+  const lastActivity = mtime ?? info.dispatchedAt;
+  if (now - lastActivity < SILENT_MS) return null; // still inside the silence window
+  const key = `SILENT|${childId}`;
+  const alreadySeen = Boolean(seen[key]); // reuses the SAME seen mechanism defect 2 fixed, own key shape
+  const lastActivityIso = new Date(lastActivity).toISOString();
+  const line = `SILENT: presumed dead/stuck child ${childId} (${info.childType}), parent ${info.caller} — no output since ${lastActivityIso}`;
+  return { key, line, alreadySeen };
+}
+
+export function findParked({ invocations, completions, seen, now = Date.now(), homeDir = PROJECTS_HOME }) {
   const { finishedAt, lastMessage } = buildCompletionIndex(completions);
   const lastSeen = buildLastSeen(invocations);
 
@@ -168,8 +236,17 @@ export function findParked({ invocations, completions, seen, now = Date.now() })
     if (!hit.alreadySeen) parked.push(hit.line);
   }
 
-  // Forget any previously-seen pair that no longer qualifies (the parent has since acted, or its own
-  // final close now covers it) — lets a genuinely NEW park on the same pair alert again later.
+  const openChildren = buildOpenChildren(invocations, finishedAt);
+  for (const [childId, info] of openChildren) {
+    const hit = checkSilentChild(childId, info, { homeDir, seen, now });
+    if (!hit) continue;
+    stillSeenKeys.add(hit.key);
+    if (!hit.alreadySeen) parked.push(hit.line);
+  }
+
+  // Forget any previously-seen pair/child that no longer qualifies (the parent has since acted, its own
+  // final close now covers it, or the child stopped being silent) — lets a genuinely NEW event on the
+  // same pair/child alert again later.
   const nextSeen = {};
   for (const key of stillSeenKeys) nextSeen[key] = true;
 
@@ -188,7 +265,7 @@ function main() {
 }
 
 // Always runs as a CLI. The selftest drives this same entry point via subprocess against fixture
-// files (PARKED_WATCH_INVOCATIONS / _COMPLETIONS / _STATE env overrides), never by importing
-// findParked() in-process — that way the test proves the actual CLI behaves, not a hand-picked slice
-// of it, per `skill/reasoning-principles`' "a rule is not verified by reading it" standard.
+// files (PARKED_WATCH_INVOCATIONS / _COMPLETIONS / _STATE / _PROJECTS_HOME env overrides), never by
+// importing findParked() in-process — that way the test proves the actual CLI behaves, not a hand-picked
+// slice of it, per `skill/grimorio.reasoning-principles`' "a rule is not verified by reading it" standard.
 main();

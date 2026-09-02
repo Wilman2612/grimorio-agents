@@ -9,11 +9,11 @@
 // Usage:  node scripts/audit-chain.mjs [--json] [--malformed] [--dupes]
 
 import { readFileSync, readdirSync, statSync } from "node:fs";
-import { join } from "node:path";
+import { join, isAbsolute } from "node:path";
 import { homedir } from "node:os";
-import { execFileSync } from "node:child_process";
+import { execFileSync, execSync } from "node:child_process";
 
-// The clause vocabulary, from .claude/skills/prompt-writing-quality/control-flow-vocabulary.md
+// The clause vocabulary, from .claude/skills/grimorio.prompt-writing-quality/project.control-flow-vocabulary.md
 // plus the four openers. Each kind declares whether it REQUIRES a condition.
 const KINDS = {
   ALWAYS: { needsCondition: false },
@@ -38,7 +38,7 @@ const RULE = new RegExp(`^\\s*[-*0-9.)\\s]*\\*\\*(${OPENERS})\\b([^*]*)`);
 const ARROW = "⟶"; // U+27F6. NOT "→": that is the POINTER separator and appears 1197 times in
 // the corpus, so reusing it makes a pointer and a rule indistinguishable. "→→" was rejected because it
 // CONTAINS "→" as a substring, so a pointer search would false-positive on every rule. Spec:
-// .claude/skills/prompt-writing-quality/format-guide.md
+// .claude/skills/grimorio.prompt-writing-quality/project.format-guide.md
 
 function walk(dir, out = []) {
   for (const e of readdirSync(dir)) {
@@ -136,6 +136,156 @@ function shape(file) {
   return { file, lines: raw.length, ...c, ...depth };
 }
 
+// DIAGRAM-PRIMACY: audit whether a file's prose is supported by diagrams or tables.
+// Tracks: fenced blocks (particularly mermaid), exempt sections (headings matching certain patterns),
+// and counts mermaid blocks/lines, table lines, prose, exempt prose, primacy prose, etc.
+
+// Helper: decide if a heading opens/closes an exempt section
+function updateExemptSection(headingText, depth, inExemptSection, exemptDepth) {
+  if (/^(negative scope|out of scope|boundaries)\b/i.test(headingText)) {
+    return { inExemptSection: true, exemptDepth: depth };
+  }
+  if (inExemptSection && depth <= exemptDepth) {
+    return { inExemptSection: false, exemptDepth: 0 };
+  }
+  return { inExemptSection, exemptDepth };
+}
+
+// Helper: handle fence toggle (open/close), return new state
+function handleFenceToggle(fenced, fenceLang, inMermaid, inExemptSection, c) {
+  if (!fenced) {
+    const isMermaid = fenceLang === "mermaid";
+    if (isMermaid) {
+      c.mermaidBlocks++;
+      c.mermaidLines++;
+    } else {
+      c.primacyProse++;
+      if (inExemptSection) c.exemptProse++;
+    }
+    return { fenced: true, inMermaid: isMermaid };
+  } else {
+    if (inMermaid) c.mermaidLines++;
+    else {
+      c.primacyProse++;
+      if (inExemptSection) c.exemptProse++;
+    }
+    return { fenced: false, inMermaid: false };
+  }
+}
+
+// Helper: handle lines inside a fence
+function handleFencedLine(inMermaid, inExemptSection, c) {
+  c.code++;
+  if (inMermaid) c.mermaidLines++;
+  else {
+    c.primacyProse++;
+    if (inExemptSection) c.exemptProse++;
+  }
+}
+
+function handleNonFencedLine(line, inExemptSection, exemptDepth, c) {
+  if (!line.trim()) { c.blank++; return { inExemptSection, exemptDepth }; }
+  const h = line.match(/^(#{1,6})\s+(.*)$/);
+  if (h) { c.heading++; return updateExemptSection(h[2].replace(/[*`]/g, "").trim(), h[1].length, inExemptSection, exemptDepth); }
+  if (/^\s*\|/.test(line)) { c.table++; return { inExemptSection, exemptDepth }; }
+  if (/^\s*([-*+]|\d+[.)])\s/.test(line)) { c.list++; c.primacyProse++; if (inExemptSection) c.exemptProse++; return { inExemptSection, exemptDepth }; }
+  c.prose++; c.primacyProse++; if (inExemptSection) c.exemptProse++; return { inExemptSection, exemptDepth };
+}
+
+// SCAFFOLDING-LEAK: a fixed, high-signal vocabulary list naming gate/method-process disposition language that
+// must never appear in a reader-facing design view -- it belongs ONLY in a PROVENANCE companion file
+// (isExemptCompanion already exempts one). Case-insensitive substring match against each line's own text
+// (headings included, since the actual incident was a heading: "## Artifact types considered and SCOPED OUT").
+const SCAFFOLDING_MARKERS = [
+  "scoped out",
+  "kruchten 4+1",
+  "ddd aggregate",
+  "completeness gate",
+  "omit-with-reason",
+  "against the catalog",
+  "phase 4 disposition",
+];
+function scaffoldingLeakShape(file) {
+  const raw = readFileSync(file, "utf8").split("\n");
+  const hits = [];
+  raw.forEach((line, i) => {
+    const lower = line.toLowerCase();
+    for (const marker of SCAFFOLDING_MARKERS) {
+      if (lower.includes(marker)) hits.push({ line: i + 1, marker, text: line.trim() });
+    }
+  });
+  return hits;
+}
+
+// AS-IS-VOICE: WHEN a family carries the literal AS-IS-ONLY marker, none of its non-exempt files may carry
+// build-relative reuse/change framing -- that framing presupposes a build plan an AS-IS-ONLY design has none
+// of. "Family" = every scanned file sharing the same parent directory.
+const AS_IS_ONLY_MARKER = "AS-IS-ONLY — dependencies-as-they-are voice; reuse/build framing FORBIDDEN.";
+const REUSE_VOCAB_MARKERS = ["reused unchanged", "reuse vs new", "reused vs new", "reused-vs-new", "reuse-vs-new", "newly designed", "newly built", "retired in favor of"];
+function asIsVoiceShape(file) {
+  const raw = readFileSync(file, "utf8").split("\n");
+  const hits = [];
+  raw.forEach((line, i) => {
+    const lower = line.toLowerCase();
+    for (const marker of REUSE_VOCAB_MARKERS) {
+      if (lower.includes(marker)) hits.push({ line: i + 1, marker, text: line.trim() });
+    }
+  });
+  return hits;
+}
+
+// DIAGRAM-CLASSES: pure inventory -- which mermaid diagram TYPES exist in this file, and does it carry a
+// matrix/decision-shaped table. Never judges sufficiency -- that is Phase 6 CHECK 1's own agent-based job,
+// cross-referencing this inventory against scope-completeness-method.md's own Gate 7.
+function diagramClassesShape(file) {
+  const raw = readFileSync(file, "utf8").split("\n");
+  const types = [];
+  let fenced = false, fenceLang = "", awaitingType = false;
+  let underMatrixHeading = false, matrixTableSeen = false;
+  for (const line of raw) {
+    const h = line.match(/^(#{1,6})\s+(.*)$/);
+    if (h) {
+      underMatrixHeading = /matrix|decision|credential|auth/i.test(h[2].replace(/[*`]/g, "").trim());
+      continue;
+    }
+    if (/^\s*```/.test(line)) {
+      const m = line.match(/^\s*```(\w*)/);
+      fenceLang = (m ? m[1] : "").toLowerCase();
+      if (!fenced && fenceLang === "mermaid") { fenced = true; awaitingType = true; continue; }
+      if (fenced) { fenced = false; awaitingType = false; continue; }
+      fenced = true;
+      continue;
+    }
+    if (fenced && awaitingType) {
+      const t = line.match(/^\s*([A-Za-z][A-Za-z0-9_-]*)/);
+      if (t) types.push(t[1]);
+      awaitingType = false;
+      continue;
+    }
+    if (!fenced && underMatrixHeading && /^\s*\|/.test(line)) matrixTableSeen = true;
+  }
+  return { types, matrixTableSeen };
+}
+
+function diagramPrimacyShape(file) {
+  const raw = readFileSync(file, "utf8").split("\n");
+  const c = { lines: raw.length, mermaidBlocks: 0, mermaidLines: 0, table: 0, prose: 0, exemptProse: 0, primacyProse: 0, heading: 0, list: 0, blank: 0, code: 0 };
+  let fenced = false, fenceLang = "", inMermaid = false, inExemptSection = false, exemptDepth = 0;
+  for (const line of raw) {
+    if (/^\s*```/.test(line)) {
+      const match = line.match(/^\s*```(\w*)/);
+      fenceLang = (match ? match[1] : "").toLowerCase();
+      const r = handleFenceToggle(fenced, fenceLang, inMermaid, inExemptSection, c);
+      fenced = r.fenced; inMermaid = r.inMermaid; c.code++;
+      continue;
+    }
+    if (fenced) { handleFencedLine(inMermaid, inExemptSection, c); continue; }
+    const s = handleNonFencedLine(line, inExemptSection, exemptDepth, c);
+    inExemptSection = s.inExemptSection; exemptDepth = s.exemptDepth;
+  }
+  return c;
+}
+
 // OUTLINE: the file compressed to what it SAYS, not how much of it there is. Headings are the skeleton
 // (a heading is already a short description), rules keep their opener and enough words to identify them,
 // prose collapses to a count. A 700-line skill becomes one screen.
@@ -194,12 +344,16 @@ const declaredReader = scanned.filter((s) => s.reader);
 
 // THE LOAD CHAIN. A skill is referenced four different ways in this corpus, and the dominant one -- a bare
 // backticked name -- is indistinguishable from a code identifier, so no script can answer "what does this
-// file load". `skill:name` is the unambiguous form (spec: prompt-writing-quality/format-guide.md). This counts both,
+// file load". `skill:name` is the unambiguous form (spec: grimorio.prompt-writing-quality/project.format-guide.md). This counts both,
 // so the migration has a queue and a finish line instead of a feeling.
 const SKILL_NAMES = (() => {
   try { return readdirSync(".claude/skills").filter((d) => statSync(join(".claude/skills", d)).isDirectory()); }
   catch { return []; }
 })();
+// Skill names now carry a literal "." (the grimorio.<name> convention) -- unescaped, that "." is a regex
+// metacharacter (matches any char) once spliced into OLD_FORM/OLD_FRAGMENT below, silently over-matching.
+// Escaped here once, at the source, rather than trusting every future splice site to remember to.
+const escapeReLiteral = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 // TWO AXES, because one prefix could only say WHERE a thing lives, never what relation the writer has
 // with it: RELATION (import loads it, ref points at it, cite offers it as proof) x STORE (skill/repo/tmp).
 // `@rev` pins a citation to a MOMENT. A resolving path is not a live citation -- the file gets rewritten
@@ -208,9 +362,10 @@ const SKILL_NAMES = (() => {
 const TWO_AXIS = /\b(import|ref|cite):(skill|repo|tmp|ext)\/([A-Za-z0-9._/-]+)(@[0-9a-f]{7,40})?(#[A-Za-z0-9._/-]+)?/g;
 const NEW_FORM = /skill:([a-z][a-z0-9-]*)((?:\/[A-Za-z0-9._-]+)*)(#[A-Za-z0-9._-]+)?/g;
 // A backticked name is only a LOAD reference when it names a real skill directory; `foo.ts` never is.
-const OLD_FORM = new RegExp("`(" + SKILL_NAMES.join("|") + ")`", "g");
+const SKILL_NAMES_RE = SKILL_NAMES.map(escapeReLiteral).join("|");
+const OLD_FORM = new RegExp("`(" + SKILL_NAMES_RE + ")`", "g");
 // The old fragment form: a backticked skill directory followed by a path. This is the migration's next queue.
-const OLD_FRAGMENT = new RegExp("`(" + SKILL_NAMES.join("|") + ")(/[A-Za-z0-9._/-]+)`", "g");
+const OLD_FRAGMENT = new RegExp("`(" + SKILL_NAMES_RE + ")(/[A-Za-z0-9._/-]+)`", "g");
 
 // A relative ref does not explain itself: `./project.md` is fourteen different files depending on who
 // wrote it, so the string alone cannot build the map. Absolute everywhere. This counts the offenders.
@@ -227,9 +382,9 @@ const owningSkill = (f) => (f.replace(/\\/g, "/").match(/\.claude\/skills\/([^/]
 const AGENT_REF = /\bagent:(grimorio\.[a-z-]+)/g;
 const AGENT_NAMES = (() => { try { return new Set(readdirSync(".claude/agents").filter((f) => f.endsWith(".md")).map((f) => f.replace(/\.md$/, ""))); } catch { return new Set(); } })();
 
-// COLD: a flat handle, unopenable by construction. Spec: agent-writing/cold-store.md
+// COLD: a flat handle, unopenable by construction. Spec: grimorio.agent-writing/project.cold-store.md
 const COLD = /\bcold:([a-z0-9][a-z0-9-]*)(#[A-Za-z0-9._-]+)?/g;
-const COLD_MANIFEST = ".claude/skills/agent-writing/cold-store.md";
+const COLD_MANIFEST = ".claude/skills/grimorio.agent-writing/project.cold-store.md";
 // handle | target | why. A target is a live path, or `git:<sha>:<path>` once the file has left the tree.
 const coldManifest = (() => {
   const m = new Map();
@@ -286,7 +441,7 @@ const BASENAMES = (() => {
   }
   return m;
 })();
-// The vocabulary of what agents PRODUCE, from feature-workflow/SKILL.md, plus the four-level KIND names
+// The vocabulary of what agents PRODUCE, from grimorio.feature-workflow/SKILL.md, plus the four-level KIND names
 // format-guide already exempts. EXPLICIT because it was previously inferred from path shape, and the
 // inference swept 529 real references in with it. A name here is set aside on purpose, not by accident.
 const ARTIFACT = new Set([
@@ -419,6 +574,244 @@ const GOVERNANCE_OWNED = [
 ];
 const isGovernance = (rel) => GOVERNANCE_OWNED.some((re) => re.test(rel.replace(/\\/g, "/")));
 
+// GENERAL -> PROJECT/CODE CITATION BOUNDARY (CEO ruling 2026-08-14/15; see the commit message and
+// grimorio.agent-writing/SKILL.md for the full ruling and the incident it closes). Hand-maintained pattern list,
+// same style as GOVERNANCE_OWNED above: extend by evidence (a real leak found), never by guessing ahead.
+const PROJECT_OR_CODE = [
+  /^\.claude\/current-objective\.md$/,
+  /^\.claude\/ceo-corrections\.md$/,
+  /^\.claude\/grimorio-defects(-narrative)?\.md$/,
+  /^\.claude\/GRIMORIO-CHAIN\.md$/,
+  /^\.claude\/\.cache\//,
+  /^\.claude\/skills\/[^/]+\/project\.md$/,
+  /^\.claude\/skills\/[^/]+\/[a-z0-9-]*vision(-pointers)?\.md$/,
+  /^\.claude\/skills\/[^/]+\/features-status\.md$/,
+  /^apps\//,
+  /^services\//,
+  /^packages\//,
+  /^objectives\//,
+];
+const isProjectOrCode = (rel) => PROJECT_OR_CODE.some((re) => re.test(rel.replace(/\\/g, "/").replace(/^\.\//, "")));
+// SOURCE = general-level. Only SKILL.md exports (the same `exportable` test the relative-path rule above
+// already applies) -- a behavior/project/code file is EXPECTED to cite project/code state, so only the
+// general file is checked here.
+const generalFiles = files.filter((f) => /[\\/]SKILL\.md$/.test(f));
+// Any mention starting with one of the five project-tree roots, prefixed (`ref:repo/apps/...`) or bare
+// (`` `apps/web` ``, `.claude/current-objective.md` in prose) -- a broad candidate net, narrowed by
+// isProjectOrCode() below, not by the shape of how it was written.
+const LEVEL_CANDIDATE = /(?:\.claude\/[A-Za-z0-9._/-]+|apps\/[A-Za-z0-9._/-]*|services\/[A-Za-z0-9._/-]*|packages\/[A-Za-z0-9._/-]*|objectives\/[A-Za-z0-9._/-]*)/g;
+const levelViolations = generalFiles.flatMap((f) => {
+  const rel = f.replace(/\\/g, "/");
+  const seen = new Map(); // target -> first line it appeared on
+  let fenced = false;
+  readFileSync(f, "utf8").split(/\r?\n/).forEach((line, i) => {
+    if (/^\s*```/.test(line)) { fenced = !fenced; return; }
+    if (fenced) return;
+    for (const m of line.matchAll(LEVEL_CANDIDATE)) {
+      const tok = m[0].replace(/[.,;:)]+$/, "");
+      if (!seen.has(tok)) seen.set(tok, i + 1);
+    }
+  });
+  return [...seen].filter(([tok]) => isProjectOrCode(tok)).map(([target, line]) => ({ file: rel, line, target }));
+});
+
+// PORTABILITY MARKER SCAN (mechanical PROXY only -- see the commit message and grimorio.agent-writing/SKILL.md
+// Portability standard / grimorio.prompt-writing-quality/SKILL.md L8 for the real semantic test this can never
+// replace). Hand-maintained list, same style as PROJECT_OR_CODE above: extend by evidence, never by
+// guessing ahead. Any project.* shells are EXEMPT -- project-specific by nature.
+//
+// ADOPTERS: this list is YOURS to own. The entries below are generic stack/tech names kept as worked
+// examples of the right grain. Add your own product name, service names, and top-level source directories
+// -- those are the markers that actually catch a portability leak in YOUR corpus.
+const PROJECT_MARKERS = [
+  /\bFastAPI\b/,
+  /\bPhaser(?:\s*3)?\b/,
+  /\bPixiJS\b/,
+  /\bTiled\b/,
+  /\bNeon\b/,
+  /\bClerk\b/,
+  /\bPrisma\b/,
+  /\bNext\.js\b/,
+  /\bapps\/web\b/,
+  /\bpackages\/(shared|workflow-engine)\b/,
+  // Added 2026-09-01, evidenced by the js-developer-memory/behavior.md leak (see commit message).
+  /\bapplication\/\*\*/,
+  /\binfrastructure\/\*\*/,
+  /\bdomain\/\*\*/,
+  /\bFake\/Real[- ]adapter\b/i,
+];
+const isProjectMarker = (line) => PROJECT_MARKERS.find((re) => re.test(line));
+const agentShellFiles = files.filter((f) => /[\\/]agents[\\/][A-Za-z0-9._-]+\.md$/.test(f) && !/[\\/]agents[\\/]project\./.test(f));
+// Added 2026-09-01: widens the scan past the THIN agent shell to the behavior/SKILL/phase files where the
+// actual prose (and the js-developer-memory leak above) actually lives. Same `project.*` exemption as above.
+const portableSkillFiles = files.filter((f) => {
+  const rel = f.replace(/\\/g, "/");
+  const m = rel.match(/^\.claude\/skills\/(grimorio\.[^/]+)\/(.+)$/);
+  if (!m) return false;
+  const restPath = m[2]; // path INSIDE the skill folder, e.g. "behavior.md" or "prompt-writer-phases/phase-1-search-first.md"
+  const base = restPath.split("/").pop();
+  if (/^project\./.test(base)) return false;
+  // DIRECT child only -- behavior.md/SKILL.md/*-behavior.md; excludes nested docs/*-behavior.md research
+  // archives (documentation-memory's own domain, not this scan's).
+  if (!restPath.includes("/")) return /^(behavior|SKILL)\.md$/.test(base) || /^[a-z0-9-]+-behavior\.md$/.test(base);
+  // ONE level inside a "*-phases" folder -- the phase-chain files (phase-1-*.md, phase-2-*.md, ...).
+  const phaseDirMatch = restPath.match(/^[a-z0-9.-]+-phases\/([^/]+)$/);
+  if (phaseDirMatch) return /^phase-\d+-.*\.md$/.test(phaseDirMatch[1]);
+  return false;
+});
+const portabilityScanFiles = [...agentShellFiles, ...portableSkillFiles];
+const portabilityViolations = portabilityScanFiles.flatMap((f) => {
+  const rel = f.replace(/\\/g, "/");
+  let fenced = false;
+  let fenceLang = "";
+  const out = [];
+  readFileSync(f, "utf8").split(/\r?\n/).forEach((line, i) => {
+    const fenceMatch = line.match(/^\s*```\s*([A-Za-z0-9_-]*)/);
+    if (fenceMatch) {
+      if (!fenced) { fenced = true; fenceLang = fenceMatch[1] || ""; }
+      else { fenced = false; fenceLang = ""; }
+      return;
+    }
+    // Added 2026-09-01: an UNLABELED fence (prose formatted as code, e.g. an ASCII scope-boundary block)
+    // stays SCANNED; a LANGUAGE-TAGGED fence stays SKIPPED as a genuine code/diagram example (see commit msg).
+    if (fenced && fenceLang) return;
+    const hit = isProjectMarker(line);
+    if (hit) out.push({ file: rel, line: i + 1, marker: hit.source });
+  });
+  return out;
+});
+
+// @keep-comment — DEPENDENCY-DIRECTION (CEO ruling 2026-08-28, grimorio.agent-writing/SKILL.md Part 3): scope is
+// the file's OWN first path segment (skill folder / agent shell filename), not its basename -- a
+// `project.*` companion file inside a `grimorio.` folder stays in scope. See the commit that added this
+// for the full ruling.
+//
+// EXEMPTION WIDENED 2026-08-28, same-day fix authorized by grimorio.system-keeper (own spec bug, not a
+// new CEO-vision question): the original exemption covered only the literal bare token `project.md`
+// (no preceding `/`) -- written before the corpus restructure that turned EVERY reference-depth
+// companion file into a `project.<name>.md`. Against the real corpus this flagged 917 rows, all but a
+// handful of which were well-formed `ref:`/`import:`/`agent:`/`cite:` pointers into a companion file --
+// exactly the reference-depth pattern agent-writing's own "don't hyper-compress" section requires, never
+// an inlined project-specific FACT (the actual thing this rule exists to catch). The exemption now
+// mirrors --levels' own precedent (an expected-to-cite file class is exempt, not merely one filename):
+// a `project.<x>` token is exempt when it is the tail of a WELL-FORMED, resolvable reference --
+// `ref:`/`import:`/`cite:` into `skill/…`, `repo/…`, `tmp/…`, or `ext/…`; `agent:project.<name>`; or a
+// relative `./project.<x>` pointer -- never a bare `project.<x>` string sitting in prose outside any of
+// those forms. The original bare-`project.md`-self-reference exemption is kept as its own, narrower
+// case: unlike the others it carries NO relation prefix at all, so it cannot be captured by widening the
+// reference envelope alone. @keep-comment
+const directionScopeFiles = files.filter((f) => {
+  const rel = f.replace(/\\/g, "/");
+  const skillSeg = rel.match(/^\.claude\/skills\/([^/]+)\//);
+  if (skillSeg) return skillSeg[1].startsWith("grimorio.");
+  const agentSeg = rel.match(/^\.claude\/agents\/([^/]+)$/);
+  if (agentSeg) return agentSeg[1].startsWith("grimorio.");
+  return false;
+});
+const DIRECTION_TOKEN = /\bproject\.[A-Za-z0-9_-]+/g;
+// A "well-formed reference envelope" -- a project.<x> token found INSIDE one of these spans is a
+// pointer, not a citation. Each alternative's own path/name segment already allows the token as its
+// tail, so a single pass finds the whole reference, not just the project. fragment inside it.
+const REFERENCE_ENVELOPE = /\b(?:ref|import|cite):(?:skill|repo|tmp|ext)\/[A-Za-z0-9._/-]*project\.[A-Za-z0-9_-]+|\bagent:project\.[A-Za-z0-9_-]+|\.\/project\.[A-Za-z0-9_-]+/g;
+const directionViolations = directionScopeFiles.flatMap((f) => {
+  const rel = f.replace(/\\/g, "/");
+  let fenced = false;
+  const out = [];
+  readFileSync(f, "utf8").split(/\r?\n/).forEach((line, i) => {
+    if (/^\s*```/.test(line)) { fenced = !fenced; return; }
+    if (fenced) return;
+    const envelopes = [...line.matchAll(REFERENCE_ENVELOPE)].map((e) => [e.index, e.index + e[0].length]);
+    for (const m of line.matchAll(DIRECTION_TOKEN)) {
+      const tok = m[0];
+      const bareSelfRef = tok === "project.md" && line[m.index - 1] !== "/";
+      if (bareSelfRef) continue;
+      const wellFormed = envelopes.some(([s, e]) => m.index >= s && m.index + tok.length <= e);
+      if (wellFormed) continue;
+      out.push({ file: rel, line: i + 1, token: tok, context: line.trim() });
+    }
+  });
+  return out;
+});
+
+// GRAPH-FIRST: mechanizes prompt-writer's own Phase 4 step 3
+// (grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md step 3), which today performs this check BY
+// EYE. Checks only where phrasing is unambiguous: the corpus's own two established phrasings ("state ... own
+// graph", "state ... graph") are the patterns matched, nothing invented.
+
+// HEADING-SECTION SLICING, shared by this gate and --examples below: reuses the same fenced-tracking heading
+// walk outline()/shape() already do above, generalized to also cut out ONE section's body (heading to the
+// next heading of equal-or-higher level, or EOF) instead of the whole file.
+function headingSections(text, matches) {
+  const lines = text.split(/\r?\n/);
+  const out = [];
+  let fenced = false;
+  for (let i = 0; i < lines.length; i++) {
+    if (/^\s*```/.test(lines[i])) { fenced = !fenced; continue; }
+    if (fenced) continue;
+    const h = lines[i].match(/^(#{1,6})\s+(.*)$/);
+    if (!h || !matches(h[2].replace(/[*`]/g, "").trim(), h[1].length)) continue;
+    const level = h[1].length;
+    let end = lines.length;
+    let f2 = false;
+    for (let j = i + 1; j < lines.length; j++) {
+      if (/^\s*```/.test(lines[j])) { f2 = !f2; continue; }
+      if (f2) continue;
+      const hh = lines[j].match(/^(#{1,6})\s/);
+      if (hh && hh[1].length <= level) { end = j; break; }
+    }
+    out.push({ headingLine: i + 1, body: lines.slice(i + 1, end) });
+  }
+  return out;
+}
+
+// The FIRST rule/list-item after a heading, continuation lines joined -- same wrap rule logicalLines() above
+// already applies to a `**KIND**` rule, generalized to any numbered/bulleted item so a graph-definition step
+// phrased across two physical lines is not missed just because the matched phrase sits on line 2.
+function firstItemText(body) {
+  const start = body.findIndex((l) => /^\s*(?:[-*+]|\d+[.)])\s/.test(l));
+  if (start === -1) return null;
+  let joined = body[start];
+  for (let j = start + 1; j < body.length; j++) {
+    const nxt = body[j];
+    if (!nxt.trim() || /^\s*(?:[-*+]|\d+[.)])\s/.test(nxt) || /^\s{0,3}#/.test(nxt) || /^\s*\|/.test(nxt)) break;
+    if (!/^\s{2,}\S/.test(nxt)) break; // continuation lines are indented, same test logicalLines() uses
+    joined += " " + nxt.trim();
+  }
+  return joined;
+}
+
+const GRAPH_FIRST_RE = /\bown graph\b|\bstate.*graph\b/i;
+const stepsScan = files.map((f) => ({
+  file: f.replace(/\\/g, "/"),
+  sections: headingSections(readFileSync(f, "utf8"), (t, lvl) => (lvl === 2 || lvl === 3) && /^Steps$/.test(t)),
+}));
+const stepsHeadingsTotal = stepsScan.reduce((n, s) => n + s.sections.length, 0);
+const graphFirstViolations = stepsScan.flatMap((s) =>
+  s.sections.flatMap((sec) => {
+    const first = firstItemText(sec.body);
+    if (first && GRAPH_FIRST_RE.test(first)) return [];
+    return [{
+      file: s.file,
+      line: sec.headingLine,
+      first: first ? first.replace(/\*\*/g, "").trim().slice(0, 90) : "(no rule/list item found under this heading)",
+    }];
+  }));
+
+// @keep-comment EXAMPLES: a narrow, HONESTLY-SCOPED deterministic proxy for "no real example was shown" in
+// an output contract -- same discipline as --inert's own comment above about what it can and cannot see. This
+// can only prove ABSENCE: an Output section with ZERO fenced code blocks carries no example artifact at all,
+// a strong unambiguous signal. It deliberately CANNOT and does NOT verify that a fenced block, once present,
+// is genuinely EXACT/real rather than a stylized placeholder -- that judgment stays human/prompt-writer's,
+// never this script's.
+const outputScan = files.map((f) => ({
+  file: f.replace(/\\/g, "/"),
+  sections: headingSections(readFileSync(f, "utf8"), (t) => /^output$/i.test(t)),
+}));
+const outputHeadingsTotal = outputScan.reduce((n, s) => n + s.sections.length, 0);
+const examplesViolations = outputScan.flatMap((s) =>
+  s.sections.flatMap((sec) =>
+    sec.body.some((l) => /^\s*```/.test(l)) ? [] : [{ file: s.file, line: sec.headingLine }]));
+
 const unprefixed = files.flatMap((f) => {
   const rel = f.replace(/\\/g, "/");
   // The manifest is a TABLE OF TARGETS: every row is a bare path by design, and flagging them would
@@ -502,6 +895,199 @@ const oldFragments = loadRefs.reduce((n, r) => n + r.oldFrag.length, 0);
 const selfRelative = loadRefs.reduce((n, r) => n + r.selfRel.length, 0);
 const absSelfRefs = loadRefs.flatMap((r) => r.absSelf.map((s) => ({ file: r.file, ref: s })));
 const sum = (k) => loadRefs.reduce((n, r) => n + r[k].length, 0);
+
+// DIAGRAM-PRIMACY companion: exempt file classifier
+const isExemptCompanion = (file) => {
+  const basename = file.replace(/\\/g, "/").split("/").pop().toLowerCase();
+  if (/^(boundaries|coverage|provenance)\.md$/.test(basename)) return true;
+  const text = readFileSync(file, "utf8");
+  for (const line of text.split("\n")) {
+    const h = line.match(/^#{1,6}\s+(.*)$/);
+    if (h) {
+      const headingText = h[1].replace(/[*`]/g, "").trim();
+      if (/^(negative scope|out of scope|boundaries|coverage|provenance)\b/i.test(headingText)) {
+        return true;
+      }
+      break;
+    }
+  }
+  return false;
+};
+
+// Precompute diagram primacy results for all files (mirrors pattern of graphFirstViolations, etc.)
+const diagramPrimacyResults = files.map((f) => {
+  const shape = diagramPrimacyShape(f);
+  const relPath = f.replace(/\\/g, "/");
+
+  if (isExemptCompanion(f)) {
+    return { file: relPath, status: "EXEMPT", reason: "whole-file companion" };
+  }
+
+  const nonExemptProse = shape.primacyProse - shape.exemptProse;
+  const diagramPlusTable = shape.mermaidLines + shape.table;
+
+  const reasons = [];
+  if (shape.mermaidBlocks === 0 && shape.table === 0) {
+    reasons.push("zero diagram, zero table");
+  }
+  if (nonExemptProse > diagramPlusTable) {
+    reasons.push(`prose (${nonExemptProse}) exceeds diagram+table (${diagramPlusTable})`);
+  }
+
+  if (reasons.length === 0) {
+    return { file: relPath, status: "PASS", diagram: shape.mermaidBlocks, mermaidLines: shape.mermaidLines, table: shape.table, primacyProse: shape.primacyProse };
+  } else {
+    return { file: relPath, status: "FAIL", reason: reasons.join("; "), diagram: shape.mermaidBlocks, mermaidLines: shape.mermaidLines, table: shape.table, primacyProse: shape.primacyProse };
+  }
+});
+
+// Precompute scaffolding-leak results (defect a mechanism, Gate: reader path vs PROVENANCE companion).
+const scaffoldingLeakResults = files.map((f) => {
+  const relPath = f.replace(/\\/g, "/");
+  if (isExemptCompanion(f)) return { file: relPath, status: "EXEMPT", reason: "whole-file companion" };
+  const hits = scaffoldingLeakShape(f);
+  if (hits.length === 0) return { file: relPath, status: "PASS" };
+  return { file: relPath, status: "FAIL", hits };
+});
+
+// Precompute AS-IS-voice results (defect b mechanism), grouped by directory family.
+const asIsVoiceByDir = new Map();
+for (const f of files) {
+  const dir = f.replace(/\\/g, "/").split("/").slice(0, -1).join("/");
+  if (!asIsVoiceByDir.has(dir)) asIsVoiceByDir.set(dir, []);
+  asIsVoiceByDir.get(dir).push(f);
+}
+const asIsVoiceResults = files.map((f) => {
+  const relPath = f.replace(/\\/g, "/");
+  const dir = relPath.split("/").slice(0, -1).join("/");
+  const dirFiles = asIsVoiceByDir.get(dir) || [f];
+  const markerPresent = dirFiles.some((df) => readFileSync(df, "utf8").includes(AS_IS_ONLY_MARKER));
+  if (!markerPresent) return { file: relPath, status: "PASS", reason: "no AS-IS-ONLY marker in this family" };
+  if (isExemptCompanion(f)) return { file: relPath, status: "EXEMPT", reason: "whole-file companion" };
+  const hits = asIsVoiceShape(f);
+  if (hits.length === 0) return { file: relPath, status: "PASS" };
+  return { file: relPath, status: "FAIL", hits };
+});
+
+// Precompute diagram-classes inventory (defect c mechanism) -- never gates, reporting only.
+const diagramClassesResults = files.map((f) => {
+  const relPath = f.replace(/\\/g, "/");
+  const shape = diagramClassesShape(f);
+  return { file: relPath, types: shape.types, matrixTableSeen: shape.matrixTableSeen };
+});
+
+// Lazy enumeration-coverage results computation (Empirical Domain Enumeration section validation)
+function computeEnumerationCoverageResults() {
+  return files
+    .filter((f) => f.replace(/\\/g, "/").endsWith("provenance.md"))
+    .map((f) => {
+      const relPath = f.replace(/\\/g, "/");
+      const text = readFileSync(f, "utf8");
+
+      // Check if section exists: exactly "## Empirical Domain Enumeration"
+      const sectionRegex = /^## Empirical Domain Enumeration\s*$/m;
+      if (!sectionRegex.test(text)) {
+        return { file: relPath, status: "SKIP", reason: "no Empirical Domain Enumeration section" };
+      }
+
+      // Find section boundaries
+      const lines = text.split(/\r?\n/);
+      let sectionStart = -1, sectionEnd = lines.length;
+      for (let i = 0; i < lines.length; i++) {
+        if (/^## Empirical Domain Enumeration\s*$/.test(lines[i])) {
+          sectionStart = i;
+        } else if (sectionStart >= 0 && /^#+\s/.test(lines[i])) {
+          sectionEnd = i;
+          break;
+        }
+      }
+
+      if (sectionStart < 0) {
+        return { file: relPath, status: "SKIP", reason: "no Empirical Domain Enumeration section" };
+      }
+
+      const sectionText = lines.slice(sectionStart + 1, sectionEnd).join("\n");
+
+      // Extract sweep command from backticks
+      const sweepMatch = sectionText.match(/Sweep command:\s*`([^`]+)`/i);
+      if (!sweepMatch) {
+        return { file: relPath, status: "FAIL", reason: "no Sweep command found in Empirical Domain Enumeration section" };
+      }
+      const sweepCmd = sweepMatch[1];
+
+      // Extract table with Entry Point and Disposition columns
+      const tableLines = sectionText.split("\n").filter((l) => /^\s*\|/.test(l));
+      if (tableLines.length < 3) { // need header, separator, at least 1 data row
+        return { file: relPath, status: "FAIL", reason: "no Entry Point/Disposition table found" };
+      }
+
+      // Parse header to find column indices
+      const headerLine = tableLines[0];
+      const headerCells = headerLine.split("|").slice(1, -1).map((c) => c.trim().toLowerCase());
+      const epIndex = headerCells.findIndex((c) => c === "entry point");
+      const dispIndex = headerCells.findIndex((c) => c === "disposition");
+      const reasonIndex = headerCells.findIndex((c) => c === "reason" || c === "locator");
+
+      if (epIndex < 0 || dispIndex < 0) {
+        return { file: relPath, status: "FAIL", reason: "no Entry Point/Disposition table found" };
+      }
+
+      // Parse data rows
+      const tableRows = [];
+      for (let i = 2; i < tableLines.length; i++) {
+        const cells = tableLines[i].split("|").slice(1, -1);
+        if (cells.length > Math.max(epIndex, dispIndex)) {
+          const ep = cells[epIndex].replace(/[`\s]/g, "").trim();
+          const disp = cells[dispIndex].trim();
+          const reason = reasonIndex >= 0 ? cells[reasonIndex].trim() : disp;
+          if (ep) tableRows.push({ ep, disp, reason });
+        }
+      }
+
+      // Run sweep command
+      const repoRoot = execFileSync("git", ["rev-parse", "--show-toplevel"], { encoding: "utf8" }).trim();
+      let sweepOutput = [];
+      try {
+        const output = execSync(sweepCmd, { cwd: repoRoot, shell: true, encoding: "utf8" });
+        sweepOutput = output.split("\n").map((l) => l.trim()).filter(Boolean);
+      } catch (e) {
+        return { file: relPath, status: "FAIL", reason: `sweep command failed to execute: ${sweepCmd}` };
+      }
+
+      // Normalize paths for comparison
+      const normalizePath = (p) => {
+        const normalized = p.replace(/\\/g, "/");
+        const resolved = isAbsolute(normalized) ? normalized : join(repoRoot, normalized);
+        return join(resolved).split(/[\\\/]/).join("/");
+      };
+
+      const normalizedSweep = sweepOutput.map((p) => {
+        const normalized = normalizePath(p);
+        const repoPrefix = repoRoot.replace(/\\/g, "/");
+        return normalized.startsWith(repoPrefix) ? normalized.slice(repoPrefix.length + 1) : normalized;
+      });
+
+      const tableEPs = new Set(tableRows.map((r) => {
+        const normalized = normalizePath(r.ep);
+        const repoPrefix = repoRoot.replace(/\\/g, "/");
+        return normalized.startsWith(repoPrefix) ? normalized.slice(repoPrefix.length + 1) : normalized;
+      }));
+
+      // Check for missing entry points
+      const missing = normalizedSweep.filter((p) => !tableEPs.has(p));
+      if (missing.length > 0) {
+        return { file: relPath, status: "FAIL", reason: `${missing.length} entry point(s) found by the live sweep with no row in the enumeration table: ${missing.join(", ")}` };
+      }
+
+      // Check for empty disposition/reason
+      const undispositioned = tableRows.filter((r) => !r.disp || (reasonIndex >= 0 && !r.reason));
+      if (undispositioned.length > 0) {
+        return { file: relPath, status: "FAIL", reason: `${undispositioned.length} row(s) in the enumeration table carry no disposition/reason: ${undispositioned.map((r) => r.ep).join(", ")}` };
+      }
+
+      return { file: relPath, status: "PASS" };
+    });
+}
 
 const args = process.argv.slice(2);
 
@@ -683,7 +1269,7 @@ if (args.includes("--json")) {
 } else if (args.includes("--grammar-doc")) {
   // A grammar the guide does not document is a grammar only this script knows, and the writers are the
   // ones who have to obey it. This asserts the two are the same artifact.
-  const guide = ".claude/skills/prompt-writing-quality/format-guide.md";
+  const guide = ".claude/skills/grimorio.prompt-writing-quality/project.format-guide.md";
   let text = "";
   try { text = readFileSync(guide, "utf8"); } catch { console.log(`MISSING  ${guide}`); process.exit(1); }
   const need = [
@@ -737,6 +1323,172 @@ if (args.includes("--json")) {
   // The migration queue, worst file first: how many old-form references each file still carries.
   for (const r of loadRefs.filter((r) => r.old.length).sort((a, b) => b.old.length - a.old.length))
     console.log(`${String(r.old.length).padStart(3)} old  ${String(r.new.length).padStart(2)} new  ${r.file}\n         ${[...new Set(r.old)].join(", ")}`);
+} else if (args.includes("--levels")) {
+  const filter = args.find((a) => !a.startsWith("--"));
+  const rows = filter ? levelViolations.filter((v) => v.file.includes(filter)) : levelViolations;
+  for (const v of rows) console.log(`${v.file}:${v.line}  cites PROJECT/CODE state  ${v.target}`);
+  console.log(`\ngeneral-level files scanned (SKILL.md)   ${generalFiles.length}`);
+  console.log(`GENERAL -> PROJECT/CODE citations         ${rows.length}   POPULATION: every SKILL.md file, no other level checked`);
+  process.exit(rows.length ? 1 : 0);
+} else if (args.includes("--portability")) {
+  const filter = args.find((a) => !a.startsWith("--"));
+  const rows = filter ? portabilityViolations.filter((v) => v.file.includes(filter)) : portabilityViolations;
+  for (const v of rows) console.log(`${v.file}:${v.line}  project-marker in a portable file  ${v.marker}`);
+  console.log(`\nagent shells scanned (excluding project.*)              ${agentShellFiles.length}`);
+  console.log(`portable skill files scanned (behavior.md/SKILL.md/phase-*.md, excluding project.*)   ${portableSkillFiles.length}`);
+  console.log(`PROJECT-MARKER matches in portable files      ${rows.length}   PROXY ONLY -- the real test is the three portability questions (grimorio.agent-writing/SKILL.md, grimorio.prompt-writing-quality/SKILL.md L8), never this word list alone.`);
+  process.exit(rows.length ? 1 : 0);
+} else if (args.includes("--direction")) {
+  const filter = args.find((a) => !a.startsWith("--"));
+  const rows = filter ? directionViolations.filter((v) => v.file.includes(filter)) : directionViolations;
+  for (const v of rows) console.log(`${v.file}:${v.line}  grimorio.-prefixed file cites project.-level content  ${v.token}   (${v.context})`);
+  console.log(`\ngrimorio.-prefixed files scanned   ${directionScopeFiles.length}`);
+  console.log(`GRIMORIO -> PROJECT citations       ${rows.length}   POPULATION: every file whose own path starts with grimorio. (skill folder or agent shell), excluding a bare project.md self-reference`);
+  process.exit(rows.length ? 1 : 0);
+} else if (args.includes("--graph-first")) {
+  const filter = args.find((a) => !a.startsWith("--"));
+  // A COUNT NEEDS ITS POPULATION: `rows` (violations) and the printed "scanned" total must both be scoped to
+  // the SAME population -- files whose path matches `filter` -- or a non-matching filter (typo, renamed file,
+  // overly-narrow substring) can print a plausible non-zero "scanned" total and exit 0, indistinguishable
+  // from a genuine clean pass on a real, matched file.
+  const matchedFiles = filter ? stepsScan.filter((s) => s.file.includes(filter)) : stepsScan;
+  if (filter && !matchedFiles.length) {
+    console.log(`\nfilter "${filter}" matched ZERO files -- nothing was scanned. This is NOT a clean pass; fix the filter.`);
+    process.exit(2);
+  }
+  const scopedTotal = matchedFiles.reduce((n, s) => n + s.sections.length, 0);
+  const rows = filter ? graphFirstViolations.filter((v) => v.file.includes(filter)) : graphFirstViolations;
+  for (const v of rows) console.log(`${v.file}:${v.line}  Steps heading's first item is not a graph-definition step  ${v.first}`);
+  // It printed NOTHING AT ALL when the count was zero -- --anchors' own fix applies here too: a blank
+  // screen is indistinguishable from a probe that never ran. State the total and the reach every time.
+  console.log(`\nSteps headings scanned ${scopedTotal}   NOT opening with a graph-definition step  ${rows.length}`);
+  process.exit(rows.length ? 1 : 0);
+} else if (args.includes("--examples")) {
+  const filter = args.find((a) => !a.startsWith("--"));
+  // Same population fix as --graph-first above -- see that branch's comment for the full rationale.
+  const matchedFiles = filter ? outputScan.filter((s) => s.file.includes(filter)) : outputScan;
+  if (filter && !matchedFiles.length) {
+    console.log(`\nfilter "${filter}" matched ZERO files -- nothing was scanned. This is NOT a clean pass; fix the filter.`);
+    process.exit(2);
+  }
+  const scopedTotal = matchedFiles.reduce((n, s) => n + s.sections.length, 0);
+  const rows = filter ? examplesViolations.filter((v) => v.file.includes(filter)) : examplesViolations;
+  for (const v of rows) console.log(`${v.file}:${v.line}  Output section has ZERO fenced code blocks`);
+  console.log(`\nOutput headings scanned ${scopedTotal}   with NO fenced example  ${rows.length}`);
+  process.exit(rows.length ? 1 : 0);
+} else if (args.includes("--diagram-primacy")) {
+  const target = args.find((a) => !a.startsWith("--"));
+  const rows = target ? diagramPrimacyResults.filter((r) => r.file.includes(target)) : diagramPrimacyResults;
+  if (target && !rows.length) {
+    console.log(`\nfilter "${target}" matched ZERO files -- nothing was scanned. This is NOT a clean pass; fix the filter.`);
+    process.exit(2);
+  }
+
+  if (!target) {
+    console.log("NOTE: unfiltered run -- scanning the WHOLE base population (.claude/agents + .claude/skills), not a GATE 6 verdict for any specific design family. GATE 6 only governs a design-family's own concern files; pass a [filter] narrowing to those files for a real gate check.\n");
+  }
+
+  let passed = 0, failed = 0, exempt = 0;
+  for (const r of rows) {
+    if (r.status === "PASS") {
+      passed++;
+      console.log(`PASS  ${r.file}  (diagram: ${r.diagram} block/${r.mermaidLines} line, table: ${r.table} line, prose: ${r.primacyProse} line)`);
+    } else if (r.status === "FAIL") {
+      failed++;
+      console.log(`FAIL  ${r.file}  ${r.reason}  (diagram: ${r.diagram} block/${r.mermaidLines} line, table: ${r.table} line, prose: ${r.primacyProse} line)`);
+    } else if (r.status === "EXEMPT") {
+      exempt++;
+      console.log(`EXEMPT  ${r.file}  (whole-file companion)`);
+    }
+  }
+
+  console.log(`--- ${rows.length} file(s), ${passed} passed, ${failed} failed, ${exempt} exempt ---`);
+  process.exit(failed === 0 ? 0 : 1);
+} else if (args.includes("--no-scaffolding-leak")) {
+  const target = args.find((a) => !a.startsWith("--"));
+  const rows = target ? scaffoldingLeakResults.filter((r) => r.file.includes(target)) : scaffoldingLeakResults;
+  if (target && !rows.length) {
+    console.log(`\nfilter "${target}" matched ZERO files -- nothing was scanned. This is NOT a clean pass; fix the filter.`);
+    process.exit(2);
+  }
+  if (!target) {
+    console.log("NOTE: unfiltered run -- scanning the WHOLE base population, not a verdict for any specific design family. This check only governs a design-family's own produced files (under designs/); a doctrine/methodology file legitimately DISCUSSING the scaffolding vocabulary (this very corpus) will FAIL here without meaning anything -- pass a [filter] narrowing to a designs/<family> path for a real gate check.\n");
+  }
+  let passed = 0, failed = 0, exempt = 0;
+  for (const r of rows) {
+    if (r.status === "PASS") { passed++; console.log(`PASS  ${r.file}`); }
+    else if (r.status === "EXEMPT") { exempt++; console.log(`EXEMPT  ${r.file}  (whole-file companion)`); }
+    else {
+      failed++;
+      const detail = r.hits.map((h) => `${r.file}:${h.line} "${h.marker}"`).join("; ");
+      console.log(`FAIL  ${r.file}  scaffolding vocabulary present: ${detail}`);
+    }
+  }
+  console.log(`--- ${rows.length} file(s), ${passed} passed, ${failed} failed, ${exempt} exempt ---`);
+  console.log("NARROW SIGNAL ONLY -- a fixed substring matcher; FAIL is real evidence, PASS is NOT proof of absence. A by-hand semantic check is still required, per phase-6 CHECK 1.");
+  process.exit(failed === 0 ? 0 : 1);
+} else if (args.includes("--as-is-voice")) {
+  const target = args.find((a) => !a.startsWith("--"));
+  const rows = target ? asIsVoiceResults.filter((r) => r.file.includes(target)) : asIsVoiceResults;
+  if (target && !rows.length) {
+    console.log(`\nfilter "${target}" matched ZERO files -- nothing was scanned. This is NOT a clean pass; fix the filter.`);
+    process.exit(2);
+  }
+  if (!target) {
+    console.log("NOTE: unfiltered run -- scanning the WHOLE base population, not a verdict for any specific design family. \"Family\" here means every file sharing one parent directory; pass a [filter] narrowing to a designs/<family> path for a real gate check.\n");
+  }
+  let passed = 0, failed = 0, exempt = 0;
+  for (const r of rows) {
+    if (r.status === "PASS") { passed++; console.log(`PASS  ${r.file}`); }
+    else if (r.status === "EXEMPT") { exempt++; console.log(`EXEMPT  ${r.file}  (whole-file companion)`); }
+    else {
+      failed++;
+      const detail = r.hits.map((h) => `${r.file}:${h.line} "${h.marker}"`).join("; ");
+      console.log(`FAIL  ${r.file}  build-relative vocabulary present under an AS-IS-ONLY marker: ${detail}`);
+    }
+  }
+  console.log(`--- ${rows.length} file(s), ${passed} passed, ${failed} failed, ${exempt} exempt ---`);
+  console.log("NARROW SIGNAL ONLY -- a fixed substring matcher; FAIL is real evidence, PASS is NOT proof of absence. A by-hand semantic check is still required, per phase-6 CHECK 1.");
+  process.exit(failed === 0 ? 0 : 1);
+} else if (args.includes("--diagram-classes")) {
+  const target = args.find((a) => !a.startsWith("--"));
+  const rows = target ? diagramClassesResults.filter((r) => r.file.includes(target)) : diagramClassesResults;
+  if (target && !rows.length) {
+    console.log(`\nfilter "${target}" matched ZERO files -- nothing was scanned. This is NOT a clean pass; fix the filter.`);
+    process.exit(2);
+  }
+  if (!target) {
+    console.log("NOTE: unfiltered run -- scanning the WHOLE base population, not one design family's own inventory. Pass a [filter] narrowing to a designs/<family> path before cross-referencing against Gate 7.\n");
+  }
+  console.log("INVENTORY ONLY -- this flag never gates; cross-reference against Gate 7's own required class set per problem TYPE, per phase-6 CHECK 1.\n");
+  for (const r of rows) {
+    const typesStr = r.types.length ? r.types.join(", ") : "(none)";
+    console.log(`${r.file}  types: ${typesStr}  matrix-table: ${r.matrixTableSeen ? "yes" : "no"}`);
+  }
+  console.log(`\n${rows.length} file(s) scanned`);
+  process.exit(0);
+} else if (args.includes("--enumeration-coverage")) {
+  const target = args.find((a) => !a.startsWith("--"));
+  const rows = target ? computeEnumerationCoverageResults().filter((r) => r.file.includes(target)) : computeEnumerationCoverageResults();
+  if (target && !rows.length) {
+    console.log(`\nfilter "${target}" matched ZERO files -- nothing was scanned. This is NOT a clean pass; fix the filter.`);
+    process.exit(2);
+  }
+  if (!target) {
+    console.log("NOTE: unfiltered run -- scanning the WHOLE base population of provenance.md files, not a verdict for any specific design family. Pass a [filter] narrowing to a designs/<family> path for a real gate check.\n");
+  }
+  let passed = 0, failed = 0, skipped = 0;
+  for (const r of rows) {
+    if (r.status === "PASS") { passed++; console.log(`PASS  ${r.file}`); }
+    else if (r.status === "SKIP") { skipped++; console.log(`SKIP  ${r.file}  (${r.reason})`); }
+    else {
+      failed++;
+      console.log(`FAIL  ${r.file}  ${r.reason}`);
+    }
+  }
+  console.log(`--- ${rows.length} file(s), ${passed} passed, ${failed} failed, ${skipped} skipped ---`);
+  console.log("NARROW SIGNAL ONLY -- this tool proves a MISSING row or an undispositioned row when its own sweep command actually finds one; it CANNOT prove the recorded sweep command itself is honest/complete. A by-hand semantic check is still required, per phase-6 CHECK 1.");
+  process.exit(failed === 0 ? 0 : 1);
 } else if (args.includes("--dupes")) {
   const byImp = new Map();
   for (const r of rules) {
@@ -764,6 +1516,11 @@ if (args.includes("--json")) {
   console.log(`agent: refs                   ${agentRefs.length}   naming a missing agent ${agentRefsDead.length}`);
   console.log(`cold: handles                 ${coldRefs.length}   unresolvable ${coldUnknown.length}   (--cold)`);
   console.log(`refs into a long file, NO anchor  ${anchorless.length}   (--anchorless)`);
+  console.log(`GENERAL -> PROJECT/CODE citations ${levelViolations.length}   in ${new Set(levelViolations.map((v) => v.file)).size} of ${generalFiles.length} SKILL.md files   (--levels)`);
+  console.log(`PROJECT-MARKER matches in portable files    ${portabilityViolations.length}   in ${new Set(portabilityViolations.map((v) => v.file)).size} of ${portabilityScanFiles.length} portable files (${agentShellFiles.length} agent shells + ${portableSkillFiles.length} behavior.md/SKILL.md/phase-*.md, excluding project.*)   (--portability, PROXY ONLY)`);
+  console.log(`GRIMORIO -> PROJECT citations              ${directionViolations.length}   in ${new Set(directionViolations.map((v) => v.file)).size} of ${directionScopeFiles.length} grimorio.-prefixed files   (--direction [filter])`);
+  console.log(`Steps headings opening with a graph-definition step  ${stepsHeadingsTotal - graphFirstViolations.length} / ${stepsHeadingsTotal}   (--graph-first [filter])`);
+  console.log(`Output headings carrying >=1 fenced example          ${outputHeadingsTotal - examplesViolations.length} / ${outputHeadingsTotal}   (--examples [filter])`);
   const two = loadRefs.flatMap((r) => r.two);
   const byRel = (k) => two.filter((x) => x.rel === k).length;
   const legacy = totalNew + totalOld + sum("repoNew") + sum("repoOld") + sum("tmpNew") + sum("tmpOld") + selfRelative;
@@ -801,5 +1558,7 @@ if (args.includes("--json")) {
   console.log(`  --map                the reference graph.`);
   console.log(`GATES — each answers one question and exits non-zero when it fails.`);
   console.log(`  --anchors --anchorless --dead --pins --cold --invalid --unprefixed --bare --grammar-doc --coverage`);
-  console.log(`  --dupes --fragments --loads --selfrefs --inert --malformed --kinds --json`);
+  console.log(`  --dupes --fragments --loads --selfrefs --inert --malformed --kinds --json --levels [filter] --portability [filter]`);
+  console.log(`  --graph-first [filter] --examples [filter] --direction [filter] --diagram-primacy [filter]`);
+  console.log(`  --no-scaffolding-leak [filter] --as-is-voice [filter] --diagram-classes [filter] --enumeration-coverage [filter]`);
 }

@@ -68,15 +68,35 @@ proceeding on a level you believe is wrong. This is the SECOND of the four phase
    choose — that the handed level matches what you are actually about to write. **WHEN the level looks wrong
    ⟶ say so in this phase's own DELIVERABLE below — you do not silently relocate it, and you do not silently
    proceed on it either.**
+3c. **ALWAYS run the STEPS-VS-PHASES TEST on EVERY pass this phase runs — a brand-new agent AND a REWRITE of
+   an existing one alike, never only a "brand-new, not-yet-grasped" case — BEFORE step 4 (FORM) commits to
+   anything.** Apply ref:skill/grimorio.phase-splitting/project.steps-vs-phases-test.md in full: does the
+   artifact being authored or rewritten need STEPS (a single agent-writing-style numbered `## Steps` list, one
+   node, one pass) or PHASES (a multi-file state machine, per `grimorio.phase-splitting`'s own judgment test and
+   orchestrator-vs-purpose-driven distinction)? **For a REWRITE specifically ⟶ re-run this test against the
+   REWRITTEN scope, never assume the agent's prior shape still fits merely because it fit before** — this is
+   the exact case a prior version of this phase's own step 5 (below) could never catch, because its own
+   trigger fired only for a brand-new agent. State the verdict — STEPS or PHASES — and the reasoning, in this
+   phase's own DELIVERABLE (`STEPS-VS-PHASES VERDICT`, below). **WHEN the verdict is STEPS ⟶ step 5 below never
+   fires; proceed straight to Phase 3 once this phase's own remaining steps and DELIVERABLE are complete.**
+   **WHEN the verdict is PHASES but this pass is a same-shape edit inside ONE already-existing phase's own
+   content (no phase added, removed, or reshaped) ⟶ step 5's own REVIEWABLE-PLAN trigger does not fire either —
+   proceed to Phase 3 to write the edit inside that phase's existing file, carrying this phase's own
+   PINCHO-SIZING awareness forward** (ref:skill/grimorio.phase-splitting#sizing-a-phase--render-group-measure-split-the-pincho-check,
+   already applied by Phase 4's own step 3b once the edit reaches disk — not re-run here, only flagged as owed).
 4. **ALWAYS choose FORM before wording: does this rule need a LITERAL reading (algorithm — numbered steps,
    explicit IF-THEN) or LATITUDE (prose)?** ->
    ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose-ceo-2026-07-30-translated
    → "FORM IS THE LATITUDE INSTRUCTION". Name which you chose and why in this phase's own DELIVERABLE — Phase 3
-   writes every rule to this decision, it does not re-decide FORM per rule.
-5. **WHEN the design being authored is a genuinely NEW agent (a brand-new multi-phase state machine, not an
-   edit to one that already exists) AND you do not yet fully grasp how it reaches its objective ⟶ do NOT
-   proceed to Phase 3 — produce the REVIEWABLE PLAN artifact instead (the new agent's own quasi-software-view
-   sketch: its phases, its nodes, its expected outputs, at the same fidelity as
+   writes every rule to this decision, it does not re-decide FORM per rule. **WHEN step 3c's own verdict is
+   PHASES with a brand-new chain or a boundary change ⟶ this choice is provisional** — step 5 below fires before
+   it is ever used, and a SECOND pass, once the plan is reviewed, re-decides FORM fresh against the approved
+   plan rather than trusting a choice made before the plan existed.
+5. **WHEN step 3c's own verdict is PHASES, AND (this is a brand-new phase chain OR this rewrite changes an
+   EXISTING chain's own phase count or boundaries — never a same-shape edit inside one already-existing phase's
+   own content), AND no ALREADY-REVIEWED PLAN ARTIFACT for this EXACT scope was handed to you in THIS pass's own
+   brief ⟶ do NOT proceed to Phase 3 — produce the REVIEWABLE PLAN artifact instead** (the new or reshaped
+   chain's own quasi-software-view sketch: its phases, its nodes, its expected outputs, at the same fidelity as
    ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md#the-five-layers-at-a-glance-and-where-each-is-drawn's
    own worked precedent)
    and hand it back to agent:grimorio.system-keeper for review BEFORE writing a single executable rule.** State
@@ -95,6 +115,31 @@ proceeding on a level you believe is wrong. This is the SECOND of the four phase
    implement/standardize. **ALWAYS state plainly in this phase's own DELIVERABLE whether this pass's own task
    triggered this rule or not** —
    "N/A — not authoring a new agent this pass" is a legitimate, common answer.
+
+   **WHEN an ALREADY-REVIEWED PLAN ARTIFACT for this exact scope WAS handed to you this pass ⟶ this edge does
+   NOT fire, regardless of the rest of the condition above** — treat the reviewed plan as the decided design and
+   proceed to Phase 3, drafting rule-text directly against it, choosing FORM fresh (step 4 above) against the
+   approved plan, never re-producing the plan a second time. **This is the escape condition that makes this rule
+   a genuine TWO-PASS mechanism rather than an unbreakable loop**: a brand-new chain or a boundary change is a
+   FACT about the task that does not become false merely by re-running this phase, so without this explicit
+   escape, no dispatch — first or Nth — could ever satisfy this step's own negative condition, because the only
+   thing that could flip it (the chain existing on disk with its new shape) is exactly what this step blocks.
+   grimorio.system-keeper's own Phase 4 (authoring-coordination) carries the matching caller-side half of this
+   contract: WHEN it re-invokes `grimorio.prompt-writer` for the SAME scope after reviewing and approving a
+   PLAN-FOR-REVIEW return, it hands back that plan artifact verbatim, marked reviewed — never merely a fresh
+   brief that looks like a first pass.
+
+   **Worked example, both passes, so a reader can trace the mechanism rather than take it on faith.** PASS 1:
+   system-keeper hands prompt-writer a spec for a genuinely new orchestrator agent, no plan artifact attached.
+   Step 3c's verdict is PHASES (orchestrator-shaped, four+ real phases). Step 5's condition holds (brand-new
+   chain, no reviewed plan handed in) ⟶ PLAN-FOR-REVIEW fires; Phase 6 returns the plan artifact to
+   system-keeper, Phase 3/4 never entered. PASS 2: system-keeper's own Phase 4 reviews the plan, approves it,
+   and re-invokes prompt-writer for the SAME scope, this time attaching that exact plan artifact marked
+   reviewed. Step 3c re-runs (still owed on every pass) and still concludes PHASES — the artifact genuinely is a
+   multi-phase chain — but step 5's escape now fires: an already-reviewed plan for this exact scope was handed
+   in, so the REVIEWABLE-PLAN trigger does not fire a second time; the phase proceeds to step 4 (FORM, chosen
+   fresh against the approved plan) and on to Phase 3, which drafts the actual phase files against the
+   already-decided design.
 5b. **WHEN step 5 fires and you are producing the REVIEWABLE PLAN artifact ⟶ ALWAYS apply
    ref:skill/grimorio.prompt-writing-quality#never-judge-by-appearance--demand-evidence-deduce-omissions-the-anti-plausibility-method
    explicitly, not merely by citation.** The plan's own phases, nodes, and expected outputs — already required by
@@ -130,6 +175,10 @@ proceeding on a level you believe is wrong. This is the SECOND of the four phase
   cite:repo/scripts/check-phase-fingerprint.mjs@cfd53d22373af768cc886d06a39f52cb3ba117de, which only scans a
   bullet whose FIRST LINE matches `import:(skill|repo)/`; routing the field's enforcement here, onto this
   bullet's real `import:`, is what makes it actually gated.
+- import:skill/grimorio.phase-splitting/project.steps-vs-phases-test.md — step 3c's own decision test, in full.
+  FINGERPRINT: STEPS-VS-PHASES VERDICT field below (a verdict with the required reasoning — new-vs-rewrite,
+  which of the two shapes and why — cannot be produced without applying this discipline; a bare "STEPS" or
+  "PHASES" with no reasoning is a D8 FAIL, never a pass).
 - ref:skill/grimorio.agent-writing#how-to-decide-where-something-goes — the five-question placement ladder, this
   phase's own verification instrument.
 - ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose-ceo-2026-07-30-translated —
@@ -159,14 +208,22 @@ DECOMPOSITION (TANGLED SPECS ONLY): <PARTS / DISSOLVED / CONFLICTS / PROVING-ORD
                          reasoning-principles' own decompose-first discipline, WHEN the new step above fired
                          — or "N/A — spec is a single atomic ask" otherwise — a blank field here, on either
                          path, is a D8 FAIL, never a pass>
+STEPS-VS-PHASES VERDICT: <per step 3c — STEPS or PHASES, PLUS: (a) NEW AGENT or REWRITE, (b) the judgment-test
+                         reasoning applied (distinct question/deliverable/knowledge per candidate phase,
+                         orchestrator-vs-purpose-driven, or "atomic — STEPS covers it in full"), and, WHEN this
+                         is a REWRITE, (c) whether the rewrite changes an existing chain's own phase
+                         count/boundaries or is a same-shape edit inside one existing phase — a bare "STEPS" or
+                         "PHASES" with no reasoning, or a REWRITE verdict silent on (c), is a D8 FAIL, never a
+                         pass>
 FORM CHOSEN:             <algorithm or prose, per rule and per section if it differs> + WHY
 EXPECTED-RESULT ARTIFACT: <per step 2b — the concrete worked example of correct output named for this
                          artifact, or a pointer to it if it is long>
 GOAL-LEVEL CHECK (GOAL-SHAPED ONLY): <per step 2c — WHEN goal-shaped: "PASSES" (genuine user goal, Cockburn's
                          lunch test) or the mismatch named plus the REAL goal it actually serves — WHEN not
                          goal-shaped: "N/A — artifact is not goal-shaped">
-PLAN-BEFORE-IMPLEMENTING: <per step 5 (and step 5b's anti-plausibility duty WHEN it fires) — "N/A — not
-                         authoring a new agent this pass" / "N/A — design already fully grasped" /
+PLAN-BEFORE-IMPLEMENTING: <per step 5 (and step 5b's anti-plausibility duty WHEN it fires) — "N/A — verdict
+                         above was STEPS" / "N/A — verdict above was PHASES but a same-shape edit inside one
+                         existing phase, per step 3c's own sibling clause" /
                          "FIRED — reviewable plan artifact produced below, Phase 3 not entered this pass,
                          evidence-of-consideration applied per step 5b">
 SELF-AWARE FLAG:         <per step 6 — "N/A — this pass's own change does not touch process/machinery

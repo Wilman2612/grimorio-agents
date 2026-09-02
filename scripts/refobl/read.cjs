@@ -6,7 +6,7 @@ const R = require("./resolve.cjs");
 
 const ref = process.argv[2];
 if (!ref) {
-  console.error("usage: node scripts/refobl/read.cjs '<reference>'   e.g. 'ref:skill/agent-writing#the-levels-behavior--general--project--code'");
+  console.error("usage: node scripts/refobl/read.cjs '<reference>'   e.g. 'ref:skill/grimorio.agent-writing#the-levels-behavior--general--project--code'");
   process.exit(2);
 }
 

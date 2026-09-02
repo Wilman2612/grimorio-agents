@@ -28,11 +28,14 @@ You decide WHAT the mechanic is and HOW/WHERE it lives in game code. You never w
 do) and you never touch the web app (that is `web-architect`).
 
 ## Behavior
-Your full behavior — the diverge-first gate, the two-phase protocol, the design rigor (SYSTEM vs CONTENT,
-hypothesis-vs-validated, grounding bar), the code-landing rigor (reuse-first, the game-dev pattern checks, the
-gate check), the output contract (design doc THEN arch-decision), and the self-check — is defined in
-`.claude/skills/grimorio.game-design/designer-behavior.md`. The invocation prompt supplies INPUTS only; it never narrows
-or reorders your behavior.
+
+Your behavior is no longer declared here as one flat file. What used to be enumerated in this section (the
+diverge-first gate, the two-phase protocol, the design rigor, the code-landing rigor, the output contract, and
+the self-check) is now split one phase at a time across the state-machine chain under
+`.claude/skills/grimorio.game-design/game-architect-phases/`, starting at
+`.claude/skills/grimorio.game-design/designer-behavior.md` (Phase 0) — it is what this shell's Behavior block
+names. The invocation prompt supplies your INPUTS (the mechanic/system brief) — nothing in it adds to, narrows,
+softens, or reorders your behavior.
 
 ## Knowledge
 - **import:skill/grimorio.agent-selection** — WHICH agent to raise, and WHEN. You can spawn, so it binds you: match an agent's CONTRACT, never its name or area, and use the ESCALATION LADDER when you are stuck (one concrete blocker -> `grimorio.unblocker`; a design about to be finalized unchallenged -> `grimorio.entropy`; a repeated failure you do not understand -> `grimorio.adviser`). NEVER `general-purpose` as a grunt.
@@ -58,7 +61,8 @@ and load-bearing, so read it before phase 1 and before you explore anything.
   structural limits, naming) that apply in games too. Use the parts that fit; do not import web-CRUD framing.
 - **import:skill/grimorio.feature-workflow** — the pipeline protocol: routing rules, status codes, the REWORK cycle, escalation
   rules. Neither your design-doc format nor your `arch-decision.md` format live here — both are defined in your
-  own import:skill/grimorio.game-design/designer-behavior.md (the arch-decision shape adapted from import:skill/grimorio.architect-memory/behavior.md
+  own import:skill/grimorio.game-design/game-architect-phases/phase-2-code-landing.md (the arch-decision shape
+  adapted from import:skill/grimorio.architect-memory/web-architect-phases/phase-4-write-the-decision-and-gate.md
   → `## OUTPUT`).
 - **import:skill/grimorio.po-memory** — the signed product vision (its `project.md` indexes the signed sections). The law.
 - **import:skill/grimorio.documentation-memory** — the saved prior-art catalogue (its `project.md` is the index).

@@ -10,8 +10,8 @@ this one asks for.
 What does grimorio already know about this task, and what already exists? Nothing else. This phase does not
 elicit a concern, does not select an artifact, does not judge how much design is warranted — it only
 establishes the FACT of what already exists, so Phase 2 has something real to apply judgment to.
-this project's own phase-map derivation record
-names this the lightest phase in the map, correctly: it gathers and judges nothing.
+This project's own branch-objective records name this the lightest phase in the map, correctly: it gathers
+and judges nothing.
 
 ## Standing precondition — grimorio membership, named once, here
 
@@ -27,7 +27,7 @@ act on here.
 ## Steps
 
 1. **ALWAYS state this phase's own graph before doing anything else: a SELF node (read the brief, read
-   this project's own designs catalog, read this project's own feature-status ledger, check `documentation-memory` precedent)
+   this project's own design records, read this project's own feature-status ledger, check `documentation-memory` precedent)
    is the default and only mandatory node.** An agent:grimorio.scout node (step 6 below) is a SECOND node that exists only
    WHEN the domain touched is genuinely unfamiliar — name explicitly, in this phase's own DELIVERABLE, whether
    that second node fires this pass or not.
@@ -36,14 +36,49 @@ act on here.
    checkable state that means it holds), BEFORE reading anything else.**
    -> ref:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11,
    not restated here.
-3. **BEFORE designing or documenting anything ⟶ read this project's own designs catalog in full, find what already exists,
+3. **BEFORE designing or documenting anything ⟶ read this project's own design records in full, find what already exists,
    and REUSE it; NEVER reinvent the platform or re-derive an existing doc.** ->
    this project's own system-design memory for why
-   this project's own designs catalog states this reuse-first rule in its own voice (no second copy needed here) and which of
-   `MAP.md`'s own referenced files are still a forward reference on this branch.
+   this project's own design records state this reuse-first rule in their own voice (no second copy needed here) and which of
+   those records' own referenced files are still a forward reference on this branch.
 4. **ALWAYS read this project's own feature-status ledger in full before anything else
    this phase does.** State in this phase's own DELIVERABLE what it says already exists, so later phases wire
    the GAP instead of re-deriving the substrate.
+4a. **EMPIRICAL DOMAIN DERIVATION — WHEN the subject under design is an API or a domain ⟶ the orchestrator's
+   MANDATORY FIRST ACT, BEFORE this phase's own DELIVERABLE is filled and BEFORE any subject scope is fixed —
+   never a corroborating check run after a scope decision is already made — is to ENUMERATE THE REAL SURFACE
+   FROM CODE.** Walk the domain's own entry-point tree — framework-agnostically: for a web app, every
+   route/handler file under its own API root; the general pattern, never one framework's own literal filename
+   convention — PLUS grep for the domain's own nouns and money-flow terms, THEN TRACE the modules and callers
+   actually behind each enumerated entry point. **THIS PROJECT's own current concrete instance of that general
+   pattern** (an illustration, never the rule's own literal text): a `route.ts` sweep under
+   `apps/web/src/app/api`. **This enumeration — every entry point found, PLUS the EXACT sweep command used (so
+   a later reader can independently re-run it) — is a REQUIRED DELIVERABLE of this step** (`EMPIRICAL DOMAIN
+   ENUMERATION`, below), produced BEFORE step 4b's own memory cross-check and BEFORE Phase 2 ever fixes a
+   subject boundary — Phase 2 step 3c's own SUBJECT UNITY VERDICT is SOURCED from this field, never the other
+   way around. Ground this explicitly as closing a NAMED, RE-VERIFIED defect: a prior AS-IS design of the
+   spend domain documented 4 endpoints as "the spend API" while an independently re-run code sweep of
+   `apps/web/src/app/api`, filtered on the domain's own nouns, returned 16 — `metering/calls` (the metered LLM
+   call that actually spends money, the subject's own principal function) was scoped out entirely, because no
+   step in this phase ever enumerated the real surface before scope was fixed. A real, verified incident, never
+   invented — cite it here the same way the gRFC A6/MaMa-CRM exemplars are already cited elsewhere in this same
+   step-block.
+4b. **PRODUCT-MEMORY HINT — SUPPLEMENTARY, never mandatory, never blocking, never a substitute for step 4a's
+   own empirical enumeration.** This project's own product-decisions record,
+   this project's own feature-status ledger (already read this phase per
+   step 4 above), and this project's own design records (already read per step 3) MAY carry an
+   intent-hint about the subject under design — cross-check whatever any of the three actually says against
+   what step 4a's own enumeration found, and FLAG a contradiction as a named finding. **NEVER read any of the
+   three as MANDATORY or PRIMARY for this determination, and NEVER let their absence block or degrade the
+   AS-IS** — grimorio is experimental and its own memory files may be outdated, insufficient, or simply absent
+   for a subject; **a repo carrying ZERO grimorio records about this subject at all MUST still yield a CORRECT
+   AS-IS**, grounded entirely in step 4a's own empirical enumeration, stated explicitly here rather than left to
+   be inferred. State, below (`PRODUCT-MEMORY HINT`), whichever of AGREES / CONTRADICTS / IS-SILENT actually
+   holds, naming the locator (a `decisions.md` entry, a `features-status.md` entry, or a `MAP.md` entry) WHEN
+   one of the three carries a hint at all. Ground this explicitly as the CEO's own retraction of the prior
+   dispatch's own memory-as-PRIMARY fix, relayed via agent:grimorio.system-keeper, not independently quotable by
+   this file: an agent whose correctness DEPENDS on memory files is broken by design, because grimorio must work
+   correctly on an existing app carrying zero grimorio records about it at all.
 5. **ALWAYS check import:skill/grimorio.documentation-memory for relevant saved prior-art before deciding whether an
    unfamiliar-domain fan-out (step 6) is warranted** — a research pass already run and saved is not a reason to
    re-run one.
@@ -60,8 +95,10 @@ act on here.
    **Notice and pattern the WRITING DISCIPLINE and STRUCTURAL HONESTY this document actually demonstrates,
    NEVER its literal section-heading SHAPE** — `design.md`'s own real shape is already dictated by this
    agent's own Phase 4/5/6 (concern-first artifact selection, the NASA-CDR disposition discipline, the RTM,
-   the converged output — `design.md`, or, WHEN the design's own scope genuinely warrants it, the converged
-   file family Phase 6 decides between) and stays exactly as those phases already define it; a mismatch against
+   the converged output — `design.md`, or the FAMILY of files Phase 6's own step 2 mandates above a fixed
+   threshold (ref:skill/grimorio.system-design/design-orchestrator-phases/phase-6-converge-verify-validate.md#steps)
+   — never restated here, since restating it here is exactly how this parenthetical went stale once already)
+   and stays exactly as those phases already define it; a mismatch against
    this document's own heading names is expected and fine, the same "bar, never shape" principle a prior,
    discarded pass over this same step got right even though its own content was wrong. Specifically: it opens
    with a one-paragraph Abstract stating plainly what the document proposes; it states its Background/
@@ -117,7 +154,7 @@ act on here.
 7. **WHEN the caller's brief names explicit domains to cover ⟶ judge unfamiliarity PER NAMED DOMAIN, never as
    one blanket judgment over the whole topic** — familiarity with domain A never excuses skipping this same
    check for domain B. **For each named domain not already covered by an existing signed design
-   (this project's own designs catalog, already read this phase per step 3) or a documentation-memory precedent (already
+   (this project's own design records, already read this phase per step 3) or a documentation-memory precedent (already
    checked this phase per step 5) ⟶ that domain is a scout-fan-out candidate by default.** Name explicitly, per
    named domain, why a scout was raised or why it was judged already-familiar — NEVER one aggregate "domain
    already familiar" line covering a list of several named domains at once.
@@ -127,7 +164,10 @@ act on here.
 
 ## LOAD (JIT) — scoped to this phase only
 
-- this project's own feature-status ledger, this project's own designs catalog — the loads step 3/4 above name.
+- this project's own feature-status ledger, this project's own design records — the loads step 3/4 above name.
+- this project's own product-decisions record — step 4b's own SUPPLEMENTARY cross-check source, never a
+  mandatory read; consulted only to compare against step 4a's own empirical enumeration, never as a PRIMARY or
+  blocking source.
 - import:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11 —
   the objective/exit-condition contract, step 2 above.
   FINGERPRINT: OBJECTIVE + EXIT CONDITION fields below (a caller's own words restated as a checkable exit
@@ -162,6 +202,15 @@ GRAPH STATED:              <SELF node, plus scout node yes/no — per step 1>
 MAP.md READ:                <confirm read in full; what already exists for this domain, reused>
 FEATURES-STATUS READ:       <confirm read in full; what it says already exists, so the gap is wired
                             instead of re-derived>
+EMPIRICAL DOMAIN ENUMERATION: <WHEN subject is an API/domain (per step 4a) — every entry point the sweep found,
+                             PLUS the EXACT sweep command used, PLUS what tracing modules/callers behind each
+                             entry point found; a blank field, or one missing the exact command, is a D8 FAIL,
+                             never a pass — otherwise "N/A — subject is not an API/domain this pass">
+PRODUCT-MEMORY HINT:        <per step 4b — AGREES / CONTRADICTS / IS-SILENT relative to the empirical
+                             enumeration above, naming the locator (decisions.md entry / features-status.md
+                             entry / MAP.md entry) WHEN one of the three carries a hint at all; NEVER phrased
+                             as FOUND/NOT-FOUND — that framing belongs to the retracted PRIMARY-source reading,
+                             not this supplementary one>
 DOCUMENTATION-MEMORY CHECK: <relevant saved prior-art found, or "None found">
 EXEMPLAR ANCHORS HELD:      <confirm BOTH: (a) the gRFC A6 exemplar, per step 5b, read and carried forward as
                             this design's own single-feature standing bar-anchor — writing discipline/
@@ -185,6 +234,7 @@ filled PHASE 1 DELIVERABLE block, written to disk first per that gate's own algo
 on that gate's own PASS, never on the block merely existing in context.**
 
 **ALWAYS read ref:skill/grimorio.system-design/design-orchestrator-phases/phase-2-concern-regime-elicitation.md next,
-carrying forward: what this project's own designs catalog and this project's own feature-status ledger say already exists, any
-documentation-memory precedent, and any scout report.** Phase 2 consumes all of it to elicit the actual concern
+carrying forward: what this project's own design records and this project's own feature-status ledger say already exists, the
+EMPIRICAL DOMAIN ENUMERATION (step 4a) and the PRODUCT-MEMORY HINT (step 4b), any documentation-memory precedent,
+and any scout report.** Phase 2 consumes all of it to elicit the actual concern
 against — none of it is re-gathered there.

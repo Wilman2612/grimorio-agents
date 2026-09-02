@@ -15,7 +15,7 @@ solid edge meaning, circular vs rectangular node shape), never re-derived here.
 
 **Scope of what this file draws.** The main loop's own two-phase flow, per the CEO's own reframing (translated,
 2026-08-24): *"the main loop is also a flow... its loop: Phase 1 is the interaction loop — you talk until I
-understand, exit when you say 'ya entendiste, sigue' — then Phase 2 is everything already prescribed about
+understand, exit when you say 'you got it, continue' — then Phase 2 is everything already prescribed about
 launching an agent."* Phase 1 has no written Steps section anywhere in the corpus to render from — it is
 defined entirely by that quote, so its own interior flowchart below is built directly from it, honestly, rather
 than from a phase file that does not exist. Phase 2's four sub-steps ARE written, in full, in
@@ -37,8 +37,8 @@ collapsing Phase 2 to a single node here would make that loop-back undrawable at
 ```mermaid
 flowchart TB
     P1["PHASE 1 · INTERACTION LOOP<br/>CEO talks until the assistant<br/>demonstrably understands"]
-    P1 -.->|"LOOP-BACK: CEO has NOT yet<br/>said 'ya entendiste, sigue' —<br/>keep talking"| P1
-    P1 -->|"EXIT: CEO says<br/>'ya entendiste, sigue'"| S1
+    P1 -.->|"LOOP-BACK: CEO has NOT yet<br/>said 'you got it, continue' —<br/>keep talking"| P1
+    P1 -->|"EXIT: CEO says<br/>'you got it, continue'"| S1
 
     subgraph P2["PHASE 2 · SPAWN SEQUENCE"]
       direction TB
@@ -124,7 +124,7 @@ explicit prohibition against inventing branches or steps.
 ```mermaid
 flowchart TB
     A1["CEO speaks — states,<br/>corrects, or confirms"] --> A2["assistant proposes /<br/>clarifies its own<br/>understanding"]
-    A2 --> A3{"CEO says 'ya entendiste,<br/>sigue' (the exit phrase,<br/>verbatim)?"}
+    A2 --> A3{"CEO says 'you got it,<br/>continue' (the exit phrase,<br/>verbatim)?"}
     A3 -->|"NO — still<br/>correcting"| A1
     A3 -->|"YES"| EXITP1(["→ PHASE 2 ·<br/>SPAWN SEQUENCE"])
 

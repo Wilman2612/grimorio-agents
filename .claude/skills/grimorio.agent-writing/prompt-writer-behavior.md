@@ -55,6 +55,15 @@ silence.
 
 **This is NOT a license to skip Core Rule 2 (never finish over being right).**
 
+**Named explicitly, per `grimorio.code-reviewer`'s own FINDING-07 (Dispatch F, INFO), so a reader never mistakes
+omission for an unstated gap: the pre-filled plan above does NOT need to carry a STEPS-VS-PHASES VERDICT
+(ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-2-understand-verify-plan.md's own step 3c) —
+CLONE-EXECUTOR MODE skips Phase 2 entirely, and the shape decision it would have made is already settled
+UPSTREAM, by `grimorio.system-keeper` itself, before this mode is ever declared: a clone only executes an
+already-fully-specified mechanical plan (grimorio-conduct rule 20's own same-type-clone exemption), and
+deciding STEPS-vs-PHASES for an agent's own design is exactly the kind of judgment call rule 20 forbids handing
+to a clone in the first place.**
+
 **WHEN the pre-filled plan is genuinely incomplete or unwritable to standard — missing content, no clear reader, would require inventing policy ⟶ the CLONE-EXECUTOR still REFUSES.** Phase 1's own Core-Rule-2 refusal point is skipped in this mode, so the refusal now surfaces where
 ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-3-rule-syntax.md's own step 2 already catches it in
 substance: a clause with no clear opener, or content that cannot be given one without inventing what it should

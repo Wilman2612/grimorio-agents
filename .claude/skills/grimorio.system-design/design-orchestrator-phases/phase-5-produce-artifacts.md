@@ -86,6 +86,20 @@ this phase has made on his behalf.
    has zero live spawn nodes.
 2. **Run exactly the sub-missions Phase 4's selection table named — never a sub-mission Phase 4 did not
    select, and never skip one it did.**
+3. **WHEN Phase 1 recorded an EMPIRICAL DOMAIN ENUMERATION (fired for an API/domain subject)
+   ⟶ ALWAYS author it, IN FULL, into the family's own PROVENANCE companion file** (the SAME `provenance.md`
+   file, or one whose own first heading starts "Provenance," Phase 4's own TYPES SCOPED OUT field already
+   targets — never `00-index.md`, any concern file, or any other reader-facing view) **under a section whose
+   heading reads EXACTLY `## Empirical Domain Enumeration`** — this exact string is load-bearing: a
+   deterministic tool (`node scripts/audit-chain.mjs --enumeration-coverage`) parses it, so it is NEVER
+   reworded, abbreviated, or paraphrased. **The section carries: a `Sweep command:` line holding the literal
+   command Phase 1's own EMPIRICAL DOMAIN ENUMERATION field recorded, in an inline code span; and a markdown table with an `Entry Point` column and a
+   `Disposition` column** (an optional `Reason`/`Locator` column is permitted) **— every row is EITHER
+   documented (citing the reader-facing file/section that actually covers it) OR dispositioned-out with a
+   written reason; every empirically-enumerated entry point from Phase 1's own EMPIRICAL DOMAIN ENUMERATION
+   field gets a row, no exceptions, no silent drops.** WHEN Phase 1's own EMPIRICAL DOMAIN ENUMERATION field
+   recorded "N/A — subject is not an API/domain this pass" ⟶ this step does not fire; state
+   "N/A" below rather than authoring an empty section.
 
 ### Sub-mission A — Structural/functional, plus mockups (WHEN Phase 4 selected one of the original 9 types, OR a mockup)
 
@@ -188,6 +202,13 @@ SUB-MISSION C — SECURITY:       <threat model / misuse cases / ASVS pass / DPI
                                 "N/A — not warranted" — or "N/A — not selected">
 SUB-MISSION D — DATA/API:       <wire contract / ER model / EventStorming-or-Event-Modeling, each Y
                                 or "N/A — not warranted" — or "N/A — not selected">
+
+EMPIRICAL ENUMERATION AUTHORED: <per step 3 — confirm the `## Empirical Domain Enumeration` section was
+                                authored into the family's own PROVENANCE file, with its `Sweep command:` line
+                                and every entry point from Phase 1's own EMPIRICAL DOMAIN ENUMERATION field
+                                given a row (documented or dispositioned-with-reason)
+                                — or "N/A — Phase 1 recorded no empirical enumeration this pass (subject is not
+                                an API/domain)">
 
 WEB/GAME-ARCHITECT SPAWNED:     <confirm "No" — both stay future-NOT-wired on this pass>
 WRITER-MECHANISM OPEN QUESTION: <confirm the three candidate mechanisms were named and NONE decided, per

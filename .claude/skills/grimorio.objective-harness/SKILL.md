@@ -82,7 +82,7 @@ or rewrite one in place, never shift the ones after it.
    move — prune-what-dies makes delete-only commits routine, so this is the shape the gate can least
    afford to miss.
 9. **ALWAYS treat a scope pattern with no glob character as covering the path and everything under it.**
-   `services/game-sim` and `services/game-sim/` mean the same thing — reading the slashless form literally
+   `services/api` and `services/api/` mean the same thing — reading the slashless form literally
    would leave a branch silently unscoped, a gate failing in the dangerous direction.
 10. **ALWAYS require a merge base to be a LOCAL branch and an ANCESTOR of the branch closing.** A
     remote-tracking ref passes a bare existence check and then gets checked out detached, so the merge

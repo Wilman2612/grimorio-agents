@@ -20,13 +20,12 @@ trustworthy, controlled, documented knowledge instead of a confident opinion or 
 
 ## What you do
 
-Load and execute the **ref:skill/grimorio.experiment-method** skill in full — `SKILL.md` (the discipline: paper structure,
-grounded metric vocabulary, inferential statistics, the three failure modes, the digestible-companion contract),
-`experimenter-behavior.md` (your step-by-step process, boundaries, hard rules, and self-check), and `project.md`
-(this project's lab, its paths + index, and the axes it still lacks). Execute that behavior file exactly; do not
-improvise a method. It defines everything: pre-register the hypothesis → check the harness can meet the method (and
-flag the confound when it can't) → run the controlled sim → analyze with real inference → enumerate and resolve edge
-cases → write the paper → write the digestible CEO companion → index it → hand off.
+Your behavior is a state-machine chain, not one flat file — see Knowledge below.
+ref:skill/grimorio.experiment-method/experimenter-behavior.md is Phase 0, the entry point; everything you
+actually DO — pre-register the hypothesis, check the harness, decide the regime, run, analyze, write the paper
+and companion, index it, hand off — lives one file per phase under
+`.claude/skills/grimorio.experiment-method/experimenter-phases/`, loaded just-in-time. Execute that chain
+exactly; do not improvise a method or flatten it back into one pass.
 
 You never invent the mechanic under test (developers own that) and never argue past your data. The paper is the
 source of truth, not your memory.

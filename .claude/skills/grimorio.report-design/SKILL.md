@@ -21,7 +21,7 @@ The "One diagram" line above is scoped to ONE report about ONE change.
 
 ## SHOW mechanics VISUALLY — the load-bearing rule (do NOT just name them)
 
-Naming a mechanic tells the reader NOTHING about how it behaves. "Veterancy", "1v1 combat", "archery", "the priority ladder", "terrain blocks" are each *"mucho decir"* — the reader must **SEE** the behavior. For ANYTHING behavioral (game mechanics, algorithms, flows, stat systems, unit/terrain rules):
+Naming a mechanic tells the reader NOTHING about how it behaves. "Veterancy", "1v1 combat", "archery", "the priority ladder", "terrain blocks" are each *"all talk"* — the reader must **SEE** the behavior. For ANYTHING behavioral (game mechanics, algorithms, flows, stat systems, unit/terrain rules):
 
 - a **DIAGRAM** (mermaid state / decision / sequence) of how it behaves;
 - **ASCII / text-graphics** of the actual thing — an arrow → a soldier, a stat block, a terrain grid marking what passes vs blocks, a unit silhouette;
@@ -50,7 +50,7 @@ Worked examples of the rule:
 ## Ground (this is a convergent standard, not invented)
 
 Five unrelated lineages independently converge on the shape above — 1980s military (BLUF), 1960s McKinsey (Pyramid Principle/SCQA), 2000s Google (design docs, CL descriptions), 2010s RFC processes (IETF/Rust/Oxide, ADR/Nygard), 2020s AI PR-bots (CodeRabbit/Sourcery/Graphite all reaching "group by theme" independently), plus NN/g inverted-pyramid, C4 (one diagram as summary), Cowan's 3-5 chunk limit.
--> Full sourced research: **LOST** (`tmp/change-review-research/`, scout-1..4 — pruned, never migrated). Related in-repo: `grimorio.documentation-memory/docs/19` (legible-log patterns), `22`/`24` (component-doc layering, visual-clutter metrics). Honest gap: no published numeric "when to auto-summarize" threshold — the 3-5-chunk rule is ours to apply.
+-> Full sourced research: **LOST** (`tmp/change-review-research/`, scout-1..4 — pruned, never migrated). Related in-repo: this project's own documentation-memory research notes (legible-log patterns; component-doc layering; visual-clutter metrics). Honest gap: no published numeric "when to auto-summarize" threshold — the 3-5-chunk rule is ours to apply.
 
 ---
 

@@ -55,6 +55,21 @@ events they govern, so nobody else needs them in context.
    been told it may background its own children for real parallelism ⟶ that delegate is NOT actually rescued,
    no matter what grimorio-conduct rule 8 says** — a parked child stays parked. The detector's own mechanism and
    its selftest live at ref:skill/grimorio.flow-delegation/project.nested-background-trade.md, not restated here.
+8b. **WHEN the armed watch (rule 8 above) prints a SILENT line rather than a PARKED line ⟶ read it as a
+    DIFFERENT condition, never the same rescue.** PARKED names a caller still alive and listening, merely late
+    fetching its own child's already-finished result — `SendMessage` reaches it and completes the rescue.
+    SILENT names a child with NO completion row at all, quiet past its own configured window
+    (`PARKED_WATCH_SILENT_MS`, default 10 minutes) — the CHILD itself is presumed dead or stuck, never merely
+    unfetched.
+
+    **NEVER `SendMessage` a presumed-dead child on a SILENT line** — that assumes a live listener that may not
+    exist. **ALWAYS treat the named piece of work as UNDELIVERED instead: decide whether to re-raise it fresh
+    from a new dispatch.** **WHEN the line's own named parent (caller) is itself still live and reachable ⟶
+    tell it its own child will not be completing**, so it stops waiting on something that will never respond.
+
+    **This sub-point is NEWLY ADDED** — the SILENT line type postdates rule 8's own original authoring, and
+    rule 8 above previously said nothing about it; never read the file's prior silence on SILENT lines as
+    coverage that was always there.
 9. **WHEN you notice — before spawning again in the same shape, or by running the check below — that a
    contiguous n-gram (n≥2 agent types, in the order you yourself dispatched them this session) has already
    repeated three or more times, with no loop ever declared for it ⟶ STOP before the next spawn in that shape
