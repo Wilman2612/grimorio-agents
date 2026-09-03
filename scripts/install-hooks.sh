@@ -14,12 +14,17 @@ cat > "$hooks/pre-commit" <<'SHIM'
 exec "$(git rev-parse --show-toplevel)/scripts/pre-commit.sh" "$@"
 SHIM
 chmod +x "$hooks/pre-commit"
-cat > "$hooks/pre-push" <<'SHIM'
+echo "pre-commit gate installed at $hooks/pre-commit"
+echo "  gates: build output · apps/web typecheck (skips silently if you have no apps/web) · branch has an"
+echo "  objective · branch stays in scope"
+if [ -f scripts/pre-push.sh ]; then
+  cat > "$hooks/pre-push" <<'SHIM'
 #!/usr/bin/env bash
 exec "$(git rev-parse --show-toplevel)/scripts/pre-push.sh" "$@"
 SHIM
-chmod +x "$hooks/pre-push"
-echo "pre-commit gate installed at $hooks/pre-commit"
-echo "  gates: build output · apps/web typecheck · branch has an objective · branch stays in scope"
-echo "pre-push gate installed at $hooks/pre-push"
-echo "  gates: instruction-system changes pushed to develop/master carry a code-review verdict"
+  chmod +x "$hooks/pre-push"
+  echo "pre-push gate installed at $hooks/pre-push"
+else
+  echo "no scripts/pre-push.sh in this tree — pre-push gate NOT installed (this repo's own push-review"
+  echo "policy was project-specific and wasn't exported; write your own on this pattern if you want one)."
+fi

@@ -3,7 +3,7 @@
 # Install: scripts/install-hooks.sh
 set -uo pipefail
 cd "$(git rev-parse --show-toplevel)" || exit 1
-. scripts/objective-lib.sh
+. .claude/skills/grimorio.objective-harness/scripts/objective-lib.sh
 
 fail() { echo "" >&2; echo "PRE-COMMIT BLOCKED: $1" >&2; echo "" >&2; exit 1; }
 

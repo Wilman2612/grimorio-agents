@@ -1,104 +1,116 @@
 # Grimorio — a Claude Code multi-agent corpus, exported from a live project
 
-> 27 specialized agents + 46 skills, pulled out of a private game-platform project ("arena") and cleaned for
-> public use. Re-exported 2026-09-01 from the source's current standard, superseding the first public landing
-> (2026-08-15). See [MANIFEST.md](MANIFEST.md) for exactly what came across and what didn't, and for the delta
-> this pass landed (the `grimorio.` prefix on skills, 6 removed critic agents, per-agent developer memory).
+**Grimorio is a set of Claude Code sub-agents, skills, and hooks that make a fleet of Claude agents work a
+task the way a disciplined engineering team would: decompose before building, verify before claiming done,
+and hand off through files a human (or the next agent) can actually audit — instead of one long chat where
+everything is remembered informally and nothing is checked.** It was pulled out of a private, still-live game
+platform project ("arena") after months of real use — 27 specialized agents, 46 skills, 12 enforcement hooks
+— and cleaned for public adoption. This is the 2026-09-03 pass: it re-verifies every claim the previous
+export made, ships one real worked example, and fixes what broke when actually cloned from scratch. See
+[MANIFEST.md](MANIFEST.md) for the full, file-by-file accounting.
 
----
+## Why this might be useful to you
 
-## Status — read this before anything else
-
-**This ships unfinished, deliberately.** The instruction that produced this export was explicit: copy and
-clean what's exportable, ship it even though pieces of the source project are still being built, and say
-plainly what's broken rather than polish forever. Concretely, right now:
-
-- **Every `ref:repo/…`/`cite:repo/…` citation in this repo resolves.** An earlier version of this line
-  claimed "~174 internal citations… will not resolve here" — that number was never measured, and a real
-  audit (2026-08-15) found it wrong: of 90 unique cited paths at the time, 35 already resolved and 55 were
-  genuinely broken. All 55 are now closed — either by exporting the missing file (scrubbed to the same
-  standard as the rest: `CLAUDE.md`, `.claude/GRIMORIO-CHAIN.md`, `.claude/settings.json`,
-  `scripts/check-comment-blocks.mjs`, `objectives/harness.md`) or by rewriting the citing sentence to drop
-  the unresolvable pointer while keeping whatever finding or rule it carried. See
-  [MANIFEST.md](MANIFEST.md) → "Pointer integrity" and "Known limitations" for the full accounting and the
-  re-runnable check.
-- **The scripts under `scripts/` are reference implementations**, not independently verified to run
-  standalone in a fresh clone end to end, though nothing in the curated subset references a directory this
-  repo doesn't carry (verified).
-- **No human pass has re-read every exported file** beyond an automated secret scan and targeted greps
-  (also in MANIFEST.md). Skim before treating any one file as a finished, polished artifact.
-- **This 2026-09-01 re-export scrubbed every literal `arena`/`warsim` mention plus arena-specific
-  branch/path/stack residue**, and ran a de-projectify pass that removed 167 dangling pointers into the
-  excluded project layer (keeping each rule/finding, dropping the dead citation) — see MANIFEST.md →
-  "Leakage scan" and "Pointer integrity" for the commands and the accounting.
-
-## What this actually is
-
-Grimorio is a **four-level split** applied to every agent: identity (the shell) is separated from method
-(a behavior file inside a loaded skill) is separated from this-project's-decisions (`project.md`) is
-separated from this-codebase's-current-facts (a code-level topic file). The split exists so an agent's
-*method* can be portable even when its *project* can't — and it's the mechanism this export actually used:
-every skill in this repo already declared which of its files were general and which were the source
-project's own decisions, so exporting was mostly "read the split the corpus already made, then don't
-export the project layer."
-
-| Level | Lives in | Answers | Ships here? |
-|---|---|---|---|
-| **behavior** | `{skill}/{role}-behavior.md`, loaded by an agent shell | "What does this agent DO?" | ✅ full body |
-| **general** | `{skill}/SKILL.md` (+ topic files) | "What's always true in this domain, any project?" | ✅ full body |
-| **project** | `{skill}/project.md` | "What did WE decide?" | ❌ excluded — this project's own decisions |
-| **code** | `{skill}/{topic}.md`, named by fact | "What's true in the current codebase right now?" | ❌ excluded (mostly) — see per-skill table below |
-
-Read `.claude/skills/grimorio.agent-writing/SKILL.md` for the full doctrine this table summarizes — it's exported
-in full, because it's the meta-skill that made the rest of this export legible.
+- **You're building with Claude Code and keep re-inventing the same scaffolding** — a code reviewer that
+  actually reads the diff instead of trusting a summary, a way to stop an agent from editing files nobody
+  told it were governed, a way to know whether a rule you wrote is actually being followed or just sitting
+  there unread.
+- **You want sub-agents that own a task to completion** instead of returning "here's what I found, what
+  should I do next" — `grimorio.delegate` is built specifically to not do that.
+- **You want your rules MEASURED, not assumed.** This corpus's most interesting export isn't an agent — it's
+  [MEASUREMENTS.md](MEASUREMENTS.md), three findings about which of its own rules actually got followed in
+  production, with the population and the limit stated for each.
 
 ## What's in the box
 
-- **27 agent shells** (`.claude/agents/grimorio.*.md`) — identity only, per the split above: a role, a
-  character, a pointer to its behavior file. No steps live in a shell.
-- **46 skills** (`.claude/skills/grimorio.*/`) — some exported whole (pure method: `grimorio.agent-selection`,
-  `grimorio.agent-tiers`, `grimorio.fan-out`, `grimorio.flow-delegation`, `grimorio.reasoning-principles`,
-  `grimorio.loop-and-graph`, `grimorio.code-harness`, `grimorio.report-design`, `grimorio.working-memory`,
-  `grimorio.prompt-reading`, `grimorio.prompt-writing-quality`, and more), some exported partially (a
-  memory skill's `SKILL.md`/`behavior.md` kept, its `project.md` and code-fact files cut) — see
-  [MANIFEST.md](MANIFEST.md) for the verdict on every single one.
-- **13 hooks** (`.claude/hooks/*.cjs`) — the mechanical enforcement layer: a spawn gate that refuses an
-  agent-to-agent call missing a required load instruction, a verbatim-origin gate, a harness-lookup injector,
-  a skill-load logger, agent dispatch/completion loggers, identity injectors, a SubagentStop wait hook, and
-  worktree hooks. All wired in `.claude/settings.json`.
-- **A curated slice of `scripts/`** — the general-purpose tooling (a reference-grammar audit, an
-  agent-tier conformance checker, a branch open/close pair, a stuck-delegate watcher) with their
-  selftests, leaving behind the source project's own game/build-specific scripts.
-- **[MEASUREMENTS.md](MEASUREMENTS.md)** — three findings about how these agents actually behaved in
-  production, not how they were supposed to, each with its population and its limit stated. This is the
-  part worth reading even if you never adopt a single agent from here.
+- **27 agent shells** (`.claude/agents/grimorio.*.md`) — identity only: a role, a character, a pointer to a
+  behavior file. Grouped by what they do, below.
+- **46 skills** (`.claude/skills/grimorio.*/`) — the actual methods. 22 of the larger agents are written as
+  explicit **phase chains** (`*-phases/` directories), not one long flat instruction file — each phase is
+  self-contained, states what it loads just-in-time, and hands off explicitly to the next.
+- **12 hooks** (`.claude/hooks/*.cjs`) — mechanical enforcement, wired in `.claude/settings.json`: a spawn
+  gate that refuses an agent-to-agent call missing a required load instruction, a worktree-containment guard,
+  a hook that blocks a subagent's turn from closing while its own background children are still alive,
+  dispatch/completion loggers, and more.
+- **A curated slice of `scripts/`** — a reference-grammar auditor, an agent-tier conformance checker, the
+  git-hook pair (`pre-commit`/branch-objective gate), a stuck-child liveness detector — each with a selftest.
+- **[MEASUREMENTS.md](MEASUREMENTS.md)** — read this even if you adopt nothing else.
 
-## What's deliberately NOT in the box
+## The shape of it — four levels, so method survives even when project-facts don't
 
-The biggest single exclusion is `po-memory`'s product content — the source project's actual game design,
-vision, decision history, and feature ledger. The PO agent's *method* (how to turn a request into testable
-acceptance criteria) is exported; the CEO's private product decisions for his own game are not, and
-neither is anything else that only makes sense inside that project's own history: architecture facts about
-its own Go/TypeScript services, its security audits, its design system, its research bibliography. Full
-list, file by file, in [MANIFEST.md](MANIFEST.md).
+Every agent is split into four files, and the split is *why* this could be exported at all: an agent's
+*method* is portable even when its *project* isn't.
 
-## How to use this
+```mermaid
+flowchart TD
+    S["shell — .claude/agents/grimorio.X.md<br/>identity only: role, character, one pointer"]
+    B["behavior — {skill}/X-behavior.md (or a *-phases/ chain)<br/>WHAT the agent DOES, loaded by the shell"]
+    G["general — {skill}/SKILL.md (+ topic files)<br/>what's always true in this domain, any project"]
+    P["project — {skill}/project.md<br/>what THIS project decided — excluded from export"]
+    C["code — {skill}/{topic}.md<br/>what's true in the codebase right now — excluded"]
 
-Copy `.claude/` into your project root, or clone this repo there. Agents are subagents in Claude Code;
-skills load on demand by name or by trigger phrase in their `description`.
+    S -->|loads| B
+    B -->|loads| G
+    G -.->|this project's own layer, you write it| P
+    G -.->|this project's own layer, you write it| C
 
-**Start with routing, not with reading every agent.** `.claude/skills/grimorio.agent-selection/SKILL.md` is the
-routing doctrine: which agent for which situation, and the escalation ladder for five different distress
-signals (a repeated failure the caller doesn't understand, a hard technical blocker, an unknown-unknown
-blind spot, a gate failing repeatedly, a build that needs someone to own it end to end).
+    style P fill:#00000000,stroke-dasharray: 4 4
+    style C fill:#00000000,stroke-dasharray: 4 4
+```
 
-**Then fill in your own project/code layers.** Every memory skill (`grimorio.architect-memory`, `grimorio.po-memory`,
-`grimorio.developer-memory`, `grimorio.qa-memory`, `grimorio.security-memory`, `grimorio.ux-memory`, `grimorio.verifier-memory`, `grimorio.code-reviewer-memory`,
-`grimorio.solution-architecture`, `grimorio.ui-developer-memory`) ships here with its general `SKILL.md`/`behavior.md`
-present and its `project.md` absent — that's the file you create, describing your own stack, providers,
-and decisions. **Never edit the shells or the behavior files to adapt them to your project** — that's what
-`project.md` and the code-level topic files are for; editing a shell to fit one project is exactly what
-breaks its portability to the next one.
+Ships here: shell + behavior + general (full body). Excluded: project + code — your own decisions and your
+own codebase's current facts, the two layers `project.md` and a code-level topic file exist to hold. Full
+doctrine: `.claude/skills/grimorio.agent-writing/SKILL.md`.
+
+## How you know it works — the mechanisms, actually verified
+
+Not "trust the docs." Every claim below is checkable with a command already in this repo, and this pass
+re-ran every one of them rather than carrying the previous pass's numbers forward:
+
+| Check | Result | How to re-run it |
+|---|---|---|
+| 13 of 14 selftests | **PASS** (the 14th fails on a documented, inherited defect — see below) | `bash scripts/selftest/*.sh` |
+| Zero product/identity leakage | **clean** — only README.md/MANIFEST.md's own labelled mentions | `grep -rIl -iE "\barena\b\|warsim\|promptarena" --exclude-dir=.git .` |
+| Zero un-inspected Spanish residue | **clean** — every hit is a documented, justified false positive | `LC_ALL=C.UTF-8 grep -rIP '[…accented range…]' --exclude-dir=.git .` (see MANIFEST for the full command) |
+| Every `ref:repo/`/`cite:repo/` citation resolves | **confirmed** (`node scripts/audit-chain.mjs --dead` finds only pre-existing, documented `tmp:` scratch pointers, never a `repo:` one) | `node scripts/audit-chain.mjs --dead` |
+| **Runs from a genuinely cold `git clone`, not just in place** | **exercised this pass** — 2 real breakages found and fixed; see "Adopting this" below | see MANIFEST → "Clean-clone verification" |
+| A spawn gate actually refuses a bad agent call | **fired live, in a fresh clone, this pass** | `claude --model haiku --permission-mode bypassPermissions -p "spawn a sub-agent without loading grimorio.conduct"` → denied by `spawn-verbatim-origin-gate.cjs`, logged to `.claude/.cache/agent-invocations.log` |
+
+The one honestly-still-broken thing: `check-phase-fingerprint`'s selftest fails on assertions 8a/8b,
+identically in the source project's own current branch — an inherited defect, named rather than hidden, not
+something this export introduced.
+
+## What the output looks like
+
+[`examples/mechanics-queue-live-fire.md`](examples/mechanics-queue-live-fire.md) — a real, already-executed
+run: a `grimorio.delegate` proving four just-built hooks actually fire, hitting a genuine infrastructure
+problem along the way (a worktree's modified hooks are invisible to a session rooted in the main checkout)
+and solving it empirically before it could even start measuring. Shows the input, the path taken, and the
+actual quoted log output — not a staged demo.
+
+## Adopting this — what actually happens when you clone it
+
+1. `git clone` this repo, or copy `.claude/`, `scripts/`, and `objectives/` into an existing project.
+2. Run `bash scripts/install-hooks.sh` once per clone (`.git/hooks` isn't versioned). It installs a
+   `pre-commit` gate; it will tell you plainly if it skips the `pre-push` gate (see below — that one's
+   project-specific and wasn't exported).
+3. Start Claude Code in that directory. `CLAUDE.md`'s one load instruction pulls in the rest —
+   `.claude/skills/grimorio.agent-selection/SKILL.md` is the routing doctrine: which agent for which
+   situation, not "read all 27 shells first."
+4. Fill in your own project/code layers as you go: every per-role memory skill (`grimorio.architect-memory`,
+   `grimorio.po-memory`, `grimorio.developer-memory`, `grimorio.qa-memory`, `grimorio.security-memory`, and
+   the rest — one per gate/build role) ships with its general `SKILL.md` and no `project.md` — that's the
+   file you write, describing your own stack and decisions. **Never edit a shell or a behavior file to fit
+   your project** — that's exactly the file that's supposed to stay portable to the next one.
+
+**What genuinely breaks on a cold clone, found by actually cloning it fresh this pass (not asserted):**
+`scripts/pre-commit.sh`'s typecheck step assumes an `apps/web` TypeScript app — it just silently does nothing
+if you have none, which is fine but worth knowing. `scripts/close-landed.sh` writes into a product ledger
+this export deliberately doesn't ship — it's for later, once you've built your own `po-memory/project.md`.
+Two other real breakages (a wrong path in `pre-commit.sh`, an installer wiring a hook shim to a file that
+doesn't exist) were found the same way and are already fixed in this tree — full account in
+[MANIFEST.md](MANIFEST.md) → "Clean-clone verification," including the exact failing commands and error
+text, so you can judge the method, not just the claim.
 
 ## The 27 agents, grouped by what they do
 
@@ -110,27 +122,26 @@ breaks its portability to the next one.
 | Research / knowledge | `researcher`, `scout`, `entropy`, `documentation`, `unblocker` |
 | Product / process | `po`, `system-keeper`, `prompt-writer`, `extract-cleaner` |
 | Owns-a-task end to end | `delegate` |
-| Escalation-only | `adviser` (top reasoning tier, invoked on repeated CEO-level frustration) |
+| Escalation-only | `adviser` (top reasoning tier, invoked on repeated frustration/failure) |
 | Empirical | `experimenter` (settles a design hypothesis by controlled simulation) |
 
-> The 2026-08-15 export also shipped six Arena-specific visual critics (`conventions-critic`, `brush-critic`,
-> `map-aesthetic-critic`, `map-content-critic`, `map-cartographer`, `map-aesthete`). They are `project.*` in the
-> source now — game/map-specific, not portable — and were removed from this pass's roster.
-
 Every agent's own file states its scope boundary and which neighboring agent it must not be confused
-with — that's identity, and it's the one thing every shell actually contains.
+with — that boundary is the one thing every shell actually contains.
 
-## Known limitations
+## Known limitations — stated once, plainly
 
-See [MANIFEST.md](MANIFEST.md) → "Known limitations" for the full, specific list (unresolved citations,
-unverified scripts, no full human re-read). The short version: this is a working export of a working
-system, done fast on explicit instruction to ship imperfect rather than wait — not turnkey infrastructure,
-not independently audited beyond the secret scan recorded in MANIFEST.md.
+- **No full human re-read of the content itself.** Verification here is automated (leakage/Spanish scans,
+  pointer checker, selftests, the fresh clean-clone walk) — nobody has read every exported file end to end
+  for quality.
+- **`check-phase-fingerprint` fails on two assertions**, inherited from the source project, not introduced
+  here.
+- **The Spanish detector is a heuristic**, not a proof — every hit it found was inspected; it can't prove
+  the absence of what it doesn't look for.
+- **Scripts are reference implementations** — exercised standalone from a cold clone this pass, but not
+  wired into any CI here.
 
-## Real examples
-
-Two real pipeline runs with artifacts live under [`examples/`](examples/), carried over unchanged from the
-prior (2026-06-25) snapshot of this repo — **not reviewed as part of this pass**; they predate the current 27-agent corpus and describe the earlier, smaller pipeline.
+Full accounting, including three judgment calls a reviewer might make differently, in
+[MANIFEST.md](MANIFEST.md).
 
 ## License
 

@@ -211,14 +211,54 @@ flattering one.) The 27:
    judged the riskier move.
 5. **`check-phase-fingerprint` selftest fails**, identically in the source project's own `develop` — inherited,
    not introduced (see above).
-6. **`examples/` and `ROADMAP.md` are STALE and `examples/` is in SPANISH.** They predate the current 27-agent
-   corpus and were carried over unreviewed by the last two passes. `examples/` additionally contains the product
-   brief, architecture decision, QA and UX reports of a DIFFERENT, unrelated private project, written in
-   Spanish. This pass did not translate or remove them — that is a scope decision for the corpus owner, not for
-   an export pass — but it is named here loudly rather than left as a quiet footnote. **Recommendation: delete
-   `examples/`, or replace it with worked examples generated from the current corpus.**
+6. **RESOLVED, 2026-09-03.** The stale, Spanish, other-project `examples/` this item used to name was removed
+   at `b2ce16d` (commit "Remove examples/: it published another private project's internal docs"). A new
+   `examples/mechanics-queue-live-fire.md` now ships, built entirely from this corpus's own recorded evidence
+   (`objectives/measurements/*`) — see [README.md](README.md) → "What the output looks like".
 7. **Scripts remain reference implementations** in the sense that they are not wired into any CI here — but,
-   unlike the previous pass, they have now actually been executed (13/14 green).
+   unlike the previous pass, they have now actually been executed (13/14 green), and this pass additionally
+   verified them from a genuinely cold `git clone` (see "Clean-clone verification" below), not just in-place.
+
+## Clean-clone verification — 2026-09-03, exercised, not asserted
+
+The README used to say the scripts were "not independently verified to run standalone in a fresh clone end to
+end." That was true when written and stopped being true once the 13/14 selftest run above happened — but even
+that run was in-place, not from a cold clone, and the CEO's own reason for asking for this check was a real
+failure: he tried adopting an earlier export at work and it died because things needed connecting that were
+never tested from a repo built from scratch. So this pass did that: `git clone`d this repo into a scratch
+directory outside both the source project and this repo, and walked it as a first-time adopter would.
+
+**Two real breakages found and fixed, both now closed:**
+
+1. **`scripts/pre-commit.sh` sourced a path that does not exist in this export** (`scripts/objective-lib.sh`
+   — the real file lives at `.claude/skills/grimorio.objective-harness/scripts/objective-lib.sh`). Confirmed by
+   actually running `scripts/install-hooks.sh` then committing in the fresh clone; the exact failure:
+   `scripts/pre-commit.sh: line 6: scripts/objective-lib.sh: No such file or directory`, followed by
+   `obj_current_branch: command not found` and `obj_methodology_present: command not found`. Because the
+   script has no `set -e`, this failure was **silent, not loud** — the commit still succeeded, with the
+   entire branch/objective/scope gate quietly disabled. Fixed: the `.` line now points at the real path,
+   re-verified in a second fresh clone (no error, gate resolves correctly).
+2. **`scripts/install-hooks.sh` unconditionally wired a `pre-push` shim to `scripts/pre-push.sh`, which is not
+   exported** (it was arena's own project-specific push-review policy, hard-coded to `apps/web` and a
+   `develop`/`master` branch model — judged too project-specific to ship, but nobody updated the installer
+   when it was left out). An adopter running `install-hooks.sh` got a shim pointing at a file that doesn't
+   exist. Fixed: the installer now checks for `scripts/pre-push.sh` first and prints a clear skip message
+   instead of installing a broken shim.
+
+**What was NOT broken, confirmed by actually running it in the cold clone:** `.claude/settings.json`'s hooks
+(`$CLAUDE_PROJECT_DIR`-relative, portable by construction), `scripts/audit-chain.mjs`, the 13 selftests,
+`.claude/skills/grimorio.objective-harness/scripts/open-branch.sh`. A real headless dispatch
+(`claude --model haiku --permission-mode bypassPermissions -p "..."`) confirmed `CLAUDE.md`'s load chain
+resolves from a cold clone, and a second dispatch confirmed `spawn-verbatim-origin-gate.cjs` genuinely refuses
+an under-specified `Agent` spawn in that same cold clone, logged to `.claude/.cache/agent-invocations.log` —
+not a claim carried over from the source project, a fresh firing in the scratch copy itself.
+
+**Named but not fixed (judged genuinely project-shaped, not a bug):** `scripts/pre-commit.sh`'s typecheck
+step assumes an `apps/web` directory and silently no-ops without one — fine for a different-shaped project,
+worth knowing if you're wondering why it never fires. `scripts/close-landed.sh` writes into
+`grimorio.po-memory/project.features-status.md`, which this export deliberately does not ship (it's the
+source project's own product ledger) — this script is for later, once you've built your own product-memory
+layer, not for first adoption.
 
 ## Prefix ↔ level disagreements (spot-check list for the reviewer)
 

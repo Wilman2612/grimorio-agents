@@ -18,7 +18,7 @@ already executing gets followed. The identical instruction placed as a bibliogra
 | Agent | How the dependency is carried | Measured load rate |
 |---|---|---|
 | `grimorio.system-keeper` | a step inside its own behavior file, at the point it's needed | 16 / 31 spawns |
-| `grimorio.delegate` | a bibliography line in its shell, listed but never invoked by a step | 0 / 37 spawns |
+| `grimorio.delegate` | a bibliography line in its shell, listed but never invoked by a step | 0 / 36 spawns |
 
 Same two skills, same repo, same measurement window. The only variable is WHERE in the reading path the
 obligation sits.
