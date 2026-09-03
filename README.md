@@ -88,6 +88,12 @@ problem along the way (a worktree's modified hooks are invisible to a session ro
 and solving it empirically before it could even start measuring. Shows the input, the path taken, and the
 actual quoted log output — not a staged demo.
 
+[`examples/cold-clone-demo.md`](examples/cold-clone-demo.md) — the harder question: does any of this fire
+BY DEFAULT for a stranger who just cloned the repo, with no project history and no personal config? Two
+fresh, uncoached, headless sessions on two small tasks, transcripts quoted verbatim — one loaded the
+top-level doctrine correctly, one skipped it and explained why in its own closing note. Both outcomes are
+shown; see also [MEASUREMENTS.md](MEASUREMENTS.md) → finding 4.
+
 ## Adopting this — what actually happens when you clone it
 
 1. `git clone` this repo, or copy `.claude/`, `scripts/`, and `objectives/` into an existing project.
@@ -139,6 +145,10 @@ with — that boundary is the one thing every shell actually contains.
   the absence of what it doesn't look for.
 - **Scripts are reference implementations** — exercised standalone from a cold clone this pass, but not
   wired into any CI here.
+- **The top-level "load the doctrine every turn" instruction does not fire on every fresh session by
+  default** — measured directly, not assumed: see [`examples/cold-clone-demo.md`](examples/cold-clone-demo.md)
+  and [MEASUREMENTS.md](MEASUREMENTS.md) → finding 4. When it doesn't fire, nothing visibly breaks, which is
+  exactly why this is listed here instead of only in the example file.
 
 Full accounting, including three judgment calls a reviewer might make differently, in
 [MANIFEST.md](MANIFEST.md).

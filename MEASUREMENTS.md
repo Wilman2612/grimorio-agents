@@ -1,7 +1,7 @@
 # What this corpus actually measured — not doctrine, evidence
 
 The most valuable thing this repo carries is not the rules themselves — it's that several of them were
-checked against what the agents actually did, not just what they were told to do. Three findings, each
+checked against what the agents actually did, not just what they were told to do. Four findings, each
 with its population and its limit stated, because a count without its population is not a measurement
 (see `agent-writing/SKILL.md` → "The Levels", and `reasoning-principles/SKILL.md` → "A COUNT NEEDS ITS
 POPULATION" for the doctrine these findings were produced under).
@@ -51,6 +51,29 @@ cannot be measured lower with this instrument. State this limit every time one o
 quoted — a rate reported without it invites exactly the confirmation-bias failure this project's own
 `reasoning-principles` skill names ("MEASURING IS NOT PROVING").
 
+## 4. On a genuinely cold clone, the top-level load instruction fired in 1 of 2 fresh sessions
+
+**The question:** `CLAUDE.md` states, unconditionally, that loading `grimorio.conduct` is "the first thing
+every agent does, every turn." Does that actually hold for a fresh session with no project history and no
+personal global config — a real stranger's first minute with this repo — or only for a session that already
+has the habit?
+
+**The method:** two fresh `git clone`s of this repo, each given ONE small, ordinary, un-hinted task on a tiny
+seeded project, run headless with an isolated config directory carrying no personal `CLAUDE.md`/skills/
+settings. Neither run was retried or coached. Full transcripts and quotes:
+[`examples/cold-clone-demo.md`](examples/cold-clone-demo.md).
+
+**The result:** the trivial task loaded `grimorio.conduct` and correctly applied one of its own stated
+exemption rules. The task carrying a small design decision never loaded it at all, and said so in its own
+closing note, supplying a plausible-sounding cost/benefit reason the corpus does not actually grant at that
+point in the chain. Downstream of that single miss, every other behavior chained off it (design-before-build,
+a structured verified/blocked close) also did not fire that run — not because those doctrines are weak, but
+because a session that never opens the corpus never reaches them.
+
+**Limit, stated plainly:** n=2. This is not a firing RATE — it is a first, real, reproducible instance that
+the same unconditional instruction, on the same repository, produced two different outcomes across two fresh
+sessions. It does not say how often each outcome recurs; it says the outcome is not yet a settled default.
+
 ## The gate lesson
 
 This corpus has shipped at least four gates — checks meant to refuse a bad state — that turned out, on
@@ -62,8 +85,9 @@ would prove it false, and if nothing can, the check is theatre with numbers atta
 
 ## Why this belongs in a public repo at all
 
-None of the three findings above is a claim that grimorio's mechanisms work. Two of them are evidence
-that a specific mechanism (citation-only obligations) mostly doesn't, in the one case it was checked. That
-is the point: the corpus's own doctrine is that a measurement is worth more than a design that sounds
-right, and these are the measurements that survived contact with that standard, published with their
+None of the four findings above is a claim that grimorio's mechanisms work. Three of them are evidence
+that a specific mechanism (citation-only obligations, and the top-level load instruction on a cold session)
+mostly doesn't, in the cases actually checked. That is the point: the corpus's own doctrine is that a
+measurement is worth more than a design that sounds right, and these are the measurements that survived
+contact with that standard, published with their
 limits attached rather than smoothed over.
