@@ -21,6 +21,87 @@ export made, ships one real worked example, and fixes what broke when actually c
   [MEASUREMENTS.md](MEASUREMENTS.md), three findings about which of its own rules actually got followed in
   production, with the population and the limit stated for each.
 
+## The finding worth stealing even if you adopt nothing else
+
+Two agents. The same two skills. The only variable is **where in the reading path the obligation sits.**
+
+| Agent | How the dependency is carried | Times it actually loaded |
+|---|---|---|
+| `system-keeper` | a step inside the behavior it was already executing | **16 / 31 spawns** |
+| `delegate` | a line in a "Knowledge" list — cited, but no step reaches it | **0 / 37 spawns** |
+
+Zero out of thirty-seven. The skill was listed, correct, and present. Nothing ever read it.
+
+If you write agent prompts, that is the useful part of this repo. A dependency an agent is *told about* is not
+a dependency it *uses*; only an obligation placed at the moment it applies gets followed. The instrument's own
+floor is stated too — the logger sees `Skill()` calls, not plain file reads, so every rate is a lower bound.
+Three of the four findings in [MEASUREMENTS.md](MEASUREMENTS.md) are evidence that one of this corpus's *own*
+mechanisms mostly doesn't work, in the cases actually checked. That's on purpose.
+
+## The techniques
+
+Each is independent. Take one, ignore the rest.
+
+| Technique | The problem it solves | Where |
+|---|---|---|
+| **`harness.md`** | Rules written in a doc nobody opens | `.claude/hooks/harness-lookup.cjs`, four `harness.md` files |
+| **Refusing hooks** | Rules that are advice, with no teeth | `.claude/hooks/*.cjs` |
+| **Structural limits** | An agent spawning a swarm that burns your budget | `grimorio.fan-out`, the `scout` shell |
+| **The coverage gate** | Quietly answering a smaller question than the one asked | `grimorio.flow-delegation` Part 0 |
+| **The objective harness** | Work that drifts out of scope and merges anyway | `grimorio.objective-harness`, `scripts/` |
+| **Loop + graph** | "Plans" that are really just checklists | `grimorio.loop-and-graph` |
+| **Phase splitting** | A long job collapsing into a rushed single pass | `grimorio.phase-splitting` |
+| **The four openers** | Prose instructions with a measured hit rate of zero | `grimorio.prompt-writing-quality` |
+
+**`harness.md` — put the rules where the work happens.** A file named `harness.md` sits in a directory and
+states the rules for touching anything in it. A hook watches every edit, walks up from the edited path, and
+injects the nearest one *at the moment of editing* — not at session start, not in a document the agent was
+supposed to have read. It is the finding above, applied to files instead of skills, and it is the most reliable
+delivery mechanism here. `.claude/hooks/harness.md` states the preconditions that must hold before anyone adds
+another hook — and an agent editing a hook cannot avoid reading them, because editing is what delivers them.
+
+**Refusing hooks — the difference between a rule and a gate.** `spawn-grimorio-conduct-gate.cjs` inspects the
+*prompt text* of every agent-to-agent spawn and refuses one that doesn't carry the instruction making the child
+load its doctrine — not "was it in ambient context", which was measured not to work.
+`worktree-create-from-develop.cjs` refuses to create a worktree from a dirty tree or from unreviewed changes to
+instruction files. Both carry, in their own header, the exact instructions for **deleting** them: a gate that is
+in your way rather than doing its job should be retired deliberately, never worked around.
+
+**Structural limits beat textual ones.** The `scout` shell has `Agent` in its *disallowed* tools. It cannot
+spawn — not "is told not to". That one line is what makes it safe to fan fifteen of them out at once, because
+the worst case is bounded by construction rather than by an instruction the worker might not follow.
+
+**The coverage gate — did you answer the question that was asked?** The expensive failure isn't a wrong answer;
+it's a *narrower* one, where the request had five clauses, the plan covers three, and everything downstream
+executes beautifully against the smaller question. So before a non-trivial delegation starts, an independent
+agent checks the written plan against the principal's verbatim words, clause by clause. Any uncovered clause
+stops the launch.
+
+**The objective harness — scope that's enforced, not intended.** Every branch carries an
+`objectives/<branch>.md` stating what it's for, what's out of scope, and a list of `VERIFY:` lines that are
+literal shell commands. The branch doesn't close until every one exits zero. "Done" becomes a command anyone can
+run instead of a judgment the author makes about their own work.
+
+**Loop + graph — decompose until something is testable.** Keep splitting until each item's name describes
+something you can probe for a yes or a no; if the name is still a category ("the mechanic", "combat"), you
+haven't descended far enough. Each item gets a pass condition written *before* the work, bounded retries, and —
+when the retries run out — a recorded FINDING so the next pass starts from a worked example. The part people
+skip: **the plan is a file, not a thought.** A plan that never becomes an artifact can't be split, and what
+can't be split can't be handed to a cheaper agent — which is why the plan-to-disk rule and the model-tier
+discipline in `grimorio.agent-tiers` are the same rule seen from two sides.
+
+**Phase splitting — a long job as a state machine.** The job is split into sequential phases, each in its own
+file, each ending in a deliverable block the agent must fill *before* it may open the next phase's file. Not
+"remember to do step 4" — step 4's input doesn't exist until step 3's output is written down. A skipped step
+becomes a visibly empty field instead of something quietly absorbed into "the task felt done."
+
+**The four openers.** An instruction without **NEVER**, **ALWAYS**, **BEFORE** or **WHEN** is a suggestion, and
+suggestions here have a measured hit rate of zero. The companion idea is that **form is the latitude
+instruction**: write it as an algorithm when you want it read literally, as prose when you want judgment. Run as
+a controlled comparison, the two forms of the same agent reached *opposite verdicts on the same evidence* — and
+each failed where the other succeeded. The gain and the loss are one property; choose the failure mode before
+you choose the form.
+
 ## What's in the box
 
 - **27 agent shells** (`.claude/agents/grimorio.*.md`) — identity only: a role, a character, a pointer to a
