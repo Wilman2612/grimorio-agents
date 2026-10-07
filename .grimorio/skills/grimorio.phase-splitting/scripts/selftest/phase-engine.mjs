@@ -7,7 +7,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { findRepoRoot } from "../repo-root.mjs";
-import { cachePath } from "../../../../../scripts/refobl/cache-paths.mjs";
+import { cachePath } from "../../../../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = findRepoRoot(HERE);

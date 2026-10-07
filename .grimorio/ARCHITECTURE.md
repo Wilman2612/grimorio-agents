@@ -55,8 +55,8 @@ unnecessary — but the PROPERTY it provided is still required, and it is now pr
 ├── hooks/<hook>.mjs             implementations (§7)
 ├── .cache/                      RUNTIME STATE, gitignored: the invocation and completion logs, the
 │                                tree-occupancy registry, the phase-server log, the board's claim
-│                                ledger. Declared ONCE as `cacheRoot` in scripts/refobl/skill-roots.json
-│                                and read through scripts/refobl/cache-paths.cjs -- never named as a
+│                                ledger. Declared ONCE as `cacheRoot` in .grimorio/scripts/refobl/skill-roots.json
+│                                and read through .grimorio/scripts/refobl/cache-paths.cjs -- never named as a
 │                                literal by a consumer
 └── ARCHITECTURE.md              this file, plus grimorio's other ROOT DOCUMENTS: AGENT-TIERS.md,
                                  GRIMORIO-CHAIN.md, GRIMORIO-INDEX.md, GRIMORIO-VISION.md. These are
@@ -154,7 +154,7 @@ files). What keeps it out of the shared package is the export's SCRUB step, not 
 
 ## 6. `tmp/` — WORKING MEMORY, WRITE-ONLY
 
-The root is declared ONCE, as `workRoot` in `scripts/refobl/skill-roots.json`, and every writer READS it.
+The root is declared ONCE, as `workRoot` in `.grimorio/scripts/refobl/skill-roots.json`, and every writer READS it.
 
 **An agent may be told to WRITE here. LOADING a file from here is forbidden**, and refused at commit time
 (`TMP_REFERENCE_ADDED`). Nothing that must survive lives in a temp folder, so a tracked prompt citing one of
@@ -224,7 +224,7 @@ prefix is the marker the scrub keys on, which is why the prefix is about ownersh
 ## 10. HOW A CONTAINER MOVES
 
 **By a tool, from a reviewable map — never by a hand pass per folder.**
-`scripts/migrate/container-map.json` holds the judgement as data; `scripts/migrate/move-container.mjs`
+`scripts/migrate/container-map.json` holds the judgement as data; `.grimorio/scripts/migrate/move-container.mjs`
 performs one entry: the files, the references AND the code paths.
 
 The three cases a reference rewriter structurally cannot see, each found by moving one folder by hand:

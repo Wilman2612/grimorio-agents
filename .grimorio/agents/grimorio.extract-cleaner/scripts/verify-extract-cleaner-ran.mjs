@@ -3,7 +3,7 @@
 
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { cachePath, cacheRelative } from "../../../../scripts/refobl/cache-paths.mjs";
+import { cachePath, cacheRelative } from "../../../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 function error(message) {
   console.error(`Error: ${message}`);

@@ -98,14 +98,14 @@ how hard it is to debug whether an agent does what it's supposed to do — if ev
 that leaves less room for agent judgment, or at least carries me through it, I can create a kind of mock for the
 LLM and actually test it."**
 
-Measured exemplar: `ref:repo/scripts/selftest/spawn-verbatim-origin-gate.mjs` feeds synthetic prompts standing
+Measured exemplar: `ref:repo/.grimorio/scripts/selftest/spawn-verbatim-origin-gate.mjs` feeds synthetic prompts standing
 in for what an agent would write and asserts ALLOW or DENY — that IS a mock of the model half. Its case BG2
-(`ref:repo/scripts/selftest/spawn-verbatim-origin-gate.mjs:443-449`) asserts that a background hand-back plus a
+(`ref:repo/.grimorio/scripts/selftest/spawn-verbatim-origin-gate.mjs:443-449`) asserts that a background hand-back plus a
 genuine new CEO turn afterward must DENY: it asserts `"permissionDecision":"deny"` and that the deny message
 names "ELEMENT 3".
 
 Measured counter-exemplar — the LIMIT of the mechanism, not a second success: two gates state their own
-override in FAILURE TEXT that no code reads, not in anything mockable. `ref:repo/scripts/pre-commit.sh:138`'s
+override in FAILURE TEXT that no code reads, not in anything mockable. `ref:repo/.grimorio/scripts/pre-commit.sh:138`'s
 `fail` message ends "...or, if this is a deliberate new corpus convention, say so in the commit message.", and
 `ref:skill/grimorio.prompt-writing-quality/format-guide.md#when-an-anchor-is-owed--the-readers-cost-not-the-citing-sentence`'s
 KIND-name exemption (the project/behavior/SKILL carve-out) likewise lives only in its own prose.
@@ -125,11 +125,11 @@ well, the code itself can start to be discovered on its own, and in a language m
 prose."**
 
 Measured exemplar: `ref:repo/.grimorio/GRIMORIO-CHAIN.md#3-the-mechanisms--what-is-wired-and-what-each-one-does`
-labels `ref:repo/scripts/pre-commit.sh` "the only OTHER place anything still REFUSES," while
-`ref:repo/scripts/pre-push.sh` — wired into `.git/hooks/pre-push` since 2026-08-06, measured via `git log` on
-`ref:repo/scripts/install-hooks.sh`/`ref:repo/scripts/pre-push.sh` — ALSO refuses, and the string "pre-push"
+labels `ref:repo/.grimorio/scripts/pre-commit.sh` "the only OTHER place anything still REFUSES," while
+`ref:repo/.grimorio/scripts/pre-push.sh` — wired into `.git/hooks/pre-push` since 2026-08-06, measured via `git log` on
+`ref:repo/.grimorio/scripts/install-hooks.sh`/`ref:repo/.grimorio/scripts/pre-push.sh` — ALSO refuses, and the string "pre-push"
 appears ZERO times anywhere in `ref:repo/.grimorio/GRIMORIO-CHAIN.md`.
-The cause, also measured: `ref:repo/scripts/audit-chain.mjs` validates TEXT references (dead pointers, anchors) and
+The cause, also measured: `ref:repo/.grimorio/scripts/audit-chain.mjs` validates TEXT references (dead pointers, anchors) and
 never reads live wiring at all — zero matches for `ref:repo/.claude/settings.json`, `.git/hooks`, `pre-commit`, or `pre-push`
 anywhere in that script. Nothing ever compared the chain doc's own claims against what is actually wired.
 
@@ -200,7 +200,7 @@ instance, never invent one to illustrate a use this corpus has not actually exer
     `ref:memory/grimorio.board-memory/grimorio-backlog.md#phase-enginemjss-four-remaining-designed-only-subcommands-c7-2026-09-17-substrate-migrated-2026-09-22`,
     subcommand (e), `check-format <report-file>`.
 11. **DETERMINISTIC CHECK REPORTS, cited a second time — same family as use 2 above, a separate script closing
-    a separate gate.** `ref:repo/scripts/registration-cost.mjs` counts lines across a caller-named file list,
+    a separate gate.** `ref:repo/.grimorio/scripts/registration-cost.mjs` counts lines across a caller-named file list,
     prints one `  <count>  <path>` line per file plus a `TOTAL:` line, and exits 0 (or exits 1 with a usage
     message on zero file arguments); `grimorio.system-keeper`'s own
     ref:skill/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md's own step 8
@@ -267,8 +267,8 @@ apply to its own recurring judgment, rather than each agent re-discovering the s
 
 **A doctrine that classifies every step but its own author's is not finished being applied.** Three of
 agent:grimorio.system-keeper's own standing phases are prose-driven judgment calls the keeper re-derives every
-dispatch, even though each is a checklist of already-scripted tools (`ref:repo/scripts/audit-chain.mjs`,
-`ref:repo/scripts/hook-conditions.mjs`, `ref:repo/scripts/check-agent-tiers.mjs`, `ref:repo/scripts/selftest/parked-watch.sh`):
+dispatch, even though each is a checklist of already-scripted tools (`ref:repo/.grimorio/scripts/audit-chain.mjs`,
+`ref:repo/.grimorio/scripts/hook-conditions.mjs`, `ref:repo/.grimorio/scripts/check-agent-tiers.mjs`, `ref:repo/.grimorio/scripts/selftest/parked-watch.sh`):
 Phase A's own step 7 baseline-audit-toolchain run, Phase B's own Independence-Test graph derivation, and Phase
 C's own post-authoring toolchain re-run.
 

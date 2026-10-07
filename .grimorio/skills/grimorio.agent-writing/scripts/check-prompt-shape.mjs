@@ -9,11 +9,11 @@ import { readFileSync } from "fs";
 import { createRequire } from "module";
 
 // @keep-comment -- a cross-file contract note: the containers come from
-// scripts/refobl/skill-roots.json, the ONE declaration, never from a literal list here. A
+// .grimorio/scripts/refobl/skill-roots.json, the ONE declaration, never from a literal list here. A
 // hand-copied container list in a GATE does not go noisy when it falls behind -- it goes QUIET.
 // Measured 2026-10-04: a `memory` store existed for 13 real skills and this check could not see a
 // single one of their SKILL.md or behavior files.
-const { CORPUS_ROOTS, SKILL_ROOTS, STORES } = createRequire(import.meta.url)("../../../../scripts/refobl/resolve.cjs");
+const { CORPUS_ROOTS, SKILL_ROOTS, STORES } = createRequire(import.meta.url)("../../../../.grimorio/scripts/refobl/resolve.cjs");
 
 const DESCRIPTION_MAX_WORDS = 30;
 const DOCTRINE_RE = /\b(ALWAYS|NEVER|BEFORE|WHEN|UNLESS)\b|\b20\d\d-\d\d-\d\d\b|\bCEO\b/;
@@ -30,7 +30,7 @@ const TOKENS_PER_WORD = 1.35;
 const args = process.argv.slice(2);
 const asJson = args.includes("--json");
 // --select prints, of the paths given, only those this check considers PROMPTS, and exits 0. It
-// exists so scripts/pre-commit.sh selects its own staged prompt files THROUGH this module instead
+// exists so .grimorio/scripts/pre-commit.sh selects its own staged prompt files THROUGH this module instead
 // of re-deriving the same container pattern in bash -- a second copy of a gate's own classifier is
 // how one of them falls behind the other.
 const selectOnly = args.includes("--select");

@@ -91,7 +91,7 @@ this phase has made on his behalf.
    file, or one whose own first heading starts "Provenance," Phase 4's own TYPES SCOPED OUT field already
    targets — never `00-index.md`, any concern file, or any other reader-facing view) **under a section whose
    heading reads EXACTLY `## Empirical Domain Enumeration`** — this exact string is load-bearing: a
-   deterministic tool (`node scripts/audit-chain.mjs --enumeration-coverage`) parses it, so it is NEVER
+   deterministic tool (`node .grimorio/scripts/audit-chain.mjs --enumeration-coverage`) parses it, so it is NEVER
    reworded, abbreviated, or paraphrased. **The section carries: a `Sweep command:` line holding the literal
    command Phase 1's own EMPIRICAL DOMAIN ENUMERATION field recorded, in an inline code span; and a markdown table with an `Entry Point` column and a
    `Disposition` column** (an optional `Reason`/`Locator` column is permitted) **— every row is EITHER
@@ -149,13 +149,13 @@ founded this apparatus, rather than hand-authoring the artifact once and leaving
 a. **ALWAYS research the formal reference the SAME way the 9 existing
    ref:skill/grimorio.system-design/diagram-references files were researched — grounded, citable sources, the
    same Section A/B/C/D shape.**
-b. **ALWAYS build a kit mirroring `ref:repo/scripts/diagram-kit/usecase.mjs` and
-   `ref:repo/scripts/diagram-kit/statemachine.mjs`'s own shape — a `generate<X>Mermaid(model)`, a
+b. **ALWAYS build a kit mirroring `ref:repo/.grimorio/scripts/diagram-kit/usecase.mjs` and
+   `ref:repo/.grimorio/scripts/diagram-kit/statemachine.mjs`'s own shape — a `generate<X>Mermaid(model)`, a
    `validate<X>Model(model)` mechanizing the new reference's own Section D, a `lint<X>Mermaid(text)` legacy
    backstop, and the same three-subcommand CLI named above.**
 c. **BEFORE treating the new kit as usable ⟶ prove its own selftest actually DISCRIMINATES — it must FAIL a
    fixture carrying a real violation and PASS a clean one, never merely "runs without crashing," mirroring
-   `ref:repo/scripts/selftest/diagram-kit-usecase.sh`'s own shape.**
+   `ref:repo/.grimorio/scripts/selftest/diagram-kit-usecase.sh`'s own shape.**
 d. **ALWAYS register the new kit by adding it to the SAME named 9-pair list above, so a later pass finds it
    without re-discovering it.**
 

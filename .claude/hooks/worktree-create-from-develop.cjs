@@ -19,7 +19,7 @@ main().catch((e) => {
     // is swallowed by the same catch as a failure to write: this is the last-resort path and it may not
     // introduce a new way to fail. The alternative -- a literal -- is the second copy of the value that
     // let this dispatcher keep writing to the old root after the implementation had already moved.
-    const { cachePath } = require("../../scripts/refobl/cache-paths.cjs");
+    const { cachePath } = require("../../.grimorio/scripts/refobl/cache-paths.cjs");
     fs.appendFileSync(
       cachePath("worktree-create.log", process.cwd()),
       `${new Date().toISOString()} UNCAUGHT: ${e && e.stack}\n`,

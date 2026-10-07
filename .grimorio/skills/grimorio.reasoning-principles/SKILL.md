@@ -454,7 +454,7 @@ Neither teaches the act, and a reader holding only bounds has exactly one legal 
   number in a brief is an anchor a weaker agent adopts instead of measuring — the same defect as a
   leading question put to an adversarial agent.
 - **WHEN you assert that something does not exist anywhere ⟶ remember the hooks are a search surface.**
-  Text a hook injects reaches its reader exactly as a skill's text does, and `scripts/audit-chain.mjs`
+  Text a hook injects reaches its reader exactly as a skill's text does, and `.grimorio/scripts/audit-chain.mjs`
   walks only `.md`, so a `.cjs` under `.claude/hooks` is invisible to it by construction.
 - **WHEN no consumer fixes the population ⟶ you are CHOOSING it: name the population you CLAIM about,
   name the one you MEASURED, and say why the second stands for the first.** WHEN you cannot say why, you

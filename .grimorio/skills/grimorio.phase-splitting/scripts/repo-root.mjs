@@ -1,5 +1,5 @@
 // Single canonical "walk upward for .git" repo-root finder. Previously copy-pasted verbatim into
-// phase-engine.mjs, its own selftest, and scripts/measure-agent-load.mjs — this file is the one place
+// phase-engine.mjs, its own selftest, and .grimorio/scripts/measure-agent-load.mjs — this file is the one place
 // it now lives; the other three import it instead of re-defining it.
 
 import { existsSync } from "node:fs";

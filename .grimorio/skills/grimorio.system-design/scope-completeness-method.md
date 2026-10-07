@@ -419,7 +419,7 @@ own observed case: all 7 spend-api files passed Gate 6 (each carried ≥1 diagra
 prose) while the family as a whole never produced a per-route sequence for 3 of 4 routes, an end-to-end
 data-flow diagram, a rendered credential×route matrix, or a real C4 container view.
 
-**MECHANISM.** `node scripts/audit-chain.mjs --diagram-classes [filter]` is a DETERMINISTIC INVENTORY tool
+**MECHANISM.** `node .grimorio/scripts/audit-chain.mjs --diagram-classes [filter]` is a DETERMINISTIC INVENTORY tool
 (reports which mermaid TYPE tokens and matrix-shaped tables exist — never judges sufficiency); the SUFFICIENCY
 judgment (does the inventory satisfy THIS gate's own required set for the concern's classified TYPE) is an
 AGENT-BASED VERIFIER step, run by grimorio.scout at Phase 6 CHECK 1 — state this composition explicitly, citing

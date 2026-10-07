@@ -55,7 +55,7 @@ never a stranger's own agent that has nothing to do with grimorio.
   so a near-miss like `grimoriox.scout` does not qualify. This reuses the corpus's own already-real naming
   convention (`ref:skill/grimorio.agent-writing`'s own general/project-boundary-in-names section, CEO ruling
   2026-08-28), grounded in an already-shipped precedent for exactly this shape:
-  `ref:repo/scripts/audit-chain.mjs` line 746.
+  `ref:repo/.grimorio/scripts/audit-chain.mjs` line 746.
 - **TIER TWO — `EXEMPT_TYPES`**, checked only once Tier One is survived: a narrower exemption for a
   `grimorio.`-prefixed agent that still cannot act on this gate's own demand because it carries no `Skill` tool
   at all. Shrunk from seven names to two, 2026-09-08: `cv-ats-screener`, `cv-recruiter`, `cv-reviser`,
@@ -259,12 +259,12 @@ H9's own copy shrank, then independently gaining a third member, `grimorio.board
 commit `25e9a237` — for the same no-`Skill`-tool reason H9's own copy above states in full), the pre-existing
 subagent-caller exemption, the fail-open invariant, and the ALLOW-path reminder are otherwise unchanged by this
 addition** — a `grimorio.`/`project.`-prefixed target is gated exactly as before, proven at the time by the
-pre-existing 17 cases (A-Q) plus two new ones (R, S), in `ref:repo/scripts/selftest/spawn-verbatim-origin-gate.mjs`;
+pre-existing 17 cases (A-Q) plus two new ones (R, S), in `ref:repo/.grimorio/scripts/selftest/spawn-verbatim-origin-gate.mjs`;
 five more (N flipped, U-Y) were added for the ELEMENT 3 order-check redesign above. **The suite has grown
 substantially since those additions** — re-measured live this pass: 67 distinct cases, 184 passing assertions,
 via:
 ```
-node scripts/selftest/spawn-verbatim-origin-gate.mjs 2>&1 | grep -c "^PASS:"
+node .grimorio/scripts/selftest/spawn-verbatim-origin-gate.mjs 2>&1 | grep -c "^PASS:"
 ```
 
 **The ALLOW-path reminder**, added 2026-08-24: once all elements pass, the hook emits an `additionalContext`

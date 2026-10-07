@@ -56,7 +56,7 @@
  * `ref:skill/grimorio.agent-writing/SKILL.md`'s own "general/project boundary is also legible in NAMES" section
  * (CEO ruling 2026-08-28) — used here to decide "is this one of grimorio's own agents," not invented for this
  * hook. Grounded in an existing, already-shipped precedent for exactly this shape, not a new pattern:
- * `ref:repo/scripts/audit-chain.mjs` line 746 (`skillSeg.split("/")[0].startsWith("grimorio.")`). @keep-comment
+ * `ref:repo/.grimorio/scripts/audit-chain.mjs` line 746 (`skillSeg.split("/")[0].startsWith("grimorio.")`). @keep-comment
  *
  * TIER TWO — EXEMPT_TYPES, checked SECOND, only once a spawn has already survived Tier One's prefix scope. A
  * NARROWER exemption, inside that scope, for a `grimorio.`-prefixed agent that still cannot act on this gate's

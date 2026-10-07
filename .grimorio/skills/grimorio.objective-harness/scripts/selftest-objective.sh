@@ -12,11 +12,51 @@
 # lines) — a real split (by case group) is a separate decision from this gate, not a same-pass requirement.
 # @subject: .grimorio/skills/grimorio.objective-harness/scripts/
 set -uo pipefail
+
+# @keep-comment IDEMPOTENCE GUARD. This suite has been measured creating REAL branches and moving the
+# real HEAD, and it destroyed uncommitted work twice in one session -- the second time it deleted this very
+# guard while the run that was verifying the guard was in flight. Entry state is recorded and restored on
+# every exit path, and what had to be undone is ANNOUNCED rather than fixed silently.
+_GUARD_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"
+_GUARD_HEAD="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+_GUARD_TIP="$(git rev-parse HEAD 2>/dev/null)"
+_GUARD_BRANCHES="$(git for-each-ref --format="%(refname:short)" refs/heads/ 2>/dev/null)"
+restore_real_repo() {
+  [ -n "$_GUARD_ROOT" ] || return 0
+  local now tip b
+  now="$(git -C "$_GUARD_ROOT" rev-parse --abbrev-ref HEAD 2>/dev/null)"
+  if [ -n "$_GUARD_HEAD" ] && [ "$now" != "$_GUARD_HEAD" ]; then
+    echo "GUARD: the suite moved the real HEAD to $now -- restoring $_GUARD_HEAD" >&2
+    git -C "$_GUARD_ROOT" checkout -q "$_GUARD_HEAD" 2>/dev/null
+  fi
+  tip="$(git -C "$_GUARD_ROOT" rev-parse HEAD 2>/dev/null)"
+  if [ -n "$_GUARD_TIP" ] && [ "$tip" != "$_GUARD_TIP" ]; then
+    echo "GUARD: the suite COMMITTED on the real branch ($_GUARD_TIP -> $tip). NOT undone automatically:" >&2
+    echo "GUARD: a reset would discard whatever it swept in. Inspect it: git show $tip" >&2
+  fi
+  for b in $(git -C "$_GUARD_ROOT" for-each-ref --format="%(refname:short)" refs/heads/ 2>/dev/null); do
+    case "$b" in feat/x|feat/parent|feat/first|feat/nameless|feat/scoped|worktree-agent-*) ;; *) continue ;; esac
+    echo "$_GUARD_BRANCHES" | grep -qxF "$b" && continue
+    echo "GUARD: deleting a fixture branch the suite created in the real repo: $b" >&2
+    git -C "$_GUARD_ROOT" branch -qD "$b" 2>/dev/null
+  done
+}
+trap restore_real_repo EXIT
 REAL_ROOT=$(git rev-parse --show-toplevel)
 cd "$REAL_ROOT" || exit 1
 
 pass() { echo "  PASS  $1"; }
 die()  { echo "  FAIL  $1" >&2; exit 1; }
+
+# @keep-comment `die` inside `d=$(mkrepo); need_scratch "$d"` exits only the SUBSHELL -- the caller keeps running with an
+# EMPTY $d, and both `git -C ""` and `cd ""` then target the REAL repo. Measured: that is how this suite
+# created branches, moved HEAD and committed on the live branch, twice destroying uncommitted work.
+need_scratch() {
+  [ -n "$1" ] && [ -d "$1" ] && [ -d "$1/.git" ] && return 0
+  echo "  FAIL  mkrepo produced no scratch repo. REFUSING to continue: \`git -C \"\"\` and \`cd \"\"\` both" >&2
+  echo "        operate on the CURRENT directory, so every case below would run against the REAL repo." >&2
+  exit 2
+}
 
 # Assert a command fails AND its refusal names the right reason — an exit code alone would pass on a
 # gate that broke for an unrelated reason (a typo in the script fails too).
@@ -46,11 +86,12 @@ allows() {
 # ---------------------------------------------------------------------------------------------
 mkrepo() {
   local d; d=$(mktemp -d)
+  [ -n "$d" ] && [ -d "$d" ] || { echo "mkrepo: no scratch dir -- refusing, because in bash cd '' SUCCEEDS and the case would then run the real scripts against the REAL repo" >&2; exit 2; }
   git -C "$d" init -q -b master
   git -C "$d" config user.email t@t.t
   git -C "$d" config user.name t
   git -C "$d" config core.autocrlf false
-  mkdir -p "$d/scripts" "$d/.grimorio/skills/grimorio.objective-harness/scripts" "$d/.grimorio/memory/grimorio.po-memory" "$d/objectives" "$d/.claude/agents"
+  mkdir -p "$d/.grimorio/scripts" "$d/.grimorio/skills/grimorio.objective-harness/scripts" "$d/.grimorio/memory/grimorio.po-memory" "$d/objectives" "$d/.claude/agents"
   # Anything pre-commit.sh invokes belongs here, or the copy is not the script under test, it is a
   # script that happens to share its name (check-comment-blocks.mjs learned this the hard way on
   # 2026-08-03; check-agent-tiers.mjs joined the same call chain on 2026-08-08; check-comment-history.mjs
@@ -64,11 +105,11 @@ mkrepo() {
      "$REAL_ROOT"/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh \
      "$REAL_ROOT"/.grimorio/skills/grimorio.objective-harness/scripts/objective-current.sh \
      "$d/.grimorio/skills/grimorio.objective-harness/scripts/"
-  cp "$REAL_ROOT"/scripts/pre-commit.sh "$REAL_ROOT"/scripts/install-hooks.sh \
-     "$REAL_ROOT"/scripts/check-comment-blocks.mjs "$REAL_ROOT"/scripts/check-agent-tiers.mjs \
-     "$REAL_ROOT"/scripts/check-comment-history.mjs "$REAL_ROOT"/scripts/check-file-size.mjs \
-     "$REAL_ROOT"/scripts/check-work-product-placement.mjs "$d/scripts/"
-  chmod +x "$d"/scripts/*.sh "$d"/.grimorio/skills/grimorio.objective-harness/scripts/*.sh
+  cp "$REAL_ROOT"/.grimorio/scripts/pre-commit.sh "$REAL_ROOT"/.grimorio/scripts/install-hooks.sh \
+     "$REAL_ROOT"/.grimorio/scripts/check-comment-blocks.mjs "$REAL_ROOT"/.grimorio/scripts/check-agent-tiers.mjs \
+     "$REAL_ROOT"/.grimorio/scripts/check-comment-history.mjs "$REAL_ROOT"/.grimorio/scripts/check-file-size.mjs \
+     "$REAL_ROOT"/.grimorio/scripts/check-work-product-placement.mjs "$d/.grimorio/scripts/"
+  chmod +x "$d"/.grimorio/scripts/*.sh "$d"/.grimorio/skills/grimorio.objective-harness/scripts/*.sh
   # check-agent-tiers.mjs fails CLOSED on a missing .claude/agents/ — by design, not a bug this scratch
   # repo should dodge — so it needs a real, conforming population to scan, same as the real repo has.
   printf -- '---\nname: stub\nmodel: sonnet\n---\nscratch stub agent.\n' > "$d/.claude/agents/stub.md"
@@ -79,7 +120,7 @@ mkrepo() {
   # Install through the REAL installer, not by copying the hook into place. The installer is the one
   # component with a known-shipped bug of its own — it used to write the hook where git never reads it,
   # so every worktree ran ungated — and a selftest that bypasses it would never have caught that.
-  ( cd "$d" && bash scripts/install-hooks.sh >/dev/null ) || die "install-hooks.sh failed in the scratch repo"
+  ( cd "$d" && bash .grimorio/scripts/install-hooks.sh >/dev/null ) || die "install-hooks.sh failed in the scratch repo"
   [ -x "$d/.git/hooks/pre-commit" ] || die "install-hooks.sh did not produce an executable hook"
   printf '# Feature status ledger\n\n## SHIPPED — process & tooling\n\n- existing capability.\n' \
     > "$d/.grimorio/memory/grimorio.po-memory/project.features-status.md"
@@ -98,7 +139,7 @@ mkrepo() {
 # mkrepo()'s own init commit and before any objective file exists, so every objective written
 # afterward is ignored by `git add -A` exactly as it is in the real repo.
 mkrepo_untracked() {
-  local d; d=$(mkrepo)
+  local d; d=$(mkrepo); need_scratch "$d"
   printf 'objectives/*\n!objectives/harness.md\n' > "$d/.gitignore"
   git -C "$d" add .gitignore
   git -C "$d" commit -q --no-verify -m "gitignore objectives/* (matches the real repo's own pattern)"
@@ -148,7 +189,7 @@ EOF
 
 # ---------------------------------------------------------------------------------------------
 c1() { # open-branch creates branch + objective together, and refuses without an objective sentence
-  local d; d=$(mkrepo)
+  local d; d=$(mkrepo); need_scratch "$d"
   refuses "C1 open-branch refuses an empty objective sentence" "objective sentence is empty" \
     bash -c "cd '$d' && bash .grimorio/skills/grimorio.objective-harness/scripts/open-branch.sh feat/x ''"
   allows "C1 open-branch opens a branch with its objective" \
@@ -192,7 +233,7 @@ c1() { # open-branch creates branch + objective together, and refuses without an
 }
 
 c2() { # the commit gate refuses a branch with no objective
-  local d; d=$(mkrepo)
+  local d; d=$(mkrepo); need_scratch "$d"
   git -C "$d" checkout -q -b feat/nameless
   echo hi > "$d/a.txt"; git -C "$d" add a.txt
   refuses "C2 commit refused on a branch with no objective" "no objective" \
@@ -210,7 +251,7 @@ c2() { # the commit gate refuses a branch with no objective
 }
 
 c3() { # the anti-bucket gate: any path outside the branch's declared scope, however it is touched
-  local d; d=$(mkrepo)
+  local d; d=$(mkrepo); need_scratch "$d"
   git -C "$d" checkout -q -b feat/scoped
   # NO trailing slash on purpose: an author writes it this way at least as often, and matching it
   # literally would leave the branch silently unscoped — a gate failing in the dangerous direction.
@@ -260,7 +301,7 @@ c3() { # the anti-bucket gate: any path outside the branch's declared scope, how
 }
 
 c4() { # close-branch refuses an open check
-  local d; d=$(mkrepo)
+  local d; d=$(mkrepo); need_scratch "$d"
   git -C "$d" checkout -q -b feat/open
   write_objective "$d" feat/open " " "true" "- a scratch capability."
   git -C "$d" add -A; git -C "$d" commit -q -m work
@@ -270,7 +311,7 @@ c4() { # close-branch refuses an open check
 }
 
 c5() { # nothing merges while the ledger would be left as the base has it
-  local d; d=$(mkrepo)
+  local d; d=$(mkrepo); need_scratch "$d"
   git -C "$d" checkout -q -b feat/noline
   write_objective "$d" feat/noline "x" "true" "<one line: the capability this leaves behind.>"
   git -C "$d" add -A; git -C "$d" commit -q -m work
@@ -300,7 +341,7 @@ c5() { # nothing merges while the ledger would be left as the base has it
 }
 
 c6() { # close-branch runs each VERIFY and refuses on failure — and on a check that carries none
-  local d; d=$(mkrepo)
+  local d; d=$(mkrepo); need_scratch "$d"
   git -C "$d" checkout -q -b feat/verify
   write_objective "$d" feat/verify "x" "exit 3" "- a scratch capability."
   git -C "$d" add -A; git -C "$d" commit -q -m work
@@ -323,7 +364,7 @@ c6() { # close-branch runs each VERIFY and refuses on failure — and on a check
 }
 
 c7() { # the full close-out: build the merge message, compress, merge, prune
-  local d; d=$(mkrepo)
+  local d; d=$(mkrepo); need_scratch "$d"
   git -C "$d" checkout -q -b feat/done
   write_objective "$d" feat/done "x" "true" "- **Scratch capability** — lives in scratch.go." "" \
     "- Landed the scratch capability the C7 selftest greps the merge commit for."
@@ -521,7 +562,7 @@ c8() { # close-milestone.sh is replaced, not paralleled; its gates survive as ob
   [ -f "$REAL_ROOT/scripts/close-milestone.sh" ] \
     && die "C8 scripts/close-milestone.sh still exists beside close-branch.sh — it was replaced, not paralleled"
   pass "C8 close-milestone.sh is gone, not left running in parallel"
-  local d; d=$(mkrepo)
+  local d; d=$(mkrepo); need_scratch "$d"
   # Its RED-status gate: a milestone objective whose ledger status is RED must be refused.
   printf '\n## ▶ CURRENT MILESTONE — M9\n\n**STATUS: RED.**\n' >> "$d/.grimorio/memory/grimorio.po-memory/project.features-status.md"
   git -C "$d" add -A; git -C "$d" commit -q --no-verify -m ledger
@@ -628,7 +669,7 @@ c10() { # the methodology is recorded where work actually reads it
 # INHERITANCE it proves lives in pre-commit.sh, which is still enforcing.
 
 c12() { # a branch with no objective of its own inherits its ancestor's — and the gate agrees
-  local d; d=$(mkrepo)
+  local d; d=$(mkrepo); need_scratch "$d"
   git -C "$d" checkout -q -b feat/parent
   write_objective "$d" feat/parent " " "true" "- a scratch capability." "services/battlesim"
   git -C "$d" add -A; git -C "$d" commit -q -m work

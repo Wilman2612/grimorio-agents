@@ -7,9 +7,9 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { readFileSync as __rfs } from "node:fs";
-// @keep-comment -- the working-memory root comes from scripts/refobl/skill-roots.json's `workRoot`,
+// @keep-comment -- the working-memory root comes from .grimorio/scripts/refobl/skill-roots.json's `workRoot`,
 // the same single source the script under test reads. A literal here would be a fourth hand-kept copy.
-const WORK_ROOT = JSON.parse(__rfs(new URL("../../../../../scripts/refobl/skill-roots.json", import.meta.url), "utf8")).workRoot.replace(/[\/]+$/, "");
+const WORK_ROOT = JSON.parse(__rfs(new URL("../../../../../.grimorio/scripts/refobl/skill-roots.json", import.meta.url), "utf8")).workRoot.replace(/[\/]+$/, "");
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../../../..");
 const tool = path.join(root, ".grimorio", "agents", "grimorio.extract-cleaner", "scripts", "extract-cleaner-cache.mjs");

@@ -2,7 +2,7 @@
 // fails. Design: ref:memory/grimorio.system-design-memory/designs/platform/turn-declaration-hook/design.md
 import { appendFileSync, mkdirSync } from "fs";
 import path from "path";
-import { cachePath } from "../../scripts/refobl/cache-paths.mjs";
+import { cachePath } from "../../.grimorio/scripts/refobl/cache-paths.mjs";
 import {
   readTranscriptTail, buildWindows, loadIndex, saveIndex, foldWindow, checkInvariants, MAX_BLOCKS,
 } from "./turn-ledger-lib.mjs";

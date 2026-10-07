@@ -210,7 +210,7 @@ and they are his claim only where quoted above.
 
 - **Corpus-wide: 69% prose.** 63,673 lines over 317 files — 3,549 headings, **139 rules a script can see**, and
   **285 of 317 files carry ZERO rules**. The same run reports `files DECLARING their reader: 0 / 317`.
-  cite:repo/scripts/audit-chain.mjs `--shape`.
+  cite:repo/.grimorio/scripts/audit-chain.mjs `--shape`.
 - **The doctrine skill breaks its own canon.** ref:skill/grimorio.agent-writing/SKILL.md stood at 737 lines / 67 sections / 63%
   prose with 7 rules when he made this argument — in the skill whose own headline is *HARD RULES ARE THE ONLY
   MECHANISM PROSE HAS*.
@@ -226,12 +226,12 @@ and they are his claim only where quoted above.
 > day, ref:skill/grimorio.agent-writing/SKILL.md read 552 lines and "superseded" had fallen from 78 files/197 lines to 59/135,
 > because `grimorio/writing-skills-shape` was cutting both at that moment; the defect ledger had already
 > relocated out of `agent-writing/`. Treat every number here as stale on sight and re-run
-> cite:repo/scripts/audit-chain.mjs — recording a frozen figure as a live fact is the failure this note exists
+> cite:repo/.grimorio/scripts/audit-chain.mjs — recording a frozen figure as a live fact is the failure this note exists
 > to prevent. The corpus-wide percentages were verified live and held exactly.
 
 ### This EXTENDS work already shipped — it is not a fresh idea
 
-- cite:repo/scripts/audit-chain.mjs `--outline` already renders headings + rules with prose collapsed to a
+- cite:repo/.grimorio/scripts/audit-chain.mjs `--outline` already renders headings + rules with prose collapsed to a
   counter, and renders references in the current grammar; `--shape` already reports the heading/rule/table/list/
   prose mix per file. **Both were built before he stated this**, and both are the first rung of what he describes
   — the compressed review pass, minus the declared grammar that would make it complete.

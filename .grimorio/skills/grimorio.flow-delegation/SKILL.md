@@ -241,8 +241,8 @@ you spawned a delegate whose "done" you can't state as a checkable condition at 
 Part 0 above gates the START of a flow, once. Nothing in it re-checks the plan against the repo once
 execution begins — measured 2026-08-13/14: three delegates were raised against lanes of a plan one day old,
 and all three lanes were already shipped and merged before their delegates started.
-`ref:repo/scripts/replan-check.mjs` is the mechanism that closes this gap, proven by its own selftest
-`ref:repo/scripts/selftest/replan-check.sh`. Read both before relying on the four rules below — verify the
+`ref:repo/.grimorio/scripts/replan-check.mjs` is the mechanism that closes this gap, proven by its own selftest
+`ref:repo/.grimorio/scripts/selftest/replan-check.sh`. Read both before relying on the four rules below — verify the
 CLI against the file itself first, it may have gained fields since this paragraph was written.
 
 > *"si pero no arreglas la doctrina y pruebas que pueda efectivamente replanear dinamicamente o planear puntos
@@ -253,7 +253,7 @@ CLI against the file itself first, it may have gained fields since this paragrap
 > reminding you... so that is a fix for grimorio."* (CEO, 2026-08-14, translated)
 
 1. **BEFORE you raise a delegate against an item drawn from a written plan ⟶ run `node
-   scripts/replan-check.mjs` and read what it reports about THAT item.** An item it reports STALE is already
+   .grimorio/scripts/replan-check.mjs` and read what it reports about THAT item.** An item it reports STALE is already
    done; raising a delegate against it burns the delegate before it starts.
 
    **This rule is MANDATORY and UNENFORCED — say so in the same breath, never as a trailing caveat.** No hook

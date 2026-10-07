@@ -156,7 +156,7 @@ injected "Scratchpad Directory" path, which is where this bites most often.** Gi
     `tmp/features/{slug}/` (ref:skill/grimorio.feature-workflow#artifact-directory-structure) or the general
     `tmp/<task-slug>/` convention, never as a tracked file.** This is rule 17's own twin, the opposite direction
     — 17 guards memory -> repo, this guards work product -> repo. -> ref:skill/grimorio.working-memory.
-    `ref:repo/scripts/check-work-product-placement.mjs`, wired into `ref:repo/scripts/pre-commit.sh`, mechanically
+    `ref:repo/.grimorio/scripts/check-work-product-placement.mjs`, wired into `ref:repo/.grimorio/scripts/pre-commit.sh`, mechanically
     blocks two narrow structural shapes only — a root-level file matching the pipeline-artifact vocabulary or a
     `CLOSEOUT-` prefix, and a file breaking an EXISTING skill folder's own naming/subfolder convention — a narrow
     backstop for those two shapes, NEVER a substitute for this rule: a work product dropped into an EXISTING
@@ -183,7 +183,7 @@ injected "Scratchpad Directory" path, which is where this bites most often.** Gi
 22. **BEFORE adding to any memory or vision file ⟶ grep it for what is there and SAY what you found.**
 23. **WHEN a file passes ~500 lines ⟶ treat it as a SMELL: split it, trim it, or say why it earns its size.**
 24. **NEVER write a path reference without its `relation:store/path[#anchor]` prefix.** Measure live with
-    ref:repo/scripts/audit-chain.mjs. -> ref:skill/grimorio.prompt-writing-quality/format-guide.md → "3. THE LOAD REFERENCE".
+    ref:repo/.grimorio/scripts/audit-chain.mjs. -> ref:skill/grimorio.prompt-writing-quality/format-guide.md → "3. THE LOAD REFERENCE".
 
 ### Authoring a prompt
 

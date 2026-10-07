@@ -21,7 +21,7 @@ faithful quotation of these exact phrases (a transcript, a discussion of this ve
 reader, never as changelog-style assertion in a governed file. A reviewer reading the diff, rather than a hook
 keyed to a specific tool, also closes the enforceability gap a tool-matcher can always be routed around.
 
-This is reached automatically wherever a review already gates the diff before it ships — ref:repo/scripts/pre-push.sh's
+This is reached automatically wherever a review already gates the diff before it ships — ref:repo/.grimorio/scripts/pre-push.sh's
 own GUARDED-path requirement (`.claude/`, `scripts/`, `objectives/`, `CLAUDE.md`), and the ordinary REWORK-cycle
 gate every feature diff already passes through before SHIP — never a mechanism of its own.
 
@@ -78,7 +78,7 @@ mechanical pass above: ref:agent/grimorio.code-reviewer/behavior.md#hunt-for-the
 ## The EXPLICIT LEDGER ALLOWLIST — a NAMED LIST, never inferred from a file's own content or apparent purpose
 
 Chosen over in-file self-declaration because it mirrors this repo's own existing
-ref:repo/scripts/refobl/governance.cjs precedent (a hardcoded, fail-closed pattern set) and stays cheap and
+ref:repo/.grimorio/scripts/refobl/governance.cjs precedent (a hardcoded, fail-closed pattern set) and stays cheap and
 deterministic:
 
 ```

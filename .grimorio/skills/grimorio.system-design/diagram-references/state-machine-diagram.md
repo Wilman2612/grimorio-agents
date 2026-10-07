@@ -1,7 +1,7 @@
 # UML State-Machine Diagram — Formal Reference
 
 Second entry in the per-diagram-type reference series (companion to `use-case-diagram.md`). Same job: the exact
-rules an author must obey, the anti-patterns, and a mechanical checklist — so `scripts/diagram-kit/statemachine.mjs`
+rules an author must obey, the anti-patterns, and a mechanical checklist — so `.grimorio/scripts/diagram-kit/statemachine.mjs`
 can generate correct-by-construction and lint legacy diagrams. Unlike a use-case diagram, a state machine is a
 **structural** artifact: it is mostly graphics (states + transitions), text is minimal — the concern where the
 CEO's graphics-primary vision genuinely holds.

@@ -37,7 +37,7 @@
  */
 import { pathToFileURL } from "url";
 import path from "path";
-import { cachePath } from "../../scripts/refobl/cache-paths.mjs";
+import { cachePath } from "../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 const root = process.env.CLAUDE_PROJECT_DIR || ".";
 
@@ -59,7 +59,7 @@ const WINDOW_MS = 5000; // measured; NEVER widen without a new measurement — s
 // Load every row of the invocations log. Split out so resolveParentId stays under the function-body cap —
 // this is the only await'd import in the file.
 async function loadInvocationRows() {
-  const agentLogRowsUrl = pathToFileURL(path.join(root, "scripts/lib/agent-log-rows.mjs")).href;
+  const agentLogRowsUrl = pathToFileURL(path.join(root, ".grimorio/scripts/lib/agent-log-rows.mjs")).href;
   const { rows } = await import(agentLogRowsUrl);
   return rows(INVOCATIONS);
 }

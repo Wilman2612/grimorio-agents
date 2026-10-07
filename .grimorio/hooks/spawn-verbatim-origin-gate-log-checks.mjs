@@ -16,7 +16,7 @@ import { resolveCleanedExtractPath, cleanedExtractPathBelongsToSession } from ".
 // evaluating and the live binding is populated. Verified by actually running the import (not assumed), per
 // the fix brief's own instruction to run it rather than guess. @keep-comment
 import { isGrimorioOwnedType } from "./spawn-verbatim-origin-gate.mjs";
-import { cachePath } from "../../scripts/refobl/cache-paths.mjs";
+import { cachePath } from "../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 // ELEMENT 3 — independent, LOG-based proof that a real grimorio.extract-cleaner dispatch actually ran for
 // THIS SAME session AND that its provenance has not since been spent by a later main-loop spawn — ported from

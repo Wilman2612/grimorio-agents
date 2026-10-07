@@ -337,10 +337,10 @@ echo "close-branch: review this from $base with: git log --merges -1 --format='%
 # --- 13. the plan's own drift, reported at the one moment work provably landed -------------------
 # @keep-comment A plan artefact nobody re-reads is how 226 commits were worked with the detector
 # already in the repo, unrun. This never BLOCKS a close: the report is the point, not a gate.
-if [ -f scripts/replan-check.mjs ]; then
+if [ -f .grimorio/scripts/replan-check.mjs ]; then
   echo ""
   echo "close-branch: --- plan state (advisory) ---"
-  node scripts/replan-check.mjs --verify-done 2>&1 \
+  node .grimorio/scripts/replan-check.mjs --verify-done 2>&1 \
     | grep -E "^(Plan:|POPULATION:|AGE:|STALE|REGRESSED|  (STALE|REGRESSED))" || true
   echo "close-branch: STALE = done but unmarked. REGRESSED = marked done, now failing. Both are yours to fix."
 fi

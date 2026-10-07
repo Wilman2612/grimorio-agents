@@ -67,7 +67,7 @@ independent target (per Part 2's own dispatch rules), THEN a SELF node that rece
 
 **Worktree isolation, WHEN at least one target is a GOVERNED file** (`CLAUDE.md`, an agent shell, a hook,
 `.claude/settings*.json`, a skill's behavior file, `objectives/harness.md`) **⟶ a keeper's own worktree is
-warranted, created ONLY via `node scripts/worktree-create.mjs <name> <branch> develop` run manually — NEVER
+warranted, created ONLY via `node .grimorio/scripts/worktree-create.mjs <name> <branch> develop` run manually — NEVER
 `Agent(isolation:"worktree")` (reserved to the main loop/`grimorio.delegate`) and NEVER `EnterWorktree`
 (refuses on an already-pinned subagent).**
 **WHEN no target is governed ⟶ an ordinary branch on `develop` is enough; a worktree here is unwarranted
@@ -133,7 +133,7 @@ caution.**
    own SAFE/UNSAFE checklist**, then gate against a REGISTRATION-COST THRESHOLD:
    raise the clone only when the mechanical-volume saving EXCEEDS the clone's own base registration cost —
    never a vague "sounds mechanical" feeling. **ALWAYS compute that cost by running `node
-   scripts/registration-cost.mjs <file1> [file2 ...]` against its Knowledge list plus its actually-read phase
+   .grimorio/scripts/registration-cost.mjs <file1> [file2 ...]` against its Knowledge list plus its actually-read phase
    files and reading the printed `TOTAL:` line — NEVER re-derive the sum by hand across several
    `audit-chain.mjs --shape` calls.** A 2-line change never clears this; it is authored inline.
    **WHEN Haiku-cloned ⟶ the brief MUST carry, as a required field, that the clone executes ONLY the plan

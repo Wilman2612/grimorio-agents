@@ -23,13 +23,13 @@ phase-position announcement (the engine's own pointer output already makes stati
 redundant): a SELF node that runs every self-check, THEN a `grimorio.code-reviewer` node (per Part 2, foreground,
 one node per cycle, up to two), THEN a SELF node that routes per the verdict.**
 
-1. **ALWAYS verify every pointer `grimorio.prompt-writer` wrote by running `node scripts/audit-chain.mjs --dead
-   <touched-file>` and `node scripts/audit-chain.mjs --anchors <touched-file>` for every file returned this
+1. **ALWAYS verify every pointer `grimorio.prompt-writer` wrote by running `node .grimorio/scripts/audit-chain.mjs --dead
+   <touched-file>` and `node .grimorio/scripts/audit-chain.mjs --anchors <touched-file>` for every file returned this
    pass.** Exit 0 with a printed checked-total confirms every pointer in that file resolves; exit 1 names a
    real dead reference or dead anchor. **WHEN either command prints a "matched ZERO files" message and exits
    2 ⟶ the filter (the touched-file fragment), not the tool, is wrong — fix the filter and re-run before
    concluding anything about that file.**
-2. **ALWAYS run every selftest in the repo, discovered fresh via `bash scripts/selftest/run-all.sh`, never a
+2. **ALWAYS run every selftest in the repo, discovered fresh via `bash .grimorio/scripts/selftest/run-all.sh`, never a
    memorized subset.** **NEVER report "selftests pass" for a subset and call it the whole.**
 3. **ALWAYS check these writer-output properties — no longer yours to produce, only to catch:**
    - The file did not grow monotonically — confirmed via `git diff --stat <base-ref>..HEAD -- <file>` (or
@@ -58,7 +58,7 @@ one node per cycle, up to two), THEN a SELF node that routes per the verdict.**
    pair dispatched sequentially, an INDEPENDENT pair dispatched as a panel, never the reverse) — a mismatch is a
    defect, sent back to Phase B, never patched here.
 6. **ALWAYS run, for every file `grimorio.prompt-writer` returned, TWO SEPARATE Bash invocations —
-   `node scripts/audit-chain.mjs --graph-first [filter]` and `node scripts/audit-chain.mjs --examples
+   `node .grimorio/scripts/audit-chain.mjs --graph-first [filter]` and `node .grimorio/scripts/audit-chain.mjs --examples
    [filter]` — NEVER combined; the script now refuses a combined call outright, exiting 2 and naming both
    flags.** Exit 1 on either is a defect, sent back to Phase B. **WHEN either exits 2 because the filter
    matched zero files ⟶ STOP, name the filter, fix it — never the file, never Phase B — and re-run before

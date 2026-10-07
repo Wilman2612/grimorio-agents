@@ -6,7 +6,7 @@ import { existsSync, rmSync } from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { makeWorktreeRoot } from "../testdata/board-selftest-root.mjs";
-import { cachePath } from "../../../../../scripts/refobl/cache-paths.mjs";
+import { cachePath } from "../../../../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const scripts = path.resolve(here, "..");

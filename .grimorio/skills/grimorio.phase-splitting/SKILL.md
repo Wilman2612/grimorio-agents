@@ -73,7 +73,7 @@ author merely reaches for.**
 
 1. **RENDER 100% first** — the whole job, before deciding anything about its shape.
 2. **GROUP by where items push** — what pulls toward the same knowledge and the same deliverable.
-3. **MEASURE each group's load** — what it would have to carry to do its work, via ref:repo/scripts/measure-agent-load.mjs. **ALWAYS measure it: `node scripts/measure-agent-load.mjs --chain <agent> --mode new --peak-paths` for the whole chain, or `--path <id,id,...>` for one specific candidate path — reproducible, cumulative word-load per phase along a chain's own path.** **NEVER assume the "obvious" path is the peak: `--peak-paths` walks every root-to-terminal path and marks the true maximum, because a conditionally-entered phase can carry it.**
+3. **MEASURE each group's load** — what it would have to carry to do its work, via ref:repo/.grimorio/scripts/measure-agent-load.mjs. **ALWAYS measure it: `node .grimorio/scripts/measure-agent-load.mjs --chain <agent> --mode new --peak-paths` for the whole chain, or `--path <id,id,...>` for one specific candidate path — reproducible, cumulative word-load per phase along a chain's own path.** **NEVER assume the "obvious" path is the peak: `--peak-paths` walks every root-to-terminal path and marks the true maximum, because a conditionally-entered phase can carry it.**
 4. **SPLIT any pincho, OR OFFLOAD it to a scoped, lighter child.**
 
 **WHEN one group's load dwarfs its neighbours ⟶ that group is a pincho: split it, or give its bulk to a child

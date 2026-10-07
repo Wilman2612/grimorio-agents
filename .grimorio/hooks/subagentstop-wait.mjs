@@ -96,12 +96,12 @@
  * finishes.
  *
  * WHY THE LIVE-DEPENDENCY CHECK BELOW IS FRESH CODE, NOT A SECOND COPY OF `findParked` — read this
- * before assuming duplication. `scripts/parked-watch.mjs`'s own `findParked` answers "has this child
+ * before assuming duplication. `.grimorio/scripts/parked-watch.mjs`'s own `findParked` answers "has this child
  * ALREADY finished and been ignored past a 4-minute grace window" — a RETROSPECTIVE query the top-level
  * session runs to rescue an agent that already went silent. This hook fires AT the SubagentStop moment,
  * before any turn has ended, and needs the OPPOSITE predicate: "is there a child, dispatched by ME, that
  * has NOT finished yet, right now." That predicate does not exist anywhere in this repo; it is written
- * fresh below. What IS reused is `scripts/lib/agent-log-rows.mjs`'s `rows()` parsing primitive — a module
+ * fresh below. What IS reused is `.grimorio/scripts/lib/agent-log-rows.mjs`'s `rows()` parsing primitive — a module
  * extracted specifically so importing it can never run `parked-watch.mjs`'s own side-effecting CLI (see
  * that file's own header for the incident this fixed) — not `findParked` itself, and not its
  * retrospective-parking query. A future reader (or code-reviewer) should read the fresh predicate below
@@ -126,7 +126,7 @@
 import fs from "fs";
 import path from "path";
 import { pathToFileURL } from "url";
-import { cachePath } from "../../scripts/refobl/cache-paths.mjs";
+import { cachePath } from "../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 const root = process.env.CLAUDE_PROJECT_DIR || ".";
 
@@ -235,7 +235,7 @@ function releaseClaim(claimPath) {
 }
 
 // @keep-comment
-// FINAL_CLOSE — ported from scripts/parked-watch.mjs's own constant of the same name (verbatim regex,
+// FINAL_CLOSE — ported from .grimorio/scripts/parked-watch.mjs's own constant of the same name (verbatim regex,
 // same semantics: does a message DECLARE a genuine VERIFIED/COULD NOT close, anchored so a mid-sentence
 // mention never counts — see that file's own DEFECT 3 for the anchoring rationale, not restated here).
 // Duplicated as a literal here rather than imported: parked-watch.mjs runs its own side-effecting main()
@@ -243,7 +243,7 @@ function releaseClaim(claimPath) {
 // even a constant — would execute that CLI on every SubagentStop firing. Extracting a shared module was
 // considered and left out of THIS fix's approved scope (CEO approval, 2026-08-16, scoped to this file
 // only). WHEN this regex is tightened in parked-watch.mjs ⟶ port the change here too — the same hand-sync
-// obligation this repo already carries for scripts/refobl/governance.cjs's own copies.
+// obligation this repo already carries for .grimorio/scripts/refobl/governance.cjs's own copies.
 const FINAL_CLOSE =
   /(^|\\n|\. )[\s"']*#{1,6}[^\\n]*\b(VERIFIED|COULD NOT)\b|(^|\\n|\. )[\s"'*>-]*\**\s*(Close:\s*)?\**\s*(VERIFIED|COULD NOT)\s*(—|-|:|\.|!|\*\*|"|\\n|$)/;
 
@@ -305,10 +305,10 @@ export async function run(input) {
   // let it go.
   if (countBlocked(agentId) >= AGENT_CAP) return null;
 
-  // Reuse scripts/lib/agent-log-rows.mjs's own rows() for identical log parsing (see header note on what
+  // Reuse .grimorio/scripts/lib/agent-log-rows.mjs's own rows() for identical log parsing (see header note on what
   // is, and is not, reused). Requires a file:// URL on Windows — a bare path string throws
   // ERR_UNSUPPORTED_ESM_URL_SCHEME under dynamic import().
-  const agentLogRowsUrl = pathToFileURL(path.join(root, "scripts/lib/agent-log-rows.mjs")).href;
+  const agentLogRowsUrl = pathToFileURL(path.join(root, ".grimorio/scripts/lib/agent-log-rows.mjs")).href;
   const { rows } = await import(agentLogRowsUrl);
 
   const invRows = rows(INVOCATIONS);

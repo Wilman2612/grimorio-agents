@@ -124,7 +124,7 @@
  * false-positive rate — it decides whether a background dependency has genuinely finished before un-blocking
  * a parent's own close. Out of scope for this pass, per the CEO's own explicit scope boundary ("only the
  * clearing half plus the fail-closed rule and that record; nothing else in the diff reopens") — but that file
- * is not left exposed the identical way: scripts/parked-watch.mjs already provides an independent backstop
+ * is not left exposed the identical way: .grimorio/scripts/parked-watch.mjs already provides an independent backstop
  * for its use (a top-level session watch that can notice and wake a genuinely parked parent, per
  * grimorio-conduct rule 8), which THIS file's own tree-occupancy mechanism never had. Whoever picks up
  * subagentstop-wait.cjs's own predicate next should not have to re-measure this from scratch — the 71/327 and
@@ -151,7 +151,7 @@
 import fs from "fs";
 import path from "path";
 import { execFileSync } from "child_process";
-import { cacheRelative } from "../../scripts/refobl/cache-paths.mjs";
+import { cacheRelative } from "../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 function projectDirOf(input) {
   return process.env.CLAUDE_PROJECT_DIR || (input && input.cwd) || process.cwd();

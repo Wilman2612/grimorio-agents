@@ -12,7 +12,7 @@
 import { readFileSync, existsSync, writeFileSync, mkdirSync, appendFileSync } from "fs";
 import path from "path";
 import { execFileSync } from "child_process";
-import { cachePath, cacheRelative } from "../../scripts/refobl/cache-paths.mjs";
+import { cachePath, cacheRelative } from "../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 function gitRaw(cwd, args) {
   return execFileSync("git", args, { cwd, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();
@@ -54,7 +54,7 @@ export function completionsLogPath(cwd) {
 }
 
 // hasLiveFirstLevelInitiator(invLogPath, completionsLogPath, sessionId) — mirrors
-// scripts/parked-watch.mjs's own buildOpenChildren/buildCompletionIndex join pattern (cited, not
+// .grimorio/scripts/parked-watch.mjs's own buildOpenChildren/buildCompletionIndex join pattern (cited, not
 // re-derived, rather than reinventing the "is this child still running" question): a first-level
 // initiator (a POST row whose own CALLER fields — 11, 13 — both read "-", i.e. dispatched DIRECTLY by the
 // main loop) that was backgrounded (field 16, status, "async_launched") and has NO matching row in the

@@ -50,7 +50,7 @@
  * TIER 0B (.claude/skills/grimorio.objective-harness/SKILL.md, "WHO WORKS WHERE", CEO's push/worktree unification
  * ruling, @keep-comment) — a SECOND, independent Tier 0 deliberate refusal, checked right after the
  * dirty-tree check and still before tier 1. Being clean is not being reviewed: a clean tree can still
- * carry commits nobody has looked at. scripts/pre-push.sh already refuses to push `develop`/`master` when
+ * carry commits nobody has looked at. .grimorio/scripts/pre-push.sh already refuses to push `develop`/`master` when
  * the range touches `.claude/`, `scripts/`, `objectives/`, or `CLAUDE.md` without an approval marker
  * naming the exact HEAD commit — because the push is the moment that work leaves the local tree and
  * becomes shared. Creating a worktree is the OTHER such moment: it hands the same unreviewed commits to a
@@ -94,7 +94,7 @@
 import { execFileSync } from "child_process";
 import fs from "fs";
 import path from "path";
-import { cachePath, cacheRelative } from "../../scripts/refobl/cache-paths.mjs";
+import { cachePath, cacheRelative } from "../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 function git(args, cwd) {
   return execFileSync("git", args, { cwd, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }).trim();
@@ -148,7 +148,7 @@ function refuseDirtyTree(repoRoot, lines) {
   process.exit(0);
 }
 
-// Tier 0b constants. Deliberately DUPLICATED from scripts/pre-push.sh's MARKER/GUARDED rather than
+// Tier 0b constants. Deliberately DUPLICATED from .grimorio/scripts/pre-push.sh's MARKER/GUARDED rather than
 // shared from one source: a Node hook cannot safely `require()` a bash script, and inventing a shared
 // external config file this hook would need to read introduces exactly the kind of new failure surface
 // this file's own header forbids — nothing this file's fail-open discipline depends on may itself become
@@ -230,7 +230,7 @@ function refuseUnreviewed(repoRoot, changed, headSha, baseSha, baseIsMarker) {
   const message =
     `WorktreeCreate REFUSED: ${changed.length} instruction-system file(s) in ${baseSha}..HEAD have not been reviewed.\n\n` +
     `The push and worktree-creation moments are the only two places work escapes the local tree, so both now ` +
-    `require the same review. scripts/pre-push.sh already gates the push side of this; this is the same gate ` +
+    `require the same review. .grimorio/scripts/pre-push.sh already gates the push side of this; this is the same gate ` +
     `applied at worktree-creation time, against the range since ${baseLabel}.\n\n` +
     `range     ${baseSha}..HEAD\n` +
     `base      ${baseLabel}\n` +

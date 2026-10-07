@@ -11,7 +11,7 @@ const { pathToFileURL } = require("url");
 
     // @keep-comment Resolve relative to this file's own real on-disk location first (true whenever
     // this file runs from its wired position). Falls back to CWD-relative because
-    // scripts/selftest/agent-invocation-log.sh copies this one file alone into an isolated tmp dir and
+    // .grimorio/scripts/selftest/agent-invocation-log.sh copies this one file alone into an isolated tmp dir and
     // runs it from there with CWD left at the repo root — __dirname alone can't find the sibling .mjs
     // in that one case.
     const candidates = [

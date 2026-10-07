@@ -2,7 +2,7 @@
 
 Third entry in the per-diagram-type reference series (companion to `use-case-diagram.md` and
 `state-machine-diagram.md`). Same job: the exact rules an author must obey, the anti-patterns, and a
-mechanical checklist — so `scripts/diagram-kit/sequence.mjs` can generate correct-by-construction and lint
+mechanical checklist — so `.grimorio/scripts/diagram-kit/sequence.mjs` can generate correct-by-construction and lint
 legacy diagrams. Native mermaid dialect: `sequenceDiagram`.
 
 **Two distinct artifacts, one notation.** A sequence diagram answers "in what order do messages cross,

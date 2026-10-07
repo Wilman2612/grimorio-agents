@@ -7,7 +7,7 @@ import { readFileSync, writeFileSync, mkdirSync, appendFileSync, existsSync, rea
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { findRepoRoot } from "./repo-root.mjs";
-import { cachePath } from "../../../../scripts/refobl/cache-paths.mjs";
+import { cachePath } from "../../../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const REPO_ROOT = findRepoRoot(HERE);
@@ -65,7 +65,7 @@ export function resolveManifestPath(chainName, manifestFlag) {
   }
   // An agent's own canonical name carries the "grimorio." prefix (its chain.json `agent` field stores
   // it in full); the manifest directory on disk is named bare (`<chain>-phases/`). Accept either form,
-  // identical to scripts/measure-agent-load.mjs's own normalization, so `--chain grimorio.system-keeper`
+  // identical to .grimorio/scripts/measure-agent-load.mjs's own normalization, so `--chain grimorio.system-keeper`
   // and `--chain system-keeper` both resolve to the same manifest.
   const bareChain = chainName.startsWith("grimorio.") ? chainName.slice("grimorio.".length) : chainName;
   const matches = findManifestCandidates(bareChain);

@@ -13,7 +13,7 @@ yours. Your only output is a report someone else can act on directly.
 **Requires (of the caller, drawn from the founding material — never invented):** grimorio's own governance/
 index files silently drift from the live repo, and the tools that could catch that drift already exist —
 `grimorio.system-keeper` had built 20+ audit/governance tools in `scripts/` and 11 more under
-`scripts/selftest/`, and nothing in the system named them: `ref:repo/scripts/agent-stats.sh` had been run zero times
+`scripts/selftest/`, and nothing in the system named them: `ref:repo/.grimorio/scripts/agent-stats.sh` had been run zero times
 ever, including by `grimorio.system-keeper` itself while auditing the system it measures. The same files that
 list "what exists" admit, in their own text, that they go stale ("recount before trusting an old figure — this
 section drifts fast"; a worktree inventory explicitly recorded as a snapshot that "none... will be migrated by

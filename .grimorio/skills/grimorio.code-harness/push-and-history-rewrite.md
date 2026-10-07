@@ -41,13 +41,13 @@ From that commit's own message, verbatim:
 between two FIXED endpoints — `git diff --name-only A..B` — never `--cached` and never a bare `HEAD` diff.** A
 range diff between two fixed commits diffs two trees directly, so it stays correct however many merge commits
 sit inside that range — immune to the merge-blindness bug by construction, not merely by convention.
-`cite:repo/scripts/pre-push.sh@7057b0e72c440a324103ac6932ef24512230c4a4:48` is the live, already-correct
+`cite:repo/.grimorio/scripts/pre-push.sh@7057b0e72c440a324103ac6932ef24512230c4a4:48` is the live, already-correct
 exemplar: `git diff --name-only "$remote_sha..$local_sha"`, a range between the remote tip and the local tip,
 never `--cached` or bare `HEAD`.
 
 **A live, currently-unfixed instance of the SAME blind pattern exists in this repo — reported here, never
 fixed here (out of scope for this file):**
-`cite:repo/scripts/check-comment-blocks.mjs@7057b0e72c440a324103ac6932ef24512230c4a4:13` computes `git diff
+`cite:repo/.grimorio/scripts/check-comment-blocks.mjs@7057b0e72c440a324103ac6932ef24512230c4a4:13` computes `git diff
 --cached --name-only --diff-filter=ACM` unconditionally, every time the `pre-commit` hook fires — including on
 a merge commit (a non-fast-forward `git merge` invokes `pre-commit` unless `--no-verify`). On such a commit
 this line returns the same over-broad "union of both branches" file list, scanning far more files for oversized
@@ -60,7 +60,7 @@ content, never everything the merge happens to bring in).
 Any verification anchored to a specific sha — a `grimorio.code-reviewer` APPROVED verdict recorded against a
 sha, a merge-base computed before the rebase, a `.claude/.cache/review-approved` marker file keyed to a commit
 (exactly this shape:
-`cite:repo/scripts/pre-push.sh@7057b0e72c440a324103ac6932ef24512230c4a4:28,67-85` —
+`cite:repo/.grimorio/scripts/pre-push.sh@7057b0e72c440a324103ac6932ef24512230c4a4:28,67-85` —
 `MARKER=".claude/.cache/review-approved"` holds a commit sha, and the gate only passes when that marker's sha
 equals the commit actually being pushed) — goes silently stale the instant the branch is rebased: the old sha
 no longer exists on the branch, the marker no longer matches, and a marker that happens to still read some

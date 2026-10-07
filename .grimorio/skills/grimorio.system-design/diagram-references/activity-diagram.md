@@ -2,7 +2,7 @@
 
 Fourth entry in the per-diagram-type reference series (companion to `use-case-diagram.md` and
 `state-machine-diagram.md`). Same job: the exact rules an author must obey, the anti-patterns, and a
-mechanical checklist — so `scripts/diagram-kit/activity.mjs` can generate correct-by-construction and lint
+mechanical checklist — so `.grimorio/scripts/diagram-kit/activity.mjs` can generate correct-by-construction and lint
 legacy diagrams. **The load-bearing contrast with the state machine:** an activity diagram's nodes are
 **ACTIONS** (verb phrases — "Settle the match"); a state machine's nodes are **SITUATIONS** (nouns/adjectives —
 "Settling"). Same graph shape (initial → flow → final, reachability, dead ends), inverted node semantics.

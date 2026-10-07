@@ -123,7 +123,7 @@ events they govern, so nobody else needs them in context.
    not restated here.
 8. **BEFORE a nested-background rescue (grimorio-conduct rule 8) can be real in a given session ⟶ YOU — the
    top-level session, and no one else, since a spawned agent never re-observes its own turn ending the way you
-   persist across a whole conversation — must ARM the parked-parent watch** (`ref:repo/scripts/parked-watch.mjs`,
+   persist across a whole conversation — must ARM the parked-parent watch** (`ref:repo/.grimorio/scripts/parked-watch.mjs`,
    e.g. run on a poll loop for this session). **WHEN nobody has armed the watch this session, and a delegate has
    been told it may background its own children for real parallelism ⟶ that delegate is NOT actually rescued,
    no matter what grimorio-conduct rule 8 says** — a parked child stays parked. The detector's own mechanism and
@@ -150,7 +150,7 @@ events they govern, so nobody else needs them in context.
     window (`PARKED_WATCH_SILENT_MS`, default 10 minutes), never at an unstated cadence.** **NEVER treat
     SILENCE on the ARM watch (rule 8b) as evidence the dispatch is producing anything** — SILENT is an
     ACTIVITY signal, never an OUTPUT signal: it is measured from the child's own transcript file mtime
-    (`checkSilentChild`/`findTranscriptMtime`, `ref:repo/scripts/parked-watch.mjs`), so an agent that is
+    (`checkSilentChild`/`findTranscriptMtime`, `ref:repo/.grimorio/scripts/parked-watch.mjs`), so an agent that is
     genuinely alive and tool-calling for hours, producing nothing on disk, keeps refreshing its own
     transcript mtime and never trips SILENT at all.
 

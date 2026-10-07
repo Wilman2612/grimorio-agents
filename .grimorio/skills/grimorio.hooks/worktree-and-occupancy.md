@@ -34,7 +34,7 @@ else here (print nothing on stdout, exit 0), never a non-zero exit.
 
 **TIER 0B, added 2026-08-06, same ruling** — a second, independent deliberate refusal: unreviewed guarded-path
 changes. Being clean is not being reviewed — a clean tree can still carry commits nobody has looked at.
-`scripts/pre-push.sh` already refuses to push `develop`/`master` when the range touches `.claude/`, `scripts/`,
+`.grimorio/scripts/pre-push.sh` already refuses to push `develop`/`master` when the range touches `.claude/`, `scripts/`,
 `objectives/`, or `CLAUDE.md` without an approval marker naming the exact HEAD commit, because the push is the
 moment work leaves the local tree and becomes shared. Creating a worktree is the OTHER such moment — it hands
 the same unreviewed commits to a fresh delegate as if they were settled.
@@ -136,5 +136,5 @@ backstop for a `SubagentStop` that never arrives.
 `isChildFinished` predicate (the source this file's own copy was duplicated from) carries the identical
 measured false-positive rate. Out of scope for this pass, per the CEO's own explicit scope boundary ("only the
 clearing half plus the fail-closed rule and that record; nothing else in the diff reopens") — but that file is
-not left exposed the identical way: `scripts/parked-watch.mjs` already provides an independent backstop for its
+not left exposed the identical way: `.grimorio/scripts/parked-watch.mjs` already provides an independent backstop for its
 use. See `ref:skill/grimorio.hooks/board-and-wait.md` for that file's own account.

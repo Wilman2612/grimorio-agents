@@ -140,7 +140,7 @@ own VALIDATION check is the second.
    - **WHEN this AS-IS-ONLY branch fires ⟶ the converged deliverable's own lead file (Phase 6/7's own job to
      actually place it, named here so the obligation is traceable) MUST carry the EXACT literal marker string
      `AS-IS-ONLY — dependencies-as-they-are voice; reuse/build framing FORBIDDEN.` verbatim, once, in its own
-     reader-facing text** — this exact string is what a deterministic tool (`node scripts/audit-chain.mjs
+     reader-facing text** — this exact string is what a deterministic tool (`node .grimorio/scripts/audit-chain.mjs
      --as-is-voice`) gates on; the string must be verbatim, never paraphrased.
    - Ground this explicitly as closing a NAMED defect: a prior AS-IS design of a shipped API carried a literal
      "## Reused UNCHANGED" heading, in the reader's path, because this element was mandated unconditionally

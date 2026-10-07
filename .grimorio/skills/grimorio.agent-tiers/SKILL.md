@@ -30,7 +30,7 @@ Every agent carries its tier in its own frontmatter, so escalating is a delibera
 
 **ALWAYS omit `model` on a normal spawn.** Passing it does not "make the choice explicit"; it overrides the
 declared one. ref:repo/.grimorio/AGENT-TIERS.md is the live register of what every agent declares, checked on
-every commit by ref:repo/scripts/check-agent-tiers.mjs.
+every commit by ref:repo/.grimorio/scripts/check-agent-tiers.mjs.
 
 **NEVER pass `model` UPWARD from an agent's declared tier without a NAMED reason** — a reason specific to the
 reasoning the task needs, never "it's important". A downward pass is a different case:
@@ -235,7 +235,7 @@ The cheapest correct shape for a big build is a CASCADE, not an all-Opus fleet:
   Sonnet.) If a task is big, an Opus orchestrator SPLITS it into Sonnet pieces; it does not grind through it.
 - **WHEN an agent's frontmatter disallows the `Agent` tool ⟶ that same frontmatter must never declare
   `model: opus` or `model: fable`.** An agent that cannot spawn can only generate the work itself. Enforced by
-  ref:repo/scripts/check-agent-tiers.mjs in ref:repo/scripts/pre-commit.sh.
+  ref:repo/.grimorio/scripts/check-agent-tiers.mjs in ref:repo/.grimorio/scripts/pre-commit.sh.
 - **Only the root orchestrator (main loop) schedules Opus agents**, and only as sub-orchestrators that divide.
   A Sonnet/Haiku agent that hits something above its tier compiles the context and escalates to its parent; it
   does not silently churn at its own tier.

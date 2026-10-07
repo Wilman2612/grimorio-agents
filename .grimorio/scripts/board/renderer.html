@@ -1,0 +1,385 @@
+<title>Grimorio Control</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<style>
+  /* ---------------------------------------------------------------------
+     MOBILE FIRST. Everything below the first media query is the phone
+     layout — single column, stacked, compact. Wider screens ADD to it:
+     the date rail becomes a column, label/value pairs sit side by side.
+     Never invert this; a desktop base with narrow overrides is how the
+     phone ends up as an afterthought.
+     --------------------------------------------------------------------- */
+  :root{
+    --ground:#f5f3ef; --card:#fbfaf7; --ink:#181a1d; --ink-2:#4b4f56; --ink-3:#686c74;
+    --rule:#d8d4cc; --hair:#e6e2da;
+    --brass:#8d6716; --live:#31567c; --good:#3d6b47; --crit:#a2413a;
+    --crit-bg:#f7e4e1;
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+    --ground:#141518; --card:#1b1d21; --ink:#eceae6; --ink-2:#a7a79f; --ink-3:#909289;
+    --rule:#2c2e32; --hair:#242629;
+    --brass:#c9a04e; --live:#7fa3ce; --good:#79ab80; --crit:#d0796b;
+    --crit-bg:#2a1d1a; } }
+  :root[data-theme="dark"]{
+    --ground:#141518; --card:#1b1d21; --ink:#eceae6; --ink-2:#a7a79f; --ink-3:#909289;
+    --rule:#2c2e32; --hair:#242629;
+    --brass:#c9a04e; --live:#7fa3ce; --good:#79ab80; --crit:#d0796b;
+    --crit-bg:#2a1d1a; }
+
+  *{box-sizing:border-box}
+  body{background:var(--ground); color:var(--ink);
+       font-family:"IBM Plex Sans",system-ui,sans-serif;
+       font-size:15.5px; line-height:1.55; padding:0 15px 56px;
+       -webkit-font-smoothing:antialiased}
+  .sheet{max-width:1000px; margin:0 auto}
+
+  /* Long tokens — SHAs, paths, branch names — wrap instead of widening the page. */
+  .nm,.wy,.said,.blk,.grid dd,.cx .l,.ev,.foot,code{overflow-wrap:anywhere}
+
+  .mast{padding:30px 0 12px; border-bottom:2px solid var(--ink);
+        display:flex; flex-wrap:wrap; align-items:flex-end;
+        justify-content:space-between; gap:8px 12px}
+  .mast h1{font-family:"Fraunces",Georgia,serif; font-variation-settings:"opsz" 140;
+           font-size:1.75rem; font-weight:600; letter-spacing:-.025em; line-height:1; margin:0}
+  .meta{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.74rem;
+        color:var(--ink-3); line-height:1.6; text-align:left}
+
+  .tally{display:flex; flex-wrap:wrap; margin-top:18px;
+         border:1px solid var(--hair); border-radius:2px; overflow:hidden}
+  .ty{flex:1 1 46%; padding:9px 13px; background:var(--card); border-bottom:1px solid var(--hair)}
+  .ty .n{font-family:"Fraunces",Georgia,serif; font-variation-settings:"opsz" 144;
+         font-size:1.6rem; font-weight:600; line-height:1; font-variant-numeric:tabular-nums}
+  .ty .k{font-size:.69rem; text-transform:uppercase; letter-spacing:.09em; color:var(--ink-3); margin-top:2px}
+  .ty.blocked .n{color:var(--crit)} .ty.progress .n{color:var(--live)}
+  .ty.queued .n{color:var(--brass)} .ty.done .n{color:var(--good)}
+
+  h2{font-family:"Fraunces",Georgia,serif; font-variation-settings:"opsz" 22;
+     font-size:1.15rem; font-weight:600; letter-spacing:-.01em; margin:34px 0 0;
+     display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between;
+     gap:2px 12px; padding-bottom:8px; border-bottom:1px solid var(--rule)}
+  h2 em{font-family:"IBM Plex Mono",ui-monospace,monospace; font-style:normal;
+        font-size:.69rem; font-weight:400; color:var(--ink-3);
+        letter-spacing:.05em; text-transform:uppercase}
+  .lede{color:var(--ink-2); font-size:.91rem; margin:11px 0 0; max-width:72ch}
+
+  /* An entry: on a phone the date line sits above the body, both carrying the
+     state colour on their own left edge so the signal survives the stacking. */
+  /* An entry is a <details>. Its <summary> is the always-visible line: date rail
+     plus title. Everything else opens on demand. */
+  .row{padding:0; border-bottom:1px solid var(--hair)}
+  .row > summary{display:grid; grid-template-columns:1fr; gap:4px 0;
+                 padding:13px 0 13px 0; cursor:pointer; list-style:none}
+  .row > summary::-webkit-details-marker{display:none}
+  .row > summary::marker{content:""}
+  .row > summary:hover .nm{color:var(--ink)}
+  .row > summary:focus-visible{outline:2px solid var(--live); outline-offset:2px}
+  /* A caret that turns, so a closed entry reads as openable rather than as all there is. */
+  .row > summary .nm::after{content:"▸"; color:var(--ink-3); font-size:.8em;
+                            margin-left:7px; display:inline-block; transition:transform .12s}
+  .row[open] > summary .nm::after{transform:rotate(90deg)}
+  .row > .bd{padding-bottom:14px}
+  .rail{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.71rem;
+        color:var(--ink-3); font-variant-numeric:tabular-nums;
+        display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 10px;
+        padding-left:15px; border-left:3px solid transparent}
+  .rail b{color:var(--ink-2); font-weight:500}
+  .rail .wait{color:var(--brass)} .rail .old{color:var(--crit)}
+  .bd{display:flex; flex-direction:column; gap:4px;
+      border-left:3px solid transparent; padding-left:15px}
+  .row.blocked .bd,.row.blocked .rail{border-left-color:var(--crit)}
+  .row.progress .bd,.row.progress .rail{border-left-color:var(--live)}
+  .row.queued .bd,.row.queued .rail{border-left-color:var(--brass)}
+  .row.done .bd,.row.done .rail{border-left-color:var(--good)}
+  .nm{font-size:1rem; font-weight:500; letter-spacing:-.004em}
+  .row.done .nm{font-size:.94rem; font-weight:400}
+  .ref{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.7rem;
+       color:var(--ink-3); font-weight:400}
+  .said{border-left:2px solid var(--hair); padding-left:11px; color:var(--ink-2);
+        font-size:.875rem; font-style:italic; max-width:66ch}
+  .wy{color:var(--ink-2); font-size:.89rem; max-width:66ch}
+  .row.done .wy{font-size:.85rem}
+  .blk{background:var(--crit-bg); border-left:3px solid var(--crit);
+       padding:9px 12px; font-size:.87rem; color:var(--ink-2); max-width:66ch}
+  .blk b{color:var(--ink); font-weight:500}
+
+  .call{background:var(--card); border:1px solid var(--hair); border-left:3px solid var(--brass);
+        border-radius:2px; padding:0; margin-top:14px}
+  .call > summary{padding:15px 16px; cursor:pointer; list-style:none}
+  .call > summary::-webkit-details-marker{display:none}
+  .call > summary::marker{content:""}
+  .call > summary:focus-visible{outline:2px solid var(--live); outline-offset:-2px}
+  .call > .grid{padding:0 16px 16px}
+  .call .q{font-family:"Fraunces",Georgia,serif; font-variation-settings:"opsz" 30;
+           font-size:1.14rem; font-weight:600; letter-spacing:-.012em; line-height:1.25; margin:0 0 3px}
+  .call .q::after{content:"▸"; color:var(--ink-3); font-size:.72em; margin-left:8px;
+                  display:inline-block; transition:transform .12s}
+  .call[open] .q::after{transform:rotate(90deg)}
+  .call .vd{font-size:.95rem; color:var(--brass); font-weight:500}
+  .grid{display:grid; grid-template-columns:1fr; gap:2px 0; margin:0}
+  .grid dt{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.66rem;
+           letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); padding-top:.7em}
+  .grid dt:first-of-type{padding-top:0}
+  .grid dd{margin:0; color:var(--ink-2); font-size:.92rem}
+
+  .census{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+          gap:14px 18px; margin-top:14px}
+  .cx{border-top:2px solid var(--rule); padding-top:8px}
+  .cx.bad{border-top-color:var(--crit)} .cx.mid{border-top-color:var(--brass)}
+  .cx .n{font-family:"Fraunces",Georgia,serif; font-variation-settings:"opsz" 144;
+         font-size:1.95rem; font-weight:600; line-height:1; letter-spacing:-.035em;
+         font-variant-numeric:tabular-nums}
+  .cx.bad .n{color:var(--crit)} .cx.mid .n{color:var(--brass)} .cx.dim .n{color:var(--ink-3)}
+  .cx .l{font-size:.84rem; color:var(--ink-2); margin-top:3px}
+
+  .ev{background:var(--crit-bg); border-left:3px solid var(--crit); padding:13px 15px;
+      margin-top:18px; font-size:.89rem; color:var(--ink-2)}
+  .ev b{color:var(--ink); font-weight:500}
+  code{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.85em}
+  .foot{margin-top:44px; padding-top:14px; border-top:1px solid var(--rule);
+        font-size:.78rem; color:var(--ink-3); max-width:72ch}
+  .diag{background:var(--crit-bg); border-left:3px solid var(--crit);
+        padding:15px 16px; margin:24px 0; font-size:.91rem}
+  .diag code{display:block; margin-top:8px; color:var(--ink-2); font-size:.78rem; white-space:pre-wrap}
+  [hidden]{display:none!important}
+
+  /* --- From here up it is a phone. Below, what a wider screen ADDS. --- */
+  @media (min-width:620px){
+    body{font-size:16px; padding:0 22px 80px}
+    .mast{padding:42px 0 14px}
+    .mast h1{font-size:clamp(1.9rem,5vw,2.6rem)}
+    .meta{text-align:right}
+    .ty{flex:1 1 108px; padding:10px 14px; border-right:1px solid var(--hair); border-bottom:none}
+    .ty:last-child{border-right:none}
+    .ty .n{font-size:1.7rem}
+    h2{font-size:1.2rem; margin-top:42px; flex-wrap:nowrap; gap:14px}
+    /* The date becomes a true rail: its own column, aligned down the page. */
+    .row > summary{grid-template-columns:92px minmax(0,1fr); gap:0 18px; padding:14px 0}
+    .row > .bd{margin-left:110px}
+    .rail{display:block; padding-top:.3em; padding-left:0; border-left:none; line-height:1.5}
+    .rail b{display:block}
+    .row.blocked .rail,.row.progress .rail,.row.queued .rail,.row.done .rail{border-left-color:transparent}
+    .nm{font-size:1.02rem} .row.done .nm{font-size:.95rem}
+    .call > summary{padding:18px 21px}
+    .call > .grid{padding:0 21px 20px}
+    .call .q{font-size:1.24rem}
+    .grid{grid-template-columns:100px minmax(0,1fr); gap:9px 20px; align-items:baseline}
+    .grid dt{padding-top:.28em}
+    .grid .sep{border-top:1px solid var(--hair); padding-top:.85em; margin-top:.2em}
+    .census{grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:16px 22px}
+    .cx .n{font-size:2.15rem}
+  }
+  @media (max-width:379px){
+    .ty{flex:1 1 100%}
+    .mast h1{font-size:1.55rem}
+  }
+</style>
+
+<div class="sheet">
+  <div class="mast"><h1>Grimorio Control</h1><div class="meta" id="meta">loading…</div></div>
+  <div class="diag" id="diag" hidden></div>
+  <div id="board" hidden></div>
+  <div class="foot" id="foot" hidden></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var $d=document.getElementById("diag"), $b=document.getElementById("board"),
+      $m=document.getElementById("meta"), $f=document.getElementById("foot");
+
+  function el(t,c,x){var n=document.createElement(t); if(c)n.className=c; if(x!=null)n.textContent=x; return n;}
+  function rich(n,s){
+    var p=String(s==null?"":s).split(/`([^`]+)`/);
+    for(var i=0;i<p.length;i++){ if(i%2) n.appendChild(el("code",null,p[i]));
+      else if(p[i]) n.appendChild(document.createTextNode(p[i])); }
+    return n;
+  }
+  function byOrder(a,b){ return (a.order||0)-(b.order||0); }
+
+  var TODAY = new Date();
+  function daysSince(d){
+    if(!d) return null;
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d);
+    if(!m) return null;
+    var t = Date.parse(d + "T00:00:00Z");
+    if(isNaN(t)) return null;
+    var dt = new Date(t);
+    if(dt.getUTCFullYear() !== +m[1] || dt.getUTCMonth()+1 !== +m[2] || dt.getUTCDate() !== +m[3]) return null;
+    return Math.round((TODAY - t)/86400000);
+  }
+  function elapsed(n){ return n===0 ? "today" : (n===1 ? "1 day" : n + " days"); }
+
+  function rail(it, open){
+    var r = el("div","rail");
+    r.appendChild(el("b", null, it.asked || it.date || "—"));
+    if(open){
+      var n = daysSince(it.asked || it.date);
+      if(n != null) r.appendChild(el("span", n>=7 ? "old" : "wait", (n>=7 ? "⚠ " : "") + elapsed(n)));
+    } else if(it.closed){
+      r.appendChild(el("span", null, "closed " + it.closed));
+    }
+    return r;
+  }
+
+  function head(t,note){ var h=el("h2",null,t); if(note) h.appendChild(el("em",null,note)); return h; }
+
+  /* Progressive disclosure, by urgency rather than by taste: what is blocked on
+     the reader and what is moving open themselves, because those are what he came
+     for. Queued and closed stay shut — one tap each — so the page is scannable at
+     rest instead of a wall he has to scroll to search. */
+  function requestRows(title, note, state, items, empty){
+    $b.appendChild(head(title, note));
+    if(!items.length){ $b.appendChild(el("p","lede", empty)); return; }
+    var openState = (state !== "done");
+    var expand = (state === "blocked" || state === "progress");
+    // Closed rows arrive already sorted newest-first by their close date; re-sorting by `order`
+    // would silently put the oldest at the top of a section labelled "most recent".
+    (state === "done" ? items : items.slice().sort(byOrder)).forEach(function(it){
+      var det = el("details","row " + state);
+      if(expand) det.open = true;
+      var sum = el("summary");
+      sum.appendChild(rail(it, openState));
+      var nm = el("div","nm");
+      nm.appendChild(document.createTextNode(it.title || ""));
+      if(it.ref){ nm.appendChild(document.createTextNode(" ")); nm.appendChild(el("span","ref", it.ref)); }
+      if(it.actor){ nm.appendChild(document.createTextNode(" ")); nm.appendChild(el("span","ref", "· " + it.actor)); }
+      sum.appendChild(nm);
+      det.appendChild(sum);
+      var bd = el("div","bd");
+      if(it.said) bd.appendChild(rich(el("div","said"), "«" + it.said + "»"));
+      if(it.why) bd.appendChild(rich(el("div","wy"), it.why));
+      if(it.blocker){
+        var bk = el("div","blk");
+        bk.appendChild(el("b",null,"Blocked: "));
+        rich(bk, it.blocker);
+        bd.appendChild(bk);
+      }
+      det.appendChild(bd);
+      $b.appendChild(det);
+    });
+  }
+
+  function paint(d){
+    $b.textContent="";
+    var m = d.meta || {};
+    $m.textContent=""; rich($m, m.line1 || "");
+    if(m.line2){ $m.appendChild(el("br")); rich($m, m.line2); }
+
+    var reqs = d.requests || [];
+    function of(s){ return reqs.filter(function(r){ return (r.state||"queued") === s; }); }
+    var blocked = of("blocked"), progress = of("progress"), queued = of("queued");
+    // Closed items live in their own collection, sourced from the register's own archive section.
+    // A `done` row still sitting in `requests` is a stale publish; fold it in rather than lose it.
+    var done = (d.closed || []).concat(of("done"));
+    done.sort(function(a,b){ return String(b.closed||b.asked||"").localeCompare(String(a.closed||a.asked||"")); });
+
+    var t = el("div","tally");
+    [["blocked","blocked",blocked.length],["progress","in progress",progress.length],
+     ["queued","queued",queued.length],["done","closed",done.length]].forEach(function(x){
+      var c = el("div","ty " + x[0]);
+      c.appendChild(el("div","n", String(x[2])));
+      c.appendChild(el("div","k", x[1]));
+      t.appendChild(c);
+    });
+    $b.appendChild(t);
+
+    requestRows("Blocked — these need something from you","with the blocking context","blocked",blocked,"None.");
+    requestRows("In progress","","progress",progress,"Nothing running right now.");
+    requestRows("Queued","","queued",queued,"The queue is empty.");
+
+    var dec=(d.decisions||[]).sort(byOrder);
+    if(dec.length){
+      $b.appendChild(head("Decisions I took","yours to revoke"));
+      $b.appendChild(rich(el("p","lede"),"These are mine, not yours, and here is the evidence each was taken on. If one is wrong, it gets revoked and redone."));
+      dec.forEach(function(x){
+        var c=el("details","call");
+        var s=el("summary");
+        s.appendChild(el("div","q", x.title||""));
+        var v=el("div","vd"); v.textContent=(x.verdict||"") + (x.date ? "  ·  " + x.date : "");
+        s.appendChild(v);
+        c.appendChild(s);
+        var dl=el("dl","grid");
+        (x.rows||[]).forEach(function(r,i){
+          var dt=el("dt",null,r.l||""), dd=rich(el("dd",null), r.t||"");
+          if(i>0){ dt.className="sep"; dd.className="sep"; }
+          dl.appendChild(dt); dl.appendChild(dd);
+        });
+        c.appendChild(dl); $b.appendChild(c);
+      });
+    }
+
+    var cen=(d.census||[]).sort(byOrder), ev=d.evidence||null;
+    if(cen.length||ev){
+      $b.appendChild(head("The census",(ev&&ev.note)||""));
+      if(ev&&ev.lede) $b.appendChild(rich(el("p","lede"), ev.lede));
+      if(cen.length){
+        var w=el("div","census");
+        cen.forEach(function(c){
+          var x=el("div","cx "+(c.sev||"dim"));
+          x.appendChild(el("div","n", String(c.n)));
+          x.appendChild(rich(el("div","l"), c.label||""));
+          w.appendChild(x);
+        });
+        $b.appendChild(w);
+      }
+      if(ev&&ev.body){
+        var e=el("div","ev");
+        if(ev.title){ e.appendChild(el("b",null,ev.title)); e.appendChild(document.createTextNode(" ")); }
+        rich(e, ev.body); $b.appendChild(e);
+      }
+    }
+
+    var WINDOW = 10;
+    requestRows("Closed", done.length > WINDOW ? ("most recent " + WINDOW + " of " + done.length) : "",
+                "done", done.slice(0, WINDOW), "Nothing yet.");
+    if(done.length > WINDOW){
+      var more = el("details","row done");
+      var ms = el("summary");
+      ms.appendChild(el("div","rail"));
+      ms.appendChild(el("div","nm", "the earlier " + (done.length - WINDOW) + ", in full"));
+      more.appendChild(ms);
+      var mb = el("div","bd");
+      done.slice(WINDOW).forEach(function(it){
+        var line = el("div","wy");
+        line.appendChild(el("b", null, (it.closed || it.asked || "") + "  "));
+        line.appendChild(document.createTextNode(it.title || ""));
+        if(it.ref){ line.appendChild(document.createTextNode(" ")); line.appendChild(el("span","ref", it.ref)); }
+        mb.appendChild(line);
+      });
+      more.appendChild(mb);
+      $b.appendChild(more);
+    }
+
+    if(m.foot){ $f.textContent=""; rich($f, m.foot); $f.hidden=false; }
+    $d.hidden=true; $b.hidden=false;
+  }
+
+  function diag(title, detail){
+    $d.textContent=""; $d.appendChild(el("b",null,title));
+    if(detail) $d.appendChild(el("code",null,detail));
+    $d.hidden=false; $m.textContent="state unavailable";
+  }
+
+  async function readDoc(db,p){ var s=await db.doc(p).get(); return (s && s.exists) ? s.data() : null; }
+  async function readColl(db,p){ var s=await db.collection(p).get();
+    return ((s && s.docs) || []).map(function(x){ return x.data() || {}; }); }
+
+  (async function(){
+    var db=null, why="";
+    try{
+      if(typeof claude !== "undefined" && claude.use){
+        db = await claude.use("db");
+        if(!db) why='claude.use("db") returned null: not served, not granted, or the module did not load.';
+      } else { why = "window.claude.use does not exist in this view."; }
+    }catch(e){ why = (e && (e.code || e.message)) || "claude.use threw an error."; db=null; }
+    if(!db){ diag("The board could not open its data store.", why); return; }
+    try{
+      var d={};
+      d.meta = (await readDoc(db,"board/meta")) || {};
+      d.evidence = await readDoc(db,"board/evidence");
+      var names=["requests","closed","decisions","census"];
+      for(var i=0;i<names.length;i++) d[names[i]] = await readColl(db, names[i]);
+      paint(d);
+    }catch(e){ diag("The state could not be read.", (e && (e.code || e.message)) || "unknown error"); }
+  })();
+})();
+</script>

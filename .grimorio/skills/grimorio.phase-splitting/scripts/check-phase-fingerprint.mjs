@@ -7,7 +7,7 @@
 
 import { readFileSync, existsSync, appendFileSync, mkdirSync } from 'node:fs';
 import { basename } from 'node:path';
-import { cacheDir, cachePath } from "../../../../scripts/refobl/cache-paths.mjs";
+import { cacheDir, cachePath } from "../../../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 function usageError(msg) {
   console.error(`USAGE ERROR: ${msg}`);

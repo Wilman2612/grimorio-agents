@@ -2,7 +2,7 @@
 
 Third entry in the per-diagram-type reference series (companion to `use-case-diagram.md` and
 `state-machine-diagram.md`). Same job: the exact rules an author must obey, the anti-patterns, and a mechanical
-checklist — so `scripts/diagram-kit/dataflow.mjs` can generate correct-by-construction and lint legacy diagrams.
+checklist — so `.grimorio/scripts/diagram-kit/dataflow.mjs` can generate correct-by-construction and lint legacy diagrams.
 A DFD is a **structural** artifact like a state machine: it shows *what moves where*, never sequence or timing.
 
 **Coverage / viability, stated up front (same discipline as `use-case-diagram.md`'s own coverage note):**

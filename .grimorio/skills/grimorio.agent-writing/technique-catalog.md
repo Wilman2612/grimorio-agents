@@ -55,7 +55,7 @@ authored this file — they have no separate source document of their own beyond
 Group H section, already named above.
 
 **A note on heading punctuation.** Every GROUP heading below (`## GROUP A: ...` through `## GROUP H: ...`) uses a
-colon, not this corpus's usual em-dash, and this is deliberate: `cite:repo/scripts/audit-chain.mjs@12e662b741e5db85e533ef22af37bfd4ee40da43`'s own anchor-resolution
+colon, not this corpus's usual em-dash, and this is deliberate: `cite:repo/.grimorio/scripts/audit-chain.mjs@12e662b741e5db85e533ef22af37bfd4ee40da43`'s own anchor-resolution
 `slug()` collapses an em-dash surrounded by spaces into a double hyphen, which breaks a compound anchor like
 `#group-d-phase-state-machine` — a colon does not. Per-technique headings (`#### A1 — ...`) keep the corpus's
 normal em-dash: a short 2-3 character ID resolves regardless of the separator, verified directly against the
@@ -255,7 +255,7 @@ directly from whether the keyword is used, not tracked as its own measurement; e
 #### C2 — INLINE examples = the REAL output
 - **What it obliges:** 1-3 worked examples fenced inline, the literal artifact a correct run produces, never a description
 - **DEFINED:** cite:skill/grimorio.prompt-writing-quality/SKILL.md@12e662b741e5db85e533ef22af37bfd4ee40da43:236-244; cite:skill/grimorio.agent-writing/SKILL.md@12e662b741e5db85e533ef22af37bfd4ee40da43:223-242
-- **MEASURED:** `cite:repo/scripts/audit-chain.mjs@12e662b741e5db85e533ef22af37bfd4ee40da43 --examples` exits 1 on an `## OUTPUT` with zero fenced blocks
+- **MEASURED:** `cite:repo/.grimorio/scripts/audit-chain.mjs@12e662b741e5db85e533ef22af37bfd4ee40da43 --examples` exits 1 on an `## OUTPUT` with zero fenced blocks
 - **M/O:** M ("ALWAYS give … the REAL, EXACT, reproducible artifact")
 - **STATIC test:** run `audit-chain --examples`; `## OUTPUT` carries a fenced real example, not prose
 - **PROBE:** Ask for an output spec; check the example is a literal artifact, not a paraphrase
@@ -551,7 +551,7 @@ directly from whether the keyword is used, not tracked as its own measurement; e
 #### F5 — Tier discipline
 - **What it obliges:** Cheapest-capable model by rule; Haiku executors, Sonnet standard, Opus/Fable reasoning; planning never Haiku
 - **DEFINED:** cite:skill/grimorio.agent-tiers/SKILL.md@12e662b741e5db85e533ef22af37bfd4ee40da43
-- **MEASURED:** FIRES — cite:repo/scripts/check-agent-tiers.mjs@12e662b741e5db85e533ef22af37bfd4ee40da43 + pre-commit, selftest-proven (DIAGNOSIS)
+- **MEASURED:** FIRES — cite:repo/.grimorio/scripts/check-agent-tiers.mjs@12e662b741e5db85e533ef22af37bfd4ee40da43 + pre-commit, selftest-proven (DIAGNOSIS)
 - **M/O:** M
 - **STATIC test:** spawns declare a tier matched to archetype; no expensive-model inheritance
 - **PROBE:** Have agent fan out gather work; check grunts are tiered down, not left at caller's tier

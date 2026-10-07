@@ -28,10 +28,10 @@ import { createHash } from "node:crypto";
 import path from "node:path";
 import { parseTurnBlocks } from "./verify-cleaned-extract.mjs";
 import { readFileSync as __rfs } from "node:fs";
-// @keep-comment -- the working-memory root lives in ONE place, scripts/refobl/skill-roots.json's
+// @keep-comment -- the working-memory root lives in ONE place, .grimorio/scripts/refobl/skill-roots.json's
 // `workRoot`. Read, never copied: it was the literal "tmp/" in 8 sites, which is the hand-kept-copy
 // shape that file's own comment warns about.
-const WORK_ROOT = JSON.parse(__rfs(new URL("../../../../scripts/refobl/skill-roots.json", import.meta.url), "utf8")).workRoot;
+const WORK_ROOT = JSON.parse(__rfs(new URL("../../../../.grimorio/scripts/refobl/skill-roots.json", import.meta.url), "utf8")).workRoot;
 
 // @keep-comment The retention window is a single named constant so a future pass can change it without
 // reading the rest of this file. WHY 7: the CEO left the exact number open (7 or 15, "I don't know,

@@ -27,7 +27,7 @@ from inside a phase chain at all — this file is the wiring, not a new mechanis
 gate. The closest EXISTING precedent for "run a script against what was just produced, gate progression on its
 exit code, loop back on FAIL" already lives in this same corpus, at
 ref:skill/grimorio.agent-writing/system-keeper-phases/phase-c-verification-review.md's own DETERMINISTIC HARNESS CHECK — its
-step 5 runs ref:repo/scripts/audit-chain.mjs's own `--graph-first`/`--examples` pair — and at
+step 5 runs ref:repo/.grimorio/scripts/audit-chain.mjs's own `--graph-first`/`--examples` pair — and at
 ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md's own step 7a — this file's own algorithm
 below is that same shape, applied to ref:repo/.grimorio/skills/grimorio.phase-splitting/scripts/check-phase-fingerprint.mjs instead.
 

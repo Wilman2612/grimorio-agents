@@ -2,7 +2,7 @@
 // Records only — never wakes, joins, or notifies a parent; that is the watcher's job.
 import fs from "fs";
 import path from "path";
-import { cacheDir } from "../../scripts/refobl/cache-paths.mjs";
+import { cacheDir } from "../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 const NA = "-";
 

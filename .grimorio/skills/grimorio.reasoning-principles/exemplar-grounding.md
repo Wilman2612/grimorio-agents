@@ -17,7 +17,7 @@ already carries the keeper's own attribution rather than the CEO's.
 factual CLAIM is already required everywhere a claim gets made: ref:skill/grimorio.fan-out/researcher-phases/phase-3-converge-and-close.md's own
 "Ground every claim in a real, cited source," ref:agent/grimorio.scout/scout-behavior.md's identical line, and
 ref:agent/grimorio.solution-architect/behavior.md's requirement to research a capability "to current, primary
-sources." ref:repo/scripts/audit-chain.mjs's unpinned-cite check enforces the mechanical half of the same discipline —
+sources." ref:repo/.grimorio/scripts/audit-chain.mjs's unpinned-cite check enforces the mechanical half of the same discipline —
 that a `cite:` actually resolves and, once touched, carries a revision pin. None of that is restated here.
 
 **EXEMPLAR-grounding is a different act, and nothing in the corpus required it until now.** It means retrieving

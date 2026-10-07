@@ -53,7 +53,7 @@ though the invariant has an exception it does not have, which is worse than stat
 
 `→` is already the POINTER separator (`-> skill → "Section"`) and appears **1,197 times** in the corpus.
 Reusing it as a rule's condition-to-imperative separator makes a pointer and a rule indistinguishable to a
-reader and to any line-based tooling — found by running the auditor (ref:repo/scripts/audit-chain.mjs) against the
+reader and to any line-based tooling — found by running the auditor (ref:repo/.grimorio/scripts/audit-chain.mjs) against the
 corpus, not by reasoning about it in the abstract.
 
 `⟶` was chosen over the more obvious doubled arrow `→→`: `→→` CONTAINS `→` as a literal substring, so any
@@ -66,7 +66,7 @@ Pointer (existing, unchanged):  -> `agent-writing` → "HARD RULES ARE THE ONLY 
 Rule (this convention):         **WHEN a file passes ~500 lines ⟶ treat it as a smell and split or trim it.**
 ```
 
-ref:repo/scripts/audit-chain.mjs still expects `→` only and does not yet parse `⟶` — that gap is a known,
+ref:repo/.grimorio/scripts/audit-chain.mjs still expects `→` only and does not yet parse `⟶` — that gap is a known,
 deliberately deferred follow-up, not something to patch from inside this file.
 
 ---
@@ -125,7 +125,7 @@ cite:ext/project@rev#path         proof from a tree that is not ours — always 
 
 **A `skill/<x>` reference whose target has MOVED INTO A STORE — today, only `memory` — still resolves, but
 ONLY when no skill root holds it, and every such resolution is LOGGED as a self-heal** (`logSelfHeal` in
-ref:repo/scripts/refobl/resolve.cjs, the same mechanism as the `repo` store's own legacy-prefix fallback, one
+ref:repo/.grimorio/scripts/refobl/resolve.cjs, the same mechanism as the `repo` store's own legacy-prefix fallback, one
 axis over). **It exists ONLY for the files frozen to the CEO by grimorio-conduct rule 5c** — `.claude/hooks/**` and
 `CLAUDE.md` itself, both locked from being edited by that rule. Only `CLAUDE.md` is confirmed writing the
 stale `ref:skill/grimorio.po-memory` form today, for a skill that has actually moved into the `memory` store;
@@ -137,7 +137,7 @@ tolerated debt from before the store existed, never a second valid form to keep 
 ### WHEN AN ANCHOR IS OWED — the reader's cost, not the citing sentence
 
 An `#anchor` is a READ INSTRUCTION, not a bookmark. `ref:skill/{name}/{file}.md#section` means *extract that section*:
-`scripts/refobl/read.cjs` performs exactly that, resolving the reference and printing from that heading to
+`.grimorio/scripts/refobl/read.cjs` performs exactly that, resolving the reference and printing from that heading to
 the next heading of the same or shallower depth — one section, not one document. Run without an anchor, it
 prints the target's INDEX (line numbers plus headings) instead of the target, so a reader chooses a section
 before loading anything.
@@ -166,7 +166,7 @@ the fix is to section or split the target, never to leave the reference bare.
    It declares a WHOLE-SKILL dependency, and the harness loads a skill entire, so an anchor there would not
    narrow a read, it would change what the line SAYS — from *"this skill is loaded"* to *"load only this
    section"*. `ref:skill/<name>` is NOT exempt: that one is a pointer, and a pointer into a 400-line
-   `SKILL.md` is exactly the read an anchor exists to cut. `scripts/audit-chain.mjs`'s `wholeSkillLoad` check
+   `SKILL.md` is exactly the read an anchor exists to cut. `.grimorio/scripts/audit-chain.mjs`'s `wholeSkillLoad` check
    enforces this split mechanically.
 2. **An INDEX ROW** — a line in a README or index whose whole purpose is *"here is that document"*, where the
    reader genuinely wants the whole file.
@@ -178,7 +178,7 @@ The CEO's diagnosis is what forced this, in translation (2026-08-05): *"So you'r
 entire file instead of doing a grep? You could even put a line count if you wanted, though it would be
 better to extract up to the next section."*
 
-VERIFY the rule is live: `node scripts/audit-chain.mjs --anchorless | tail -1` and `node scripts/audit-chain.mjs
+VERIFY the rule is live: `node .grimorio/scripts/audit-chain.mjs --anchorless | tail -1` and `node .grimorio/scripts/audit-chain.mjs
 --anchors | tail -1`.
 
 **NEVER write a path without a relation prefix.** A bare `foo/bar.md` in a sentence is a reference the
@@ -344,7 +344,7 @@ adding a citation never writes the bare `cite:repo/path` form — only `cite:rep
 commit current at the moment the claim was checked against the file.
 
 **NEVER bulk-pin the 215 citations already in the corpus that predate this convention.** -> live count:
-`node scripts/audit-chain.mjs` → "cite refs PINNED to a revision" (215 is the denominator at this writing;
+`node .grimorio/scripts/audit-chain.mjs` → "cite refs PINNED to a revision" (215 is the denominator at this writing;
 treat it as stale and re-run — the same discipline this file already applies to every other number in §3).
 Nobody recorded, at the moment each of those citations was first written, which commit its claim was verified
 against — so pinning them retroactively means GUESSING a revision, and a guessed pin is worse than no pin at
@@ -377,7 +377,7 @@ absolute.
 **So the conversion runs in two different directions depending on where you are, and confusing them undoes
 the fix:** inside a `SKILL.md`, an intra-skill reference converts absolute→relative; everywhere else, a `./`
 reference still converts relative→absolute. Don't apply one direction where the other belongs. -> the live
-count of each direction: `node scripts/audit-chain.mjs` reports them as "relative intra-skill refs in
+count of each direction: `node .grimorio/scripts/audit-chain.mjs` reports them as "relative intra-skill refs in
 SKILL.md (CORRECT, exportable)" vs "RELATIVE refs still to make absolute" — cite the live command, not a
 frozen number: treat any number printed here as already stale and re-run the auditor, the same discipline
 this file already uses elsewhere in §3.
@@ -434,7 +434,7 @@ exactly). Where the "93" figure came from could not be reconstructed at executio
 honestly rather than force a match neither figure can currently source.
 
 **The corpus holds references in every prior form; 0 are in this one yet — say that plainly, this is a spec,
-not a completed migration.** `node scripts/audit-chain.mjs` (the auditor shipped in commit `916684b`) is the
+not a completed migration.** `node .grimorio/scripts/audit-chain.mjs` (the auditor shipped in commit `916684b`) is the
 source of truth for the live figure, not this paragraph — editing this very section changes what it counts,
 so treat any number printed here as already stale and re-run the auditor rather than trust the page. At last
 edit it reported `TWO-AXIS refs (relation x store)  0 / 1798`, broken down `import 0 · ref 0 · cite 0`, with

@@ -5,7 +5,7 @@
 import fs from "fs";
 import path from "path";
 import * as lib from "./board-reconcile-lib.mjs";
-import { cachePath, cacheRelative } from "../../scripts/refobl/cache-paths.mjs";
+import { cachePath, cacheRelative } from "../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 // --- Constants, all overridable via env (same idiom as subagentstop-wait.cjs / board-write-check.cjs) -----
 const SESSION_BLOCK_CAP = Number(process.env.BOARD_RECONCILE_SESSION_CAP) || 3;

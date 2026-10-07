@@ -2,7 +2,7 @@
 // transcript. Design: ref:memory/grimorio.system-design-memory/designs/platform/turn-declaration-hook/design.md
 import path from "path";
 import { loadIndex, ledgerLine } from "./turn-ledger-lib.mjs";
-import { cachePath } from "../../scripts/refobl/cache-paths.mjs";
+import { cachePath } from "../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 const root = process.env.CLAUDE_PROJECT_DIR || ".";
 const INDEX = cachePath("ask-index.json", root);

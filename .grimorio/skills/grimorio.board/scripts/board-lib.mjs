@@ -4,7 +4,7 @@
 import { execFileSync } from "child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import path from "path";
-import { cachePath } from "../../../../scripts/refobl/cache-paths.mjs";
+import { cachePath } from "../../../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 const root = process.env.CLAUDE_PROJECT_DIR || ".";
 

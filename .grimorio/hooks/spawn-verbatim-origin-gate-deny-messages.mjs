@@ -3,7 +3,7 @@
 // spawn-verbatim-origin-gate.mjs (the implementation entry); never run standalone. Full WHY, every element's
 // own design history: ref:skill/grimorio.hooks/spawn-gates.md -> H11. @keep-comment
 import { LABEL_ADJACENCY_WINDOW } from "./spawn-verbatim-origin-gate-text-checks.mjs";
-import { cacheRelative } from "../../scripts/refobl/cache-paths.mjs";
+import { cacheRelative } from "../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 // denyMessage() stays a short orchestrator, under skill/grimorio.javascript's 20-line function cap, by
 // splitting BUSINESS RESPONSIBILITY into one named helper per message section below. Every helper is a pure

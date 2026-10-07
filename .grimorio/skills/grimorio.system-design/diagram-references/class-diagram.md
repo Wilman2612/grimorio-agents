@@ -2,7 +2,7 @@
 
 Third entry in the per-diagram-type reference series (companion to `use-case-diagram.md` and
 `state-machine-diagram.md`). Same job: the exact rules an author must obey, the anti-patterns, and a
-mechanical checklist — so `scripts/diagram-kit/classdiagram.mjs` can generate correct-by-construction and
+mechanical checklist — so `.grimorio/scripts/diagram-kit/classdiagram.mjs` can generate correct-by-construction and
 lint legacy diagrams. A class diagram is the one UML type with **two distinct, legitimate perspectives**
 on the same subject matter (Larman's own point, ch.9): the **domain/conceptual model** (vocabulary, no
 operations) and the **design class diagram** (types, visibility, operations) — this file grounds both.

@@ -8,8 +8,8 @@ without reading 34 files by hand.
 ## KEEPING THIS TABLE CURRENT
 
 **WHEN you change the `model:` or `disallowedTools:` line of any `.claude/agents/*.md` shell ⟶ run
-`node scripts/check-agent-tiers.mjs --write` and commit the regenerated table with that change.** You do not
-have to remember to: `scripts/pre-commit.sh` runs the same script WITHOUT `--write` on every commit, and it
+`node .grimorio/scripts/check-agent-tiers.mjs --write` and commit the regenerated table with that change.** You do not
+have to remember to: `.grimorio/scripts/pre-commit.sh` runs the same script WITHOUT `--write` on every commit, and it
 REFUSES a commit whose table no longer reports what the shells actually declare — naming this file and
 printing the command that repairs it. It refuses the two neighbouring failures too: this file deleted from the
 working tree while still committed, and this file present with its generated-table markers stripped out.
@@ -35,13 +35,13 @@ for f in .claude/agents/*.md; do sed -i 's/^model: opus$/model: sonnet/' "$f"; d
 ```
 
 Adjust the `sed` pattern for the tier you are changing from/to, then run
-`node scripts/check-agent-tiers.mjs --write` to bring THE TABLE below back in step. Running it without
+`node .grimorio/scripts/check-agent-tiers.mjs --write` to bring THE TABLE below back in step. Running it without
 `--write` is what the commit gate does: it refuses a commit that leaves any shell without a declared `model:`,
 or with `opus`/`fable` paired with `disallowedTools: Agent`, or that leaves this file's table out of step.
 
 ## THE TWO FLOORS A USER MAY NOT CROSS
 
-`scripts/check-agent-tiers.mjs` refuses the commit otherwise:
+`.grimorio/scripts/check-agent-tiers.mjs` refuses the commit otherwise:
 
 1. **Every shell must declare a `model:` key.** An undeclared model silently reintroduces the caller's own
    (usually expensive) inherited tier — the exact failure the tier doctrine exists to close.
@@ -54,8 +54,8 @@ or with `opus`/`fable` paired with `disallowedTools: Agent`, or that leaves this
 Measured in this repo (grimorio.board-writer added this pass): 34 agent shells declare a tier (35 `.md` files
 under `.claude/agents/`; `harness.md` is a guardrail with no frontmatter, not a 35th agent). Per-tier counts:
 fable 1 · opus 5 · sonnet 26 · haiku 2, none undeclared. Exactly three things read a shell's `model:` field: the Claude
-Code platform itself (the documented frontmatter field), `scripts/check-agent-tiers.mjs` (the pre-commit gate),
-and `scripts/agent-stats.sh` (reporting). No hook reads or rewrites it — all hooks under `.claude/hooks/` were
+Code platform itself (the documented frontmatter field), `.grimorio/scripts/check-agent-tiers.mjs` (the pre-commit gate),
+and `.grimorio/scripts/agent-stats.sh` (reporting). No hook reads or rewrites it — all hooks under `.claude/hooks/` were
 grepped; the one hit, `log-agent-invocation.cjs`, logs a per-spawn `model` override parameter, a different
 thing, not the shell's own declared default. `.claude/settings.json` has exactly two top-level keys, `hooks` and
 `env` — no `model`, no `agents`. No central override exists anywhere, and nothing has ever tried to build one.
@@ -65,7 +65,7 @@ that authored this file. State that boundary as current truth, not as a to-do.
 
 ## THE TABLE
 
-<!-- BEGIN AGENT-TIER-TABLE (generated: node scripts/check-agent-tiers.mjs --write) -->
+<!-- BEGIN AGENT-TIER-TABLE (generated: node .grimorio/scripts/check-agent-tiers.mjs --write) -->
 | Agent | Tier | Can it spawn? |
 |---|---|---|
 | `grimorio.adviser` | fable | yes |

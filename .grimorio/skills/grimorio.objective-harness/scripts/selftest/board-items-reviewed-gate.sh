@@ -4,10 +4,10 @@
 # real ${CACHE_REL}/ -- everything happens inside a throwaway temp git repo, CLAUDE_PROJECT_DIR pinned
 # to it so board-lib.mjs's own MAIN_CHECKOUT resolution never escapes to the real repo.
 set -euo pipefail
-# @keep-comment -- the cache root comes from scripts/refobl/skill-roots.json's `cacheRoot`, the SAME
+# @keep-comment -- the cache root comes from .grimorio/scripts/refobl/skill-roots.json's `cacheRoot`, the SAME
 # declaration the hooks read. A literal here is how all seven of these selftests broke at once when
 # the root moved: the fixture wrote to one path and the code under test read the other.
-CACHE_REL="$(node -p "require('$(git rev-parse --show-toplevel)/scripts/refobl/cache-paths.cjs').cacheRoot()")"
+CACHE_REL="$(node -p "require('$(git rev-parse --show-toplevel)/.grimorio/scripts/refobl/cache-paths.cjs').cacheRoot()")"
 here=$(cd "$(dirname "$0")/../../../../.." && pwd)
 script="$here/.grimorio/skills/grimorio.board/scripts/board-close-items-claim.mjs"
 fail=0

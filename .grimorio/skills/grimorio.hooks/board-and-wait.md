@@ -209,7 +209,7 @@ That script's `findParked` answers "has this child ALREADY finished and been ign
 RETROSPECTIVE query the top-level session runs to rescue an agent that already went silent. This hook fires AT
 the `SubagentStop` moment, before any turn has ended, and needs the OPPOSITE predicate: "is there a child,
 dispatched by ME, that has NOT finished yet, right now." That predicate did not exist anywhere in this repo
-before this hook; only the log-parsing primitive (`scripts/lib/agent-log-rows.mjs`) is reused, never
+before this hook; only the log-parsing primitive (`.grimorio/scripts/lib/agent-log-rows.mjs`) is reused, never
 `findParked` itself.
 
 **State: log-derived counts, not a JSON blob.** `agentBlockCount`/`totalBlocks` are derived by scanning the log
@@ -229,6 +229,6 @@ file's own comment), never merely exist.
 **Forward-finding this file itself carries, unfixed by design.** The `FINAL_CLOSE`/`isChildFinished` predicate
 this hook uses is the SAME one measured at 71/327 and 68/327 false-positive rates against `keeper-worktree-guard.cjs`'s
 own clearing question (`ref:skill/grimorio.hooks/worktree-and-occupancy.md`, H12). This hook is not left
-exposed the identical way, because `scripts/parked-watch.mjs` already provides an independent backstop — a
+exposed the identical way, because `.grimorio/scripts/parked-watch.mjs` already provides an independent backstop — a
 top-level session watch that can notice and wake a genuinely parked parent, per `ref:skill/grimorio.conduct`
 rule 8 — which H12's own tree-occupancy mechanism never had.

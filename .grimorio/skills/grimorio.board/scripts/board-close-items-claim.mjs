@@ -21,7 +21,7 @@ import { execFileSync } from "child_process";
 import { readFileSync, appendFileSync, mkdirSync, existsSync } from "fs";
 import path from "path";
 import { requireSpawnedActor, spawnedAgentExists, MAIN_CHECKOUT } from "./board-lib.mjs";
-import { cachePath } from "../../../../scripts/refobl/cache-paths.mjs";
+import { cachePath } from "../../../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 const CLAIMS = cachePath("board-close-items-claims.jsonl", MAIN_CHECKOUT);
 

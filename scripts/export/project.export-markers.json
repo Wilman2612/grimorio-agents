@@ -1,0 +1,11 @@
+{
+  "_": "THE ADOPTER'S OWN VOCABULARY. Fill these with the words that identify YOUR product: its service names, its libraries, its paths. grimorio's portability scan and its export leak gate both read this file, and both announce that they prove nothing while it is empty.",
+  "markers": [],
+  "reviewed": {},
+  "secretPatterns": [],
+  "personalPatterns": [],
+  "credentialFileShapes": [
+    "[.](env|key|pem|p12|pfx)$"
+  ],
+  "portabilityMarkers": []
+}

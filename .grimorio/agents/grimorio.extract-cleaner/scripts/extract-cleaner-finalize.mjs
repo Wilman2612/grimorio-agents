@@ -31,10 +31,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseTurnBlocks } from "./verify-cleaned-extract.mjs";
 import { readFileSync as __rfs } from "node:fs";
-// @keep-comment -- the working-memory root lives in ONE place, scripts/refobl/skill-roots.json's
+// @keep-comment -- the working-memory root lives in ONE place, .grimorio/scripts/refobl/skill-roots.json's
 // `workRoot`. Read, never copied: it was the literal "tmp/" in 8 sites, which is the hand-kept-copy
 // shape that file's own comment warns about.
-const WORK_ROOT = JSON.parse(__rfs(new URL("../../../../scripts/refobl/skill-roots.json", import.meta.url), "utf8")).workRoot;
+const WORK_ROOT = JSON.parse(__rfs(new URL("../../../../.grimorio/scripts/refobl/skill-roots.json", import.meta.url), "utf8")).workRoot;
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_SWEEP_ROOT = WORK_ROOT + "extract-cleaner";

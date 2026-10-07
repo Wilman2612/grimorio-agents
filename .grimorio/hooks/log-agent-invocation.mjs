@@ -2,7 +2,7 @@
 import fs from "fs";
 import path from "path";
 import { execFileSync } from "child_process";
-import { cacheDir } from "../../scripts/refobl/cache-paths.mjs";
+import { cacheDir } from "../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 const NA = "-";
 

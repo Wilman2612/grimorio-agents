@@ -2,7 +2,7 @@
 // @size-exempt: one shared `workdir` and fixtures deliberately reused ACROSS cases (Case 8 reuses Case 6's;
 // Cases 10-12 share in10/ref10), so a split would either duplicate every fixture or need a third
 // shared-fixture module whose only purpose is to undo the split -- the same reason the sibling bash suite
-// scripts/selftest/spawn-verbatim-origin-gate.mjs carries its own exemption. 16 lines over, at the margin.
+// .grimorio/scripts/selftest/spawn-verbatim-origin-gate.mjs carries its own exemption. 16 lines over, at the margin.
 // @keep-comment verify-cleaned-extract.qa.mjs — INDEPENDENT regression suite (grimorio.qa authored, per
 // this project's TEST-VOLUME independence doctrine: a test proving a CODE-VOLUME fix against acceptance
 // criteria/regression must never be authored by the same developer who authored the fix). Proves

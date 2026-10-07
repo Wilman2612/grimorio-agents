@@ -47,7 +47,7 @@ of its own that a background result can wake — `CLAUDE_CODE_MESSAGING_SOCKET` 
 (ref:repo/.grimorio/GRIMORIO-CHAIN.md#3d-environment-dependencies--what-grimorio-requires-from-claude-code-itself).
 Ending your OWN turn to "wait for the monitor's notification," or any other background result, does not pause
 your run — it ENDS it. The only possible rescue is the TOP-LEVEL SESSION's own ARMED watch
-(`scripts/parked-watch.mjs`, per ref:skill/grimorio.conduct#spawning-an-agent rule 8) noticing you went silent
+(`.grimorio/scripts/parked-watch.mjs`, per ref:skill/grimorio.conduct#spawning-an-agent rule 8) noticing you went silent
 and re-messaging you — something you cannot invoke, arm, or rely on for yourself, and which may not be armed
 at all. **WHEN you must wait on something before continuing ⟶ apply
 ref:skill/grimorio.conduct#spawning-an-agent rules 9b-9c's own foreground techniques instead: run it in the

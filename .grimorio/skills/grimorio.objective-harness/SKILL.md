@@ -20,7 +20,7 @@ to hide (the folder either holds the file or it doesn't).
 | | What happens | Enforced by |
 |---|---|---|
 | **Open** | The branch and its objective are created in one act | `.grimorio/skills/grimorio.objective-harness/scripts/open-branch.sh` |
-| **Work** | Every commit checks the objective exists and the branch stays in its declared scope | `scripts/pre-commit.sh` (install: `scripts/install-hooks.sh`) |
+| **Work** | Every commit checks the objective exists and the branch stays in its declared scope | `.grimorio/scripts/pre-commit.sh` (install: `.grimorio/scripts/install-hooks.sh`) |
 | **Close** | Every check must be ticked and its VERIFY command run green; the objective is compressed into the merge commit's own message (feature line + Merge summary); the file is deleted, the branch merged and pruned | `.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh` |
 
 ```
@@ -247,7 +247,7 @@ from the branch name with nobody having to paste it:
 | **A delegate-type agent's own spawns** (worktree-isolated included) | self-read at task start | the FULL objective: both the project's own current-focus file and its own `objectives/<branch>.md` |
 | **Every other spawnable agent type** | none | nothing reaches it at spawn time — an open gap, not a solved one |
 | **Loops and recurring prompts** | none, unless a project wires its own injection hook | nothing reaches it by default — this path needs a project-level mechanism to close |
-| **The commit** | `scripts/pre-commit.sh` | refusal |
+| **The commit** | `.grimorio/scripts/pre-commit.sh` | refusal |
 
 **A hook that tries to hand a spawned child its objective BEFORE that child's context exists cannot work.**
 A `PreToolUse: Agent`-style hook runs in the CALLER's own turn, before the spawned child's own context is

@@ -140,7 +140,7 @@ export function hasAnchoredUserAgentLabels(text, quoteSpan) {
 // own identical boundary exactly (independently re-stated here, never imported, per this hook's own
 // established "small independently-commented duplicate" convention — see isGrimorioOwnedType's own comment
 // in spawn-verbatim-origin-gate.mjs). @keep-comment
-// @keep-comment -- READ from scripts/refobl/skill-roots.json's `workRoot`, never copied, because this
+// @keep-comment -- READ from .grimorio/scripts/refobl/skill-roots.json's `workRoot`, never copied, because this
 // constant and extract-cleaner-{prepare,cache,finalize}.mjs's own DEFAULT_SWEEP_ROOT must name the SAME
 // directory or this gate rejects every extract the finalizer writes. A hand-kept pair is exactly that
 // failure waiting to happen. GUARDED and defaulted: this file runs inside a PreToolUse hook whose
@@ -148,7 +148,7 @@ export function hasAnchoredUserAgentLabels(text, quoteSpan) {
 // roots file falls back to the previous literal rather than throwing.
 let __workRoot = "tmp";
 try {
-  const spec = JSON.parse(fs.readFileSync(new URL("../../scripts/refobl/skill-roots.json", import.meta.url), "utf8"));
+  const spec = JSON.parse(fs.readFileSync(new URL("../../.grimorio/scripts/refobl/skill-roots.json", import.meta.url), "utf8"));
   if (spec && typeof spec.workRoot === "string" && spec.workRoot) __workRoot = spec.workRoot.replace(/[\/]+$/, "");
 } catch (_) { /* keep the default */ }
 const CLEANED_EXTRACT_ROOT = [...__workRoot.split("/").filter(Boolean), "extract-cleaner"];

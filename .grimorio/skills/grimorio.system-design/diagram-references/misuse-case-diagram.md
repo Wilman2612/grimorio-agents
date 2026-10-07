@@ -2,7 +2,7 @@
 
 Third entry in the per-diagram-type reference series (companion to `use-case-diagram.md` and
 `state-machine-diagram.md`). Same job: the exact rules an author must obey, the anti-patterns, and a
-mechanical checklist — so `scripts/diagram-kit/misusecase.mjs` can generate correct-by-construction and lint
+mechanical checklist — so `.grimorio/scripts/diagram-kit/misusecase.mjs` can generate correct-by-construction and lint
 legacy diagrams. A misuse-case diagram is Sindre & Opdahl's SECURITY extension of the UML use-case diagram:
 legitimate actors/use cases PLUS a hostile misuser and the misuse cases (threats) it pursues.
 
@@ -198,7 +198,7 @@ not the diagram). Flagged here as a WARNING (content quality), not a hard violat
 9. **The mermaid source was actually checked for parse-validity before shipping** — not merely assumed correct
    by visual inspection. *(Same closing item as `use-case-diagram.md` D.11 / `state-machine-diagram.md` D.9.)*
 
-**KNOWN LIMITATION (fast-follow, not fixed by this kit) — `scripts/diagram-kit/usecase.mjs`'s own cross-type
+**KNOWN LIMITATION (fast-follow, not fixed by this kit) — `.grimorio/scripts/diagram-kit/usecase.mjs`'s own cross-type
 skip filter does not recognise `detects`.** `usecase.mjs`'s `isNotUseCaseType` regex recognises
 `threatens`/`mitigates`/`aggravates` as the tell that a mermaid block belongs to a DIFFERENT (misuse-case)
 diagram type and should be skipped — but this kit never emits or expects `aggravates`; its own third

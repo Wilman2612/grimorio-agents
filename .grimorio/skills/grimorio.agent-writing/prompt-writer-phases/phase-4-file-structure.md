@@ -149,7 +149,7 @@ content or its placement.
    Phase 6 to report as though it had already run.
 7a. **ALWAYS run the deterministic harness, via Bash, once per file this pass wrote or rewrote — using that
    file's own distinguishing path fragment as `[filter]` — as TWO SEPARATE invocations:
-   `node scripts/audit-chain.mjs --graph-first [filter]` and, separately, `node scripts/audit-chain.mjs
+   `node .grimorio/scripts/audit-chain.mjs --graph-first [filter]` and, separately, `node .grimorio/scripts/audit-chain.mjs
    --examples [filter]`.** **NEVER combine the two flags into one call — the script now refuses a combined
    `--graph-first --examples` call outright, exiting 2 and naming both flags, rather than running either
    branch silently alone.** This mirrors ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md's own
@@ -259,7 +259,7 @@ content or its placement.
 - ref:skill/grimorio.agent-writing#3-steps--protocol — step 3's graph-definition-step requirement.
 - ref:skill/grimorio.phase-splitting#sizing-a-phase--render-group-measure-split — step 3b's own sizing
   judgment, loaded ONLY WHEN step 3b's own trigger fires (a new multi-phase behavior file this pass).
-- ref:repo/scripts/audit-chain.mjs — step 7a's own two gates (`--graph-first`, `--examples`); no skill load
+- ref:repo/.grimorio/scripts/audit-chain.mjs — step 7a's own two gates (`--graph-first`, `--examples`); no skill load
   owed, running the script with no flags at all prints both flags' exact syntax in its own final summary
   lines.
 - ref:skill/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md's own step 8b — step 6c's own

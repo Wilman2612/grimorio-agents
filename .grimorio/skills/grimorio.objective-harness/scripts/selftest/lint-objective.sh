@@ -7,7 +7,7 @@
 # Exercises BOTH directions per skill/grimorio.reasoning-principles' standing rule that a detector proven only by
 # staying silent is indistinguishable from a broken one. Drives the real CLI via subprocess against
 # fixture objective files — never imports the script's internals — so this proves the actual, run
-# behavior (same shape as scripts/selftest/replan-check.sh and scripts/selftest/parked-watch.sh).
+# behavior (same shape as .grimorio/scripts/selftest/replan-check.sh and .grimorio/scripts/selftest/parked-watch.sh).
 set -uo pipefail
 REAL_ROOT="$(git rev-parse --show-toplevel)"
 cd "$REAL_ROOT" || exit 1

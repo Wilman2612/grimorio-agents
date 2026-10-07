@@ -1,0 +1,28 @@
+{
+  "_": "THE export boundary, in ONE place. .grimorio/ is grimorio's canonical corpus and exports; .claude/ holds only what Claude Code must DISCOVER there (the 19 adapter SKILL.md stubs, the agent shells) and never exports. Canonical roots come FIRST so a reference resolves to real content, never to an adapter that only points at it. Read by .grimorio/scripts/refobl/resolve.cjs (CommonJS), .grimorio/scripts/audit-chain.mjs (ESM, via that module) and .grimorio/scripts/rename-refs.mjs (ESM) -- it is a FILE and not a constant in any of them because a hand-kept second copy of this array has already silently dropped a root once during this very migration.",
+  "roots": [
+    ".grimorio/skills/",
+    ".claude/skills/"
+  ],
+  "_stores": "The OTHER stores, each with exactly ONE home. `skill` keeps the `roots` array above because three places legitimately hold a skill's content and a reference naming one cannot say which; `memory` and `agent` are single-rooted by construction, so a reference naming them is never ambiguous. A store here is a STORE in the reference grammar -- `ref:memory/<a memory skill>/project.md` -- not a directory alias: the token says which container the thing lives in, which is the whole reason `skill` could not keep meaning 'any grimorio container'.",
+  "stores": {
+    "memory": ".grimorio/memory/",
+    "agent": ".grimorio/agents/"
+  },
+  "_corpusNote": "Every root above -- `roots` plus every value in `stores` -- is part of the CORPUS audit-chain.mjs walks. NEVER add a store here without its root reaching that walk: a store whose files are outside the walked population drops those files out of every count, which makes a dead-reference total LOOK better by auditing less.",
+  "_legacy": "Where the corpus USED to live. A reference written against an old path still resolves, but ONLY when the literal path does not exist, and every such resolution is logged so a stale reference never heals silently forever. This exists because files frozen to this repo's agents -- everything under .claude/hooks/, which grimorio-conduct rule 5c reserves to the CEO -- still name the old paths and cannot be edited to stop doing so.",
+  "legacy": {
+    ".claude/skills-store/": ".grimorio/skills/",
+    ".claude/skills/": ".grimorio/skills/",
+    ".grimorio/skills-store/": ".grimorio/skills/"
+  },
+  "_storeFallback": "The SAME mechanism as `legacy` above, one axis over: a `skill/<x>` reference whose target has since moved into one of these stores still resolves, ONLY when it resolves under no root in `roots`, and every hit is LOGGED as a self-heal. It exists for the same reason -- `CLAUDE.md` and everything under `.claude/hooks/` are reserved to the CEO by grimorio-conduct rule 5c and still write the OLD `skill/<name>` form for a memory skill, and cannot be edited to stop. NEVER write a new reference this way: the store token is the point.",
+  "storeFallback": [
+    "memory"
+  ],
+  "workRoot": ".grimorio/tmp/",
+  "_workRoot": "WHERE A SCRIPT WRITES ITS WORKING MEMORY, declared here so the root lives in ONE place -- it was hardcoded as the literal \"tmp/\" in 8 sites (audit-chain.mjs, resolve.cjs, anchorwork.cjs, rename-forms.mjs) plus every writer, which is the hand-kept-copy shape this file's own `_` comment warns about. NOT a store, and deliberately so: an agent may be told to WRITE here, but LOADING a file from the temp folder is forbidden (CEO, 2026-10-04: \"de ahi a cargar el archivo en la carpeta temporal lo tienes mas o menos prohibido ... en realidad casi no deberia tenerlo\"), so there is no read relation to resolve. The OLD root, `tmp/` at the repo root, KEEPS resolving for the `tmp:` store and is LEFT WHERE IT IS: its contents are untracked and their own only copy, and his ruling is that it dies by disuse, never by a move. That is also why `tmp` is absent from `stores` -- adding it there would repoint resolution and kill 140 live `ref:tmp/` references in one commit.",
+  "cacheRoot": ".grimorio/.cache/",
+  "_cacheRoot": "WHERE THE RUNTIME CACHE LIVES: the invocation and completion logs, the tree-occupancy registry, the phase-server log, the resolver self-heal log, the board's claim ledger and index. Grimorio's own runtime state, so it belongs under .grimorio/ -- it was under .claude/, which is the PUBLICATION surface for what Claude Code discovers, not a place to keep state. Declared here, with workRoot and the stores, because 36 executables named `.claude/.cache/<file>` as a literal (25 of them for agent-invocations.log alone) and that is the hand-kept-copy shape this file's own comment warns about. UNLIKE workRoot, the old location's content is LIVE, not dead: the live files are copied to the new root in the same commit that repoints the readers, so no log loses its history. The old folder then stays and dies by disuse, per his standing ruling on the temp folder.",
+  "_skills_store_retired": "2026-10-05: `.grimorio/skills-store/` is GONE, and with it the last root that existed only to keep content OUT of Claude Code's auto-discovery. ARCHITECTURE.md section 1 explains why it can die: the store was a hiding place from a time when an agent had to be a single loose file at the root of .claude/agents/ and could not own a folder. An agent owns a folder now, so the PROPERTY the store provided is obtained by NOT WRITING A STUB. Its 22 containers went to .grimorio/agents/<x>/, .grimorio/skills/<x>/ and .grimorio/memory/<x>-memory/. Both legacy keys now resolve to .grimorio/skills/ so an old reference in a record still finds the content that survived."
+}

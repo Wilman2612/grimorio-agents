@@ -80,8 +80,8 @@ unchanged.
 
 **But "the watch runs at the top regardless" was never true, and is corrected here: nothing runs it
 automatically.** It runs ONLY when the top-level session has explicitly armed it — started
-`ref:repo/scripts/parked-watch.mjs` as a running watch, e.g. on a poll loop, for the current session. The
-detector itself is now BUILT and TESTED (selftest `ref:repo/scripts/selftest/parked-watch.sh`, 7 assertions,
+`ref:repo/.grimorio/scripts/parked-watch.mjs` as a running watch, e.g. on a poll loop, for the current session. The
+detector itself is now BUILT and TESTED (selftest `ref:repo/.grimorio/scripts/selftest/parked-watch.sh`, 7 assertions,
 proven correct on both directions: a genuine park reported, every non-parking case — including a stale
 superseded child completion arriving after its parent already closed — correctly silent). **This is the
 PRIMARY mechanism once armed — a delegate taking the nested-background trade is relying on the top-level

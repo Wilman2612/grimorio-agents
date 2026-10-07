@@ -169,9 +169,9 @@ judges or signs a verdict. Never skip a cheaper layer to reach a more expensive 
     model tier, Haiku or Sonnet, on what a script already checks.** This runs regardless of diff size,
     unconditionally, BEFORE Layer 1's own threshold gate below —
     a script has no dispatch/registration overhead to amortize the way a Haiku child does, so the size
-    reasoning that gates Layer 1 never applies here. Scripts that exist today: `scripts/check-comment-blocks.mjs`
-    (added comment blocks over 4 lines), `scripts/audit-chain.mjs` (bare or dead references, anchors,
-    `--as-is-voice`, `--no-scaffolding-leak`, `--diagram-primacy`), `scripts/check-agent-tiers.mjs`,
+    reasoning that gates Layer 1 never applies here. Scripts that exist today: `.grimorio/scripts/check-comment-blocks.mjs`
+    (added comment blocks over 4 lines), `.grimorio/scripts/audit-chain.mjs` (bare or dead references, anchors,
+    `--as-is-voice`, `--no-scaffolding-leak`, `--diagram-primacy`), `.grimorio/scripts/check-agent-tiers.mjs`,
     `scripts/check-phase-fingerprint.mjs`, `scripts/ceo-check-desc-lengths.sh`, plus the selftests under
     `scripts/selftest/` a touched unit's own files name.
 

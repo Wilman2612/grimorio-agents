@@ -345,7 +345,7 @@ ref:skill/grimorio.agent-tiers#the-haiku-supervision-ladder--reviewable-parallel
 
 ### Emit the loop graph before you spawn or write (HARD RULE, CEO, 2026-08-08)
 
-**NEVER treat `node scripts/audit-chain.mjs --outline --render md` as the loop's graph.** That render is a
+**NEVER treat `node .grimorio/scripts/audit-chain.mjs --outline --render md` as the loop's graph.** That render is a
 DIAGNOSTIC instrument over a STATIC file — it renders one agent's already-written behavior-file skeleton. The
 loop's graph is a different thing: which agents get raised, at which tiers, in which parallel groups, is
 decided PER TASK, so no file written in advance can hold it — only the agent actually running the task can

@@ -1,5 +1,5 @@
 // The `verify-chain` subcommand's own implementation, split out of phase-engine.mjs to keep that file
-// under the repo's own size limit (scripts/check-file-size.mjs --limit 500). Exports cmdVerifyChain, the
+// under the repo's own size limit (.grimorio/scripts/check-file-size.mjs --limit 500). Exports cmdVerifyChain, the
 // single entry point phase-engine.mjs's own `case "verify-chain":` dispatch calls.
 
 import { readFileSync, existsSync } from "node:fs";

@@ -7,7 +7,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { cachePath } from "../../../../../scripts/refobl/cache-paths.mjs";
+import { cachePath } from "../../../../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '../../../../../');

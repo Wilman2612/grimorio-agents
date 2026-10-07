@@ -135,7 +135,7 @@ their own repo.)
 name it `project.<name>.md`** — an adversarial content critic whose entire job is judging one project's own map
 assets, rather than a domain any project could reuse, is the worked shape of the second case.
 
-Mechanical check: `ref:repo/scripts/audit-chain.mjs`'s `--levels`/`--portability` flags (already built, already
+Mechanical check: `ref:repo/.grimorio/scripts/audit-chain.mjs`'s `--levels`/`--portability` flags (already built, already
 live) are the mechanism this naming convention is checkable against, not cosmetic — see Part 3 below for the
 cheaper check the naming makes possible.
 
@@ -191,7 +191,7 @@ already fine and expected before this section, restated only so the pair is comp
 
 This is NOT a new substantive rule — it is the SAME rule the section above already states (the 2026-08-15 CEO
 ruling on general-level content citing project-level state), named here BY NAME instead of only by content.
-That is the real change Part 1 buys: today's mechanism (`ref:repo/scripts/audit-chain.mjs`'s `--levels` flag)
+That is the real change Part 1 buys: today's mechanism (`ref:repo/.grimorio/scripts/audit-chain.mjs`'s `--levels` flag)
 greps for project-SHAPED PATH PATTERNS — the `PROJECT_OR_CODE` list of regexes. Once a file carries the
 `project.` prefix by name, a check can instead ask a cheaper, harder-to-fool question: does a
 `grimorio.`-prefixed file's own text contain the literal substring `project.` anywhere outside a fenced code
@@ -232,7 +232,7 @@ back into this project's private repo.
 general level; general level may never cite back — the direction this rule enforces was already established
 above. -> ref:skill/grimorio.agent-writing#the-export-boundary-is-the-generalproject-line-ceo-ruling-2026-08-04-translated → "The export boundary is the general/project line".
 
-The forbidden categories, kept identical to the `PROJECT_OR_CODE` list in ref:repo/scripts/audit-chain.mjs so
+The forbidden categories, kept identical to the `PROJECT_OR_CODE` list in ref:repo/.grimorio/scripts/audit-chain.mjs so
 the prose and the code never drift apart — extend both together from real evidence, never one alone:
 
 ```
@@ -250,7 +250,7 @@ as a `ref:`/`cite:` target. **WHEN a violating sentence still carries real knowl
 finding and drop only the pointer.** **NEVER delete the sentence outright to close the violation** — that
 trades a broken export for amnesia, and the corpus loses real knowledge either way; a rewrite loses nothing.
 
-Measured live 2026-08-15 with ref:repo/scripts/audit-chain.mjs's `--levels` flag — the fenced block above is
+Measured live 2026-08-15 with ref:repo/.grimorio/scripts/audit-chain.mjs's `--levels` flag — the fenced block above is
 exempt from the scan by the detector's own fence guard, the same one that already skips code, so this section
 does not cite itself: **20 citations across 10 of the corpus's 42 `SKILL.md` files** violate this rule today,
 several citing more than one of the patterns above, including `grimorio.conduct/SKILL.md` — loaded by every

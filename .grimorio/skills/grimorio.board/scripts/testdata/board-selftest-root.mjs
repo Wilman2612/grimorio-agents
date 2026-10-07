@@ -7,7 +7,7 @@ import { mkdtempSync, mkdirSync, writeFileSync } from "fs";
 import os from "os";
 import path from "path";
 import { invocationRow } from "./invocation-log-fixture.mjs";
-import { cacheDir, cachePath } from "../../../../../scripts/refobl/cache-paths.mjs";
+import { cacheDir, cachePath } from "../../../../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 const DEFAULT_ROWS = () => [
   invocationRow({ spawnedType: "grimorio.board-feeder", callerType: "grimorio.extract-cleaner", callerId: "caller-999", spawnedId: "spawned-1" }),

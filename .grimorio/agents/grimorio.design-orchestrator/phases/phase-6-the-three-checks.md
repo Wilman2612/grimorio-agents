@@ -96,7 +96,7 @@ Read it when you reach that step; it is one step of that phase, never a phase of
    **ALSO instruct `grimorio.scout` to run the DIAGRAM-PRIMACY mechanical checker — an ADDITION to CHECK 1's
    existing 8-check-gate + RTM + closure-table-shape instructions above, never a replacement of any of them:**
    for every produced file in the family (`design.md` alone, or every file in the chosen family), run `node
-   scripts/audit-chain.mjs --diagram-primacy <that file's own path as the filter>` — one invocation per file,
+   .grimorio/scripts/audit-chain.mjs --diagram-primacy <that file's own path as the filter>` — one invocation per file,
    so the tool's own substring filter matches exactly that file, never a shared directory prefix that could
    silently sweep in unrelated files, and never a filter that matches zero files -- the tool's own zero-match
    guard now refuses that with a loud message and exit code 2, never a silent clean pass — and report its
@@ -109,7 +109,7 @@ Read it when you reach that step; it is one step of that phase, never a phase of
 
    **ALSO instruct `grimorio.scout` to run the SCAFFOLDING-LEAK mechanical checker — an ADDITION to CHECK 1's
    existing instructions, never a replacement of any of them:** for the family (all files), run `node
-   scripts/audit-chain.mjs --no-scaffolding-leak <family filter>` once, and report its verbatim
+   .grimorio/scripts/audit-chain.mjs --no-scaffolding-leak <family filter>` once, and report its verbatim
    PASS/FAIL/EXEMPT line per file back, never a paraphrase. This enforces the reader-path-vs-provenance split
    named in Phase 4's own TYPES SCOPED OUT field. **WHEN this command reports FAIL for any produced file ⟶
    that FAIL carries the SAME Group-1 STRUCTURAL evidentiary weight the RTM/diagram-primacy findings above
@@ -129,7 +129,7 @@ Read it when you reach that step; it is one step of that phase, never a phase of
    tool PASS — with no accompanying by-hand confirmation recorded — as satisfying this sub-instruction.**
 
    **ALSO instruct `grimorio.scout` to run the AS-IS-VOICE mechanical checker — an ADDITION, never a
-   replacement:** for the family, run `node scripts/audit-chain.mjs --as-is-voice <family filter>` once, and
+   replacement:** for the family, run `node .grimorio/scripts/audit-chain.mjs --as-is-voice <family filter>` once, and
    report its verbatim PASS/FAIL/EXEMPT line per file back. This enforces Phase 2's own AS-IS-VOICE
    DETERMINATION. **The tool itself is a FAMILY-WIDE RAW SIGNAL, never override-aware** — it checks,
    family-wide, whether the AS-IS-ONLY marker is present anywhere in the family and, WHEN it is, FAILs any
@@ -171,7 +171,7 @@ Read it when you reach that step; it is one step of that phase, never a phase of
    satisfying this sub-instruction.**
 
    **ALSO instruct `grimorio.scout` to run the DIAGRAM-CLASSES inventory tool — an ADDITION, never a
-   replacement:** for the family, run `node scripts/audit-chain.mjs --diagram-classes <family filter>` once
+   replacement:** for the family, run `node .grimorio/scripts/audit-chain.mjs --diagram-classes <family filter>` once
    (this tool NEVER gates on its own — it only reports which mermaid diagram TYPES and matrix-shaped tables
    exist), then CROSS-REFERENCE that inventory, BY HAND, against
    ref:skill/grimorio.system-design/scope-completeness-method.md#gate-7--class-coverage's own required CLASS
@@ -187,7 +187,7 @@ Read it when you reach that step; it is one step of that phase, never a phase of
 
    **ALSO instruct `grimorio.scout` to run the ENUMERATION-COVERAGE mechanical checker — an ADDITION to CHECK
    1's existing instructions above, never a replacement of any of them:** for the family, run `node
-   scripts/audit-chain.mjs --enumeration-coverage <family filter>` once, and report its verbatim
+   .grimorio/scripts/audit-chain.mjs --enumeration-coverage <family filter>` once, and report its verbatim
    PASS/FAIL/SKIP line back, never a paraphrase. This enforces Phase 1's own new EMPIRICAL DOMAIN DERIVATION
    step, authored into the family's own PROVENANCE file per Phase 5's own new authoring instruction, and is the
    mechanical analog of

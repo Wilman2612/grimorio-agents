@@ -2,7 +2,7 @@
 
 Third entry in the per-diagram-type reference series (companion to `state-machine-diagram.md` and
 `use-case-diagram.md`). Same job: the exact rules an author must obey, the anti-patterns, and a mechanical
-checklist — so `scripts/diagram-kit/decisiontable.mjs` can generate correct-by-construction and lint legacy
+checklist — so `.grimorio/scripts/diagram-kit/decisiontable.mjs` can generate correct-by-construction and lint legacy
 tables. **The shape exception, stated up front:** a decision table is not a mermaid diagram. It is a **DMN
 (Decision Model and Notation)** artifact — a matrix of input conditions and output actions — and its
 correctness is not "does this compile," it is two independently-checkable STRUCTURAL properties:

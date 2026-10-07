@@ -88,7 +88,7 @@ function textOf(rec) {
   return c.filter((b) => b && b.type === "text").map((b) => b.text || "").join("\n");
 }
 
-// `bash scripts/selftest/run-all.sh` -> {"bash", "run-all.sh", "scripts/selftest/run-all.sh"}
+// `bash .grimorio/scripts/selftest/run-all.sh` -> {"bash", "run-all.sh", ".grimorio/scripts/selftest/run-all.sh"}
 // `gh project item-edit --id X` -> {"gh", "gh project", "gh project item-edit"}
 const WORD_RE = new RegExp("^[A-Za-z][A-Za-z0-9_.-]*$");
 const SEGMENT_RE = new RegExp("[" + String.fromCharCode(10) + ";|&]+|[$][(]|[)]|`");
