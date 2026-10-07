@@ -27,6 +27,20 @@ function walk(dir, out = []) {
   }
   return out;
 }
+// A SECOND walker, because the two walks answer different questions. `walk` above skips what must never
+// be EXPORTED -- `.cache/`, `tmp/`, `node_modules` -- while the reconcile below must see everything already
+// SITTING IN THE TARGET, including a published run log that got there when the rules were looser. Reusing
+// the export walker here left the `.cache` rule unable to fire at all, which is a branch that proves nothing.
+function walkAll(dir, out = []) {
+  for (const e of readdirSync(dir)) {
+    if (e === ".git" || e === "node_modules") continue;
+    const p = path.posix.join(dir, e);
+    let st; try { st = statSync(p); } catch { continue; }
+    if (st.isDirectory()) walkAll(p, out); else out.push(p);
+  }
+  return out;
+}
+
 import { SURFACES, ROOT_EXTRAS } from "./export-surface.mjs";
 const grimorio = walk(".grimorio").filter((p) => !p.startsWith(".grimorio/memory/") && !p.split("/").some((s) => s.startsWith("project.")));
 const claude = SURFACES.flatMap((s) => (existsSync(s.dir) ? walk(s.dir) : []).filter((p) => s.allow.some((re) => re.test(p))));
@@ -65,13 +79,35 @@ function scrub(text) {
   return wasCrlf ? text.split(LF).join(CRLF) : text;
 }
 
-// The target's OLD corpus goes first: an export that only adds leaves whatever the previous layout had, and
-// the previous layout here was everything under .claude/ with no .grimorio/ at all.
-const stale = [".grimorio", ".claude/agents", ".claude/skills", ".claude/hooks",
-  ".codex/agents", ".codex/hooks", ".agents/skills", "scripts"]
-  .map((d) => path.join(target, d))
-  .filter(existsSync);
-if (apply) for (const d of stale) rmSync(d, { recursive: true, force: true });
+// @keep-comment RECONCILE BY OWNERSHIP, never by wiping a folder. `.claude/agents`, `.claude/skills` and
+// `scripts/` are where ARCHITECTURE.md section 2 says the ADOPTER'S own work lives, so only `.grimorio/`
+// may be cleared WHOLLY -- there, POSITION already proves nothing of theirs is inside.
+const wholly = [path.join(target, ".grimorio")].filter(existsSync);
+
+// Everywhere else the question is per file: is THIS file grimorio's? Three ways it can be, and nothing
+// else is touched -- not an unprefixed agent, not their skill folder, not their own root scripts.
+const ownedByGrimorio = (rel) => {
+  const base = path.basename(rel);
+  return SURFACES.some((s) => rel.startsWith(s.dir + "/") && s.allow.some((re) => re.test(rel)))
+    || base.startsWith("grimorio.") || base.startsWith("GRIMORIO-")
+    || rel.split("/").includes(".cache");          // runtime state: never a source file, never theirs
+};
+const writes = new Set([...set, ...ROOT_EXTRAS.map((e) => e.to)]);
+const sweepable = [...SURFACES.map((s) => s.dir), "scripts"];
+const superseded = [];
+for (const dir of sweepable) {
+  const abs = path.join(target, dir);
+  if (!existsSync(abs)) continue;
+  for (const f of walkAll(abs.split(path.sep).join("/"))) {
+    const rel = path.posix.relative(target.split(path.sep).join("/"), f);
+    if (!writes.has(rel) && ownedByGrimorio(rel)) superseded.push(rel);
+  }
+}
+if (apply) {
+  for (const d of wholly) rmSync(d, { recursive: true, force: true });
+  for (const rel of superseded) rmSync(path.join(target, rel), { force: true });
+}
+const stale = wholly;
 
 for (const f of set) {
   const out = path.join(target, f);
@@ -110,6 +146,7 @@ if (apply) {
 console.log(`${apply ? "WROTE" : "DRY RUN"}: ${written} file(s) -> ${target}`);
 console.log(`  .grimorio/: ${grimorio.length}   .claude/ publication surface: ${claude.length}`);
 console.log(`  scrub: ${subCount} generalization(s), ${transCount} translation(s)`);
-console.log(`  cleared first: ${stale.length} stale tree(s) in the target`);
+console.log(`  reconcile: clears ${wholly.length} tree(s) wholly, removes ${superseded.length} superseded file(s)`);
+for (const rel of superseded) console.log(`    superseded: ${rel}`);
 console.log(`  root files: ${extrasWritten} written, ${extrasKept} left as the adopter's own`);
 if (!apply) console.log(`\nNothing was written. Re-run with --apply.`);
