@@ -35,19 +35,14 @@ function walk(dir, out = []) {
 const all = existsSync(".grimorio") ? walk(".grimorio") : [];
 const exportSet = all.filter((p) => !EXCLUDED_TREES.some((t) => p.startsWith(t)) && !isPrefixed(p));
 
-// @keep-comment RULE 4 -- `.claude/` is an ALLOWLIST because a denylist structurally cannot work here:
-// ARCHITECTURE.md section 2 gives the adopter's own agent as "whole, unprefixed, unsplit", so the `project.`
-// prefix carrying all of RULE 2 catches nothing in this tree, and four adopter-owned files here carry no
-// prefix either. Nothing exports unless NAMED below.
-const CLAUDE_ALLOWED = [
-  /^\.claude\/agents\/grimorio\.[a-z0-9.-]+\.md$/,      // the light adapters
-  /^\.claude\/skills\/grimorio\.[a-z0-9.-]+\/SKILL\.md$/, // the discovery stubs
-  /^\.claude\/hooks\/[a-z0-9.-]+\.cjs$/,                 // the dispatchers
-  /^\.claude\/(agents|skills|hooks)\/harness\.md$/,       // the harnesses that govern each tree
-];
-const claudeFiles = existsSync(".claude") ? walk(".claude") : [];
-const claudeExports = claudeFiles.filter((p) => CLAUDE_ALLOWED.some((re) => re.test(p)));
-const claudeHeld = claudeFiles.filter((p) => !CLAUDE_ALLOWED.some((re) => re.test(p)));
+import { SURFACES, ROOT_EXTRAS } from "./export-surface.mjs";
+const surfaces = SURFACES.map((s) => {
+  const files = existsSync(s.dir) ? walk(s.dir) : [];
+  const allowed = (p) => s.allow.some((re) => re.test(p));
+  return { dir: s.dir, exports: files.filter(allowed), held: files.filter((p) => !allowed(p)) };
+});
+const claudeExports = surfaces.flatMap((s) => s.exports);
+const claudeHeld = surfaces.flatMap((s) => s.held);
 // settings.json is the one file that must REACH an adopter and must never be COPIED: it wires the hooks, so
 // the export ADAPTS it. A byte-identical copy means the adopter got this installation's own wiring.
 const settingsCopied = (() => {
@@ -68,7 +63,11 @@ const readSafe = (f) => { try { return readFileSync(f, "utf8"); } catch { return
 // ONE pass per file, every pattern tested against it -- re-reading the tree once per pattern made this
 // unusable on a repo this size. `inExport` is the leak; `anywhere` is what proves the pattern can go red.
 const inExport = new Map(), anywhere = new Set();
-const exportAll = new Set([...exportSet, ...claudeExports]);
+// The ROOT files the exporter ships outside both container walks. A file the exporter sends and the gate
+// never reads is a file that leaves UNCHECKED -- the same gate/exporter divergence the shared allowlist
+// above exists to prevent, one directory out.
+const rootExtras = ROOT_EXTRAS.map((e) => e.from).filter(existsSync);
+const exportAll = new Set([...exportSet, ...claudeExports, ...rootExtras]);
 for (const f of walk(".")) {
   const text = readSafe(f);
   if (!text) continue;
@@ -80,7 +79,7 @@ for (const f of walk(".")) {
 }
 const secretHits = [...inExport].map(([src, files]) => ({ src, files }));
 const unproven = allPats.map(([src]) => src).filter((src) => !anywhere.has(src));
-const fileHits = [...exportSet, ...claudeExports].filter((f) => fileShapeRes.some(([, re]) => re.test(f)));
+const fileHits = [...exportAll].filter((f) => fileShapeRes.some(([, re]) => re.test(f)));
 
 const viol = [];
 for (const p of exportSet) {
@@ -97,8 +96,12 @@ const staleReviews = Object.keys(REVIEWED).filter((p) => !exportSet.includes(p))
 
 console.log(`export set: ${exportSet.length} file(s) of ${all.length} under .grimorio/`);
 console.log(`  excluded: ${all.length - exportSet.length} (memory tree + project.-prefixed)`);
-console.log(`.claude/: ${claudeExports.length} publication-surface file(s) export, ${claudeHeld.length} held back`);
-for (const p of claudeHeld.filter((x) => x.includes("/agents/") || x.includes("/skills/"))) {
+for (const s of surfaces) console.log(`${s.dir}/: ${s.exports.length} publication-surface file(s) export, ${s.held.length} held back`);
+console.log(`root: ${rootExtras.length} file(s) outside both container walks: ${rootExtras.join(", ")}`);
+// @keep-comment NAME every held file in the three published trees, hooks included. The first spelling
+// listed agents and skills only, so a held-back HOOK was reported as a number and nothing else -- which
+// is how four `.mjs` hook files were silently dropped from an export whose gate read PASS.
+for (const p of claudeHeld.filter((x) => /\/(agents|skills|hooks)\//.test(x))) {
   console.log(`  held: ${p}`);
 }
 if (settingsCopied) console.log(`LEAK  .claude/settings.json is BYTE-IDENTICAL in the target -- it must be ADAPTED, never copied`);

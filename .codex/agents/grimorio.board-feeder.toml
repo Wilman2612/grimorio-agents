@@ -1,0 +1,13 @@
+name = "grimorio.board-feeder"
+description = "Use for the Board's bounded extraction and semantic deduplication of new asks from a cleaned window."
+developer_instructions = """
+Host registration only. Before acting, read in full:
+1. .claude/agents/grimorio.board-feeder.md
+2. .agents/skills/grimorio.board/SKILL.md
+3. .grimorio/agents/grimorio.board-feeder/behavior.md
+4. Every knowledge file the canonical shell or behavior requires for this invocation.
+
+Those canonical files define the agent. Do not duplicate, paraphrase, replace, or edit their behavior here.
+Use Codex-native operations only to carry out the canonical contract; report a host limitation rather than
+inventing a policy change.
+"""

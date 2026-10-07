@@ -3,7 +3,12 @@
 # .claude/hooks/worktree-create-from-develop.cjs uses, and actually creates a working worktree.
 set -uo pipefail
 cd "$(git rev-parse --show-toplevel)" || exit 1
-REPO_ROOT="$(pwd)"
+# REPO_ROOT comes from git, NOT from `pwd`. Both name the same directory, but `pwd` prints the MSYS form
+# ("/e/...", or "/tmp/..." under a temp dir) and the tool under test prints what git gives it, so every
+# comparison below was between two SPELLINGS of one path. Worse, node cannot resolve the MSYS form at all --
+# it reads "/tmp/x" as a path from the filesystem root -- so the canonicalizing fallback could not bridge
+# them either. Taking the same source the tool takes removes the mismatch instead of patching around it.
+REPO_ROOT="$(git rev-parse --show-toplevel)"
 PARENT="$(dirname "$REPO_ROOT")"
 BASE="$(basename "$REPO_ROOT")"
 NAME="zz-selftest-$$"
@@ -23,7 +28,12 @@ cleanup() {
 }
 trap cleanup EXIT
 
-out=$(node .grimorio/scripts/worktree-create.mjs "$NAME" "$BRANCH" develop 2>&1); code=$?
+# BASE REF: HEAD, never the literal `develop`. This test asserts the PATH FORMULA and that a worktree is
+# actually created; which ref it branches from is incidental to both. Hardcoding `develop` made it fail in
+# every repo that does not happen to have that branch -- a fresh clone of the published corpus has `main`,
+# so `git worktree add -b ... develop` could not resolve its base and no worktree was created at all.
+# (The TOOL's own default is still `develop`; that default's portability is a separate question.)
+out=$(node .grimorio/scripts/worktree-create.mjs "$NAME" "$BRANCH" HEAD 2>&1); code=$?
 fail=0
 if [ "$code" -ne 0 ]; then echo "FAIL  exit code: $code"; echo "$out"; fail=1; fi
 if [ ! -d "$EXPECTED" ]; then echo "FAIL  worktree not created at expected path: $EXPECTED"; fail=1; fi

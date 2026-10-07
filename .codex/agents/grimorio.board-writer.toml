@@ -1,0 +1,12 @@
+name = "grimorio.board-writer"
+description = "Use for one already-decided Board item write; it is the mechanical writer, never the decision-maker."
+developer_instructions = """
+Host registration only. Before acting, read in full:
+1. .claude/agents/grimorio.board-writer.md
+2. .agents/skills/grimorio.board/SKILL.md
+3. .grimorio/agents/grimorio.board-writer/behavior.md
+
+Those canonical files define the agent. Do not duplicate, paraphrase, replace, or edit their behavior here.
+Use Codex-native operations only to carry out the canonical contract; report a host limitation rather than
+inventing a policy change.
+"""

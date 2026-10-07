@@ -27,14 +27,9 @@ function walk(dir, out = []) {
   }
   return out;
 }
-const CLAUDE_ALLOWED = [
-  /^\.claude\/agents\/grimorio\.[a-z0-9.-]+\.md$/,
-  /^\.claude\/skills\/grimorio\.[a-z0-9.-]+\/SKILL\.md$/,
-  /^\.claude\/hooks\/[a-z0-9.-]+\.cjs$/,
-  /^\.claude\/(agents|skills|hooks)\/harness\.md$/,
-];
+import { SURFACES, ROOT_EXTRAS } from "./export-surface.mjs";
 const grimorio = walk(".grimorio").filter((p) => !p.startsWith(".grimorio/memory/") && !p.split("/").some((s) => s.startsWith("project.")));
-const claude = walk(".claude").filter((p) => CLAUDE_ALLOWED.some((re) => re.test(p)));
+const claude = SURFACES.flatMap((s) => (existsSync(s.dir) ? walk(s.dir) : []).filter((p) => s.allow.some((re) => re.test(p))));
 const set = [...grimorio, ...claude];
 
 // THE LEAK GATE IS A PRECONDITION, not a follow-up: an export that runs first and checks second has already
@@ -66,7 +61,7 @@ function scrub(text) {
 
 // The target's OLD corpus goes first: an export that only adds leaves whatever the previous layout had, and
 // the previous layout here was everything under .claude/ with no .grimorio/ at all.
-const stale = [".grimorio", ".claude/agents", ".claude/skills", ".claude/hooks", "scripts"]
+const stale = [".grimorio", ".claude/agents", ".claude/skills", ".claude/hooks", ".codex/agents", ".codex/hooks", "scripts"]
   .map((d) => path.join(target, d))
   .filter(existsSync);
 if (apply) for (const d of stale) rmSync(d, { recursive: true, force: true });
@@ -90,6 +85,15 @@ const TEMPLATE = {
   credentialFileShapes: ["[.](env|key|pem|p12|pfx)$"],
   portabilityMarkers: [],
 };
+let extrasWritten = 0, extrasKept = 0;
+for (const e of ROOT_EXTRAS) {
+  const out = path.join(target, e.to);
+  if (!existsSync(e.from)) { console.error(`REFUSED: ${e.from} is missing -- a clone would be unable to run its own suite`); process.exit(2); }
+  if (!e.overwrite && existsSync(out)) { extrasKept++; continue; }
+  if (apply) { mkdirSync(path.dirname(out), { recursive: true }); writeFileSync(out, scrub(readFileSync(e.from, "utf8"))); }
+  extrasWritten++; written++;
+}
+
 if (apply) {
   const td = path.join(target, "scripts/export");
   mkdirSync(td, { recursive: true });
@@ -100,4 +104,5 @@ console.log(`${apply ? "WROTE" : "DRY RUN"}: ${written} file(s) -> ${target}`);
 console.log(`  .grimorio/: ${grimorio.length}   .claude/ publication surface: ${claude.length}`);
 console.log(`  scrub: ${subCount} generalization(s), ${transCount} translation(s)`);
 console.log(`  cleared first: ${stale.length} stale tree(s) in the target`);
+console.log(`  root files: ${extrasWritten} written, ${extrasKept} left as the adopter's own`);
 if (!apply) console.log(`\nNothing was written. Re-run with --apply.`);

@@ -17,6 +17,12 @@ ROOT="$(pwd -W 2>/dev/null || pwd)"
 RUNTAG="$$"
 
 FAIL=0
+# A case whose TARGET TREE is not installed here is neither a pass nor a failure: 77 is run-all.sh's
+# SKIPPED-with-a-reason outcome. Case 1 below asserts the OPERATIVE TEXT of two rulings that live in the
+# memory tree, which ARCHITECTURE.md section 5 keeps out of every export -- so in a published clone it has
+# nothing to read, and calling that FAIL made the clone red on a mechanism that works there.
+ABSENT=0; ABSENT_WHY=""
+absent() { ABSENT=$((ABSENT + 1)); ABSENT_WHY="$ABSENT_WHY$1; "; echo "SKIP: $1 -- its target tree is not installed here"; }
 assert_nonempty() {
   local out="$1" label="$2"
   if [[ -n "$out" ]]; then
@@ -61,14 +67,23 @@ run_hook() {
 # The founding incident: two design docs were written here without either opening §15, and one
 # concluded the opposite of what §15 requires. This asserts the ruling's OPERATIVE TEXT arrives, not
 # merely that something fired — a pointer would satisfy a non-empty check and still not deliver.
-OUT1="$(run_hook "selftest-hl-real-designs-$RUNTAG" ".grimorio/memory/grimorio.system-design-memory/designs/does-not-need-to-exist.md")"
-assert_nonempty "$OUT1" "designs/harness.md fires for a designs/** target"
-assert_contains "$OUT1" "designs" "injected block names the harness path it came from"
-assert_contains "$OUT1" "dumb" "injected content carries §15's operative text, not a gloss"
-assert_contains "$OUT1" "MOD" "injected content carries §27's operative text, not a gloss"
+DESIGNS_HARNESS=".grimorio/memory/grimorio.system-design-memory/designs/harness.md"
+if [[ ! -f "$DESIGNS_HARNESS" ]]; then
+  absent "the designs harness cases (sections 15 and 27 operative text)"
+else
+  OUT1="$(run_hook "selftest-hl-real-designs-$RUNTAG" ".grimorio/memory/grimorio.system-design-memory/designs/does-not-need-to-exist.md")"
+  assert_nonempty "$OUT1" "designs/harness.md fires for a designs/** target"
+  assert_contains "$OUT1" "designs" "injected block names the harness path it came from"
+  assert_contains "$OUT1" "dumb" "injected content carries §15's operative text, not a gloss"
+  assert_contains "$OUT1" "MOD" "injected content carries §27's operative text, not a gloss"
+fi
 
 # --- Case 2: REAL — pre-existing co-located harness.md behavior is preserved -------------------------
-OUT2="$(run_hook "selftest-hl-real-coloc-$RUNTAG" "apps/web/src/some-file-that-neednt-exist.ts")"
+# TARGET CHANGED: this case checks that a CO-LOCATED harness.md fires, which is a property of the
+# mechanism, not of any one project -- and it used to point at the adopter's product tree, so it failed in
+# every installation that is not the authoring repo. `.grimorio/agents/` carries its own harness.md and
+# travels with the corpus, so the same property is now checked everywhere the hook is installed.
+OUT2="$(run_hook "selftest-hl-real-coloc-$RUNTAG" ".grimorio/agents/some-file-that-neednt-exist.md")"
 assert_nonempty "$OUT2" "co-located harness.md still fires (regression check on the pre-existing mechanism)"
 assert_contains "$OUT2" "harness.md" "co-located block names a real harness.md path"
 
@@ -86,6 +101,11 @@ if [[ "$FAIL" -eq 1 ]]; then
   echo
   echo "harness-lookup selftest: FAILED"
   exit 1
+fi
+if [[ "$ABSENT" -ne 0 ]]; then
+  echo
+  echo "SKIPPED: everything judgeable passed; $ABSENT case(s) have no target tree here: $ABSENT_WHY"
+  exit 77
 fi
 echo
 echo "harness-lookup selftest: all cases passed"

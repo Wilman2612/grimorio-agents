@@ -12,7 +12,8 @@ T="$(mktemp -d)"; trap 'rm -rf "$T"' EXIT
 # A fixture repo with the same SHAPE: an export set, an excluded memory tree, and the declaration.
 mk() {
   # the fixture mirrors the real split: the TOOL under .grimorio/, the adopter's DECLARATION at the root
-  rm -rf "$T/r"; mkdir -p "$T/r/.grimorio/skills/s" "$T/r/.grimorio/memory/m" \n    "$T/r/.grimorio/scripts/export" "$T/r/scripts/export"
+  rm -rf "$T/r"; mkdir -p "$T/r/.grimorio/skills/s" "$T/r/.grimorio/memory/m" \
+    "$T/r/.grimorio/scripts/export" "$T/r/scripts/export"
   echo "general doctrine, names nobody" > "$T/r/.grimorio/skills/s/SKILL.md"
   echo "the product is acmeproduct and this is the adopter's own note" > "$T/r/.grimorio/memory/m/project.note.md"
   cat > "$T/r/scripts/export/project.export-markers.json" <<'J'
@@ -21,7 +22,11 @@ mk() {
   "personalPatterns": ["someone@example[.]com"],
   "credentialFileShapes": ["[.]env$"] }
 J
-  cp "$R/.grimorio/scripts/export/leak-check.mjs" "$T/r/.grimorio/scripts/export/leak-check.mjs"
+  # COPY the real tool AND the declaration module it imports -- a hand-written twin of either drifts,
+  # which this suite has already paid for once: a printf-written JSON turned a regex word boundary
+  # into a literal backspace byte and the fixture quietly tested nothing.
+  cp "$R/.grimorio/scripts/export/leak-check.mjs" "$R/.grimorio/scripts/export/export-surface.mjs" \
+     "$T/r/.grimorio/scripts/export/"
 }
 
 echo "=== GREEN: a clean export set passes, and the adopter's own tree is excluded"
@@ -66,12 +71,18 @@ echo "---" > "$T/r/.claude/agents/grimorio.real.md"
 echo "---" > "$T/r/.claude/agents/their-own-agent.md"
 echo "---" > "$T/r/.claude/agents/project.theirs.md"
 echo "---" > "$T/r/.claude/skills/grimorio.x/SKILL.md"
-echo '{}' > "$T/r/.claude/grimorio-config.json"
+# The TWO configs sitting side by side, which is the case that decides the rule: one is grimorio's
+# committed DEFAULTS (every hook reads it, and the loader THROWS without it), the other names the adopter,
+# their project and their repo. Extension and folder are identical, so only ownership separates them.
+echo '{"language":"en"}' > "$T/r/.claude/grimorio-config.json"
+echo '{"owner":"someone","repo":"theirs"}' > "$T/r/.claude/board-config.json"
 OUT="$(cd "$T/r" && node .grimorio/scripts/export/leak-check.mjs 2>&1)"
-t "the grimorio adapter and the stub DO export" "$(echo "$OUT" | grep -c '2 publication-surface')" "1"
+t "the grimorio adapter, the stub and the DEFAULTS config export" "$(echo "$OUT" | grep -c '3 publication-surface')" "1"
 t "an adopter's UNPREFIXED agent is held -- the prefix rule can never catch it" "$(echo "$OUT" | grep -c 'held: .claude/agents/their-own-agent.md')" "1"
 t "the adopter's prefixed agent is held too" "$(echo "$OUT" | grep -c 'held: .claude/agents/project.theirs.md')" "1"
-t "the installation config is held, and it carries no prefix either" "$(echo "$OUT" | grep -c '2 held back')" "0"
+# The ADOPTER's board config is held although it carries no prefix and sits in the same folder with the
+# same extension as the defaults that travel: the two are separated by what they CONTAIN, nothing else.
+t "the adopter's board config is held beside the defaults that travel" "$(echo "$OUT" | grep -c '3 held back')" "1"
 
 echo "=== RED 5: a BYTE-IDENTICAL settings.json in the target must FAIL -- it has to be adapted, not copied"
 mk
@@ -116,6 +127,19 @@ OUT="$(cd "$T/r" && node .grimorio/scripts/export/leak-check.mjs 2>&1)"
 # assertion on the total would have to be rewritten every time the fixture gains a declaration.
 t "the pattern matching nothing anywhere is reported UNPROVEN, by name" "$(echo "$OUT" | grep -c 'UNPROVEN.*THIS-SHAPE-EXISTS-NOWHERE')" "1"
 t "but UNPROVEN alone does not fail the gate -- it is a warning about the proof, not a leak" "$(echo "$OUT" | grep -c '^PASS')" "1"
+
+echo "=== RED 10: a hook LIBRARY must travel with its dispatcher -- the allowlist read module format, not ownership"
+mk
+mkdir -p "$T/r/.claude/hooks"
+echo "// the dispatcher settings.json wires" > "$T/r/.claude/hooks/dispatch.cjs"
+echo "// the module the dispatcher imports"  > "$T/r/.claude/hooks/dispatch-lib.mjs"
+echo "notes nobody runs"                     > "$T/r/.claude/hooks/readme.txt"
+OUT="$(cd "$T/r" && node .grimorio/scripts/export/leak-check.mjs 2>&1)"
+# BOTH halves, because either alone is satisfied by the bug this closes: the count alone read 1 while the
+# allowlist admitted .cjs only, and "not held" alone is also true of a file the walk never reached at all.
+t "the dispatcher AND the library it imports both export" "$(echo "$OUT" | grep -c '2 publication-surface')" "1"
+t "the .mjs library is not among the held-back files" "$(echo "$OUT" | grep -c 'held: .claude/hooks/dispatch-lib.mjs')" "0"
+t "a non-executable file in the same folder IS held back" "$(echo "$OUT" | grep -c 'held: .claude/hooks/readme.txt')" "1"
 
 echo ""
 if [ "$fail" = "0" ]; then echo "export-leak-check selftest: all cases passed"; else echo "export-leak-check selftest: FAILED"; fi

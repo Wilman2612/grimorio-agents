@@ -47,6 +47,13 @@ cd "$REAL_ROOT" || exit 1
 
 pass() { echo "  PASS  $1"; }
 die()  { echo "  FAIL  $1" >&2; exit 1; }
+# A case whose SUBJECT is not installed here is neither a pass nor a failure. ARCHITECTURE.md section 5
+# keeps the whole memory tree out of every export, so in a published clone the po-memory assertion in c10
+# has nothing to read -- and calling that FAIL made this suite red in the installation it exists to serve.
+# 77 is run-all.sh's SKIPPED-with-a-reason code. It is reachable only when nothing actually failed, because
+# `die` exits immediately, so a 77 can never mask a real failure.
+ABSENT=0; ABSENT_WHY=""
+absent() { ABSENT=$((ABSENT + 1)); ABSENT_WHY="$ABSENT_WHY$1; "; echo "  SKIP  $1 -- its subject is not installed here"; }
 
 # @keep-comment `die` inside `d=$(mkrepo); need_scratch "$d"` exits only the SUBSHELL -- the caller keeps running with an
 # EMPTY $d, and both `git -C ""` and `cd ""` then target the REAL repo. Measured: that is how this suite
@@ -636,9 +643,14 @@ c10() { # the methodology is recorded where work actually reads it
   pass "C10 grimorio-conduct carries the trigger"
   [ -f "$REAL_ROOT/objectives/harness.md" ] || die "C10 objectives/ has no harness.md"
   pass "C10 objectives/harness.md exists"
-  grep -q 'close-branch.sh' "$REAL_ROOT/.grimorio/memory/grimorio.po-memory/features/m8-test-ladder.md" \
-    || die "C10 the po-memory branch-discipline section still points at the replaced script"
-  pass "C10 po-memory's branch-discipline section names the live mechanism"
+  M8="$REAL_ROOT/.grimorio/memory/grimorio.po-memory/features/m8-test-ladder.md"
+  if [ ! -f "$M8" ]; then
+    absent "C10 po-memory's branch-discipline section"
+  else
+    grep -q 'close-branch.sh' "$M8" \
+      || die "C10 the po-memory branch-discipline section still points at the replaced script"
+    pass "C10 po-memory's branch-discipline section names the live mechanism"
+  fi
   # The defect ledger is FROZEN (.claude/current-objective.md: "LEDGERS ARE STOPPED, 2026-08-11") and
   # its stray-branch entry was deleted in the 08-11 drain — asserting against it would either die on
   # every drain (registered: .grimorio/memory/grimorio.board-memory/grimorio-defects.md#7) or force writing to a file this branch is
@@ -710,6 +722,13 @@ c12() { # a branch with no objective of its own inherits its ancestor's — and 
 }
 
 c15() { # the per-feature harnesses exist and say something a reader would otherwise get wrong
+  # THE WHOLE CASE is about the ADOPTER's product tree, so without that tree it has no subject. The guard
+  # covers the failure-direction loop at the end too: that loop asserts certain features were NOT given a
+  # harness, which passes VACUOUSLY where no feature exists -- a green proving nothing.
+  if [ ! -d "$REAL_ROOT/apps/web/src/domain" ]; then
+    absent "C15 the per-feature harnesses (the product tree they judge is not installed here)"
+    return 0
+  fi
   local f n covered=0
   # Judged per feature, NOT one per directory: covering every feature because the list has ten is the
   # wrong outcome, and a harness restating the obvious is noise this repo has a standing rule against.
@@ -753,4 +772,8 @@ case "${1:-all}" in
   c1|c2|c3|c4|c5|c6|c7|c8|c9|c10|c12|c15) "$1" ;;
   *) echo "usage: $0 [c1..c10|c12|c15|design|state|all]" >&2; exit 1 ;;
 esac
+if [ "$ABSENT" -ne 0 ]; then
+  echo "SKIPPED: everything judgeable passed; $ABSENT case(s) have no subject here: $ABSENT_WHY"
+  exit 77
+fi
 echo "ALL PASS"

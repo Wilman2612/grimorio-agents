@@ -1,0 +1,31 @@
+{
+  "description": "Grimorio main-loop close-format guard for Codex.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$(git rev-parse --show-toplevel)/.codex/hooks/turn-open-format.mjs\"",
+            "commandWindows": "node .codex\\hooks\\turn-open-format.mjs",
+            "timeout": 3,
+            "statusMessage": "Loading Grimorio turn ledger"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$(git rev-parse --show-toplevel)/.codex/hooks/turn-close-format.mjs\"",
+            "commandWindows": "node .codex\\hooks\\turn-close-format.mjs",
+            "timeout": 3,
+            "statusMessage": "Checking Grimorio close format"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "language": "en",
+  "grimorioOwnedPrefixes": [
+    "grimorio.",
+    "project."
+  ],
+  "tokens": {
+    "declare": "DECLARE",
+    "close": "CLOSE",
+    "pending": "PENDING",
+    "categoryField": "category",
+    "objectiveField": "objective",
+    "categories": {
+      "request": "request",
+      "execution": "execution",
+      "evaluation": "evaluation",
+      "idea": "idea",
+      "diagnosis": "diagnosis"
+    }
+  },
+  "writeGuard": {
+    "enabled": false
+  }
+}

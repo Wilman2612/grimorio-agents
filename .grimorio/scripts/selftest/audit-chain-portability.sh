@@ -43,10 +43,30 @@ new_sandbox() {
   # root -- it used to be hardcoded inside audit-chain.mjs. A sandbox that does not seed it runs a detector
   # with NO patterns, which passes everything: that is how this suite first reported its own RED case clean.
   mkdir -p "$1/scripts/export"
-  # COPY the real declaration, never a hand-written twin: a duplicate drifts (this seed first carried
-  # three patterns while case 5 exercises a fourth) and writing JSON backslashes through printf produced
-  # a literal BACKSPACE, the same silent-zero this corpus has now paid for three times.
-  cp "$ROOT/scripts/export/project.export-markers.json" "$1/scripts/export/project.export-markers.json"
+  # SEED THE SANDBOX'S OWN VOCABULARY -- never copy the host repo's declaration. Copying was right in the
+  # repo that authored these fixtures and WRONG everywhere else: a fresh clone ships the EMPTY adopter
+  # template, so the copy seeds a detector with no patterns, every RED case passes, and the suite reports
+  # its own red cases clean. Measured on the clone of the published export: 4 of this file's cases.
+  # These four are exactly the markers the fixtures below exercise, and the guard after this function
+  # refuses to continue if any of them stops matching a fixture -- which is the drift the copy prevented.
+  cat > "$1/scripts/export/project.export-markers.json" <<'J'
+{ "markers": [], "reviewed": {},
+  "portabilityMarkers": [
+    { "re": "\\bFastAPI\\b" },
+    { "re": "\\bapps\\/web\\b" },
+    { "re": "\\bapplication\\/\\*\\*" },
+    { "re": "\\binfrastructure\\/\\*\\*" } ] }
+J
+}
+
+# A SEEDED PATTERN THAT MATCHES NO FIXTURE IS A DETECTOR THAT CANNOT FIRE, and its clean result would
+# prove nothing -- the exact failure the host-copy produced on a fresh clone, arriving by the other door.
+sandbox_vocabulary_is_exercised() {
+  local p miss=0
+  for p in FastAPI "apps/web" "application/" "infrastructure/"; do
+    grep -q -- "$p" "$0" || { echo "  FAIL  seeded marker [$p] matches no fixture in this file -- its clean result would prove nothing" >&2; miss=1; }
+  done
+  [ "$miss" = "0" ] || exit 2
 }
 
 # run <sandbox-dir> -- cd into it and invoke the REAL script by absolute path; prints combined
@@ -58,6 +78,8 @@ run() {
   printf '%s\n' "$out"
   echo "EXIT:$code"
 }
+
+sandbox_vocabulary_is_exercised
 
 # 1. RED -- a fixture shell with an arena marker (FastAPI in the description, apps/web in the body) ->
 #    exit 1, output names the fixture file.

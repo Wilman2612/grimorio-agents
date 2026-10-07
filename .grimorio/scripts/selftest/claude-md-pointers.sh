@@ -13,6 +13,14 @@ fail=0
 # because the controls kept it permanently set.
 real_dangling=0
 controls_seen=0
+# A THIRD outcome, distinct from both of the above: the pointer's whole STORE is not installed here, so
+# there is nothing to judge. ARCHITECTURE.md section 5 keeps the memory tree out of every export, so a
+# published clone legitimately carries no `grimorio.po-memory` at all -- and calling that DANGLING made
+# this suite fail in the one installation it most needs to pass in. A store that IS installed with the
+# file missing stays DANGLING: absence is claimed only when the store directory is absent from EVERY root.
+absent_store=0
+absent_names=""
+
 # Every container the corpus lives in, read from the ONE file that declares them -- `roots` plus every
 # single-rooted store. A hand-kept second copy of this list sat here until 2026-10-03 and went stale the
 # moment `memory/` was added: five real pointers read DANGLING against files that had simply moved. That
@@ -34,6 +42,20 @@ ck() { # ck <label> <file> <regex-that-must-match-a-heading-or-line>
     cand="${cand/\/.claude\/skills-store\//\/${root%/}\/}"
     if [ -f "$cand" ] && grep -qE "$3" "$cand"; then f="$cand"; break; fi
   done
+  # Is the pointer's STORE installed at all? Under no root at all is unjudgeable, not broken.
+  local store absent=0
+  store="$(printf '%s' "$2" | sed "s|^$R/||; s|^[^/]*/[^/]*/||; s|/.*||")"
+  if [ ! -f "$f" ] && [ -n "$store" ]; then
+    absent=1
+    for root in $CORPUS_ROOTS; do [ -d "$R/${root%/}/$store" ] && absent=0; done
+  fi
+  # The two deliberate CONTROLS are exempt: their store does not exist either, and letting them take this
+  # path would silence the only two cases that prove this checker can see a break at all.
+  if [ "$absent" = "1" ] && [ "${1#CONTROL}" = "$1" ]; then
+    echo "ABSENT   $1 -> the store [$store] is not installed here, so this pointer is unjudgeable"
+    absent_store=$((absent_store + 1)); absent_names="$absent_names $store"
+    return 0
+  fi
   if [ ! -f "$f" ]; then echo "DANGLING $1 -> file missing: $f"; bad=1;
   elif grep -qE "$3" "$f"; then echo "OK       $1";
   else echo "DANGLING $1 -> no match for /$3/ in $f"; bad=1; fi
@@ -94,5 +116,11 @@ fi
 if [ "$real_dangling" -ne 0 ]; then
   echo "FAIL: $real_dangling real pointer(s) DANGLING (the 2 controls are expected and excluded)."
   exit 1
+fi
+if [ "$absent_store" -ne 0 ]; then
+  # 77 is the suite's SKIPPED-with-a-reason code, never folded into passed: every pointer that COULD be
+  # judged here did resolve, and the rest name a store this installation does not carry.
+  echo "SKIPPED: every judgeable pointer resolved; $absent_store name store(s) absent here:$(printf '%s' "$absent_names" | tr ' ' '\n' | sort -u | tr '\n' ' ')"
+  exit 77
 fi
 echo "PASS: every real pointer resolves, and both deliberate controls were caught."

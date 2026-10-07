@@ -37,7 +37,7 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-PASS=0; FAIL=0; SKIP=0; FAILED=""
+PASS=0; FAIL=0; SKIP=0; ABSENT=0; FAILED=""
 CHANGED_FILES=""
 if [ -n "$BASE" ]; then
   CHANGED_FILES=$(git diff --name-only "$BASE"...HEAD 2>/dev/null; git diff --name-only HEAD 2>/dev/null; git diff --name-only --cached 2>/dev/null)
@@ -81,6 +81,15 @@ run_one() {
   rc=$?
   if [ "$rc" -eq 0 ]; then
     PASS=$((PASS+1)); printf '  ok   %s\n' "$t"
+  elif [ "$rc" -eq 77 ]; then
+    # THE THIRD OUTCOME: the check's TARGET cannot exist in this installation, so there is nothing to
+    # judge. Counted and PRINTED with the test's own last line as the reason -- never folded into passed,
+    # which is the fail-open this corpus keeps paying for, and never into failed, which would leave the
+    # published export unable to run its own suite. The measured need: ARCHITECTURE.md section 5 keeps the
+    # whole memory tree out of every export, so a clone has checks whose subject is legitimately absent.
+    # Kept SEPARATE from the --changed skip above -- "nothing changed" and "nothing is there" are
+    # different facts, and one counter for both would hide which of them happened.
+    ABSENT=$((ABSENT+1)); printf '  skip %s (subject absent here: %s)\n' "$t" "$(tail -1 "$out")"
   else
     FAIL=$((FAIL+1)); FAILED="$FAILED$t"$'\n'
     printf '  FAIL %s (exit %s)\n' "$t" "$rc"
@@ -95,9 +104,8 @@ while IFS= read -r t; do run_one "$t"; done < <(
 )
 
 echo
-if [ "$SKIP" -gt 0 ]; then
-  echo "SUITE: $PASS passed, $FAIL failed, $SKIP skipped (subject unchanged), $((PASS+FAIL+SKIP)) discovered"
-else
-  echo "SUITE: $PASS passed, $FAIL failed, $((PASS+FAIL)) discovered"
-fi
+TALLY="SUITE: $PASS passed, $FAIL failed"
+[ "$SKIP"   -gt 0 ] && TALLY="$TALLY, $SKIP skipped (subject unchanged)"
+[ "$ABSENT" -gt 0 ] && TALLY="$TALLY, $ABSENT skipped (subject absent here)"
+echo "$TALLY, $((PASS+FAIL+SKIP+ABSENT)) discovered"
 [ "$FAIL" -eq 0 ] || { printf '\nfailing:\n%s' "$FAILED"; exit 1; }
