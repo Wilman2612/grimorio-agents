@@ -1,0 +1,19 @@
+{
+  "agent": "phase-engine-fixture-d",
+  "entry": "A",
+  "phases": [
+    { "id": "A", "file": ".grimorio/skills/grimorio.phase-splitting/scripts/selftest/fixtures/phase-engine-fixture-d-phases/phase-a.md",
+      "desc": "fixture phase A — re-entry test: an artifact with no downstream requires consumer",
+      "produces": ["diagnosis-complete"],
+      "next": { "authored": "B" } },
+    { "id": "B", "file": ".grimorio/skills/grimorio.phase-splitting/scripts/selftest/fixtures/phase-engine-fixture-d-phases/phase-b.md",
+      "desc": "fixture phase B — must re-earn its own produces every time it is re-entered",
+      "requires": ["diagnosis-complete"],
+      "produces": ["placement-authored"],
+      "next": { "authored": "C" } },
+    { "id": "C", "file": ".grimorio/skills/grimorio.phase-splitting/scripts/selftest/fixtures/phase-engine-fixture-d-phases/phase-c.md",
+      "desc": "fixture phase C — loops back to B on defect-found, never re-records anything on the way",
+      "requires": ["placement-authored"],
+      "next": { "defect-found": "B" } }
+  ]
+}

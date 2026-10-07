@@ -1,0 +1,20 @@
+{
+  "agent": "phase-engine-fixture-a",
+  "entry": "X",
+  "phases": [
+    { "id": "X", "file": ".grimorio/skills/grimorio.phase-splitting/scripts/selftest/fixtures/phase-engine-fixture-a-phases/phase-x.md",
+      "desc": "fixture phase X",
+      "produces": ["x-done", "x-note"],
+      "next": { "go": "Y" } },
+    { "id": "Y", "file": ".grimorio/skills/grimorio.phase-splitting/scripts/selftest/fixtures/phase-engine-fixture-a-phases/phase-y.md",
+      "desc": "fixture phase Y",
+      "loads": ["skill/grimorio.conduct"],
+      "requires": ["x-done"],
+      "produces": ["y-done"],
+      "next": { "go": "Z" } },
+    { "id": "Z", "file": ".grimorio/skills/grimorio.phase-splitting/scripts/selftest/fixtures/phase-engine-fixture-a-phases/phase-z.md",
+      "desc": "fixture phase Z (terminal)",
+      "requires": ["y-done"],
+      "next": {} }
+  ]
+}

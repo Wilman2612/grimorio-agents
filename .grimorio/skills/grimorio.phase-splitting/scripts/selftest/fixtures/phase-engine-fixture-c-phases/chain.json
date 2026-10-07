@@ -1,0 +1,20 @@
+{
+  "agent": "phase-engine-fixture-c",
+  "entry": "R",
+  "phases": [
+    { "id": "R", "file": ".grimorio/skills/grimorio.phase-splitting/scripts/selftest/fixtures/phase-engine-fixture-c-phases/phase-r.md",
+      "desc": "fixture phase R",
+      "produces": ["r-ready"],
+      "next": { "go": "S" } },
+    { "id": "S", "file": ".grimorio/skills/grimorio.phase-splitting/scripts/selftest/fixtures/phase-engine-fixture-c-phases/phase-s.md",
+      "desc": "fixture phase S — two conditions, one produces-exempt loop-back",
+      "requires": ["r-ready"],
+      "produces": ["s-done"],
+      "produces-exempt": ["retry"],
+      "next": { "retry": "R", "clean": "T" } },
+    { "id": "T", "file": ".grimorio/skills/grimorio.phase-splitting/scripts/selftest/fixtures/phase-engine-fixture-c-phases/phase-t.md",
+      "desc": "fixture phase T (terminal)",
+      "requires": ["s-done"],
+      "next": {} }
+  ]
+}

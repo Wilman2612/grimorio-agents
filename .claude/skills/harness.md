@@ -1,36 +1,18 @@
-# Skills — almost everything here is a PROMPT, and it is checked as one
+# `.claude/skills/` — discovery adapters only, checked as prompts too
 
-**ALWAYS treat a file under this tree as a PROMPT** — text a model reads to ACT — **UNLESS it sits
-under a `docs/` directory**, which holds RECORDS: research, references, measured runs, prior art. A
-record influences through its FACTS and carries no authoring standard; a prompt influences through its
-WORDING and carries all of it.
+**ALWAYS treat every file under this tree as a PROMPT** — this is Claude Code's own skill-discovery root,
+so every file here is read by the platform itself on every turn, not only by a model that deliberately
+loads one.
 
-**WHEN you cannot tell which one you are editing ⟶ apply the REWRITE TEST.** Hold every fact constant
-and reword the passage. If BEHAVIOUR could change, it is a PROMPT. If only the prose changed, it is a
-RECORD.
+**ALWAYS keep every `SKILL.md` here to frontmatter (`name` + `description`, copied BYTE-IDENTICALLY from
+the skill it adapts) plus exactly one pointer sentence — NEVER a body.** The canonical doctrine for every
+skill named here, and this tree's own full prompt harness, now live under `.grimorio/skills/`. A body
+written here would duplicate that doctrine and could drift from it (rule 15); it would also inherit a
+measured bug a bodiless adapter cannot: a relative `./file.md` link inside a skill BODY resolves against
+the caller's own CWD, not this file's directory (upstream issues #56325, #1153).
 
-**ALWAYS apply that test per SECTION, never per file.** A prompt file legitimately contains sections
-that are not instructions — the evidence behind a rule, a worked example, the incident that earned it.
-**NEVER force an opener onto one of those.** A measurement written as `ALWAYS the count was 258` is
-nonsense, and a checker that demands it will teach you to write nonsense to satisfy it.
+**WHEN you are about to add anything beyond frontmatter and one pointer sentence to a file under this
+tree ⟶ STOP — that content belongs in the corpus at `.grimorio/skills/`, never here.**
 
-## CHECK — answer these before you finish the edit, not after
-
-**BEFORE you report this edit done ⟶ answer all five out loud.** They are past tense on purpose: each
-names an omission the rule alone has already failed to prevent in this repo.
-
-1. **Did every clause I added open with ALWAYS / NEVER / BEFORE / WHEN — or CHECK?** A bolded sentence
-   with no opener is prose, and the reader owes prose nothing. This is the exact defect the CEO caught
-   in `grimorio.prompt-reading/SKILL.md` on 2026-08-09: a file about how rules bind, written without any.
-2. **Did every conditional carry `⟶`?** `WHEN <trigger> ⟶ <action>`, never a colon, never `→`.
-3. **Did I remove, supersede or relocate something — or is this diff pure ADDITION?** A file that only
-   grows is a file nobody is maintaining.
-4. **Does every path I wrote carry its `relation:store/path` prefix?** A bare path cannot say whether
-   it is a dependency, a pointer, or proof.
-5. **Did I state the same fact twice?** Two copies drift, and only one of them gets corrected.
-
-**WHEN this file passes ~500 lines ⟶ split it by TOPIC, trim it, or state IN the file why it earns its
-size.** All three are legitimate; leaving it flagged is not.
-
--> The craft and the audit lenses: import:skill/grimorio.prompt-writing-quality
--> What each construct obliges a READER: import:skill/grimorio.prompt-reading
+-> This tree's own full harness, covering everything under `.grimorio/`:
+   import:repo/.grimorio/harness.md

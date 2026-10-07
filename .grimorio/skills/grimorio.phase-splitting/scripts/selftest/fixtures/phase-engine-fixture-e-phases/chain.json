@@ -1,0 +1,13 @@
+{
+  "agent": "phase-engine-fixture-e",
+  "entry": "E1",
+  "phases": [
+    { "id": "E1", "file": ".grimorio/skills/grimorio.phase-splitting/scripts/selftest/fixtures/phase-engine-fixture-e-phases/phase-e1.md",
+      "desc": "fixture phase E1 — departable, nothing to produce",
+      "next": { "go": "E2" } },
+    { "id": "E2", "file": ".grimorio/skills/grimorio.phase-splitting/scripts/selftest/fixtures/phase-engine-fixture-e-phases/phase-e2.md",
+      "desc": "fixture phase E2 — TERMINAL and declares its own produces: nothing departs it, so sitting in it IS the close",
+      "produces": ["terminal-report"],
+      "next": {} }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "agent": "grimorio.prompt-writer",
+  "entry": "1",
+  "phases": [
+    { "id": "1", "file": ".grimorio/skills/grimorio.agent-writing/prompt-writer-phases/phase-1-search-first.md",
+      "desc": "SEARCH-FIRST",
+      "loads": [],
+      "next": { "continue": "2", "refused": "6" } },
+    { "id": "2", "file": ".grimorio/skills/grimorio.agent-writing/prompt-writer-phases/phase-2-understand-verify-plan.md",
+      "desc": "UNDERSTAND, VERIFY & PLAN",
+      "loads": ["skill/grimorio.reasoning-principles/SKILL.md", "skill/grimorio.phase-splitting/steps-vs-phases-test.md", "skill/grimorio.agent-writing/SKILL.md", "skill/grimorio.prompt-writing-quality/SKILL.md"],
+      "next": { "continue": "3", "plan-for-review": "6", "refused": "6" } },
+    { "id": "3", "file": ".grimorio/skills/grimorio.agent-writing/prompt-writer-phases/phase-3-rule-syntax.md",
+      "desc": "RULE SYNTAX",
+      "loads": ["skill/grimorio.prompt-writing-quality/format-guide.md", "skill/grimorio.prompt-writing-quality/control-flow-vocabulary.md"],
+      "next": { "always": "4" } },
+    { "id": "4", "file": ".grimorio/skills/grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md",
+      "desc": "FILE STRUCTURE",
+      "loads": ["skill/grimorio.agent-writing/SKILL.md", "skill/grimorio.conduct/SKILL.md"],
+      "next": { "always": "5" } },
+    { "id": "5", "file": ".grimorio/skills/grimorio.agent-writing/prompt-writer-phases/phase-5-content-guardrails.md",
+      "desc": "CONTENT GUARDRAILS",
+      "loads": ["skill/grimorio.agent-writing/technique-catalog.md", "skill/grimorio.agent-writing/SKILL.md", "skill/grimorio.agent-tiers/SKILL.md"],
+      "next": { "always": "6" } },
+    { "id": "6", "file": ".grimorio/skills/grimorio.agent-writing/prompt-writer-phases/phase-6-report-close.md",
+      "desc": "REPORT & CLOSE (terminal)",
+      "loads": ["skill/grimorio.reasoning-principles/SKILL.md"],
+      "produces": ["report-written"],
+      "next": {} }
+  ]
+}

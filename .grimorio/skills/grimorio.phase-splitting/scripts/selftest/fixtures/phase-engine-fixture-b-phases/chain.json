@@ -1,0 +1,14 @@
+{
+  "agent": "phase-engine-fixture-b",
+  "entry": "P",
+  "phases": [
+    { "id": "P", "file": ".grimorio/skills/grimorio.phase-splitting/scripts/selftest/fixtures/phase-engine-fixture-b-phases/phase-p.md",
+      "desc": "fixture phase P",
+      "produces": ["p-done"],
+      "next": { "go": "Q" } },
+    { "id": "Q", "file": ".grimorio/skills/grimorio.phase-splitting/scripts/selftest/fixtures/phase-engine-fixture-b-phases/phase-q.md",
+      "desc": "fixture phase Q (terminal)",
+      "requires": ["p-done"],
+      "next": {} }
+  ]
+}
