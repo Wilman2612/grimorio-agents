@@ -58,27 +58,57 @@ unnecessary — but the PROPERTY it provided is still required, and it is now pr
 │                                ledger. Declared ONCE as `cacheRoot` in .grimorio/scripts/refobl/skill-roots.json
 │                                and read through .grimorio/scripts/refobl/cache-paths.cjs -- never named as a
 │                                literal by a consumer
+├── templates/                   what an INSTALLATION starts from, not what this one runs: the root
+│                                CLAUDE.md a fresh adopter receives. Never written over one that
+│                                already exists, because in an adopting repo that file is theirs
 └── ARCHITECTURE.md              this file, plus grimorio's other ROOT DOCUMENTS: AGENT-TIERS.md,
                                  GRIMORIO-CHAIN.md, GRIMORIO-INDEX.md, GRIMORIO-VISION.md. These are
                                  grimorio's own doctrine and index, so they sit at grimorio's own root --
                                  they were under `.claude/`, which publishes, and they are not published
 
-.claude/                         WHAT CLAUDE CODE PUBLISHES, plus what the adopter wrote. NEVER exports.
+.claude/                         WHAT CLAUDE CODE PUBLISHES, plus what the adopter wrote. Exports by
+│                                ALLOWLIST -- never by denylist, because §2 defines an adopter's own agent
+│                                as whole, unprefixed and unsplit, so the `project.` prefix that marks
+│                                ownership everywhere else catches nothing here. The list is declared in
+│                                .grimorio/scripts/export/export-surface.mjs and read by BOTH the gate and
+│                                the exporter; two copies of it diverged once and four hook files were lost
 ├── agents/<grimorio.x>.md       a light adapter: frontmatter + identity + pointers
 ├── agents/<their-agent>.md      THE ADOPTER'S OWN AGENT, whole, unprefixed, unsplit
 ├── skills/<grimorio.x>/SKILL.md a stub: frontmatter + ONE pointer. No doctrine.
-├── hooks/<hook>.cjs             a dispatcher. The only layer settings.json names.
-├── grimorio-config.json         THE ADOPTER'S installation answers -- language, the owned prefixes, the
-│                                board's tokens. Written when grimorio is installed, so it is theirs and
-│                                it stays here, with its gitignored `.local.json` override beside it
-└── settings.json                the CEO's. Never edited by a migration.
+├── hooks/<hook>.cjs|.mjs        a dispatcher, 245-615 bytes, importing its logic from .grimorio/hooks/.
+│                                The only layer settings.json names. BOTH module formats travel: the
+│                                allowlist read format rather than ownership once, and a dispatcher
+│                                arrived without the library it imports
+├── grimorio-config.json         GRIMORIO'S COMMITTED DEFAULTS -- language, the owned prefixes, the board's
+│                                tokens. The loader shallow-merges the gitignored `.local.json` beside it
+│                                ON TOP, and THROWS when this file is missing, so it travels. It was once
+│                                recorded here as the adopter's and held back, and every hook that reads
+│                                it then crashed on load in a fresh installation
+├── board-config.json            THE ADOPTER'S: the board owner, project and repo. Never exports -- it
+│                                names a person, which is the one thing the leak gate refuses outright
+└── settings.json                the CEO's. Never edited by a migration, and never COPIED to a target:
+                                 it wires the hooks, so an adopter must get their own
 
-scripts/                         global scripts only
+.codex/                          THE SAME KIND OF TREE FOR ANOTHER HOST, and grimorio's own throughout.
+├── agents/<grimorio.x>.toml     the agent definitions in that host's format
+├── hooks/<hook>.mjs             its dispatchers and the libraries they import
+└── hooks.json                   the wiring. Unlike settings.json it carries no installation of its own --
+                                 its paths derive from the repo root -- so it travels verbatim
+
+.agents/skills/<grimorio.x>/     A THIRD SURFACE, not a subfolder of the second: that host discovers
+                                 SKILLS under its own root. Stubs only, same as .claude/skills/
+
+scripts/                         THE ADOPTER'S OWN root scripts -- their selftests, their export
+                                 declaration. grimorio's 100-odd live under .grimorio/scripts/, where
+                                 POSITION marks ownership and no prefix is needed
 tools/                           PARKED by him. The empty folder may stand; nothing moves into it.
 ```
 
-**There is no twenty-third container.** A file that fits nowhere above is a signal that the spec is wrong,
-not a licence to invent a folder.
+**There is no container beyond the ones above.** A file that fits nowhere here is a signal that the spec
+is wrong, not a licence to invent a folder. The sentence used to carry a NUMBER; it does not now, because
+a hand-kept count in prose is the exact defect this section warns about -- it goes quiet when it falls
+behind rather than noisy. What counts the publication surfaces is
+`.grimorio/scripts/export/surface-coverage.mjs`, which refuses an export when one of them is undeclared.
 
 ---
 

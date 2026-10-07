@@ -37,6 +37,12 @@ const set = [...grimorio, ...claude];
 try { execFileSync(process.execPath, [".grimorio/scripts/export/leak-check.mjs"], { stdio: "pipe" }); }
 catch { console.error("REFUSED: .grimorio/scripts/export/leak-check.mjs does not pass. Nothing was written."); process.exit(2); }
 
+// The leak gate above answers "is anything of the ADOPTER'S in here". This answers the INVERSE, which no
+// gate asked until a clone failed: is anything of GRIMORIO'S left out. Both are preconditions, because an
+// export that discovers a missing surface afterwards has already published the installation without it.
+try { execFileSync(process.execPath, [".grimorio/scripts/export/surface-coverage.mjs"], { stdio: "pipe" }); }
+catch { console.error("REFUSED: a publication surface is undeclared. Run .grimorio/scripts/export/surface-coverage.mjs."); process.exit(2); }
+
 const dirty = execFileSync("git", ["-C", target, "status", "--porcelain"], { encoding: "utf8" }).trim();
 if (dirty && apply) { console.error(`REFUSED: target has ${dirty.split("\n").length} uncommitted change(s)`); process.exit(2); }
 
@@ -61,7 +67,8 @@ function scrub(text) {
 
 // The target's OLD corpus goes first: an export that only adds leaves whatever the previous layout had, and
 // the previous layout here was everything under .claude/ with no .grimorio/ at all.
-const stale = [".grimorio", ".claude/agents", ".claude/skills", ".claude/hooks", ".codex/agents", ".codex/hooks", "scripts"]
+const stale = [".grimorio", ".claude/agents", ".claude/skills", ".claude/hooks",
+  ".codex/agents", ".codex/hooks", ".agents/skills", "scripts"]
   .map((d) => path.join(target, d))
   .filter(existsSync);
 if (apply) for (const d of stale) rmSync(d, { recursive: true, force: true });

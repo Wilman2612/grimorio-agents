@@ -33,6 +33,12 @@ export const CLAUDE_ALLOWED = [
 // its paths derive from the repo root, so it travels verbatim.
 export const SURFACES = [
   { dir: ".claude", allow: CLAUDE_ALLOWED },
+  // @keep-comment Codex discovers SKILLS under `.agents/skills`, a different root from its agents and its
+  // hooks, so this is a THIRD surface rather than a subfolder of the second. It exported nowhere either,
+  // which meant that host received its agents and its hooks and none of its skills.
+  { dir: ".agents", allow: [
+    /^\.agents\/skills\/grimorio\.[a-z0-9.-]+\/SKILL\.md$/, // the discovery stubs for that host
+  ] },
   { dir: ".codex", allow: [
     /^\.codex\/agents\/grimorio\.[a-z0-9.-]+\.toml$/,     // the agent definitions in that host's format
     /^\.codex\/hooks\/[a-z0-9.-]+\.(cjs|mjs)$/,           // the dispatchers and their libraries
