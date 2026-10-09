@@ -33,9 +33,13 @@ function walk(dir, out = []) {
 }
 
 const all = existsSync(".grimorio") ? walk(".grimorio") : [];
-const exportSet = all.filter((p) => !EXCLUDED_TREES.some((t) => p.startsWith(t)) && !isPrefixed(p));
+const memoryTravels = new Set(classifyMemory(all).travels);
+// @keep-comment The memory tree is no longer excluded WHOLLY: its GENERIC half travels, so it must be
+// SCANNED like everything else. A file the exporter sends and the gate skips leaves unchecked.
+const exportSet = all.filter((p) => (!EXCLUDED_TREES.some((t) => p.startsWith(t)) || memoryTravels.has(p)) && !isPrefixed(p));
 
 import { SURFACES, ROOT_EXTRAS } from "./export-surface.mjs";
+import { classifyMemory } from "./memory-split.mjs";
 const surfaces = SURFACES.map((s) => {
   const files = existsSync(s.dir) ? walk(s.dir) : [];
   const allowed = (p) => s.allow.some((re) => re.test(p));

@@ -25,8 +25,11 @@ J
   # COPY the real tool AND the declaration module it imports -- a hand-written twin of either drifts,
   # which this suite has already paid for once: a printf-written JSON turned a regex word boundary
   # into a literal backspace byte and the fixture quietly tested nothing.
-  cp "$R/.grimorio/scripts/export/leak-check.mjs" "$R/.grimorio/scripts/export/export-surface.mjs" \
-     "$T/r/.grimorio/scripts/export/"
+  # EVERY module in the export toolchain, by GLOB rather than by name. A hand-listed copy fell behind
+  # twice -- once when the allowlist was extracted and once when the memory split was -- and each time the
+  # sandbox ran a tool whose import was missing, so the whole suite went red for a reason unrelated to
+  # anything it tests. A list of what a tool imports is a list that goes quiet when it falls behind.
+  cp "$R"/.grimorio/scripts/export/*.mjs "$T/r/.grimorio/scripts/export/"
 }
 
 echo "=== GREEN: a clean export set passes, and the adopter's own tree is excluded"

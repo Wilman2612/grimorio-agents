@@ -42,7 +42,11 @@ function walkAll(dir, out = []) {
 }
 
 import { SURFACES, ROOT_EXTRAS } from "./export-surface.mjs";
-const grimorio = walk(".grimorio").filter((p) => !p.startsWith(".grimorio/memory/") && !p.split("/").some((s) => s.startsWith("project.")));
+import { classifyMemory } from "./memory-split.mjs";
+const grimorioAll = walk(".grimorio");
+const memoryTravels = new Set(classifyMemory(grimorioAll).travels);
+const grimorio = grimorioAll.filter((p) => (!p.startsWith(".grimorio/memory/") || memoryTravels.has(p))
+  && !p.split("/").some((s) => s.startsWith("project.")));
 const claude = SURFACES.flatMap((s) => (existsSync(s.dir) ? walk(s.dir) : []).filter((p) => s.allow.some((re) => re.test(p))));
 const set = [...grimorio, ...claude];
 
