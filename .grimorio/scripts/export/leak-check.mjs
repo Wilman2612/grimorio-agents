@@ -13,10 +13,8 @@ const spec = JSON.parse(readFileSync(SPEC, "utf8"));
 const MARKERS = spec.markers.map((m) => m.toLowerCase());
 const REVIEWED = spec.reviewed || {};
 
-// RULE 1 -- `.grimorio/memory/` never exports. ARCHITECTURE.md section 5: "Project and code come OUT of the
-// agent, into memory/, so all memory is manageable in one place." The DIRECTORY is the ownership signal;
-// a `project.` prefix inside it is the convention working twice, not the thing that keeps it out.
-const EXCLUDED_TREES = [".grimorio/memory/"];
+// RULE 1 -- memory exports only the half memory-split.mjs says travels: an agent's own `memory/` folder and
+// the shared `.grimorio/memory/` stores alike (ARCHITECTURE.md section 6).
 // RULE 2 -- the prefix marks OWNERSHIP, never position, so it excludes a FILE or a FOLDER anywhere.
 const isPrefixed = (p) => p.split("/").some((seg) => seg.startsWith("project."));
 
@@ -36,10 +34,10 @@ const all = existsSync(".grimorio") ? walk(".grimorio") : [];
 const memoryTravels = new Set(classifyMemory(all).travels);
 // @keep-comment The memory tree is no longer excluded WHOLLY: its GENERIC half travels, so it must be
 // SCANNED like everything else. A file the exporter sends and the gate skips leaves unchecked.
-const exportSet = all.filter((p) => (!EXCLUDED_TREES.some((t) => p.startsWith(t)) || memoryTravels.has(p)) && !isPrefixed(p));
+const exportSet = all.filter((p) => (!isMemoryPath(p) || memoryTravels.has(p)) && !isPrefixed(p));
 
 import { SURFACES, ROOT_EXTRAS } from "./export-surface.mjs";
-import { classifyMemory } from "./memory-split.mjs";
+import { classifyMemory, isMemoryPath } from "./memory-split.mjs";
 const surfaces = SURFACES.map((s) => {
   const files = existsSync(s.dir) ? walk(s.dir) : [];
   const allowed = (p) => s.allow.some((re) => re.test(p));

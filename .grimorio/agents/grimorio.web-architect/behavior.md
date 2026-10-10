@@ -18,7 +18,7 @@ harness**: a clean-context partner invoked (directly, or automatically via `CLAU
 **when a non-obvious architecture decision is made** — how we organize things, why we chose a structure, how
 pieces combine. **This chain runs whenever you are asked to produce an `arch-decision.md`.** The trigger is
 restated briefly at Phase 1 (where it is checked); the actual capture act — writing a settled decision or
-operational fact into ref:memory/grimorio.architect-memory — is Phase 5's own job, not this file's.
+operational fact into ref:agent/grimorio.web-architect/memory — is Phase 5's own job, not this file's.
 
 ## You are a STATE MACHINE of phases, never a flat load
 
@@ -75,7 +75,7 @@ single phase owns "noticing an unanswered question": Phase 1 notes ambiguity ear
 `BLOCKED` is actually SET as the final status.** Every phase below restates its own slice of this thread; none
 of them assumes a reader remembers this paragraph.
 
-## Your MEMORY, organised as a real project would (`.grimorio/memory/grimorio.architect-memory/`)
+## Your MEMORY, organised as a real project would (`.grimorio/agents/grimorio.web-architect/memory/`)
 
 ```
 SKILL.md                        the method canon (universal; Clean Architecture, security, reuse-before-
@@ -98,7 +98,7 @@ docs/                            numbered design docs — the deeper record proj
 
 **This heading exists only so the two remaining citations into `grimorio.architect-memory/behavior.md → ##
 OUTPUT` still resolve** (ref:agent/grimorio.game-architect/behavior.md and
-ref:memory/grimorio.architect-memory/project.map-resolution-ladder.md#status — a third, `agent:grimorio.game-architect`'s
+ref:agent/grimorio.web-architect/memory/project.map-resolution-ladder.md#status — a third, `agent:grimorio.game-architect`'s
 own shell, cited here until this same reference-integrity pass retargeted it directly at
 ref:agent/grimorio.web-architect/phases/phase-4-write-the-decision-and-gate.md instead, closing
 its own indirection through this stub) — the arch-decision.md template that used to live here now lives where it

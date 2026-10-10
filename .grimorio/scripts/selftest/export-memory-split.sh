@@ -18,21 +18,24 @@ echo "=== THE CLAIM: no travelling PROMPT eagerly imports an unprefixed memory F
 UNMET_LIST="$(node - <<'JS'
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
-const { classifyMemory } = await import("./.grimorio/scripts/export/memory-split.mjs");
+const { classifyMemory, isMemoryPath } = await import("./.grimorio/scripts/export/memory-split.mjs");
 const all = execFileSync("git", ["ls-files", ".grimorio"], { encoding: "utf8" }).trim().split(String.fromCharCode(10));
 const travels = new Set(classifyMemory(all).travels);
 const senders = all.filter((f) => f.endsWith(".md"))
-  .filter((f) => !f.startsWith(".grimorio/memory/") || travels.has(f))
+  .filter((f) => !isMemoryPath(f) || travels.has(f))
   .filter((f) => !f.split("/").some((s) => s.startsWith("project.")));
 const unmet = new Set();
 for (const f of senders) {
   let txt = ""; try { txt = readFileSync(f, "utf8"); } catch { continue; }
-  for (const m of txt.matchAll(/import:memory\/([A-Za-z0-9.\/_-]+)/g)) {
-    const target = m[1].replace(/[.,;:]+$/, "");
+  // Both homes of memory: a shared store, and an agent's own `memory/` folder.
+  for (const m of txt.matchAll(/import:(memory|agent)\/([A-Za-z0-9.\/_-]+)/g)) {
+    const target = m[2].replace(/[.,;:]+$/, "");
+    const path = (m[1] === "memory" ? ".grimorio/memory/" : ".grimorio/agents/") + target;
+    if (!isMemoryPath(path)) continue;
     const parts = target.split("/");
     if (parts.length < 2 || !target.endsWith(".md")) continue;
     if (parts.some((s) => s.startsWith("project."))) continue;
-    if (!travels.has(".grimorio/memory/" + target)) unmet.add(f + " -> import:memory/" + target);
+    if (!travels.has(path)) unmet.add(f + " -> import:" + m[1] + "/" + target);
   }
 }
 for (const u of unmet) console.log(u);
@@ -51,8 +54,7 @@ fi
 
 echo "=== THE THREE STRUCTURAL CLAUSES, each asserted on a file that proves it"
 L="$(node .grimorio/scripts/export/memory-split.mjs --list)"
-t "build-protocol.md travels -- the most-cited file in the corpus" "$(echo "$L" | grep -c 'developer-memory/build-protocol.md')" "1"
-t "a store's own SKILL.md travels -- what a bare store import resolves to" "$(echo "$L" | grep -c 'grimorio.qa-memory/SKILL.md')" "1"
+t "an agent's own memory SKILL.md travels -- what a bare memory import resolves to" "$(echo "$L" | grep -c 'agents/grimorio.qa/memory/SKILL.md')" "1"
 t "a SUBFOLDER file does NOT travel" "$(echo "$L" | grep -cE '/(designs|design-archive|docs|features)/')" "0"
 t "a project.-prefixed root file does NOT travel" "$(echo "$L" | grep -c 'project\.')" "0"
 t "the BOARD's store travels nothing -- the board itself is the declaration of truth" "$(echo "$L" | grep -c 'board-memory')" "0"

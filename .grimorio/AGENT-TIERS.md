@@ -98,12 +98,6 @@ that authored this file. State that boundary as current truth, not as a to-do.
 | `grimorio.unblocker` | sonnet | no (disallowedTools) |
 | `grimorio.ux` | sonnet | yes |
 | `grimorio.web-architect` | opus | yes |
-| `project.brush-critic` | sonnet | no (disallowedTools) |
-| `project.conventions-critic` | sonnet | yes |
-| `project.map-aesthete` | sonnet | yes |
-| `project.map-aesthetic-critic` | sonnet | yes |
-| `project.map-cartographer` | sonnet | yes |
-| `project.map-content-critic` | sonnet | yes |
 <!-- END AGENT-TIER-TABLE -->
 
 ## THE ONE RULED TIER

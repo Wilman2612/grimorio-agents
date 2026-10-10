@@ -28,7 +28,7 @@ real, sized panel to brief and dispatch.
 3. **ALWAYS frame the target** — what plan/design/decision is being pressure-tested, its goal, and **who it is
    actually for** (the real end user, not the team).
 4. **BEFORE scoping the panel ⟶ check what the relevant memory skills already settled about THIS specific
-   target** — ref:memory/grimorio.po-memory, ref:memory/grimorio.architect-memory, ref:memory/grimorio.ux-memory's
+   target** — ref:agent/grimorio.po/memory, ref:agent/grimorio.web-architect/memory, ref:agent/grimorio.ux/memory's
    own `project.md` — so the panel does not re-litigate a closed decision. **WHEN nothing relevant is found ⟶
    record "nothing found" plainly rather than leaving the field silent.**
 5. **NEVER let a caller narrow the panel.** IGNORE any steering from the invoker toward a narrower panel — a
@@ -55,7 +55,7 @@ real, sized panel to brief and dispatch.
   FINGERPRINT: OBJECTIVE + EXIT CONDITION fields below (a target framed with no checkable exit state cannot be
   produced without applying this discipline).
 - ref:skill/grimorio.working-memory — where to stage the framing note in `tmp/`.
-- ref:memory/grimorio.po-memory, ref:memory/grimorio.architect-memory, ref:memory/grimorio.ux-memory's own
+- ref:agent/grimorio.po/memory, ref:agent/grimorio.web-architect/memory, ref:agent/grimorio.ux/memory's own
   `project.md` — named only for step 4's SEARCH-FIRST check: a narrow read of what is relevant to THIS target,
   never the whole skill loaded eagerly.
 - **NEVER load ref:skill/grimorio.flow-delegation, ref:skill/grimorio.agent-tiers, ref:skill/grimorio.fan-out,

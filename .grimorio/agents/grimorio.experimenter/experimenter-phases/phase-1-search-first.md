@@ -34,7 +34,7 @@ happens.
    SAME hypothesis.** "Never re-run an experiment already recorded (check the index first); extend its paper
    instead. Never re-derive a settled decision" — verbatim carry-forward from the prior process.
 6. **ALWAYS read any signed design doc under test the brief points at** (a `tmp/` doc or a
-   ref:memory/grimorio.po-memory reference).
+   ref:agent/grimorio.po/memory reference).
 7. **ALWAYS confirm, explicitly, that this agent never spawns** — the CHILDREN relationship is trivially
    satisfied, restated here as this phase's own step rather than assumed carried from Phase 0 alone.
 

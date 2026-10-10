@@ -19,7 +19,7 @@ question).
    any phase, ever.**
 2. **ALWAYS attempt, on EVERY authenticated endpoint Phase 2's map named — not only Phase-3-flagged ones — the
    four vectors held in
-   import:memory/grimorio.security-memory#auth-bypass-testing--four-vectors-test-each-endpoint-individually**:
+   import:agent/grimorio.security/memory#auth-bypass-testing--four-vectors-test-each-endpoint-individually**:
    no token → 401; expired token → 401; valid token but wrong user's resource ID → 403; manipulated JWT payload
    → 401 or 403.
 3. **NEVER assume one check covers every endpoint — test each individually**, per that section's own
@@ -28,7 +28,7 @@ question).
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.security-memory#auth-bypass-testing--four-vectors-test-each-endpoint-individually —
+- import:agent/grimorio.security/memory#auth-bypass-testing--four-vectors-test-each-endpoint-individually —
   ONLY, never the OWASP checklist or payload-format sections again.
   FINGERPRINT: SWEEP TABLE field below (a genuine per-endpoint, per-vector table cannot be produced without
   applying this section).
@@ -49,7 +49,7 @@ import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
 (`ref:repo/.grimorio/agents/grimorio.security/phases/phase-5-auth-bypass-sweep.md`) and this
 phase's own filled PHASE 5 DELIVERABLE block, written to disk first per that gate's own algorithm — the read
 below now runs on that gate's own PASS, never on the block merely existing in context.** This phase's own
-`import:memory/grimorio.security-memory#auth-bypass-testing--four-vectors-test-each-endpoint-individually`
+`import:agent/grimorio.security/memory#auth-bypass-testing--four-vectors-test-each-endpoint-individually`
 carries a `FINGERPRINT:` annotation, so the gate is NOT inert here.
 
 **ALWAYS read ref:agent/grimorio.security/phases/phase-6-classify-and-report.md next, carrying

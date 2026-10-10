@@ -16,7 +16,7 @@ mapped.
    checklist, apply the systemic-finding rule — and nothing else; this agent never invokes another agent, in
    any phase, ever.**
 2. **ALWAYS apply the full OWASP Top 10 checklist and static-signal table held in
-   import:memory/grimorio.security-memory#owasp-top-10-audit-checklist against every changed file Phase 2's map
+   import:agent/grimorio.security/memory#owasp-top-10-audit-checklist against every changed file Phase 2's map
    named, finishing each category (A01-A10) before the next** — never re-derive the checklist here; the memory
    skill is the single source.
 3. **ALWAYS apply the systemic-finding rule: WHEN the same pattern repeats across multiple files ⟶ write ONE
@@ -24,7 +24,7 @@ mapped.
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.security-memory#owasp-top-10-audit-checklist — ONLY.
+- import:agent/grimorio.security/memory#owasp-top-10-audit-checklist — ONLY.
   FINGERPRINT: STATIC-ANALYSIS TABLE field below (a genuinely filled A01-A10 table cannot be produced without
   applying the checklist).
 - **NEVER load the payload format, the auth-bypass vectors, or the classification sections here** — each
@@ -46,7 +46,7 @@ import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
 (`ref:repo/.grimorio/agents/grimorio.security/phases/phase-3-owasp-static-recon.md`) and this
 phase's own filled PHASE 3 DELIVERABLE block, written to disk first per that gate's own algorithm — the read
 below now runs on that gate's own PASS, never on the block merely existing in context.** This phase's own
-`import:memory/grimorio.security-memory#owasp-top-10-audit-checklist` carries a `FINGERPRINT:` annotation, so the
+`import:agent/grimorio.security/memory#owasp-top-10-audit-checklist` carries a `FINGERPRINT:` annotation, so the
 gate is NOT inert here.
 
 **ALWAYS read ref:agent/grimorio.security/phases/phase-4-targeted-payload-proof.md next,

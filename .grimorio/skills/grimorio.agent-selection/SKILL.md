@@ -5,7 +5,7 @@ description: "Load before spawning any agent: which grimorio agent fits which ta
 
 # Agent Selection — WHICH agent, WHEN
 
-**BEFORE you pick an agent ⟶ load import:memory/grimorio.po-memory/project.md#what-is-green-stated-at-the-width-the-code-actually-delivers-re-verified-2026-07-30
+**BEFORE you pick an agent ⟶ load import:agent/grimorio.po/memory/project.md#what-is-green-stated-at-the-width-the-code-actually-delivers-re-verified-2026-07-30
 and STATE in the brief what already exists**, so the agent wires the gap instead of re-deriving the substrate.
 An agent reporting "that's already built" is the tell this was skipped.
 

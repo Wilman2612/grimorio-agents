@@ -70,18 +70,18 @@ something real to check the split against.
 4. **ALWAYS write tests per the matrix (the full matrix on FIRST-PASS, the one assigned row on CHILD), honoring
    the E2E-floor ordering Phase 0's own Core rules already state**
    (not restated here) — the E2E browser-automation framework is already set up in this project
-   (ref:memory/grimorio.qa-memory/project.md#test-frameworks-verified-against-the-repo-2026-07-20 → "Test
+   (ref:agent/grimorio.qa/memory/project.md#test-frameworks-verified-against-the-repo-2026-07-20 → "Test
    frameworks"), so this is never gated on tooling. Otherwise pick the layer: pure logic → unit; repos/APIs → integration; visible flows not already covered by
    the floor above → E2E; component visual states → unit with FakeAdapter (no MSW, no real fetch). Each layer
    runs, separately, in its own test project — exact commands per suite:
-   ref:memory/grimorio.qa-memory/project.md → "Test frameworks", the single source of truth for these commands.
+   ref:agent/grimorio.qa/memory/project.md → "Test frameworks", the single source of truth for these commands.
    **NEVER let a frontend test import from the backend's own source** — that is an architecture-boundary
    failure, report it, per ref:skill/grimorio.development-patterns's own cross-layer-shortcut anti-pattern.
    **ALWAYS test behavior, not implementation, and keep every test deterministic — mock time and external
    services.** The pyramid shape is a human-authoring-cost artifact, not a value ranking — a feature that
    touches persistence or a live contract still needs at least one real integration/full-stack run, not just
    more unit tests
-   (ref:memory/grimorio.qa-memory#full-stack-local--the-tier-between-integration-and-deployed-e2e).
+   (ref:agent/grimorio.qa/memory#full-stack-local--the-tier-between-integration-and-deployed-e2e).
 5. **ALWAYS include negative tests**: invalid input → typed error via Result; missing auth → 401/403; absent
    optional data → component/API handles null; the `empty`/`error` states from the brief.
 

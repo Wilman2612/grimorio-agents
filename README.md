@@ -184,10 +184,10 @@ shown; see also [MEASUREMENTS.md](MEASUREMENTS.md) → finding 4.
 3. Start Claude Code in that directory. `CLAUDE.md`'s one load instruction pulls in the rest —
    `.claude/skills/grimorio.agent-selection/SKILL.md` is the routing doctrine: which agent for which
    situation, not "read all 27 shells first."
-4. Fill in your own project/code layers as you go: every per-role memory skill (`grimorio.architect-memory`,
-   `grimorio.po-memory`, `grimorio.developer-memory`, `grimorio.qa-memory`, `grimorio.security-memory`, and
-   the rest — one per gate/build role) ships with its general `SKILL.md` and no `project.md` — that's the
-   file you write, describing your own stack and decisions. **Never edit a shell or a behavior file to fit
+4. Fill in your own project/code layers as you go: an agent's memory lives in `memory/` inside its own
+   folder (`.grimorio/agents/<agent>/memory/`). It is optional — some agents ship a general `SKILL.md` there,
+   none ships a `project.md`. That is the file you write when you want one, describing your own stack and
+   decisions. **Never edit a shell or a behavior file to fit
    your project** — that's exactly the file that's supposed to stay portable to the next one.
 
 **What genuinely breaks on a cold clone, found by actually cloning it fresh this pass (not asserted):**

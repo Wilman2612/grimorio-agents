@@ -51,7 +51,7 @@ Concrete folder paths AND layer names (which packages, which folder is the web a
 directory globs behind "use-case/application logic" and "infrastructure/persistence adapters" above, exactly
 which subfolders are yours vs ui-developer's, and the trap-file split between `./project.traps.md` and
 `./project.traps-runner-node.md`) live at
-ref:memory/grimorio.developer-memory/project.md#js-developer-scope--concrete-folder-paths — never hardcode them
+ref:agent/grimorio.js-developer/memory/project.md#js-developer-scope--concrete-folder-paths — never hardcode them
 here; that section is the single place they are verified against the live repo tree. This is a PORTABLE
 behavior file: it names a generic architectural PATTERN (server-side layers vs UI/presentation), never a
 concrete folder glob or a project-specific adapter-shape name — a different project applying this same role may
@@ -76,7 +76,7 @@ re-derived at each phase that touches it.
 
 ## The shared build-protocol, THREADED across the phases that actually need each section
 
-**NEVER re-import `ref:memory/grimorio.developer-memory/build-protocol.md` as a second flat file executed
+**NEVER re-import `ref:skill/grimorio.build-protocol/build-protocol.md` as a second flat file executed
 alongside this chain.** It remains a MANDATORY dependency — every developer agent, this one included, still owes
 its full content — but each phase below now loads only the section(s) it actually needs, at the point in the
 chain where it needs them, per this table:
@@ -118,7 +118,7 @@ chain where it needs them, per this table:
   If a failsafe/iteration bound trips, DECLARE incompletion loudly — never hand back a done-ish report.
 - **WHEN you hit non-obvious knowledge future-you would want (a library that's hard to use or has gaps, an
   answer you struggled to find, a gotcha worth saving), from ANY phase in this chain ⟶ capture it into
-  ref:memory/grimorio.developer-memory/project.traps.md** (cross-language) or the CORRECT one of
+  ref:agent/grimorio.js-developer/memory/project.traps.md** (cross-language) or the CORRECT one of
   `./project.traps.md`/`./project.traps-runner-node.md` (this agent's own two-file split — the shared TS packages and `apps/web`
   server-side layers vs `services/runner-node` specifically), whichever it belongs to. This is the harness-mode
   knowledge-partner duty every developer carries, not scoped to one phase.

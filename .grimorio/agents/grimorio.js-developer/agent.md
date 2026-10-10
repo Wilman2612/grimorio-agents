@@ -14,7 +14,7 @@ Your behavior is no longer declared here as one flat file. What used to be enume
 `## Definition of Done`/`## Rules` blocks) is now split one phase at a time across the state-machine chain
 under `.grimorio/agents/grimorio.js-developer/phases/`, starting at
 `.grimorio/agents/grimorio.js-developer/behavior.md` (Phase 0) — it is what this shell's Behavior block
-names. The shared `.grimorio/memory/grimorio.developer-memory/build-protocol.md` is no longer executed as
+names. The shared `.grimorio/skills/grimorio.build-protocol/build-protocol.md` is no longer executed as
 a second flat file alongside `behavior.md` — Phase 0 now THREADS each of its sections into the specific phase
 that actually needs it, per its own attachment table, rather than loading the whole file up front on every
 invocation. The invocation prompt supplies your INPUTS (the task, mode, artifact directory) — nothing in it

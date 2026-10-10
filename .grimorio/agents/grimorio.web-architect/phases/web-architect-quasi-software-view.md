@@ -267,7 +267,7 @@ four rows are never read as carrying identical evidentiary weight.
 | # | Known error / incident / standing rule | Addressed by |
 |---|---|---|
 | 1 | Three capabilities were re-discovered in one session because the `features-status.md` read was skipped | P2 step 3 |
-| 2 | The `tmp/` citation-loss custody incident (2026-07-18) — a SIGNED/ACCEPTED decision cited a dead `tmp/features/**` path | P5 step 6, per ref:memory/grimorio.architect-memory/project.md#custody-incident--tmp-citation-loss-2026-07-18 |
+| 2 | The `tmp/` citation-loss custody incident (2026-07-18) — a SIGNED/ACCEPTED decision cited a dead `tmp/features/**` path | P5 step 6, per ref:agent/grimorio.web-architect/memory/project.md#custody-incident--tmp-citation-loss-2026-07-18 |
 | 3 | **OMISSION, now addressed.** The harness-mode promise ("captures settled web-architecture decisions into architect-memory") was never actually implemented in the pre-split flat file — nothing in it ever wrote into `project.md` or an `{area}.md` file | **This chain's own Phase 5, in full** — the phase this whole re-audit pass was written to close, named plainly rather than left as a residual gap |
 | 4 | **STANDING PREVENTIVE RULE — no dated incident.** The web-architect's own scope boundary: never force a web-CRUD frame onto a game/sim decision | P1 step 4 (the routing verdict) |
 

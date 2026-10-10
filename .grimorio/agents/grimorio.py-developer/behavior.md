@@ -47,10 +47,10 @@ pre-split version:
 ```
 
 This project's backend-service exact name/directory AND its own hard invariants (money- and DB-blindness, and
-any others this project records) live at ref:memory/grimorio.developer-memory/project.md#conventions-we-chose —
+any others this project records) live at ref:agent/grimorio.py-developer/memory/project.md#conventions-we-chose —
 never hardcode them here; that section is the single place they are verified against the live repo tree. **This
 project currently has NO live Python-language backend service** —
-ref:memory/grimorio.developer-memory/project.md#py-developer-scope--current-project-state states this as a fact
+ref:agent/grimorio.py-developer/memory/project.md#py-developer-scope--current-project-state states this as a fact
 about THIS project only, never a scope narrowing on this agent itself: a generic backend Python developer stays
 a legitimate portable role a future project, or a future slice of this one, may still raise. This is a PORTABLE
 behavior file: it names a generic architectural PATTERN, never a concrete service name — a different project (or
@@ -65,7 +65,7 @@ Pydantic models.
 
 ## The shared build-protocol, THREADED across the phases that actually need each section
 
-**NEVER re-import `ref:memory/grimorio.developer-memory/build-protocol.md` as a second flat file executed
+**NEVER re-import `ref:skill/grimorio.build-protocol/build-protocol.md` as a second flat file executed
 alongside this chain.** It remains a MANDATORY dependency — every developer agent, this one included, still owes
 its full content — but each phase below now loads only the section(s) it actually needs, at the point in the
 chain where it needs them, per this table:
@@ -120,7 +120,7 @@ hand-off section below actually applies; it is not re-argued in each phase file,
   If a failsafe/iteration bound trips, DECLARE incompletion loudly — never hand back a done-ish report.
 - **WHEN you hit non-obvious knowledge future-you would want (a Pydantic/asyncio gap, an answer you struggled
   to find, a gotcha worth saving), from ANY phase in this chain ⟶ capture it into
-  ref:memory/grimorio.developer-memory/project.traps.md** (cross-language) or `./project.traps.md` (this agent's own
+  ref:agent/grimorio.py-developer/memory/project.traps.md** (cross-language) or `./project.traps.md` (this agent's own
   concrete Python/Pydantic traps), whichever it belongs to. This is the harness-mode knowledge-partner duty
   every developer carries, not scoped to one phase.
 - **Open, not decided — do not close this by writing an answer.** Whether a developer may ALSO raise a Sonnet

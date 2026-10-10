@@ -61,18 +61,18 @@ something real to check the decomposition against.
 2. **ALWAYS survey before writing, scoped to the module/file list Phase 2 scoped** — read the files you will
    change, search for an existing abstraction you should reuse or extend rather than duplicate, verify the
    layer, per
-   import:memory/grimorio.developer-memory/build-protocol.md#survey-before-writing-mandatory-first-step.
+   import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step.
 2a. **WHEN implementation touches a risky zone (pathing, collision, morale, economy, perception, the decision
-   channel, procedural maps) ⟶ consult import:memory/grimorio.go-developer-memory/project.traps.md for a known gotcha in
+   channel, procedural maps) ⟶ consult import:agent/grimorio.go-developer/memory/project.traps.md for a known gotcha in
    that specific zone before writing the change to that item.** This is the REACTIVE half of this agent's own
    two-pass `./project.traps.md` discipline — Phase 1's own PROACTIVE targeted search, run before the architecture
-   contract is even read, is the other half; ref:memory/grimorio.go-developer-memory/SKILL.md's own description
+   contract is even read, is the other half; ref:agent/grimorio.go-developer/memory/SKILL.md's own description
    of this agent already states both passes. On the CHILD branch, this step re-fires per step 1a above, scoped
    to the one assigned item alone. **WHEN no risky zone is touched by the assigned module(s) ⟶ this step is
    satisfied by stating that plainly** — not every change is in a risky zone, and a forced consultation invents
    a finding that is not there.
 3. **WHEN Phase 2's own REWORK/BUG-REPORT DETECTED field names a bug ⟶ apply
-   import:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order — write the
+   import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — write the
    test that proves the bug exists FIRST (`go test -race`, foreground), confirm it fails with the expected
    error, BEFORE touching production code.** This is a CONDITIONAL first mini-loop step inside THIS SAME
    phase — never its own phase node — carried forward from Phase 2's own detection, applied here where the
@@ -116,18 +116,18 @@ something real to check the decomposition against.
 - import:skill/grimorio.development-patterns — mandatory patterns, structural limits, and the sparse-comments
   rule.
   FINGERPRINT: MODULE(S) BUILT field below, jointly with the two bullets above.
-- import:memory/grimorio.developer-memory/build-protocol.md#survey-before-writing-mandatory-first-step —
+- import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step —
   step 2's own survey-before-writing step.
   FINGERPRINT: SURVEY NOTES field below (a real survey result, distinct from an unchecked "none," cannot be
   produced without applying this discipline first).
-- import:memory/grimorio.go-developer-memory/project.traps.md — this agent's own concrete Go-service traps, step 2a's own
+- import:agent/grimorio.go-developer/memory/project.traps.md — this agent's own concrete Go-service traps, step 2a's own
   REACTIVE consultation, scoped narrowly to whichever risky zone the assigned module(s) actually touch (distinct
   from Phase 1's own PROACTIVE full-corpus search — this load is triggered and narrow, never a repeat of that
   pass).
   FINGERPRINT: RISKY-ZONE CONSULTED field below (a real reactive consultation result naming the zone and any
   gotcha found, distinct from an unchecked "N/A," cannot be produced without opening this index when a risky
   zone is actually touched).
-- import:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order — step 3's own
+- import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — step 3's own
   bug-order step.
   FINGERPRINT: BUG-FIX-FIRST-TEST field below (a real failing-test-first sequence, distinct from an unchecked
   "N/A," cannot be produced without applying this mandatory order first).

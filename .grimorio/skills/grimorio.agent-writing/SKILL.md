@@ -65,7 +65,7 @@ All of a skill's files live in the **same folder**: `.claude/skills/{skill-name}
 | **project** | `{skill}/project.md` | "What did WE decide for THIS project?" | Changes when architectural decisions change |
 | **code** | `{skill}/{topic}.md` | "What is true in the current codebase right now?" | Drifts — verify before acting on it |
 
-Example: ref:memory/grimorio.security-memory contains `SKILL.md` (general) + `behavior.md` (the security agent's behavior) + `project.md` (project) + `attack-surface.md` (code). Four files, one folder.
+Example: ref:agent/grimorio.security/memory contains `SKILL.md` (general) + `behavior.md` (the security agent's behavior) + `project.md` (project) + `attack-surface.md` (code). Four files, one folder.
 
 > **This is what makes the public repo public.** The agent shells, behavior files, and general knowledge are non-specific and ship with full body. Project and code files are where a project's private decisions and codebase facts live — they ship as empty templates. Adopting grimorio = filling in project/code files, never editing shells, behavior, or general knowledge.
 
@@ -261,9 +261,9 @@ separate, later pass.
 
 A behavior file always lives **inside a skill the agent already loads** — an agent loads ONE home skill (its behavior + its own knowledge) plus the SHARED knowledge skills it needs. In order of preference:
 
-1. **The agent's memory skill** — `{role}-memory/behavior.md` for an agent with a memory skill (the architect, PO, QA, security, …).
+1. **The agent's own folder** — `.grimorio/agents/<agent>/behavior.md`. Its project knowledge, when an installation writes any, goes in `memory/` inside that same folder (ref:repo/.grimorio/ARCHITECTURE.md → section 6).
 2. **The agent's defining method/canon skill** — `{method-skill}/{role}-behavior.md` when the agent's method skill is its natural home: the four map agents' and the brush-critic's behavior files live in the project's own map-design skill; the entropy and researcher behavior files live in ref:skill/grimorio.fan-out#part-1--decompose-spawn-in-parallel-synthesize (their protocols ARE fan-outs); the scout's lives in ref:agent/grimorio.scout; the unblocker's in ref:agent/grimorio.unblocker.
-3. **A shared behavior file** when several agents share a method (the developers' shared build protocol in ref:memory/grimorio.developer-memory/build-protocol.md) — one canonical copy; per-agent behavior files hold only what differs. Never duplicate a shared method per agent.
+3. **A shared behavior file** when several agents share a method (the developers' shared build protocol in ref:skill/grimorio.build-protocol/build-protocol.md) — one canonical copy; per-agent behavior files hold only what differs. Never duplicate a shared method per agent.
 
 **Creating a NEW skill that holds only one agent's behavior is FORBIDDEN (skill-proliferation anti-pattern).** Every skill's name+description loads into every session's listing — a behavior-only skill pays that cost to serve one agent, and makes the agent load two things instead of one home. If an agent has no natural home skill at all, place its behavior in the skill whose convention it genuinely uses (e.g. the adviser's behavior lives in ref:skill/grimorio.working-memory, whose tmp/ convention its verdict follows). Reusing SHARED knowledge skills across agents is fine — that is reuse, not proliferation.
 
@@ -536,10 +536,10 @@ Layers connect through explicit pointers, not implicit convention.
 ## Authentication Patterns
 {universal criteria here}
 
--> This project's auth system: `.grimorio/memory/grimorio.security-memory/project.md` → "Auth Architecture"
+-> This project's auth system: `.grimorio/agents/grimorio.security/memory/project.md` → "Auth Architecture"
 ```
 
-**General/project → code**: when general or project content describes an area with known operational traps, point to the code file (-> Known traps: ref:memory/grimorio.developer-memory/project.traps.md). Code files are named by topic, not agent — multiple agents can reference the same one.
+**General/project → code**: when general or project content describes an area with known operational traps, point to the code file (-> Known traps: the `project.traps` file in the owning agent's own `memory/` folder). Code files are named by topic, not agent — multiple agents can reference the same one.
 
 **Agent → its own OUTPUT format**: the one link that stays HOME. The contract lives in the agent's own behavior file, or in a skill it is required to load — never in a shared protocol skill it has to go find, because distance to your own output format is a guessing cost paid on every run. -> deeper: ./output-placement.md — the binding ALWAYS/NEVER, the CEO ruling behind it, and the migration that already applied it.
 
@@ -753,7 +753,7 @@ When reviewing an existing agent or skill, apply these in addition to the Qualit
 | **Bloat** | Each section adds clarity, not just length. Flag obvious examples, caveats that restate other rules, mergeable sections. |
 | **COST × FREQUENCY** | Measure the payload of anything auto-injected or always-loaded, and multiply it by HOW OFTEN it fires — a per-spawn hook costs its size × every spawn of the session; a once-per-session file costs its size once. **Always report the size, never judge it by eye**, and rank by the product, not by the file: eyeballing alone flags the wrong one. Fix an over-large carrier with the reference-depth rule above — keep the one-line CHECK in the carrier, move reasoning/incidents/citations into the skill it points at — never by deleting the check itself. |
 | **Encoding** | Scan for mojibake (`â€"`, `â†'`, `â€¦`); replace with the correct UTF-8 equivalent (`—`, `→`, `…`) or remove if decorative and unrepairable. |
-| **Portability** | No project-specific tech/architecture/paths in shells, behavior files, or general content. Would a team on a different codebase need to rewrite this line? Ask concretely: would it hold under a different file structure, would it serve a different KIND of project, could someone else reuse it in a different project without the agent failing to adapt? Any "no" → move to a memory skill's project.md. |
+| **Portability** | No project-specific tech/architecture/paths in shells, behavior files, or general content. Would a team on a different codebase need to rewrite this line? Ask concretely: would it hold under a different file structure, would it serve a different KIND of project, could someone else reuse it in a different project without the agent failing to adapt? Any "no" → move to the owning agent's `memory/project.md`. |
 
 ---
 

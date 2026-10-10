@@ -64,7 +64,7 @@ reason, at its own step 3.
    `qa-report.md` (don't duplicate passing tests).
 4. **ALWAYS plan the layers before you write anything** — the ladder: **ALWAYS prove the PIPE once at
    full-stack FOR EVERY HAPPY PATH, tested FIRST — this IS the e2e floor**
-   (ref:memory/grimorio.qa-memory#where-e2e-sits--the-happy-path-floor-not-an-on-demand-layer-ceo-2026-08-13);
+   (ref:agent/grimorio.qa/memory#where-e2e-sits--the-happy-path-floor-not-an-on-demand-layer-ceo-2026-08-13);
    test the VARIATIONS at integration; drop to unit only for what neither reaches; reserve on-demand /
    pre-publish for the separate deployed-E2E smoke tier only. Walking the whole mechanism once per variation is
    the error this method exists to prevent.
@@ -85,9 +85,9 @@ reason, at its own step 3.
   structure step 3 above reads from.
   FINGERPRINT: PIPELINE ARTIFACTS READ field below (a real per-artifact read, distinct from a guessed layout,
   cannot be produced without knowing this structure).
-- import:memory/grimorio.qa-memory (general — specifically
-  ref:memory/grimorio.qa-memory#where-e2e-sits--the-happy-path-floor-not-an-on-demand-layer-ceo-2026-08-13 and
-  ref:memory/grimorio.qa-memory#weak-test-anti-patterns) — the E2E-floor doctrine step 4 applies, and the
+- import:agent/grimorio.qa/memory (general — specifically
+  ref:agent/grimorio.qa/memory#where-e2e-sits--the-happy-path-floor-not-an-on-demand-layer-ceo-2026-08-13 and
+  ref:agent/grimorio.qa/memory#weak-test-anti-patterns) — the E2E-floor doctrine step 4 applies, and the
   anti-patterns the declared matrix must not fall into.
   FINGERPRINT: TEST MATRIX field below (a matrix that actually places the E2E floor first per criterion cannot
   be produced without this doctrine).

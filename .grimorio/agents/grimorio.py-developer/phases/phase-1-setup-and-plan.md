@@ -24,11 +24,11 @@ absent plan.
    here.
 2. **BEFORE your FIRST read of any target file this pass ⟶ do the upward ref:skill/harness.md lookup** (target file's
    folder → repo root) and obey every co-located guardrail found — this IS the chain's first file-reading/
-   scoping phase, per ref:memory/grimorio.developer-memory/build-protocol.md#harness-first. **WHEN a
+   scoping phase, per ref:skill/grimorio.build-protocol/build-protocol.md#harness-first. **WHEN a
    change would break a harness GATE rule ⟶ STOP and ask the user.**
 3. **ALWAYS determine your MODE before reading anything task-specific**: Pipeline (the orchestrator gives an
    artifact directory) or Standalone (it does not) — per
-   ref:memory/grimorio.developer-memory/build-protocol.md#pipeline-vs-standalone-mode. Pipeline mode
+   ref:skill/grimorio.build-protocol/build-protocol.md#pipeline-vs-standalone-mode. Pipeline mode
    reads `arch-decision.md` and writes `dev-notes.md` at the end (Phase 5); Standalone works directly from the
    prompt, no dev-note owed.
 4. **ALWAYS read the architecture contract** (`arch-decision.md` for this slice and the design docs it points
@@ -36,7 +36,7 @@ absent plan.
    Python-language backend service consumes as Pydantic models, field-for-field — never invent a shape the
    contract does not name; a contract change is agent:grimorio.js-developer's job, never yours to make.
 5. **BEFORE any judgement-bearing work ⟶ run the missing-plan refusal check**, per
-   ref:memory/grimorio.developer-memory/build-protocol.md#missing-plan-refusal--this-developers-own-instantiation-of-the-identity-refusal-pattern
+   ref:skill/grimorio.build-protocol/build-protocol.md#missing-plan-refusal--this-developers-own-instantiation-of-the-identity-refusal-pattern
    and ref:skill/grimorio.agent-tiers/refusal-pattern.md. **WHEN your brief hands you work that still
    carries judgement AND no plan accompanies it (no `arch-decision.md`, no explicit shape/files/reuse decided in
    the brief) ⟶ REFUSE THE INVOCATION here, in this phase's own DELIVERABLE, naming the triad (violation / why /
@@ -45,18 +45,18 @@ absent plan.
    refusal does NOT fire** — no plan is owed for judgement-free work.
 6. **ALWAYS detect REWORK/bug-report mode**: does the invocation carry a `verification-report.md` or a bug
    list? **WHEN it does ⟶ note here, never execute yet, that
-   ref:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order (the failing test
+   ref:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order (the failing test
    FIRST, before any production code) applies — this ROUTES the chain to Phase 2 next, instead of straight to
    Phase 3.** Name the specific module the bug appears to live in, so Phase 2 writes the failing test against
    exactly that item.
 7. **ALWAYS scope the module/file list Phase 3 will actually touch**, grounded in the contract just read — never
    a guess, never the whole service.
 8. **ALWAYS ALSO search, as a LAST STEP, this agent's own small concrete traps corpus** —
-   ref:memory/grimorio.py-developer-memory/project.traps.md (five entries: Pydantic v2 mutually-recursive
+   ref:agent/grimorio.py-developer/memory/project.traps.md (five entries: Pydantic v2 mutually-recursive
    `model_rebuild()`, reasoning-model `max_tokens` sizing, thread-pool `join(timeout)` billable-I/O gap,
    Pydantic-as-port silent-downgrade on resume, `uv`/`pip` venv corruption) — for anything relevant to THIS
    task's own domain, and ALSO
-   ref:memory/grimorio.developer-memory/project.traps.md — the shared, cross-language traps index — for anything
+   ref:agent/grimorio.py-developer/memory/project.traps.md — the shared, cross-language traps index — for anything
    relevant that is not Python-specific. **This corpus is FOLDED into this phase as a last step, deliberately
    NOT a standalone SEARCH-FIRST phase of its own the way `grimorio.go-developer`'s own large, multi-wave
    Go-service trap corpus earned one**: the deciding factor is corpus SIZE and KNOWLEDGE OVERLAP, not a
@@ -75,7 +75,7 @@ absent plan.
   step 2's own load.
   FINGERPRINT: HARNESS LOOKUP DONE field below (a real upward lookup, distinct from an asserted "checked,"
   cannot be produced without applying this discipline).
-- import:memory/grimorio.developer-memory/build-protocol.md (specifically its "Pipeline vs Standalone
+- import:skill/grimorio.build-protocol/build-protocol.md (specifically its "Pipeline vs Standalone
   mode", "Missing-plan refusal", and "Bug report → mandatory order" sections) — steps 3, 5, 6 above apply these
   directly.
   FINGERPRINT: MODE + MISSING-PLAN CHECK + REWORK/BUG-REPORT DETECTED + CONTRACT READ fields below (a real mode
@@ -93,11 +93,11 @@ absent plan.
   conventions), step 4's own load.
   FINGERPRINT: WIRE-CONTRACT SHAPES field below (a correct field-for-field Pydantic mirror cannot be produced
   without this convention).
-- import:memory/grimorio.developer-memory/project.md#conventions-we-chose — this project's hard-invariant list
+- import:agent/grimorio.py-developer/memory/project.md#conventions-we-chose — this project's hard-invariant list
   and the exact backend-service name/directory (or its current absence), step 4's own scoping grounds against.
   FINGERPRINT: SCOPED IMPLEMENTATION CHECKLIST field below (a correctly-bounded scope, never a guess or an
   invented service name, cannot be produced without this pointer).
-- import:memory/grimorio.py-developer-memory/project.traps.md and import:memory/grimorio.developer-memory/project.traps.md
+- import:agent/grimorio.py-developer/memory/project.traps.md and import:agent/grimorio.py-developer/memory/project.traps.md
   — step 8's own LAST-STEP search.
   FINGERPRINT: TRAPS CHECKED field below (a real search result against this corpus, distinct from an unchecked
   "none," cannot be produced without opening these indexes).

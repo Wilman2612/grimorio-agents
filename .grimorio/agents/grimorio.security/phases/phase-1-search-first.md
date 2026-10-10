@@ -25,9 +25,9 @@ establishes what grimorio already knows before Phase 2 maps anything fresh.
 3. **ALWAYS read the project's own archive live, never from memory** — confirm what is actually
    there this pass (as of this authoring pass: `2026-07-27-workflow-editor-prebuild.md`,
    `2026-07-29-template-transform-surface.md`) and note any precedent comparable to the surface under audit now.
-4. **ALWAYS read ref:memory/grimorio.security-memory/project.attack-surface.md** for the known entry-point
+4. **ALWAYS read ref:agent/grimorio.security/memory/project.attack-surface.md** for the known entry-point
    inventory this project has already recorded.
-5. **ALWAYS read ref:memory/grimorio.security-memory/project.md#gate-methodology--earned-rules-do-not-re-learn-these-the-hard-way
+5. **ALWAYS read ref:agent/grimorio.security/memory/project.md#gate-methodology--earned-rules-do-not-re-learn-these-the-hard-way
    and flag which of its earned rules are plausibly live for this pass** — never re-derive their content, only
    name which apply.
 6. **ALWAYS confirm, explicitly, that this agent never spawns** — the CHILDREN relationship is trivially
@@ -42,8 +42,8 @@ establishes what grimorio already knows before Phase 2 maps anything fresh.
 - import:skill/grimorio.working-memory — the `tmp/` convention for any intermediate/scratch artifact a later
   phase produces before the terminal `security-report.md`, loaded ONCE here for the whole chain.
 - the project's own archive — read live, never from memory, step 3's own load.
-- ref:memory/grimorio.security-memory/project.attack-surface.md — step 4's own load.
-- ref:memory/grimorio.security-memory/project.md#gate-methodology--earned-rules-do-not-re-learn-these-the-hard-way —
+- ref:agent/grimorio.security/memory/project.attack-surface.md — step 4's own load.
+- ref:agent/grimorio.security/memory/project.md#gate-methodology--earned-rules-do-not-re-learn-these-the-hard-way —
   step 5's own load.
 - **NEVER load the OWASP checklist, the payload format, the auth-bypass vectors, or `grimorio.development-patterns`
   here** — none of those are this phase's question; each belongs to a later phase alone.

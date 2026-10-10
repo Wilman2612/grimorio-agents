@@ -35,7 +35,7 @@ already been made.
    applies (clause 1 — the design already exists, or a legacy top-level `designs/` inventory entry exists;
    clause 3 — an existing AS-IS document needs a modification a later phase will design the delta for); Phase
    1's own SEARCH-FIRST findings (what the project's own design record and
-   `ref:memory/grimorio.po-memory/project.features-status.md` already say exists, the EMPIRICAL DOMAIN
+   `ref:agent/grimorio.po/memory/project.features-status.md` already say exists, the EMPIRICAL DOMAIN
    ENUMERATION and its exact sweep command, any documentation-memory precedent, the two standing CEO exemplar
    anchors); Phase 2's own AS-IS-VOICE DETERMINATION (provisional) for this concern.
 4. **WHEN the clause handed to you is 1 (or 3, needing the pre-modification baseline) AND an existing document

@@ -17,27 +17,27 @@ Phase 3 already flagged.
 1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — build payloads, write
    and run tests, run the dependency audit — and nothing else; this agent never invokes another agent, in any
    phase, ever.**
-2. **ALWAYS generate payloads per import:memory/grimorio.security-memory#attack-payload-format against every
+2. **ALWAYS generate payloads per import:agent/grimorio.security/memory#attack-payload-format against every
    surface Phase 3 flagged** — never invent new surfaces here; this phase proves what static recon already
    found, it does not go looking for more.
 3. **ALWAYS write real tests in the project's own security test suite** (path and framework named in
-   ref:memory/grimorio.security-memory/project.md#security-test-suite-and-dependency-audit) **and EXECUTE them,
+   ref:agent/grimorio.security/memory/project.md#security-test-suite-and-dependency-audit) **and EXECUTE them,
    asserting BLOCKED** — a 500 is always a finding, the payload reached the backend.
 4. **ALWAYS run the project's own dependency-audit command alongside** the same pass (same section for the
    command).
 5. **ALWAYS thread the following standing constraints on how these tests are built and later re-verified** —
    never re-derive their full text, point at
-   ref:memory/grimorio.security-memory/project.md#gate-methodology--earned-rules-do-not-re-learn-these-the-hard-way:
+   ref:agent/grimorio.security/memory/project.md#gate-methodology--earned-rules-do-not-re-learn-these-the-hard-way:
    positive controls are part of the assertion set; a fix must generalise beyond the published payloads (verify
    with disjoint payloads on rework); never weaken an assertion to close a finding — re-point it, never delete
    it.
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.security-memory#attack-payload-format — step 2's own load.
+- import:agent/grimorio.security/memory#attack-payload-format — step 2's own load.
   FINGERPRINT: PAYLOADS BUILT field below (a real payload/invocation/blocked-assertion triple cannot be
   produced without applying this format).
-- ref:memory/grimorio.security-memory/project.md#security-test-suite-and-dependency-audit — step 3/4's own load
+- ref:agent/grimorio.security/memory/project.md#security-test-suite-and-dependency-audit — step 3/4's own load
   (test path, framework, dependency-audit command).
 - **NEVER load the OWASP checklist or the auth-bypass vectors here** — Phase 3 already applied the first, and
   Phase 5 alone owns the second.
@@ -59,7 +59,7 @@ import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
 (`ref:repo/.grimorio/agents/grimorio.security/phases/phase-4-targeted-payload-proof.md`) and this
 phase's own filled PHASE 4 DELIVERABLE block, written to disk first per that gate's own algorithm — the read
 below now runs on that gate's own PASS, never on the block merely existing in context.** This phase's own
-`import:memory/grimorio.security-memory#attack-payload-format` carries a `FINGERPRINT:` annotation, so the gate
+`import:agent/grimorio.security/memory#attack-payload-format` carries a `FINGERPRINT:` annotation, so the gate
 is NOT inert here.
 
 **ALWAYS read ref:agent/grimorio.security/phases/phase-5-auth-bypass-sweep.md next, carrying

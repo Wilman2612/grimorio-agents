@@ -20,7 +20,7 @@ artifact the rest of the pipeline reads.
    OR a Story-only symptom — two named sub-cases within the SAME edge, never a third edge); no spawn anywhere
    in this phase.**
 2. **ALWAYS verify the project's `dev:fake` runtime boots against fake data — FOREGROUND, never backgrounded**,
-   per import:memory/grimorio.developer-memory/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park
+   per import:skill/grimorio.build-protocol/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park
    — invoke synchronously and BLOCK on the result; never dispatch to the background and idle.
 3. **ALWAYS verify the frontend typecheck passes — FOREGROUND, same rule.**
 4. **WHEN either check fails ⟶ classify the failure before doing anything else, into ONE of THREE named
@@ -41,10 +41,10 @@ artifact the rest of the pipeline reads.
    (for js-developer), Named States Implemented, Test Scenarios for QA, Known Limitations. **IN STANDALONE
    MODE ⟶ no dev-note is owed** — report the result directly per this same `## OUTPUT` shape, inline.
 6. **WHEN Phase 1 detected a REWORK invocation ⟶ append a `### REWORK Cycle {N}` section**, per
-   ref:memory/grimorio.developer-memory/build-protocol.md#rework-mode, re-verifying the full completion
+   ref:skill/grimorio.build-protocol/build-protocol.md#rework-mode, re-verifying the full completion
    checklist below rather than only the previously-failed item.
 7. **Commit discipline, per
-   ref:memory/grimorio.developer-memory/build-protocol.md#who-commits-depends-on-whether-you-are-worktree-isolated:**
+   ref:skill/grimorio.build-protocol/build-protocol.md#who-commits-depends-on-whether-you-are-worktree-isolated:**
    **WHEN spawned WITHOUT `isolation:"worktree"` ⟶ commit nothing; hand back for `code-reviewer` Gate B.**
    **WHEN spawned WITH `isolation:"worktree"` ⟶ confirm commits were already made at every coherent step** —
    this step CONFIRMS, it does not defer committing to here.
@@ -106,7 +106,7 @@ is left, and escalate)
 ```
 
 **WHEN Phase 1 detected REWORK ⟶ append `### REWORK Cycle {N}`**, per
-ref:memory/grimorio.developer-memory/build-protocol.md#rework-mode.
+ref:skill/grimorio.build-protocol/build-protocol.md#rework-mode.
 
 A worked example of what THIS agent specifically populates (the Contracts/Named-States/Test-Scenarios sections
 above), on an invented, unrelated domain — never a passage lifted from this project's own leaderboard/wallet
@@ -134,15 +134,15 @@ features:
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.ui-developer-memory/project.md#dev-fake-runtime — the exact boot command and what
+- import:agent/grimorio.ui-developer/memory/project.md#dev-fake-runtime — the exact boot command and what
   "boots" means, step 2's own load.
   FINGERPRINT: DEV:FAKE BOOT RESULT field below (a real, verified boot result cannot be produced without
   knowing this project's own boot command).
-- import:memory/grimorio.developer-memory/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park —
+- import:skill/grimorio.build-protocol/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park —
   steps 2-3's own foreground-run discipline.
   FINGERPRINT: DEV:FAKE BOOT RESULT + TYPECHECK RESULT fields below (a genuinely foreground-run, non-parked
   result for either check cannot be produced without this discipline).
-- import:memory/grimorio.developer-memory/build-protocol.md (specifically its `## OUTPUT` template,
+- import:skill/grimorio.build-protocol/build-protocol.md (specifically its `## OUTPUT` template,
   "Who commits" section, and "REWORK mode" section) — steps 5, 6, 7 above apply these directly.
   FINGERPRINT: UI-DEV-NOTE PATH + COMMIT ACTION TAKEN + REWORK CYCLE APPENDED fields below (a dev-note in the
   shared shape, a correct commit call, and a correctly-appended REWORK section cannot be produced without these

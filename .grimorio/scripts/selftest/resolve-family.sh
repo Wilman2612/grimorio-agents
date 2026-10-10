@@ -38,9 +38,9 @@ t("agent -> its shell", R.toPath("agent:grimorio.po"), ".claude/agents/grimorio.
 // in .grimorio/scripts/refobl/skill-roots.json`s own `stores` and spliced into the parse regex from there, so a
 // store the resolver resolves but the parser rejects cannot happen -- these cases hold both halves.
 t("memory store -> its one root",
-  R.toPath("ref:memory/grimorio.po-memory/project.md"), ".grimorio/memory/grimorio.po-memory/project.md");
+  R.toPath("ref:memory/grimorio.demo-memory/project.md"), ".grimorio/memory/grimorio.demo-memory/project.md");
 t("memory store PARSES as a store, never as a path",
-  R.parse("ref:memory/grimorio.po-memory/project.md").store, "memory");
+  R.parse("ref:memory/grimorio.demo-memory/project.md").store, "memory");
 t("agent store -> its one root",
   R.toPath("ref:agent/grimorio.entropy/behavior.md"), ".grimorio/agents/grimorio.entropy/behavior.md");
 t("agent store is NOT the flat agent: relation",

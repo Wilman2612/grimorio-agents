@@ -29,13 +29,13 @@ reaches this phase at all, per Phase 4's own Hard hand-off.
    (ref:agent/grimorio.web-architect/behavior.md#harness-mode--architecture-knowledge-partner-standing-context-restated-where-each-phase-actually-uses-it)
    — **as distinct from routine coding, which this phase never captures.**
 3. **WHEN it is a durable DECISION (a project-wide architectural choice, not scoped to one operational area)
-   ⟶ ALWAYS write it into ref:memory/grimorio.architect-memory/project.md** (or the relevant `{topic}.md` once
+   ⟶ ALWAYS write it into ref:agent/grimorio.web-architect/memory/project.md** (or the relevant `{topic}.md` once
    `project.md` or a single `##` section exceeds the split threshold that file's own
-   ref:memory/grimorio.architect-memory/project.md#domain-memory--split-by-topic-2026-08-03-claudemds-500-line-smell-rule-this-file-passed-500-lines
+   ref:agent/grimorio.web-architect/memory/project.md#domain-memory--split-by-topic-2026-08-03-claudemds-500-line-smell-rule-this-file-passed-500-lines
    section already documents — never a newly-invented threshold; that file already carries this exact split
    pattern, `project.md` staying the index and the topic files carrying the depth).
 4. **WHEN it is an OPERATIONAL FACT scoped to one area (auth, database, routing, etc.) ⟶ ALWAYS write it into
-   the relevant `ref:memory/grimorio.architect-memory/{area}.md`.**
+   the relevant `ref:agent/grimorio.web-architect/memory/{area}.md`.**
 5. **WHEN this settled entry would sit beside a SUPERSEDED prior one ⟶ apply the Currency rule** — rewrite the
    affected content to its FINAL state, or quarantine the superseded one in a clearly-labelled block, NEVER
    interleave the two. Full doctrine, not restated here:
@@ -44,17 +44,17 @@ reaches this phase at all, per Phase 4's own Hard hand-off.
 6. **BEFORE citing this entry as a SIGNED/ACCEPTED source-of-record ⟶ ALWAYS run the Custody check** — verify
    with `git ls-files <path>` that the `arch-decision.md` path (or wherever the substance actually lives) is
    genuinely repo-tracked, never a `tmp/` pointer. Full mechanics, not restated here:
-   ref:memory/grimorio.architect-memory/SKILL.md#custody--a-signedaccepted-architecture-decision-must-be-repo-tracked-not-a-tmp-pointer.
+   ref:agent/grimorio.web-architect/memory/SKILL.md#custody--a-signedaccepted-architecture-decision-must-be-repo-tracked-not-a-tmp-pointer.
    **UNLESS this entry is only tagged RECOMMENDED, NOT SIGNED ⟶ this check does not fire yet** — the custody
    check exists specifically for the moment a decision is cited as settled/signed, never for a still-open,
    not-yet-decided entry.
 
 ## LOAD (JIT) — scoped to this phase only
 
-- ref:memory/grimorio.architect-memory/project.md#domain-memory--split-by-topic-2026-08-03-claudemds-500-line-smell-rule-this-file-passed-500-lines —
+- ref:agent/grimorio.web-architect/memory/project.md#domain-memory--split-by-topic-2026-08-03-claudemds-500-line-smell-rule-this-file-passed-500-lines —
   step 3's own split-threshold precedent.
 - ref:skill/grimorio.agent-writing#quality-standards-for-agents — step 5's own Currency rule.
-- ref:memory/grimorio.architect-memory/SKILL.md#custody--a-signedaccepted-architecture-decision-must-be-repo-tracked-not-a-tmp-pointer —
+- ref:agent/grimorio.web-architect/memory/SKILL.md#custody--a-signedaccepted-architecture-decision-must-be-repo-tracked-not-a-tmp-pointer —
   step 6's own custody mechanics.
 - **NEVER load Phase 1-4's own intake/search/decide/gate specifics here** — this phase consumes their settled
   OUTPUT, it does not re-run any of their judgment.

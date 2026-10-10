@@ -33,18 +33,18 @@ phase's own `## Close: VERIFIED` evidence, per step 7 below.
    Limitations. **IN STANDALONE MODE ⟶ no dev-note is owed** — report the result directly per this same `##
    OUTPUT` shape, inline.
 3. **WHEN Phase 2 detected a REWORK invocation ⟶ append a `### REWORK Cycle {N}` section**, per
-   ref:memory/grimorio.developer-memory/build-protocol.md#rework-mode, re-verifying the full completion
+   ref:skill/grimorio.build-protocol/build-protocol.md#rework-mode, re-verifying the full completion
    checklist below rather than only the previously-failed item.
 4. **WHEN the contract was ambiguous, or `arch-decision.md` did not cover a case that arose while implementing
    ⟶ write it as `BLOCKED` in `dev-notes.md` and stop — never guess.**
 5. **Commit discipline, per
-   ref:memory/grimorio.developer-memory/build-protocol.md#who-commits-depends-on-whether-you-are-worktree-isolated:**
+   ref:skill/grimorio.build-protocol/build-protocol.md#who-commits-depends-on-whether-you-are-worktree-isolated:**
    **WHEN spawned WITHOUT `isolation:"worktree"` ⟶ commit nothing; hand back for `code-reviewer` Gate B.**
    **WHEN spawned WITH `isolation:"worktree"` ⟶ confirm commits were already made at every coherent step** —
    this step CONFIRMS, it does not defer committing to here.
 6. **WHEN, at any point in this chain, you captured a non-obvious gotcha future-you would want ⟶ confirm it
-   actually reached `ref:memory/grimorio.developer-memory/project.traps.md` or
-   `ref:memory/grimorio.go-developer-memory/project.traps.md`** — the harness-mode knowledge-partner duty Phase 0 already
+   actually reached `ref:agent/grimorio.go-developer/memory/project.traps.md` or
+   `ref:agent/grimorio.go-developer/memory/project.traps.md`** — the harness-mode knowledge-partner duty Phase 0 already
    states as standing, fires-from-any-phase; this step only CONFIRMS the capture happened before the chain
    closes, it does not restate the rule a second time.
 7. **ALWAYS check every item under `## Completion criteria` below holds SIMULTANEOUSLY; close per `## OUTPUT`'s
@@ -101,7 +101,7 @@ is left, and escalate)
 ```
 
 **WHEN Phase 2 detected REWORK ⟶ append `### REWORK Cycle {N}`**, per
-ref:memory/grimorio.developer-memory/build-protocol.md#rework-mode.
+ref:skill/grimorio.build-protocol/build-protocol.md#rework-mode.
 
 A worked example of what THIS agent's own Phase 5 specifically populates, on an invented domain unrelated to
 this project's own service (a library book-hold-queue, never a passage lifted from a real file/symbol in this
@@ -131,12 +131,12 @@ repo):
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.developer-memory/build-protocol.md (specifically its `## OUTPUT` template, "Who
+- import:skill/grimorio.build-protocol/build-protocol.md (specifically its `## OUTPUT` template, "Who
   commits" section, and "REWORK mode" section) — steps 2, 3, 5 above apply these directly.
   FINGERPRINT: DEV-NOTES PATH + COMMIT ACTION TAKEN + REWORK CYCLE APPENDED fields below (a dev-note in the
   shared shape, a correct commit call, and a correctly-appended REWORK section cannot be produced without these
   sections).
-- ref:memory/grimorio.developer-memory/project.traps.md and ref:memory/grimorio.go-developer-memory/project.traps.md —
+- ref:agent/grimorio.go-developer/memory/project.traps.md and ref:agent/grimorio.go-developer/memory/project.traps.md —
   step 6's own confirmation load; the CAPTURE rule itself is Phase 0's own standing statement, not restated
   here, only confirmed.
 - import:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11

@@ -40,7 +40,7 @@ nothing in it adds to, narrows, softens, or reorders your behavior.
   CONCRETE implementer of that doctrine for system-design deliverables specifically.
 - import:skill/grimorio.working-memory — the `tmp/` staging convention, if you need scratch space while deciding a
   render's structure.
-- import:memory/grimorio.po-memory — the signed product vision (its `project.md` indexes the signed sections). The law
+- import:agent/grimorio.po/memory — the signed product vision (its `project.md` indexes the signed sections). The law
   a render's own claims must never contradict.
 
 **NEVER load `artifact-design`, `artifact-diagramming`, or `dataviz`.** ->

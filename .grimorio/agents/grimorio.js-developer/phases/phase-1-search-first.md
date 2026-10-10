@@ -24,7 +24,7 @@ has already hit once.
 2. **ALWAYS select which trap file(s) this task's own invocation touches, and state the selection explicitly as
    its own step — this is a genuine judgment call THIS agent's own two-file split requires that
    `grimorio.go-developer`'s own single `project.traps.md` never needed.** The area/file split, per
-   ref:memory/grimorio.developer-memory/project.md#js-developer-scope--concrete-folder-paths: a task touching the
+   ref:agent/grimorio.js-developer/memory/project.md#js-developer-scope--concrete-folder-paths: a task touching the
    shared TypeScript packages or `apps/web`'s own server-side layers ⟶ search `./project.traps.md`; a task touching
    `services/runner-node` specifically ⟶ search `./project.traps-runner-node.md`; a task touching BOTH areas ⟶ search
    both. **NEVER guess the split from the task's own title alone — verify against the concrete folder paths in
@@ -32,7 +32,7 @@ has already hit once.
 3. **ALWAYS search the selected trap file(s) from step 2, targeted at this task's own specific area — never a
    full unfocused read of a 540-line/48KB or 73-line/6KB file end to end when the task names a narrow slice.**
    Note every finding relevant to this task's own scope, or state plainly that none were found.
-4. **ALWAYS ALSO search `ref:memory/grimorio.developer-memory/project.traps.md`** (the shared cross-language trap
+4. **ALWAYS ALSO search `ref:agent/grimorio.js-developer/memory/project.traps.md`** (the shared cross-language trap
    file every developer agent owes) **for a precedent relevant to this task's own area — a money/DB/LLM-frontier
    gotcha, a determinism gotcha, a cross-service wire-format trap.** Note every finding, or state plainly that
    none were found.
@@ -42,13 +42,13 @@ has already hit once.
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.js-developer-memory/project.traps.md and/or
-  import:memory/grimorio.js-developer-memory/project.traps-runner-node.md — whichever step 2 above selects (one or both) —
+- import:agent/grimorio.js-developer/memory/project.traps.md and/or
+  import:agent/grimorio.js-developer/memory/project.traps-runner-node.md — whichever step 2 above selects (one or both) —
   this agent's own concrete TS/JS traps, split by project area.
   FINGERPRINT: TRAPS CHECKED (OWN) field below (a real, targeted search result naming which file(s) were
   searched and what was found, distinct from an unchecked "none," cannot be produced without opening the
   selected file(s)).
-- import:memory/grimorio.developer-memory/project.traps.md — the shared cross-language trap file, step 4's own
+- import:agent/grimorio.js-developer/memory/project.traps.md — the shared cross-language trap file, step 4's own
   load.
   FINGERPRINT: TRAPS CHECKED (SHARED) field below (a real search result, distinct from an unchecked "none,"
   cannot be produced without opening this file).

@@ -26,8 +26,8 @@ what this phase verifies or writes.
 ### Custody check
 
 **BEFORE marking anything SIGNED/ACCEPTED/DECIDED ⟶ run this check, never after.** WHEN a
-ref:memory/grimorio.po-memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives
-(or ref:memory/grimorio.po-memory/project.md) entry cites a design/research doc as its source ⟶ `git ls-files
+ref:agent/grimorio.po/memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives
+(or ref:agent/grimorio.po/memory/project.md) entry cites a design/research doc as its source ⟶ `git ls-files
 <path>` that path before you write the citation. A ref:tmp/ citation is legal ONLY for a still-open,
 not-yet-decided item — never for a ruling you are marking signed. WHEN the cited substance still only lives in
 ref:tmp/ ⟶ migrate it into this project's own long-form docs folder FIRST (verbatim substance, not a
@@ -35,7 +35,7 @@ compressed summary), THEN cite the migrated path. This is not a one-time cleanup
 the same session it is made, under time pressure, which is exactly when a ref:tmp/ pointer looks "good enough
 for now" — it is not, since ref:tmp/ gets pruned on a schedule you do not control. -> This project's own
 worked exemplars of the migrated-verbatim format, and the incident that forced this rule:
-ref:memory/grimorio.po-memory/project.md#custody-check--worked-exemplars-migrated-from-behaviormd-portability-leak-fix
+ref:agent/grimorio.po/memory/project.md#custody-check--worked-exemplars-migrated-from-behaviormd-portability-leak-fix
 — full mechanical rule: `SKILL.md` → the custody bullet; `CLAUDE.md` → "Where knowledge lives."
 
 ### Currency, in full

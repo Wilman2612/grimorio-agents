@@ -154,7 +154,7 @@ never a verified one.
 # Visual Verification Report: {title}
 
 ## Environment
-- Component-isolation workbench: {local URL — see ref:memory/grimorio.manual-verifier-memory/project.local-setup.md} | App: {local URL — see ref:memory/grimorio.manual-verifier-memory/project.local-setup.md}
+- Component-isolation workbench: {local URL — see ref:agent/grimorio.manual-verifier/memory/project.local-setup.md} | App: {local URL — see ref:agent/grimorio.manual-verifier/memory/project.local-setup.md}
 - Viewport(s): {sizes}
 
 ## Sanity Baseline
@@ -182,7 +182,7 @@ never a verified one.
 - `FAIL` — at least one 🔴 or 🟡.
 - `BLOCKED` — the criterion under test is hardware-gated (microphone, local file upload, push notifications,
   camera/video, OS clipboard) and cannot be verified via browser automation; write a manual test script instead
-  (ref:memory/grimorio.manual-verifier-memory#blocked-is-for-hardware-only). Missing infrastructure, no screenshots, or a
+  (ref:agent/grimorio.manual-verifier/memory#blocked-is-for-hardware-only). Missing infrastructure, no screenshots, or a
   failed sanity baseline is `FAIL` (documented as a blocker), never `BLOCKED`.
 
 ## PHASE 5 DELIVERABLE

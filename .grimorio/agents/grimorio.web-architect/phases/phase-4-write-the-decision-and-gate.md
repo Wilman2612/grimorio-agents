@@ -97,7 +97,7 @@ edit does not silently narrow this template to web-only fields.
 
 **BEFORE setting status ⟶ answer each CHECK below:**
 
-- CHECK: Did I read ref:memory/grimorio.architect-memory before exploring any codebase file (Phase 2's own CR1
+- CHECK: Did I read ref:agent/grimorio.web-architect/memory before exploring any codebase file (Phase 2's own CR1
   gate)?
 - CHECK: Does `arch-decision.md` contain every required section (per `## OUTPUT` above), including the
   frontend↔backend contract?

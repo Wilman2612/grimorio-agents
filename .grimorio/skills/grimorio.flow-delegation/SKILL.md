@@ -564,7 +564,7 @@ agent:grimorio.code-reviewer's review before the navigator merges it (`CLAUDE.md
 
 **WHEN the delegate is NOT worktree-isolated — sharing the navigator's own tree/branch — ⟶ this rule does NOT
 apply.** Route instead to
-`import:memory/grimorio.developer-memory/build-protocol.md#who-commits-depends-on-whether-you-are-worktree-isolated` — a
+`import:skill/grimorio.build-protocol/build-protocol.md#who-commits-depends-on-whether-you-are-worktree-isolated` — a
 shared tree has no separate branch for a gate to check before a merge; the delegate's commit WOULD BE the
 merge.
 

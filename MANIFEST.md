@@ -37,7 +37,7 @@ The export was then driven off `git diff 479c49fe..79ab1438` restricted to `.cla
    `subagent-id-injection.cjs` (inject the parent's id so a child can report back by id),
    `scripts/parked-watch.mjs` (silent-child liveness detection), the corrected autonomous-runaway citation, the
    report-back-by-id doctrine, the NOT-LIFTABLE review cap, the HUNT / FIX-VERIFICATION rework protocol (plus
-   `grimorio.code-reviewer-memory/review-brief-template.md`), and the hard-locked-builders reconciliation. Their
+   `grimorio.code-reviewer/memory/review-brief-template.md`), and the hard-locked-builders reconciliation. Their
    selftests ship under `scripts/selftest/`, and their live-fire measurements under `objectives/measurements/`.
 3. **design-orchestrator doctrine fixes** — Gate-4 RESOLVE-then-document, the invocation-independent output
    SPLIT mandate, phase-3's TO-BE made conditional on a named target-source, and a new EMPIRICAL DOMAIN /
@@ -65,7 +65,7 @@ the end.
 | `.claude/skills/*/​*-phases/**` — the 22 phase chains + quasi-views | 105 | **exported** | Behavior level. This is the substance of the delta. |
 | `grimorio.system-design/design-redactor-{phase-map-v1-derivation,quasi-software-view}.md` | 2 | **exported** | The redactor's own phase map and drawn view — behavior/general. |
 | `grimorio.system-design/project.design-orchestrator-quasi-software-view-internal.md` | 1 | **exported** | General despite the prefix — the internal drawn view of a portable agent. |
-| `grimorio.code-reviewer-memory/review-brief-template.md` | 1 | **exported** | General — the HUNT/FIX-VERIFICATION hand-off template (queue item 8). |
+| `grimorio.code-reviewer/memory/review-brief-template.md` | 1 | **exported** | General — the HUNT/FIX-VERIFICATION hand-off template (queue item 8). |
 | `grimorio.phase-splitting/project.steps-vs-phases-test.md` | 1 | **exported** | General doctrine (the STEPS-vs-PHASES judgment test) despite the prefix. |
 | `scripts/selftest/*.sh` (5 new) | 5 | **exported** | Machinery ships with the checks it exercises. |
 | `objectives/measurements/*` | 5 | **exported — judgment call** | See below. |

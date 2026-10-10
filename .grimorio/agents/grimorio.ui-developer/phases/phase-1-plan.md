@@ -43,11 +43,11 @@ assumed.**
    -> ref:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11.
 3. **ALWAYS determine your MODE before reading anything task-specific**: Pipeline (the orchestrator gives an
    artifact directory) or Standalone (it does not) — per
-   ref:memory/grimorio.developer-memory/build-protocol.md#pipeline-vs-standalone-mode. Pipeline mode
+   ref:skill/grimorio.build-protocol/build-protocol.md#pipeline-vs-standalone-mode. Pipeline mode
    reads `po-brief.md`/`arch-decision.md` and writes `ui-dev-note.md` at the end (Phase 5); Standalone works
    directly from the prompt, no dev-note owed.
 4. **BEFORE any judgement-bearing work ⟶ run the missing-plan refusal check**, per
-   ref:memory/grimorio.developer-memory/build-protocol.md#missing-plan-refusal--this-developers-own-instantiation-of-the-identity-refusal-pattern
+   ref:skill/grimorio.build-protocol/build-protocol.md#missing-plan-refusal--this-developers-own-instantiation-of-the-identity-refusal-pattern
    and ref:skill/grimorio.agent-tiers/refusal-pattern.md. **WHEN your brief hands you work that still
    carries judgement AND no plan accompanies it (no `arch-decision.md`, no explicit shape/files/reuse decided
    in the brief) ⟶ REFUSE THE INVOCATION here, in this phase's own DELIVERABLE, naming the triad (violation /
@@ -56,7 +56,7 @@ assumed.**
    does NOT fire** — no plan is owed for judgement-free work.
 5. **ALWAYS detect REWORK/bug-report mode**: does the invocation carry a `verification-report.md` or a bug
    list? **WHEN it does ⟶ note here, never execute yet, that
-   ref:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order (the failing test
+   ref:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order (the failing test
    FIRST, before any production code) applies once Phase 2 or Phase 3 resumes building — name WHICH layer the
    bug appears to live in (DAL vs component/page/Story), so the right phase applies it.**
 6. **Pipeline mode ONLY ⟶ ALWAYS read `po-brief.md` (the domain's named states), `arch-decision.md` (the
@@ -66,7 +66,7 @@ assumed.**
    (Pipeline mode) or the invocation's own description of the data flow (Standalone mode): does this UI slice
    read through the DAL/Functional Core, or call a Route Handler for a mutation? The concrete decision rule
    for THIS project's stack lives at
-   ref:memory/grimorio.ui-developer-memory/project.md#data-access-strategy — resolve against it, never invent
+   ref:agent/grimorio.ui-developer/memory/project.md#data-access-strategy — resolve against it, never invent
    the split per task. **WHEN the arch decision leaves it unclear ⟶ document the blocker in `ui-dev-note.md`
    and escalate — never assume.**
 8. **ALWAYS run a SEARCH-FIRST precedent pass against `developer-memory/project.traps.md`** for anything
@@ -77,7 +77,7 @@ assumed.**
 - import:skill/grimorio.reasoning-principles — the objective/exit-condition contract, step 2 above applies.
   FINGERPRINT: OBJECTIVE + EXIT CONDITION fields below (a real objective/exit-condition pair, distinct from a
   restated task description, cannot be produced without this contract).
-- import:memory/grimorio.developer-memory/build-protocol.md (specifically its "Missing-plan refusal",
+- import:skill/grimorio.build-protocol/build-protocol.md (specifically its "Missing-plan refusal",
   "Pipeline vs Standalone mode", and "Bug report → mandatory order" sections) — steps 3-5 above apply these
   directly.
   FINGERPRINT: MODE + MISSING-PLAN CHECK + REWORK/BUG-REPORT DETECTED fields below (a real mode determination,
@@ -90,11 +90,11 @@ assumed.**
   structure step 6 above reads from.
   FINGERPRINT: ARTIFACTS READ field below (a real per-artifact read under the correct `tmp/features/{slug}/`
   directory, distinct from a guessed layout, cannot be produced without knowing this structure).
-- import:memory/grimorio.ui-developer-memory/project.md#data-access-strategy — the concrete decision rule step 7
+- import:agent/grimorio.ui-developer/memory/project.md#data-access-strategy — the concrete decision rule step 7
   resolves against.
   FINGERPRINT: DATA-ACCESS-STRATEGY ANSWER field below (a real resolved answer, distinct from an invented
   per-task split, cannot be produced without this rule).
-- import:memory/grimorio.developer-memory/project.traps.md — the known-traps index step 8 searches.
+- import:agent/grimorio.ui-developer/memory/project.traps.md — the known-traps index step 8 searches.
   FINGERPRINT: TRAPS CHECKED field below (a real search result, distinct from an unchecked "none," cannot be
   produced without opening this index).
 - **NEVER load `frontend-development`'s DAL/Storybook mechanics, `development-patterns`, or `javascript`

@@ -94,7 +94,7 @@ softens, or reorders your behavior. Run the full hunt anyway, regardless of how 
 ## Knowledge
 - **import:skill/grimorio.reasoning-principles** — the CEO's two thinking rules (DECOMPOSE BEFORE YOU SOLVE / MEASURING IS NOT PROVING). A finding is a CLAIM. State what result would refute each one before you write REWORK, and read a cited VERDICT rather than the presence of a report.
 - **import:skill/grimorio.working-memory** — the tmp/ working-folder convention.
-- **import:memory/grimorio.code-reviewer-memory** — this project's review rules, recurring offenders, must-block patterns (project).
+- **import:agent/grimorio.code-reviewer/memory** — this project's review rules, recurring offenders, must-block patterns (project).
 - **import:skill/grimorio.feature-workflow** — the REWORK cycle (max 2, per failing agent) your `REWORK` status triggers, and the
   escalation rule that fires when you report `ESCALATE` (a fundamental design decision made wrong). Your
   `code-review.md` format lives in your own import:agent/grimorio.code-reviewer/behavior.md → `## OUTPUT`, not here.

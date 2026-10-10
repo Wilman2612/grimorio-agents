@@ -316,7 +316,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
    2026-08-08: `git ls-files apps packages services | grep -E '\.(ts|tsx|js|jsx|mjs|cjs|py|go)$' | xargs grep
    -o '@keep-comment' | wc -l` → 258; the same command over `git ls-files` (no directory args) → 291.
 5. `ref:repo/.grimorio/scripts/close-landed.sh` — ANSWERS: for work that landed straight on trunk with no branch to close,
-   has its objective been consolidated into `ref:memory/grimorio.po-memory/project.features-status.md` and pruned from
+   has its objective been consolidated into `ref:agent/grimorio.po/memory/project.features-status.md` and pruned from
    `objectives/`. WHEN: right after landing work directly on `develop` — the case
    `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh`
    structurally cannot cover, since it only fires for a non-trunk branch that hasn't merged yet.

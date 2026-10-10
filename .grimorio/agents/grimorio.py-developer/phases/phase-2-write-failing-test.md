@@ -36,7 +36,7 @@ not an unconsidered copy or an unconsidered split.
    `haiku` child from Phase 3's own FAN-OUT BRANCH, never from here.
 2. **ALWAYS write the pytest test that proves the bug exists FIRST, foreground, narrowed with `-k` if the full
    suite is slow — still foreground, never backgrounded** — per
-   ref:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order's own step 1, which
+   ref:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order's own step 1, which
    is where that shared rule actually EXECUTES for the first time in this chain (Phase 1 only flagged it).
    Ground the test in Phase 1's own REWORK/BUG-REPORT DETECTED field — the specific module Phase 1 already
    named, never a fresh guess at where the bug lives.
@@ -53,7 +53,7 @@ not an unconsidered copy or an unconsidered split.
   `parametrize`, "never weaken an assertion to make a test pass").
   FINGERPRINT: BUG-FIX-FIRST-TEST field below (a real AAA-structured pytest test that actually reproduces the
   reported symptom cannot be produced without this convention).
-- import:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order — this phase's
+- import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — this phase's
   own execution of step 1 of that shared three-step order.
   FINGERPRINT: BUG-FIX-FIRST-TEST field below, jointly with the bullet above (the confirmed-RED-before-any-fix
   ordering cannot be produced without applying this mandatory order).

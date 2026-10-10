@@ -29,13 +29,13 @@ defect found here is fixed here, inside this phase's own iteration, never by re-
    and nothing else; no spawn anywhere in this phase.** This agent never invokes another agent from Phase 4 —
    the fan-out gate is Phase 3's own, already closed by the time this phase runs.
 2. **ALWAYS run the full test suite with `-race`, in the foreground — never backgrounded**, per
-   ref:memory/grimorio.developer-memory/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park
+   ref:skill/grimorio.build-protocol/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park
    — invoke synchronously and BLOCK on the result. **WHEN the full suite is slow ⟶ narrow it with `-run` or a
    single package — still foreground, never backgrounded.**
 3. **ALWAYS VERIFY the determinism golden test is green** — the arch-independent proof that this task's own
    scripted paths stay byte-identical.
 4. **ALWAYS confirm, explicitly, that none of this project's backend-service hard invariants — recorded at
-   ref:memory/grimorio.developer-memory/project.md#conventions-we-chose, never restated here — were weakened
+   ref:agent/grimorio.go-developer/memory/project.md#conventions-we-chose, never restated here — were weakened
    anywhere in the diff.** Check each invariant this task's own diff could plausibly touch, never a blanket
    "looks fine."
 5. **WHEN step 2 or step 3 above fails ⟶ fix the defect directly and re-run the SAME check, inside this phase's
@@ -48,11 +48,11 @@ defect found here is fixed here, inside this phase's own iteration, never by re-
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.developer-memory/project.md#conventions-we-chose — this project's hard-invariant list,
+- import:agent/grimorio.go-developer/memory/project.md#conventions-we-chose — this project's hard-invariant list,
   step 4's own load.
   FINGERPRINT: INVARIANT CONFIRMATION field below (a real, per-invariant confirmation, distinct from a blanket
   "looks fine," cannot be produced without this pointer).
-- import:memory/grimorio.developer-memory/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park —
+- import:skill/grimorio.build-protocol/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park —
   step 2's own foreground-run discipline.
   FINGERPRINT: FULL SUITE RESULT field below (a genuinely foreground-run, non-parked result cannot be produced
   without this discipline).

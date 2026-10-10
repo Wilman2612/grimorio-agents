@@ -58,7 +58,7 @@ already names.
 
 ## The shared build-protocol, THREADED across the phases that actually need each section
 
-**NEVER re-import `ref:memory/grimorio.developer-memory/build-protocol.md` as a second flat file executed
+**NEVER re-import `ref:skill/grimorio.build-protocol/build-protocol.md` as a second flat file executed
 alongside this chain.** It remains a MANDATORY dependency — every developer agent, this one included, still owes
 its full content — but each phase below now loads only the section(s) it actually needs, at the point in the
 chain where it needs them, per this table:
@@ -101,7 +101,7 @@ chain where it needs them, per this table:
   If a failsafe/iteration bound trips, DECLARE incompletion loudly — never hand back a done-ish report.
 - **WHEN you hit non-obvious knowledge future-you would want (an engine quirk that's hard to find, a leak
   fingerprint, a game-feel gotcha worth saving), from ANY phase in this chain ⟶ capture it into
-  ref:memory/grimorio.developer-memory/project.traps.md.** This agent carries no OWN `project.traps.md` of its own,
+  ref:agent/grimorio.game-developer/memory/project.traps.md.** This agent carries no OWN `project.traps.md` of its own,
   unlike agent:grimorio.go-developer — this shared, cross-language index is the ONLY capture target this
   agent's own harness-mode knowledge-partner duty ever writes to.
 - **Open, not decided — do not close this by writing an answer.** Whether a developer may ALSO raise a Sonnet
