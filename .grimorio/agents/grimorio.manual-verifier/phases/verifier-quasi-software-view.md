@@ -160,7 +160,7 @@ Per
 ref:skill/grimorio.phase-splitting/quasi-view-requirements.md#evidence-of-phase-design-reasoning--save-the-rendergroupmeasure-working-product-never-discard-it-silently,
 this section restates, as a durable saved artifact rather than a claim taken on faith, the sizing reasoning
 `grimorio.system-keeper` already performed and validated in
-ref:repo/objectives/grimorio/phase-reaudit-verdicts/manual-verifier.md, tightened here as this chain's own
+the project's own re-audit verdict, tightened here as this chain's own
 saved evidence.
 
 **RENDER — the complete load, before any grouping.** The pre-split `behavior.md` (175 lines, flat STEPS: 3 Core

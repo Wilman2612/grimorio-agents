@@ -177,7 +177,7 @@ too, never in parallel with anything.** This chain carries exactly ONE genuine p
    **own step 3, and blocks until every child returns before its own next-phase read (P4) fires.**
 
 **No other node in this chain carries a parallelism question of its own.** P1, P2, P4, and P5 are each a
-single SELF node by their own step 1 (no spawn, ever). **P5 is the SOLE writer of ref:repo/dev-notes.md** — per
+single SELF node by their own step 1 (no spawn, ever). **P5 is the SOLE writer of `dev-notes.md`** — per
 ref:skill/grimorio.phase-splitting/flow-method.md#b-modifying-phases-stay-sequential ("many may ADVISE
 it, but only ONE phase WRITES"), P5 stays sequential and terminal on its OWN forward path: the chain's only
 re-entry is P4's own loop-back into P3, which never touches P5 or revises anything P5 has already written —
@@ -195,7 +195,7 @@ to produce.**
 | P2 · WRITE-FAILING-TEST (conditional) | A pytest test proving the reported bug, run and confirmed to fail with the expected error, BEFORE any production code changes | Hands to P3 unconditionally — never spawns; entered only on the bug-report route |
 | P3 · IMPLEMENT | On FIRST-PASS: the survey + the build against the checklist or the confirmed-red test + the decomposition + fan-out gate decision + the actual Python module(s) built. On CHILD: the single assigned file/module | Hands to P4 unconditionally on FIRST-PASS — spawns N `CHILD_PY` only when the gate holds — CHILD route reports to the parent, never reads P4. Re-entered from P4's own loop-back on a scope/approach defect |
 | P4 · VERIFY | The full pytest suite result, the per-invariant confirmation, WHEN applicable the bug-report's own reproduction-test re-confirmation — any ORDINARY defect fixed and re-checked WITHIN this phase's own mini-loop before it hands off | Hands to P5 unconditionally on PASS — loops back to P3 on a scope/approach defect its own mini-loop cannot resolve — never spawns |
-| P5 · REPORT | ref:repo/dev-notes.md (Pipeline mode) or an inline report (Standalone), the commit action taken, any REWORK-cycle section, the `## Status`/`## Close` values | Terminal on this path — reports to the caller, no further phase, no further loop-back from here |
+| P5 · REPORT | `dev-notes.md` (Pipeline mode) or an inline report (Standalone), the commit action taken, any REWORK-cycle section, the `## Status`/`## Close` values | Terminal on this path — reports to the caller, no further phase, no further loop-back from here |
 
 ## Evidence of phase-design reasoning — the RENDER/GROUP/MEASURE working product, saved
 
@@ -203,7 +203,7 @@ Per
 ref:skill/grimorio.phase-splitting/quasi-view-requirements.md#evidence-of-phase-design-reasoning--save-the-rendergroupmeasure-working-product-never-discard-it-silently,
 this section is THIS pass's own fresh re-derivation of the sizing reasoning, checked against the actual files
 this pass produced — never copy-pasted from the pre-supplied diagnosis verdict
-(ref:repo/objectives/grimorio/phase-reaudit-verdicts/py-developer.md, read in full this pass and independently
+(the project's own re-audit verdict, read in full this pass and independently
 re-confirmed here rather than trusted on its own say-so) or from `grimorio.system-keeper`'s own dispatch notes.
 
 **RENDER — the complete load, before any grouping.** The pre-split shell (`grimorio.py-developer.md`) carried

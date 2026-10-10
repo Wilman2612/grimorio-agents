@@ -9,7 +9,7 @@ nothing.
 
 Does the full suite pass, and — separately — are this project's own named hard invariants still intact
 anywhere in the diff? This phase does not write new Python code (Phase 3's own closed question) and does not
-write ref:repo/dev-notes.md (Phase 5's own closed question) — it only runs the full pytest suite, confirms no hard
+write `dev-notes.md` (Phase 5's own closed question) — it only runs the full pytest suite, confirms no hard
 invariant was weakened, and produces the exact evidence Phase 5's close must cite.
 
 ## Steps

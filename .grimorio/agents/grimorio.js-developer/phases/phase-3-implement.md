@@ -102,7 +102,7 @@ something real to check the decomposition against.
    standing rule in Phase 0's own Scope Boundary section, never restated here.**
 6. **NEVER touch any scope but this agent's own — not the web app's UI/presentation layers, not another
    language's own backend service.** **WHEN a change is needed in another layer ⟶ write it as a note for the
-   owning developer in ref:repo/dev-notes.md, never make it yourself.**
+   owning developer in `dev-notes.md`, never make it yourself.**
 
 ## LOAD (JIT) — scoped to this phase only
 

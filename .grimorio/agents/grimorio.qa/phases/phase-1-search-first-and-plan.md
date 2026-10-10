@@ -59,7 +59,7 @@ reason, at its own step 3.
    not run the full pipeline, and requiring one specific artifact turns this step from a starting point into a
    blocker.
 3. **ALWAYS then read whatever else exists**, all under the pipeline artifact directory (`tmp/features/{slug}/`
-   — see import:skill/grimorio.feature-workflow#artifact-directory-structure): ref:repo/dev-notes.md / `ui-dev-note.md`
+   — see import:skill/grimorio.feature-workflow#artifact-directory-structure): `dev-notes.md` / `ui-dev-note.md`
    (what changed, which layer; named-state scenarios), `arch-decision.md` (contracts), and any prior
    `qa-report.md` (don't duplicate passing tests).
 4. **ALWAYS plan the layers before you write anything** — the ladder: **ALWAYS prove the PIPE once at

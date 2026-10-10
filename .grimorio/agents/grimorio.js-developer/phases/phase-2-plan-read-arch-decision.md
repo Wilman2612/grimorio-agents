@@ -29,7 +29,7 @@ against an unread plan, a missing plan, or work that was never this agent's own 
 3. **ALWAYS determine your MODE before reading anything task-specific**: Pipeline (the orchestrator gives an
    artifact directory) or Standalone (it does not) — per
    ref:memory/grimorio.developer-memory/build-protocol.md#pipeline-vs-standalone-mode. Pipeline mode
-   reads `arch-decision.md` and writes ref:repo/dev-notes.md at the end (Phase 5); Standalone works directly from the
+   reads `arch-decision.md` and writes `dev-notes.md` at the end (Phase 5); Standalone works directly from the
    prompt, no dev-note owed.
 4. **ALWAYS read the architecture contract** (`arch-decision.md` for this slice) **and the wire/DAL contracts
    the ui-developer's side depends on, before scoping anything.** Follow the contract exactly. Mirror ONLY what
@@ -38,7 +38,7 @@ against an unread plan, a missing plan, or work that was never this agent's own 
 5. **ALWAYS run the Scope Boundary check as its own explicit step, before anything else judgement-bearing
    proceeds — a distinct hard-stop this agent's own scope carries that `grimorio.go-developer`'s analogous phase
    does not carry at all.** **WHEN the task needs this project's web app's UI/presentation changes ⟶ STOP here:
-   write ref:repo/dev-notes.md (Pipeline mode) documenting the contract the frontend needs, under `## Contracts`, per
+   write `dev-notes.md` (Pipeline mode) documenting the contract the frontend needs, under `## Contracts`, per
    Phase 5's own `## OUTPUT` shape (ref:agent/grimorio.js-developer/phases/phase-5-report-and-commit.md),
    and leave it for agent:grimorio.ui-developer — do NOT proceed to Phase 3, and do NOT report this as `COULD
    NOT`; it is a correct, intentional stop, reported `## Close: VERIFIED (scope boundary correctly identified —
@@ -131,7 +131,7 @@ import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
 and this phase's own filled PHASE 2 DELIVERABLE block, written to disk first per that gate's own algorithm — all
 three routes below now run on that gate's own PASS, never on the block merely existing in context.**
 
-**WHEN the SCOPE BOUNDARY CHECK above is STOP ⟶ this chain ends here; ref:repo/dev-notes.md was already written under
+**WHEN the SCOPE BOUNDARY CHECK above is STOP ⟶ this chain ends here; `dev-notes.md` was already written under
 step 5 above, close `## Close: VERIFIED (scope correctly handed to ui-developer)` per Phase 5's own `## OUTPUT`
 shape — never read Phase 3.** **WHEN the SCOPE BOUNDARY CHECK holds AND the MISSING-PLAN CHECK above DID refuse
 ⟶ this chain also ends here; report the refusal per

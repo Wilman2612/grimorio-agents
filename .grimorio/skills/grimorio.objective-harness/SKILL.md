@@ -126,7 +126,7 @@ or rewrite one in place, never shift the ones after it.
     identity to check in the first place absent the caller naming itself; this is the same class of trust
     every other numbered gate in `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh`
     already rests on. The claim lives in the session-scoped
-    `.claude/.cache/board-close-items-claims.jsonl` (main-checkout-anchored — same anchoring rule as
+    `.grimorio/.cache/board-close-items-claims.jsonl` (main-checkout-anchored — same anchoring rule as
     `ref:repo/.claude/hooks/board-reconcile.cjs`'s own per-commit claim ledger, a DIFFERENT, separate file this
     gate never touches)
     and its `"by"` field must start `"grimorio.board-writer/"` — never the initiator's own identity, because

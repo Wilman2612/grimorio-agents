@@ -43,18 +43,18 @@ everything up front is what makes execution cheap, fast, and verifiable at the c
 Three more measured facts from this migration effort, each already registered as its own defect — summarized
 here, not duplicated:
 - Stage 3 ran UNBOUNDED — its brief named the queue size and gave no stop condition, where stages 1-2 were
-  bounded and came back clean. -> ref:memory/grimorio.board-memory/grimorio-defects.md → "A fan-out brief named
+  bounded and came back clean. -> the project's own defect record → "A fan-out brief named
   the queue size but gave no stop condition — 2026-08-04, coordinator (main loop)".
 - Self-review checkpoints cannot catch fabrication — a worker that invents its work invents its checks too;
   what caught it was a pre-registered sample checked against the live files, independent of the shard
-  boundaries. -> ref:memory/grimorio.board-memory/grimorio-defects.md → "Self-review checkpoints answered green
+  boundaries. -> the project's own defect record → "Self-review checkpoints answered green
   over a file the worker never touched — 2026-08-04, coordinator (main loop)".
 - A file whose own CONTENT is ABOUT the transformation being mechanically applied — because it narrates the
   same procedure the pass is executing (an agent's own identity/behavior file, when the fan-out IS a migration
   of agent/skill files) or because it quotes/illustrates the exact pattern under conversion (an incident log
   documenting the syntax being converted) — is a structurally distinct partition risk that neither self-review
   nor diff symmetry catches: pull such a file out of the shard split and edit it by hand instead of spawning
-  it out. -> ref:memory/grimorio.board-memory/grimorio-defects.md → "AS-IS reference-migration Haiku shards corrupted
+  it out. -> the project's own defect record → "AS-IS reference-migration Haiku shards corrupted
   content while converting syntax (2026-08-04)".
 
 ### Worked example: partition unit, recomputed fields, and self-review depth (CEO, 2026-08-05)

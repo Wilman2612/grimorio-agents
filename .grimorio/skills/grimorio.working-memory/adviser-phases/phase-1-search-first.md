@@ -26,7 +26,7 @@ carried from Phase 0.
    decompose the presented problem against the bases — and nothing else; this phase never invokes another
    agent.** The chain's ONE optional bounded spawn belongs to ref:skill/grimorio.working-memory/adviser-phases/phase-2-absorb-evidence.md
    alone, never here — this phase is pure internal-memory reading, no external failing artifact is opened yet.
-2. **BEFORE absorbing anything ⟶ read ref:memory/grimorio.board-memory/grimorio-defects.md in full** — the standing ledger of
+2. **BEFORE absorbing anything ⟶ read the project's own defect record in full** — the standing ledger of
    ways grimorio itself has already failed (skipped pipeline steps, rules cited but never read, reminders used
    to paper over an unused agent) — **and name which of its OPEN entries your diagnosis touches**, so your
    reasoning goes to what is NOT yet known rather than re-deriving it. **WHEN an entry there is about your own
@@ -61,7 +61,7 @@ carried from Phase 0.
   without applying this discipline).
 - import:skill/grimorio.working-memory — the `tmp/` staging convention `adviser-verdict.md` follows, and any
   intermediate artifact a later phase produces before it, loaded ONCE here for the whole chain.
-- ref:memory/grimorio.board-memory/grimorio-defects.md — step 2's own live read.
+- the project's own defect record — step 2's own live read.
 - ref:memory/grimorio.po-memory, ref:memory/grimorio.po-memory/project.md#where-the-rest-of-this-ledger-lives--open-by-what-you-want-to-know,
   the architecture memories — step 3's own BASES.
 - **NEVER load the evidence-gathering delegation slice, the diagnosis/prior-art discipline, or the plan/routing

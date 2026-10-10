@@ -33,6 +33,37 @@ can adopt.
   task, hits a blocker, or moves an item has to be as legible an author of that transition as a human is, in
   the same dated history a human transition lands in.
 
+## The THREE VISIBILITY states — where an item LIVES, a different axis from the reporting spine
+
+The spine above is what an item's state is CALLED. This is where it is VISIBLE, and the two are
+independent: an item can be `progress` on the spine while living in two places at once. A deployment keeps
+a FULL queue and a maintained window onto it -- one address, maintained rather than regenerated, so the
+principal never has to read a chat log or a commit history to know where things stand.
+
+| Visibility state | Lives in | Leaves the queue? |
+|---|---|---|
+| **QUEUED** | the full queue only | no |
+| **ACTIVE** | the queue AND the window | **no** — being visible is not being done |
+| **CLOSED** | the window's rolling last-N | yes, on close AND report |
+
+**WHEN an item starts ⟶ ALWAYS add it to the window and LEAVE it in the queue.** The failure this prevents
+is the one that produced the rule: an item reported as under way, dropped from the queue, and then invisible
+to everyone -- which is how a principal ends up asking twice what is still pending and getting a partial
+answer both times.
+
+**WHEN an item closes AND has been reported ⟶ ALWAYS remove it from the queue and move it into the window's
+closed window.** Both halves, never one: a close nobody reported is not closed as far as the reader is
+concerned.
+
+**NEVER let an open item age out of the window.** Only the closed window rolls; QUEUED and ACTIVE stay in
+full however many there are. If the open list grows past what one screen holds, that is a signal to close
+things, never a reason to hide them.
+
+**ALWAYS republish the window when state changes — a close, a start, a new ask — and never on every
+message.** It is a state mirror, not a progress diary.
+
+Which address, which store and which literal tokens a given deployment uses are ITS facts, never this
+file's -> "Where this project's own instance lives" below.
 ## Why this is a SKILL — and why a DISCRETIONARILY-invoked agent is the wrong shape for it
 
 **A DEDICATED AGENT THAT MUST BE SEPARATELY, DISCRETIONARILY INVOKED to update the board recreates the exact

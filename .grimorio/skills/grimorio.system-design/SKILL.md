@@ -71,7 +71,7 @@ taste.
 - **`./diagram-references/`** — the 9 grounded formal references (Section A definition / B examples / C
   anti-patterns / D an 11-ish-point mechanical checklist each) `./design-orchestrator-phases/phase-5-produce-artifacts.md`'s
   own Sub-mission A reads to run its kit-based production loop.
-- **A pointer to `ref:repo/scripts/diagram-kit/`, at the repo root** — the correct-by-construction
+- **A pointer to a script the project keeps at its own root, at the repo root** — the correct-by-construction
   generate/validate-model/lint CLI (one `.mjs` file per kit-covered diagram type) mechanizing each
   `./diagram-references/` file's own Section D, `./design-orchestrator-phases/phase-5-produce-artifacts.md`'s
   own production tool. **NEVER refer to this as bare "the kit" — always name it "the mermaid diagram-kit" to

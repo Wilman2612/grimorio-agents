@@ -44,7 +44,7 @@ establishes the scope, what it affects, and how the work ahead gets divided (or 
 
 2. **Declare the scope.** The scope tells you what's being verified. Without it, verification is blind — you
    can't tell a new bug from a pre-existing one. Valid scope, in order of preference: feature artifacts
-   (`po-brief.md`'s own acceptance criteria and named states; `ui-dev-note.md`/ref:repo/dev-notes.md for changed
+   (`po-brief.md`'s own acceptance criteria and named states; `ui-dev-note.md`/`dev-notes.md` for changed
    routes/components), then a commit range (`git diff main --name-only`), then an explicit instruction. **WHEN
    none of these exist ⟶ do not start; write `FAIL` (blocker: missing scope, documented) as your
    `verification-report.md` output per ref:agent/grimorio.manual-verifier/phases/phase-5-report-and-merge.md's

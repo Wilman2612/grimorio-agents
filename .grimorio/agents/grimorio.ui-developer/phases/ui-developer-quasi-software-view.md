@@ -223,7 +223,7 @@ Per
 ref:skill/grimorio.phase-splitting/quasi-view-requirements.md#evidence-of-phase-design-reasoning--save-the-rendergroupmeasure-working-product-never-discard-it-silently,
 this section restates, as a durable saved artifact rather than a claim taken on faith, the sizing reasoning
 `grimorio.system-keeper` already performed (its own placement decision) and the pre-supplied, independently-
-reasoned diagnosis verdict it extended (ref:repo/objectives/grimorio/phase-reaudit-verdicts/ui-developer.md), both read
+reasoned diagnosis verdict it extended (the project's own re-audit verdict), both read
 in full this pass and inlined here rather than left as a pointer into scratch that will not survive past this
 session.
 

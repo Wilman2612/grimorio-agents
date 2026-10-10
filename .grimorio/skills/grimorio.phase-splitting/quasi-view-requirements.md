@@ -209,7 +209,7 @@ algorithm itself.** -> ref:skill/grimorio.phase-splitting#sizing-a-phase--render
 for RENDER/GROUP/MEASURE/SPLIT's own steps, not re-derived here.
 
 A real, already-built instance of exactly this saved evidence already exists in this corpus:
-ref:repo/objectives/design/design-orchestrator-phase-map-v1-derivation.md#coverage--every-rendered-item-placed-self-disclosed-arithmetic-not-smoothed-over
+the project's own phase-map derivation
 — a RENDER inventory checked item-by-item against where each landed, self-disclosed rather than smoothed over.
 This requirement generalizes that one worked case into a standing rule, rather than leaving it a one-off.
 

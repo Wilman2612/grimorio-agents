@@ -95,7 +95,7 @@ live run id, and the two paths are NEVER interchangeable:**
 (ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-3-rule-syntax.md), treating the four fields above
 as if they were Phase 2's own DELIVERABLE block, verbatim, with nothing re-derived — the identical `jump`
 mechanic CLONE-EXECUTOR MODE below already uses to reach Phase 3, reused here rather than re-invented. The
-`jump` call is now the mechanical, LOGGED proof (`.claude/.cache/phase-server-log.jsonl`) that this shortcut was
+`jump` call is now the mechanical, LOGGED proof (`.grimorio/.cache/phase-server-log.jsonl`) that this shortcut was
 actually taken, replacing prose self-discipline as the only evidence it happened.
 
 **WHEN the SAME brief ALSO declares CLONE-EXECUTOR MODE (the correction itself is Haiku-tiered) ⟶ ALWAYS carry

@@ -32,7 +32,7 @@ manufactures the doubt that sends a reader back to `ref:skill/grimorio.prompt-wr
 
 **What it is.** `PostToolUse: Skill` — two independent behaviors on every `Skill` call, both writes-only, never
 blocking. (1) An always-on debug log: appends one JSONL line per `Skill` call, TRACKED or not, to
-`.claude/.cache/skill-load-debug.log`. (2) TRACKED markers: records that a specific tracked skill loaded THIS
+`.grimorio/.cache/skill-load-debug.log`. (2) TRACKED markers: records that a specific tracked skill loaded THIS
 session, in a marker file a gate could consult.
 
 **Why the always-on log was added.** It is the mechanical, non-introspective instrument for telling whether a

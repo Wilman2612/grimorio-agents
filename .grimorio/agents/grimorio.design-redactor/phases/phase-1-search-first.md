@@ -27,7 +27,7 @@ establishes what already exists, so Phase 2 has something real to plan against.
    ref:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11,
    not restated here. Mirrors agent:grimorio.design-orchestrator's own Phase 1 step 2's placement of this same
    requirement — stated BEFORE the source is opened, never after.
-3. **BEFORE rendering anything ⟶ read ref:memory/grimorio.system-design-memory/designs/MAP.md in full, find what
+3. **BEFORE rendering anything ⟶ read the project's own design record in full, find what
    already exists, and REUSE it; NEVER reinvent the platform or re-derive an existing render.** ->
    ref:memory/grimorio.system-design-memory/project.md#a-gap-in-this-projects-own-state--resolved-2026-08-28-kept-as-history
    for why `designs/MAP.md` states this reuse-first rule in its own voice — no second copy needed here.
@@ -44,7 +44,7 @@ establishes what already exists, so Phase 2 has something real to plan against.
 
 - ref:skill/grimorio.system-design SKILL.md — taxonomy awareness only, so you recognise what you're about to
   render.
-- ref:memory/grimorio.system-design-memory/designs/MAP.md — step 3's own load.
+- the project's own design record — step 3's own load.
 - import:skill/grimorio.reasoning-principles — specifically its objective/exit-condition contract, step 2's own
   load.
   FINGERPRINT: OBJECTIVE + EXIT CONDITION fields below (a caller's own words restated as a checkable exit state

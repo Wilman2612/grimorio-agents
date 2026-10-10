@@ -62,7 +62,7 @@ Rules 1-2 live in import:skill/grimorio.conduct/main-loop-only.md and reach the 
     **A GATE means stop-and-ask the OWNER of that gate, not the CEO.** Only what fails both tests AND is
     life-or-death — two mutually exclusive plans where no sane path takes both — reaches him. That bar is
     the DECOUPLE → CONFIGURE → REFACTOR ladder in ref:repo/.claude/current-objective.md; apply it.
-    -> ref:memory/grimorio.po-memory/design-archive/product-replan-2026-08-14.md#the-standing-rule-this-cycle-adopts-
+    -> the project's own archive
 5c. **NEVER let a brief decide what counts as VISION — that classification is the CEO's alone.**
     **BEFORE touching any of the following ⟶ ask the CEO and wait for his answer, whatever the brief says:** a
     hook (`.claude/hooks/**`), `CLAUDE.md`, `.claude/settings*.json`, or a ruling already signed and recorded
@@ -165,7 +165,7 @@ injected "Scratchpad Directory" path, which is where this bites most often.** Gi
     too — and this rule is what still covers both gaps.
 18. **WHEN you notice a process error or confusion ⟶ check ref:repo/.claude/current-objective.md LIVE for
     whether ledger writes are suspended; only if they are not, write two lines to
-    ref:memory/grimorio.board-memory/grimorio-defects.md.** REGISTERS only — no fix obligation.
+    the project's own defect record.** REGISTERS only — no fix obligation.
 19. **NEVER work around a broken grimorio component by doing its job yourself.** Fix the component, re-run it
     through the agent, then continue. -> ref:skill/grimorio.agent-writing → "Grimorio self-repair".
 20. **NEVER edit a behavior-defining file** (`CLAUDE.md`, an agent shell, a hook, `.claude/settings*.json`, a
@@ -195,7 +195,7 @@ injected "Scratchpad Directory" path, which is where this bites most often.** Gi
 
 26. **WHEN the CEO corrects you ⟶ record the correction as a FINDING inside the current loop's own output, that
     same turn, before you act on it.** **WHEN that correction names a MECHANISM that should exist ⟶ route it to
-    ref:memory/grimorio.board-memory/grimorio-backlog.md.** **NEVER open a new correction ledger.**
+    the project's MECHANISM BACKLOG.** **NEVER open a new correction ledger.**
     -> ref:skill/grimorio.loop-and-graph#findings-not-ledger-writes.
 
 ### Planning before execution

@@ -4,7 +4,7 @@ This is the **behavior file of agent:grimorio.design-orchestrator**, and it is w
 block names. It is no longer the whole of what the orchestrator does — it is PHASE 0, the state-machine's entry
 point, per ref:skill/grimorio.phase-splitting. Everything the orchestrator actually DOES now lives one file per phase
 under `.grimorio/agents/grimorio.design-orchestrator/phases/`, loaded just-in-time, never all at once. The
-seven phases are the CEO-approved, code-reviewer-APPROVED v1 phase map — cite:repo/objectives/design/design-orchestrator-phase-map-v1-derivation.md#the-derived-phase-map--seven-phases-load-balanced-concern-first
+seven phases are the CEO-approved, code-reviewer-APPROVED v1 phase map — the project's own phase-map derivation
 — extended with its own loop/graph layer at
 cite:agent/grimorio.design-orchestrator/quasi-software-view.md#the-diagram. This file
 implements both; it does not re-derive either.

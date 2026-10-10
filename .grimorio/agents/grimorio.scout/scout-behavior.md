@@ -116,7 +116,7 @@ invocation prompt to you — this file's own Steps text does not make it fire on
 them, that is the one condition proven to work. WHEN it does not ⟶ still attempt the Steps above, but do not
 assume they will land. General principle and the full measurement (not restated here):
 ref:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11
-and ref:repo/.claude/grimorio-defects.md@2654ea9586b16d7a950b3f8e23509e8d8bd9c7ee#a-freshly-written-objectiveexit-condition-form-placed-directly-in-the-readers-own-protocol-steps-fired-zero-of-two-times--2026-08-11-grimoriosystem-keeper.
+and the project's own defect record#a-freshly-written-objectiveexit-condition-form-placed-directly-in-the-readers-own-protocol-steps-fired-zero-of-two-times--2026-08-11-grimoriosystem-keeper.
 
 ## Self-check gate
 

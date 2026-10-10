@@ -6,7 +6,7 @@ Four hooks that only ever RECORD or INJECT an identity/log line — none of them
 ## H2 — log-agent-invocation.cjs
 
 **What it is.** `PreToolUse: Agent` + `PostToolUse: Agent` — appends a DISPATCH row (pre) then a RESOLUTION row
-(post) per spawn to `.claude/.cache/agent-invocations.log`.
+(post) per spawn to `.grimorio/.cache/agent-invocations.log`.
 
 **Why it records what it records.** The question this log exists to answer is NOT "what was raised" (the
 original fields) but "why was that raised INSTEAD OF executing the plan" — a deviation only visible much later
@@ -51,7 +51,7 @@ looking delivered without actually being so. So without this hook the id chain i
 assembled.
 
 **Why (parent id, added 2026-09-02).** A child still had no way to learn who spawned it beyond whatever its own
-brief happened to relay by hand — and a brief can omit it. `.claude/.cache/agent-invocations.log` (H2, above)
+brief happened to relay by hand — and a brief can omit it. `.grimorio/.cache/agent-invocations.log` (H2, above)
 often already carries enough to recover the caller without the brief's help. Ported, not redesigned, from a
 reference replay (`objectives/measurements/parent-id-injection-feasibility.mjs`): COMBINED resolution (an exact
 key match, falling back to a heuristic) resolved 99.9% of real spawns in that reference run. A code review
@@ -73,7 +73,7 @@ context line, never the whole envelope.
 
 **What it is.** `SubagentStop: *`, wired 2026-08-12 — appends one line per firing (the child's own
 `agent_id`/`agent_type`/`last_assistant_message`/`agent_transcript_path`) to
-`.claude/.cache/agent-completions.log`. RECORDS only — it never blocks, injects context, or invokes
+`.grimorio/.cache/agent-completions.log`. RECORDS only — it never blocks, injects context, or invokes
 `SendMessage`; that is the watcher's job.
 
 **Why it was wired: not "does what came back satisfy the objective," but "did a nested-background child finish
@@ -120,7 +120,7 @@ short instruction to the identity text: reload now via `Skill(grimorio.conduct)`
 Motivated by a measured gap: subagents made 6,111 `Skill` loads in the session that surfaced this (613 of them
 `reasoning-principles`), because the conduct gate forces those loads into every spawn prompt, while the MAIN
 LOOP made 22 loads all session and had not loaded `reasoning-principles` in five weeks — full numbers:
-`ref:skill/grimorio.board/plan/subtask-lifecycle.md#measured--the-corpus-compels-its-delegates-and-not-its-orchestrator`.
+LOST: the board's subtask-lifecycle draft (removed as a misplaced work product).
 The CEO's own sign-off for this specific mechanism, relayed via `grimorio.system-keeper` the same day,
 translated: after a compaction, the main loop's own standing doctrine load is probably lost — and since the CEO
 never starts a new chat instead, that is exactly the moment it needs reloading.

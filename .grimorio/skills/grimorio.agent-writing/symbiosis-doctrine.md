@@ -130,11 +130,11 @@ labels `ref:repo/.grimorio/scripts/pre-commit.sh` "the only OTHER place anything
 `ref:repo/.grimorio/scripts/install-hooks.sh`/`ref:repo/.grimorio/scripts/pre-push.sh` — ALSO refuses, and the string "pre-push"
 appears ZERO times anywhere in `ref:repo/.grimorio/GRIMORIO-CHAIN.md`.
 The cause, also measured: `ref:repo/.grimorio/scripts/audit-chain.mjs` validates TEXT references (dead pointers, anchors) and
-never reads live wiring at all — zero matches for `ref:repo/.claude/settings.json`, `.git/hooks`, `pre-commit`, or `pre-push`
+never reads live wiring at all — zero matches for `.claude/settings.json`, `.git/hooks`, `pre-commit`, or `pre-push`
 anywhere in that script. Nothing ever compared the chain doc's own claims against what is actually wired.
 
 **NEVER build the fix this payoff names here — name the shape only.** A gate-inventory generator, derivable
-from `ref:repo/.claude/settings.json`'s own hook registry, `.git/hooks/`, and each gate script's own `fail()` call sites, would
+from `.claude/settings.json`'s own hook registry, `.git/hooks/`, and each gate script's own `fail()` call sites, would
 let a chain doc like `ref:repo/.grimorio/GRIMORIO-CHAIN.md` regenerate itself from live wiring instead of drifting
 from it — the same GENERATE-not-hand-maintain fix PAYOFF 2 names above, not a new one. This is a worked
 CONSEQUENCE of PAYOFF 2, stated
@@ -182,7 +182,7 @@ instance, never invent one to illustrate a use this corpus has not actually exer
    target list and hands it to the planning agent as a fact to confirm or override; the agent's own judgment is
    reserved for non-file-based coupling (shared runtime behavior, ordering that matters for reasons no static
    scan sees) — never for re-deriving the whole graph from nothing. Registered, not yet built:
-   `ref:memory/grimorio.board-memory/grimorio-backlog.md#phase-enginemjss-four-remaining-designed-only-subcommands-c7-2026-09-17-substrate-migrated-2026-09-22`,
+   the project's MECHANISM BACKLOG,
    subcommand (c), `plan-graph <target-list-file>`.
 9. **ARTIFACT CREATION (designed, not yet built).** Creating a new file of a known KIND (a skill topic file, a
    phase file, a design doc) currently means re-deriving its own mandatory-sections boilerplate from the
@@ -190,14 +190,14 @@ instance, never invent one to illustrate a use this corpus has not actually exer
    pre-stubbed with every mandatory section a file of that kind owes — the model's own work starts at the first
    genuinely-judgment-bearing sentence, never at "what headings does a topic file need." Registered, not yet
    built:
-   `ref:memory/grimorio.board-memory/grimorio-backlog.md#phase-enginemjss-four-remaining-designed-only-subcommands-c7-2026-09-17-substrate-migrated-2026-09-22`,
+   the project's MECHANISM BACKLOG,
    subcommand (d), `artifact-scaffold <kind> <name>`.
 10. **OUTPUT FORMAT (designed, not yet built).** A report's own SHAPE (verdict-first, a themed table, an
     explicit VERIFIED/COULD NOT close) is currently re-derived from ref:skill/grimorio.report-design's own prose
     description on every report. The design: a linter checks the mechanical half of that shape (a verdict line
     present, a table present, a close line present) without ever touching the CONTENT of the verdict — same
     split, applied to the corpus's own reporting surface. Registered, not yet built:
-    `ref:memory/grimorio.board-memory/grimorio-backlog.md#phase-enginemjss-four-remaining-designed-only-subcommands-c7-2026-09-17-substrate-migrated-2026-09-22`,
+    the project's MECHANISM BACKLOG,
     subcommand (e), `check-format <report-file>`.
 11. **DETERMINISTIC CHECK REPORTS, cited a second time — same family as use 2 above, a separate script closing
     a separate gate.** `ref:repo/.grimorio/scripts/registration-cost.mjs` counts lines across a caller-named file list,

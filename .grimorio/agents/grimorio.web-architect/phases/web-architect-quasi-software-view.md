@@ -12,7 +12,7 @@ flowchart below is re-derived from the actual phase `.md` files, read fresh, not
 ## STEPS vs PHASES verdict, and the orchestrator/purpose-driven classification
 
 **VERDICT: PHASES, purpose-driven.** Full reasoning saved at
-ref:repo/objectives/design/web-architect-phase-map-v1-derivation.md. Short form: the prior flat
+the project's own phase-map derivation Short form: the prior flat
 `grimorio.architect-memory/behavior.md` carried 19 numbered steps under 5 explicitly named "Step N — NAME"
 headers (REVIEW-THE-BRIEF, EXPLORE-THE-CODEBASE, DECIDE-ARCHITECTURE, WRITE-THE-DECISION, DONE), each drawing on
 genuinely different knowledge, gated by a load-bearing sequencing rule ("BEFORE opening any codebase file,"

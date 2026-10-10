@@ -59,4 +59,7 @@ export const ROOT_EXTRAS = [
   // NEVER overwrite a CLAUDE.md. In an adopting repo that file is THEIRS, and it is the one file in this
   // whole export whose loss would cost them written work rather than a re-run.
   { from: ".grimorio/templates/CLAUDE.md", to: "CLAUDE.md", overwrite: false },
+  // The principal's objective: grimorio defines the FILE and its reader (a delegate self-reads it at task
+  // start); the CONTENT is theirs. Nine prompts cited it, so it has to exist in an installation -- empty.
+  { from: ".grimorio/templates/current-objective.md", to: ".claude/current-objective.md", overwrite: false },
 ];

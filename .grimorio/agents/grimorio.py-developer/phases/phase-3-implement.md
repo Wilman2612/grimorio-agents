@@ -78,7 +78,7 @@ something real to check the decomposition against.
    scoped to the one assigned item alone.
 6. **NEVER touch any scope but the Python backend service this project names in project memory** — not the web
    app, not the shared TS contracts, not another language's backend service. **WHEN a change is needed in
-   another layer ⟶ write it as a note for the owning developer in ref:repo/dev-notes.md, never make it yourself.**
+   another layer ⟶ write it as a note for the owning developer in `dev-notes.md`, never make it yourself.**
 
 ## LOAD (JIT) — scoped to this phase only
 

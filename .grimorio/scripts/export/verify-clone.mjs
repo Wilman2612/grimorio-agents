@@ -64,6 +64,23 @@ if (!existsSync(path.join(clone, ".grimorio/scripts/selftest/run-all.sh"))) {
 
 // The suite's own exit code is 1 on any failure; a skip never reaches it. Read the tally line either way,
 // because "0 failed" and "the suite never ran" look identical in an exit code alone.
+// @keep-comment NOT ONE BROKEN REFERENCE in what gets published. Asserted on the CLONE, because that is
+// the tree a reader gets, and BEFORE the suite, so a failure here is not buried under seventy green checks.
+const refs = step("audit every reference in the clone", process.execPath,
+  [".grimorio/scripts/audit-chain.mjs", "--dead"], clone);
+const refTally = ((refs.stdout || "") + (refs.stderr || "")).match(/refs checked (\d+)\s+dead (\d+)/);
+if (!refTally) {
+  console.error("   FATAL the reference audit printed no tally -- it did not finish");
+  cleanup(); process.exit(2);
+}
+console.log(`   ${refTally[1]} reference(s) checked, ${refTally[2]} dead`);
+if (refTally[2] !== "0") {
+  console.error(`\nFAIL: the published corpus carries ${refTally[2]} broken reference(s). The bar is zero.`);
+  for (const l of ((refs.stdout || "") + (refs.stderr || "")).split("\n").filter((l) => l.includes("->")).slice(0, 10)) console.error("  " + l);
+  cleanup();
+  process.exit(1);
+}
+
 const suite = step("run the suite INSIDE the clone", "bash", [".grimorio/scripts/selftest/run-all.sh"], clone);
 const out = (suite.stdout || "") + (suite.stderr || "");
 const tally = (out.match(/^SUITE: .*$/m) || [])[0];

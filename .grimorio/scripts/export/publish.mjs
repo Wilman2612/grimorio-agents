@@ -43,6 +43,7 @@ function walkAll(dir, out = []) {
 
 import { SURFACES, ROOT_EXTRAS } from "./export-surface.mjs";
 import { classifyMemory } from "./memory-split.mjs";
+import { collectAdopterSlots, renderTemplate } from "./adopter-templates.mjs";
 const grimorioAll = walk(".grimorio");
 const memoryTravels = new Set(classifyMemory(grimorioAll).travels);
 const grimorio = grimorioAll.filter((p) => (!p.startsWith(".grimorio/memory/") || memoryTravels.has(p))
@@ -86,18 +87,23 @@ function scrub(text) {
 // @keep-comment RECONCILE BY OWNERSHIP, never by wiping a folder. `.claude/agents`, `.claude/skills` and
 // `scripts/` are where ARCHITECTURE.md section 2 says the ADOPTER'S own work lives, so only `.grimorio/`
 // may be cleared WHOLLY -- there, POSITION already proves nothing of theirs is inside.
-const wholly = [path.join(target, ".grimorio")].filter(existsSync);
 
 // Everywhere else the question is per file: is THIS file grimorio's? Three ways it can be, and nothing
 // else is touched -- not an unprefixed agent, not their skill folder, not their own root scripts.
 const ownedByGrimorio = (rel) => {
-  const base = path.basename(rel);
+  const parts = rel.split("/");
+  // THE PREFIX IS THE FIRST TEST, EVERYWHERE. A `project.` file is the adopter's whatever container it sits
+  // in -- including `.grimorio/memory/`, which section 5 defines AS the project and code levels.
+  if (parts.some((s) => s.startsWith("project."))) return false;
+  // `.grimorio/` is grimorio's by POSITION, minus what the line above already removed.
+  if (rel.startsWith(".grimorio/")) return true;
+  const base = parts[parts.length - 1];
   return SURFACES.some((s) => rel.startsWith(s.dir + "/") && s.allow.some((re) => re.test(rel)))
     || base.startsWith("grimorio.") || base.startsWith("GRIMORIO-")
-    || rel.split("/").includes(".cache");          // runtime state: never a source file, never theirs
+    || parts.includes(".cache");          // runtime state: never a source file, never theirs
 };
 const writes = new Set([...set, ...ROOT_EXTRAS.map((e) => e.to)]);
-const sweepable = [...SURFACES.map((s) => s.dir), "scripts"];
+const sweepable = [".grimorio", ...SURFACES.map((s) => s.dir), "scripts"];
 const superseded = [];
 for (const dir of sweepable) {
   const abs = path.join(target, dir);
@@ -107,11 +113,7 @@ for (const dir of sweepable) {
     if (!writes.has(rel) && ownedByGrimorio(rel)) superseded.push(rel);
   }
 }
-if (apply) {
-  for (const d of wholly) rmSync(d, { recursive: true, force: true });
-  for (const rel of superseded) rmSync(path.join(target, rel), { force: true });
-}
-const stale = wholly;
+if (apply) for (const rel of superseded) rmSync(path.join(target, rel), { force: true });
 
 for (const f of set) {
   const out = path.join(target, f);
@@ -150,7 +152,22 @@ if (apply) {
 console.log(`${apply ? "WROTE" : "DRY RUN"}: ${written} file(s) -> ${target}`);
 console.log(`  .grimorio/: ${grimorio.length}   .claude/ publication surface: ${claude.length}`);
 console.log(`  scrub: ${subCount} generalization(s), ${transCount} translation(s)`);
-console.log(`  reconcile: clears ${wholly.length} tree(s) wholly, removes ${superseded.length} superseded file(s)`);
+console.log(`  reconcile: removes ${superseded.length} superseded file(s)`);
 for (const rel of superseded) console.log(`    superseded: ${rel}`);
 console.log(`  root files: ${extrasWritten} written, ${extrasKept} left as the adopter's own`);
+// @keep-comment WHAT THE ADOPTER IS EXPECTED TO WRITE. A travelling prompt declaring `import:` on a
+// `project.` path puts an EAGER obligation on a file only they can write, and nothing told them it was
+// expected: a clone had 42 such loads across 19 paths. NEVER over an existing file -- these are their
+// project records, and overwriting one costs written work rather than a re-run.
+let slotsWritten = 0, slotsKept = 0;
+// @keep-comment `slot`, never `target`: the first spelling shadowed the destination path with the loop
+// variable and mkdir built one inside the other.
+for (const [slot, info] of collectAdopterSlots(".", classifyMemory)) {
+  const out = path.join(target, slot);
+  if (existsSync(out)) { slotsKept++; continue; }
+  if (apply) { mkdirSync(path.dirname(out), { recursive: true }); writeFileSync(out, scrub(renderTemplate(slot, info))); }
+  slotsWritten++; written++;
+}
+console.log(`  adopter slots: ${slotsWritten} seeded, ${slotsKept} already written`);
+
 if (!apply) console.log(`\nNothing was written. Re-run with --apply.`);

@@ -379,7 +379,7 @@ design-agent's, or the TASK's own vision content is a HOW/architecture call, out
 Every agent already receives a per-invocation MISSION in its brief ("you're a grimorio agent and your mission
 this time is..."). Separate from that — his own open question, stated twice, never resolved — is the reason the
 agent EXISTS AT ALL. Source: a byte-verified CEO transcript chain migrated verbatim into
-cite:memory/grimorio.po-memory/docs/design-rationale-agent-purpose-ceo-ruling.md — read that file for the full
+the project's own archive — read that file for the full
 verbatim source. Spanish governs; English is translation only. "cada gente" is voice-to-text for "cada agente"
 throughout this turn, and "OMR" is "UML" — both noted, neither smoothed out of the quotes.
 
@@ -599,7 +599,7 @@ passwords, logins), a rule "technical agents" in general need to know, because �
 pasar, y tiene que poder trabajar con eso" (it is going to keep happening, and an agent has to be able to work
 with that). The synthesizer's session-id restructure (commit `35b7a4c5`) is the worked instance this rule draws
 its example from. Custody check: the chain files this draws from are migrated verbatim into
-cite:memory/grimorio.po-memory/docs/credential-handling-pattern-ceo-ruling.md — read that file for the full
+the project's own archive — read that file for the full
 verbatim source.
 
 ### The ruling itself

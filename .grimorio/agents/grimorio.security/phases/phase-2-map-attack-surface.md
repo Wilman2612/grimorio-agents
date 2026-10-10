@@ -15,7 +15,7 @@ it only establishes what changed and where it is reachable, from what was actual
 1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — read upstream, map
    the surface — and nothing else; this agent never invokes another agent, in any phase, ever.**
 2. **ALWAYS read upstream first** — `arch-decision.md` for the attack surface (new endpoints, data model, auth
-   changes), ref:repo/dev-notes.md for what changed, and `qa-report.md` if present (functional correctness is already
+   changes), `dev-notes.md` for what changed, and `qa-report.md` if present (functional correctness is already
    covered there — do not re-test it).
 3. **ALWAYS map the attack surface from what step 2 read, and only from what was actually read — never
    invented**: every new/modified endpoint (primary targets), every user-input entry point (fields, params,

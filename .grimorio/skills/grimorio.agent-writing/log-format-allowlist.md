@@ -83,8 +83,8 @@ deterministic:
 
 ```
 .claude/ceo-requests.md
-.grimorio/memory/grimorio.board-memory/grimorio-defects.md
-.grimorio/memory/grimorio.board-memory/grimorio-backlog.md
+<the project's own defect record>
+<the project's MECHANISM BACKLOG>
 BACKLOG.md
 .grimorio/memory/grimorio.po-memory/project.features-status.md
 objectives/**  — the WHOLE FILE, anywhere under objectives/, not scoped to only its ## Log section: a branch
@@ -105,7 +105,7 @@ measured incidents, retired designs — never `SKILL.md` itself, which does not 
 Sanctioned as a ledger destination by ref:skill/grimorio.hooks/SKILL.md's own placement-test/companion-file
 section, so each companion's own decision-history content is exempt wherever it lives — the same justification
 pattern as the `**/*quasi-software-view*.md` entry above, not a self-declaration this list accepts on faith
-.claude/.cache/*.log and *.jsonl  — machine logs
+.grimorio/.cache/*.log and *.jsonl  — machine logs
 ```
 
 ## Maintenance — this list is `grimorio.system-keeper`'s own to keep current

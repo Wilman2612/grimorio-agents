@@ -33,7 +33,7 @@ however concrete the plan gets.
    not the deliverable on its own.
 3. **WHEN you notice something this whole chain found worth registering, AND the project's own
    ref:repo/.claude/current-objective.md does NOT currently suspend ledger writes ⟶ append it to the same
-   ref:memory/grimorio.board-memory/grimorio-defects.md ledger Phase 1 read from** — your proactive review belongs in the same
+   the project's own defect record ledger Phase 1 read from** — your proactive review belongs in the same
    ledger as the discovered ones, or the next pass re-derives both. **Check
    ref:repo/.claude/current-objective.md LIVE before writing, never from memory of a past state — WHEN it
    currently suspends ledger writes ⟶ skip the append; this is a register-only step either way, never a fix
@@ -174,7 +174,7 @@ CLOSE: VERIFIED — the verification test above confirms the guard.
 ```
 PART-2-PLAN-WRITTEN:       <confirm the ordered steps, agent routing per step, gates, acceptance criteria, and
                           the tempting-wrong-move line were all written into adviser-verdict.md>
-LEDGER APPEND:              <confirm ref:memory/grimorio.board-memory/grimorio-defects.md was actually appended per step 3, OR
+LEDGER APPEND:              <confirm the project's own defect record was actually appended per step 3, OR
                           state that the append was correctly SKIPPED because current-objective.md currently
                           suspends ledger writes, checked LIVE this pass — never left ambiguous between the two>
 SELF-CHECK GATE:            <all ten confirmations above, Y or the gap found — never left blank>

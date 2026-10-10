@@ -9,7 +9,7 @@ on nothing.
 ## The question this phase answers
 
 Is what I built correct, deterministic, and invariant-safe — safe to hand off? This phase does not write new Go
-code (Phase 3's own closed question) and does not write ref:repo/dev-notes.md (Phase 5's own closed question) — it
+code (Phase 3's own closed question) and does not write `dev-notes.md` (Phase 5's own closed question) — it
 only runs the full test suite, confirms determinism, and confirms no hard invariant was weakened, producing the
 exact evidence Phase 5's close must cite.
 

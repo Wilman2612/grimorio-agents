@@ -21,6 +21,16 @@ echo "---"                      > "$G/.claude/agents/their-own-agent.md"
 echo "their doctrine"           > "$G/.claude/skills/their-skill/SKILL.md"
 echo "echo theirs"              > "$G/scripts/their-tools/build.sh"
 echo '{"owner":"them"}'         > "$G/.claude/board-config.json"
+# THE ADOPTER'S PROJECT MEMORY, which section 5 says lives inside grimorio's OWN container. The clear step
+# used to wipe `.grimorio/` wholly on the claim that POSITION proved nothing of theirs was inside -- false,
+# and it would have deleted an adopting project's entire project memory on every single export.
+mkdir -p "$G/.grimorio/memory/grimorio.developer-memory" "$G/.grimorio/skills/grimorio.fan-out"
+echo "their conventions"           > "$G/.grimorio/memory/grimorio.developer-memory/project.md"
+echo "their traps"                 > "$G/.grimorio/memory/grimorio.developer-memory/project.traps.md"
+echo "their independence test"     > "$G/.grimorio/skills/grimorio.fan-out/project.independence-test.md"
+# and a file of GRIMORIO's under the same container that this export no longer publishes
+mkdir -p "$G/.grimorio/skills/grimorio.retired"
+echo "retired doctrine"            > "$G/.grimorio/skills/grimorio.retired/SKILL.md"
 # WHAT GRIMORIO PUBLISHED UNDER AN OLDER LAYOUT and does not publish any more.
 echo "obsolete doctrine"        > "$G/.claude/GRIMORIO-CHAIN.md"
 echo '{"ts":"x"}'               > "$G/.claude/.cache/run-log.jsonl"
@@ -37,14 +47,23 @@ stays "$G/.claude/agents/their-own-agent.md"      "their unprefixed agent"
 stays "$G/.claude/skills/their-skill/SKILL.md"    "their own skill folder"
 stays "$G/scripts/their-tools/build.sh"           "their root script"
 stays "$G/.claude/board-config.json"              "their board config"
+stays "$G/.grimorio/memory/grimorio.developer-memory/project.md"       "their project memory, inside grimorio's own container"
+stays "$G/.grimorio/memory/grimorio.developer-memory/project.traps.md" "their traps file"
+stays "$G/.grimorio/skills/grimorio.fan-out/project.independence-test.md" "their companion inside a grimorio skill"
 
 echo "=== WHAT GRIMORIO NO LONGER PUBLISHES IS REMOVED"
 gone "$G/.claude/GRIMORIO-CHAIN.md"               "a doctrine document left at the surface root"
 gone "$G/.claude/.cache/run-log.jsonl"            "a published run log"
 gone "$G/.claude/agents/grimorio.retired-agent.md" "a retired grimorio agent stub"
+gone "$G/.grimorio/skills/grimorio.retired/SKILL.md" "a retired grimorio skill, inside the same container their files sit in"
 
 echo "=== AND IT SAYS SO -- a silent reconcile cannot be reviewed"
-t "it names each removal" "$(echo "$OUT" | grep -c '^    superseded: ')" "3"
+# EACH removal by name, never a total: the total changed the moment this suite gained a case, and a count
+# is not the claim -- the claim is that a reader can see WHAT was removed.
+for f in ".claude/GRIMORIO-CHAIN.md" ".claude/.cache/run-log.jsonl" ".claude/agents/grimorio.retired-agent.md" ".grimorio/skills/grimorio.retired/SKILL.md"; do
+  t "the report names $f" "$(echo "$OUT" | grep -c "superseded: $f")" "1"
+done
+t "and it reports nothing of the adopter's as superseded" "$(echo "$OUT" | grep '^    superseded: ' | grep -c 'project\.')" "0"
 t "the retired stub is named" "$(echo "$OUT" | grep -c 'superseded: .claude/agents/grimorio.retired-agent.md')" "1"
 
 echo "=== PER FILE, NOT PER FOLDER: the proof is that one folder lost one file and kept the other"

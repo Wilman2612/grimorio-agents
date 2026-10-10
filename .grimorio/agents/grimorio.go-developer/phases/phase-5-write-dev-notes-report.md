@@ -1,6 +1,6 @@
 # Go Developer — Phase 5: WRITE-DEV-NOTES-REPORT (terminal)
 
-**NEVER close this task, or report anything to your caller, until THIS phase's own ref:repo/dev-notes.md is actually
+**NEVER close this task, or report anything to your caller, until THIS phase's own `dev-notes.md` is actually
 written (Pipeline mode) and its `## Close` line is set.** There is no Phase 6 to defer an unfinished field to,
 and this chain carries no loop-back into any earlier phase — this is always the terminal state.
 
@@ -17,7 +17,7 @@ rest of the pipeline reads.
 REWORK/BUG-REPORT DETECTED, SURVEY NOTES, BUG-FIX-FIRST-TEST, MODULE(S) BUILT, DIFF SUMMARY, FULL SUITE RESULT,
 DETERMINISM GOLDEN RESULT, and INVARIANT CONFIRMATION from Phase 4's own now-cumulative hand-off ⟶ this phase
 does not re-derive any of them.** OBJECTIVE feeds the `## Objective / Exit Condition` section below; MODE gates
-step 2 below (Pipeline mode ALWAYS writes ref:repo/dev-notes.md; Standalone mode owes no dev-note); CONTRACT READ is
+step 2 below (Pipeline mode ALWAYS writes `dev-notes.md`; Standalone mode owes no dev-note); CONTRACT READ is
 this phase's own cited evidence for the Completion criteria checklist's first bullet ("the architecture
 contract was actually read this invocation"); WIRE-CONTRACT SHAPES feeds `## Contracts`; REWORK/BUG-REPORT
 DETECTED gates step 3 below; SURVEY NOTES feeds `## Abstractions Reused`; BUG-FIX-FIRST-TEST is this phase's
@@ -27,8 +27,8 @@ SUMMARY feed `## Changes Made` and `## Abstractions Created`; the three Phase-4-
 phase's own `## Close: VERIFIED` evidence, per step 7 below.
 
 1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node, terminal — write
-   ref:repo/dev-notes.md, decide the commit action, close — and nothing else; no spawn anywhere in this phase.**
-2. **IN PIPELINE MODE ⟶ ALWAYS write ref:repo/dev-notes.md** per the shared `## OUTPUT` template below, populating:
+   `dev-notes.md`, decide the commit action, close — and nothing else; no spawn anywhere in this phase.**
+2. **IN PIPELINE MODE ⟶ ALWAYS write `dev-notes.md`** per the shared `## OUTPUT` template below, populating:
    Changes Made, Abstractions Reused/Created, Contracts (for other developers), Test Scenarios for QA, Known
    Limitations. **IN STANDALONE MODE ⟶ no dev-note is owed** — report the result directly per this same `##
    OUTPUT` shape, inline.
@@ -36,7 +36,7 @@ phase's own `## Close: VERIFIED` evidence, per step 7 below.
    ref:memory/grimorio.developer-memory/build-protocol.md#rework-mode, re-verifying the full completion
    checklist below rather than only the previously-failed item.
 4. **WHEN the contract was ambiguous, or `arch-decision.md` did not cover a case that arose while implementing
-   ⟶ write it as `BLOCKED` in ref:repo/dev-notes.md and stop — never guess.**
+   ⟶ write it as `BLOCKED` in `dev-notes.md` and stop — never guess.**
 5. **Commit discipline, per
    ref:memory/grimorio.developer-memory/build-protocol.md#who-commits-depends-on-whether-you-are-worktree-isolated:**
    **WHEN spawned WITHOUT `isolation:"worktree"` ⟶ commit nothing; hand back for `code-reviewer` Gate B.**
@@ -59,7 +59,7 @@ phase's own `## Close: VERIFIED` evidence, per step 7 below.
 - The full test suite actually ran with `-race`, in the foreground, and passed (Phase 4).
 - The determinism golden test is green (Phase 4).
 - None of this project's backend-service hard invariants were weakened anywhere in the diff (Phase 4).
-- ref:repo/dev-notes.md was actually written, not merely described (Pipeline mode, this phase).
+- `dev-notes.md` was actually written, not merely described (Pipeline mode, this phase).
 
 ## OUTPUT
 
@@ -170,6 +170,6 @@ import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
 and this phase's own filled PHASE 5 DELIVERABLE block, written to disk first per that gate's own algorithm —
 this phase has no next-phase file to gate a read against, so the gate runs against the CLOSE itself.**
 
-**This chain ends here, always.** ref:repo/dev-notes.md is written (Pipeline mode), `## Status` and `## Close` are
+**This chain ends here, always.** `dev-notes.md` is written (Pipeline mode), `## Status` and `## Close` are
 emitted, and this phase closes VERIFIED or COULD NOT to the caller. A subsequent invocation starts fresh at
 Phase 0 (ref:agent/grimorio.go-developer/behavior.md), never resumed mid-chain from this file.

@@ -101,7 +101,7 @@ and a comment describing current behaviour goes stale and then actively misleads
     or one of its ten named phrases co-occurring within 300 characters of a date, a `grimorio.*` name, "ceo",
     "cycle N", or "finding-N") as a MECHANICAL first pass against the diff's ADDED lines only, on any file the
     diff touches OUTSIDE that same doc's own named allowlist (exact paths, `objectives/**`, `**/provenance.md`,
-    `**/*quasi-software-view*.md`, `.claude/.cache/*.log`/`*.jsonl`).
+    `**/*quasi-software-view*.md`, `.grimorio/.cache/*.log`/`*.jsonl`).
 
     **A mechanical hit is a CANDIDATE, never automatically a finding — READ the flagged span before ranking
     it.** The exact failure this two-stage shape exists to prevent: a faithful transcript or quotation of these

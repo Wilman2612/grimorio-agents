@@ -8,7 +8,7 @@ description: "Load to understand why a hook exists and what it fires on. Modifyi
 ## The placement test this skill exists to satisfy
 
 The CEO ruled a placement test for documentation ULTERIOR to code (board register entry `docs-out-of-hooks`,
-2026-09-11, translated from Spanish — the original is a RECORD kept at `ref:memory/grimorio.board-memory/register.md`,
+2026-09-11, translated from Spanish — the original is a RECORD kept at the project's REGISTER,
 not inline here):
 
 > "I don't like the comments. Those hooks are full of comment lines. The code is not the place to put that

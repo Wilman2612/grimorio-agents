@@ -7,7 +7,7 @@ phase under `.grimorio/agents/grimorio.design-redactor/phases/`, loaded just-in-
 once. The four phases are grimorio's own phase-splitting doctrine applied to this agent, independently
 re-derived by agent:grimorio.system-keeper against the real, pre-split file text —
 cite:agent/grimorio.design-redactor/phase-map-v1-derivation.md#step-2--group-by-where-items-push
-and cite:repo/objectives/grimorio/phase-reaudit-verdicts/design-redactor.md. This file implements that map; it
+and the project's own re-audit verdict This file implements that map; it
 does not re-derive it. A drawn quasi-software-view for this chain (STATE MACHINE + LOOP + GRAPH layers) is a
 SEPARATE artifact, owed once these phase files land — agent:grimorio.system-keeper draws it directly, per
 ref:skill/grimorio.phase-splitting/quasi-view-requirements.md#the-three-layer-hard-requirement's own

@@ -89,7 +89,7 @@ in ref:skill/grimorio.fan-out#part-2--stay-reachable-report-back-without-parking
 >    single-threaded only where they would land on the SAME shared, unpartitioned artifact or working tree,
 >    never as a blanket ban on writing in parallel (CEO correction, 2026-09-11). A prior incident in this same
 >    corpus already caught and corrected this identical misreading, in the same shape this correction takes:
->    ref:memory/grimorio.architect-memory/design-archive/parallel-fronts.md#the-rule-verified-verbatim-in-our-own-doctrine.
+>    the project's own archive.
 >    The operative, narrower rule governing the concurrent-writer hazard itself is
 >    ref:skill/grimorio.fan-out#hard-rules--read-before-the-methodology-below's own "NEVER run 2+ concurrent
 >    children that WRITE repo source in the SAME working tree" — never restated here, go there.
@@ -326,7 +326,7 @@ Every delegate brief has these seven parts. The first three are the objective; t
    - **Identify and pass the OWNING design/spec docs as MANDATORY first-reading — not just task/render context.**
      A delegate given only local context (assets, the sim wiring) but NOT the documents that DEFINE the thing
      builds a generic, wrong version. Proven in-repo (2026-07-22): the god-economy render builder got the render
-     wiring + Tiny Swords assets but NOT ref:memory/grimorio.game-architect-memory/design-archive/resources-and-roster.md#the-one-paragraph-verdict / `economy-mechanics.md`, so it rendered
+     wiring + Tiny Swords assets but NOT the project's own archive / `economy-mechanics.md`, so it rendered
      a generic two-faction lawn with decorative static trees and indistinct units — none of the DESIGNED economy
      (4 resources, depleting wood/iron/stone nodes, the ~16-unit roster, the ~12 buildings). Before briefing,
      ASK: which repo docs define what I'm asking for? Pass them by path as required reading. The same failure is

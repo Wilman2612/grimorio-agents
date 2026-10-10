@@ -118,7 +118,7 @@ holds only bodiless discovery adapters, not the skill's real content — and rep
 Measured: three agent shells were left unable to find their own behavior file this way. **NEVER extend that
 `repo/` path requirement to `memory` or `agent` above** — each is single-rooted by construction, so there is
 no second root for a model to default to instead, and nothing here for this fix to patch.
-ref:tmp/path                      a transient note, safe to point at
+LOST: tmp/path (scratch, pruned)                      a transient note, safe to point at
 cite:repo/path                    this is the writer's PROOF for the claim just made
 cite:ext/project@rev#path         proof from a tree that is not ours — always pinned, never resolved here
 ```
@@ -420,8 +420,8 @@ module imports, Antora's resource IDs — each REVERSED an earlier, more relativ
 absolute-only one, for the same reason argued above: no stable position between writer and reader survives.
 Antora names the adversary "the relative path problem" verbatim, citing its own dot-dot up-level traversal
 syntax as the example. -> Full findings:
-ref:tmp/prior-art-reference-conventions/10-agent-formats.md#format-comparison-at-a-glance and
-ref:tmp/prior-art-reference-conventions/40-absolute-vs-relative.md#does-prior-art-support-absolute-only-for-a-graph-rebuilt-from-strings-alone.
+LOST: tmp/prior-art-reference-conventions/10-agent-formats.md (scratch, pruned) and
+LOST: tmp/prior-art-reference-conventions/40-absolute-vs-relative.md (scratch, pruned).
 
 **This is no longer an open call — the CEO ruled 2026-08-04 to convert them** (relayed via
 `grimorio.system-keeper`). `grimorio.system-keeper` + `grimorio.prompt-writer` executed the conversion the

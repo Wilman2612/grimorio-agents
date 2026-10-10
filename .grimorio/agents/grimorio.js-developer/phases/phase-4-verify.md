@@ -8,7 +8,7 @@ closing on nothing.
 ## The question this phase answers
 
 Is what I built correct, tested, and free of any weakened hard invariant — safe to hand off? This phase does not
-write new TypeScript (Phase 3's own closed question) and does not write ref:repo/dev-notes.md (Phase 5's own closed
+write new TypeScript (Phase 3's own closed question) and does not write `dev-notes.md` (Phase 5's own closed
 question) — it only runs the full test suite and typecheck, confirms the full Definition-of-Done checklist, and
 confirms no hard invariant was weakened, producing the exact evidence Phase 5's close must cite.
 

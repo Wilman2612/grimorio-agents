@@ -56,7 +56,7 @@ argument was added and this pass is not otherwise touching it, in which case the
 omission (defaulting to `unknown`) for backward compatibility.** This argument is the ONLY
 thing that makes the firing-log's own `agent` field —
 ref:skill/grimorio.agent-writing/audit-toolchain.md#scripts-top-level--live-21-tools, entry 19's own POPULATION
-description of `ref:repo/.claude/.cache/fingerprint-gate-log.jsonl`'s fields — meaningful instead of reading
+description of `.grimorio/.cache/fingerprint-gate-log.jsonl`'s fields — meaningful instead of reading
 `unknown` on every line.
 
 **WHEN that command exits 0 (its own stdout opens `PASS —`) ⟶ proceed to read the next phase file exactly as

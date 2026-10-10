@@ -24,8 +24,8 @@ Two kinds of skill content follow from the split:
 
 | Kind | Answers | Example |
 |---|---|---|
-| **Behavior file** | "What does THIS agent do, step by step, and how does it check itself?" | ref:agent/project.brush-critic/behavior.md#protocol--run-the-whole-checklist-in-one-pass (the brush-critic's full review protocol) |
-| **Knowledge (general)** | "What is true about this domain, regardless of who acts on it?" | ref:skill/project.tileset-composition, ref:skill/project.map-design, ref:skill/grimorio.javascript |
+| **Behavior file** | "What does THIS agent do, step by step, and how does it check itself?" | the project's own critic agent (the brush-critic's full review protocol) |
+| **Knowledge (general)** | "What is true about this domain, regardless of who acts on it?" | the project's own tileset skill, the project's own map-design skill, ref:skill/grimorio.javascript |
 
 A behavior file serves one agent (or one family of agents sharing a method); knowledge serves any agent that needs the domain. Both are project-portable.
 
@@ -262,7 +262,7 @@ separate, later pass.
 A behavior file always lives **inside a skill the agent already loads** — an agent loads ONE home skill (its behavior + its own knowledge) plus the SHARED knowledge skills it needs. In order of preference:
 
 1. **The agent's memory skill** — `{role}-memory/behavior.md` for an agent with a memory skill (the architect, PO, QA, security, …).
-2. **The agent's defining method/canon skill** — `{method-skill}/{role}-behavior.md` when the agent's method skill is its natural home: the four map agents' and the brush-critic's behavior files live in ref:skill/project.map-design; the entropy and researcher behavior files live in ref:skill/grimorio.fan-out#part-1--decompose-spawn-in-parallel-synthesize (their protocols ARE fan-outs); the scout's lives in ref:agent/grimorio.scout; the unblocker's in ref:agent/grimorio.unblocker.
+2. **The agent's defining method/canon skill** — `{method-skill}/{role}-behavior.md` when the agent's method skill is its natural home: the four map agents' and the brush-critic's behavior files live in the project's own map-design skill; the entropy and researcher behavior files live in ref:skill/grimorio.fan-out#part-1--decompose-spawn-in-parallel-synthesize (their protocols ARE fan-outs); the scout's lives in ref:agent/grimorio.scout; the unblocker's in ref:agent/grimorio.unblocker.
 3. **A shared behavior file** when several agents share a method (the developers' shared build protocol in ref:memory/grimorio.developer-memory/build-protocol.md) — one canonical copy; per-agent behavior files hold only what differs. Never duplicate a shared method per agent.
 
 **Creating a NEW skill that holds only one agent's behavior is FORBIDDEN (skill-proliferation anti-pattern).** Every skill's name+description loads into every session's listing — a behavior-only skill pays that cost to serve one agent, and makes the agent load two things instead of one home. If an agent has no natural home skill at all, place its behavior in the skill whose convention it genuinely uses (e.g. the adviser's behavior lives in ref:skill/grimorio.working-memory, whose tmp/ convention its verdict follows). Reusing SHARED knowledge skills across agents is fine — that is reuse, not proliferation.
@@ -307,7 +307,7 @@ This is a global-vs-local placement choice made when authoring a brand-new skill
 
 A skill is **not** a single file. When a domain holds more knowledge than fits without bloating the always-loaded file, **offload the depth into referenced files — never DROP the knowledge to stay short.** The **agent shell** holds only identity; the **behavior file** holds everything the agent does; the **knowledge skills** hold ALL the domain knowledge, spread across as many reference files as the domain needs — one lean SKILL.md (the decision core a reader needs *every time*) plus topic-organized reference files, each loaded only when the task touches that topic. This is the same file-reference mechanism as project/code files, applied to **general** depth.
 
-Example — ref:skill/project.game-development: `SKILL.md` (the core loop + map of what's where) → `visual-design.md`, `sprites.md`, `map-design.md`, `mechanics.md`, `juice-and-feel.md`, `art-direction.md`, … each a self-contained reference, pointed to from SKILL.md with `-> deeper: {file}`.
+Example — the project's own game-development skill: `SKILL.md` (the core loop + map of what's where) → `visual-design.md`, `sprites.md`, `map-design.md`, `mechanics.md`, `juice-and-feel.md`, `art-direction.md`, … each a self-contained reference, pointed to from SKILL.md with `-> deeper: {file}`.
 
 Why: the reader loads only the files the task needs, so knowledge accumulates across sessions without saturating context. Hyper-compression that *loses* knowledge is a defect, not concision — cut redundancy, split by topic, reference depth. (The escape valve for the conciseness trap below: when a section feels too long, add a topic reference file, don't delete.)
 

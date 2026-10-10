@@ -55,7 +55,7 @@ that form suppresses.
 **This is the more dangerous failure of the two, and it must be named as such: misapplied, this rule lets a
 rule the system authored outrank what the principal actually asked for.** That is not hypothetical — it is a
 registered recurring failure class in this repo, `TREATED-EVERY-AGENT-AS-A-DELEGATE`
-(ref:memory/grimorio.board-memory/grimorio-backlog.md#b-delegate-machinery-misuse-check, "Let a constraint WE
+(the project's MECHANISM BACKLOG, "Let a constraint WE
 authored, after his ask, outrank his ask") — and it collides head-on with
 ref:skill/grimorio.reasoning-principles#measuring-is-not-building--the-bound-on-the-two-sections-below-hard-rule-ceo-2026-07-30
 (never argue viability before building what the CEO asked for; build it, then say whether it holds) and with

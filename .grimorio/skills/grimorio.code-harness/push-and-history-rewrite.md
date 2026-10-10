@@ -58,10 +58,10 @@ content, never everything the merge happens to bring in).
 
 **NEVER rebase a branch after it has been reviewed or approved by commit sha.** Rebase rewrites commit hashes.
 Any verification anchored to a specific sha — a `grimorio.code-reviewer` APPROVED verdict recorded against a
-sha, a merge-base computed before the rebase, a `.claude/.cache/review-approved` marker file keyed to a commit
+sha, a merge-base computed before the rebase, a `.grimorio/.cache/review-approved` marker file keyed to a commit
 (exactly this shape:
 `cite:repo/.grimorio/scripts/pre-push.sh@7057b0e72c440a324103ac6932ef24512230c4a4:28,67-85` —
-`MARKER=".claude/.cache/review-approved"` holds a commit sha, and the gate only passes when that marker's sha
+`MARKER=".grimorio/.cache/review-approved"` holds a commit sha, and the gate only passes when that marker's sha
 equals the commit actually being pushed) — goes silently stale the instant the branch is rebased: the old sha
 no longer exists on the branch, the marker no longer matches, and a marker that happens to still read some
 OTHER valid-looking sha would not even fail loudly.
@@ -75,7 +75,7 @@ a pre-rebase approval or a pre-rebase merge-base to still describe the post-reba
 **WHEN a squash collapses N commits into 1 ⟶ ALWAYS re-derive, against the new collapsed history, any check
 that is range-based or commit-count-based and assumed the pre-squash shape — never trust it to still mean what
 it meant before.** A commit-count-based staleness threshold (e.g. this repo's own ROT-item check for "above 50
-commits of `BACKLOG.md` silence," `ref:repo/scripts/status.sh`) or a range `A..B` expected to find N original
+commits of `BACKLOG.md` silence," a script the project keeps at its own root) or a range `A..B` expected to find N original
 commits (e.g. the `git log --all --diff-filter=A --name-only` patterns this repo's own design-archive files use
 to verify a specific file was added in a specific commit) stops finding what it expects the moment those N
 commits are replaced by one squashed commit that never existed in that shape before.

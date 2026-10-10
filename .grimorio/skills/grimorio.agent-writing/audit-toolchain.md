@@ -144,17 +144,17 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
    spawn budget goes to gates vs building, invocation counts and explicit model overrides by agent type, and
    whether an agent type that should be spawning has zero invocations while its area has commits. WHEN: before
    judging the system's process/plan discipline — run it FIRST, not after forming a hypothesis, and never
-   assume it was already run. POPULATION: every line of `ref:repo/.claude/.cache/agent-invocations.log` — LOCAL,
+   assume it was already run. POPULATION: every line of `.grimorio/.cache/agent-invocations.log` — LOCAL,
    git-ignored, single-machine — so the population is whatever this checkout happened to log, not a versioned
    corpus. CONDITIONAL by block, verified against the source: blocks 1-3 (DEVIATION/CHURN/OFF-PLAN) count only
    the RICH subset — lines carrying ≥11 tab-fields (plan context, logged from 2026-07-30 on); blocks 4-8 (GATE
    COST, invocations-by-type, model overrides, brief size, most-recent-20) count EVERY logged line regardless
    of field count. Quoting a block's number without saying which of those two populations it drew from
    restates the exact scope-mismatch this file's own POPULATION field exists to prevent. Field 3 of the raw log
-   (`ref:repo/.claude/.cache/agent-invocations.log`) records the literal string `(default)` whenever a spawn's
+   (`.grimorio/.cache/agent-invocations.log`) records the literal string `(default)` whenever a spawn's
    `subagent_type` was omitted — a DISTINCT, separately-queryable value from an explicit `general-purpose` or
    `claude` spawn, never the same signal as either — queryable with
-   `grep $'\t(default)\t' .claude/.cache/agent-invocations.log` (the ANSI-C `$'...'` quoting is required so the
+   `grep $'\t(default)\t' .grimorio/.cache/agent-invocations.log` (the ANSI-C `$'...'` quoting is required so the
    `\t` becomes a real tab; a plain `'\t...'` literal matches nothing); deliberately NOT a new hook, since the
    existing log already answers it.
 2. `ref:repo/.grimorio/scripts/audit-chain.mjs` — ANSWERS: is the grimorio rule corpus (`CLAUDE.md` + every agent + every
@@ -281,8 +281,8 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
    POPULATION for every OTHER flag: CONDITIONAL — flag this to `grimorio.system-keeper` before quoting any
    single number from it.
    The BASE file scan is every `.md` under `ref:repo/.claude/agents` and `ref:repo/.claude/skills` (recursive,
-   excluding `node_modules`/`worktrees`/`.git`), plus `CLAUDE.md`, `ref:memory/grimorio.board-memory/grimorio-defects.md` and
-   `ref:repo/.claude/grimorio-defects-narrative.md@cd44eda69b0d39198bfab74d702e9a922a5ecbd6` pushed in explicitly. But no flag counts that base directly — each
+   excluding `node_modules`/`worktrees`/`.git`), plus `CLAUDE.md`, the project's own defect record and
+   the project's own defect record pushed in explicitly. But no flag counts that base directly — each
    one (`--anchors`, `--dead`, `--unprefixed`, `--malformed`, …) further filters it to a different sub-set of
    RULES or REFERENCES extracted from those files, with its own exclusions (fenced code, `VERIFY`/`Usage`
    lines, the ARTIFACT-name vocabulary, governance-owned files, …). The flag's own filter chain in the source
@@ -295,7 +295,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
    sits beside the extension filter: the scan's ROOTS.** It only walks `ref:repo/.claude/agents` and
    `ref:repo/.claude/skills`, plus the three files pushed in by name at source lines 108-115 — so files that
    ARE markdown miss it too. 15 of the repo's 16 ref:skill/harness.md files sit outside those roots (`git ls-files
-   "*harness.md" | wc -l` → 16; only `ref:repo/.grimorio/memory/grimorio.po-memory/docs/13-arena-grimorio-harness.md` is
+   "*harness.md" | wc -l` → 16; only the project's own record is
    inside), `ref:repo/objectives/harness.md` among them — a file `CLAUDE.md` rule 20 itself names a governance
    file, and one the harness-lookup hook injects into context exactly like a skill's text. Widening the corpus
    to `.cjs` was CONSIDERED AND REFUSED, and the decision is settled, not open: the grammar this tool checks
@@ -304,12 +304,9 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
    shows a check that needs the wider scan.
 3. `ref:repo/.grimorio/scripts/battery-red-green.sh` — ANSWERS: does every probe in `NODE-BATTERY.md` actually go RED,
    for the RIGHT reason, when the code it guards is mutated — i.e. are they real regression tests, not
-   vacuously green. WHEN: after touching `ref:repo/services/runner-node/src/workflow/graphBridge.ts`, the node
+   vacuously green. WHEN: after touching a file in the project's own product tree, the node
    catalog, or the battery generator — before trusting any claim `NODE-BATTERY.md` makes.
-4. `ref:repo/scripts/build-committed.sh` — ANSWERS: does the Go sim build from what is actually COMMITTED, not
-   from the working copy. WHEN: wired into `npm run check` as `go:build:committed` — trust a green build claim
-   only after this; the Go sim's HEAD has failed to compile while every working copy looked fine.
-5. `ref:repo/.grimorio/scripts/check-comment-blocks.mjs` — ANSWERS: does this commit add an oversized comment block to a
+4. `ref:repo/.grimorio/scripts/check-comment-blocks.mjs` — ANSWERS: does this commit add an oversized comment block to a
    source file. WHEN: automatic — wired into `ref:repo/.grimorio/scripts/pre-commit.sh`, fires on every commit.
    POPULATION: files in the STAGED diff only (`git diff --cached`, `--diff-filter=ACM`) whose name matches its
    `SOURCE` regex, `\.(ts|tsx|js|jsx|mjs|cjs|py|go)$` (source line 9). **It applies NO directory restriction
@@ -318,12 +315,12 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
    three-directory restriction is the COUNTER's own choice, never the gate's. Both figures verified
    2026-08-08: `git ls-files apps packages services | grep -E '\.(ts|tsx|js|jsx|mjs|cjs|py|go)$' | xargs grep
    -o '@keep-comment' | wc -l` → 258; the same command over `git ls-files` (no directory args) → 291.
-6. `ref:repo/.grimorio/scripts/close-landed.sh` — ANSWERS: for work that landed straight on trunk with no branch to close,
+5. `ref:repo/.grimorio/scripts/close-landed.sh` — ANSWERS: for work that landed straight on trunk with no branch to close,
    has its objective been consolidated into `ref:memory/grimorio.po-memory/project.features-status.md` and pruned from
    `objectives/`. WHEN: right after landing work directly on `develop` — the case
    `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh`
    structurally cannot cover, since it only fires for a non-trunk branch that hasn't merged yet.
-7. `ref:repo/.grimorio/scripts/replan-check.mjs` — ANSWERS: is the CURRENT plan STALE right now — which OPEN items' own
+6. `ref:repo/.grimorio/scripts/replan-check.mjs` — ANSWERS: is the CURRENT plan STALE right now — which OPEN items' own
    `VERIFY:` command already exits 0 (done, but still marked open), which OPEN items carry no `VERIFY:` line at
    all (UNVERIFIABLE), and how many commits have landed on the branch since the plan file's own last commit.
    Prints its own POPULATION line every run (item/open/closed counts, VERIFY coverage) and fails LOUD on zero
@@ -340,12 +337,12 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
    DONE**: it found this tool is a SKIP CHECK at dispatch, not a re-plan trigger, with STATE DIVERGENCE
    unsensed — LOST: documentation-memory/docs/67-dynamic-replanning-triggers-blast-radius-prior-art-referencia.md (deleted 2026-10-04, recoverable at f942b355),
    full statement at ref:skill/grimorio.flow-delegation#part-0b--re-plan-mid-run-mandatory-twin-of-part-0.
-8. `ref:repo/.grimorio/scripts/hook-conditions.mjs` — ANSWERS TWO questions, not one. **(1) PER-HOOK:** does a given
+7. `ref:repo/.grimorio/scripts/hook-conditions.mjs` — ANSWERS TWO questions, not one. **(1) PER-HOOK:** does a given
    `.claude/hooks/*.cjs` hook, IN A GIVEN PROBE STATE, have an EFFECT right now — does it emit context or a
    deny, or does it run and produce NOTHING. This is a DIFFERENT question than "what event is it wired to",
    which `ref:repo/.grimorio/GRIMORIO-CHAIN.md#3` already answers correctly and this tool does not restate.
    **(2) THE CHAIN:** for an ORDERED SCENARIO (a sequence of steps, each an event plus a tool_name), which
-   hooks does each step MEET — derived LIVE from ref:repo/.claude/settings.json's own matcher rules, never
+   hooks does each step MEET — derived LIVE from `.claude/settings.json`'s own matcher rules, never
    hand-listed — and did the CONJUNCTION of everything that step met have any effect at all, on stdout OR
    on disk. Judging on stdout alone was tried and rejected mid-build: a hook can emit 0 bytes and still
    write a real line to disk (`log-agent-invocation.cjs` does exactly this on every agent spawn), so
@@ -360,53 +357,35 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
    carries, PER-HOOK ONLY (settings.json wiring resolves to a real file; no hook exits non-zero or throws on
    a well-formed payload) — it does NOT gate on emptiness and does NOT extend to the scenario axis.
    POPULATION: **per-hook axis** — every `.cjs` under `ref:repo/.claude/hooks`, partitioned LIVE (never a
-   constant) into WIRED (named in `ref:repo/.claude/settings.json`), MODULE (required by another hook,
+   constant) into WIRED (named in `.claude/settings.json`), MODULE (required by another hook,
    triggered by no event of its own), and ORPHAN (neither) — measured 2026-08-08: 14 files, 11 WIRED, 3
    MODULE, 0 ORPHAN. **The chain axis carries its OWN, NARROWER population, stated in the tool's own
-   output every run:** only hooks ref:repo/.claude/settings.json wires against an event/matcher a scenario's steps
+   output every run:** only hooks `.claude/settings.json` wires against an event/matcher a scenario's steps
    actually test. `ref:repo/.grimorio/scripts/pre-commit.sh` and `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh` are real, LATER
-   links in the chain a commit or a branch-close walks, and sit ENTIRELY outside ref:repo/.claude/settings.json —
+   links in the chain a commit or a branch-close walks, and sit ENTIRELY outside `.claude/settings.json` —
    this tool does not see them, and never implies the hook chain it does see is the whole chain a real act
    walks.
-9. `ref:repo/.grimorio/scripts/install-hooks.sh` — ANSWERS: is the local git pre-commit/pre-push hook actually installed
-    for this clone/worktree (`.git/hooks` is not versioned). WHEN: once, right after cloning, or if commits are
-    landing without being gated.
-10. `ref:repo/scripts/labs.mjs` — ANSWERS: what dev labs/URLs exist right now and what each one is for. WHEN:
-    after `npm run dev`/`npm run labs`, to know what to open and review — wired into `dev`/`dev:fake`/`labs`/
-    `open` in `ref:repo/package.json`.
-11. `ref:repo/scripts/port-cutover-order-check.sh` — ANSWERS: has the deleted Python runner tree
-    (`services/runner`) stayed deleted. WHEN: a PERMANENT sentinel — run when touching the runner-port
-    boundary, or to verify the cutover still holds.
-12. `ref:repo/scripts/port-disposition-check.sh` — ANSWERS: does every `tsDestinations` entry in
-    `ref:repo/services/runner-node/port-disposition.json` (the file-by-file record of the Python→Node port)
-    still point at a real file. WHEN: POST-CUTOVER mode now that the Python tree is gone — after refactoring or
-    moving a file the port record claims was ported; it has already caught one real staleness this way (the
-    boundedJson consolidation).
-13. `ref:repo/.grimorio/scripts/pre-commit.sh` — ANSWERS: does this commit pass the build/typecheck content gates AND the
-    branch-objective gates (scope fence, milestone). WHEN: automatic — the ONLY thing that blocks an ordinary
-    commit.
-14. `ref:repo/.grimorio/scripts/pre-push.sh` — ANSWERS: has this push been reviewed. WHEN: automatic, every push to
+8. `ref:repo/.grimorio/scripts/install-hooks.sh` — ANSWERS: is the local git pre-commit/pre-push hook actually installed
+   for this clone/worktree (`.git/hooks` is not versioned). WHEN: once, right after cloning, or if commits are
+   landing without being gated.
+9. `ref:repo/.grimorio/scripts/pre-commit.sh` — ANSWERS: does this commit pass the build/typecheck content gates AND the
+   branch-objective gates (scope fence, milestone). WHEN: automatic — the ONLY thing that blocks an ordinary
+   commit.
+10. `ref:repo/.grimorio/scripts/pre-push.sh` — ANSWERS: has this push been reviewed. WHEN: automatic, every push to
     `develop` — `develop`'s own review boundary, since it never merges so `ref:repo/.grimorio/scripts/pre-commit.sh`
     (which skips trunk by design) can't be the review point.
-15. `ref:repo/scripts/status.sh` — ANSWERS: what is the DERIVED progress view — what's open (`objectives/*.md`)
-    vs what's closed (`ref:memory/grimorio.po-memory/project.features-status.md`), and where the two have drifted apart. WHEN:
-    whenever asked "what's the inverse of the backlog" — what has actually shipped vs what's merely claimed.
-16. `ref:repo/scripts/verify-mode1-pause-design.sh` — ANSWERS: do the ~13 specific code facts that
-    `ref:memory/grimorio.game-architect-memory/design-archive/mode-1-human-turn-pause.md`'s verdict rests on still hold. WHEN: before trusting that
-    design's conclusion, or after touching sim/runner code near those facts — an "is the doc present" check
-    would stay green through exactly the failure this exists to catch.
-17. `ref:repo/.grimorio/scripts/parked-watch.mjs` — ANSWERS: which PARENT is genuinely parked waiting on a background
-    child that already finished — joining `ref:repo/.claude/.cache/agent-invocations.log` and
-    `ref:repo/.claude/.cache/agent-completions.log` on the parent↔child correlator, per
+11. `ref:repo/.grimorio/scripts/parked-watch.mjs` — ANSWERS: which PARENT is genuinely parked waiting on a background
+    child that already finished — joining `.grimorio/.cache/agent-invocations.log` and
+    `.grimorio/.cache/agent-completions.log` on the parent↔child correlator, per
     `ref:repo/.grimorio/GRIMORIO-CHAIN.md#3b-subagentstop--wired-for-recording-only-the-blocking-ruling-still-stands`.
     Prints nothing when nothing is newly parked; a printed pair is never re-printed once seen
-    (`.claude/.cache/parked-watch-seen.json`, gitignored). WHEN: the top-level session must ARM it — run it,
+    (`.grimorio/.cache/parked-watch-seen.json`, gitignored). WHEN: the top-level session must ARM it — run it,
     e.g. on a poll loop — for a nested-background rescue (`ref:skill/grimorio.conduct#spawning-an-agent` rule
     8) to be real in a given session; nothing invokes it automatically.
-    POPULATION: `ref:repo/.claude/.cache/agent-invocations.log` rows with dispatch status
-    `async_launched`, joined against `ref:repo/.claude/.cache/agent-completions.log` — both LOCAL,
+    POPULATION: `.grimorio/.cache/agent-invocations.log` rows with dispatch status
+    `async_launched`, joined against `.grimorio/.cache/agent-completions.log` — both LOCAL,
     git-ignored, single-machine.
-18. `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/ceo-transcript-lookup.mjs` — ANSWERS: what
+12. `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/ceo-transcript-lookup.mjs` — ANSWERS: what
     did the CEO and the main loop actually say,
     verbatim, in the last N turns of a given session's own transcript — the code-lookup replacement for
     hand-recalling a conversation when building a spawn's verbatim-originating-words section (the H11 gate,
@@ -425,22 +404,22 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     the resolved session's own transcript JSONL only (resolved from `<session_id>` under `~/.claude/projects/`,
     with a directory-scan fallback) — never a subagent's own transcript, and never more than the hard-capped 20
     most recent qualifying turns.
-19. `ref:repo/.grimorio/skills/grimorio.phase-splitting/scripts/check-phase-fingerprint.mjs` — ANSWERS: does a phase's own filled DELIVERABLE block
+13. `ref:repo/.grimorio/skills/grimorio.phase-splitting/scripts/check-phase-fingerprint.mjs` — ANSWERS: does a phase's own filled DELIVERABLE block
     genuinely carry real content for every `FINGERPRINT:` field its own `## LOAD (JIT)` section declares
     against a mandatory `import:` target — the D8 gate, catching a copy-pasted, paraphrased, or still-`<...>`
     unfilled-placeholder field a trust-based hand-off would otherwise accept silently. WHEN: at every
     fingerprinted phase's own hard hand-off, per `ref:repo/.grimorio/skills/grimorio.phase-splitting/fingerprint-gate.md`'s
     own algorithm — invoked BY the phase chain itself as it runs, never a standalone human-driven audit the way
     most tools above are. Every invocation — PASS or FAIL alike — now also appends one JSONL line to
-    `ref:repo/.claude/.cache/fingerprint-gate-log.jsonl`, carrying `ts` (ISO timestamp), `phase` (the phase
+    `.grimorio/.cache/fingerprint-gate-log.jsonl`, carrying `ts` (ISO timestamp), `phase` (the phase
     file's own basename, no `.md`), `agent` (the calling agent's own declared type, or the literal string
     `unknown` when the optional 3rd CLI argument was omitted), `verdict` (`PASS`/`FAIL`), and `deliverable` (the
     raw deliverable path argument). POPULATION: the log file's own accumulating lines — one appended per gate
     invocation, across however many phase chains and sessions this checkout has actually run — LOCAL,
-    git-ignored, single-machine, the SAME standing as `ref:repo/.claude/.cache/agent-invocations.log` above:
+    git-ignored, single-machine, the SAME standing as `.grimorio/.cache/agent-invocations.log` above:
     the population is whatever this checkout happened to log, not a versioned corpus.
 
-20. `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/assemble-cleaned-extract.mjs` — ANSWERS:
+14. `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/assemble-cleaned-extract.mjs` — ANSWERS:
     performs the mechanical `slice` (cut a window from a raw fetch by a user-turn boundary), `splice` (assemble
     the final cleaned extract by byte-copying `user:` blocks and substituting `agent:` blocks with pre-written
     abstracts), and `user-view` (extract a byte-exact, `user:`-only residue file from a raw fetch,
@@ -459,7 +438,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     re-validation against the agent's own echoed `--keep-last-user`, never trusting the agent's own copy of the
     window; `splice` still runs INSIDE `extract-cleaner-finalize.mjs` only. WHEN: its own callers are entries 21
     and 22 below, never this agent directly, per `ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md`.
-21. `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/extract-cleaner-prepare.mjs [--work-dir <dir>] [--out <bundle-path>]`
+15. `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/extract-cleaner-prepare.mjs [--work-dir <dir>] [--out <bundle-path>]`
     — ANSWERS (REWRITTEN this pass to the watermark-delta contract — the prior HIT/MISS reuse-cache design is
     GONE): resolves `CLAUDE_CODE_SESSION_ID` itself (fails loudly, exit 1, if unset; default `--work-dir` is
     `tmp/extract-cleaner/<resolved-session>/`), reads a persisted watermark via `extract-cleaner-cache.mjs
@@ -487,7 +466,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     fetched fresh, once. WHEN: its own caller is `agent:grimorio.extract-cleaner`'s own Step 2 (PREPARE), via
     Bash, exactly once per invocation, never with any caller-supplied session/file/count argument, per
     `ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md`.
-22. `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/extract-cleaner-finalize.mjs --keep-last-user <K> --abstracts <path> [--work-dir <dir>]
+16. `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/extract-cleaner-finalize.mjs --keep-last-user <K> --abstracts <path> [--work-dir <dir>]
     [--out <path>]` — ANSWERS (REWRITTEN this pass — the CASE A/B/BELOW-FLOOR distinction is GONE): given a `K`
     and an abstracts file already written to the SAME work-dir entry 21 resolved, FIRST verifies the
     freshness/binding manifest (`prepared.json`) entry 21 wrote against this run's own materials, refusing with
@@ -507,7 +486,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     --cache-dir <work-dir> --raw-fetch <rawFetchPath>` (anchored on the FULL raw fetch's own last turn, so the
     watermark always advances to "the newest turn this run ever saw" — REPLACES the old `write-cache` call this
     pass, non-fatal on failure, logged, exactly as before), runs `extract-cleaner-cache.mjs sweep-expired`
-    (non-gating, UNCHANGED), and reads `.grimorio/memory/grimorio.board-memory/register.md`'s own "## Open asks" section verbatim (or one
+    (non-gating, UNCHANGED), and reads the project's REGISTER's own "## Open asks" section verbatim (or one
     of the two literal ABSENT strings `ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md`'s own
     OUTPUT section defines for the missing-file/missing-heading cases, UNCHANGED). Prints ONE consolidated
     stdout report (harness verdict — no more CASE A/B + BELOW-FLOOR flag in it — register-relay quote,
@@ -526,7 +505,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     system no longer exist; this script carries no dedicated numbered entry of its own in this file, so both its
     surviving and its retired subcommands are documented here, inline, exactly as its predecessor subcommands
     always were.
-23. `ref:repo/.grimorio/scripts/export-divergence-check.mjs` — ANSWERS: does a local tree still match a previously-exported
+17. `ref:repo/.grimorio/scripts/export-divergence-check.mjs` — ANSWERS: does a local tree still match a previously-exported
     reference tree, file by file — `<localDir> <referenceDir>` positional, `--subdirs` defaulting to
     `.claude,scripts` — with a best-effort heuristic classification of each differing file (SCRUB-LIKE/
     TRANSLATION-LIKE/NEEDS-REVIEW). **NEVER treat this tool's classification as authoritative — it is a PROXY
@@ -547,7 +526,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     tool's own findings feed, the hard rule requiring a fresh baseline row every pass) lives at
     `ref:skill/grimorio.agent-writing/project.export-baseline.md`, arena-only and never exported for the same
     reason this file is.
-24. `ref:repo/.grimorio/scripts/registration-cost.mjs` — ANSWERS: the total line count across a caller-named list of
+18. `ref:repo/.grimorio/scripts/registration-cost.mjs` — ANSWERS: the total line count across a caller-named list of
     files (a target agent's Knowledge-list files plus its actually-read phase files), replacing a manual
     multi-call `ref:repo/.grimorio/scripts/audit-chain.mjs --shape`-and-add-by-hand sum. WHEN: `grimorio.system-keeper`'s
     own ref:skill/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md's own step 8
@@ -689,38 +668,35 @@ is a short pointer to the SKILL.md, not the methodology any more.
    correctly stay silent on a genuinely clean, test-wrapped objective — proven both directions, never only the
    green case (mktemp fixtures, drives the real CLI via subprocess). WHEN: after touching
    `lint-objective.sh`.
-7. `ref:repo/.grimorio/scripts/selftest/no-caller-passed-cap.sh` — ANSWERS: does every LLM-call surface (the TypeScript
-   input type AND the HTTP request body) refuse a caller that passes no spend cap — sizing a call's worst case
-   is the metering layer's job, never the caller's.
-8. `ref:repo/.grimorio/scripts/selftest/resolve-family.sh` — ANSWERS: does `ref:repo/.grimorio/scripts/refobl/resolve.cjs` (the ONE
+7. `ref:repo/.grimorio/scripts/selftest/resolve-family.sh` — ANSWERS: does `ref:repo/.grimorio/scripts/refobl/resolve.cjs` (the ONE
    resolver) still correctly resolve every reference shape that has historically broken — each case here is a
    bug that shipped once, in three different tools, from three separate reimplementations of the same
    resolution.
-9. `ref:repo/.grimorio/scripts/selftest/parked-watch.sh` — ANSWERS: does `ref:repo/.grimorio/scripts/parked-watch.mjs` report a
+8. `ref:repo/.grimorio/scripts/selftest/parked-watch.sh` — ANSWERS: does `ref:repo/.grimorio/scripts/parked-watch.mjs` report a
    genuinely parked parent AND stay silent on every non-parking case (a parent that acted after its child
    finished, a parent whose own last completion already closed VERIFIED/COULD NOT despite a later stale child
    completion, a still-running child, a repeated poll of an already-alerted pair) — 7 assertions, driven
    against the real CLI via subprocess and fixture logs, never the internals in isolation. WHEN: after touching
    `parked-watch.mjs`.
-10. `ref:repo/.grimorio/scripts/selftest/replan-check.sh` — ANSWERS: does `ref:repo/.grimorio/scripts/replan-check.mjs` correctly
-    report a genuinely STALE item, stay silent on every non-stale case (a genuinely open item, a CLOSED `[x]`
-    item, an UNVERIFIABLE item with no `VERIFY:` line), parse the `- **Lane** — ` dash-bold form and not just
-    the other two, fail LOUD rather than silently-empty on a plan with zero parseable items, and set the right
-    exit code on staleness, the age gate, and a missing plan file — 9 fixture cases, driven against the real
-    CLI via subprocess, never the internals in isolation. WHEN: after touching `replan-check.mjs`.
-11. `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/selftest/verify-gen.sh` — relocated alongside
+9. `ref:repo/.grimorio/scripts/selftest/replan-check.sh` — ANSWERS: does `ref:repo/.grimorio/scripts/replan-check.mjs` correctly
+   report a genuinely STALE item, stay silent on every non-stale case (a genuinely open item, a CLOSED `[x]`
+   item, an UNVERIFIABLE item with no `VERIFY:` line), parse the `- **Lane** — ` dash-bold form and not just
+   the other two, fail LOUD rather than silently-empty on a plan with zero parseable items, and set the right
+   exit code on staleness, the age gate, and a missing plan file — 9 fixture cases, driven against the real
+   CLI via subprocess, never the internals in isolation. WHEN: after touching `replan-check.mjs`.
+10. `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/selftest/verify-gen.sh` — relocated alongside
     `verify-gen.sh` itself (see the `.grimorio/skills/grimorio.objective-harness/scripts/` section above, entry 8 — same
     file, this is its new home) — ANSWERS: does
     `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/verify-gen.sh` emit a lint-clean, correctly-verdicted
     command for every check type, proven for both the pass and the fail case, through both `bash -c` and
     `lint-objective.sh`. WHEN: after touching `verify-gen.sh`.
-12. `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/selftest/ceo-transcript-lookup.mjs` — ANSWERS: does `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/ceo-transcript-lookup.mjs`
+11. `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/selftest/ceo-transcript-lookup.mjs` — ANSWERS: does `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/ceo-transcript-lookup.mjs`
     classify turns correctly against REAL transcript shapes — verbatim citation, strict alternation, the
     seven-marker noise filter (including task-notification pings, the one real-data gap this pass's own
     grounding found and fixed), the 5→20 clamp, and path-resolution fallback — through 15 lettered cases
     (A-O), driven against the real CLI via subprocess, including a LIVE run against the actual session
     transcript (case L). WHEN: after touching `ceo-transcript-lookup.mjs`.
-13. `ref:repo/.grimorio/scripts/selftest/spawn-verbatim-origin-gate.mjs` — ANSWERS: does
+12. `ref:repo/.grimorio/scripts/selftest/spawn-verbatim-origin-gate.mjs` — ANSWERS: does
     `ref:repo/.claude/hooks/spawn-verbatim-origin-gate.cjs` (H11) correctly DENY a stapled single quote with no
     `user:`/`agent:` labels (naming ELEMENT 1b specifically, never also claiming 1 or 2 are missing), correctly
     ALLOW a genuine multi-turn extract WITH the ALLOW-path `additionalContext` reminder present and naming both
@@ -747,7 +723,7 @@ is a short pointer to the SKILL.md, not the methodology any more.
     selftest and no index row at all — flagged and closed together in this same pass, per this file's own
     drift warning at the top, rather than left silently unindexed the way the note below already names for
     other files.
-14. `ref:repo/scripts/selftest/check-phase-fingerprint.sh` — ANSWERS: does
+13. a script the project keeps at its own root — ANSWERS: does
     `ref:repo/.grimorio/skills/grimorio.phase-splitting/scripts/check-phase-fingerprint.mjs` (the D8 LOAD-list ⟷ deliverable-fingerprint gate) correctly
     PASS a genuinely filled single- and two-field deliverable, correctly FAIL one that is still a placeholder
     or missing a required field entirely (naming the exact field), correctly stay silent — a vacuous PASS — on
@@ -759,11 +735,11 @@ is a short pointer to the SKILL.md, not the methodology any more.
     phase/deliverable files, never the internals in isolation. WHEN: after touching
     `check-phase-fingerprint.mjs`, or on demand as independent proof it works. **Does NOT yet exercise the
     logging extension** (the optional `agent` 3rd CLI argument, or the
-    `ref:repo/.claude/.cache/fingerprint-gate-log.jsonl` append) — that coverage is a separate, independent pass
+    `.grimorio/.cache/fingerprint-gate-log.jsonl` append) — that coverage is a separate, independent pass
     by `grimorio.qa`, not yet landed as of this
     dispatch; never claim it is covered until that pass actually lands.
 
-15. `ref:repo/.grimorio/scripts/selftest/audit-chain-portability.sh` — ANSWERS: does
+14. `ref:repo/.grimorio/scripts/selftest/audit-chain-portability.sh` — ANSWERS: does
     `ref:repo/.grimorio/scripts/audit-chain.mjs --portability` correctly flag a RED fixture (a project marker sitting in a
     portable agent shell's own frontmatter description AND its body), name the exact violating file and the
     violation row, stay SILENT on a GREEN fixture carrying no marker anywhere, correctly EXEMPT a shell
@@ -786,7 +762,7 @@ is a short pointer to the SKILL.md, not the methodology any more.
     worktree root, done independently of this suite. WHEN: after touching `audit-chain.mjs`'s own
     `PROJECT_MARKERS` list or its `--portability` branch.
 
-16. `ref:repo/.grimorio/scripts/selftest/audit-chain-diagram-primacy.sh` — ANSWERS: does
+15. `ref:repo/.grimorio/scripts/selftest/audit-chain-diagram-primacy.sh` — ANSWERS: does
     `ref:repo/.grimorio/scripts/audit-chain.mjs --diagram-primacy` correctly FAIL a prose-dominant fixture (zero diagram,
     zero table, naming the fixture in its own FAIL line), correctly PASS a diagram-primary fixture (a real
     mermaid block plus a table plus one line of prose rationale, naming the fixture in its own PASS line), and
@@ -804,7 +780,7 @@ is a short pointer to the SKILL.md, not the methodology any more.
     either way, rather than depending on the fix. WHEN: after touching `audit-chain.mjs`'s own
     `--diagram-primacy` branch or `diagramPrimacyShape()`.
 
-17. `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/selftest/assemble-cleaned-extract.mjs` — ANSWERS: does
+16. `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/selftest/assemble-cleaned-extract.mjs` — ANSWERS: does
     `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/assemble-cleaned-extract.mjs` correctly `slice` a raw-fetch file down to its K most-recent
     `user:` turns (including the K>=total passthrough and the K<1 rejection), correctly `splice` a classified
     window plus a matching abstracts file into a byte-copied final extract (including its own COMPRESSION-INPUT
@@ -815,7 +791,7 @@ is a short pointer to the SKILL.md, not the methodology any more.
     (a regression case built in that exact shape). WHEN: after touching `assemble-cleaned-extract.mjs` or its
     import from `verify-cleaned-extract.mjs`.
 
-18. `ref:repo/.grimorio/scripts/selftest/audit-chain-no-scaffolding-leak.sh` — ANSWERS: does
+17. `ref:repo/.grimorio/scripts/selftest/audit-chain-no-scaffolding-leak.sh` — ANSWERS: does
     `ref:repo/.grimorio/scripts/audit-chain.mjs --no-scaffolding-leak` correctly FAIL a fixture carrying
     gate-disposition/method-process vocabulary (e.g. a `## Artifact types considered and SCOPED OUT` heading)
     inside a non-exempt, reader-facing concern file, naming the fixture in its own FAIL line; correctly PASS a
@@ -832,7 +808,7 @@ is a short pointer to the SKILL.md, not the methodology any more.
     absent, and `ref:agent/grimorio.design-orchestrator/phases/phase-6-converge-verify-validate.md#steps`'s
     own CHECK 1 now requires a `grimorio.scout` by-hand confirmation alongside it before a PASS counts as
     evidence. WHEN: after touching `audit-chain.mjs`'s own `--no-scaffolding-leak` branch.
-19. `ref:repo/.grimorio/scripts/selftest/audit-chain-as-is-voice.sh` — ANSWERS: does
+18. `ref:repo/.grimorio/scripts/selftest/audit-chain-as-is-voice.sh` — ANSWERS: does
     `ref:repo/.grimorio/scripts/audit-chain.mjs --as-is-voice` correctly FAIL a fixture that carries the AS-IS-ONLY marker
     string (`AS-IS-ONLY — dependencies-as-they-are voice; reuse/build framing FORBIDDEN.`) yet still uses
     build-relative reuse/change vocabulary ("Reused UNCHANGED", "reuse vs new") somewhere in its own
@@ -846,7 +822,7 @@ is a short pointer to the SKILL.md, not the methodology any more.
     the TOOL's own fixed-substring detection accuracy only — a PASS from `--as-is-voice` itself stays a narrow
     signal, never proof build-relative reuse/change framing is absent, and the SAME phase-6 CHECK 1 requirement
     entry 18 above cites applies here too. WHEN: after touching `audit-chain.mjs`'s own `--as-is-voice` branch.
-20. `ref:repo/.grimorio/scripts/selftest/audit-chain-diagram-classes.sh` — ANSWERS: does
+19. `ref:repo/.grimorio/scripts/selftest/audit-chain-diagram-classes.sh` — ANSWERS: does
     `ref:repo/.grimorio/scripts/audit-chain.mjs --diagram-classes` correctly INVENTORY, per fixture, which mermaid
     diagram TYPE tokens (`flowchart`, `sequenceDiagram`, `stateDiagram`/`stateDiagram-v2`, …) and matrix-shaped
     tables a file carries — a bad-case-first fixture proving the tool reports an inventory MISSING a class a
@@ -860,7 +836,7 @@ is a short pointer to the SKILL.md, not the methodology any more.
     the live selftest against this entry, per this file's own drift warning. WHEN: after touching
     `audit-chain.mjs`'s own `--diagram-classes` branch.
 
-21. `ref:repo/.grimorio/scripts/selftest/spawn-grimorio-conduct-gate.sh` — ANSWERS: does
+20. `ref:repo/.grimorio/scripts/selftest/spawn-grimorio-conduct-gate.sh` — ANSWERS: does
     `ref:repo/.claude/hooks/spawn-grimorio-conduct-gate.cjs` (H9) correctly ALLOW a bare spawn of a FOREIGN
     agent type — neither `grimorio.`- nor `project.`-prefixed, including a `subagent_type` omitted entirely —
     without requiring the grimorio-conduct instruction such an agent has no way to act on; correctly DENY a

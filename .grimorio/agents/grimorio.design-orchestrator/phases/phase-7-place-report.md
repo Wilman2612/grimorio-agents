@@ -43,7 +43,7 @@ does not have.
    proper CEO attribution — don't expect a second copy of it here. WHEN a design surfaces material that looks
    like it wants one ⟶ flag it as a named future need in the report below; never attempt it yourself.
 7. **WHEN you hit a genuine blocker mid-design — a missing prerequisite, a contradiction between
-   ref:memory/grimorio.system-design-memory/designs/MAP.md and the live code — OR a design about to be finalized unchallenged ⟶ escalate per
+   the project's own design record and the live code — OR a design about to be finalized unchallenged ⟶ escalate per
    import:skill/grimorio.agent-selection's own ESCALATION LADDER (one concrete blocker ⟶ agent:grimorio.unblocker; a
    design about to finalize unchallenged ⟶ agent:grimorio.entropy) rather than guessing past it.** **ALWAYS
    raise either in the FOREGROUND and wait on it directly**, per ref:skill/grimorio.conduct#spawning-an-agent,

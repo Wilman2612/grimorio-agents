@@ -1,6 +1,6 @@
 # Backend TS Developer — Phase 5: REPORT & COMMIT (terminal)
 
-**NEVER close this task, or report anything to your caller, until THIS phase's own ref:repo/dev-notes.md is actually
+**NEVER close this task, or report anything to your caller, until THIS phase's own `dev-notes.md` is actually
 written (Pipeline mode) and its `## Close` line is set.** There is no Phase 6 to defer an unfinished field to,
 and this chain carries no loop-back into any earlier phase — this is always the terminal state.
 
@@ -24,20 +24,20 @@ Made` and `## Abstractions Created`; the four Phase-4-produced fields, plus BUG-
 own `## Close: VERIFIED` evidence, per step 8 below.
 
 1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node, terminal — write
-   ref:repo/dev-notes.md, decide the commit action, close — and nothing else; no spawn anywhere in this phase.**
-2. **IN PIPELINE MODE (per the carried-forward MODE field) ⟶ ALWAYS write ref:repo/dev-notes.md** per the shared `##
+   `dev-notes.md`, decide the commit action, close — and nothing else; no spawn anywhere in this phase.**
+2. **IN PIPELINE MODE (per the carried-forward MODE field) ⟶ ALWAYS write `dev-notes.md`** per the shared `##
    OUTPUT` template below, populating: Changes Made, Abstractions Reused/Created, Contracts (for
    agent:grimorio.ui-developer), Test Scenarios for QA, Known Limitations. **IN STANDALONE MODE ⟶ no dev-note is
    owed** — report the result directly per this same `## OUTPUT` shape, inline.
 3. **WHEN the carried-forward REWORK/BUG-REPORT DETECTED field names a REWORK invocation ⟶ append a `### REWORK
    Cycle {N}` section**, per ref:memory/grimorio.developer-memory/build-protocol.md#rework-mode,
    re-verifying the full completion checklist below rather than only the previously-failed item.
-4. **WHEN the carried-forward SECURITY-SENSITIVE FLAG is YES ⟶ ALWAYS include a routing note in ref:repo/dev-notes.md**
+4. **WHEN the carried-forward SECURITY-SENSITIVE FLAG is YES ⟶ ALWAYS include a routing note in `dev-notes.md`**
    stating that this change touches auth/session/BOLA and must be reviewed by security + `code-reviewer` before
    merge, per ref:skill/grimorio.agent-selection#the-dev-routing-tree--decide-by-what-the-change-touches
    — never silently omit the note because the flag was raised three phases earlier.
 5. **WHEN the contract was ambiguous, or `arch-decision.md` did not cover a case that arose while implementing
-   ⟶ write it as `BLOCKED` in ref:repo/dev-notes.md and stop — never guess.**
+   ⟶ write it as `BLOCKED` in `dev-notes.md` and stop — never guess.**
 6. **Commit discipline, per
    ref:memory/grimorio.developer-memory/build-protocol.md#who-commits-depends-on-whether-you-are-worktree-isolated:**
    **WHEN spawned WITHOUT `isolation:"worktree"` ⟶ commit nothing; hand back for `code-reviewer` Gate B.**
@@ -63,8 +63,8 @@ own `## Close: VERIFIED` evidence, per step 8 below.
 - The full test suite AND typecheck actually ran, in the foreground, and passed (Phase 4).
 - Every Definition-of-Done item holds (Phase 4).
 - None of this project's backend-service hard invariants were weakened anywhere in the diff (Phase 4).
-- WHEN the SECURITY-SENSITIVE FLAG was raised, the routing note is present in ref:repo/dev-notes.md (this phase).
-- ref:repo/dev-notes.md was actually written, not merely described (Pipeline mode, this phase).
+- WHEN the SECURITY-SENSITIVE FLAG was raised, the routing note is present in `dev-notes.md` (this phase).
+- `dev-notes.md` was actually written, not merely described (Pipeline mode, this phase).
 
 ## OUTPUT
 
@@ -191,6 +191,6 @@ import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
 this phase's own filled PHASE 5 DELIVERABLE block, written to disk first per that gate's own algorithm — this
 phase has no next-phase file to gate a read against, so the gate runs against the CLOSE itself.**
 
-**This chain ends here, always.** ref:repo/dev-notes.md is written (Pipeline mode), `## Status` and `## Close` are
+**This chain ends here, always.** `dev-notes.md` is written (Pipeline mode), `## Status` and `## Close` are
 emitted, and this phase closes VERIFIED or COULD NOT to the caller. A subsequent invocation starts fresh at
 Phase 0 (ref:agent/grimorio.js-developer/behavior.md), never resumed mid-chain from this file.

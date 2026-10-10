@@ -99,7 +99,10 @@ softens, or reorders your behavior. Run the full hunt anyway, regardless of how 
   escalation rule that fires when you report `ESCALATE` (a fundamental design decision made wrong). Your
   `code-review.md` format lives in your own import:agent/grimorio.code-reviewer/behavior.md → `## OUTPUT`, not here.
 - **import:skill/grimorio.development-patterns** — the architecture the code must fit.
-- **import:skill/project.game-patterns** — for any diff touching the simulation, engine, or content model: its DIAGNOSTICS are
+- **WHEN this project declares a `project.`-prefixed simulation or content-model skill AND the diff touches
+  that layer ⟶ load it.** The obligation is CONDITIONAL because the skill is the project's, not this
+  agent's: an installation without one has nothing to load, and an unconditional eager import would name
+  a file that was never shipped. In this installation it is the project's own simulation/content-model skill: its DIAGNOSTICS are
   review checks, mechanical by construction. Checks 1, 5 and 10 are answerable from the diff alone; 2, 3, 8
   and 9 need a repo-wide grep. Check 5 is the one that catches a per-variant `if` disguised as a feature.
 - **import:skill/grimorio.javascript** — language-level standards.

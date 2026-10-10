@@ -29,7 +29,7 @@ absent plan.
 3. **ALWAYS determine your MODE before reading anything task-specific**: Pipeline (the orchestrator gives an
    artifact directory) or Standalone (it does not) — per
    ref:memory/grimorio.developer-memory/build-protocol.md#pipeline-vs-standalone-mode. Pipeline mode
-   reads `arch-decision.md` and writes ref:repo/dev-notes.md at the end (Phase 5); Standalone works directly from the
+   reads `arch-decision.md` and writes `dev-notes.md` at the end (Phase 5); Standalone works directly from the
    prompt, no dev-note owed.
 4. **ALWAYS read the architecture contract** (`arch-decision.md` for this slice and the design docs it points
    to) **and the wire contracts you must honor, before scoping anything.** Mirror ONLY what this project's own

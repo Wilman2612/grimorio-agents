@@ -15,7 +15,7 @@ merely named as concerns.
 ## Why this is ONE phase, not four — the pincho, split by LOAD not by protocol step
 
 This phase measures as the largest in the chain by a real margin —
-cite:repo/objectives/design/design-orchestrator-phase-map-v1-derivation.md#step-3--measure-each-groups-load
+the project's own phase-map derivation
 — roughly 2-3x every sibling. **It is NOT split into four separate phases**, because every item here answers
 the SAME question ("author what Phase 4 selected") across four DIFFERENT, CONDITIONALLY-LOADED knowledge
 slices — splitting by protocol step would manufacture phases most designs would only ever touch one or two of.
@@ -46,7 +46,7 @@ Step 1 below already names agent:grimorio.web-architect and agent:grimorio.game-
 wired**, and NEVER spawned by this phase — that text is unchanged; nothing in this section spawns either agent,
 or implies this pass does. What strengthens is the FLAG itself, now backed by a measurement rather than a
 plan-time guess: across this agent's entire recorded spawn history
-(cite:repo/.claude/.cache/agent-invocations.log), this phase has spawned neither agent ZERO times, ever — only
+(`.grimorio/.cache/agent-invocations.log`), this phase has spawned neither agent ZERO times, ever — only
 agent:grimorio.scout (Phase 1) and agent:grimorio.code-reviewer (Phase 6/7). The per-domain WRITER this whole
 skill's methodology assumes has no child to delegate to on this agent as built, which is exactly why every
 sub-mission below is still authored by this phase itself.
@@ -132,7 +132,7 @@ NEVER a proof of correctness, only that gross tells are absent).
 never re-derived per type:**
 
 a. **ALWAYS load the matching ref:skill/grimorio.system-design/diagram-references/<type>.md (Section A
-   definition / B examples / C anti-patterns / D checklist) plus `ref:repo/scripts/diagram-kit/<type>.mjs`,
+   definition / B examples / C anti-patterns / D checklist) plus a script the project keeps at its own root<type>.mjs`,
    together, BEFORE building a model.**
 b. **ALWAYS build, or iterate, a typed JSON model for the concern.**
 c. **ALWAYS run `generate` against that model to emit mermaid.**
@@ -201,7 +201,7 @@ own Core Rule already states for every other sub-mission, applied here without e
   semantics, a state machine, a UX confirmation) — that attention belongs to whatever artifact family Phase 4
   selected for THAT question, never force-fit into this table because STRIDE was the only family already in
   scope. This is the exact, evidenced failure mode behind TH-5, at commit `b283d6a0` of
-  ref:repo/.grimorio/memory/grimorio.system-design-memory/designs/game2/D2-concerns-nfr-security-contract-validation.md#5-c4--the-validation-argument-is-it-the-right-thing--iso-42010-concernviewpoint —
+  the project's own record —
   a same-side human-advisory interaction filed as Tampering/Elevation despite the artifact's own text already
   noting "same-side only (an opponent cannot inject your decider)."
 - **Produce a threat model** — STRIDE applied to a trust-boundary DFD (Shostack 2014; Threat Modeling
@@ -231,7 +231,7 @@ own Core Rule already states for every other sub-mission, applied here without e
 - **Sub-mission A**: import:skill/grimorio.system-design (already loaded by Phase 4; no new load). **WHEN Phase 4's
   selection names one of the 9 kit-covered types ⟶ ALSO load that type's own
   ref:skill/grimorio.system-design/diagram-references/<type>.md plus its matching
-  `ref:repo/scripts/diagram-kit/<type>.mjs` — never all 9 unconditionally, only the one type actually
+  a script the project keeps at its own root<type>.mjs` — never all 9 unconditionally, only the one type actually
   selected.**
 - **Sub-mission B**: ISO/IEC 25010:2023; SEI's 6-part quality-attribute scenario; Google SRE book (SLO/error
   budget); MIL-STD-1629A (FMEA); observability sources.

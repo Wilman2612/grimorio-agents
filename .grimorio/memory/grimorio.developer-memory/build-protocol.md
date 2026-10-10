@@ -140,7 +140,7 @@ EXIT CONDITION (every completion check in your brief holds simultaneously) as pa
 the same discipline every agent owes on every task. Full rule:
 ref:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11.
 
-In pipeline mode, write the dev-note artifact in this exact shape — ref:repo/dev-notes.md (js-developer, go-developer,
+In pipeline mode, write the dev-note artifact in this exact shape — `dev-notes.md` (js-developer, go-developer,
 py-developer) or `ui-dev-note.md` (ui-developer):
 
 ```markdown

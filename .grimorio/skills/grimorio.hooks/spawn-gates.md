@@ -118,7 +118,7 @@ generalization an implementing agent made, not the CEO.
 
 **The mechanism.** `input.agent_type`/`input.agent_id` on this hook's own stdin carry the CALLER's own identity,
 never the child about to be spawned — the same reading `log-agent-invocation.cjs` already logs on every
-dispatch row. Re-verified live against the real `.claude/.cache/agent-invocations.log` (2,629 lines, ordinary
+dispatch row. Re-verified live against the real `.grimorio/.cache/agent-invocations.log` (2,629 lines, ordinary
 operation): 779 real dispatch rows where the caller's own `agent_type` is populated (every one subagent-
 originated) and 321 where both `agent_type` and `agent_id` read `-` (every one main-loop-originated) — no
 observed exception either way.
@@ -146,7 +146,7 @@ defeating the SPECIFIC reproduced bypass, never claiming to defeat every conceiv
 **ELEMENT 3, added 2026-08-30.** ELEMENT 1/1b/2 verify only that the prompt is SHAPED like a genuine multi-turn
 extract — none can verify the extract was actually PRODUCED by a real `grimorio.extract-cleaner` dispatch
 rather than hand-typed under the same shape. ELEMENT 3 closes that independently: it reads
-`.claude/.cache/agent-invocations.log` directly for a completed `grimorio.extract-cleaner` `post` row in the
+`.grimorio/.cache/agent-invocations.log` directly for a completed `grimorio.extract-cleaner` `post` row in the
 same session, then checks whether a LATER main-loop spawn has already consumed it.
 
 **ELEMENT 3 redesigned from a wall-clock window to an order check, 2026-09-10** (CEO diagnosis, relayed via
@@ -286,7 +286,7 @@ already-gated spawn. It never judges coverage itself: that judgement needs a rea
 (`agent:grimorio.scout`) rule 14 already names; ELEMENT 4 checks only THAT the reader ran, the same shape
 ELEMENT 3 already uses to check that the synthesizer ran, never a second judgement mechanism.
 
-**The mechanism.** `hasCoverageScoutSince` scans `.claude/.cache/agent-invocations.log` for a `post` row, this
+**The mechanism.** `hasCoverageScoutSince` scans `.grimorio/.cache/agent-invocations.log` for a `post` row, this
 session, whose `agent_type` is `grimorio.scout`, whose status is `completed` or `async_launched`, and whose own
 description field matches `/coverage/i`, timestamped after the most recent qualifying extract-cleaner row
 (`cleanerMs`, the same anchor ELEMENT 3 already computes). WHEN such a row exists ⟶ ELEMENT 4 is satisfied.
@@ -340,7 +340,7 @@ words byte-exact to a file; the inline-quote path still forces a caller to HAND-
 file into the spawn prompt, and hand-copying is an uncontrolled editing surface this hook cannot see through —
 nothing stops a filler word dropped or a typo silently introduced in transit, and a shape-only check on the
 RESULT cannot tell an honest copy from an altered one. CEO authorization and full incident detail:
-`ref:repo/.grimorio/skills/grimorio.board/plan/subtask-lifecycle.md`'s own "CEO SIGN-OFF" section.
+LOST: the board's subtask-lifecycle draft (removed as a misplaced work product)'s own "CEO SIGN-OFF" section.
 
 **THE TARGET ARTIFACT, NAMED PRECISELY — never `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/ceo-transcript-lookup.mjs`'s own bare `--out <file>`.**
 `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/ceo-transcript-lookup.mjs` is the internal, deterministic FETCH tool `agent:grimorio.extract-cleaner` calls on
@@ -395,7 +395,7 @@ quote then a sentence period). `CLEANED_EXTRACT_PATH_RE`'s own existing exclusio
 
 **FILE LAYOUT.** H11 is a thin DISPATCHER plus four implementation modules split by RESPONSIBILITY, never
 by line count. `ref:repo/.claude/hooks/spawn-verbatim-origin-gate.cjs` is the dispatcher — the only file
-`ref:repo/.claude/settings.json` names, CommonJS because it is a synchronous stdin-driven CLI hook; it reads stdin,
+`.claude/settings.json` names, CommonJS because it is a synchronous stdin-driven CLI hook; it reads stdin,
 dynamically imports the implementation and writes what `run(input)` returns, holding no ELEMENT logic of its
 own. The four modules live under `.grimorio/hooks/` and are ESM:
 `ref:repo/.grimorio/hooks/spawn-verbatim-origin-gate.mjs` is the entry point (the two-layer scoping check,

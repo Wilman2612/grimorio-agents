@@ -16,7 +16,7 @@ forget. It complements — does not replace — the soft layer (this skill + the
 - **Script:** ref:repo/.claude/hooks/harness-lookup.cjs (CommonJS `.cjs` so it runs regardless of the repo's ESM setting).
   Reads the hook JSON on stdin, extracts `tool_input.file_path`, walks up, and emits
   `{"hookSpecificOutput":{"hookEventName":"PreToolUse","additionalContext":"…harness bodies…"}}`.
-- **Wiring:** ref:repo/.claude/settings.json → `hooks.PreToolUse` with matcher `Edit|Write|MultiEdit`, command
+- **Wiring:** `.claude/settings.json` → `hooks.PreToolUse` with matcher `Edit|Write|MultiEdit`, command
   `node "$CLAUDE_PROJECT_DIR/.claude/hooks/harness-lookup.cjs"`.
 
 ## Notes for maintainers

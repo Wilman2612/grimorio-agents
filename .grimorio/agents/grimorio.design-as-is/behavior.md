@@ -34,14 +34,14 @@ already been made.
 3. **ALWAYS hold the following as GIVEN, never re-derived or re-verified:** the concern itself; which clause
    applies (clause 1 — the design already exists, or a legacy top-level `designs/` inventory entry exists;
    clause 3 — an existing AS-IS document needs a modification a later phase will design the delta for); Phase
-   1's own SEARCH-FIRST findings (what `ref:memory/grimorio.system-design-memory/designs/MAP.md` and
+   1's own SEARCH-FIRST findings (what the project's own design record and
    `ref:memory/grimorio.po-memory/project.features-status.md` already say exists, the EMPIRICAL DOMAIN
    ENUMERATION and its exact sweep command, any documentation-memory precedent, the two standing CEO exemplar
    anchors); Phase 2's own AS-IS-VOICE DETERMINATION (provisional) for this concern.
 4. **WHEN the clause handed to you is 1 (or 3, needing the pre-modification baseline) AND an existing document
    for this concern is findable — in `grimorio.design-orchestrator`'s own memory
    (`.grimorio/memory/grimorio.system-design-memory/designs/`) OR the legacy top-level `designs/` inventory
-   (`ref:memory/grimorio.system-design-memory/designs/MAP.md`) ⟶ run an AS-IS survey: select the RIGHT existing
+   (the project's own design record) ⟶ run an AS-IS survey: select the RIGHT existing
    document(s) for this concern, state WHICH of the two locations it actually came from, and produce the AS-IS
    from them.** State explicitly that this selection is itself a select/reduce/validate loop — point at
    ref:skill/grimorio.loop-and-graph#1-decompose-first--general--abstraction--specific-until-a-thing-is-testable

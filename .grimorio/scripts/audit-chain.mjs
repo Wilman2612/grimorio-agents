@@ -145,9 +145,10 @@ function scan(file) {
 const roots = [".claude/agents", ...CORPUS_ROOTS.map((r) => r.replace(/\/$/, ""))];
 const files = roots.flatMap((r) => { try { return walk(r); } catch { return []; } });
 // SINGLE FILES, not directories -- walk() calls readdirSync, which throws ENOTDIR on a file and the catch
-// above would silently drop it. Pushed directly instead, so CLAUDE.md and the two defect ledgers are
-// audited alongside the directory sweep rather than silently skipped.
-for (const f of ["CLAUDE.md", ".grimorio/memory/grimorio.board-memory/grimorio-defects.md", ".claude/grimorio-defects-narrative.md"]) {
+// above would silently drop it. Pushed directly instead, so CLAUDE.md is audited alongside the directory
+// sweep rather than silently skipped. Two of the ADOPTER's own defect ledgers were pushed here too until
+// 2026-10-09 -- a general tool naming one project's files.
+for (const f of ["CLAUDE.md"]) {
   try { statSync(f); files.push(f); } catch {}
 }
 
@@ -644,19 +645,29 @@ const { isGovernance } = governanceLib;
 // GENERAL -> PROJECT/CODE CITATION BOUNDARY (CEO ruling 2026-08-14/15; see the commit message and
 // grimorio.agent-writing/SKILL.md for the full ruling and the incident it closes). Hand-maintained pattern list,
 // same style as GOVERNANCE_OWNED above: extend by evidence (a real leak found), never by guessing ahead.
+
+// THE ADOPTER'S OWN PATHS ARE DECLARED, NOT HARDCODED -- but a DETECTOR must never fail open, so an
+// unreadable declaration is reported rather than treated as "no project paths exist".
+const PROJECT_PATHS_DECL = (() => {
+  try {
+    const root = execFileSync("git", ["rev-parse", "--show-toplevel"], { encoding: "utf8" }).trim();
+    const d = JSON.parse(readFileSync(join(root, "scripts/export/project.export-markers.json"), "utf8"));
+    const re = (d.projectOrCodePaths || {}).re;
+    return Array.isArray(re) ? re.map((x) => new RegExp(x)) : null;
+  } catch (_) {
+    return null;
+  }
+})();
+// @keep-comment The SHAPES stay here because every installation has them: a `.cache/`, a `project.md`
+// under a skill root, a vision, a features ledger, an `objectives/`. What the adopter calls their
+// product is theirs and is DECLARED, never hardcoded in a general detector.
 const PROJECT_OR_CODE = [
-  /^\.claude\/current-objective\.md$/,
-  /^\.claude\/board\/grimorio-defects\.md$/,
-  /^\.claude\/grimorio-defects-narrative\.md$/,
-  /^\.claude\/GRIMORIO-CHAIN\.md$/,
   /^\.claude\/\.cache\//,
-  new RegExp(`^(?:${SKILL_ROOT_ALT})[^/]+/project\\.md$`),
-  new RegExp(`^(?:${SKILL_ROOT_ALT})[^/]+/[a-z0-9-]*vision(-pointers)?\\.md$`),
-  new RegExp(`^(?:${SKILL_ROOT_ALT})[^/]+/features-status\\.md$`),
-  /^apps\//,
-  /^services\//,
-  /^packages\//,
+  new RegExp(`^(?:${SKILL_ROOT_ALT})[^/]+/project\.md$`),
+  new RegExp(`^(?:${SKILL_ROOT_ALT})[^/]+/[a-z0-9-]*vision(-pointers)?\.md$`),
+  new RegExp(`^(?:${SKILL_ROOT_ALT})[^/]+/features-status\.md$`),
   /^objectives\//,
+  ...(PROJECT_PATHS_DECL || []),
 ];
 const isProjectOrCode = (rel) => PROJECT_OR_CODE.some((re) => re.test(rel.replace(/\\/g, "/").replace(/^\.\//, "")));
 // SOURCE = general-level. Only SKILL.md exports (the same `exportable` test the relative-path rule above
@@ -1484,6 +1495,14 @@ if (args.includes("--json")) {
   const rows = filter ? levelViolations.filter((v) => v.file.includes(filter)) : levelViolations;
   for (const v of rows) console.log(`${v.file}:${v.line}  cites PROJECT/CODE state  ${v.target}`);
   console.log(`\ngeneral-level files scanned (SKILL.md)   ${generalFiles.length}`);
+  if (PROJECT_PATHS_DECL === null) {
+    console.log("  PROJECT PATH LIST UNREADABLE -- scripts/export/project.export-markers.json has no");
+    console.log("  `projectOrCodePaths.re`, so only the general SHAPES were checked. Its clean result proves");
+    console.log("  NOTHING about this project's own trees.");
+  } else if (!PROJECT_PATHS_DECL.length) {
+    console.log("  PROJECT PATH LIST EMPTY -- declared and empty, so nothing of this project's own was");
+    console.log("  looked for. A fresh installation starts here; fill it in before trusting a zero.");
+  }
   console.log(`GENERAL -> PROJECT/CODE citations         ${rows.length}   POPULATION: every SKILL.md file, no other level checked`);
   process.exit(rows.length ? 1 : 0);
 } else if (args.includes("--portability")) {

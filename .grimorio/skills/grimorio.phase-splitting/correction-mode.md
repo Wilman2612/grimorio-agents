@@ -58,7 +58,7 @@ never narrowed by anything resembling this pattern.
 ## NOT-YET-ADOPTED candidates — a follow-up list, never a decision made here
 
 **NEVER treat naming an agent below as authorization to build anything for it** — each is an UNVERIFIED
-candidate for a future propagation pass, per ref:memory/grimorio.board-memory/grimorio-backlog.md's own standing rule that
+candidate for a future propagation pass, per the project's MECHANISM BACKLOG's own standing rule that
 naming a mechanism there is never authorization to build it. This pass touched none of them.
 
 - `grimorio.go-developer`, `grimorio.js-developer`, `grimorio.py-developer`, `grimorio.ui-developer`,
@@ -68,6 +68,6 @@ naming a mechanism there is never authorization to build it. This pass touched n
   its own phased chain that could receive a narrowed VERIFY-only re-entry analogous to
   `grimorio.code-reviewer`'s own, unverified per-agent as of this pass.
 
--> ref:memory/grimorio.board-memory/grimorio-backlog.md's own new entry for the actual follow-up — the list above is never
+-> the project's MECHANISM BACKLOG's own new entry for the actual follow-up — the list above is never
 restated there a second time, and this file never restates whatever that entry says beyond naming these nine
 by name.

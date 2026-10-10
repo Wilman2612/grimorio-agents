@@ -25,7 +25,7 @@ exists to fix, one dimension over. Run exactly one of the four clauses below, pe
 
 1. **WHEN the design already EXISTS — in this agent's own memory (`.grimorio/memory/grimorio.system-design-memory/designs/` —
    this agent's own past `design.md` deliverables, its NEW home per the CEO's 2026-08-20 ruling) OR in the
-   legacy top-level `designs/` folder's own inventory (ref:memory/grimorio.system-design-memory/designs/MAP.md, read in Phase 1 — still a valid
+   legacy top-level `designs/` folder's own inventory (the project's own design record, read in Phase 1 — still a valid
    AS-IS source for now; that corpus is not moving in this pass) ⟶ ALWAYS spawn agent:grimorio.design-as-is,
    FOREGROUND, one node per concern, per grimorio-conduct rule 9c(3) — hand it the concern, this clause (1),
    Phase 1's own SEARCH-FIRST results in full, and Phase 2's own AS-IS-VOICE DETERMINATION (provisional); it

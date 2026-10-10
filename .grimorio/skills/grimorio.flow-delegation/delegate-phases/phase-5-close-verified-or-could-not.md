@@ -33,7 +33,7 @@ instead.
    ref:repo/.grimorio/skills/grimorio.objective-harness/SKILL.md#who-works-where--ceo-ruling-2026-07-31, the
    2026-08-07 clarification under rule 1; not restated here.
 2a. **WHEN this delegate closes (via `close-branch.sh`) or STACKs (per step 2 above) ⟶ ALWAYS write ONE dated
-   entry reflecting that outcome directly into ref:memory/grimorio.board-memory/register.md, carrying: the task's own objective in the
+   entry reflecting that outcome directly into the project's REGISTER, carrying: the task's own objective in the
    principal's own words (never this delegate's own paraphrase of it — pulled from the brief Phase 1 already
    held), the resulting state (`done` on a genuine close, `progress` with the stack noted as the
    blocker/context on a STACK), and a NAMED actor identity on the entry — this delegate's own type plus the
@@ -41,9 +41,9 @@ instead.
    import:memory/grimorio.board-memory/project.vision.md#b2-the-ownership-half for the exact output-format fields this
    entry must carry (state exactly one of `queued`/`progress`/`blocked`/`done`, never a display-only variant)
    — do NOT restate that format inline here, point at it. A `done` write is what moves the item toward
-   ref:memory/grimorio.board-memory/register.md's own CLOSED bucket (the main loop's own rule 20 still owns actually rolling it into the closed
+   the project's REGISTER's own CLOSED bucket (the main loop's own rule 20 still owns actually rolling it into the closed
    window and telling the CEO); a `progress`-with-blocker write on a STACK keeps the item inside
-   ref:memory/grimorio.board-memory/register.md's own ACTIVE bucket.
+   the project's REGISTER's own ACTIVE bucket.
 
    **This step does NOT close the whole obligation.** Rule 20 in
    ref:skill/grimorio.conduct/main-loop-only.md still separately obliges the MAIN LOOP to tell the CEO,

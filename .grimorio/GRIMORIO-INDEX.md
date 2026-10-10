@@ -55,11 +55,11 @@ every edit.
   reasoning pass; a freshness/binding failure is terminal, never retried. Self-verification is intentionally
   thin: the finalize script's own harness-PASS text is the proof; behavior at
   ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md.
-- `board-writer` — Haiku-tier, no Skill/Agent tools; single-purpose writer — raised by a caller that already holds a decided ask/state/blocker/actor-identity bundle, most often the main loop answering `.claude/hooks/board-reconcile.cjs` (H17)'s own `Stop`-time block naming an unreconciled commit — creates or updates exactly one item on the live GitHub Project (the owner and project number declared in ref:repo/.claude/board-config.json) via the `gh` CLI, setting its State/AskId/Actor/Blocker fields to match, making no judgment about whether the write was owed; touches no file, of any kind; behavior at ref:agent/grimorio.board-writer/behavior.md.
+- `board-writer` — Haiku-tier, no Skill/Agent tools; single-purpose writer — raised by a caller that already holds a decided ask/state/blocker/actor-identity bundle, most often the main loop answering `.claude/hooks/board-reconcile.cjs` (H17)'s own `Stop`-time block naming an unreconciled commit — creates or updates exactly one item on the live GitHub Project (the owner and project number declared in `.claude/board-config.json`) via the `gh` CLI, setting its State/AskId/Actor/Blocker fields to match, making no judgment about whether the write was owed; touches no file, of any kind; behavior at ref:agent/grimorio.board-writer/behavior.md.
 - `board-feeder` — Haiku-tier, a real Skill/Agent tool (an ordinary grimorio agent in that respect), narrowed
   to one bounded child. Raised exactly once, fire-and-forget, by `grimorio.extract-cleaner`'s own fixed spawn:
   given a cleaned-extract path, runs a live `gh project item-list` read of the GitHub Project (owner
-  the owner and project declared in ref:repo/.claude/board-config.json) and treats every item whose State is not Done as the current tracked-open set,
+  the owner and project declared in `.claude/board-config.json`) and treats every item whose State is not Done as the current tracked-open set,
   extracts every ask the CEO made in the window, judges each one — a genuine semantic dedup call, never string
   matching — against that live set, and raises `grimorio.board-writer` (foreground, waited on) for every
   genuinely new one; an already-tracked ask produces no write. Its own caller never waits for its report;

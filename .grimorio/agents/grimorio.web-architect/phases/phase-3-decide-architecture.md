@@ -9,7 +9,7 @@ already made is writing the artifact before the judgment behind it exists.
 
 What should the developer build, where does it go, and how? This is the judgment-heavy core of the whole
 chain — the RENDER/GROUP/MEASURE sizing evidence for this agent
-(ref:repo/objectives/design/web-architect-phase-map-v1-derivation.md) found this phase carries ~9 items
+(the project's own phase-map derivation) found this phase carries ~9 items
 answering exactly this one question, comparable to (not exceeding) precedents already accepted as legitimate
 rather than a pincho requiring a further split — it is not artificially split here.
 

@@ -72,7 +72,7 @@ because both share the identical target and skip footprint.
 ref:skill/grimorio.agent-writing/prompt-writer-behavior.md's own CORRECTION MODE and CLONE-EXECUTOR MODE
 sections state which condition and which required fields distinguish the two. Both replace what used to be a
 prose self-redirect ("SKIP Phase 1 and Phase 2, read Phase 3 directly") with this same logged call — the
-mechanical, queryable proof (`.claude/.cache/phase-server-log.jsonl`) that the shortcut was actually taken.
+mechanical, queryable proof (`.grimorio/.cache/phase-server-log.jsonl`) that the shortcut was actually taken.
 
 **There is no repeating back-edge in this chain.** Re-evaluation of what this agent produces lives one level
 up, inside `agent:grimorio.system-keeper`'s own VERIFICATION and ADVERSARIAL REVIEW phases — never inside this

@@ -153,7 +153,7 @@ own VALIDATION check is the second.
 6. **DECOMPOSE the design brief before converging anything** — split it into independent sub-problems per
    import:skill/grimorio.reasoning-principles#decompose-before-you-solve-hard-rule-ceo-2026-07-30, and for each
    constraint you are about to design around, ask who fixed it: nobody (change it), the CEO (raise it, never
-   silently override it), or a prior decision recorded in ref:memory/grimorio.system-design-memory/designs/MAP.md or `po-memory` (reuse it, per Phase 1's
+   silently override it), or a prior decision recorded in the project's own design record or `po-memory` (reuse it, per Phase 1's
    own read).
 7. **ALWAYS state a RISK level per elicited concern** — how much design this concern actually warrants,
    including possibly none (Fairbanks, *Just Enough Software Architecture*). A design may legitimately select

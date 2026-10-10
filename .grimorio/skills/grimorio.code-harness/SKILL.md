@@ -277,7 +277,7 @@ Two layers, because instruction-only is the failure mode (agents forget):
 - **Soft** — this skill + a one-line reminder in CLAUDE.md and in each code-writing agent's behavior file: *before the first
   modification, do the upward `harness.md` lookup and obey.*
 - **Hard** — a **PreToolUse hook** on Edit/Write/MultiEdit that, given the target path, collects the ascending
-  `harness.md` files and injects them into context (`.claude/hooks/harness-lookup` + `ref:repo/.claude/settings.json`). The
+  `harness.md` files and injects them into context (`.claude/hooks/harness-lookup` + `.claude/settings.json`). The
   hook only ADDS context; it never blocks the edit, so a hook failure degrades to the soft layer, never a broken
   tool. Script contract + settings wiring: `./hook.md`.
 

@@ -3,7 +3,7 @@
 This is `grimorio.design-orchestrator`'s own DRAWN quasi-software design view, produced per
 ref:skill/grimorio.phase-splitting#the-drawn-view's new standing
 requirement. **This file EXTENDS the already-approved v1 phase map** —
-ref:repo/objectives/design/design-orchestrator-phase-map-v1-derivation.md#the-derived-phase-map--seven-phases-load-balanced-concern-first,
+the project's own phase-map derivation,
 code-reviewer APPROVED and merged to `develop` — **it never replaces or rewrites it.** That map's own seven phase definitions (SEARCH-FIRST ·
 CONCERN & REGIME ELICITATION · AS-IS/TO-BE & GAP · ARTIFACT-PER-PURPOSE SELECTION · PRODUCE THE ARTIFACTS ·
 CONVERGE, VERIFY & VALIDATE · PLACE & REPORT) are UNCHANGED here. What this file adds is the LOOP and GRAPH
@@ -155,7 +155,7 @@ discipline the section immediately below already models for the outer loop-back.
 **NEVER draw the Phase 6→Phase 4 loop-back as a fresh copy of Phase 4, 5, or 6 for a second or later
 iteration — it always returns to the identical three nodes already drawn above, whether the loop runs once or
 five times.** The v1 map's own
-ref:repo/objectives/design/design-orchestrator-phase-map-v1-derivation.md#where-each-named-dimension-lives--the-output-contracts-own-required-summary
+the project's own phase-map derivation
 table states which content family lives in which phase; that mapping is unaffected by how many times the loop
 runs, because it names WHERE a concern is handled, never HOW MANY passes it takes to handle it. Re-deriving or
 reproducing that table here would only invite it to drift from the table it duplicates — read it at the
@@ -186,7 +186,7 @@ convention — ref:skill/grimorio.agent-selection#who-owns-what names `po` as
 technical decisions — defines WHAT and WHY, never HOW."
 
 This ELIMINATES the first of the v1 map's own two candidate fixes for its still-open Sharp Question #2 — named
-at ref:repo/objectives/design/design-orchestrator-phase-map-v1-derivation.md#honest-gaps-carried-forward-not-smoothed-over
+at the project's own phase-map derivation
 — routing elicitation to `agent:grimorio.po` with a lightweight SRS-shaped output. **It does NOT perform the
 second candidate** — narrowing Check 1's own claim in
 ref:skill/grimorio.loop-and-graph/design-completeness-gate.md#group-1--structural-is-it-present-and-connected to what a
@@ -212,7 +212,7 @@ still stays exactly "MADE VISIBLE, not CLOSED."
 
 The v1 map's own cross-cutting items — R2/R3/R10 (delete-on-consume, the bases-check, converge) and R4 (every
 phase opens with its own graph-definition step), both named in that map's own Coverage section
-(ref:repo/objectives/design/design-orchestrator-phase-map-v1-derivation.md#coverage--every-rendered-item-placed-self-disclosed-arithmetic-not-smoothed-over)
+(the project's own phase-map derivation)
 — remain unaffected by the loop drawn above. They are properties of every phase's own execution, not of
 sequencing between phases, so adding a back-edge from Phase 6 to Phase 4 touches neither their content nor
 where they are stated; they still hold, identically, on every pass through the loop.

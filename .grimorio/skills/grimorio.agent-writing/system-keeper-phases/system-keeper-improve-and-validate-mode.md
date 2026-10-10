@@ -66,9 +66,9 @@ below first, then proceed to Phase D carrying its result as an additional close-
    ref:skill/grimorio.agent-writing/technique-catalog.md's own STATIC and PROBE tests for every technique the
    improvement touched or newly introduced, scoped explicitly to those, named by ID — never the whole catalog
    by rote.**
-4. **ALWAYS QUERY `.claude/.cache/phase-server-log.jsonl` for `next`/`jump` entries whose own timestamp falls
+4. **ALWAYS QUERY `.grimorio/.cache/phase-server-log.jsonl` for `next`/`jump` entries whose own timestamp falls
    after the successor's own spawn time, via**
-   `node -e 'const fs=require("fs");const after=new Date(process.argv[1]);const lines=fs.readFileSync(".claude/.cache/phase-server-log.jsonl","utf8").trim().split("\n");for(const l of lines){const e=JSON.parse(l);if((e.cmd==="next"||e.cmd==="jump")&&new Date(e.ts)>after)console.log(JSON.stringify(e));}' "<successor-spawn-ISO-timestamp>"`
+   `node -e 'const fs=require("fs");const after=new Date(process.argv[1]);const lines=fs.readFileSync(".grimorio/.cache/phase-server-log.jsonl","utf8").trim().split("\n");for(const l of lines){const e=JSON.parse(l);if((e.cmd==="next"||e.cmd==="jump")&&new Date(e.ts)>after)console.log(JSON.stringify(e));}' "<successor-spawn-ISO-timestamp>"`
    (`jq` is not installed in this environment, confirmed live) — the mechanical half of the cold-grade: did the
    successor's own dispatch actually drive itself through the phase-server's mechanical hand-off during its
    run, tracing a real `from`/`to` path through the chain (entry→A→B→C→...), never absent entirely. State the
@@ -121,7 +121,7 @@ THREE-PLANS ARTIFACT:       <tmp/ path, confirming PLAN A/B/C written before Pha
 SUCCESSOR SPAWN CONFIRMED:  <foreground; tier = target's own normally-declared tier, never Haiku>
 DECOY TASK:                 <the actual task text, and why its cue is non-obvious>
 PER-TECHNIQUE TABLE:        <one row per touched technique — CONSIDERED-AND-HOW / DEGRADED-AND-WHY>
-FIRING-LOG QUERY:            <the actual query against `.claude/.cache/phase-server-log.jsonl`, its scope
+FIRING-LOG QUERY:            <the actual query against `.grimorio/.cache/phase-server-log.jsonl`, its scope
                              stated, and the traced from/to path found (or its absence) as the result>
 RE-DERIVED-VS-COPIED CHECK: <the actual byte-diff run — RE-DERIVED / COPIED, never inferred without running it>
 VALIDATION VERDICT:         <PASS (all three checks held) / DEGRADATION (name what failed)>

@@ -44,17 +44,17 @@ gated.
 CORRECTED the same day, three times (all coordinator decisions, relayed by `grimorio.system-keeper` —
 grimorio-conduct rule 11), to the graph-based, two-trigger shape above, including the SHARED live-initiator
 defer and the distinct-set cap.** Full account of the FIRST redesign's own WHY — the incident that drove it —
-is a ledger matter, kept in ONE place rather than narrated here: `ref:memory/grimorio.board-memory/grimorio-backlog.md`'s
+is a ledger matter, kept in ONE place rather than narrated here: the project's MECHANISM BACKLOG's
 own dated entry. The corrections' own reasoning (why graph-based, why `Stop` is a required backstop rather
 than a fallback, why both main-loop triggers defer on a live initiator, why the cap counts distinct states)
 is CURRENT mechanics,
 stated in full above and in `ref:repo/.claude/hooks/board-reconcile.cjs`'s own header — never a second ledger
 entry for the same class of fact this section already exists to state.
 
-**REPLACES `ref:repo/.claude/hooks/board-write-check.cjs` (the prior H14) outright — deleted the same pass, per
+**REPLACES the board's own write gate (the prior H14) outright — deleted the same pass, per
 `ref:repo/.claude/hooks/harness.md`'s own "ALWAYS delete a hook outright rather than working around it."**
 Measured before the swap: 19 real blocks that hook ever logged, 14 CLOSURE and 5 RECONCILE, every one against
-`ref:memory/grimorio.board-memory/register.md` — a file `ref:repo/.grimorio/skills/grimorio.board/scripts/board-write.mjs`/`ref:repo/.grimorio/skills/grimorio.board/scripts/board-update.mjs`/`grimorio.board-writer`/
+the project's REGISTER — a file `ref:repo/.grimorio/skills/grimorio.board/scripts/board-write.mjs`/`ref:repo/.grimorio/skills/grimorio.board/scripts/board-update.mjs`/`grimorio.board-writer`/
 `grimorio.board-feeder` never mechanically write (verified: no `writeFileSync`/`appendFileSync` targeting it
 anywhere in the repo; this is the SAME row-7 gap
 `ref:repo/.grimorio/skills/grimorio.board/board-chain-quasi-software-view.md#known-errors-to-phase-mapping`
@@ -80,7 +80,7 @@ as that ruling, per that file's own "current truth, not a layered record" discip
 duplicate that record a second time.
 
 **The claim ledger — the mechanism that makes attribution and subtraction the WHOLE computation.**
-`.claude/.cache/board-claims.jsonl`, MAIN-CHECKOUT-anchored (SESSION-scoped, per
+`.grimorio/.cache/board-claims.jsonl`, MAIN-CHECKOUT-anchored (SESSION-scoped, per
 `ref:skill/grimorio.code-harness#state-anchoring--session-scoped-state-anchors-to-the-main-checkout-tree-scoped-to-the-current-tree-hard-rule`),
 append-only, one JSON object per line: `{"turn":"<turnStartSha>","sha":"<commit>","by":"<agentType>/<agentId>",
 "at":"<iso8601>","nothing":true}` — `nothing` present only on an explicit "this commit needed no board change"
@@ -89,11 +89,11 @@ SAME commit reachable in a later turn is never silenced by an earlier turn's own
 commit in `turnStart..HEAD` with no claim line whose `sha` matches, for that `turn` — pure set subtraction, no
 other judgment; the ledger never judges whether a claimed board change was CORRECT, only that someone
 answerable looked at that commit and said so. `main/-` is the one identity that cannot be forged, because it is
-never a spawn record; every other `by` must be a spawned identity `.claude/.cache/agent-invocations.log`
+never a spawn record; every other `by` must be a spawned identity `.grimorio/.cache/agent-invocations.log`
 proves, the same guard `ref:repo/.grimorio/skills/grimorio.board/scripts/board-lib.mjs`'s own `requireSpawnedActor` already applies, reused rather than
 re-derived.
 
-**The turn-start watermark — `ref:repo/.claude/.cache/board-turn-start.json`, keyed by `session_id`, also
+**The turn-start watermark — `.grimorio/.cache/board-turn-start.json`, keyed by `session_id`, also
 MAIN-CHECKOUT-anchored.** A session's first-ever firing of EITHER main-loop trigger sets the watermark to
 CURRENT HEAD (a fail-quiet default — nothing pre-existing is ever retroactively "unclaimed"), never to some
 earlier point that would demand answers for commits this mechanism never watched being made. Past that first
@@ -112,13 +112,13 @@ accepted gap, never silently guessed past — see `ref:repo/.claude/hooks/board-
 comment for where this is stated in the code itself.
 
 **The cap/kill-switch pattern is PORTED from `ref:repo/.claude/hooks/subagentstop-wait.cjs`, never copied file-for-file — ADAPTED, not
-identical.** Both source hooks (that one, and the now-deleted `ref:repo/.claude/hooks/board-write-check.cjs`) cap PER AGENT IDENTITY,
+identical.** Both source hooks (that one, and the now-deleted the board's own write gate) cap PER AGENT IDENTITY,
 because many different identities can each close and each be blocked. H17's own main-loop-facing triggers
 fire ONLY for the main loop, whose identity is always the single fixed `main/-` — so the cap is PER SESSION
 instead, the natural analogue for a population of one — and SHARED across BOTH `PreToolUse: Bash` and `Stop`
 (one counter, one log): the underlying question is the SAME regardless of which event asks it, so a split
 counter would let the same logical nag double its own practical noise ceiling across two event types. The
-repo-wide `KILL_SWITCH_TRIP_AT` and the `.claude/.cache/board-reconcile.disabled` fail-open flag are unchanged
+repo-wide `KILL_SWITCH_TRIP_AT` and the `.grimorio/.cache/board-reconcile.disabled` fail-open flag are unchanged
 from the source pattern: past the threshold, the hook goes silent rather than wedging a session shut.
 
 **What it does NOT verify — stated honestly, not claimed as closed.** It never judges whether a claimed board
@@ -128,7 +128,7 @@ concurrent initiators in a shared tree (see the NAMED paragraph above). It never
 children directly — the main-loop-facing triggers run against the CURRENT tree at invocation time
 (TREE-scoped), while the claim ledger and watermark they read and write are MAIN-CHECKOUT-anchored
 (SESSION-scoped) — conflating the two is the exact mistake
-`ref:repo/.grimorio/skills/grimorio.board/plan/subtask-lifecycle.md`'s own "THE WORKTREE DIMENSION"
+LOST: the board's subtask-lifecycle draft (removed as a misplaced work product)'s own "THE WORKTREE DIMENSION"
 section names as already made once this session, in a different mechanism; H17 keeps the distinction explicit
 in its own library's comments rather than repeat it.
 

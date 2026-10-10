@@ -103,7 +103,7 @@ handle it.
    items ONCE, never once per phase that happened to touch it, and never once per file in the family when one
    lead statement already covers them.
 4. **BEFORE surfacing anything as an open question, gap, or fork in the converged document ⟶ ground it against
-   the bases** (the signed vision, product memory, ref:memory/grimorio.system-design-memory/designs/MAP.md, the live code) per ref:skill/grimorio.report-design
+   the bases** (the signed vision, product memory, the project's own design record, the live code) per ref:skill/grimorio.report-design
    → "BEFORE you present: DECOMPOSE" → "Take each one to the BASES." A question the bases already answer is
    RESOLVED, never open — only what survives this check may be logged as open.
 5. **Run three NAMED checks, never one undifferentiated bundle: VERIFICATION (is it built right),
@@ -125,7 +125,7 @@ handle it.
 - SWEBOK Requirements KA (elicitation → analysis → specification → validation) — NAMED here as the missing
   upstream capability R37 makes visible, never one this phase closes; a genuine elicitation process is a
   decision for a future pass, per
-  cite:repo/objectives/design/design-orchestrator-phase-map-v1-derivation.md#honest-gaps-carried-forward-not-smoothed-over.
+  the project's own phase-map derivation.
 - ref:skill/grimorio.agent-tiers#critic-integrity--the-one-tiering-rule-you-cannot-cheap-out-on — CHECK 1's own
   tier-floor justification cites this SPECIFICALLY, its "Rubric gate vs subtlety hunt" tie-breaker: the floor
   question genuinely fires (design-orchestrator's opus ran above scout's own sonnet default), and the

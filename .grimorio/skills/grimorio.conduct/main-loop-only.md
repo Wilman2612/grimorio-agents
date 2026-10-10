@@ -20,7 +20,7 @@ events they govern, so nobody else needs them in context.
    an edit, before it answers him: is it a NEW ACTIVITY?** Exactly one of three dispositions fires every time,
    never a fourth:
 
-   - **WHEN it is a NEW ACTIVITY ⟶ write it into ref:memory/grimorio.board-memory/register.md, in his own words, BEFORE starting it.**
+   - **WHEN it is a NEW ACTIVITY ⟶ write it into the project's REGISTER (ref:skill/grimorio.board#where-this-projects-own-instance-lives names it), in his own words, BEFORE starting it.**
      Registering is the turn's FIRST action, never its last — a turn that starts the work and means to
      register it afterwards is the turn that registers nothing when the work runs long or the session ends.
    - **WHEN it is NOT NEW, and it restates the objective ⟶ update ref:repo/.claude/current-objective.md that same
@@ -33,22 +33,18 @@ events they govern, so nobody else needs them in context.
      for work already queued; an ordinary acknowledgment, a clarifying answer, or small talk concerns no row
      at all, and carrying on is the whole of what this branch owes.
 
-   **ref:memory/grimorio.board-memory/register.md is the register this rule writes, and ONLY it.** Of the two registers this
-   corpus keeps, it is the only one that is the FULL queue AND has a live board window onto it — and that board is the thing
-   rule 20 (below) obliges the main loop to move and report. Its own "THE BOARD, AND THE THREE STATES" section
-   (CEO ruling, 2026-09-09) already defines QUEUED / ACTIVE / CLOSED, which IS the "update the state" branch of
-   the procedure above -> ref:memory/grimorio.board-memory/register.md#the-board-and-the-three-states--ceo-ruling-2026-09-09, never
-   restated here. `.claude/ceo-requests.md` no longer exists (2026-09-11): its own charter asked for the same
-   act this rule already performs ("ALWAYS add a row the turn he asks for something"), and the
-   register-consolidation question a prior pass of this paragraph left open is now settled — its job folded
-   into ref:memory/grimorio.board-memory/register.md above, never a second file to keep in sync with this one.
-   ref:memory/grimorio.board-memory/grimorio-backlog.md is NOT written by this rule: it holds
-   unbuilt MECHANISM proposals awaiting the CEO's own approval, never activities he asked for.
-   `.claude/ceo-corrections.md` no longer exists: a correction is now a FINDING per rule 26
-   (ref:skill/grimorio.conduct#recording-a-correction), never a row in a register this rule writes.
-   The general pattern this procedure is one instance of, and this project's own derived Vision and ownership
-   doctrine for the board itself, now live at ref:skill/grimorio.board — a separate pointer from the
-   ref:memory/grimorio.board-memory/register.md one above, never collapsed into it.
+   **This rule writes the project's REGISTER, and ONLY it.** A deployment keeps two queues and they are not
+   interchangeable: the REGISTER is the full queue of activities the principal asked for, and the one with a
+   live window onto it that rule 20 below obliges the main loop to move and report. A MECHANISM BACKLOG holds
+   unbuilt proposals awaiting his approval, never activities he asked for, and this rule never writes it.
+   Which files those are is the deployment's own fact, declared where its instance is ->
+   ref:skill/grimorio.board#where-this-projects-own-instance-lives.
+
+   The three visibility states and the transitions between them ARE the "update the state" branch of the
+   procedure above, and they are general ->
+   ref:skill/grimorio.board#the-three-visibility-states--where-an-item-lives-a-different-axis-from-the-reporting-spine,
+   never restated here. A correction is a FINDING per rule 26 (ref:skill/grimorio.conduct#recording-a-correction),
+   never a row in a register this rule writes.
 
    > *"you have no obligation to manage a backlog. That is, you have no obligation to, hey, before doing
    > anything, after a message from me, go check — am I asking you for a new activity? If it's not new, then
@@ -82,7 +78,7 @@ events they govern, so nobody else needs them in context.
    history. Observed
    doing both: at the founding drift point (2026-08-28 to 2026-09-08, when the nine open asks rotted), it
    fires from commit 51, peaking at 228 at eb1a4eaa, before BACKLOG.md's next touch; on a kept queue the
-   interval is under threshold, so it stays SILENT — ref:repo/scripts/status.sh. It is NOT a gate
+   interval is under threshold, so it stays SILENT — a script the project keeps at its own root. It is NOT a gate
    and NOT a hook — NEVER add a hook; that is CEO-only and not on the table. Nothing runs it for you; it fires
    nothing and refuses nothing on its own. It cannot see a CEO message, so it can never check that a
    classification actually happened — it reports only the SHAPE a stretch of skipped registrations leaves
@@ -190,7 +186,7 @@ events they govern, so nobody else needs them in context.
    A graph's nodes are each forced by a distinct signal; when every repetition runs the same nodes in the same
    order regardless of which item is in hand, the branching is decorative and the work is a loop.
 
-   The check is mechanical — run it, do not eyeball your own history. `ref:repo/.claude/.cache/agent-invocations.log`
+   The check is mechanical — run it, do not eyeball your own history. `.grimorio/.cache/agent-invocations.log`
    is a TSV. Field 13 marks pre/post — two PHASES of one spawn, never two spawns; field 12 is the caller's own
    agent type, `-` reading as you, the top-level session. Field 2 stores only the first 8 characters of the
    session id, not the full UUID — `$CLAUDE_CODE_SESSION_ID` gives you the FULL UUID directly, so truncate
@@ -198,7 +194,7 @@ events they govern, so nobody else needs them in context.
    own dispatch sequence this session, in order, with:
 
    ```
-   awk -F'\t' -v sid="$CLAUDE_CODE_SESSION_ID" '$2==substr(sid,1,8) && $13=="pre" && $12=="-" {print $3}' .claude/.cache/agent-invocations.log
+   awk -F'\t' -v sid="$CLAUDE_CODE_SESSION_ID" '$2==substr(sid,1,8) && $13=="pre" && $12=="-" {print $3}' .grimorio/.cache/agent-invocations.log
    ```
 
    then scan that list for a contiguous block of two or more agent types repeating three or more times. **WHEN
@@ -214,7 +210,7 @@ events they govern, so nobody else needs them in context.
     below plans its own piece going down — you never plan every level's work from here.
     **No mechanism enforces this load.** No hook, selftest, or gate checks that `loop-and-graph` loaded
     before a multi-item plan was made — this rule stands on the reader alone. The closest thing to a check
-    is `.claude/.cache/skill-load-debug.log`, which records every `Skill` call (skill, session, agent-type)
+    is `.grimorio/.cache/skill-load-debug.log`, which records every `Skill` call (skill, session, agent-type)
     per ref:repo/.grimorio/GRIMORIO-CHAIN.md#3-the-mechanisms--what-is-wired-and-what-each-one-does — that makes
     the load retrospectively MEASURABLE after the fact, which is strictly weaker than enforced, and it is not
     itself a gate.
@@ -563,7 +559,7 @@ events they govern, so nobody else needs them in context.
     **Composes with, never duplicates, grimorio-conduct SKILL.md's own rule 26 — two different questions about
     the same event.** Rule 26 (ref:skill/grimorio.conduct#recording-a-correction) governs WHETHER/HOW the
     correction is RECORDED — a FINDING inside the current loop's own output, routed to
-    ref:memory/grimorio.board-memory/grimorio-backlog.md only when it names a mechanism; this rule governs WHERE the fix is ROUTED —
+    the project's MECHANISM BACKLOG only when it names a mechanism; this rule governs WHERE the fix is ROUTED —
     `grimorio.system-keeper`, or kept local. A correction is recorded per rule 26 AND routed per this rule, in
     the same turn — recording it is never a substitute for routing it, and routing it is never a substitute for recording it.
 
@@ -580,7 +576,7 @@ events they govern, so nobody else needs them in context.
     local-vs-systemic statement it demands: a main loop that never states which of the two it judged is the
     exact failure this rule exists to make visible.
 18. **BEFORE reporting to the CEO that a pass was slow or costly ⟶ read the actual dispatch pipeline from
-    `.claude/.cache/agent-invocations.log`, naming which caller, agent, and timestamps the time actually went
+    `.grimorio/.cache/agent-invocations.log`, naming which caller, agent, and timestamps the time actually went
     to, and state where the time went.** **NEVER assert "it was expensive" as a self-sufficient claim** — an
     unexplained cost number is not a diagnosis, it is an observation with no cause attached.
 
@@ -594,7 +590,7 @@ events they govern, so nobody else needs them in context.
     alongside agent type (field 3), never field 3 alone:
 
     ```
-    awk -F'\t' -v sid="$CLAUDE_CODE_SESSION_ID" '$2==substr(sid,1,8) && $13=="pre" {print $1, $12, $3}' .claude/.cache/agent-invocations.log
+    awk -F'\t' -v sid="$CLAUDE_CODE_SESSION_ID" '$2==substr(sid,1,8) && $13=="pre" {print $1, $12, $3}' .grimorio/.cache/agent-invocations.log
     ```
 
     so the printed rows show WHEN each spawn happened and WHO called it, not only WHAT was called — exactly
@@ -651,12 +647,10 @@ events they govern, so nobody else needs them in context.
     indistinguishable from one that never moved. He has the link; re-sending it every time is the noise he
     explicitly asked to stop.
 
-    The three states and the transitions between them are ref:memory/grimorio.board-memory/register.md's own — its "THE BOARD, AND THE THREE
-    STATES" section, CEO ruling 2026-09-09 ->
-    ref:memory/grimorio.board-memory/register.md#the-board-and-the-three-states--ceo-ruling-2026-09-09. POINT at it; NEVER restate it
-    here. The general pattern this rule is one instance of, and this project's own derived Vision and
-    ownership doctrine for the board itself, now live at ref:skill/grimorio.board — a separate pointer, never
-    collapsed into the ref:memory/grimorio.board-memory/register.md one above.
+    The three visibility states and the transitions between them are GENERAL ->
+    ref:skill/grimorio.board#the-three-visibility-states--where-an-item-lives-a-different-axis-from-the-reporting-spine.
+    POINT at it; NEVER restate it here. Which window this deployment moves, and its own derived Vision and
+    ownership doctrine for it, are ITS facts -> ref:skill/grimorio.board#where-this-projects-own-instance-lives.
 
     > *"I asked you for a good format for the backlog, pretty, that uses the space well, functional... you
     > don't hand me the artifact the same way every time. I already know where the artifact is, you don't have

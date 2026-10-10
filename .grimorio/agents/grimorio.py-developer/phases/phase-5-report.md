@@ -1,6 +1,6 @@
 # Python Developer — Phase 5: REPORT (terminal)
 
-**NEVER close this task, or report anything to your caller, until THIS phase's own ref:repo/dev-notes.md is actually
+**NEVER close this task, or report anything to your caller, until THIS phase's own `dev-notes.md` is actually
 written (Pipeline mode) and its `## Close` line is set.** There is no Phase 6 to defer an unfinished field to,
 and this chain's only re-entry (Phase 4's own chain-level loop-back into Phase 3) never routes through here
 unfinished — this is always the terminal state once reached.
@@ -17,7 +17,7 @@ rest of the pipeline reads.
 **GIVEN this phase receives MODE, CONTRACT READ, WIRE-CONTRACT SHAPES, REWORK/BUG-REPORT DETECTED,
 BUG-FIX-FIRST-TEST, SURVEY NOTES, MODULE(S) BUILT, DIFF SUMMARY, FULL SUITE RESULT, and INVARIANT CONFIRMATION
 from Phase 4's own now-cumulative hand-off ⟶ this phase does not re-derive any of them.** MODE gates step 2
-below (Pipeline mode ALWAYS writes ref:repo/dev-notes.md; Standalone mode owes no dev-note).
+below (Pipeline mode ALWAYS writes `dev-notes.md`; Standalone mode owes no dev-note).
 `grimorio.go-developer`'s own equivalent chain HAD this exact drop — MODE silently missing even though its own
 Phase 5 branches on MODE by name — independently found during this redesign's own diagnosis, since closed in
 go-developer's own cycle-2 REWORK; MODE is present here, by name, precisely so that branch is grounded in a
@@ -32,8 +32,8 @@ DIFF SUMMARY feed `## Changes Made` and `## Abstractions Created`; FULL SUITE RE
 are this phase's own `## Close: VERIFIED` evidence, per step 6 below.
 
 1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node, terminal — write
-   ref:repo/dev-notes.md, decide the commit action, close — and nothing else; no spawn anywhere in this phase.**
-2. **IN PIPELINE MODE ⟶ ALWAYS write ref:repo/dev-notes.md** per the shared `## OUTPUT` template below, populating:
+   `dev-notes.md`, decide the commit action, close — and nothing else; no spawn anywhere in this phase.**
+2. **IN PIPELINE MODE ⟶ ALWAYS write `dev-notes.md`** per the shared `## OUTPUT` template below, populating:
    Changes Made, Abstractions Reused/Created, Contracts (for other developers), Test Scenarios for QA, Known
    Limitations. **IN STANDALONE MODE ⟶ no dev-note is owed** — report the result directly per this same `##
    OUTPUT` shape, inline.
@@ -42,7 +42,7 @@ are this phase's own `## Close: VERIFIED` evidence, per step 6 below.
    {N}` section**, per ref:memory/grimorio.developer-memory/build-protocol.md#rework-mode, re-verifying
    the full completion checklist below rather than only the previously-failed item.
 4. **WHEN the contract was ambiguous, or `arch-decision.md` did not cover a case that arose while implementing
-   ⟶ write it as `BLOCKED` in ref:repo/dev-notes.md and stop — never guess.** This is the current agent's own
+   ⟶ write it as `BLOCKED` in `dev-notes.md` and stop — never guess.** This is the current agent's own
    pre-split "ambiguous-contract BLOCKED" rule, restated here at the exact point this phase's own step 2
    (writing the artifact) would otherwise proceed past an unresolved ambiguity.
 5. **Commit discipline, per
@@ -71,7 +71,7 @@ are this phase's own `## Close: VERIFIED` evidence, per step 6 below.
   (Phase 4).
 - None of this project's backend-service hard invariants were weakened anywhere in the diff (Phase 4).
 - The contract was mirrored field-for-field as Pydantic models, never an invented shape (Phase 1/Phase 3).
-- ref:repo/dev-notes.md was actually written, not merely described (Pipeline mode, this phase).
+- `dev-notes.md` was actually written, not merely described (Pipeline mode, this phase).
 
 ## OUTPUT
 
@@ -187,7 +187,7 @@ import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
 own filled PHASE 5 DELIVERABLE block, written to disk first per that gate's own algorithm — this phase has no
 next-phase file to gate a read against, so the gate runs against the CLOSE itself.**
 
-**This chain ends here, always, once reached.** ref:repo/dev-notes.md is written (Pipeline mode), `## Status` and `##
+**This chain ends here, always, once reached.** `dev-notes.md` is written (Pipeline mode), `## Status` and `##
 Close` are emitted, and this phase closes VERIFIED or COULD NOT to the caller. The chain's ONLY re-entry path is
 Phase 4's own chain-level loop-back into Phase 3, which never routes through this file — this phase itself never
 loops back and never hands off anywhere but the caller. A subsequent, SEPARATE invocation starts fresh at Phase

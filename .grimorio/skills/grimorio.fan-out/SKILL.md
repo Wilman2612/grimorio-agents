@@ -450,7 +450,7 @@ and hooks are CEO-only, never proposed or built by this rule (ref:skill/grimorio
 rule 5c).
 
 A future, NAMED-but-not-built proposal for a genuinely POST-HOC, mechanical check, for whoever picks it up
-next: ref:repo/.claude/.cache/agent-invocations.log already records each spawn's own dispatch timestamp;
+next: `.grimorio/.cache/agent-invocations.log` already records each spawn's own dispatch timestamp;
 comparing a session's `tmp/<id>/graph.md` file mtime against that session's OWN first `pre` row timestamp would
 let an auditor (not a live blocker) catch a graph written AFTER the fact — the same ORDER-not-wall-clock
 technique ref:repo/.claude/hooks/spawn-verbatim-origin-gate.cjs's own ELEMENT 3 already uses elsewhere in this

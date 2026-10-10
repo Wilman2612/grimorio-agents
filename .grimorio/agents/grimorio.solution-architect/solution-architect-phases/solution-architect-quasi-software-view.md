@@ -11,14 +11,14 @@ APPROVAL, a FINAL-AS-OF-THEN pass reconciling Layer 3 Half (b) against the seven
 then a THIRD, `grimorio.code-reviewer`-driven REWORK-cycle-1 pass — Phase 3, 4, 5, and 6 each gained a new
 trail-logging step, and Phase 3/5/6 gained a new uncertainty-flag step (Phase 4 already carried one), per
 FINDING-02 (a false cross-cutting-coverage claim in this chain's own saved RENDER/GROUP evidence, now corrected
-at ref:repo/objectives/design/solution-architect-phase-map-v1-derivation.md — also relocated there from a
+at the project's own phase-map derivation — also relocated there from a
 gitignored `tmp/` path this same cycle, per FINDING-01) — every flowchart this pass touches is re-derived from
 the real, now-corrected files, read fresh, never carried over unchecked.
 
 ## STEPS vs PHASES verdict, and the orchestrator/purpose-driven classification
 
 **VERDICT: PHASES, purpose-driven.** Full reasoning saved at
-ref:repo/objectives/design/solution-architect-phase-map-v1-derivation.md (relocated here from a `tmp/` scratch
+the project's own phase-map derivation (relocated here from a `tmp/` scratch
 path — that path was gitignored and would have been pruned, per `grimorio.code-reviewer`'s own FINDING-01,
 mirroring the same durable-evidence precedent `design-orchestrator-phase-map-v1-derivation.md`,
 `prompt-writer-phase-map-v2/v3-derivation.md`, and `system-keeper-phase-map-derivation.md` already set in this

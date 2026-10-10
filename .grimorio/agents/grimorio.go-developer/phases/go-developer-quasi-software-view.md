@@ -120,7 +120,7 @@ matches the widened Hard hand-off text each of `phase-2-plan-read-arch-decision.
 `phase-3-implement.md`, and `phase-4-verify-determinism-and-invariants.md` now carries: OBJECTIVE and EXIT
 CONDITION (Phase 1's own fields) ride every doc node through to Phase 5, since Phase 5's own `## Objective /
 Exit Condition` section needs them; MODE and CONTRACT READ (Phase 2's own fields) ride every doc node from `D2`
-onward through to Phase 5 too — MODE gates Phase 5's own step 2 (Pipeline mode ALWAYS writes ref:repo/dev-notes.md;
+onward through to Phase 5 too — MODE gates Phase 5's own step 2 (Pipeline mode ALWAYS writes `dev-notes.md`;
 Standalone mode owes no dev-note), CONTRACT READ is Phase 5's own cited evidence for its Completion criteria's
 first bullet ("the architecture contract was actually read this invocation"); WIRE-CONTRACT SHAPES and
 REWORK/BUG-REPORT FLAG (Phase 2's own fields) ride through `D3` and `D4` for Phase 5's own `## Contracts`
@@ -145,7 +145,7 @@ points, one per phase), this chain carries exactly ONE:
    **own step 3, and blocks until every child returns before its own next-phase read (P4) fires.**
 
 **No other node in this chain carries a parallelism question of its own.** P1, P2, P4, and P5 are each a single
-SELF node by their own step 1 (no spawn, ever). **P5 is the SOLE writer of ref:repo/dev-notes.md** — per
+SELF node by their own step 1 (no spawn, ever). **P5 is the SOLE writer of `dev-notes.md`** — per
 ref:skill/grimorio.phase-splitting/flow-method.md#b-modifying-phases-stay-sequential ("many may ADVISE
 it, but only ONE phase WRITES"), P5 stays sequential and terminal: no loop-back edge ever re-enters an earlier
 phase to revise it after P5 has closed.
@@ -162,7 +162,7 @@ to produce.**
 | P2 · PLAN-READ-ARCH-DECISION | MODE (Pipeline/Standalone), the contract actually read, the scoped module/file list, the wire-contract shapes, the missing-plan refusal call, REWORK/bug-report detection | Hands to P3 unconditionally, UNLESS the missing-plan refusal fired (chain ends there, `## Close: COULD NOT`) — never spawns |
 | P3 · IMPLEMENT | On FIRST-PASS: the survey + WHEN a risky zone is touched a reactive `./project.traps.md` consultation + WHEN flagged the failing-test-first sequence + the decomposition + fan-out gate decision + the actual Go module(s) built. On CHILD: the same reactive `./project.traps.md` consultation, scoped to its own item, + the single assigned file/package | Hands to P4 unconditionally on FIRST-PASS — spawns N `CHILD_GO` only when the gate holds — CHILD route reports to the parent, never reads P4 |
 | P4 · VERIFY-DETERMINISM-AND-INVARIANTS | The full `-race` suite result, the determinism golden-test result, the per-invariant confirmation — any failure fixed and re-checked WITHIN this phase's own mini-loop before it hands off | Hands to P5 unconditionally — never spawns, never re-enters P3 |
-| P5 · WRITE-DEV-NOTES-REPORT | ref:repo/dev-notes.md (Pipeline mode) or an inline report (Standalone), the commit action taken, any REWORK-cycle section, the `## Status`/`## Close` values | Terminal — reports to the caller, no further phase, no loop-back |
+| P5 · WRITE-DEV-NOTES-REPORT | `dev-notes.md` (Pipeline mode) or an inline report (Standalone), the commit action taken, any REWORK-cycle section, the `## Status`/`## Close` values | Terminal — reports to the caller, no further phase, no loop-back |
 
 ## Evidence of phase-design reasoning — the RENDER/GROUP/MEASURE working product, saved
 
@@ -171,7 +171,7 @@ ref:skill/grimorio.phase-splitting/quasi-view-requirements.md#evidence-of-phase-
 this section restates, as a durable saved artifact rather than a claim taken on faith, the sizing reasoning
 `grimorio.system-keeper` already performed (its own DIAGNOSIS/PLACEMENT decision) and the pre-supplied,
 independently-reasoned diagnosis verdict it extended
-(ref:repo/objectives/grimorio/phase-reaudit-verdicts/go-developer.md), both read in full this pass and inlined
+(the project's own re-audit verdict), both read in full this pass and inlined
 here rather than left as a pointer into scratch that will not survive past this session.
 
 **RENDER — the complete load, before any grouping.** The pre-split shell (`grimorio.go-developer.md`) carried

@@ -78,9 +78,9 @@ surface, not a new policy invented for this file.
 relayed here as its own reasoning, not the CEO's words: neither `log-agent-invocation.cjs` nor
 `log-agent-completion.cjs` carries a tree-root field, that log's own "branch" field is sampled once at dispatch
 time and never re-read, a background spawn's own "post" row is written at LAUNCH not at actual completion, and
-— most decisive — `.claude/.cache/` is gitignored, so every `git worktree add` gets its own separate copy of
+— most decisive — `.grimorio/.cache/` is gitignored, so every `git worktree add` gets its own separate copy of
 both logs: a hook in worktree A structurally cannot see what worktree B logged. The registry needs no
-tree-path field of its own either way — it always lives inside the SAME shared tree's own `.claude/.cache/`, so
+tree-path field of its own either way — it always lives inside the SAME shared tree's own `.grimorio/.cache/`, so
 whichever copy a hook reads already IS the tree in question, by construction.
 
 **Honest limitation, named rather than papered over.** The registry is a small JSON file, mutated by a
@@ -110,7 +110,7 @@ other-branch"`, `bash -c "..."`, `eval "..."`) — not fixed this pass, named ex
 
 **Measured, then fixed: the SubagentStop clearing predicate that failed one time in five.** The mechanism that
 decided whether to clear a registry entry — a self-authored-text-shape check (`FINAL_CLOSE`/`isChildFinished`)
-— was measured against this repo's own real `.claude/.cache/agent-completions.log`: 71 of 327 (21.7%) non-final
+— was measured against this repo's own real `.grimorio/.cache/agent-completions.log`: 71 of 327 (21.7%) non-final
 `SubagentStop` firings across 177 multi-firing agents already satisfied it, independently reproduced by
 `grimorio.system-keeper` at 68/327 (20.8%). A still-working agent's own tree-occupancy protection could be
 silently, prematurely cleared roughly 1 time in 5, with no backstop, on exactly the population (long-running

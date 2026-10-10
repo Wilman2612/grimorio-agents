@@ -219,7 +219,7 @@ and they are his claim only where quoted above.
 - **Corpses kept with a label instead of deleted.** The word "superseded" appears on 135 lines across 59 files.
 - **The proof the structure argument is not theoretical.** Held to its OWN declared four-field format, the defect
   ledger's OPEN section went **1,108 → 329 lines with all 55 entries intact and none deleted** — a 70% cut with
-  the information surviving, purely because the form was declared. cite:memory/grimorio.board-memory/grimorio-defects.md,
+  the information surviving, purely because the form was declared. the project's own defect record,
   commit `6dc2f2e6`.
 
 > **These are a SNAPSHOT, and three of them were already moving as they were written.** Re-measured the same

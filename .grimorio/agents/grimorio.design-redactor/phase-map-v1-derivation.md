@@ -4,7 +4,7 @@ Saved per ref:skill/grimorio.phase-splitting/quasi-view-requirements.md#evidence
 — the RENDER/GROUP/MEASURE working product a phase-chain design applies, kept as a durable artifact rather than
 performed silently and discarded. This is `grimorio.design-redactor`'s own instance, independently re-derived by
 `grimorio.system-keeper` against the flat behavior file's real text (never taken on the strength of the
-pre-supplied diagnosis alone — ref:repo/objectives/grimorio/phase-reaudit-verdicts/design-redactor.md is the
+pre-supplied diagnosis alone — the project's own re-audit verdict is the
 diagnosis this derivation checks, not a conclusion assumed correct because it was handed in).
 
 ## Source rendered
@@ -72,7 +72,7 @@ if the render stops at the behavior file):**
     render surface.
 
 **Total rendered: 30 distinct requirements/conditionals**, confirming
-ref:repo/objectives/grimorio/phase-reaudit-verdicts/design-redactor.md's own "roughly 30+" estimate rather than
+the project's own re-audit verdict's own "roughly 30+" estimate rather than
 merely repeating it — independently counted against the real file text, item by item, above.
 
 ## Step 2 — GROUP by where items push

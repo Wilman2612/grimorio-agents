@@ -22,7 +22,7 @@ establishes what grimorio already knows before Phase 2 maps anything fresh.
    set to exactly CLEAR, FAIL, or FAIL-ARCH).** ->
    ref:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11,
    not restated here.
-3. **ALWAYS read ref:memory/grimorio.security-memory/audits/ live, never from memory** — confirm what is actually
+3. **ALWAYS read the project's own archive live, never from memory** — confirm what is actually
    there this pass (as of this authoring pass: `2026-07-27-workflow-editor-prebuild.md`,
    `2026-07-29-template-transform-surface.md`) and note any precedent comparable to the surface under audit now.
 4. **ALWAYS read ref:memory/grimorio.security-memory/project.attack-surface.md** for the known entry-point
@@ -41,7 +41,7 @@ establishes what grimorio already knows before Phase 2 maps anything fresh.
   without applying this discipline).
 - import:skill/grimorio.working-memory — the `tmp/` convention for any intermediate/scratch artifact a later
   phase produces before the terminal `security-report.md`, loaded ONCE here for the whole chain.
-- ref:memory/grimorio.security-memory/audits/ — read live, never from memory, step 3's own load.
+- the project's own archive — read live, never from memory, step 3's own load.
 - ref:memory/grimorio.security-memory/project.attack-surface.md — step 4's own load.
 - ref:memory/grimorio.security-memory/project.md#gate-methodology--earned-rules-do-not-re-learn-these-the-hard-way —
   step 5's own load.

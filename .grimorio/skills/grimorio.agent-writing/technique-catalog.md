@@ -374,7 +374,7 @@ directly from whether the keyword is used, not tracked as its own measurement; e
 - **DEFINED:** the researcher's own 2026-08-26 working analysis (source scratch file not carried into this consolidation — see ## Provenance above)
 - **MEASURED:** WIRED — every fingerprinted phase's own hard hand-off already invokes this gate today, per
   ref:skill/grimorio.phase-splitting/fingerprint-gate.md's own algorithm; AND, as of this dispatch, every invocation
-  (PASS or FAIL alike) is LOGGED to `ref:repo/.claude/.cache/fingerprint-gate-log.jsonl` — see
+  (PASS or FAIL alike) is LOGGED to `.grimorio/.cache/fingerprint-gate-log.jsonl` — see
   ref:skill/grimorio.agent-writing/audit-toolchain.md's own entry 19 for that log file's field list, not repeated here
 - **M/O:** M (proposed shape) — flagged unproven
 - **STATIC test:** phase deliverable carries a field only the declared skill's application produces
@@ -763,7 +763,7 @@ states a claim and then separately retracts it.
 ## grimorio.extract-cleaner — the CEO's hypothesis CONFIRMED on the structural test
 - HEADLINE (orchestrator-verified by glob; project-memory claim corrected 2026-08-27, see below): NO dedicated
   skill folder (its behavior file lives INSIDE
-  `cite:skill/grimorio.conduct/extract-cleaner-behavior.md@12e662b741e5db85e533ef22af37bfd4ee40da43`); NO
+  LOST: the extract-cleaner's prior shape (it became an agent)); NO
   `-phases/` folder anywhere; project-memory: NOW EXISTS, dedicated —
   `cite:skill/grimorio.conduct/project.extract-cleaner-project.md@e8bcbfefaa2cd5fb86cef7652b267f9f31bc36ff`, added by
   commit ad8a6308 (2026-08-26), landed on develop, holding real operational-history content (an "Authoring
@@ -774,7 +774,7 @@ states a claim and then separately retracts it.
   alone.
 - BUT the absences are EXPLICITLY JUSTIFIED, not oversights: shell carries no `Skill` tool (tools: Read, Write,
   Bash), so it "structurally cannot call Skill()" and bakes its whole discipline into the shell+behavior file;
-  the quasi-view (cite:skill/grimorio.conduct/extract-cleaner-quasi-software-view.md@12e662b741e5db85e533ef22af37bfd4ee40da43:6-14) states "No `-phases/` directory exists … and that
+  the quasi-view (LOST: the extract-cleaner's prior shape (it became an agent):6-14) states "No `-phases/` directory exists … and that
   absence is not an omission. The task is ONE cognitive mission … the same shape agent:grimorio.scout takes."
 - TECHNIQUES: EXHIBITS identity (shell:8-12), four openers (behavior ALWAYS:16/NEVER:19/WHEN:46/BEFORE:106),
   `## OUTPUT` (behavior:111-115,141-147), inline examples (behavior:82-85,116-139 — two real examples), quasi-view

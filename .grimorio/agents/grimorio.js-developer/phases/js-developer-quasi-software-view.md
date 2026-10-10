@@ -74,7 +74,7 @@ ref:agent/grimorio.go-developer/phases/go-developer-quasi-software-view.md's own
 section already states for its own chain, reused here rather than re-derived. Likewise, `agent:grimorio.security`
 and `agent:grimorio.code-reviewer` — named in Phase 2's own SECURITY-SENSITIVE flag and Phase 5's own routing
 note — are DELIBERATELY OMITTED too: this agent never spawns either; it only writes a routing NOTE into
-ref:repo/dev-notes.md for the orchestrator or Gate B to act on, never a wired spawn edge of its own. **No other
+`dev-notes.md` for the orchestrator or Gate B to act on, never a wired spawn edge of its own. **No other
 future/not-wired agent-node belongs in this graph** — a full read of Phase 0 plus all five phase files surfaced
 no language naming any agent this chain MAY one day lean on beyond the escalation ladder and the two report-only
 routing mentions already addressed above, and the one CHILD node already drawn.
@@ -100,7 +100,7 @@ extra early-exit, stated explicitly rather than silently under-counted:**
   nodes, not separate doc nodes here) — Phase 2's own MISSING-PLAN CHECK can terminate the chain with `## Close:
   COULD NOT`, and its own SCOPE BOUNDARY CHECK can terminate it with `## Close: VERIFIED (scope handed to
   ui-developer)`, EITHER rather than handing off to P3 — both producing no artifact beyond the refusal/hand-off
-  report already covered by P2's own DELIVERABLE (the UI_STOP path additionally writes ref:repo/dev-notes.md itself,
+  report already covered by P2's own DELIVERABLE (the UI_STOP path additionally writes `dev-notes.md` itself,
   named in P2's own step 5, not a separate node here).
 
 ```mermaid
@@ -194,10 +194,10 @@ never two phases running concurrently.** This chain carries exactly ONE parallel
 **No other node in this chain carries a parallelism question of its own.** P1, P2, P4, and P5 are each a single
 SELF node by their own step 1 (no spawn, ever) — this includes P2's own TWO early-exit branches, both of which
 are still a single SELF node's own two possible outcomes, never a second parallel path. **P5 is the SOLE writer
-of ref:repo/dev-notes.md** — per
+of `dev-notes.md`** — per
 ref:skill/grimorio.phase-splitting/flow-method.md#b-modifying-phases-stay-sequential ("many may ADVISE
 it, but only ONE phase WRITES"), P5 stays sequential and terminal, EXCEPT for the one narrow case where P2's own
-UI_STOP branch writes ref:repo/dev-notes.md itself (a partial, single-section write — `## Contracts` plus the closing
+UI_STOP branch writes `dev-notes.md` itself (a partial, single-section write — `## Contracts` plus the closing
 Status/Close lines — never the full template P5 owns) because the chain ends there before P5 is ever reached;
 this is not a second writer of the SAME artifact in the concurrency sense Rule 8(b) governs, because the two
 never run in the same invocation — P2's UI_STOP write and P5's full write are mutually exclusive outcomes of one
@@ -215,7 +215,7 @@ to produce.**
 | P2 · PLAN-READ-ARCH-DECISION | MODE (Pipeline/Standalone), the contract actually read, the Scope Boundary call, the scoped file/module list, the wire-contract shapes, the missing-plan refusal call, the SECURITY-SENSITIVE flag, REWORK/bug-report detection | Hands to P3 unconditionally, UNLESS the Scope Boundary STOP fired (chain ends, `## Close: VERIFIED`, dev-notes.md written) OR the missing-plan refusal fired (chain ends, `## Close: COULD NOT`) — never spawns |
 | P3 · IMPLEMENT | On FIRST-PASS: the survey + WHEN a risky zone is touched a reactive trap-file consultation + WHEN flagged the failing-test-first sequence + the decomposition + fan-out gate decision + the actual TS file(s)/module(s) built. On CHILD: the same reactive trap-file consultation, scoped to its own item, + the single assigned file/module | Hands to P4 unconditionally on FIRST-PASS — spawns N `CHILD_JS` only when the gate holds — CHILD route reports to the parent, never reads P4 |
 | P4 · VERIFY | The full test-suite result, the typecheck result, the per-item Definition-of-Done confirmation, the per-invariant confirmation, the re-confirmed bug-proving test — any failure fixed and re-checked WITHIN this phase's own mini-loop before it hands off | Hands to P5 unconditionally — never spawns, never re-enters P3 |
-| P5 · REPORT & COMMIT | ref:repo/dev-notes.md (Pipeline mode) or an inline report (Standalone), the security routing note WHEN flagged, the commit action taken, any REWORK-cycle section, the `## Status`/`## Close` values | Terminal — reports to the caller, no further phase, no loop-back |
+| P5 · REPORT & COMMIT | `dev-notes.md` (Pipeline mode) or an inline report (Standalone), the security routing note WHEN flagged, the commit action taken, any REWORK-cycle section, the `## Status`/`## Close` values | Terminal — reports to the caller, no further phase, no loop-back |
 
 ## Evidence of phase-design reasoning — the RENDER/GROUP/MEASURE working product, saved
 
@@ -224,7 +224,7 @@ ref:skill/grimorio.phase-splitting/quasi-view-requirements.md#evidence-of-phase-
 this section restates, as a durable saved artifact rather than a claim taken on faith, the sizing reasoning
 `grimorio.system-keeper` already performed (its own DIAGNOSIS/PLACEMENT decision, finalizing the pre-supplied,
 independently-reasoned diagnosis verdict it extended,
-ref:repo/objectives/grimorio/phase-reaudit-verdicts/js-developer.md, WITH TWO CORRECTIONS stated below), both
+the project's own re-audit verdict, WITH TWO CORRECTIONS stated below), both
 read in full this pass and inlined here rather than left as a pointer into scratch that will not survive past
 this session.
 

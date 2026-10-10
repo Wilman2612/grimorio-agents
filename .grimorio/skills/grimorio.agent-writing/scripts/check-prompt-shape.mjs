@@ -85,6 +85,35 @@ function words(s) {
 }
 
 const RELATION_RE = /(?:import|ref|cite|cold|agent|repo|skill):[\w./-]*$/;
+// THE PIPELINE'S PER-TASK ARTIFACTS, read from the ONE place that declares them: the fenced block under
+// `grimorio.feature-workflow`'s "Artifact Directory Structure". Exempt for the same reason `CLAUDE.md` is
+// below -- their home is `tmp/features/{slug}/`, a placeholder that can never resolve in any installation,
+// so naming one is NAMING it, never pointing at it. A `relation:` on one is dead by construction.
+const PER_TASK_ARTIFACTS = (() => {
+  try {
+    const d = readFileSync(".grimorio/skills/grimorio.feature-workflow/SKILL.md", "utf8");
+    const block = d.split("## Artifact Directory Structure")[1].split("```")[1];
+    const names = block.split(String.fromCharCode(10)).map((l) => l.trim().replace(/\r$/, "")).filter((l) => /^[a-z0-9-]+[.]md$/.test(l));
+    return names.length ? new Set(names) : null;
+  } catch (_) {
+    return null;
+  }
+})();
+// RUNTIME STATE AND HOST WIRING are locations, not documents. The cache root is read from the ONE
+// declaration that owns it, and the host's wiring file is named beside it: nothing under either is a
+// document a reader resolves -- one is written by the system as it runs, the other is the installation's
+// own. A `relation:` on one is a reference that cannot resolve in a fresh clone, by construction.
+const LOCATION_RE = (() => {
+  try {
+    const d = JSON.parse(readFileSync(".grimorio/scripts/refobl/skill-roots.json", "utf8"));
+    const cache = (d.cacheRoot || "").replace(/[/]$/, "");
+    if (!cache) return null;
+    const esc2 = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp("^(?:" + esc2(cache) + "/|[.]claude/(?:settings|settings[.]local|grimorio-config|grimorio-config[.]local|board-config)[.]json$)");
+  } catch (_) {
+    return null;
+  }
+})();
 const FILE_TOKEN_RE = /(?<![\w:/@-])(?:\.{1,2}\/)?(?:[\w.-]+\/)*[\w.-]+\.(?:md|mjs|cjs|js|ts|json|sh|ya?ml)(?:#[\w-]+)?(?![\w-])/g;
 
 // A single-path `-- file` diff strands a rename's OLD side outside the comparison, so a pure rename
@@ -166,6 +195,15 @@ function bareReferencesAdded(file) {
       if (RELATION_RE.test(before)) continue;
       if (/\{[\w-]*$/.test(before)) continue;
       if (m[0] === "CLAUDE.md") continue;
+      // A per-task pipeline artifact, same justification: its home is a placeholder, so there is
+      // nothing to resolve. A null list means the declaration was unreadable -- then nothing is
+      // exempted, because a detector that cannot read its declaration must not quietly widen.
+      if (PER_TASK_ARTIFACTS && PER_TASK_ARTIFACTS.has(m[0])) continue;
+      // A runtime log or the host's wiring file: a location, never a document.
+      if (LOCATION_RE && LOCATION_RE.test(m[0])) continue;
+      // This corpus's own LOST: marker, which NAMES a target that no longer exists. Giving it a relation
+      // would assert a reference to something gone -- the marker exists precisely to say it is not there.
+      if (/LOST:\s*$/.test(before)) continue;
       if (/^\s+(?:[\w-]+\s+)?--/.test(line.slice(m.index + m[0].length))) continue;
       n++;
     }
@@ -193,6 +231,15 @@ function bareReferencesAdded(file) {
       // The root instruction file is NAMED, not pointed at: it sits at the repo root by definition, every
       // agent already holds it, and no reader ever has to resolve a path to reach it.
       if (m[0] === "CLAUDE.md") continue;
+      // A per-task pipeline artifact, same justification: its home is a placeholder, so there is
+      // nothing to resolve. A null list means the declaration was unreadable -- then nothing is
+      // exempted, because a detector that cannot read its declaration must not quietly widen.
+      if (PER_TASK_ARTIFACTS && PER_TASK_ARTIFACTS.has(m[0])) continue;
+      // A runtime log or the host's wiring file: a location, never a document.
+      if (LOCATION_RE && LOCATION_RE.test(m[0])) continue;
+      // This corpus's own LOST: marker, which NAMES a target that no longer exists. Giving it a relation
+      // would assert a reference to something gone -- the marker exists precisely to say it is not there.
+      if (/LOST:\s*$/.test(before)) continue;
       // A script named with a subcommand or a flag after it is being INVOKED, not referenced.
       if (/^\s+(?:[\w-]+\s+)?--/.test(line.slice(m.index + m[0].length))) continue;
       bareOrdinal++;

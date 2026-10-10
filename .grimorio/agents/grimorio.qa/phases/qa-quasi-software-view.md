@@ -155,7 +155,7 @@ Per
 ref:skill/grimorio.phase-splitting/quasi-view-requirements.md#evidence-of-phase-design-reasoning--save-the-rendergroupmeasure-working-product-never-discard-it-silently,
 this section restates, as a durable saved artifact rather than a claim taken on faith, the sizing reasoning
 `grimorio.system-keeper` already performed and independently re-derived (not merely trusted) in
-ref:tmp/qa-phase-upgrade/phase-2-deliverable.txt, tightened here as this chain's own saved evidence.
+LOST: tmp/qa-phase-upgrade/phase-2-deliverable.txt (scratch, pruned), tightened here as this chain's own saved evidence.
 
 **RENDER — the complete load, before any grouping.** The pre-diff SHELL (`grimorio.qa.md`, 36 lines) carried its
 own IDENTITY-section prose, distinct from the flat `behavior.md` below and MISSED by this pass's own original

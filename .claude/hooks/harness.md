@@ -79,7 +79,7 @@ must arrive conscious of it; injecting it into every context is a briefing's job
 already forced, and nobody could tell which of twelve had fired.
 
 **ALWAYS delete a hook outright rather than working around it** — remove its entry from
-ref:repo/.claude/settings.json and delete the file, along with whatever selftest exercised it. A gate
+`.claude/settings.json` and delete the file, along with whatever selftest exercised it. A gate
 nobody owns becomes friction nobody removes.
 
 **GIVEN a hook that guards the file listing the hooks ⟶ delete the file first, then the entry.** One

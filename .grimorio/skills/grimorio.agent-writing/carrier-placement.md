@@ -4,11 +4,11 @@
 between two homes: a shell's `## Knowledge` block, or a step inside a behavior file the agent is already
 executing. Both look valid. They are not equally likely to fire, and the difference is measured, not assumed.
 
-**Measured this instant** (`.claude/.cache/agent-invocations.log` and `.claude/.cache/skill-load-debug.log`
+**Measured this instant** (`.grimorio/.cache/agent-invocations.log` and `.grimorio/.cache/skill-load-debug.log`
 are LOCAL, git-ignored, and LIVE — they grow with every session, so a re-measurement returning a larger number
 CONFIRMS a count below, it does not contradict it):
-`awk -F'\t' '$13=="pre" && $3=="<agent>" && $1>="2026-08-11T15:48:48.448Z"' .claude/.cache/agent-invocations.log | wc -l`
-for spawns, `grep '"agent_type":"<agent>"' .claude/.cache/skill-load-debug.log | grep '"skill":"<skill>"' | wc -l`
+`awk -F'\t' '$13=="pre" && $3=="<agent>" && $1>="2026-08-11T15:48:48.448Z"' .grimorio/.cache/agent-invocations.log | wc -l`
+for spawns, `grep '"agent_type":"<agent>"' .grimorio/.cache/skill-load-debug.log | grep '"skill":"<skill>"' | wc -l`
 for loads. **Two traps in these denominators, both already made once.** `agent-invocations.log` writes TWO
 rows per spawn — field 13 marks `pre` and `post`, two PHASES of one spawn, never two spawns — so counting
 every row roughly doubles the denominator; filtering to `$13=="pre"` (both commands above already do) is

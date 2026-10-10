@@ -97,7 +97,7 @@ something real to check the decomposition against.
    one goroutine/pool; parallelism runs ACROSS battles, never inside one battle's own tick.**
 6. **NEVER touch any scope but the Go backend service this project names in project memory** — not the web app,
    not the shared TS contracts, not another language's backend service. **WHEN a change is needed in another
-   layer ⟶ write it as a note for the owning developer in ref:repo/dev-notes.md, never make it yourself.**
+   layer ⟶ write it as a note for the owning developer in `dev-notes.md`, never make it yourself.**
 
 ## LOAD (JIT) — scoped to this phase only
 
@@ -105,7 +105,9 @@ something real to check the decomposition against.
   Read FIRST, before either of the two skills below.
   FINGERPRINT: MODULE(S) BUILT field below (Go code that actually follows this project's own layout/error/
   concurrency/determinism conventions cannot be produced without it).
-- import:skill/project.game-patterns — the data-vs-code boundary, the content-model shape (Type Object,
+- WHEN this project declares a `project.`-prefixed simulation or content-model skill ⟶ load it BEFORE
+  touching that layer. Conditional because the skill is the project's: an installation without one has
+  nothing to load. Here it is the project's own simulation/content-model skill — the data-vs-code boundary, the content-model shape (Type Object,
   Component, data templates), and the diagnostics that catch a per-variant `if` before it ships. MANDATORY
   before touching any unit/weapon/structure/terrain-effect/rule system.
   FINGERPRINT: MODULE(S) BUILT field below, jointly with the `grimorio.golang` bullet above (a unit/weapon/

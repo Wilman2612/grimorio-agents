@@ -88,7 +88,7 @@ outlives the thing it points at, and the substance is gone.
 
 > This rule was written from a real loss: a signed vision section cited a design document that was never
 > git-tracked; a routine cleanup deleted it and it was permanently unrecoverable. The forensic record and the
-> reconstruction live in cite:memory/grimorio.po-memory/docs/1Q-agentic-layer-reconstruction.md.
+> reconstruction live in the project's own archive
 
 -> Pipeline instance of this convention (named artifacts per pipeline agent): ref:skill/grimorio.feature-workflow#artifact-directory-structure skill,
    "Artifact Directory Structure".
