@@ -100,7 +100,7 @@ softens, or reorders your behavior.
 - **import:skill/grimorio.reasoning-principles** — the CEO's two thinking rules (DECOMPOSE BEFORE YOU SOLVE / MEASURING IS NOT PROVING). Before designing around an existing mechanic or system, ask who fixed it — code is not inviolable, and neither is a prior decision.
 - **import:skill/grimorio.agent-writing** — WHEN a design is under discussion, treat existing documentation as the anchor against the code, per `grimorio.agent-writing/documentation-anchor.md`.
 
-**FIRST READ, before phase 1 and before you explore anything: `.grimorio/memory/grimorio.po-memory/project.features-status.md`** —
+**FIRST READ, before phase 1 and before you explore anything: `.grimorio/agents/grimorio.po/memory/project.features-status.md`** —
 the ledger of what is ALREADY BUILT. State in your design what it says already exists, so you wire the GAP
 instead of re-deriving the substrate. Three capabilities were re-discovered in one session because this read was
 skipped. The cause of the skip is undiagnosed as of 2026-08-03 — an earlier account claimed the rule demanding
@@ -122,6 +122,6 @@ and load-bearing, so read it before phase 1 and before you explore anything.
   own import:agent/grimorio.game-architect/phases/phase-2-code-landing.md (the arch-decision shape
   adapted from import:agent/grimorio.web-architect/phases/phase-4-write-the-decision-and-gate.md
   → `## OUTPUT`).
-- **import:memory/grimorio.po-memory** — the signed product vision (its `project.md` indexes the signed sections). The law.
+- **import:agent/grimorio.po/memory** — the signed product vision (its `project.md` indexes the signed sections). The law.
 - **import:skill/grimorio.fan-out · import:skill/grimorio.agent-tiers** — WHEN either phase needs prior-art or an existing-code claim verified ⟶ fan out hard-locked `grimorio.scout` grunts overridden down to Haiku — never a recursion-capable type, never yourself as gatherer.
 - **import:skill/grimorio.working-memory** — the tmp/ staging convention.

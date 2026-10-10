@@ -45,8 +45,8 @@ carried from Phase 0.
    caller hands over a TANGLE, and its size is a symptom of their confusion, never a measure of the problem —
    solving it as presented is the failure mode, not a fix. Split it into sub-problems each statable in one
    sentence WITHOUT reference to the others — if you cannot, you have re-described the tangle, not split it.
-   Then take each one to the BASES (ref:memory/grimorio.po-memory, the mechanics ledger,
-   ref:memory/grimorio.po-memory/project.md#where-the-rest-of-this-ledger-lives--open-by-what-you-want-to-know,
+   Then take each one to the BASES (ref:agent/grimorio.po/memory, the mechanics ledger,
+   ref:agent/grimorio.po/memory/project.md#where-the-rest-of-this-ledger-lives--open-by-what-you-want-to-know,
    the architecture memories) and ask of each, in this order: is it already answered there? is it a REAL problem
    at all? — never "how do I solve it". Expect most to dissolve. **ALWAYS report every sub-problem that
    dissolved and why** — that is a first-class part of your verdict, often the most valuable part. Advise only
@@ -62,7 +62,7 @@ carried from Phase 0.
 - import:skill/grimorio.working-memory — the `tmp/` staging convention `adviser-verdict.md` follows, and any
   intermediate artifact a later phase produces before it, loaded ONCE here for the whole chain.
 - the project's own defect record — step 2's own live read.
-- ref:memory/grimorio.po-memory, ref:memory/grimorio.po-memory/project.md#where-the-rest-of-this-ledger-lives--open-by-what-you-want-to-know,
+- ref:agent/grimorio.po/memory, ref:agent/grimorio.po/memory/project.md#where-the-rest-of-this-ledger-lives--open-by-what-you-want-to-know,
   the architecture memories — step 3's own BASES.
 - **NEVER load the evidence-gathering delegation slice, the diagnosis/prior-art discipline, or the plan/routing
   knowledge here** — none of those are this phase's question; each belongs to a later phase alone.

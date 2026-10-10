@@ -45,7 +45,7 @@ phase below inherits all four; none restates any of them in full again:
   incomplete, the status is FAIL.
 - **ALWAYS give every acceptance criterion's happy path a full-stack/E2E test before any narrower layer for that
   criterion.** This is the floor, not the ceiling — other scenarios (errors, edges) stay your call at whatever
-  layer fits. -> ref:memory/grimorio.qa-memory#where-e2e-sits--the-happy-path-floor-not-an-on-demand-layer-ceo-2026-08-13
+  layer fits. -> ref:agent/grimorio.qa/memory#where-e2e-sits--the-happy-path-floor-not-an-on-demand-layer-ceo-2026-08-13
 - **ALWAYS decompose whatever is in front of you into independent items before working it — one item per
   acceptance criterion, changed file, test, or failure — the same shape agent:grimorio.researcher works, for
   EVERY task you take, not a case bound to test-writing alone; you do not work a queue by hand.** **NEVER read

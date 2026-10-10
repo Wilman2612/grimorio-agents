@@ -24,7 +24,7 @@ context reset, and does the CHAIN continue or end."
    alone, never for the act of recording a settled-but-provisional piece.
 5. **WHEN `ref:agent/grimorio.solution-architect/project.md` would exceed ~500 lines, OR a single `##` section
    exceeds ~150 lines ⟶ split that topic into its own companion file `solution-architecture/{topic}.md`**
-   (mirroring ref:memory/grimorio.architect-memory's `{area}.md` pattern), leaving a one-line pointer in
+   (mirroring ref:agent/grimorio.web-architect/memory's `{area}.md` pattern), leaving a one-line pointer in
    `project.md` at the old section's location. ->
    ref:skill/grimorio.agent-writing#reference-depth-dont-hyper-compress--a-skill-can-and-should-have-many-reference-files
    before you do this — apply its doctrine, do not restate it here.

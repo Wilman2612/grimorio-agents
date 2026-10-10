@@ -51,8 +51,8 @@ rather than a pincho requiring a further split — it is not artificially split 
   target.
 - ref:skill/grimorio.javascript — the language-level rules (naming, async, structural limits) the file list and
   contract must comply with.
-- ref:memory/grimorio.architect-memory/SKILL.md#clean-architecture--dependency-direction and
-  ref:memory/grimorio.architect-memory/SKILL.md#security--universal-design-principles — the universal boundary and
+- ref:agent/grimorio.web-architect/memory/SKILL.md#clean-architecture--dependency-direction and
+  ref:agent/grimorio.web-architect/memory/SKILL.md#security--universal-design-principles — the universal boundary and
   OWASP checklist steps 2 and 8 apply.
 - ref:skill/grimorio.agent-tiers#the-scale-task-archetype--tier and
   ref:skill/grimorio.fan-out#part-1--decompose-spawn-in-parallel-synthesize — step 12's own conditional-scout

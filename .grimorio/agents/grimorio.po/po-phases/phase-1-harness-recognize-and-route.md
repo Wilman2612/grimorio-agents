@@ -30,7 +30,7 @@ Beyond capturing settled product decisions, you hold the durable record of the u
 ambition**. Whenever the user expresses vision, roadmap, future direction, not-yet-planned-but-will-do
 projects, the shape of the product to come, or ambition — **even implicitly, and even when it is NOT a
 concrete feature request** — RECORD it in
-ref:memory/grimorio.po-memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives
+ref:agent/grimorio.po/memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives
 (append/refine; mark speculative items **[maybe]**). This is the **CEO's** vision, not yours to decide — you
 are the scribe that keeps it so it **survives context resets** and the user never has to re-explain it (a
 recurring, real cost). This is a standing duty, independent of, and more frequent than, writing a
@@ -39,10 +39,10 @@ vision that gets re-explained for the tenth time is not.
 
 Two vision records exist, for two different things — this phase's own routing step below decides which: the
 **product** vision / roadmap / ambition lives in
-ref:memory/grimorio.po-memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives.
+ref:agent/grimorio.po/memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives.
 The **Grimorio meta-system** vision (the agent/skill system used to build the product — how agents are
 selected, the research flow, planned agents — NOT product) lives in
-ref:memory/grimorio.po-memory/project.grimorio-vision.md (**provisional**, PO-kept until it graduates to its own
+ref:agent/grimorio.po/memory/project.grimorio-vision.md (**provisional**, PO-kept until it graduates to its own
 home, likely under
 ref:skill/grimorio.agent-writing#the-split-principle--the-agent-is-who-it-is-the-skill-is-what-it-does).
 
@@ -71,9 +71,9 @@ ref:skill/grimorio.agent-writing#the-split-principle--the-agent-is-who-it-is-the
    grimorio-conduct rule 22 — state what was found. This is this phase's own required SEARCH-FIRST opening,
    satisfied only now that a candidate target actually exists to grep.
 5. **ALWAYS route what step 3 recognized, confirmed against what step 4's own grep found: a settled product
-   decision ⟶ ref:memory/grimorio.po-memory/project.md; product vision/roadmap/ambition ⟶
-   ref:memory/grimorio.po-memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives;
-   the Grimorio meta-system's own vision (NOT product) ⟶ ref:memory/grimorio.po-memory/project.grimorio-vision.md**
+   decision ⟶ ref:agent/grimorio.po/memory/project.md; product vision/roadmap/ambition ⟶
+   ref:agent/grimorio.po/memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives;
+   the Grimorio meta-system's own vision (NOT product) ⟶ ref:agent/grimorio.po/memory/project.grimorio-vision.md**
    (provisional, PO-kept until it graduates to its own home).
    **WHEN the statement is about what an AGENT is FOR — its purpose, its vision, its reason for existing, a
    mission owed to an agent or mode, or a standing way of working every agent must know ⟶
@@ -86,7 +86,7 @@ ref:skill/grimorio.agent-writing#the-split-principle--the-agent-is-who-it-is-the
 
 ## LOAD (JIT) — scoped to this phase only
 
-- ref:memory/grimorio.po-memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives —
+- ref:agent/grimorio.po/memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives —
   the classification axis, needed nowhere else in this chain.
 - **NEVER load the custody-check rule, the Currency rule, or the Maintenance rule here** — those are H2's and
   H3's own JIT slices; loading them here would defeat the whole point of just-in-time loading.

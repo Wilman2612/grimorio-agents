@@ -27,7 +27,7 @@ act on here.
 ## Steps
 
 1. **ALWAYS state this phase's own graph before doing anything else: a SELF node (read the brief, read
-   the project's own design record, read ref:memory/grimorio.po-memory/project.features-status.md, check `documentation-memory` precedent)
+   the project's own design record, read ref:agent/grimorio.po/memory/project.features-status.md, check `documentation-memory` precedent)
    is the default and only mandatory node.** An agent:grimorio.scout node (step 6 below) is a SECOND node that exists only
    WHEN the domain touched is genuinely unfamiliar — name explicitly, in this phase's own DELIVERABLE, whether
    that second node fires this pass or not.
@@ -41,7 +41,7 @@ act on here.
    ref:memory/grimorio.system-design-memory/project.md#a-gap-in-this-projects-own-state--resolved-2026-08-28-kept-as-history for why
    the project's own design record states this reuse-first rule in its own voice (no second copy needed here) and which of
    `MAP.md`'s own referenced files are still a forward reference on this branch.
-4. **ALWAYS read import:memory/grimorio.po-memory/project.features-status.md#feature-status-ledger in full before anything else
+4. **ALWAYS read import:agent/grimorio.po/memory/project.features-status.md#feature-status-ledger in full before anything else
    this phase does.** State in this phase's own DELIVERABLE what it says already exists, so later phases wire
    the GAP instead of re-deriving the substrate.
 4a. **EMPIRICAL DOMAIN DERIVATION — WHEN the subject under design is an API or a domain ⟶ the orchestrator's
@@ -64,8 +64,8 @@ act on here.
    invented — cite it here the same way the gRFC A6/MaMa-CRM exemplars are already cited elsewhere in this same
    step-block.
 4b. **PRODUCT-MEMORY HINT — SUPPLEMENTARY, never mandatory, never blocking, never a substitute for step 4a's
-   own empirical enumeration.** `ref:memory/grimorio.po-memory/project.decisions.md`,
-   ref:memory/grimorio.po-memory/project.features-status.md#feature-status-ledger (already read this phase per
+   own empirical enumeration.** `ref:agent/grimorio.po/memory/project.decisions.md`,
+   ref:agent/grimorio.po/memory/project.features-status.md#feature-status-ledger (already read this phase per
    step 4 above), and the project's own design record (already read per step 3) MAY carry an
    intent-hint about the subject under design — cross-check whatever any of the three actually says against
    what step 4a's own enumeration found, and FLAG a contradiction as a named finding. **NEVER read any of the
@@ -215,8 +215,8 @@ act on here.
 
 ## LOAD (JIT) — scoped to this phase only
 
-- ref:memory/grimorio.po-memory/project.features-status.md, the project's own design record — the loads step 3/4 above name.
-- ref:memory/grimorio.po-memory/project.decisions.md — step 4b's own SUPPLEMENTARY cross-check source, never a
+- ref:agent/grimorio.po/memory/project.features-status.md, the project's own design record — the loads step 3/4 above name.
+- ref:agent/grimorio.po/memory/project.decisions.md — step 4b's own SUPPLEMENTARY cross-check source, never a
   mandatory read; consulted only to compare against step 4a's own empirical enumeration, never as a PRIMARY or
   blocking source.
 - import:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11 —
@@ -295,7 +295,7 @@ filled PHASE 1 DELIVERABLE block, written to disk first per that gate's own algo
 on that gate's own PASS, never on the block merely existing in context.**
 
 **ALWAYS read ref:agent/grimorio.design-orchestrator/phases/phase-2-concern-regime-elicitation.md next,
-carrying forward: what the project's own design record and ref:memory/grimorio.po-memory/project.features-status.md say already exists, the
+carrying forward: what the project's own design record and ref:agent/grimorio.po/memory/project.features-status.md say already exists, the
 EMPIRICAL DOMAIN ENUMERATION (step 4a) and the PRODUCT-MEMORY HINT (step 4b), any documentation-memory precedent,
 and any scout report.** Phase 2 consumes all of it to elicit the actual concern
 against — none of it is re-gathered there.

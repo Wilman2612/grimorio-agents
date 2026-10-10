@@ -37,18 +37,18 @@ assumed.**
    must answer the blind spots its lens raised.
 4. **ALWAYS read, IN FULL, before exploring anything else, all of the following — never design from a
    summary of any of them:**
-   - **ref:memory/grimorio.po-memory/project.md#current-milestone--m8-the-workflow-builder-drives-the-game** —
+   - **ref:agent/grimorio.po/memory/project.md#current-milestone--m8-the-workflow-builder-drives-the-game** —
      the ledger of what is ALREADY BUILT. State in the design what it says already exists, so you wire the GAP
      instead of re-deriving the substrate. This is the shell's own former "FIRST READ" aside, promoted here as
      a first-class step — three capabilities were re-discovered in one session because this read was skipped
      once before, and a shell-level aside nobody actually consults at the moment it matters is exactly the
      failure mode this promotion closes.
-   - **the vision's signed sections** — ref:memory/grimorio.po-memory (its `project.md` indexes the signed
+   - **the vision's signed sections** — ref:agent/grimorio.po/memory (its `project.md` indexes the signed
      sections).
    - **the relevant catalogue docs** — LOST: documentation-memory (deleted 2026-10-04, recoverable at f942b355) (its `project.md` is the index).
    - **the entropy review** confirmed to exist at step 3 above.
    - **the actual sim/render code** — explore it directly, plus
-     ref:memory/grimorio.game-architect-memory/project.md#the-mechanics-as-systems-validated---hypothesis-pending (this
+     ref:agent/grimorio.game-architect/memory/project.md#the-mechanics-as-systems-validated---hypothesis-pending (this
      agent's own living mechanics analysis) — so every design decision is anchored in what the code IS and
      cheaply IS, a mechanic that is one data row is cheap, one that needs a new system is not
      (ref:skill/project.game-patterns#the-pattern-index prices this, in Phase 2 — never opened here). Designing
@@ -71,7 +71,7 @@ assumed.**
    **ALWAYS include a composition test: one worked example walked end-to-end** (a paper-trace, not a validated
    slice).
 7. **ALWAYS tag every design row with its MODALITY, per this project's own modality convention in
-   ref:memory/grimorio.game-architect-memory/project.md#modality--the-project-expects-multiple-game-modalities-not-one-ceo-ruling-2026-07-27** —
+   ref:agent/grimorio.game-architect/memory/project.md#modality--the-project-expects-multiple-game-modalities-not-one-ceo-ruling-2026-07-27** —
    that section states the project's live modality set, the classification discipline for a mechanism losing
    MVP-path status, and when SUPERSEDED/DEAD/BLOCKED is (and is not) the right label. Read it before tagging a
    row; never re-derive or re-state the specifics here.
@@ -95,9 +95,9 @@ assumed.**
   modality convention) — this phase's own methodology and design-reality anchor.
 - ref:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11 —
   step 2's own objective/exit-condition contract.
-- ref:memory/grimorio.po-memory (signed vision) and LOST: documentation-memory (deleted 2026-10-04, recoverable at f942b355) (the catalogue) —
+- ref:agent/grimorio.po/memory (signed vision) and LOST: documentation-memory (deleted 2026-10-04, recoverable at f942b355) (the catalogue) —
   step 4's own reading targets.
-- ref:memory/grimorio.po-memory/project.md#current-milestone--m8-the-workflow-builder-drives-the-game —
+- ref:agent/grimorio.po/memory/project.md#current-milestone--m8-the-workflow-builder-drives-the-game —
   the ledger read, promoted here per step 4.
 - ref:skill/grimorio.agent-tiers#the-scale-task-archetype--tier and
   ref:skill/grimorio.fan-out#part-1--decompose-spawn-in-parallel-synthesize — step 5's own conditional-scout

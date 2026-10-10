@@ -107,7 +107,7 @@ that one root, full stop, never silently redirected to try somewhere else.**
 import:skill/name                 a MANDATORY dependency — see the two audiences below
 import:skill/name#anchor          the same, scoped to one section of that dependency
 ref:repo/path                     go look if you need it — not loaded
-ref:memory/grimorio.code-reviewer-memory/SKILL.md   go look — the single-rooted `memory` store (.grimorio/memory/)
+ref:agent/grimorio.code-reviewer/memory/SKILL.md   go look — the single-rooted `memory` store (.grimorio/memory/)
 ref:agent/name                    go look — the single-rooted `agent` STORE — NOT the flat `agent:name`
                                    relation below; see that subsection for the file-inside-folder form
 
@@ -127,10 +127,8 @@ cite:ext/project@rev#path         proof from a tree that is not ours — always 
 ONLY when no skill root holds it, and every such resolution is LOGGED as a self-heal** (`logSelfHeal` in
 ref:repo/.grimorio/scripts/refobl/resolve.cjs, the same mechanism as the `repo` store's own legacy-prefix fallback, one
 axis over). **It exists ONLY for the files frozen to the CEO by grimorio-conduct rule 5c** — `.claude/hooks/**` and
-`CLAUDE.md` itself, both locked from being edited by that rule. Only `CLAUDE.md` is confirmed writing the
-stale `ref:skill/grimorio.po-memory` form today, for a skill that has actually moved into the `memory` store;
-`.claude/hooks/**` carries no such hit as of this writing, but the same rule blocks it from being edited to
-stop if it ever accumulates one. **NEVER write a NEW reference this way.** The store
+`CLAUDE.md` itself, both locked from being edited by that rule, so neither can be edited to stop if it ever
+writes the stale `skill/<x>` form for something that now lives in a store. **NEVER write a NEW reference this way.** The store
 token naming the real container is the entire point of having two axes at all — a healed reference is
 tolerated debt from before the store existed, never a second valid form to keep writing.
 

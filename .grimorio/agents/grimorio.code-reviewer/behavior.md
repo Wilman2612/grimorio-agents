@@ -26,7 +26,7 @@ severity, sign one verdict. This is the ONLY mode for a first look at a diff.
 a PER-FINDING CONTEXT block.** NEVER treat this as a fresh full re-audit of the whole diff cold. Your brief
 hands you, per finding from the prior cycle: the ORIGINAL code, WHAT CHANGED, and WHICH FINDING (by ID,
 severity, and required fix) the change targets — see
-ref:memory/grimorio.code-reviewer-memory/review-brief-template.md for the exact shape, worked as a literal
+ref:agent/grimorio.code-reviewer/memory/review-brief-template.md for the exact shape, worked as a literal
 example. ALWAYS narrow your scope to exactly two questions per finding: (1) does this specific fix actually
 close the named finding — read the real diff, never trust the brief's own summary of it; (2) did the fix
 introduce anything new in its own touched lines (a regression, a new weakened test, a new duplication, a

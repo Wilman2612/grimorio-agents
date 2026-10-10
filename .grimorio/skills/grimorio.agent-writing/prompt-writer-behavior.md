@@ -65,7 +65,7 @@ matter how many of the others it carries in full:**
 1. **THE DECIDED FIX, per named finding** — the ORIGINAL text/lines, WHAT CHANGED (or must change), and WHICH
    finding (its own id/severity/category/problem/required-fix, verbatim) it closes. This field's own SHAPE is
    not invented here — it mirrors `grimorio.code-reviewer`'s own PER-FINDING CONTEXT block exactly, per
-   ref:memory/grimorio.code-reviewer-memory/review-brief-template.md, the concrete grounding exemplar for this
+   ref:agent/grimorio.code-reviewer/memory/review-brief-template.md, the concrete grounding exemplar for this
    field: the same ORIGINAL-code / WHAT-CHANGED-and-why / FINDING-verbatim shape that file already uses for
    `grimorio.code-reviewer`'s own FIX-VERIFICATION mode, reused here rather than reinvented.
 2. **ITS EVIDENCE/SOURCE** — which cycle or phase produced the finding: a named

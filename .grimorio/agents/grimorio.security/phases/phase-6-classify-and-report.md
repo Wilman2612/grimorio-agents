@@ -13,9 +13,9 @@ How severe is each proven finding, `[CODE FIX]` or `[ARCH ISSUE]`, and what is t
    write the report, set status — and nothing else; this agent never invokes another agent, in any phase,
    ever.**
 2. **ALWAYS classify every finding from Phases 3/4/5 per
-   import:memory/grimorio.security-memory#code-fix-vs-architectural-issue** — route `[ARCH ISSUE]`s to the
+   import:agent/grimorio.security/memory#code-fix-vs-architectural-issue** — route `[ARCH ISSUE]`s to the
    architect first, never the developer. **WHEN any finding is `[ARCH ISSUE]` ⟶ set status to `FAIL-ARCH`.**
-3. **ALWAYS grade every finding's severity per import:memory/grimorio.security-memory#finding-quality--severity**
+3. **ALWAYS grade every finding's severity per import:agent/grimorio.security/memory#finding-quality--severity**
    before writing the report.
 4. **ALWAYS write `security-report.md` in the EXACT `## OUTPUT` format below.**
 5. **ALWAYS set `## Status` to exactly one of `CLEAR` / `FAIL` / `FAIL-ARCH`, never unset** — this status is
@@ -27,7 +27,7 @@ How severe is each proven finding, `[CODE FIX]` or `[ARCH ISSUE]`, and what is t
    logged but never block SHIP.
 6. **ALWAYS thread the gate-methodology rules governing CLASSIFICATION specifically** — never re-derive their
    full text, point at
-   ref:memory/grimorio.security-memory/project.md#gate-methodology--earned-rules-do-not-re-learn-these-the-hard-way:
+   ref:agent/grimorio.security/memory/project.md#gate-methodology--earned-rules-do-not-re-learn-these-the-hard-way:
    `closed-as-ENFORCED` vs `closed-as-declared-only` turns on whether a RULE or the VOCABULARY moved; a GATE
    with no caller is the same finding as a RULE with no reader.
 7. **BEFORE reporting ⟶ restate, as a final self-check, the six standing Rules from Phase 0** (not QA / be
@@ -37,10 +37,10 @@ How severe is each proven finding, `[CODE FIX]` or `[ARCH ISSUE]`, and what is t
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.security-memory#code-fix-vs-architectural-issue — step 2's own load.
+- import:agent/grimorio.security/memory#code-fix-vs-architectural-issue — step 2's own load.
   FINGERPRINT: FINDINGS CLASSIFIED field below (a real [CODE FIX]/[ARCH ISSUE] split cannot be produced without
   applying this classification).
-- import:memory/grimorio.security-memory#finding-quality--severity — step 3's own load.
+- import:agent/grimorio.security/memory#finding-quality--severity — step 3's own load.
   FINGERPRINT: FINDINGS CLASSIFIED field below, jointly with the bullet above (severity cannot be graded
   without applying this section either).
 - import:skill/grimorio.feature-workflow — the REWORK cycle (max 2, per failing agent) and the escalation rule
@@ -48,7 +48,7 @@ How severe is each proven finding, `[CODE FIX]` or `[ARCH ISSUE]`, and what is t
   happens downstream to this phase's own FAIL status.
   FINGERPRINT: STATUS SET field below (a status this chain's own downstream routing can act on cannot be
   produced without knowing this rule).
-- ref:memory/grimorio.security-memory/project.md#gate-methodology--earned-rules-do-not-re-learn-these-the-hard-way —
+- ref:agent/grimorio.security/memory/project.md#gate-methodology--earned-rules-do-not-re-learn-these-the-hard-way —
   step 6's own load.
 
 ## OUTPUT
@@ -103,8 +103,8 @@ import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
 phase's own filled PHASE 6 DELIVERABLE block, written to disk first per that gate's own algorithm — this phase
 has no NEXT phase file to gate a read against, so the gate runs against the CLOSE itself: the report below is
 what this phase "reveals," and it now runs only on that gate's own PASS, never on the block merely existing in
-context.** This phase's own `import:memory/grimorio.security-memory#code-fix-vs-architectural-issue`,
-`import:memory/grimorio.security-memory#finding-quality--severity`, and `import:skill/grimorio.feature-workflow`
+context.** This phase's own `import:agent/grimorio.security/memory#code-fix-vs-architectural-issue`,
+`import:agent/grimorio.security/memory#finding-quality--severity`, and `import:skill/grimorio.feature-workflow`
 each carry a `FINGERPRINT:` annotation, so the gate is NOT inert here.
 
 **This phase has no next file to read.** The chain ends here. A subsequent invocation starts fresh at Phase 0

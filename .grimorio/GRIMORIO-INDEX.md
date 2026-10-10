@@ -94,7 +94,7 @@ every edit.
 - `grimorio.solution-architecture` · `grimorio.research-capture` (persist findings to tmp/ as you go) · `grimorio.working-memory` (scratch-file convention) · `grimorio.feature-workflow` · `grimorio.fail-fast`.
 - `grimorio.board` — the portable control-board pattern: a fixed renderer over a data store, a small fixed reporting-state spine, an open item that never ages out, and a named identity for a non-human actor's own state transition — plus this project's own derived Vision, ownership doctrine, and schema contract for the live artifact.
 
-**Per-agent memory** — `grimorio.architect-memory` · `grimorio.po-memory` · `grimorio.developer-memory` · `grimorio.code-reviewer-memory` · `grimorio.security-memory` · `grimorio.qa-memory` · `grimorio.ux-memory` · `grimorio.manual-verifier-memory` · `grimorio.ui-developer-memory` · `grimorio.documentation-memory` · `grimorio.go-developer-memory` · `grimorio.js-developer-memory` · `grimorio.py-developer-memory` — semantic memory for each agent.
+**Per-agent memory** — OPTIONAL, in `memory/` inside the agent's own folder (`.grimorio/agents/<agent>/memory/`). Shipped today for web-architect, po, code-reviewer, security, qa, ux, manual-verifier and the go/js/py/ui developers; an agent with no `memory/` simply has none. `grimorio.build-protocol` is the developers' shared trap principles and build protocol — a skill, because several agents load it.
 
 **Game / product**
 - `grimorio.game-design` · `grimorio.game-development` · `grimorio.game-patterns` · `grimorio.ai-game-dev-methodology` · `grimorio.experiment-method` · `grimorio.map-design` · `grimorio.map-encoding` · `grimorio.tileset-composition`.

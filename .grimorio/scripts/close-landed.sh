@@ -42,7 +42,7 @@ OBJ_LIB=".grimorio/skills/grimorio.objective-harness/scripts/objective-lib.sh"
 
 CUR=$(obj_current_branch)
 if obj_is_trunk "$CUR" 2>/dev/null; then TRUNK="$CUR"; else TRUNK=$(obj_default_trunk); fi
-LEDGER=".grimorio/memory/grimorio.po-memory/project.features-status.md"
+LEDGER=".grimorio/agents/grimorio.po/memory/project.features-status.md"
 DRY=0; [ "${1:-}" = "--dry" ] && { DRY=1; shift; }
 
 [ -f "$LEDGER" ] || { echo "ledger missing: $LEDGER" >&2; exit 1; }

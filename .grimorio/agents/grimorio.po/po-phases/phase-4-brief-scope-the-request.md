@@ -17,8 +17,8 @@ how this phase scopes the request.
 
 ## Product context
 
-Product knowledge lives in ref:memory/grimorio.po-memory — universal PO principles in its `SKILL.md`, and THIS
-product (name, users, goals, commercial mode) in ref:memory/grimorio.po-memory/project.md. Read it before
+Product knowledge lives in ref:agent/grimorio.po/memory — universal PO principles in its `SKILL.md`, and THIS
+product (name, users, goals, commercial mode) in ref:agent/grimorio.po/memory/project.md. Read it before
 writing a brief. You do NOT need DB schema, API patterns, framework choices, or deployment — those belong to
 the architect.
 
@@ -27,7 +27,7 @@ the architect.
 1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — scope the request,
    clarify with the user — and nothing else; no spawn, ever, in this phase (the optional scout lives at B2,
    never here).** This is this purpose-driven agent's required SEARCH-FIRST opening for the Brief chain:
-   **ALWAYS read ref:memory/grimorio.po-memory/project.md FIRST**, per grimorio-conduct rule 22 — has a similar
+   **ALWAYS read ref:agent/grimorio.po/memory/project.md FIRST**, per grimorio-conduct rule 22 — has a similar
    feature/brief been ruled on before? — state what was found.
 2. **BEFORE writing the brief ⟶ state OBJECTIVE (what feature this brief was actually asked to spec) and EXIT
    CONDITION (what the brief must contain for it to be usable by the architect and QA)**, per Phase 0's Core
@@ -39,7 +39,7 @@ the architect.
 
 ## LOAD (JIT) — scoped to this phase only
 
-- ref:memory/grimorio.po-memory/project.md — the precedent-search + product-context knowledge, needed nowhere
+- ref:agent/grimorio.po/memory/project.md — the precedent-search + product-context knowledge, needed nowhere
   else in this chain.
 - **NEVER load `pipeline-modes` or the codebase-search knowledge here** — that is B2's own JIT slice.
 

@@ -21,17 +21,17 @@ invariant was weakened, and produces the exact evidence Phase 5's close must cit
    this phase.** This agent never invokes another agent from Phase 4 — the fan-out gate is Phase 3's own,
    already closed by the time this phase runs.
 2. **ALWAYS run the full pytest suite, in the foreground — never backgrounded**, per
-   ref:memory/grimorio.developer-memory/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park
+   ref:skill/grimorio.build-protocol/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park
    — invoke synchronously and BLOCK on the result. **WHEN the full suite is slow ⟶ narrow it with `-k` or a
    single test file — still foreground, never backgrounded.**
 3. **ALWAYS confirm, explicitly, that none of this project's backend-service hard invariants — money- and
    DB-blindness, and any others this project records at
-   ref:memory/grimorio.developer-memory/project.md#conventions-we-chose, never restated here — were weakened
+   ref:agent/grimorio.py-developer/memory/project.md#conventions-we-chose, never restated here — were weakened
    anywhere in the diff.** Check each invariant this task's own diff could plausibly touch, never a blanket
    "looks fine."
 4. **WHEN the bug-report route produced a BUG-FIX-FIRST-TEST (Phase 2/3's own carried field) ⟶ ALSO confirm,
    per
-   ref:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order's own step 3, that
+   ref:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order's own step 3, that
    THAT SPECIFIC test now passes** — not merely that the suite is green in aggregate.
 5. **THE MINI-LOOP BOUNDARY, stated as an explicit test, never left to feel: WHEN step 2 or step 3 (or step 4,
    on the bug-report route) fails, AND the fix is an ORDINARY defect this phase's own re-run can resolve without
@@ -55,15 +55,15 @@ invariant was weakened, and produces the exact evidence Phase 5's close must cit
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.developer-memory/project.md#conventions-we-chose — this project's hard-invariant list,
+- import:agent/grimorio.py-developer/memory/project.md#conventions-we-chose — this project's hard-invariant list,
   step 3's own load.
   FINGERPRINT: INVARIANT CONFIRMATION field below (a real, per-invariant confirmation, distinct from a blanket
   "looks fine," cannot be produced without this pointer).
-- import:memory/grimorio.developer-memory/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park —
+- import:skill/grimorio.build-protocol/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park —
   step 2's own foreground-run discipline.
   FINGERPRINT: FULL SUITE RESULT field below (a genuinely foreground-run, non-parked result cannot be produced
   without this discipline).
-- import:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order — step 4's own
+- import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — step 4's own
   load, WHEN the bug-report route fired.
   FINGERPRINT: BUG-FIX-FIRST-TEST CONFIRMATION field below (a real confirmation that the SPECIFIC reproduction
   test now passes, distinct from the aggregate suite result, cannot be produced without applying this order's

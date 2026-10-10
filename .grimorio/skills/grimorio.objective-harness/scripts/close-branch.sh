@@ -114,7 +114,7 @@ closed=$(obj_closed_checks "$objfile")
 # selftests went with it. -> ref:memory/grimorio.board-memory/grimorio-defects.md
 
 # --- 6. milestone status -----------------------------------------------------------------------
-ledger=".grimorio/memory/grimorio.po-memory/project.features-status.md"
+ledger=".grimorio/agents/grimorio.po/memory/project.features-status.md"
 milestone=$(obj_field "$objfile" "Milestone")
 if [ -n "$milestone" ]; then
   status_line=$(grep -A20 "CURRENT MILESTONE — $milestone" "$ledger" | grep -m1 "STATUS:")

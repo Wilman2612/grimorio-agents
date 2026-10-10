@@ -49,7 +49,7 @@ here.**
    this SAME change.** -> ref:skill/grimorio.system-design#shared-rule--delete-on-consume for the canonical
    statement — this is the EXECUTION half of the rule Phase 2 only marked; a consumed-but-not-deleted item is
    silently re-consumed by the next design or render that reads the same list.
-8. **ALWAYS ground every claim in the render against ref:memory/grimorio.po-memory's own signed product vision**
+8. **ALWAYS ground every claim in the render against ref:agent/grimorio.po/memory's own signed product vision**
    — a render's own claims must never contradict what is already signed.
 
 ## LOAD (JIT) — scoped to this phase only
@@ -58,7 +58,7 @@ here.**
   pattern, step 3's own load.
 - ref:skill/grimorio.report-design — the SHOW rule and the "Breadth without complexity" rule, steps 2 and 5-6's
   own load.
-- import:memory/grimorio.po-memory — the signed product vision, step 8's own load.
+- import:agent/grimorio.po/memory — the signed product vision, step 8's own load.
 - **NEVER load the per-view ship-gate criteria here** — Phase 4's own load, not this one.
 
 ## PHASE 3 DELIVERABLE — do not read Phase 4 until this is filled

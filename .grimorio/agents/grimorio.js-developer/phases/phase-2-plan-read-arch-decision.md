@@ -24,11 +24,11 @@ against an unread plan, a missing plan, or work that was never this agent's own 
 2. **BEFORE your FIRST read of any target file this pass ⟶ do the upward ref:skill/harness.md lookup** (target file's
    folder → repo root) and obey every co-located guardrail found — this IS the chain's first file-reading/
    scoping phase, per
-   ref:memory/grimorio.developer-memory/build-protocol.md#harness-first. **WHEN a change would break a
+   ref:skill/grimorio.build-protocol/build-protocol.md#harness-first. **WHEN a change would break a
    harness GATE rule ⟶ STOP and ask the user.**
 3. **ALWAYS determine your MODE before reading anything task-specific**: Pipeline (the orchestrator gives an
    artifact directory) or Standalone (it does not) — per
-   ref:memory/grimorio.developer-memory/build-protocol.md#pipeline-vs-standalone-mode. Pipeline mode
+   ref:skill/grimorio.build-protocol/build-protocol.md#pipeline-vs-standalone-mode. Pipeline mode
    reads `arch-decision.md` and writes `dev-notes.md` at the end (Phase 5); Standalone works directly from the
    prompt, no dev-note owed.
 4. **ALWAYS read the architecture contract** (`arch-decision.md` for this slice) **and the wire/DAL contracts
@@ -46,7 +46,7 @@ against an unread plan, a missing plan, or work that was never this agent's own 
    agent:grimorio.ui-developer; no backend work was in scope to build)`.** **WHEN the task is genuinely this
    agent's own server-side/shared-package scope ⟶ this check holds; proceed to step 6.**
 6. **BEFORE any judgement-bearing work ⟶ run the missing-plan refusal check**, per
-   ref:memory/grimorio.developer-memory/build-protocol.md#missing-plan-refusal--this-developers-own-instantiation-of-the-identity-refusal-pattern
+   ref:skill/grimorio.build-protocol/build-protocol.md#missing-plan-refusal--this-developers-own-instantiation-of-the-identity-refusal-pattern
    and ref:skill/grimorio.agent-tiers/refusal-pattern.md. **WHEN your brief hands you work that still
    carries judgement AND no plan accompanies it (no `arch-decision.md`, no explicit shape/files/reuse decided in
    the brief) ⟶ REFUSE THE INVOCATION here, in this phase's own DELIVERABLE, naming the triad (violation / why /
@@ -61,7 +61,7 @@ against an unread plan, a missing plan, or work that was never this agent's own 
    flag on the way to Phase 3.**
 8. **ALWAYS detect REWORK/bug-report mode**: does the invocation carry a `verification-report.md` or a bug
    list? **WHEN it does ⟶ note here, never execute yet, that
-   ref:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order (the failing test
+   ref:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order (the failing test
    FIRST, before any production code) applies once Phase 3 resumes building — name the specific file/module the
    bug appears to live in, so Phase 3 applies the mandatory order to exactly that item.**
 9. **ALWAYS scope the file/module list Phase 3 will actually touch**, grounded in the contract just read — never
@@ -76,7 +76,7 @@ against an unread plan, a missing plan, or work that was never this agent's own 
   step 2's own load.
   FINGERPRINT: HARNESS LOOKUP DONE field below (a real upward lookup, distinct from an asserted "checked,"
   cannot be produced without applying this discipline).
-- import:memory/grimorio.developer-memory/build-protocol.md (specifically its "Pipeline vs Standalone
+- import:skill/grimorio.build-protocol/build-protocol.md (specifically its "Pipeline vs Standalone
   mode", "Missing-plan refusal", and "Bug report → mandatory order" sections) — steps 3, 6, 8 above apply these
   directly.
   FINGERPRINT: MODE + MISSING-PLAN CHECK + REWORK/BUG-REPORT DETECTED fields below (a real mode determination, a
@@ -85,12 +85,12 @@ against an unread plan, a missing plan, or work that was never this agent's own 
 - import:skill/grimorio.agent-tiers/refusal-pattern.md — the refusal triad + the charter-vs-hard
   boundary test, step 6's own load, jointly with the bullet above.
   FINGERPRINT: MISSING-PLAN CHECK field below, jointly with the build-protocol.md bullet above.
-- import:memory/grimorio.developer-memory/project.md#js-developer-scope--concrete-folder-paths — this project's
+- import:agent/grimorio.js-developer/memory/project.md#js-developer-scope--concrete-folder-paths — this project's
   concrete server-side-vs-UI folder split, step 5's own load — the exact instrument the Scope Boundary check is
   run against.
   FINGERPRINT: SCOPE BOUNDARY CHECK field below (a real, grounded holds/STOP call, never a guess, cannot be
   produced without this pointer).
-- import:memory/grimorio.developer-memory/project.md#conventions-we-chose — this project's hard-invariant list
+- import:agent/grimorio.js-developer/memory/project.md#conventions-we-chose — this project's hard-invariant list
   and the exact package/service names, step 9's own scoping grounds against.
   FINGERPRINT: SCOPED FILE/MODULE LIST field below (a correctly-bounded scope, never a guess or an invented
   package name, cannot be produced without this pointer).

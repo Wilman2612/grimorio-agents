@@ -56,7 +56,7 @@ never re-derives what each one IS:
 - **The app** (fake-data mode for deterministic data, or real) — real routes, navigation, page-context flows.
 
 -> Which tool runs the workbench, its exact start commands, and both environments' ports:
-ref:memory/grimorio.manual-verifier-memory/project.local-setup.md.
+ref:agent/grimorio.manual-verifier/memory/project.local-setup.md.
 
 ## NOT hard-locked — the CHILDREN relationship
 
@@ -78,7 +78,7 @@ branch, and never from a spawned child's own copy of that same branch."
 Use **`playwright-cli`** for all browser interaction — never inline Playwright `.cjs` boilerplate.
 
 ```bash
-playwright-cli open {local URL — see ref:memory/grimorio.manual-verifier-memory/project.local-setup.md}/some-route
+playwright-cli open {local URL — see ref:agent/grimorio.manual-verifier/memory/project.local-setup.md}/some-route
 playwright-cli snapshot          # accessibility tree of current state
 playwright-cli screenshot --filename=screenshots/01-route.png
 playwright-cli console           # console errors

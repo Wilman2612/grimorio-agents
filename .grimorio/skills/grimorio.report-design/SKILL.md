@@ -87,7 +87,7 @@ problema de verdad."*
    to the others, you have not split it yet — you have re-described the tangle.
 2. **Take each one to the BASES.** Vision, product memory, the mechanics ledger, the features list, the
    architecture decisions. Most sub-problems are already answered there. In the session that produced this
-   rule, a question escalated to the CEO about ladder budgets was already ruled in `ref:memory/grimorio.po-memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives`, and
+   rule, a question escalated to the CEO about ladder budgets was already ruled in `ref:agent/grimorio.po/memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives`, and
    an "irreversible product decision" dissolved on inspection because its premise did not hold.
 3. **Ask whether it is a REAL problem.** Not "how do we solve it" — *does it exist*. The per-item template
    loop was presented as an irreversible product decision; the loop exists in template engines because their

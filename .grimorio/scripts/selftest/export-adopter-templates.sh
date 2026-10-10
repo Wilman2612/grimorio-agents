@@ -16,13 +16,13 @@ import { readFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 const root = execFileSync("git", ["rev-parse", "--show-toplevel"], { encoding: "utf8" }).trim();
 const u = (f) => pathToFileURL(root + "/.grimorio/scripts/export/" + f).href;
-const { classifyMemory } = await import(u("memory-split.mjs"));
+const { classifyMemory, isMemoryPath } = await import(u("memory-split.mjs"));
 const { collectAdopterSlots } = await import(u("adopter-templates.mjs"));
 const slots = new Set(collectAdopterSlots(root, classifyMemory).keys());
 const all = execFileSync("git", ["-C", root, "ls-files", ".grimorio"], { encoding: "utf8" }).trim().split(String.fromCharCode(10));
 const travels = new Set(classifyMemory(all).travels);
 const senders = all.filter((f) => f.endsWith(".md"))
-  .filter((f) => !f.startsWith(".grimorio/memory/") || travels.has(f))
+  .filter((f) => !isMemoryPath(f) || travels.has(f))
   .filter((f) => !f.split("/").some((s) => s.startsWith("project.")));
 const unseeded = new Set();
 for (const f of senders) {
@@ -62,7 +62,7 @@ import { execFileSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
 const root = execFileSync("git", ["rev-parse", "--show-toplevel"], { encoding: "utf8" }).trim();
 const u = (f) => pathToFileURL(root + "/.grimorio/scripts/export/" + f).href;
-const { classifyMemory } = await import(u("memory-split.mjs"));
+const { classifyMemory, isMemoryPath } = await import(u("memory-split.mjs"));
 const { collectAdopterSlots, renderTemplate } = await import(u("adopter-templates.mjs"));
 const slots = collectAdopterSlots(root, classifyMemory);
 let out = "";
@@ -77,12 +77,12 @@ t "and every one of those hands them a runnable grep rather than a name"   "$(ec
 
 echo "=== A SEEDED SLOT IS NEVER WRITTEN OVER -- the one loss an export must not cause"
 T="$(mktemp -d)"; trap 'rm -rf "$T"' EXIT
-G="$T/target"; mkdir -p "$G/.grimorio/memory/grimorio.developer-memory"
-echo "THEIR OWN CONVENTIONS, hand-written" > "$G/.grimorio/memory/grimorio.developer-memory/project.md"
+G="$T/target"; mkdir -p "$G/.grimorio/skills/grimorio.agent-writing"
+echo "THEIR OWN CONVENTIONS, hand-written" > "$G/.grimorio/skills/grimorio.agent-writing/project.md"
 ( cd "$G" && git init -q && git add -A . && git -c user.name=t -c user.email=t@localhost commit -q -m f ) >/dev/null 2>&1
 OUT2="$(node .grimorio/scripts/export/publish.mjs --target "$G" --apply 2>&1)"; CODE=$?
 t "the export completes" "$CODE" "0"
-t "their file is untouched" "$(grep -c 'THEIR OWN CONVENTIONS' "$G/.grimorio/memory/grimorio.developer-memory/project.md")" "1"
+t "their file is untouched" "$(grep -c 'THEIR OWN CONVENTIONS' "$G/.grimorio/skills/grimorio.agent-writing/project.md")" "1"
 # The RELATION, not the two numbers: the slot count moves with the corpus, and this assertion already
 # went red once for that reason alone. What it claims is that EXACTLY ONE was left alone -- theirs.
 t "and it is reported as already written, not seeded" "$(echo "$OUT2" | awk '/adopter slots/{for(i=1;i<=NF;i++) if($i=="already") print $(i-1)}')" "1"

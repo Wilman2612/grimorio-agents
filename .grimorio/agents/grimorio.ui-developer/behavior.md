@@ -48,7 +48,7 @@ own pre-split version:
 
 Concrete folder paths AND naming conventions (which folder is the web app, the exact per-layer directory globs
 behind "UI/presentation layers" above, the DAL's interface/Fake-adapter/Real-adapter file-naming pattern) live
-at ref:memory/grimorio.developer-memory/project.md#ui-developer-scope--concrete-folder-paths — never hardcode
+at ref:agent/grimorio.ui-developer/memory/project.md#ui-developer-scope--concrete-folder-paths — never hardcode
 them here; that section is the single place they are verified against the live repo tree. This is a PORTABLE
 behavior file: it names a generic architectural PATTERN (UI/presentation layers vs server-side layers), never a
 concrete folder glob or a project-specific adapter-shape name — a different project applying this same role may
@@ -63,7 +63,7 @@ in parallel.
 
 ## The shared build-protocol, THREADED across the phases that actually need each section
 
-**NEVER re-import `ref:memory/grimorio.developer-memory/build-protocol.md` as a second flat file executed
+**NEVER re-import `ref:skill/grimorio.build-protocol/build-protocol.md` as a second flat file executed
 alongside this chain.** It remains a MANDATORY dependency — every developer agent, this one included, still
 owes its full content — but each phase below now loads only the section(s) it actually needs, at the point in
 the chain where it needs them, per this table:
@@ -107,7 +107,7 @@ the chain where it needs them, per this table:
   If a failsafe/iteration bound trips, DECLARE incompletion loudly — never hand back a done-ish report.
 - **WHEN you hit non-obvious knowledge future-you would want (a library that's hard to use or has gaps, an
   answer you struggled to find, a gotcha worth saving), from ANY phase in this chain ⟶ capture it into
-  ref:memory/grimorio.developer-memory/project.traps.md.** This is the harness-mode knowledge-partner duty every
+  ref:agent/grimorio.ui-developer/memory/project.traps.md.** This is the harness-mode knowledge-partner duty every
   developer carries, not scoped to one phase.
 - **Open, not decided — do not close this by writing an answer.** Whether a developer may ALSO raise a Sonnet
   child of itself for VERIFICATION on a long-running change is an open question the CEO has mused on but never

@@ -31,7 +31,7 @@ the same ground with a genuinely different, open-ended lens.
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.manual-verifier-memory#error-capture — the severity-floor table (compilation overlay,
+- import:agent/grimorio.manual-verifier/memory#error-capture — the severity-floor table (compilation overlay,
   console errors, 4xx/5xx, garbled text, missing expected elements, dev error badges) grading every regression
   finding this phase produces, and the PASS-integrity rule governing whether a worked-around error still blocks
   PASS.
@@ -43,7 +43,7 @@ the same ground with a genuinely different, open-ended lens.
   restatement rule:** Use **`playwright-cli`** for all browser
   interaction — never inline Playwright `.cjs` boilerplate.
   ```bash
-  playwright-cli open {local URL — see ref:memory/grimorio.manual-verifier-memory/project.local-setup.md}/some-route
+  playwright-cli open {local URL — see ref:agent/grimorio.manual-verifier/memory/project.local-setup.md}/some-route
   playwright-cli snapshot          # accessibility tree of current state
   playwright-cli screenshot --filename=screenshots/01-route.png
   playwright-cli console           # console errors
@@ -75,7 +75,7 @@ import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
 (`ref:repo/.grimorio/agents/grimorio.manual-verifier/phases/phase-4-explore-for-regressions.md`) and this
 phase's own filled PHASE 4 DELIVERABLE block, written to disk first per that gate's own algorithm — the read
 below now runs on that gate's own PASS, never on the block merely existing in context.** This phase's own
-`import:memory/grimorio.manual-verifier-memory#error-capture` bullet carries a `FINGERPRINT:` annotation, so the gate is
+`import:agent/grimorio.manual-verifier/memory#error-capture` bullet carries a `FINGERPRINT:` annotation, so the gate is
 NOT inert here.
 
 **ALWAYS read ref:agent/grimorio.manual-verifier/phases/phase-5-report-and-merge.md next, carrying

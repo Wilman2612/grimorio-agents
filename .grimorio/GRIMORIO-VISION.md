@@ -21,7 +21,7 @@ historical, not current.
 # Grimorio — meta-system vision (provisional, PO-kept)
 
 > **Scope.** This is the vision for GRIMORIO ITSELF — the agent/skill system we are building to develop arena —
-> NOT the product vision (that is ref:memory/grimorio.po-memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives). It is not "product," not "activated," still being designed. The
+> NOT the product vision (that is ref:agent/grimorio.po/memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives). It is not "product," not "activated," still being designed. The
 > `po` keeps it **provisionally** (per Wilman, until it graduates to its own home — likely under ref:skill/grimorio.agent-writing#the-split-principle--the-agent-is-who-it-is-the-skill-is-what-it-does).
 > Recorded so the meta-design survives context resets — the exact loss it exists to prevent.
 
@@ -89,7 +89,7 @@ sub-agents when confused and reincarnates the account-burn. Fan-out grunts must 
   investigate. Deciding what to KEEP stays with `documentation`.
 - ✅ **ref:skill/grimorio.agent-selection skill** — BUILT (`.grimorio/skills/grimorio.agent-selection/`): the former loose ref:repo/.claude/happy-path.md,
   refactored into a proper skill per ref:skill/grimorio.agent-writing#the-split-template--how-to-divide-any-agent, so it auto-surfaces by description (always loaded, even if I
-  forget to look). `CLAUDE.md` and ref:memory/grimorio.po-memory/project.grimorio-vision.md point to it; the loose root doc is deleted. Compress later
+  forget to look). `CLAUDE.md` and ref:agent/grimorio.po/memory/project.grimorio-vision.md point to it; the loose root doc is deleted. Compress later
   only if it grows too big — Wilman's call on timing.
 - ✅ **Non-recursive is now HARNESS-ENFORCED** — agent:grimorio.scout carries `disallowedTools: Agent` (verified).
   No longer a behavioural promise; a runaway is structurally impossible, bounded at one level.
@@ -103,7 +103,7 @@ The `war-sim-entropy-panel` pass mis-applied entropy: it ran to "discover" probl
 already solved, instead of building. Concretely, it raised strategy exploitability/counterability (Convergence
 A's "no stable skill ceiling" angle) as an unresolved structural risk gating the design — when it is ordinary,
 documented tier-list dynamics in this exact genre (Gladiabots' own "review your replays and improve" answer),
-not novel to Arena. See the correction of record in ref:memory/grimorio.po-memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives §1I.
+not novel to Arena. See the correction of record in ref:agent/grimorio.po/memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives §1I.
 
 **The lesson, generalizable:** entropy exists to surface genuine unknown-unknowns (what the CEO hasn't thought
 of, blind spots the team is too close to see) — it is NOT a substitute for checking established game-dev

@@ -33,15 +33,15 @@ closed, checklist-driven pass over every named acceptance criterion.
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.manual-verifier-memory#state-machine-coverage-protocol-before-opening-the-browser — the
+- import:agent/grimorio.manual-verifier/memory#state-machine-coverage-protocol-before-opening-the-browser — the
   state-by-state coverage discipline governing step 3's own "distinct states" check.
   FINGERPRINT: WORKBENCH VERIFICATION field below (a genuine distinct-states check cannot be produced without
   applying this protocol).
-- import:memory/grimorio.manual-verifier-memory#scenario-planning — the discipline governing step 2's own per-criterion
+- import:agent/grimorio.manual-verifier/memory#scenario-planning — the discipline governing step 2's own per-criterion
   plan (what/expected/broken/environment, before the browser opens).
   FINGERPRINT: PER-CRITERION PLAN field below (a real plan, written before browser action, cannot be produced
   without applying this section).
-- import:memory/grimorio.manual-verifier-memory#visual-checklist-per-screen-mark-na-where-it-doesnt-apply — the
+- import:agent/grimorio.manual-verifier/memory#visual-checklist-per-screen-mark-na-where-it-doesnt-apply — the
   closed-list checklist step 3-4 apply, distinct from Phase 4's own open-ended heuristics.
   FINGERPRINT: WORKBENCH VERIFICATION + APP VERIFICATION fields below (a closed-list-driven check cannot be
   produced without this checklist).
@@ -51,7 +51,7 @@ closed, checklist-driven pass over every named acceptance criterion.
   restatement rule:** Use **`playwright-cli`** for all browser
   interaction — never inline Playwright `.cjs` boilerplate.
   ```bash
-  playwright-cli open {local URL — see ref:memory/grimorio.manual-verifier-memory/project.local-setup.md}/some-route
+  playwright-cli open {local URL — see ref:agent/grimorio.manual-verifier/memory/project.local-setup.md}/some-route
   playwright-cli snapshot          # accessibility tree of current state
   playwright-cli screenshot --filename=screenshots/01-route.png
   playwright-cli console           # console errors

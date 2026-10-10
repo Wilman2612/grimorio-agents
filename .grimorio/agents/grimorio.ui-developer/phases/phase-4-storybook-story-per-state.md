@@ -47,7 +47,7 @@ artifact that replaces the old UX-mockup-writing step.
    spawn boundary. **WHEN the brief names no such flag ⟶ step 4a stays skipped.**
 2. **ALWAYS survey before writing, scoped to the Stories/`.stories.tsx` folder for this domain** — read the
    files you will change, search for an existing Story you should extend rather than duplicate, per
-   import:memory/grimorio.developer-memory/build-protocol.md#survey-before-writing-mandatory-first-step.
+   import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step.
 3. **ALWAYS decompose: one Story per named state per component (your VOLUME UNIT) — and declare, in one line,
    either the items you will fan out to or why this particular task does not split.**
 4. **FAN-OUT BRANCH** — same ladder mechanics as Phase 3's own step 3, applied to Stories instead of
@@ -62,7 +62,7 @@ artifact that replaces the old UX-mockup-writing step.
    3. **WHEN the gate does not hold ⟶ proceed solo, but DECLARE in one line WHY it failed**, before continuing.
       **NEVER skip the declaration.**
 4a. **WHEN Phase 3's own `BUG-REPORT CARRIED FORWARD` field names a Story-layer bug ⟶ apply
-   import:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order — write the
+   import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — write the
    test that proves the bug exists, confirm it FAILS, THEN fix the Story/fixture** — before this phase's own
    write step (step 5) touches that item. On the FIRST-PASS branch this fires inside the SELF node, mirroring
    Phase 2's own step 3a placement. On RE-ENTRY it is skipped, per step 1a above: RE-ENTRY sub-case (b) already
@@ -82,7 +82,7 @@ artifact that replaces the old UX-mockup-writing step.
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.developer-memory/build-protocol.md#survey-before-writing-mandatory-first-step —
+- import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step —
   step 2's own survey-before-writing step, scoped to the Stories/`.stories.tsx` folder for this domain.
   FINGERPRINT: STORIES WRITTEN field below (a Story set that actually reuses or extends an existing Story,
   rather than duplicating one, cannot be produced without applying this discipline first).
@@ -90,7 +90,7 @@ artifact that replaces the old UX-mockup-writing step.
   5's own install/preview-config/story-folder mechanics.
   FINGERPRINT: STORIES WRITTEN field below (a Story set that actually follows this project's own Storybook
   mechanics cannot be produced without this section).
-- import:memory/grimorio.ui-developer-memory/project.md (specifically its own "Storybook" section: viewport
+- import:agent/grimorio.ui-developer/memory/project.md (specifically its own "Storybook" section: viewport
   list, the mandatory-Story component list, the unstyled-render trap, the `RunCostMeter` hidden-below-`lg`
   inverse trap) — step 5's own project-specific conventions.
   FINGERPRINT: STORIES WRITTEN + PREVIEW-CSS CONFIRMED fields below (a Story set covering the mandatory
@@ -103,7 +103,7 @@ artifact that replaces the old UX-mockup-writing step.
   rules.
   FINGERPRINT: FAN-OUT DECISION field below (a real gate evaluation, spawn, or solo declaration cannot be
   produced without applying this ladder and folder convention).
-- import:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order — step 4a's own
+- import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — step 4a's own
   bug-order step, scoped to a Story-layer bug Phase 1 flagged (carried forward via Phase 2 -> Phase 3's own
   `BUG-REPORT CARRIED FORWARD` field).
   FINGERPRINT: BUG-FIX-FIRST-TEST field below (a real failing-test-first sequence, distinct from an unchecked

@@ -53,7 +53,7 @@ assumed.**
    Go-service trap corpus — for anything relevant to THIS task's own domain (pathing, collision, morale, the
    economy loop, perception/LOS, the decision channel, procedural maps, or whichever system this task actually
    touches). **NEVER re-paste the corpus; search it and carry forward only what applies.**
-4. **ALWAYS ALSO search `ref:memory/grimorio.developer-memory/project.traps.md`** — the shared, cross-language
+4. **ALWAYS ALSO search `ref:agent/grimorio.go-developer/memory/project.traps.md`** — the shared, cross-language
    traps index — for anything relevant to this task that is not Go-specific (a shared stack decision, a
    cross-language contract gotcha).
 5. **WHEN the invocation names or implies a prior adjacent contract (a related module already built, a related
@@ -66,11 +66,11 @@ assumed.**
 - import:skill/grimorio.reasoning-principles — the objective/exit-condition contract, step 2 above applies.
   FINGERPRINT: OBJECTIVE + EXIT CONDITION fields below (a real objective/exit-condition pair, distinct from a
   restated task description, cannot be produced without this contract).
-- import:memory/grimorio.go-developer-memory/project.traps.md — this agent's own concrete Go-service traps, step 3's own
+- import:agent/grimorio.go-developer/memory/project.traps.md — this agent's own concrete Go-service traps, step 3's own
   targeted search.
   FINGERPRINT: TRAPS CHECKED (OWN) field below (a real search result against this large corpus, distinct from
   an unchecked "none," cannot be produced without opening this index).
-- import:memory/grimorio.developer-memory/project.traps.md — the shared cross-language traps index, step 4's own
+- import:agent/grimorio.go-developer/memory/project.traps.md — the shared cross-language traps index, step 4's own
   search.
   FINGERPRINT: TRAPS CHECKED (SHARED) field below (a real search result, distinct from an unchecked "none,"
   cannot be produced without opening this index).

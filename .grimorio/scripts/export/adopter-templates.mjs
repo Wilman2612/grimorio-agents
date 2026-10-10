@@ -7,6 +7,7 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
+import { isMemoryPath } from "./memory-split.mjs";
 
 const LF = String.fromCharCode(10);
 
@@ -18,13 +19,18 @@ const isCompanionSlot = (p) => {
   return container.startsWith("grimorio.") && parts.slice(1).some((s) => s.startsWith("project."));
 };
 
+// An agent's own memory is OPTIONAL (ARCHITECTURE.md section 6): a reference into
+// `.grimorio/agents/<agent>/memory/` that finds nothing means this installation wrote none, so it is never
+// a slot and never gets an empty template.
+const isAgentMemory = (key) => /^\.grimorio\/agents\/[^/]+\/memory\//.test(key);
+
 // classifyMemory is INJECTED rather than imported: the caller already has it, and a module-level global
 // would make this untestable without one.
 export function collectAdopterSlots(root, classifyMemory) {
   const all = execFileSync("git", ["-C", root, "ls-files", ".grimorio"], { encoding: "utf8" }).trim().split(LF).filter(Boolean);
   const travels = new Set(classifyMemory(all).travels);
   const senders = all.filter((f) => f.endsWith(".md"))
-    .filter((f) => !f.startsWith(".grimorio/memory/") || travels.has(f))
+    .filter((f) => !isMemoryPath(f) || travels.has(f))
     .filter((f) => !f.split("/").some((s) => s.startsWith("project.")));
   const slots = new Map();
   for (const f of senders) {
@@ -38,6 +44,7 @@ export function collectAdopterSlots(root, classifyMemory) {
       // published corpus pointing at files nobody had been told to write.
       const store = { memory: ".grimorio/memory/", skill: ".grimorio/skills/", agent: ".grimorio/agents/" }[m[1]];
       const key = store + rel;
+      if (isAgentMemory(key)) continue;
       if (!slots.has(key)) slots.set(key, { by: new Set(), anchors: new Set() });
       slots.get(key).by.add(f);
       if (anchor) slots.get(key).anchors.add(anchor);

@@ -47,16 +47,16 @@ This is where the FULL weight belongs — nothing here was needed by Phase 1, an
 Phase 3:
 
 - import:skill/grimorio.working-memory — the tmp/ working-folder convention, for saving per-state screenshots.
-- import:memory/grimorio.ux-memory — universal UX principles + the Nielsen heuristics evaluation framework
+- import:agent/grimorio.ux/memory — universal UX principles + the Nielsen heuristics evaluation framework
   (general) + this project's design system (project/code), in full: Norman's 5 concepts, the 7 Laws of UX, 5
   Refactoring-UI/Gestalt fundamentals, 4 WCAG thresholds, Krug, responsive/mobile-first, the 10 Nielsen
   heuristics + priority + interaction-state rule + anti-patterns, the Component Inventory reuse lens. The axis
   table above is your primary teardown lens; the heuristics are supplementary reasoning support for judging
   severity and rationale.
-- import:memory/grimorio.ux-memory/component-reference.md
-- import:memory/grimorio.ux-memory/premium-aesthetics.md
-- import:memory/grimorio.ux-memory/project.design-context.md
-- ref:memory/grimorio.ux-memory/project.md — this skill's own Design Language + Component System + Accessibility
+- import:agent/grimorio.ux/memory/component-reference.md
+- import:agent/grimorio.ux/memory/premium-aesthetics.md
+- import:agent/grimorio.ux/memory/project.design-context.md
+- ref:agent/grimorio.ux/memory/project.md — this skill's own Design Language + Component System + Accessibility
   Bar sections.
 - import:skill/grimorio.pipeline-modes — NORMAL vs LIGERO, governs how deep the reuse/consistency check goes
   for this pass.

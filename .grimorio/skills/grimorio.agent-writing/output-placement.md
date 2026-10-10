@@ -20,7 +20,7 @@ where a search has to reach for it.
 under `## OUTPUT` — po-brief.md → po-memory, arch-decision.md → architect-memory, qa-report.md → qa-memory,
 ux-review.md → ux-memory, security-report.md → security-memory, code-review.md → code-reviewer-memory,
 verification-report.md → verifier-memory. The one format with several producers — dev-notes.md/ui-dev-note.md,
-produced by js/go/py/ui-developer — moved into `ref:memory/grimorio.developer-memory/build-protocol.md`, the skill all four
+produced by js/go/py/ui-developer — moved into `ref:skill/grimorio.build-protocol/build-protocol.md`, the skill all four
 already load mandatorily, with a pointer from each per-language behavior file. The one format with no
 remaining producer — execution-log.md, belonged to the retired `feature-orchestrator` — was deleted outright
 rather than relocated. ref:skill/grimorio.feature-workflow#routing-rules's `## Artifact Formats` section is gone entirely; the skill itself

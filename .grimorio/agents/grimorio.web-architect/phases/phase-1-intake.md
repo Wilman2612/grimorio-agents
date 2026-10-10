@@ -53,7 +53,7 @@ ref:agent/grimorio.web-architect/behavior.md#harness-mode--architecture-knowledg
 ## LOAD (JIT) — scoped to this phase only
 
 - N/A — no `import:` target this phase, every LOAD line here is `ref:` (lazy).
-- **NEVER load `ref:memory/grimorio.architect-memory` (SKILL.md, `project.md`, or any `{area}.md`) here** — CR1
+- **NEVER load `ref:agent/grimorio.web-architect/memory` (SKILL.md, `project.md`, or any `{area}.md`) here** — CR1
   gates that read at Phase 2, not this one; opening it now front-loads a decision this phase does not make.
 - **NEVER load exploration, file-list, contract, gate-check, or capture specifics here** — each is a later
   phase's own question.

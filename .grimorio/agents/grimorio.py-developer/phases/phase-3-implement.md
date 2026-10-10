@@ -51,10 +51,10 @@ something real to check the decomposition against.
 2. **ALWAYS survey before writing, scoped to the module/file list Phase 1 scoped** — read the files you will
    change, search for an existing abstraction you should reuse or extend rather than duplicate, verify the
    layer, per
-   import:memory/grimorio.developer-memory/build-protocol.md#survey-before-writing-mandatory-first-step.
+   import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step.
 3. **WHEN this is a bug-report route (REWORK/BUG-REPORT DETECTED above is YES) ⟶ build against Phase 2's own
    confirmed-red BUG-FIX-FIRST-TEST, per
-   import:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order's own step 2
+   import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order's own step 2
    (fix the code, only after the test fails — already satisfied by the time this phase runs, since Phase 2 is
    this chain's own gate for exactly that).** **WHEN this is NOT a bug-report route ⟶ build against Phase 1's
    own SCOPED IMPLEMENTATION CHECKLIST directly.**
@@ -89,7 +89,7 @@ something real to check the decomposition against.
 - import:skill/grimorio.development-patterns — mandatory patterns, structural limits, and the sparse-comments
   rule.
   FINGERPRINT: MODULE(S) BUILT field below, jointly with the bullet above.
-- import:memory/grimorio.developer-memory/build-protocol.md#survey-before-writing-mandatory-first-step —
+- import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step —
   step 2's own survey-before-writing step.
   FINGERPRINT: SURVEY NOTES field below (a real survey result, distinct from an unchecked "none," cannot be
   produced without applying this discipline first).

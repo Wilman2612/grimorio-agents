@@ -191,7 +191,7 @@ The adversarial agents use verdict-style codes that map onto these: `security` �
 `qa-report.md` Test Matrix row lacks an E2E/full-stack layer** — one missing row is already a violation, not
 only a matrix with zero E2E rows across all of them. The testing METHOD itself — what the floor is, and
 why it is a different tier from the occasional deployed-E2E smoke — lives in `qa-memory`, not here:
-ref:memory/grimorio.qa-memory#where-e2e-sits--the-happy-path-floor-not-an-on-demand-layer-ceo-2026-08-13. This section
+ref:agent/grimorio.qa/memory#where-e2e-sits--the-happy-path-floor-not-an-on-demand-layer-ceo-2026-08-13. This section
 is the pipeline's own enforcement point: whoever composes the run treats a Test Matrix with only
 integration/unit rows for a feature that has a browsable happy path as an INCOMPLETE report, not a passing
 one, and routes it through the REWORK cycle below rather than letting it proceed to SHIP.
@@ -208,7 +208,7 @@ When `qa`, `ux`, `security`, `code-reviewer`, or `manual-verifier` report `FAIL`
    security's budget. The cap holds because each cycle's own review is a **FIX-VERIFICATION pass against the
    specific finding(s) it targets, never a fresh full re-audit of the whole diff cold** — see
    ref:agent/grimorio.code-reviewer/behavior.md for the two review modes this maps onto, and
-   ref:memory/grimorio.code-reviewer-memory/review-brief-template.md for the exact per-finding context a REWORK
+   ref:agent/grimorio.code-reviewer/memory/review-brief-template.md for the exact per-finding context a REWORK
    Prompt must carry so the re-evaluator checks the fix against the finding it targets, not the whole diff.
    After 2 failures on the same issue:
    - The composer writes a summary of unresolved issues.

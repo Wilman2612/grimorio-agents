@@ -56,7 +56,7 @@ previously-unimplemented capture promise explicit.
    `grimorio.game-design/docs/` FIRST, THEN cite the migrated path** — flag a companion doc belonging to
    another agent's memory (e.g. the PRODUCT half of the same decision, PO's own `po-memory`) explicitly, rather
    than assuming someone else notices. **ALWAYS also migrate the substance into the sheet set
-   (ref:memory/grimorio.game-architect-memory/sheets/, ref:memory/grimorio.game-architect-memory/project.tuning-ledger.md) per the
+   (ref:agent/grimorio.game-architect/memory/sheets/, ref:agent/grimorio.game-architect/memory/project.tuning-ledger.md) per the
    currency rule** (rewrite to the FINAL state, quarantine superseded, never interleave) — never leave a
    settled decision living only in `tmp/`; `tmp/` is scratch, explicitly not citable for anything signed, and
    is pruned on a schedule you do not control.
@@ -75,8 +75,8 @@ previously-unimplemented capture promise explicit.
   base arch-decision shape this phase adapts for game fields. (Not ref:agent/grimorio.web-architect/behavior.md's
   own OUTPUT section — that heading is now itself only a redirect stub after web-architect's own split; this
   phase cites the real, current location directly, verified live this pass.)
-- Step 8's own narrower load: this agent's OWN memory paths (ref:memory/grimorio.game-architect-memory/sheets/ 00-09,
-  ref:memory/grimorio.game-architect-memory/docs/, ref:memory/grimorio.game-architect-memory/project.tuning-ledger.md) +
+- Step 8's own narrower load: this agent's OWN memory paths (ref:agent/grimorio.game-architect/memory/sheets/ 00-09,
+  ref:agent/grimorio.game-architect/memory/docs/, ref:agent/grimorio.game-architect/memory/project.tuning-ledger.md) +
   ref:skill/grimorio.agent-writing#quality-standards-for-agents — the Currency rule ("write the FINAL state,
   never interleave the superseded"). This is the agent's own MEMORY, never its METHODOLOGY skill.
 - **NEVER load `grimorio.game-design`'s own SKILL.md (the MDA/hypothesis-vs-validated/proposal-doc-shape
@@ -131,22 +131,22 @@ failure mode (Sweatman/Jagex 2014); the convergent practice is **one page per de
 | **Decision doc** | Phase 1 of any design task | ONE page per decision, **diagram/table FIRST, prose as caption**; per decision: the diagram, how it works, the prior-art mechanism, what it answers from the entropy panel, `SYSTEM`/`CONTENT` tag, hypothesis-vs-validated label, what is OUT and why | `tmp/features/<slug>/design.md` while in flight |
 | **Arch-decision** | this phase (code-landing) | base shape in ref:agent/grimorio.web-architect/phases/phase-4-write-the-decision-and-gate.md#output, adapted for game fields: files+owners in order, reuse, patterns, contract, gate checks, status | `tmp/features/<slug>/arch-decision.md` while in flight |
 | **STATE sheet** | when a decision settles | a living sheet in the numbered set, rewritten to the FINAL state, never appended-with-caveats | **your memory**, `grimorio.game-design/sheets/` |
-| **Number** | any balance-relevant value | a row in the tuning ledger with `hypothesis`/`validated`/`stale` + evidence | ref:memory/grimorio.game-architect-memory/project.tuning-ledger.md |
+| **Number** | any balance-relevant value | a row in the tuning ledger with `hypothesis`/`validated`/`stale` + evidence | ref:agent/grimorio.game-architect/memory/project.tuning-ledger.md |
 
 **Never** produce a single monolithic design document. **Never** leave a settled decision living only in
 `tmp/` — `tmp/` is scratch and is explicitly NOT citable for anything signed (per this project's own harness):
 when a design settles, MIGRATE its substance into the sheet set above and cite that path (step 8 above is where
 this actually executes now, not merely stated in prose).
 
-Precedent: ref:memory/grimorio.game-architect-memory/docs/15-execution-model-fork-arch-decision.md (migrated 2026-07-27,
+Precedent: ref:agent/grimorio.game-architect/memory/docs/15-execution-model-fork-arch-decision.md (migrated 2026-07-27,
 mirroring ref:agent/grimorio.po/behavior.md's identical custody-check clause for the product half of the
 same decision).
 
 **Your MEMORY** is the same tree File A already draws in full
 (ref:agent/grimorio.game-architect/behavior.md#your-memory-organised-as-a-real-project-would-claudeskillsgrimoriogame-design) —
 this phase never redraws it a second time; step 8 above's own write targets
-(ref:memory/grimorio.game-architect-memory/sheets/, ref:memory/grimorio.game-architect-memory/docs/,
-ref:memory/grimorio.game-architect-memory/project.tuning-ledger.md) are named there, not duplicated here.
+(ref:agent/grimorio.game-architect/memory/sheets/, ref:agent/grimorio.game-architect/memory/docs/,
+ref:agent/grimorio.game-architect/memory/project.tuning-ledger.md) are named there, not duplicated here.
 
 ## Self-check — this phase's own gate, run BEFORE setting status
 

@@ -57,7 +57,7 @@ scope.
 
 - import:skill/grimorio.working-memory — the tmp/ working-folder convention, for saving screenshots as they are
   taken.
-- ref:memory/grimorio.ux-memory/project.md#render-surface--the-ux-critics-component-isolation-workbench-storybook —
+- ref:agent/grimorio.ux/memory/project.md#render-surface--the-ux-critics-component-isolation-workbench-storybook —
   the Storybook launch command + iframe-mode screenshot convention, ONLY this section.
 - `po-brief.md`, `ui-dev-note.md` — the invocation's own named target files.
 - **NEVER load the Design Canon, the Nielsen heuristics, `component-reference.md`,

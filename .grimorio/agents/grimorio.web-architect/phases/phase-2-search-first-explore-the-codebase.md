@@ -15,8 +15,8 @@ never optional, never something an author reaches for as needed the way the othe
 
 ## CR1, restated — the standing precondition this phase enforces
 
-**BEFORE opening any codebase file ⟶ ALWAYS read import:memory/grimorio.architect-memory FIRST.** Its
-`ref:memory/grimorio.architect-memory/project.md` maps what already exists; re-discovering documented patterns
+**BEFORE opening any codebase file ⟶ ALWAYS read import:agent/grimorio.web-architect/memory FIRST.** Its
+`ref:agent/grimorio.web-architect/memory/project.md` maps what already exists; re-discovering documented patterns
 creates duplicates. This is CR1, fully delegated from Phase 0
 (ref:agent/grimorio.web-architect/behavior.md#the-two-core-rules--threaded-not-restated-as-a-block) to this
 exact phase, because this is the phase it gates.
@@ -26,10 +26,10 @@ exact phase, because this is the phase it gates.
 1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — read architect-memory,
    read the ledger, search existing abstractions, map affected layers, judge modify-vs-create — with one
    CONDITIONAL fork to a scoped `agent:grimorio.scout` verifier — and nothing else.**
-2. **ALWAYS read import:memory/grimorio.architect-memory (SKILL.md + the detail files for the areas this feature
+2. **ALWAYS read import:agent/grimorio.web-architect/memory (SKILL.md + the detail files for the areas this feature
    touches) before opening any codebase file — it's your map**, per CR1 above. **WHEN in LIGERO mode ⟶ skip
    exploration and reason only over the supplied artifacts** — otherwise explore what already exists.
-3. **ALWAYS read ref:memory/grimorio.po-memory/project.md#current-milestone--m8-the-workflow-builder-drives-the-game — the ledger of what is ALREADY
+3. **ALWAYS read ref:agent/grimorio.po/memory/project.md#current-milestone--m8-the-workflow-builder-drives-the-game — the ledger of what is ALREADY
    BUILT — before exploring anything else.** State in this phase's own DELIVERABLE what it says already exists
    for this feature area, so Phase 3 wires the GAP instead of re-deriving the substrate. This is the exact
    ledger read the shell's own Knowledge list already points at as a "FIRST READ" — restated here, at the phase
@@ -53,9 +53,9 @@ exact phase, because this is the phase it gates.
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.architect-memory — SKILL.md (general) + `project.md` (this project's settled decisions) +
+- import:agent/grimorio.web-architect/memory — SKILL.md (general) + `project.md` (this project's settled decisions) +
   the `{area}.md` detail files for the areas this feature touches. Step 2's own target, this phase's map.
-- ref:memory/grimorio.po-memory/project.md#current-milestone--m8-the-workflow-builder-drives-the-game —
+- ref:agent/grimorio.po/memory/project.md#current-milestone--m8-the-workflow-builder-drives-the-game —
   step 3's own ledger read.
 - ref:skill/grimorio.pipeline-modes — the NORMAL/LIGERO distinction step 2's own WHEN-clause applies.
 - ref:skill/grimorio.agent-tiers#the-scale-task-archetype--tier and

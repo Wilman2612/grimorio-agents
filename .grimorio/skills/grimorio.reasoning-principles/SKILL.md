@@ -132,7 +132,7 @@ Entonces pregunto."*
 defending a constraint is the tell that you skipped this, never a reason to try harder.
 
 **NEVER encode a disagreement as a constraint in code.** If you think his direction is wrong, SAY SO as
-an objection — he has explicitly invited that (ref:memory/grimorio.po-memory/project.decisions.md decision 36). A private
+an objection — he has explicitly invited that (ref:agent/grimorio.po/memory/project.decisions.md decision 36). A private
 disagreement that reaches the codebase as a guard, a cap or a check nobody asked for is the worst
 available form of it: it looks like engineering and it cannot be argued with.
 
@@ -286,7 +286,7 @@ same thing it returns when everything is fine ⟶ throw it away and write a diff
 ### The falsifiable forms
 
 - **A test ⟶ MUTATE the code it guards and watch it go red.** Green-only is not evidence.
-  (ref:memory/grimorio.qa-memory#the-break-proof--a-test-you-have-not-seen-fail-is-not-evidence)
+  (ref:agent/grimorio.qa/memory#the-break-proof--a-test-you-have-not-seen-fail-is-not-evidence)
 - **A guard ⟶ plant the violation and watch it refuse.**
 - **A verdict gate ⟶ read the VERDICT, not the artifact.** Grep the decision string and fail on
   `REWORK`/`FAIL`/`ESCALATE`. Presence of a report is not a passing report.

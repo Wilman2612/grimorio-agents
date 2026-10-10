@@ -547,7 +547,12 @@ const existsTwoAxis = (x) => {
     if (STORE_FALLBACK.some((st) => exists(STORES[st] + p))) return true;
     return exists(join(homedir(), ".claude", "skills", p));
   }
-  return exists(twoAxisTarget(x));
+  if (exists(twoAxisTarget(x))) return true;
+  // An agent's own memory is OPTIONAL (ARCHITECTURE.md section 6): a reference into
+  // `agent/<agent>/memory/` is live while the AGENT exists, written or not, the way an optional import
+  // resolves to nothing. Memory whose agent folder is gone was exported wrong, so that stays dead.
+  const mem = x.store === "agent" && /^([^/]+)\/memory(\/|$)/.exec(p);
+  return Boolean(mem) && exists(STORES.agent + mem[1]);
 };
 // An anchor was PARSED and then dropped, so a reference to a heading deleted last week resolved green.
 // Prior art treats a bad fragment as its own class, not as a dead link (MkDocs, lychee, W3C checklink).

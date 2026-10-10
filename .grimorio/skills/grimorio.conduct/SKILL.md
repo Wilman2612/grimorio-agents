@@ -26,7 +26,7 @@ the invocation prompt on conflict), and walking the upward harness chain. Two mo
 
 - **BEFORE you analyse a problem, write a check, or report a measurement ⟶ load import:skill/grimorio.reasoning-principles.**
 - **BEFORE you choose what to work on ⟶ load
-  import:memory/grimorio.po-memory/project.md#current-milestone--m8-the-workflow-builder-drives-the-game.**
+  import:agent/grimorio.po/memory/project.md#current-milestone--m8-the-workflow-builder-drives-the-game.**
   Read it, then choose.
 
 **A rule with no ALWAYS / NEVER / BEFORE / WHEN is a suggestion. A hard rule that is broken anyway earns a MECHANISM,
@@ -47,12 +47,12 @@ Rules 1-2 live in import:skill/grimorio.conduct/main-loop-only.md and reach the 
    for shipping. -> ref:skill/grimorio.reasoning-principles → "MEASURING IS NOT BUILDING".
 4. **NEVER ship below the already-shipped bar**, and NEVER accept an existence check ("X happens once") as an
    acceptance bar. Token-tier frugality applies to MODEL selection, never to product scope.
-   -> ref:memory/grimorio.po-memory/project.md → "Project stage & scope calibration".
+   -> ref:agent/grimorio.po/memory/project.md → "Project stage & scope calibration".
 5. **WHEN you can ask the CEO directly (the main loop, or `grimorio.po`) ⟶ NEVER ask a product/economy/vision
    question without grepping `po-memory/` first.** If it is already ruled, APPLY it.
 5b. **NEVER escalate a problem that has a standard technical solution — solve it.**
-    **THE TEST: write both candidate answers as one line each. WHEN ref:memory/grimorio.po-memory/project.vision.md
-    and ref:memory/grimorio.po-memory/project.md would read IDENTICALLY under both answers ⟶ the
+    **THE TEST: write both candidate answers as one line each. WHEN ref:agent/grimorio.po/memory/project.vision.md
+    and ref:agent/grimorio.po/memory/project.md would read IDENTICALLY under both answers ⟶ the
     question is TECHNICAL and it is yours to decide.** A problem with a STANDARD NAME in software (versioning,
     migration, feature flag, test fixture, dependency injection, schema constraint, auth wrapper, error boundary)
     is a CANDIDATE for technical; the invariance test clears it — a standard name picks the mechanism, never the
@@ -212,20 +212,20 @@ injected "Scratchpad Directory" path, which is where this bites most often.** Gi
 
 ## Where knowledge lives
 
-There is **no central `docs/`.** Each domain's docs live inside the owning agent's memory skill, and each
-skill's own project index file names its own contents:
+There is **no central `docs/`.** Each domain's docs live in the owning agent's own `memory/` folder, which is
+optional -- an installation that has written none has nothing there to read:
 
-| Domain | Memory skill | Owning agent |
+| Domain | Where it lives | Owning agent |
 |---|---|---|
-| Architecture (web) | ref:memory/grimorio.architect-memory | agent:grimorio.web-architect |
-| Product | ref:memory/grimorio.po-memory | agent:grimorio.po |
+| Architecture (web) | ref:agent/grimorio.web-architect/memory | agent:grimorio.web-architect |
+| Product | ref:agent/grimorio.po/memory | agent:grimorio.po |
 | Game design | ref:skill/grimorio.game-design | agent:grimorio.game-architect |
-| Development (its own dev-trap record) | ref:memory/grimorio.developer-memory | agent:grimorio.js-developer |
+| Development (trap principles, the shared build protocol) | ref:skill/grimorio.build-protocol | every developer agent; each keeps its own traps in its `memory/` |
 | Research and reference | LOST: documentation-memory (deleted 2026-10-04, recoverable at f942b355) | the documentation agent (DELETED 2026-10-04) |
 | Build-vs-buy / stack / OPEX inventory | ref:agent/grimorio.solution-architect | agent:grimorio.solution-architect |
 
 **NEVER let anything but the domain's own owning agent write that domain's memory** — nothing else may write
-it. **WHEN a survey or design brief needs domain memory ⟶ read ref:memory/grimorio.po-memory FIRST, before any
+it. **WHEN a survey or design brief needs domain memory ⟶ read ref:agent/grimorio.po/memory FIRST, before any
 other domain's memory.** Read the owner's memory before deciding.
 
 -> What the word "harness" itself means, in the three senses this corpus tracks — this table's own "owning

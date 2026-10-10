@@ -54,7 +54,7 @@ content or its placement.
    Two real, already-shipped precedents ground this, neither self-produced: ref:skill/grimorio.agent-writing/cold-store.md's
    own handle→target→what manifest IS a working index/table-of-contents-of-split-files pattern, already
    CEO-validated (translated: a reference must never be lost — it has to stay reconstructible). And
-   ref:memory/grimorio.po-memory/project.vision-archive/register.md#the-2026-07-31-split-of-visionmd — the CEO's own 2026-07-31
+   ref:agent/grimorio.po/memory/project.vision-archive/register.md#the-2026-07-31-split-of-visionmd — the CEO's own 2026-07-31
    ruling instance: `vision.md` hit 3,330 lines, was judged unreviewable/unindexable, and was SPLIT BY TOPIC into
    `vision/*.md` depth files with the original file becoming the index — "No CEO word was compressed or
    paraphrased: every section's full text moved VERBATIM into a `vision/` depth file." A justification paragraph
@@ -253,7 +253,7 @@ content or its placement.
 - ref:skill/grimorio.agent-writing#the-split-template--how-to-divide-any-agent — step 2's own shell-exclusion grounding:
   the worked before/after example showing an oversized shell's fix is moving content OUT to its behavior file,
   never splitting it into an index plus companions.
-- ref:skill/grimorio.agent-writing/cold-store.md and ref:memory/grimorio.po-memory/project.vision-archive/register.md#the-2026-07-31-split-of-visionmd —
+- ref:skill/grimorio.agent-writing/cold-store.md and ref:agent/grimorio.po/memory/project.vision-archive/register.md#the-2026-07-31-split-of-visionmd —
   step 2's own two SPLIT precedents (skill files only), loaded only if a reader needs the working example rather
   than the one-line gloss step 2 already carries inline.
 - ref:skill/grimorio.agent-writing#3-steps--protocol — step 3's graph-definition-step requirement.

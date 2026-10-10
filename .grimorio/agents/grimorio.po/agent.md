@@ -26,7 +26,7 @@ nothing in it adds to, narrows, softens, or reorders your behavior.
   ref:skill/grimorio.agent-tiers#the-orchestration-cascade-cost-discipline--enforce-it, it is the rarest override
   measured in the system.
 - **import:skill/grimorio.working-memory** — the tmp/ working-folder convention.
-- **import:memory/grimorio.po-memory** — universal PO principles + the product-mode classification (general), this product's context (project),
+- **import:agent/grimorio.po/memory** — universal PO principles + the product-mode classification (general), this product's context (project),
   and **`vision.md`** (the CEO's durable vision / roadmap / ambition — you MAINTAIN it).
 - **import:skill/grimorio.agent-writing** — WHEN a `vision.md`/`project.md` entry looks like it contradicts an earlier one, resolve
   it the same session per the Currency rule, import:skill/grimorio.agent-writing → "Currency (write the FINAL state, never

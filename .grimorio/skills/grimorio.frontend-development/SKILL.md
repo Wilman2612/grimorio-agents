@@ -127,7 +127,7 @@ http://localhost:6006/iframe.html?id=<title-kebab>--<export-kebab>&viewMode=stor
 
 Structurally-correct UI is not the same as good UI. Build to the shared **Design Canon** (Norman, the Laws of
 UX, Refactoring UI, WCAG) — the SAME authorities the `ux` critic will tear the result down with — so it is right
-the first time, not fixed on review. The full canon with its authorities lives in ref:memory/grimorio.ux-memory → "Design Canon";
+the first time, not fixed on review. The full canon with its authorities lives in ref:agent/grimorio.ux/memory → "Design Canon";
 the build-time non-negotiables:
 
 - **Hierarchy first**: decide what is loudest on each screen and make it so by **weight/size/color**, not
@@ -144,9 +144,9 @@ the build-time non-negotiables:
   breakpoints where the content breaks (not device names); no hover-only affordances; wide content scrolls in its
   own container, never the page body. Add the **mobile named state** as a Story alongside the desktop one.
 
--> Full design canon (authorities + the quantitative laws): ref:memory/grimorio.ux-memory → "Design Canon". Project design system
-   (tokens, component names): ref:memory/grimorio.ui-developer-memory / ref:memory/grimorio.ux-memory → project.md.
--> deeper: import:memory/grimorio.ux-memory/component-reference.md — the technified per-component build targets (required-state
+-> Full design canon (authorities + the quantitative laws): ref:agent/grimorio.ux/memory → "Design Canon". Project design system
+   (tokens, component names): ref:agent/grimorio.ui-developer/memory / ref:agent/grimorio.ux/memory → project.md.
+-> deeper: import:agent/grimorio.ux/memory/component-reference.md — the technified per-component build targets (required-state
    matrix, target-size 24/44, M3 motion durations/easing, focus states, design-token tiers, dark-mode rules).
    Build a specific component/motion/dark-mode TO these numbers; `[AA-floor]` is required, `[AAA-aspire]` is a goal.
 

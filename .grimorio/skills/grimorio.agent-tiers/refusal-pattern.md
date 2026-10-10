@@ -5,7 +5,7 @@ This file is a topic-reference companion to ref:skill/grimorio.agent-tiers — g
 instantiations of it live in THEIR OWN owning agent's behavior file rather than here, and reference this file
 instead of restating it: `grimorio.delegate`'s task-shape and skip-planning refusals
 (ref:skill/grimorio.flow-delegation/delegate-phases/phase-1-intake-and-objective.md), and the executor developers' missing-plan refusal
-(ref:memory/grimorio.developer-memory/build-protocol.md). WHEN you land here first, read this as one of several places
+(ref:skill/grimorio.build-protocol/build-protocol.md). WHEN you land here first, read this as one of several places
 the pattern fires, not the only one.
 
 ## The grounding — identity framing produces REFUSALS, not extra steps (CEO ruling, 2026-08-12)
@@ -66,7 +66,7 @@ verify, and correct the plan you were handed before following it.**
 > it is properly planned'."* (CEO, 2026-08-12)
 
 This does NOT reopen
-ref:memory/grimorio.developer-memory/build-protocol.md#missing-plan-refusal--this-developers-own-instantiation-of-the-identity-refusal-pattern's
+ref:skill/grimorio.build-protocol/build-protocol.md#missing-plan-refusal--this-developers-own-instantiation-of-the-identity-refusal-pattern's
 absence-only refusal, and it is not a second rule beside it — the two reconcile as one. "Neither the power nor
 the judgement to review" there is about AUTHORITY: deciding WHETHER planning was owed, or inventing a plan from
 nothing — that stays the architect's call alone, and nothing here changes it. What this rule states is

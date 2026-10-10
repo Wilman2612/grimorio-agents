@@ -60,11 +60,11 @@ something real to check the decomposition against.
 2. **ALWAYS survey before writing, scoped to the file/module list Phase 2 scoped** — read the files you will
    change, search for an existing abstraction you should reuse or extend rather than duplicate, verify the
    layer, per
-   import:memory/grimorio.developer-memory/build-protocol.md#survey-before-writing-mandatory-first-step.
+   import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step.
 2a. **WHEN implementation touches a risky zone (Windows npm/pnpm orchestration, the runner boot sequence, a
    wire/transcript-format boundary, the money/DB/LLM-blind frontier) ⟶ consult whichever of
-   import:memory/grimorio.js-developer-memory/project.traps.md /
-   import:memory/grimorio.js-developer-memory/project.traps-runner-node.md Phase 1 selected (`TRAP FILE(S) SELECTED`,
+   import:agent/grimorio.js-developer/memory/project.traps.md /
+   import:agent/grimorio.js-developer/memory/project.traps-runner-node.md Phase 1 selected (`TRAP FILE(S) SELECTED`,
    carried forward from Phase 2) for a known gotcha in that specific zone before writing the change to that
    item.** This is the REACTIVE half of this agent's own two-pass trap-file discipline — Phase 1's own
    PROACTIVE targeted search, run before the architecture contract is even read, is the other half. On the
@@ -72,7 +72,7 @@ something real to check the decomposition against.
    zone is touched by the assigned file(s)/module(s) ⟶ this step is satisfied by stating that plainly** — not
    every change is in a risky zone, and a forced consultation invents a finding that is not there.
 3. **WHEN Phase 2's own REWORK/BUG-REPORT DETECTED field names a bug ⟶ apply
-   import:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order — write the
+   import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — write the
    test that proves the bug exists FIRST, run it, confirm it fails with the expected error, BEFORE touching
    production code.** This is a CONDITIONAL first mini-loop step inside THIS SAME phase — never its own phase
    node — carried forward from Phase 2's own detection, applied here where the fixing knowledge domain actually
@@ -95,7 +95,7 @@ something real to check the decomposition against.
    contract names — business logic in handlers/services and persistence in repositories, NEVER in route
    handlers** (carried forward unchanged from this agent's own pre-split `## Rules` block) **— staying strictly
    inside the Scope Boundary while building.** The concrete layer names/folder globs this pattern maps to in
-   THIS project live at ref:memory/grimorio.developer-memory/project.md#js-developer-scope--concrete-folder-paths,
+   THIS project live at ref:agent/grimorio.js-developer/memory/project.md#js-developer-scope--concrete-folder-paths,
    never restated here. On the CHILD branch, this step is scoped to the one assigned item alone. **WHEN the
    SECURITY-SENSITIVE FLAG carried forward from Phase 2 is YES ⟶ build this scope carrying that awareness — it
    still gets built here, but Phase 5 routes it for security + code-reviewer review before merge, per the
@@ -114,19 +114,19 @@ something real to check the decomposition against.
   typed errors, structural limits) — the layer-placement rule step 5 above applies directly.
   FINGERPRINT: MODULE(S)/FILE(S) BUILT field below, jointly with the `grimorio.javascript` bullet above (business
   logic placed outside a route handler, persistence placed in a repository, cannot be produced without this).
-- import:memory/grimorio.developer-memory/build-protocol.md#survey-before-writing-mandatory-first-step —
+- import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step —
   step 2's own survey-before-writing step.
   FINGERPRINT: SURVEY NOTES field below (a real survey result, distinct from an unchecked "none," cannot be
   produced without applying this discipline first).
-- import:memory/grimorio.js-developer-memory/project.traps.md and/or
-  import:memory/grimorio.js-developer-memory/project.traps-runner-node.md — whichever Phase 1 selected, step 2a's own
+- import:agent/grimorio.js-developer/memory/project.traps.md and/or
+  import:agent/grimorio.js-developer/memory/project.traps-runner-node.md — whichever Phase 1 selected, step 2a's own
   REACTIVE consultation, scoped narrowly to whichever risky zone the assigned file(s)/module(s) actually touch
   (distinct from Phase 1's own PROACTIVE full-corpus search — this load is triggered and narrow, never a repeat
   of that pass).
   FINGERPRINT: RISKY-ZONE CONSULTED field below (a real reactive consultation result naming the zone and any
   gotcha found, distinct from an unchecked "N/A," cannot be produced without opening this index when a risky
   zone is actually touched).
-- import:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order — step 3's own
+- import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — step 3's own
   bug-order step.
   FINGERPRINT: BUG-FIX-FIRST-TEST field below (a real failing-test-first sequence, distinct from an unchecked
   "N/A," cannot be produced without applying this mandatory order first).

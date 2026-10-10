@@ -86,7 +86,7 @@ deterministic:
 <the project's own defect record>
 <the project's MECHANISM BACKLOG>
 BACKLOG.md
-.grimorio/memory/grimorio.po-memory/project.features-status.md
+.grimorio/agents/grimorio.po/memory/project.features-status.md
 objectives/**  — the WHOLE FILE, anywhere under objectives/, not scoped to only its ## Log section: a branch
 objective file's own ## Log section is the PRIMARY reason the exemption exists (the historical record), but the
 code exempts the directory whole, because directory-level exemption is cheaper and simpler than section-level

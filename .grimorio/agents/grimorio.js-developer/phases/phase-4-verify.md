@@ -29,7 +29,7 @@ fixed here, inside this phase's own iteration, never by re-reading Phase 3's fil
    fails — and nothing else; no spawn anywhere in this phase.** This agent never invokes another agent from
    Phase 4 — the fan-out gate is Phase 3's own, already closed by the time this phase runs.
 2. **ALWAYS run the full test suite AND the typecheck, in the foreground — never backgrounded**, per
-   ref:memory/grimorio.developer-memory/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park
+   ref:skill/grimorio.build-protocol/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park
    — invoke synchronously and BLOCK on the result. **WHEN the full suite is slow ⟶ narrow it with a
    file/pattern/package filter — still foreground, never backgrounded.**
 3. **ALWAYS confirm every item of this Definition of Done checklist holds, explicitly and separately — never a
@@ -43,7 +43,7 @@ fixed here, inside this phase's own iteration, never by re-reading Phase 3's fil
    - Net line count ≤ original (Reduction Rule), or the increase is justified.
    - TypeScript 0 errors on changed files; backend typecheck passes.
 4. **ALWAYS confirm, explicitly, that none of this project's backend-service hard invariants — recorded at
-   ref:memory/grimorio.developer-memory/project.md#conventions-we-chose, never restated here — were weakened
+   ref:agent/grimorio.js-developer/memory/project.md#conventions-we-chose, never restated here — were weakened
    anywhere in the diff.** Check each invariant this task's own diff could plausibly touch, never a blanket
    "looks fine."
 5. **WHEN step 2 or step 3 above fails ⟶ fix the defect directly and re-run the SAME check, inside this phase's
@@ -57,11 +57,11 @@ fixed here, inside this phase's own iteration, never by re-reading Phase 3's fil
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.developer-memory/project.md#conventions-we-chose — this project's hard-invariant list,
+- import:agent/grimorio.js-developer/memory/project.md#conventions-we-chose — this project's hard-invariant list,
   step 4's own load.
   FINGERPRINT: INVARIANT CONFIRMATION field below (a real, per-invariant confirmation, distinct from a blanket
   "looks fine," cannot be produced without this pointer).
-- import:memory/grimorio.developer-memory/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park —
+- import:skill/grimorio.build-protocol/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park —
   step 2's own foreground-run discipline.
   FINGERPRINT: FULL SUITE RESULT field below (a genuinely foreground-run, non-parked result cannot be produced
   without this discipline).

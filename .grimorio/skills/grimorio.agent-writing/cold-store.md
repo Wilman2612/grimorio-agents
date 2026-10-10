@@ -33,11 +33,11 @@ reader to open the file to learn whether it is the one they wanted, which is the
 
 | handle | target | what |
 |---|---|---|
-| `vision-game1-history` | `.grimorio/memory/grimorio.po-memory/project.vision-archive/game-1.md` | GAME 1: the revision chains, experiment write-ups and superseded rulings moved out of the live vision |
-| `vision-game2-history` | `.grimorio/memory/grimorio.po-memory/project.vision-archive/game-2.md` | GAME 2: how the thesis and the chat mode reached their current wording |
-| `vision-index-history` | `.grimorio/memory/grimorio.po-memory/project.vision-archive/register.md` | The vision index's own history, and the closed contradiction register |
-| `vision-shared-history` | `.grimorio/memory/grimorio.po-memory/project.vision-archive/shared.md` | Shared foundations and the orchestration surface: what was moved out of both |
-| `vision-systems-history` | `.grimorio/memory/grimorio.po-memory/project.vision-archive/systems.md` | Systems (ranking, editor, model catalog, map surface, match modes): the superseded record |
+| `vision-game1-history` | `.grimorio/agents/grimorio.po/memory/project.vision-archive/game-1.md` | GAME 1: the revision chains, experiment write-ups and superseded rulings moved out of the live vision |
+| `vision-game2-history` | `.grimorio/agents/grimorio.po/memory/project.vision-archive/game-2.md` | GAME 2: how the thesis and the chat mode reached their current wording |
+| `vision-index-history` | `.grimorio/agents/grimorio.po/memory/project.vision-archive/register.md` | The vision index's own history, and the closed contradiction register |
+| `vision-shared-history` | `.grimorio/agents/grimorio.po/memory/project.vision-archive/shared.md` | Shared foundations and the orchestration surface: what was moved out of both |
+| `vision-systems-history` | `.grimorio/agents/grimorio.po/memory/project.vision-archive/systems.md` | Systems (ranking, editor, model catalog, map surface, match modes): the superseded record |
 | `agent-writing-levels-history` | `.grimorio/skills/grimorio.agent-writing/archive.md` | The pre-2026-07-17 behavior model and the L0/L1/L2/L3 → behavior/general/project/code rename |
 | `grpc-a6-retry-exemplar` | `.grimorio/agents/grimorio.design-orchestrator/exemplar-grpc-retries.md` | The real, full-text "gRPC Retry Design" (gRFC A6) proposal. RE-SCOPED: no longer design-orchestrator's AS-IS anchor (Phase 1 step 5b) — reserved for a future TO-BE/proposal-writing phase not yet opened |
 | `arc42-mama-crm-exemplar` | `.grimorio/agents/grimorio.design-orchestrator/exemplar-mama-crm.md` | The real, full-text "MaMa-CRM" arc42 SAD. DROPPED as design-orchestrator's standing AS-IS anchor (Phase 1 step 5c) — its whole-system writing-discipline bar is now held by `ceo-dashboard-exemplar` below |

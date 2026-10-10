@@ -30,7 +30,7 @@ own `## Close: VERIFIED` evidence, per step 8 below.
    agent:grimorio.ui-developer), Test Scenarios for QA, Known Limitations. **IN STANDALONE MODE ⟶ no dev-note is
    owed** — report the result directly per this same `## OUTPUT` shape, inline.
 3. **WHEN the carried-forward REWORK/BUG-REPORT DETECTED field names a REWORK invocation ⟶ append a `### REWORK
-   Cycle {N}` section**, per ref:memory/grimorio.developer-memory/build-protocol.md#rework-mode,
+   Cycle {N}` section**, per ref:skill/grimorio.build-protocol/build-protocol.md#rework-mode,
    re-verifying the full completion checklist below rather than only the previously-failed item.
 4. **WHEN the carried-forward SECURITY-SENSITIVE FLAG is YES ⟶ ALWAYS include a routing note in `dev-notes.md`**
    stating that this change touches auth/session/BOLA and must be reviewed by security + `code-reviewer` before
@@ -39,14 +39,14 @@ own `## Close: VERIFIED` evidence, per step 8 below.
 5. **WHEN the contract was ambiguous, or `arch-decision.md` did not cover a case that arose while implementing
    ⟶ write it as `BLOCKED` in `dev-notes.md` and stop — never guess.**
 6. **Commit discipline, per
-   ref:memory/grimorio.developer-memory/build-protocol.md#who-commits-depends-on-whether-you-are-worktree-isolated:**
+   ref:skill/grimorio.build-protocol/build-protocol.md#who-commits-depends-on-whether-you-are-worktree-isolated:**
    **WHEN spawned WITHOUT `isolation:"worktree"` ⟶ commit nothing; hand back for `code-reviewer` Gate B.**
    **WHEN spawned WITH `isolation:"worktree"` ⟶ confirm commits were already made at every coherent step** —
    this step CONFIRMS, it does not defer committing to here.
 7. **WHEN, at any point in this chain, you captured a non-obvious gotcha future-you would want ⟶ confirm it
-   actually reached `ref:memory/grimorio.developer-memory/project.traps.md` or the correct one of
-   `ref:memory/grimorio.js-developer-memory/project.traps.md` /
-   `ref:memory/grimorio.js-developer-memory/project.traps-runner-node.md`** — the harness-mode knowledge-partner duty
+   actually reached `ref:agent/grimorio.js-developer/memory/project.traps.md` or the correct one of
+   `ref:agent/grimorio.js-developer/memory/project.traps.md` /
+   `ref:agent/grimorio.js-developer/memory/project.traps-runner-node.md`** — the harness-mode knowledge-partner duty
    Phase 0 already states as standing, fires-from-any-phase; this step only CONFIRMS the capture happened before
    the chain closes, it does not restate the rule a second time.
 8. **ALWAYS check every item under `## Completion criteria` below holds SIMULTANEOUSLY; close per `## OUTPUT`'s
@@ -107,7 +107,7 @@ is left, and escalate)
 ```
 
 **WHEN Phase 2 detected REWORK ⟶ append `### REWORK Cycle {N}`**, per
-ref:memory/grimorio.developer-memory/build-protocol.md#rework-mode. **WHEN the SECURITY-SENSITIVE FLAG
+ref:skill/grimorio.build-protocol/build-protocol.md#rework-mode. **WHEN the SECURITY-SENSITIVE FLAG
 was raised ⟶ append the routing note per step 4 above, inside `## Known Limitations` or its own short section —
 never omitted.**
 
@@ -147,14 +147,14 @@ this repo):
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.developer-memory/build-protocol.md (specifically its `## OUTPUT` template, "Who
+- import:skill/grimorio.build-protocol/build-protocol.md (specifically its `## OUTPUT` template, "Who
   commits" section, and "REWORK mode" section) — steps 2, 3, 6 above apply these directly.
   FINGERPRINT: DEV-NOTES PATH + COMMIT ACTION TAKEN + REWORK CYCLE APPENDED fields below (a dev-note in the
   shared shape, a correct commit call, and a correctly-appended REWORK section cannot be produced without these
   sections).
-- ref:memory/grimorio.developer-memory/project.traps.md,
-  ref:memory/grimorio.js-developer-memory/project.traps.md, and
-  ref:memory/grimorio.js-developer-memory/project.traps-runner-node.md — step 7's own confirmation load; the CAPTURE rule
+- ref:agent/grimorio.js-developer/memory/project.traps.md,
+  ref:agent/grimorio.js-developer/memory/project.traps.md, and
+  ref:agent/grimorio.js-developer/memory/project.traps-runner-node.md — step 7's own confirmation load; the CAPTURE rule
   itself is Phase 0's own standing statement, not restated here, only confirmed.
 - ref:skill/grimorio.agent-selection#the-dev-routing-tree--decide-by-what-the-change-touches — step 4's
   own security-routing-note load, WHEN the SECURITY-SENSITIVE FLAG is YES.

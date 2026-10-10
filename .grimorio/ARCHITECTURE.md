@@ -61,9 +61,9 @@ unnecessary — but the PROPERTY it provided is still required, and it is now pr
 
 ```
 .grimorio/                       GRIMORIO'S OWN. This is what gets shared.
-├── agents/<grimorio.x>/         A FOLDER PER AGENT (§4)
+├── agents/<grimorio.x>/         A FOLDER PER AGENT (§4), its optional memory/ inside (§6)
 ├── skills/<grimorio.x>/         what MANY agents load (§5)
-├── memory/<grimorio.x-memory>/  project + code levels (§6)
+├── memory/<grimorio.x-memory>/  only the two shared stores still awaiting their redesign (§13)
 ├── tmp/                         working memory, WRITE-ONLY (§7)
 ├── hooks/<hook>.mjs             implementations (§8)
 ├── .cache/                      RUNTIME STATE, gitignored: the invocation and completion logs, the
@@ -177,7 +177,8 @@ Everything that belongs to ONE agent and applies to EVERY project using it:
 ├── behavior.md                   the old L0. The CHECKING lives here
 ├── provocation-grounding.md      the old L1: general, applies to any project
 ├── entropy-phases/phase-N-x.md   only when the agent is phased
-└── scripts/panel-check.mjs       a script only this agent uses
+├── scripts/panel-check.mjs       a script only this agent uses
+└── memory/                       OPTIONAL: its project and code levels (§6)
 ```
 
 Its published face is `.claude/agents/grimorio.entropy.md`: **a light adapter.** Frontmatter (name,
@@ -226,14 +227,39 @@ loaded from `SKILL.md` files, phase files and memory skills too.
 
 ---
 
-## 6. `memory/<grimorio.x-memory>/` — THE PROJECT AND CODE LEVELS
+## 6. `agents/<grimorio.x>/memory/` — THE PROJECT AND CODE LEVELS, BESIDE THEIR AGENT
 
-The four levels are **behavior · general · project · code**. Behavior and general travel with the agent (§4).
-Project and code come OUT of the agent, into `memory/`, so all memory is manageable in one place.
+The four levels are **behavior · general · project · code**. Behavior and general are the agent's own files
+(§4). Project and code go in `memory/` INSIDE the same folder, so an agent's memory lives next to the agent
+that owns it and a reference to it is `ref:agent/<grimorio.x>/memory/<file>` — the folder name is the owner.
 
-**An adopter's own `project.*` file inside `.grimorio/memory/` is the convention WORKING, not a leak.** The
-`project.` prefix marks OWNERSHIP, never position in the folder (ruling of 2026-10-01, landed across 34
-files). What keeps it out of the shared package is the export's SCRUB step, not the directory.
+```
+.grimorio/agents/grimorio.qa/
+├── agent.md · behavior.md · phases/
+└── memory/
+    ├── SKILL.md          general: travels with the agent
+    └── project.md        the adopter's own: written by them, never exported
+```
+
+**MEMORY IS OPTIONAL.** An agent that has no `memory/`, or a `memory/` without the file a prompt names, has
+simply not been given one by this installation. Read it when it is there; carry on when it is not, the way an
+optional import resolves to nothing. Two mechanisms hold this, and neither may be bypassed:
+
+- `.grimorio/scripts/audit-chain.mjs` counts a reference into `agent/<grimorio.x>/memory/` as LIVE whenever
+  the agent folder exists, written or not.
+- `.grimorio/scripts/export/adopter-templates.mjs` never seeds an empty template into an agent's memory.
+  An empty file that answers a load and says nothing is worse than no file.
+
+**MEMORY WITHOUT ITS AGENT IS A DEFECT.** A `memory/` folder exists only inside an agent folder. Memory found
+with no agent folder to own it was exported wrong: delete it. Never create an agent to give it a home.
+
+**MEMORY SEVERAL AGENTS LOAD IS A SKILL, not memory** (§5). The developers' shared trap principles and build
+protocol are `skills/grimorio.build-protocol/`, while each developer's own traps go in its own `memory/`.
+
+**What travels is decided by STRUCTURE, never by a list.** ref:repo/.grimorio/scripts/export/memory-split.mjs exports an
+unprefixed file at the root of `memory/` and keeps back every `project.` file and every subfolder. An
+adopter's own `project.*` file inside a grimorio agent's `memory/` is the convention WORKING, not a leak: the
+`project.` prefix marks OWNERSHIP, never position (ruling of 2026-10-01).
 
 ---
 
@@ -337,7 +363,8 @@ regressions.
 | | |
 |---|---|
 | `.grimorio/hooks/` | **DONE** — 21 implementations, `settings.json` byte-identical |
-| `.grimorio/memory/` | **DONE** — 314 files, 13 folders |
+| agent memory | **DONE** — in `agents/<x>/memory/` for 11 agents; empty placeholder `project.*` files deleted; developer-memory became `skills/grimorio.build-protocol/` |
+| `.grimorio/memory/` | holds only `grimorio.board-memory` and `grimorio.system-design-memory` (§13) |
 | `.grimorio/tmp/` | **DONE** — declared once, writers repointed, loading refused |
 | `.grimorio/agents/` | 5 of ~11 — extract-cleaner, experimenter, solution-architect, scout, unblocker |
 | `.grimorio/skills/` | 9 shared containers moved in |
@@ -366,6 +393,8 @@ regressions.
   here -- per this file's own rule that a file fitting nowhere means the spec is wrong, not that a folder
   should be invented. Eight scripts write under `.grimorio/memory/grimorio.board-memory/`; two name `current-objective.md`.
 - **`tools/`** — parked. The empty folder may stand; nothing moves into it.
-- **The PO memory split** — it holds project-level content that is not split today.
+- **`grimorio.system-design-memory` and `grimorio.board-memory`** — their agents (design-orchestrator and
+  design-redactor; board-feeder and board-writer) are due a redesign, so their memory stays in
+  `.grimorio/memory/` until that redesign decides which agent owns it. Not moved, not guessed here.
 - **The reference-direction exception** he remembers ruling (2026-09-21T18:49) and does not remember the
   content of. Recoverable by tracing, not by design.

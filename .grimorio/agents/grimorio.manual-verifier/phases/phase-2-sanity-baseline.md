@@ -38,7 +38,7 @@ baselines and decides whether the rest of this pass may proceed at all.
 
 ## LOAD (JIT) — scoped to this phase only
 
-- ref:memory/grimorio.manual-verifier-memory/project.local-setup.md — which tool runs the workbench, its exact start
+- ref:agent/grimorio.manual-verifier/memory/project.local-setup.md — which tool runs the workbench, its exact start
   commands, and both environments' ports, needed to actually OPEN the first isolated state and start `dev:fake`.
 - **Browser tooling, restated from ref:agent/grimorio.manual-verifier/behavior.md#browser-tooling — never
   re-derived, only carried forward to the phase that actually opens a browser, per
@@ -46,7 +46,7 @@ baselines and decides whether the rest of this pass may proceed at all.
   restatement rule:** Use **`playwright-cli`** for all browser
   interaction — never inline Playwright `.cjs` boilerplate.
   ```bash
-  playwright-cli open {local URL — see ref:memory/grimorio.manual-verifier-memory/project.local-setup.md}/some-route
+  playwright-cli open {local URL — see ref:agent/grimorio.manual-verifier/memory/project.local-setup.md}/some-route
   playwright-cli snapshot          # accessibility tree of current state
   playwright-cli screenshot --filename=screenshots/01-route.png
   playwright-cli console           # console errors

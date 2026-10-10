@@ -9,7 +9,7 @@ owes because of that reason. Split out of `project.grimorio-vision.md` on 2026-0
 **WHEN you capture anything about what an agent is FOR — its purpose, its vision, its reason for existing, or a
 standing way of working an agent must know ⟶ it belongs HERE, never in `project.grimorio-vision.md`**, which
 keeps the product/campaign vision and the corpus-level rules. Product/campaign vision content lives at
-ref:memory/grimorio.po-memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives.
+ref:agent/grimorio.po/memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives.
 
 -> the file this was split from: `project.grimorio-vision.md`, retired 2026-09-30 — its content now lives at
    ref:repo/.grimorio/GRIMORIO-VISION.md, `grimorio.system-keeper`-owned going forward.
@@ -23,7 +23,7 @@ make, never decided by this record or by a brief invoking it.
 
 ## The design agent's mission — close GAME 2's gaps from design, AS-IS before TO-BE
 
-GAME 2's own product vision lives at ref:memory/grimorio.po-memory/project.vision/game-2-thesis.md; this section is that
+GAME 2's own product vision lives at ref:agent/grimorio.po/memory/project.vision/game-2-thesis.md; this section is that
 ambition's flip side — why a design agent (agent:grimorio.design-orchestrator today) has to exist at all and how
 it is obliged to work. Source: a byte-verified CEO turn chain, `user:` lines byte-exact, migrated whole into this
 file per the custody-check rule.

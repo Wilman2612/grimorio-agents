@@ -56,7 +56,7 @@ something real to check the decomposition against.
 2. **ALWAYS survey before writing, scoped to the components/pages this task touches** — read the files you
    will change, search for an existing component you should reuse or extend rather than duplicate, verify the
    layer, per
-   import:memory/grimorio.developer-memory/build-protocol.md#survey-before-writing-mandatory-first-step.
+   import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step.
 3. **ALWAYS decompose into independent items before you write or run anything — one component or page per item
    (your VOLUME UNIT) — and declare, in one line, either the items you will fan out to or why this particular
    task does not split.** **FAN-OUT BRANCH:**
@@ -71,7 +71,7 @@ something real to check the decomposition against.
    3. **WHEN the gate does not hold ⟶ proceed solo, but DECLARE in one line WHY it failed**, before continuing.
       **NEVER skip the declaration.**
 3a. **WHEN Phase 2's own `BUG-REPORT CARRIED FORWARD` field names a component/page-layer bug ⟶ apply
-   import:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order — write the
+   import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — write the
    test that proves the bug exists, confirm it FAILS, THEN fix production code** — before this phase's own
    build step (step 4) touches that item. On the FIRST-PASS branch this fires inside the SELF node, mirroring
    Phase 2's own step 3a placement exactly. On RE-ENTRY it is skipped, per step 1a's own "skip steps 2-3" (same
@@ -94,11 +94,11 @@ something real to check the decomposition against.
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.developer-memory/build-protocol.md#survey-before-writing-mandatory-first-step —
+- import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step —
   step 2's own survey-before-writing step, scoped to the components/pages this task touches.
   FINGERPRINT: SURVEY NOTES field below (a real survey result, distinct from an unchecked "none," cannot be
   produced without applying this discipline first).
-- import:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order — step 3a's own
+- import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — step 3a's own
   bug-order step, scoped to a component/page-layer bug Phase 1 flagged (carried forward via Phase 2's own
   `BUG-REPORT CARRIED FORWARD` field).
   FINGERPRINT: BUG-FIX-FIRST-TEST field below (a real failing-test-first sequence, distinct from an unchecked

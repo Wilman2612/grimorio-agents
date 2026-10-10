@@ -19,7 +19,7 @@ test that would pass no matter what the code does.
    fired only when a break-proof itself fails; no spawn anywhere in this phase.**
 2. **ALWAYS run each affected project in its own context; run the full suite for regression.**
 3. **ALWAYS break-proof each NEW test**
-   (ref:memory/grimorio.qa-memory#the-break-proof--a-test-you-have-not-seen-fail-is-not-evidence → "THE
+   (ref:agent/grimorio.qa/memory#the-break-proof--a-test-you-have-not-seen-fail-is-not-evidence → "THE
    BREAK-PROOF", an EXECUTED step, not a thought experiment): mutate the real code it claims to protect (invert
    a condition, drop a guard, return the wrong constant), confirm it goes RED, revert, confirm GREEN and a
    clean `git status`. State which tests were break-proofed and how.
@@ -44,11 +44,11 @@ phase automatically — no separate return edge is needed or drawn for that half
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:memory/grimorio.qa-memory#the-break-proof--a-test-you-have-not-seen-fail-is-not-evidence — the executed
+- import:agent/grimorio.qa/memory#the-break-proof--a-test-you-have-not-seen-fail-is-not-evidence — the executed
   mutate/RED/revert/GREEN protocol step 3 runs.
   FINGERPRINT: BREAK-PROOF LOG field below (a real break-proof log, distinct from an asserted "it works,"
   cannot be produced without applying this protocol).
-- import:memory/grimorio.qa-memory/project.md#test-frameworks-verified-against-the-repo-2026-07-20 — this
+- import:agent/grimorio.qa/memory/project.md#test-frameworks-verified-against-the-repo-2026-07-20 — this
   project's own per-project test-framework commands, step 2's own source of truth for what to actually run.
   FINGERPRINT: RUN RESULTS field below (real pass/fail counts cannot be produced without knowing which command
   runs which project).

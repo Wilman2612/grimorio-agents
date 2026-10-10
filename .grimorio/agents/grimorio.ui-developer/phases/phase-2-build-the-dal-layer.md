@@ -33,14 +33,14 @@ adapter, the Real adapter, the Functional Core, and the repository factory, as O
    against the specific check that failed, and go straight to this phase's own DELIVERABLE.**
 2. **BEFORE your FIRST create/modify of any file ⟶ do the upward ref:skill/harness.md lookup** (target file's folder →
    repo root) and obey every co-located guardrail found — this IS the chain's first file-creating phase, per
-   ref:memory/grimorio.developer-memory/build-protocol.md#harness-first. **WHEN a change would break a
+   ref:skill/grimorio.build-protocol/build-protocol.md#harness-first. **WHEN a change would break a
    harness GATE rule ⟶ STOP and ask the user.**
 3. **ALWAYS survey before writing, scoped to this domain's own DAL folder**: read the files you will change,
    search for an existing interface/adapter/Functional-Core you should reuse or extend rather than duplicate,
    verify the layer per
-   import:memory/grimorio.developer-memory/build-protocol.md#survey-before-writing-mandatory-first-step.
+   import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step.
 3a. **WHEN Phase 1 flagged a DAL-layer bug (its own REWORK/BUG-REPORT DETECTED field) ⟶ apply
-   import:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order — write the test
+   import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — write the test
    that proves the bug exists, confirm it FAILS, THEN fix production code** — before any other step in this
    phase touches production code.
 3b. **WHEN Phase 1 flagged a component/page or Story-layer bug instead (never DAL — already handled by step 3a
@@ -69,12 +69,12 @@ adapter, the Real adapter, the Functional Core, and the repository factory, as O
   step 2's own load.
   FINGERPRINT: HARNESS LOOKUP DONE field below (a real upward lookup, distinct from an asserted "checked,"
   cannot be produced without applying this discipline).
-- import:memory/grimorio.developer-memory/build-protocol.md#survey-before-writing-mandatory-first-step —
+- import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step —
   step 3's own survey-before-writing step, scoped to this domain's own DAL folder.
   FINGERPRINT: SURVEY NOTES field below, jointly with INTERFACE FILE + FAKE ADAPTER + REAL ADAPTER + FUNCTIONAL
   CORE + REPO FACTORY (a real survey result, distinct from an unchecked "none," and the written files that
   actually reuse or extend what that survey found, cannot be produced without applying this discipline first).
-- import:memory/grimorio.developer-memory/build-protocol.md#bug-report--mandatory-order — step 3a's own
+- import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — step 3a's own
   bug-order step, scoped to a DAL-layer bug Phase 1 flagged.
   FINGERPRINT: BUG-FIX-FIRST-TEST field below (a real failing-test-first sequence, distinct from an unchecked
   "N/A," cannot be produced without applying this mandatory order first).
@@ -83,7 +83,7 @@ adapter, the Real adapter, the Functional Core, and the repository factory, as O
   FINGERPRINT: INTERFACE FILE + FUNCTIONAL CORE + REPO FACTORY + FAKE ADAPTER fields below (a real interface,
   a pure Functional Core, a single-place factory, and a Fake adapter covering all named states cannot be
   produced without this architecture).
-- import:memory/grimorio.developer-memory/project.md#ui-developer-scope--concrete-folder-paths — the verified
+- import:agent/grimorio.ui-developer/memory/project.md#ui-developer-scope--concrete-folder-paths — the verified
   concrete file paths and naming conventions every written file below resolves against, including whether the
   Real adapter carries a `server-only` guard in THIS project.
   FINGERPRINT: every file-path/naming sub-field inside INTERFACE FILE, FAKE ADAPTER, REAL ADAPTER, FUNCTIONAL

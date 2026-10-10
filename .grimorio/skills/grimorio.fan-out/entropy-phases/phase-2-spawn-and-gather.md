@@ -68,8 +68,8 @@ phase does not converge, does not judge the findings, and does not close the tas
 - ref:skill/grimorio.working-memory + ref:agent/grimorio.scout — the `tmp/` convention + as-you-go
   persistence; the scouts persist to `tmp/` as they go, this phase hands each one the file to append to.
 - Domain canon PER ACTIVE LENS, loaded conditionally, only for the lenses Phase 1 actually scoped in, never
-  eagerly for all 5: ref:memory/grimorio.ux-memory → "Design Canon" for the UX/design-expert lens,
-  ref:memory/grimorio.security-memory for the attacker lens.
+  eagerly for all 5: ref:agent/grimorio.ux/memory → "Design Canon" for the UX/design-expert lens,
+  ref:agent/grimorio.security/memory for the attacker lens.
 - **NEVER load ref:skill/grimorio.reasoning-principles' objective/exit-condition contract here** (already
   established in Phase 1) **or Phase 3's own web-grounding/self-check knowledge** — each is a different phase's
   own question.

@@ -24,9 +24,9 @@ echo '{"owner":"them"}'         > "$G/.claude/board-config.json"
 # THE ADOPTER'S PROJECT MEMORY, which section 5 says lives inside grimorio's OWN container. The clear step
 # used to wipe `.grimorio/` wholly on the claim that POSITION proved nothing of theirs was inside -- false,
 # and it would have deleted an adopting project's entire project memory on every single export.
-mkdir -p "$G/.grimorio/memory/grimorio.developer-memory" "$G/.grimorio/skills/grimorio.fan-out"
-echo "their conventions"           > "$G/.grimorio/memory/grimorio.developer-memory/project.md"
-echo "their traps"                 > "$G/.grimorio/memory/grimorio.developer-memory/project.traps.md"
+mkdir -p "$G/.grimorio/agents/grimorio.js-developer/memory" "$G/.grimorio/skills/grimorio.fan-out"
+echo "their conventions"           > "$G/.grimorio/agents/grimorio.js-developer/memory/project.md"
+echo "their traps"                 > "$G/.grimorio/agents/grimorio.js-developer/memory/project.traps.md"
 echo "their independence test"     > "$G/.grimorio/skills/grimorio.fan-out/project.independence-test.md"
 # and a file of GRIMORIO's under the same container that this export no longer publishes
 mkdir -p "$G/.grimorio/skills/grimorio.retired"
@@ -47,8 +47,8 @@ stays "$G/.claude/agents/their-own-agent.md"      "their unprefixed agent"
 stays "$G/.claude/skills/their-skill/SKILL.md"    "their own skill folder"
 stays "$G/scripts/their-tools/build.sh"           "their root script"
 stays "$G/.claude/board-config.json"              "their board config"
-stays "$G/.grimorio/memory/grimorio.developer-memory/project.md"       "their project memory, inside grimorio's own container"
-stays "$G/.grimorio/memory/grimorio.developer-memory/project.traps.md" "their traps file"
+stays "$G/.grimorio/agents/grimorio.js-developer/memory/project.md"       "their project memory, inside grimorio's own container"
+stays "$G/.grimorio/agents/grimorio.js-developer/memory/project.traps.md" "their traps file"
 stays "$G/.grimorio/skills/grimorio.fan-out/project.independence-test.md" "their companion inside a grimorio skill"
 
 echo "=== WHAT GRIMORIO NO LONGER PUBLISHES IS REMOVED"

@@ -34,7 +34,7 @@ never allowed"; once a later ruling permits guest checkout under a spending cap,
 entry is stale the instant the new ruling lands — it gets rewritten in the same pass, not left for someone
 downstream to trip over the contradiction. -> This project's own real-world instance of this exact rule, in
 the CEO's own words, naming the actual product ruling it overturned:
-ref:memory/grimorio.po-memory/project.md#maintenance--worked-instance-migrated-from-behaviormd-portability-leak-fix
+ref:agent/grimorio.po/memory/project.md#maintenance--worked-instance-migrated-from-behaviormd-portability-leak-fix
 — preserved there, not restated here.
 
 ## OUTPUT

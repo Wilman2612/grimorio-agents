@@ -98,7 +98,7 @@ mkrepo() {
   git -C "$d" config user.email t@t.t
   git -C "$d" config user.name t
   git -C "$d" config core.autocrlf false
-  mkdir -p "$d/.grimorio/scripts" "$d/.grimorio/skills/grimorio.objective-harness/scripts" "$d/.grimorio/memory/grimorio.po-memory" "$d/objectives" "$d/.claude/agents"
+  mkdir -p "$d/.grimorio/scripts" "$d/.grimorio/skills/grimorio.objective-harness/scripts" "$d/.grimorio/agents/grimorio.po/memory" "$d/objectives" "$d/.claude/agents"
   # Anything pre-commit.sh invokes belongs here, or the copy is not the script under test, it is a
   # script that happens to share its name (check-comment-blocks.mjs learned this the hard way on
   # 2026-08-03; check-agent-tiers.mjs joined the same call chain on 2026-08-08; check-comment-history.mjs
@@ -130,7 +130,7 @@ mkrepo() {
   ( cd "$d" && bash .grimorio/scripts/install-hooks.sh >/dev/null ) || die "install-hooks.sh failed in the scratch repo"
   [ -x "$d/.git/hooks/pre-commit" ] || die "install-hooks.sh did not produce an executable hook"
   printf '# Feature status ledger\n\n## SHIPPED — process & tooling\n\n- existing capability.\n' \
-    > "$d/.grimorio/memory/grimorio.po-memory/project.features-status.md"
+    > "$d/.grimorio/agents/grimorio.po/memory/project.features-status.md"
   git -C "$d" add -A
   git -C "$d" commit -q --no-verify -m init
   echo "$d"
@@ -248,7 +248,7 @@ c2() { # the commit gate refuses a branch with no objective
   # A commit of pure DELETIONS must not slip past. Filtering staged paths to added/copied/modified
   # made a delete-only commit look like an empty commit, and every gate returned 0 before running.
   # This repo's standing prune-what-dies rule generates exactly that commit shape constantly.
-  git -C "$d" rm -q .grimorio/memory/grimorio.po-memory/project.features-status.md
+  git -C "$d" rm -q .grimorio/agents/grimorio.po/memory/project.features-status.md
   refuses "C2 a DELETION-only commit is refused on a branch with no objective" "no objective" \
     git -C "$d" commit -m "prune dead tissue"
   git -C "$d" reset -q --hard   # a staged deletion needs the index reset, not just a checkout
@@ -571,7 +571,7 @@ c8() { # close-milestone.sh is replaced, not paralleled; its gates survive as ob
   pass "C8 close-milestone.sh is gone, not left running in parallel"
   local d; d=$(mkrepo); need_scratch "$d"
   # Its RED-status gate: a milestone objective whose ledger status is RED must be refused.
-  printf '\n## ▶ CURRENT MILESTONE — M9\n\n**STATUS: RED.**\n' >> "$d/.grimorio/memory/grimorio.po-memory/project.features-status.md"
+  printf '\n## ▶ CURRENT MILESTONE — M9\n\n**STATUS: RED.**\n' >> "$d/.grimorio/agents/grimorio.po/memory/project.features-status.md"
   git -C "$d" add -A; git -C "$d" commit -q --no-verify -m ledger
   git -C "$d" checkout -q -b m9/scratch
   write_objective "$d" m9/scratch "x" "true" "- a scratch milestone capability."
@@ -643,7 +643,7 @@ c10() { # the methodology is recorded where work actually reads it
   pass "C10 grimorio-conduct carries the trigger"
   [ -f "$REAL_ROOT/objectives/harness.md" ] || die "C10 objectives/ has no harness.md"
   pass "C10 objectives/harness.md exists"
-  M8="$REAL_ROOT/.grimorio/memory/grimorio.po-memory/features/m8-test-ladder.md"
+  M8="$REAL_ROOT/.grimorio/agents/grimorio.po/memory/features/m8-test-ladder.md"
   if [ ! -f "$M8" ]; then
     absent "C10 po-memory's branch-discipline section"
   else
@@ -664,8 +664,8 @@ c10() { # the methodology is recorded where work actually reads it
   # The referrers must be REPAIRED, not left pointing at a deleted script. (close-branch.sh and this
   # file name it in prose on purpose — saying what was replaced is not a live reference.)
   grep -q 'scripts/close-milestone.sh' "$REAL_ROOT/CLAUDE.md" \
-    "$REAL_ROOT/.grimorio/memory/grimorio.po-memory/features/m8-test-ladder.md" \
-    "$REAL_ROOT/.grimorio/memory/grimorio.po-memory/project.md" \
+    "$REAL_ROOT/.grimorio/agents/grimorio.po/memory/features/m8-test-ladder.md" \
+    "$REAL_ROOT/.grimorio/agents/grimorio.po/memory/project.md" \
     "$REAL_ROOT/.grimorio/memory/grimorio.board-memory/grimorio-defects.md" 2>/dev/null \
     && die "C10 a memory file still points at the deleted scripts/close-milestone.sh as the live gate"
   pass "C10 every referrer of the replaced script was repaired"
