@@ -93,7 +93,7 @@ function scrub(text) {
 const ownedByGrimorio = (rel) => {
   const parts = rel.split("/");
   // THE PREFIX IS THE FIRST TEST, EVERYWHERE. A `project.` file is the adopter's whatever container it sits
-  // in -- including `.grimorio/memory/`, which section 5 defines AS the project and code levels.
+  // in -- including `.grimorio/memory/`, which section 6 defines AS the project and code levels.
   if (parts.some((s) => s.startsWith("project."))) return false;
   // `.grimorio/` is grimorio's by POSITION, minus what the line above already removed.
   if (rel.startsWith(".grimorio/")) return true;

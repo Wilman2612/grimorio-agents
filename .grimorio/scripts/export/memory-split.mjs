@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // @keep-comment WHICH HALF OF A MEMORY STORE TRAVELS. Section 9 says the `project.` prefix marks ownership,
-// so unprefixed is grimorio's; section 5 says `memory/` IS the project level, so the tree is excluded by
+// so unprefixed is grimorio's; section 6 says `memory/` IS the project level, so the tree is excluded by
 // position. Inside a store the two rules disagree, and this decides it STRUCTURALLY -- never by a list of
 // files, which goes quiet when it falls behind.
 //

@@ -6,6 +6,19 @@ one product, it is the consuming project's, not grimorio's.
 
 This file is the spec. It settles where every kind of file lives, why, and what must never happen.
 
+**Four documents describe this system, and this one answers only its own question. Read them in this order:**
+
+| Document | The question it answers |
+|---|---|
+| `GRIMORIO-VISION.md` | WHY any of this exists, and what it is for |
+| this file | HOW IT IS ORGANISED -- the collectors, the agents, the splits |
+| `GRIMORIO-CHAIN.md` | WHAT HAPPENS AT RUNTIME -- the context boundary, every wired mechanism, and a LOSS MAP of each chain and where it breaks |
+| `GRIMORIO-INDEX.md` | WHAT EXISTS -- agents by function, skills by domain, the standing mechanisms |
+
+**The names are not a reliable guide and that is worth saying out loud:** the runtime architecture is in
+CHAIN, not here, and this document is a layout and organisation spec rather than a system description.
+A reviewer handed only this file would see where files go and nothing about how a turn executes.
+
 ---
 
 ## 1. THE ONE MECHANISM EVERYTHING ELSE FOLLOWS FROM: DISCOVERY IS OPT-IN
@@ -40,7 +53,7 @@ unnecessary — but the PROPERTY it provided is still required, and it is now pr
 > began offering `project.game-design`, `project.map-design`, `project.tileset-composition`,
 > `project.game-patterns` and `project.game-development` to every agent. The move was reasoned as "the
 > consuming project's content goes beside its own agents" — true about OWNERSHIP, and wrong about the
-> container, because `.claude/` publishes. **Those six moves are listed in §8 as TO UNDO.**
+> container, because `.claude/` publishes. **Those six moves are listed in §9 as TO UNDO.**
 
 ---
 
@@ -48,11 +61,11 @@ unnecessary — but the PROPERTY it provided is still required, and it is now pr
 
 ```
 .grimorio/                       GRIMORIO'S OWN. This is what gets shared.
-├── agents/<grimorio.x>/         A FOLDER PER AGENT (§3)
-├── skills/<grimorio.x>/         what MANY agents load (§4)
-├── memory/<grimorio.x-memory>/  project + code levels (§5)
-├── tmp/                         working memory, WRITE-ONLY (§6)
-├── hooks/<hook>.mjs             implementations (§7)
+├── agents/<grimorio.x>/         A FOLDER PER AGENT (§4)
+├── skills/<grimorio.x>/         what MANY agents load (§5)
+├── memory/<grimorio.x-memory>/  project + code levels (§6)
+├── tmp/                         working memory, WRITE-ONLY (§7)
+├── hooks/<hook>.mjs             implementations (§8)
 ├── .cache/                      RUNTIME STATE, gitignored: the invocation and completion logs, the
 │                                tree-occupancy registry, the phase-server log, the board's claim
 │                                ledger. Declared ONCE as `cacheRoot` in .grimorio/scripts/refobl/skill-roots.json
@@ -112,7 +125,49 @@ behind rather than noisy. What counts the publication surfaces is
 
 ---
 
-## 3. `agents/<grimorio.x>/` — A FOLDER PER AGENT
+## 3. THE SPLITS — the four axes anything here divides along
+
+Section 2 gives the COLLECTORS: the containers a file can land in. This gives the CUTS: the four
+independent questions that decide whether something becomes a separate file at all, and which collector it
+lands in when it does. They compose -- one agent is cut on all four -- and each one's RULE is owned by one
+skill, stated there and never restated here. A second copy of a rule is the defect this corpus has paid
+for more often than any other.
+
+### 3.1 LEVEL — behavior, general, project, code
+
+The cut that decides whether a file is GRIMORIO'S or the ADOPTER'S, and therefore whether it travels. It is
+the only one of the four whose rule lives in THIS document, because it is the same question the containers
+answer -> section 4.5 below, and the `project.` prefix that marks it -> section 10.
+
+### 3.2 IDENTITY vs CAPABILITY — the agent is WHO IT IS, the skill is WHAT IT DOES
+
+The cut between an agent and a skill. An agent carries identity, charter and refusals; a skill carries a
+capability many agents load. Get this one wrong and the same doctrine ends up copied into every agent that
+needs it.
+-> the rule: ref:skill/grimorio.agent-writing#the-split-principle--the-agent-is-who-it-is-the-skill-is-what-it-does
+-> how to divide an existing agent: ref:skill/grimorio.agent-writing#the-split-template--how-to-divide-any-agent
+
+### 3.3 PHASE — one agent's work into ordered pieces
+
+The cut along TIME: an agent's job into phases a reader executes in order, each sized so it fits what the
+model can hold at once. This is why an agent is a FOLDER (section 4) rather than a file.
+-> the rule, including when a step is NOT a phase: ref:skill/grimorio.phase-splitting#sizing-a-phase--render-group-measure-split
+
+### 3.4 FAN-OUT — one task into N independent children
+
+The cut at RUN TIME rather than at authoring time: whether work divides into children that can proceed
+without each other. It leaves no file behind, which is exactly why it is easy to forget it is the same
+question, and its test is the hardest of the four because independence is claimed far more often than it
+holds.
+-> the rule: ref:skill/grimorio.fan-out#the-delegation-decision--decide-before-you-decide-how-to-split
+
+**The order matters when more than one applies.** LEVEL first, because a file that is the adopter's is not
+grimorio's to cut further. Then IDENTITY, which decides the collector. Then PHASE, inside whatever that
+produced. FAN-OUT is decided by whoever runs the work, never by whoever authored it.
+
+---
+
+## 4. `agents/<grimorio.x>/` — A FOLDER PER AGENT
 
 Everything that belongs to ONE agent and applies to EVERY project using it:
 
@@ -155,7 +210,7 @@ file that lists the adopter's own things is arena's, however good the prose arou
 
 ---
 
-## 4. `skills/<grimorio.x>/` — WHAT MANY AGENTS LOAD
+## 5. `skills/<grimorio.x>/` — WHAT MANY AGENTS LOAD
 
 Several agents load it and it carries no agent's behavior. It earns its place in every agent's listing, so it
 gets a stub under `.claude/skills/`.
@@ -171,9 +226,9 @@ loaded from `SKILL.md` files, phase files and memory skills too.
 
 ---
 
-## 5. `memory/<grimorio.x-memory>/` — THE PROJECT AND CODE LEVELS
+## 6. `memory/<grimorio.x-memory>/` — THE PROJECT AND CODE LEVELS
 
-The four levels are **behavior · general · project · code**. Behavior and general travel with the agent (§3).
+The four levels are **behavior · general · project · code**. Behavior and general travel with the agent (§4).
 Project and code come OUT of the agent, into `memory/`, so all memory is manageable in one place.
 
 **An adopter's own `project.*` file inside `.grimorio/memory/` is the convention WORKING, not a leak.** The
@@ -182,7 +237,7 @@ files). What keeps it out of the shared package is the export's SCRUB step, not 
 
 ---
 
-## 6. `tmp/` — WORKING MEMORY, WRITE-ONLY
+## 7. `tmp/` — WORKING MEMORY, WRITE-ONLY
 
 The root is declared ONCE, as `workRoot` in `.grimorio/scripts/refobl/skill-roots.json`, and every writer READS it.
 
@@ -200,7 +255,7 @@ untracked and their own only copy.
 
 ---
 
-## 7. `hooks/` — IMPLEMENTATION AND DISPATCHER
+## 8. `hooks/` — IMPLEMENTATION AND DISPATCHER
 
 The logic lives in `.grimorio/hooks/<hook>.mjs`. What stays in `.claude/hooks/<hook>.cjs` is a dispatcher of
 17–26 lines that dynamically imports it. **The dispatcher keeps its exact path and filename**, because that
@@ -216,7 +271,7 @@ to him; the main loop carries his approval into the brief, quoting him, and that
 
 ---
 
-## 8. THE ADOPTER'S OWN CONTENT — DEFERRED, AND THAT MEANS UNTOUCHED
+## 9. THE ADOPTER'S OWN CONTENT — DEFERRED, AND THAT MEANS UNTOUCHED
 
 The adopter's own agents — `project.brush-critic`, `project.map-cartographer`, `project.conventions-critic`,
 `project.map-aesthete`, `project.map-aesthetic-critic`, `project.map-content-critic`, plus the game
@@ -241,7 +296,7 @@ and against §1. They return to `.grimorio/skills-store/` under their original n
 
 ---
 
-## 9. THE EXPORT
+## 10. THE EXPORT
 
 `.grimorio/` is the source. The export SCRUBs what is the adopter's: `project.export-baseline.md` states it
 — *"exports only its behavior/general levels; `project.md` and code files never export."* The `project.`
@@ -251,7 +306,7 @@ prefix is the marker the scrub keys on, which is why the prefix is about ownersh
 
 ---
 
-## 10. HOW A CONTAINER MOVES
+## 11. HOW A CONTAINER MOVES
 
 **By a tool, from a reviewable map — never by a hand pass per folder.**
 `scripts/migrate/container-map.json` holds the judgement as data; `.grimorio/scripts/migrate/move-container.mjs`
@@ -277,7 +332,7 @@ regressions.
 
 ---
 
-## 11. STATE
+## 12. STATE
 
 | | |
 |---|---|
@@ -296,13 +351,13 @@ regressions.
 - **`grimorio.board`** (19 files) — TWO behavior files, feeder and writer, for two agents sharing one script
   set. One folder or two is a decision, not a move.
 - **`grimorio.system-design`** (150 files) — THREE behavior files inside a folder that is otherwise a shared
-  skill. The behaviors go to their agents (§3) first; what remains is a skill (§4).
+  skill. The behaviors go to their agents (§4) first; what remains is a skill (§5).
 
 ---
 
-## 12. DEFERRED, AND NOT GUESSED HERE
+## 13. DEFERRED, AND NOT GUESSED HERE
 
-- **The adopter's own agents** (§8). No structure designed. Untouched.
+- **The adopter's own agents** (§9). No structure designed. Untouched.
 - **`.grimorio/memory/grimorio.board-memory/` and `.claude/current-objective.md`** — grimorio's own, at the publication surface, and
   they fit NO container above. They are STATE, but not the gitignored runtime kind `.cache/` holds: the
   registers (`register.md`, `grimorio-backlog.md`, `grimorio-defects.md`) and the current objective are

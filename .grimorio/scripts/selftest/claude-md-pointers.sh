@@ -51,6 +51,11 @@ ck() { # ck <label> <file> <regex-that-must-match-a-heading-or-line>
   fi
   # The two deliberate CONTROLS are exempt: their store does not exist either, and letting them take this
   # path would silence the only two cases that prove this checker can see a break at all.
+  # A SEEDED ADOPTER TEMPLATE counts as absent too, and this is the second half of the same rule: the export
+  # seeds every `project.` companion a prompt names, so in a published clone the FILE exists while its
+  # content is still the adopter's to write. Judging its headings would demand of them a section they were
+  # never told to name. Detected by the template's own first-line promise, never by a path list.
+  if [ -f "$f" ] && grep -q "This file is YOURS, and it is EXPECTED" "$f" 2>/dev/null; then absent=1; fi
   if [ "$absent" = "1" ] && [ "${1#CONTROL}" = "$1" ]; then
     echo "ABSENT   $1 -> the store [$store] is not installed here, so this pointer is unjudgeable"
     absent_store=$((absent_store + 1)); absent_names="$absent_names $store"

@@ -340,8 +340,8 @@ const idxOf = (dir) => {
     user(0, "comprueba"),
     assistant(1, [
       text("DECLARO · categoría=diagnostico · id=segments · objetivo: check it"),
-      bash("cd /e/Proyect/arena" + String.fromCharCode(10) + "npx --no-install playwright-cli --version | head -1"),
-      bash("cd /e/Proyect/arena && bash .grimorio/scripts/selftest/run-all.sh"),
+      bash("cd /path/to/repo" + String.fromCharCode(10) + "npx --no-install playwright-cli --version | head -1"),
+      bash("cd /path/to/repo && bash .grimorio/scripts/selftest/run-all.sh"),
       text("CIERRO · id=segments · VERIFIED · checks: npx, head, run-all.sh · checked"),
     ]),
   ]);
