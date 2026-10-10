@@ -1,6 +1,6 @@
 ---
 name: grimorio.objective-harness
-description: "Load before opening, writing checks for, or closing a branch: one objective file per branch, gated on every commit."
+description: "Load before opening, writing checks for, or closing a branch with an objective: the file, its VERIFY checks, and the close that merges only when they run green."
 ---
 
 # Grimorio Objective Harness - Claude Code adapter

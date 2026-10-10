@@ -143,9 +143,9 @@ injected "Scratchpad Directory" path, which is where this bites most often.** Gi
 
 ### Branches, commits, and knowledge
 
-16. **NEVER break the `develop`/worktree/commit discipline the project's own harness chain sets.** Open with
-    ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/open-branch.sh; close with
-    ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh. -> ref:repo/.claude/hooks/harness.md → "WHO WORKS WHERE".
+16. **NEVER break the `develop`/worktree/commit discipline the project's own harness chain sets.** A branch
+    that carries an objective opens with ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/open-branch.sh
+    and closes with ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh. -> ref:repo/.claude/hooks/harness.md → "WHO WORKS WHERE".
 17. **NEVER cite a `tmp/` path as the source of a SIGNED decision**, and NEVER write to Claude memory what belongs
     in the repo. -> ref:skill/grimorio.working-memory.
 17b. **NEVER let a work product reach the tracked repo — not the root, not inside a skill folder — outside

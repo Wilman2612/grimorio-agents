@@ -3,7 +3,7 @@
 # not by watching it allow — the repo's standing rule: a probe that has only ever been green is not a
 # probe (five verification probes on 2026-07-28 failed toward "everything is fine").
 #
-#   .grimorio/skills/grimorio.objective-harness/scripts/selftest-objective.sh [c1..c10|c12|c15|all]
+#   .grimorio/skills/grimorio.objective-harness/scripts/selftest-objective.sh [c1|c4..c10|c15|all]
 #
 # c1-c8 run against a throwaway repo built in $TMPDIR from the real scripts, so a gate cannot be
 # "proved" by the state of this working tree. c9-c10 assert facts about this repo itself.
@@ -236,74 +236,6 @@ c1() { # open-branch creates branch + objective together, and refuses without an
   b=$(grep '^\*\*Base:\*\*' "$d/objectives/feat/third.md" | awk '{print $2}')
   [ "$b" = "feat/first" ] || die "C1 explicit --base feat/first was overridden, got '$b'"
   pass "C1 an explicit --base is still honoured, so stacking stays available"
-  rm -rf "$d"
-}
-
-c2() { # the commit gate refuses a branch with no objective
-  local d; d=$(mkrepo); need_scratch "$d"
-  git -C "$d" checkout -q -b feat/nameless
-  echo hi > "$d/a.txt"; git -C "$d" add a.txt
-  refuses "C2 commit refused on a branch with no objective" "no objective" \
-    git -C "$d" commit -m "work"
-  # A commit of pure DELETIONS must not slip past. Filtering staged paths to added/copied/modified
-  # made a delete-only commit look like an empty commit, and every gate returned 0 before running.
-  # This repo's standing prune-what-dies rule generates exactly that commit shape constantly.
-  git -C "$d" rm -q .grimorio/agents/grimorio.po/memory/project.features-status.md
-  refuses "C2 a DELETION-only commit is refused on a branch with no objective" "no objective" \
-    git -C "$d" commit -m "prune dead tissue"
-  git -C "$d" reset -q --hard   # a staged deletion needs the index reset, not just a checkout
-  allows "C2 the same commit is allowed once the objective exists" \
-    bash -c "cd '$d' && bash .grimorio/skills/grimorio.objective-harness/scripts/open-branch.sh --here 'the nameless thing' >/dev/null && git add -A && git commit -m work"
-  rm -rf "$d"
-}
-
-c3() { # the anti-bucket gate: any path outside the branch's declared scope, however it is touched
-  local d; d=$(mkrepo); need_scratch "$d"
-  git -C "$d" checkout -q -b feat/scoped
-  # NO trailing slash on purpose: an author writes it this way at least as often, and matching it
-  # literally would leave the branch silently unscoped — a gate failing in the dangerous direction.
-  write_objective "$d" feat/scoped " " "true" "- a scratch capability." "services/battlesim"
-  mkdir -p "$d/services/battlesim"; echo x > "$d/services/battlesim/f.go"
-  git -C "$d" add -A
-  refuses "C3 an ADDED out-of-scope file is refused (slashless directory pattern)" "outside the branch's objective" \
-    git -C "$d" commit -m "unrelated work"
-  git -C "$d" rm -q --cached services/battlesim/f.go; rm -rf "$d/services/battlesim"
-  allows "C3 the same commit is allowed once the out-of-scope file is dropped" \
-    bash -c "cd '$d' && git add -A && git commit -m 'in-scope work'"
-
-  # Deletions and renames must be seen too. Deleting an out-of-scope file is still unrelated work,
-  # and a rename INTO a forbidden path is how the scope would be escaped in one move.
-  mkdir -p "$d/services/battlesim"; echo x > "$d/services/battlesim/g.go"
-  echo y > "$d/movable.md"
-  git -C "$d" add -A; git -C "$d" commit -q --no-verify -m seed
-  git -C "$d" rm -q services/battlesim/g.go
-  refuses "C3 a DELETION of an out-of-scope file is refused" "outside the branch's objective" \
-    git -C "$d" commit -m "delete unrelated file"
-  git -C "$d" reset -q --hard   # back to the seed; a staged deletion survives a bare checkout
-
-  git -C "$d" mv movable.md services/battlesim/movable.md \
-    || die "C3 could not stage the rename — the probe would then pass on leftover state, not on a rename"
-  refuses "C3 a RENAME into an out-of-scope path is refused" "outside the branch's objective" \
-    git -C "$d" commit -m "move file into forbidden path"
-  git -C "$d" reset -q --hard
-
-  # The gate must not be its own kill switch. Deleting the marker in the same commit as unrelated work
-  # would otherwise turn every objective gate off — and the out-of-scope gate cannot defend the marker,
-  # because the marker IS the gate.
-  git -C "$d" rm -q objectives/harness.md
-  mkdir -p "$d/services/battlesim"; echo x > "$d/services/battlesim/h.go"; git -C "$d" add -A
-  refuses "C3 a commit deleting the methodology marker is refused" "switch every objective gate off" \
-    git -C "$d" commit -m "prune the harness and do unrelated work"
-  git -C "$d" reset -q --hard; rm -rf "$d/services/battlesim"
-
-  # And with the marker genuinely absent from BOTH head and tree, the gate is off by design — strays
-  # that predate the methodology are left alone rather than blocked by a rule they never received.
-  git -C "$d" rm -q objectives/harness.md
-  git -C "$d" commit -q --no-verify -m "retire the methodology deliberately"
-  git -C "$d" checkout -q -b feat/ungated
-  echo z > "$d/anything.txt"; git -C "$d" add -A
-  allows "C3 with the methodology absent, an objective-less branch commits freely (by design)" \
-    git -C "$d" commit -m "work on a branch that never received the rule"
   rm -rf "$d"
 }
 
@@ -672,55 +604,6 @@ c10() { # the methodology is recorded where work actually reads it
 }
 
 
-# C11, C13 and C14 are GONE, not skipped. Every assertion in them exercised an INJECTION — an objective
-# reaching a spawn, a prompt, or a loop iteration — and both hooks that performed it
-# (agent-routing-reminder.cjs, objective-prompt-reminder.cjs) were deleted, 2026-08-06 and 2026-08-09.
-# There is nothing left to assert against: a branch objective now reaches the COMMIT GATE and nothing
-# else. That is a real capability loss, recorded as such in .grimorio/GRIMORIO-CHAIN.md §7 rows 6/6b, not
-# a test-coverage gap to be restored here. C12 below keeps every assertion that survived, because the
-# INHERITANCE it proves lives in pre-commit.sh, which is still enforcing.
-
-c12() { # a branch with no objective of its own inherits its ancestor's — and the gate agrees
-  local d; d=$(mkrepo); need_scratch "$d"
-  git -C "$d" checkout -q -b feat/parent
-  write_objective "$d" feat/parent " " "true" "- a scratch capability." "services/battlesim"
-  git -C "$d" add -A; git -C "$d" commit -q -m work
-
-  # Exactly what an isolation:"worktree" delegate gets: a harness-made branch with no objective file.
-  git -C "$d" checkout -q -b worktree-agent-deadbeef
-  [ -f "$d/objectives/worktree-agent-deadbeef.md" ] && die "C12 the scratch delegate branch unexpectedly has its own objective"
-
-  # The gate is now the ONLY party that reads the inherited objective. Before inheritance this commit was REFUSED outright, which
-  # is why a delegate worktree could only ever commit by writing its own objective or bypassing the hook.
-  echo hi > "$d/a.txt"; git -C "$d" add a.txt
-  allows "C12 the commit gate accepts the inherited objective" \
-    git -C "$d" commit -m "delegate work inside the parent's objective"
-
-  # And it ENFORCES the inherited fence. An inheritance that grants permission without carrying the
-  # scope would be worse than no inheritance: it would turn every delegate worktree into a bucket.
-  mkdir -p "$d/services/battlesim"; echo x > "$d/services/battlesim/f.go"; git -C "$d" add -A
-  refuses "C12 the inherited out-of-scope fence is enforced on the delegate branch" "outside the branch's objective" \
-    git -C "$d" commit -m "delegate wanders out of the parent's scope"
-  git -C "$d" reset -q --hard; rm -rf "$d/services/battlesim"
-
-  # An own objective still overrides the inherited one — inheritance is a fallback, not a takeover.
-  allows "C12 a delegate can still take a narrower objective of its own with --here" \
-    bash -c "cd '$d' && bash .grimorio/skills/grimorio.objective-harness/scripts/open-branch.sh --here 'the delegate slice works'"
-  grep -qF "the delegate slice works" "$d/objectives/worktree-agent-deadbeef.md" \
-    || die "C12 the branch took its own objective but the file does not carry it"
-  pass "C12 an own objective overrides the inherited one"
-  rm -rf "$d"
-
-  # THE FAILURE DIRECTION. Inheritance must not become a universal amnesty: a branch descending from no
-  # objective-carrying branch at all is still refused, exactly as before.
-  local e; e=$(mkrepo)
-  git -C "$e" checkout -q -b feat/orphan
-  echo hi > "$e/a.txt"; git -C "$e" add a.txt
-  refuses "C12 a branch descending from no objective at all is still refused" "no objective" \
-    git -C "$e" commit -m "work with nothing to inherit"
-  rm -rf "$e"
-}
-
 c15() { # the per-feature harnesses exist and say something a reader would otherwise get wrong
   # THE WHOLE CASE is about the ADOPTER's product tree, so without that tree it has no subject. The guard
   # covers the failure-direction loop at the end too: that loop asserts certain features were NOT given a
@@ -763,14 +646,14 @@ c15() { # the per-feature harnesses exist and say something a reader would other
 # Two GROUP aliases, because the halves answer different questions and must be gated differently.
 # `design` is c1-c8: every one builds a throwaway repo in $TMPDIR precisely so this working tree cannot
 # influence the verdict -- which means the verdict cannot change unless the harness SCRIPTS change, and
-# running it on an unrelated branch is tautological. `state` is c9/c10/c12/c15: facts about THIS repo,
+# running it on an unrelated branch is tautological. `state` is c9/c10/c15: facts about THIS repo,
 # which any commit can break, so it runs every time. Measured: design ~150s, state ~1s.
 case "${1:-all}" in
-  all) c1; c2; c3; c4; c5; c6; c7; c8; c9; c10; c12; c15 ;;
-  design) c1; c2; c3; c4; c5; c6; c7; c8 ;;
-  state) c9; c10; c12; c15 ;;
-  c1|c2|c3|c4|c5|c6|c7|c8|c9|c10|c12|c15) "$1" ;;
-  *) echo "usage: $0 [c1..c10|c12|c15|design|state|all]" >&2; exit 1 ;;
+  all) c1; c4; c5; c6; c7; c8; c9; c10; c15 ;;
+  design) c1; c4; c5; c6; c7; c8 ;;
+  state) c9; c10; c15 ;;
+  c1|c4|c5|c6|c7|c8|c9|c10|c15) "$1" ;;
+  *) echo "usage: $0 [c1|c4..c10|c15|design|state|all]" >&2; exit 1 ;;
 esac
 if [ "$ABSENT" -ne 0 ]; then
   echo "SKIPPED: everything judgeable passed; $ABSENT case(s) have no subject here: $ABSENT_WHY"

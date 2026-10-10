@@ -114,7 +114,7 @@ you choose the form.
   a hook that blocks a subagent's turn from closing while its own background children are still alive,
   dispatch/completion loggers, and more.
 - **A curated slice of `scripts/`** — a reference-grammar auditor, an agent-tier conformance checker, the
-  git-hook pair (`pre-commit`/branch-objective gate), a stuck-child liveness detector — each with a selftest.
+  git-hook pair (`pre-commit` content gates, `pre-push`), a stuck-child liveness detector — each with a selftest.
 - **[MEASUREMENTS.md](MEASUREMENTS.md)** — read this even if you adopt nothing else.
 
 ## The shape of it — four levels, so method survives even when project-facts don't

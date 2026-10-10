@@ -1,6 +1,6 @@
 ---
 name: grimorio.objective-harness
-description: "Load before opening, writing checks for, or closing a branch: one objective file per branch, gated on every commit."
+description: "Load before opening, writing checks for, or closing a branch with an objective: the file, its VERIFY checks, and the close that merges only when they run green."
 ---
 
 ## What this is
@@ -20,11 +20,10 @@ to hide (the folder either holds the file or it doesn't).
 | | What happens | Enforced by |
 |---|---|---|
 | **Open** | The branch and its objective are created in one act | `.grimorio/skills/grimorio.objective-harness/scripts/open-branch.sh` |
-| **Work** | Every commit checks the objective exists and the branch stays in its declared scope | `.grimorio/scripts/pre-commit.sh` (install: `.grimorio/scripts/install-hooks.sh`) |
 | **Close** | Every check must be ticked and its VERIFY command run green; the objective is compressed into the merge commit's own message (feature line + Merge summary); the file is deleted, the branch merged and pruned | `.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh` |
 
 ```
-open-branch.sh ──> objectives/<branch>.md ──> pre-commit gates every commit against it
+open-branch.sh ──> objectives/<branch>.md
                                           │
                                           └──> close-branch.sh ──> the merge commit's own message
                                                                     (the record of what landed and why)
@@ -66,13 +65,10 @@ The numbering below is load-bearing: other files in this corpus cite these invar
 renumber, merge, split, or reorder them when this section is next edited — add a new invariant at the end,
 or rewrite one in place, never shift the ones after it.
 
-1. **NEVER commit to a non-trunk branch with no objective file.** A practice adopted only in words — "we
-   should open an objective for this" — decays the moment it costs a step nobody enforces; branches
-   accumulate that nobody can account for unless the absence of a file is itself refused.
-2. **ALWAYS have the objective declare what the branch must NOT touch, and ALWAYS have the commit gate
-   enforce it.** This is the anti-bucket gate: without it, a branch drifts into a dumping ground for
-   whatever else needed doing, because nothing ever compares a commit against what the branch was actually
-   opened for.
+1. **An objective file is not required to commit.** A check written by the agent that then grades it
+   steers nothing; nothing at commit time asks for one.
+2. **An objective MAY declare paths the branch must not touch.** Nothing enforces them; they are a note to
+   the reader of the branch.
 3. **NEVER merge a branch with an open check.** Every check stays unticked until it is genuinely true —
    nothing merges while one still reads open.
 4. **ALWAYS give every check a VERIFY command a stranger can run**, and **ALWAYS have the close-out run
@@ -239,15 +235,13 @@ describes what is actually there.
 
 ## Where the objective reaches — the injection
 
-The commit gate binds the party *least* likely to drift. The objective therefore also travels, resolved
-from the branch name with nobody having to paste it:
+Where an objective exists, it is resolved from the branch name with nobody having to paste it:
 
 | Reached by | Mechanism | Form |
 |---|---|---|
 | **A delegate-type agent's own spawns** (worktree-isolated included) | self-read at task start | the FULL objective: both the project's own current-focus file and its own `objectives/<branch>.md` |
 | **Every other spawnable agent type** | none | nothing reaches it at spawn time — an open gap, not a solved one |
 | **Loops and recurring prompts** | none, unless a project wires its own injection hook | nothing reaches it by default — this path needs a project-level mechanism to close |
-| **The commit** | `.grimorio/scripts/pre-commit.sh` | refusal |
 
 **A hook that tries to hand a spawned child its objective BEFORE that child's context exists cannot work.**
 A `PreToolUse: Agent`-style hook runs in the CALLER's own turn, before the spawned child's own context is
@@ -266,18 +260,10 @@ worker told it is working inside one scope while the gate measures it against an
 resolver — all of these should degrade to injecting nothing, letting the spawn or turn proceed. A
 methodology that can break a session over a missing file is a methodology that gets switched off.
 
-## When the gate is live
+## When the methodology is live
 
-The commit gate fires on a branch that has the objective-harness marker file in its working tree **or in
-HEAD**. Merging the methodology into a branch is what switches its gate on — which also makes the
-activation visible in history. Branches that predate the methodology are left alone rather than blocked by
-a rule their own checkout has never heard of.
-
-HEAD is consulted and not only the working tree because a working-tree-only version is an escape hatch: one
-commit deleting the marker would turn every objective gate off, in the same commit that does the unrelated
-work the gate existed to refuse.
-
-**NEVER gate trunk, a detached HEAD, or a merge commit.**
+The scripts in ref:repo/.grimorio/skills/grimorio.objective-harness/scripts apply only on a branch whose working
+tree or HEAD carries the marker file ref:repo/objectives/harness.md. **NEVER apply them to trunk or a detached HEAD.**
 
 ## THE BRANCH MODEL — CEO ruling, 2026-07-30
 

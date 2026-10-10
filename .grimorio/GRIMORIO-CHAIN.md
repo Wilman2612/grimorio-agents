@@ -141,13 +141,12 @@ flowchart TB
         H15["<b>subagentstop-wait.cjs</b><br/><b>SubagentStop: *</b><br/>WAITS up to 120s on ONE live async_launched<br/>dependency the firing agent itself dispatched, then<br/>DENIES the close either way — immediately if it<br/>finishes during the wait, preventively if the wait<br/>expires still live; silent only when no live<br/>dependency is found<br/><i>per-agent cap (default 3) + repo-wide kill switch<br/>(default 20, fail-open past it) + main-session<br/>immunity; exemplar for H17's own cap/kill-switch<br/>design</i>"]
     end
     subgraph GATE["git — .grimorio/scripts/pre-commit.sh — the only OTHER place anything still REFUSES"]
-        G1["<b>objectives/ gate</b><br/>refuses a commit with no branch<br/>objective, or out of declared scope"]
         G1B["<b>check-comment-blocks.mjs</b><br/>refuses a staged comment block<br/>over 4 lines — @keep-comment exits"]
         G1C["<b>check-agent-tiers.mjs</b><br/>refuses ANY commit while an agent declares<br/>opus/fable with disallowedTools: Agent,<br/>or declares no model at all<br/><i>reads .claude/agents/, not the diff</i>"]
         G1D["<b>check-work-product-placement.mjs</b><br/>refuses a staged work product landing<br/>outside tmp/ — a root-level pipeline-artifact<br/>name/CLOSEOUT- prefix, or a broken skill<br/>folder naming/subfolder convention<br/><i>names the file AND where it belongs, never a<br/>bare refusal (grimorio-conduct rule 17b)</i>"]
     end
     subgraph GATE2["git — .grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh, a DIFFERENT trigger (branch CLOSE, not every commit)"]
-        G2["<b>the numbered close gates</b><br/>refuse to CLOSE a branch — objective/base/clean-tree/<br/>open-checks/VERIFY/feature-line/board-items-reviewed(10b)/etc.<br/><i>its own final commit runs `git commit --no-verify`,<br/>so G1 does not fire there — this gate already covers it</i>"]
+        G2["<b>the numbered close gates</b><br/>refuse to CLOSE a branch — objective/base/clean-tree/<br/>open-checks/VERIFY/feature-line/board-items-reviewed(10b)/etc.<br/><i>its own final commit runs `git commit --no-verify`,<br/>so the pre-commit gates do not fire there</i>"]
     end
     ED["editing a file"] --> H1
     ED -.-> H3
@@ -169,7 +168,9 @@ flowchart TB
     MAINBASH["the main loop runs a Bash command"] --> H17
     TURNSTOP["the main loop's own turn stops"] --> H17
     GITCMD["running a state-changing git command"] --> H12
-    CMT["an ordinary commit"] --> G1
+    CMT["an ordinary commit"] --> G1B
+    CMT --> G1C
+    CMT --> G1D
     CLOSE["closing a branch"] --> G2
 
     style DEAD fill:#3a2a2a,stroke:#a55,stroke-dasharray: 5 5
