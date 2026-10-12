@@ -1,10 +1,5 @@
 # Python Developer — Phase 2: WRITE-FAILING-TEST (conditional — bug-report route only)
 
-**NEVER read ref:agent/grimorio.py-developer/phases/phase-3-implement.md until THIS phase's
-own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Phase 3's own
-CHILD-and-FIRST-PASS branches both build against a confirmed-red test on this route; reading ahead without it
-on disk is fixing a bug nobody has proven exists yet.
-
 ## The question this phase answers
 
 Does the reported bug actually reproduce? A genuinely different question from Phase 3's own "how do I fix this
@@ -30,10 +25,6 @@ not an unconsidered copy or an unconsidered split.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — write the test that
-   proves the bug, run it, confirm the expected failure — and nothing else; no spawn anywhere in this phase.**
-   This agent never invokes another agent from Phase 2 — the only agent this chain ever spawns is a same-type
-   `haiku` child from Phase 3's own FAN-OUT BRANCH, never from here.
 2. **ALWAYS write the pytest test that proves the bug exists FIRST, foreground, narrowed with `-k` if the full
    suite is slow — still foreground, never backgrounded** — per
    ref:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order's own step 1, which
@@ -47,21 +38,7 @@ not an unconsidered copy or an unconsidered split.
 4. **NEVER touch production code in this phase.** This phase's entire job is proving the bug is real BEFORE any
    fix is attempted — Phase 3 is where the fix itself happens, never here.
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:skill/grimorio.python — specifically its "Testing (pytest)" section (AAA structure, fixtures,
-  `parametrize`, "never weaken an assertion to make a test pass").
-  FINGERPRINT: BUG-FIX-FIRST-TEST field below (a real AAA-structured pytest test that actually reproduces the
-  reported symptom cannot be produced without this convention).
-- import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — this phase's
-  own execution of step 1 of that shared three-step order.
-  FINGERPRINT: BUG-FIX-FIRST-TEST field below, jointly with the bullet above (the confirmed-RED-before-any-fix
-  ordering cannot be produced without applying this mandatory order).
-- **NEVER load `arch-decision.md` again (Phase 1's own closed question), `grimorio.development-patterns`, the
-  fan-out ladder, or the invariant-verification checklist here** — each is Phase 1's, Phase 3's, or Phase 4's
-  own question, and pulling any of it in now front-loads a decision this phase does not make.
-
-## PHASE 2 DELIVERABLE — do not read Phase 3 until this is filled
+## PHASE 2 DELIVERABLE
 
 ```
 BUG-FIX-FIRST-TEST:          <the actual test written (file + test name), the exact command run, and the
@@ -70,22 +47,3 @@ MATCHES REPORTED SYMPTOM:     <Y — the failure matches the bug report's own de
                             per step 3>
 PRODUCTION CODE TOUCHED:       <N — confirmed, per step 4>
 ```
-
-## Hard hand-off
-
-**BEFORE reading ref:agent/grimorio.py-developer/phases/phase-3-implement.md ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.py-developer/phases/phase-2-write-failing-test.md`) and
-this phase's own filled PHASE 2 DELIVERABLE block, written to disk first per that gate's own algorithm — the
-read below now runs on that gate's own PASS, never on the block merely existing in context.**
-
-**ALWAYS read ref:agent/grimorio.py-developer/phases/phase-3-implement.md next, carrying
-forward: MODE, CONTRACT READ, SCOPED IMPLEMENTATION CHECKLIST, WIRE-CONTRACT SHAPES, REWORK/BUG-REPORT
-DETECTED, and TRAPS CHECKED (all six received from Phase 1's own hand-off and re-forwarded here unchanged),
-ALONGSIDE this phase's own new BUG-FIX-FIRST-TEST field.** MODE and CONTRACT READ are carried here even though
-THIS phase does not itself consume either, per
-ref:skill/grimorio.phase-splitting#progressive-revelation--mechanical-never-judgment's own
-"restate, inside a later phase's own file, any fact that phase depends on" rule. `grimorio.go-developer`'s own
-chain HAD this exact carry-forward gap at an equivalent hop, independently found during this redesign's own
-diagnosis, since closed in go-developer's own cycle-2 REWORK; it was never dropped here. Phase 3
-consumes exactly this cumulative set — it does not re-derive any of it.

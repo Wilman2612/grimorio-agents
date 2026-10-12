@@ -1,11 +1,5 @@
 # Python Developer — Phase 1: SETUP & PLAN
 
-**NEVER read ref:agent/grimorio.py-developer/phases/phase-2-write-failing-test.md OR
-ref:agent/grimorio.py-developer/phases/phase-3-implement.md until THIS phase's own
-DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Phase 2 and Phase 3
-both build against the scoped checklist and wire-contract shapes THIS phase produces; reading ahead without
-them on disk is starting either one blind.
-
 ## The question this phase answers
 
 What am I building, is there even a valid plan to build it from, and what exactly must I touch/mirror? This
@@ -16,12 +10,6 @@ absent plan.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — walk the upward
-   harness lookup, determine MODE, read the architecture contract, survey `./project.traps.md` as a LAST STEP, scope
-   the implementation checklist, run the missing-plan-refusal check, detect REWORK/bug-report mode — and
-   nothing else; no spawn anywhere in this phase.** This agent never invokes another agent from Phase 1 — the
-   only agent this chain ever spawns is a same-type `haiku` child from Phase 3's own FAN-OUT BRANCH, never from
-   here.
 2. **BEFORE your FIRST read of any target file this pass ⟶ do the upward ref:skill/harness.md lookup** (target file's
    folder → repo root) and obey every co-located guardrail found — this IS the chain's first file-reading/
    scoping phase, per ref:skill/grimorio.build-protocol/build-protocol.md#harness-first. **WHEN a
@@ -69,43 +57,7 @@ absent plan.
    ref:skill/grimorio.phase-splitting#where-a-boundary-falls--judgment-never-an-algorithm.
    **NEVER re-paste the corpus; search it and carry forward only what applies.**
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:skill/grimorio.code-harness — the co-located code-guardrail system and the upward lookup discipline,
-  step 2's own load.
-  FINGERPRINT: HARNESS LOOKUP DONE field below (a real upward lookup, distinct from an asserted "checked,"
-  cannot be produced without applying this discipline).
-- import:skill/grimorio.build-protocol/build-protocol.md (specifically its "Pipeline vs Standalone
-  mode", "Missing-plan refusal", and "Bug report → mandatory order" sections) — steps 3, 5, 6 above apply these
-  directly.
-  FINGERPRINT: MODE + MISSING-PLAN CHECK + REWORK/BUG-REPORT DETECTED + CONTRACT READ fields below (a real mode
-  determination, a real refusal-or-proceed call, a real REWORK/bug-report detection, and a real confirmation
-  that arch-decision.md and the wire contracts it points to were actually opened this invocation cannot be
-  produced without applying this section's own "Pipeline vs Standalone mode" discipline — which governs whether
-  a contract is even owed in the first place — jointly with its "Missing-plan refusal" and "Bug report →
-  mandatory order" sections). CONTRACT READ has no `import:` bullet of its own — the contract is a PIPELINE
-  ARTIFACT, not a skill, so there is nothing to `import:` for the act of reading it per se — this is the
-  field's own real grounding, not a borrowed one.
-- import:skill/grimorio.agent-tiers/refusal-pattern.md — the refusal triad + the charter-vs-hard
-  boundary test, step 5's own load, jointly with the bullet above.
-  FINGERPRINT: MISSING-PLAN CHECK field below, jointly with the build-protocol.md bullet above.
-- import:skill/grimorio.python — specifically its "Data & validation" section (Pydantic v2 mirroring
-  conventions), step 4's own load.
-  FINGERPRINT: WIRE-CONTRACT SHAPES field below (a correct field-for-field Pydantic mirror cannot be produced
-  without this convention).
-- import:agent/grimorio.py-developer/memory/project.md#conventions-we-chose — this project's hard-invariant list
-  and the exact backend-service name/directory (or its current absence), step 4's own scoping grounds against.
-  FINGERPRINT: SCOPED IMPLEMENTATION CHECKLIST field below (a correctly-bounded scope, never a guess or an
-  invented service name, cannot be produced without this pointer).
-- import:agent/grimorio.py-developer/memory/project.traps.md and import:agent/grimorio.py-developer/memory/project.traps.md
-  — step 8's own LAST-STEP search.
-  FINGERPRINT: TRAPS CHECKED field below (a real search result against this corpus, distinct from an unchecked
-  "none," cannot be produced without opening these indexes).
-- **NEVER load `grimorio.development-patterns`, the fan-out ladder, the pytest testing conventions, or the
-  invariant-verification checklist here** — each is Phase 2's, Phase 3's, or Phase 4's own question, and
-  pulling any of it in now front-loads a decision this phase does not make.
-
-## PHASE 1 DELIVERABLE — do not read Phase 2 or Phase 3 until this is filled
+## PHASE 1 DELIVERABLE
 
 ```
 HARNESS LOOKUP DONE:        <the upward harness.md chain walked, any guardrail found and obeyed, per step 2>
@@ -122,29 +74,8 @@ TRAPS CHECKED:                  <what was found in ./project.traps.md and develo
                             this task, or "None found relevant", per step 8>
 ```
 
-## Hard hand-off
+## Hand-off
 
-**BEFORE this phase's own hand-off fires, on EITHER route below ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.py-developer/phases/phase-1-setup-and-plan.md`) and this
-phase's own filled PHASE 1 DELIVERABLE block, written to disk first per that gate's own algorithm — both routes
-below now run on that gate's own PASS, never on the block merely existing in context.**
-
-**WHEN the MISSING-PLAN CHECK above did NOT refuse, AND REWORK/BUG-REPORT DETECTED above is YES ⟶ ALWAYS read
-ref:agent/grimorio.py-developer/phases/phase-2-write-failing-test.md next, carrying
-forward: MODE, CONTRACT READ, SCOPED IMPLEMENTATION CHECKLIST, WIRE-CONTRACT SHAPES, REWORK/BUG-REPORT
-DETECTED, and TRAPS CHECKED, unconditionally.** MODE and CONTRACT READ are carried here even though Phase 2
-does not itself consume either, per
-ref:skill/grimorio.phase-splitting#progressive-revelation--mechanical-never-judgment's own
-"restate, inside a later phase's own file, any fact that phase depends on" rule. `grimorio.go-developer`'s own
-chain HAD this exact carry-forward gap at an equivalent hop, independently found during this redesign's own
-diagnosis, since closed in go-developer's own cycle-2 REWORK; it was never dropped here.
-
-**WHEN the MISSING-PLAN CHECK above did NOT refuse, AND REWORK/BUG-REPORT DETECTED above is NO ⟶ ALWAYS read
-ref:agent/grimorio.py-developer/phases/phase-3-implement.md next instead, carrying forward
-the SAME six fields above, unconditionally** — Phase 3 consumes them directly on this route, since Phase 2 is
-skipped.
-
-**WHEN the MISSING-PLAN CHECK above DID refuse ⟶ this chain ends here; report the refusal per
-ref:agent/grimorio.py-developer/phases/phase-5-report.md's own `## OUTPUT` shape, `## Close:
-COULD NOT`, rather than continuing to Phase 2 or Phase 3 on work you already found unplannable-by-you.**
+**WHEN the MISSING-PLAN CHECK above refused ⟶ `--on refused`, reporting the refusal per
+ref:agent/grimorio.py-developer/phases/phase-5-report.md's own `## OUTPUT` shape, `## Close: COULD NOT`; WHEN it
+did not refuse AND REWORK/BUG-REPORT DETECTED above is YES ⟶ `--on bug-report`; otherwise `--on continue`.**

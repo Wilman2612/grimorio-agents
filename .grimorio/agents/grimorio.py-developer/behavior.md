@@ -2,12 +2,8 @@
 
 This is the **behavior file of agent:grimorio.py-developer**, and it is what the agent shell's Behavior block
 names. It is no longer the whole of what the Python developer does — it is PHASE 0, the state-machine's entry
-point, per ref:skill/grimorio.phase-splitting. Everything the Python developer actually DOES now lives one file
-per phase under `.grimorio/agents/grimorio.py-developer/phases/`, loaded just-in-time, never
-all at once. The five phases (four unconditional, one conditional bug-path) are drawn together with their own
-loop/graph layer at
-cite:agent/grimorio.py-developer/phases/py-developer-quasi-software-view.md#layer-1--2--nodes-the-orchestration-graph-and-phases-the-state-machine
-— this file implements what that view draws; it does not re-derive it.
+point, per ref:skill/grimorio.phase-splitting. Everything the Python developer actually DOES lives one file
+per phase under `.grimorio/agents/grimorio.py-developer/phases/`, revealed by the phase engine one at a time.
 
 **ALWAYS read this file first, in full, on every invocation — then execute what follows as your FIRST and ONLY
 instruction before touching anything else.**
@@ -24,14 +20,18 @@ corpus loaded, no contract-reading protocol, no python/development-patterns/fan-
 invariant-verification checklist loaded, on purpose. Its only job is to hand you, and the invocation's own
 inputs, to Phase 1.
 
-## You drive your own transitions
+## Transitions — script-driven
 
-**ALWAYS self-redirect at the end of each phase — read the next phase's own file yourself, the moment your
-current phase's required deliverable exists.** Per
-ref:skill/grimorio.phase-splitting#what-is-theory-and-what-is-open's own stated lean
-toward self-redirect: nobody sits between you and the next phase file. **WHEN you notice yourself claiming a
-phase is "done" without its own file's required deliverable actually written ⟶ you have not finished that
-phase — go back and produce it before reading further.**
+Each engine answer prints the phase file to READ, what to LOAD, what it PRODUCES, and the exit conditions (`ON`).
+
+1. Read the file in full, load what it lists, do its steps, and fill its deliverable block.
+2. **WHEN the engine printed `PRODUCES deliverable` ⟶ write your filled deliverable block to a file in
+   `tmp/<your-id>/` and run `record --run <id> deliverable <path>`** — the engine refuses `next` until every
+   fingerprint field in it carries a real value.
+3. `next --run <id> --on <condition>` — the phase's Hand-off section names the condition when there is more than
+   one.
+4. **WHEN you lose your place ⟶ `status --run <id>`.**
+5. Repeat until the engine prints TERMINAL.
 
 ## Scope Boundary — HARD RULE, restated once, here, for every phase below
 
@@ -86,16 +86,6 @@ chain where it needs them, per this table:
 | Comments — SPARSE / do-the-work-yourself / FLOW-delegate discipline | `comments--sparse-ceo-standing-preference` | standing, restated once in Phase 0 |
 | Harness mode — trap capture | `harness-mode--development-knowledge-partner` | standing, fires from ANY phase, restated once in Phase 0 |
 
-**This threading table is exactly where `grimorio.go-developer`'s own already-shipped chain HAD this exact drop
-on a downstream hand-off — two fields, MODE (determined in what is this chain's Phase 1) and, for that chain,
-CONTRACT READ, even though its own Phase 5 branches by MODE's name — independently found during this redesign's
-own diagnosis, since closed in go-developer's own cycle-2 REWORK; it was never dropped here.** This chain's own
-Hard hand-off sections,
-in every one of the five phase files below, name MODE, the CONTRACT-READ-derived WIRE-CONTRACT SHAPES, and (on
-the bug-report route) BUG-FIX-FIRST-TEST explicitly, by field name, all the way through to Phase 5 — never
-silently dropped at any hop. This is stated here, once, as the standing discipline every phase's own Hard
-hand-off section below actually applies; it is not re-argued in each phase file, only enforced there.
-
 **Standing rules, restated once, here, inherited by every phase below — none restates them again:**
 
 - **NEVER comment WHAT the Python code does; comment only the non-obvious WHY** (an invariant, a Pydantic/async
@@ -148,10 +138,6 @@ point — this agent has only ONE VOLUME UNIT: one file or module per child:
 **A fanned-out CHILD invocation's own Phase 3 short-circuits straight to that phase's own build step** — Phase
 3's own CHILD branch (its own step 1a) states this narrowing explicitly, not assumed here.
 
-## Hard hand-off — read Phase 1 now
+## Hand-off
 
-**ALWAYS read
-ref:agent/grimorio.py-developer/phases/phase-1-setup-and-plan.md now, in full, carrying the
-invocation's own inputs (the task, mode, artifact directory) forward into it as Phase 1's own raw material.**
-Name the file explicitly to yourself before opening it — this is not "then move on to setup," it is the literal
-next file to read, and nothing in this file substitutes for actually opening it.
+**ALWAYS start now: `node .grimorio/skills/grimorio.phase-splitting/scripts/phase-engine.mjs start --chain py-developer`.**

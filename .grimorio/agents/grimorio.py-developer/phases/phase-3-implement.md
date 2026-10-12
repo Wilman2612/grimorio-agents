@@ -1,9 +1,5 @@
 # Python Developer — Phase 3: IMPLEMENT
 
-**NEVER read ref:agent/grimorio.py-developer/phases/phase-4-verify.md until THIS phase's own
-DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Phase 4 verifies the
-diff THIS phase actually produces; reading ahead without it on disk is verifying nothing.
-
 ## The question this phase answers
 
 How do I build/fix this correctly, inside the service's own layout, keeping the functional core pure? This
@@ -80,30 +76,7 @@ something real to check the decomposition against.
    app, not the shared TS contracts, not another language's backend service. **WHEN a change is needed in
    another layer ⟶ write it as a note for the owning developer in `dev-notes.md`, never make it yourself.**
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:skill/grimorio.python — Ports & Adapters via Protocol, the functional-core/imperative-shell split,
-  async conventions, the error-handling hierarchy. Read FIRST, before either of the two skills below.
-  FINGERPRINT: MODULE(S) BUILT field below (Python code that actually follows this project's own Protocol-seam/
-  functional-core conventions cannot be produced without it).
-- import:skill/grimorio.development-patterns — mandatory patterns, structural limits, and the sparse-comments
-  rule.
-  FINGERPRINT: MODULE(S) BUILT field below, jointly with the bullet above.
-- import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step —
-  step 2's own survey-before-writing step.
-  FINGERPRINT: SURVEY NOTES field below (a real survey result, distinct from an unchecked "none," cannot be
-  produced without applying this discipline first).
-- import:skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm
-  + import:skill/grimorio.working-memory#the-folder — step 4's own gate, tier, isolation, and per-child folder
-  rules.
-  FINGERPRINT: FAN-OUT DECISION + DECOMPOSE DECLARATION fields below (a real gate evaluation, spawn, or solo
-  declaration, and the independent-item decomposition it is evaluated against, cannot be produced without
-  applying this ladder and folder convention).
-- **NEVER load `arch-decision.md` again (Phase 1's own closed question), the pytest testing conventions used to
-  WRITE the reproduction test (Phase 2's own closed question), the invariant-verification checklist (Phase 4's
-  own closed question), or the OUTPUT template (Phase 5's own closed question) here.**
-
-## PHASE 3 DELIVERABLE — do not read Phase 4 until this is filled
+## PHASE 3 DELIVERABLE
 
 ```
 ROUTE:                     <FIRST-PASS or CHILD, per step 1>
@@ -122,26 +95,7 @@ DIFF SUMMARY:                   <files touched + lines changed, own + any merged
                             own hand-off>
 ```
 
-## Hard hand-off
+## Hand-off
 
-**BEFORE this phase's own hand-off fires, on EITHER route ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.py-developer/phases/phase-3-implement.md`) and this
-phase's own filled PHASE 3 DELIVERABLE block, written to disk first per that gate's own algorithm — this
-applies on the CHILD route too, even though it has no next-phase file to gate a read against: the gate runs
-against the CLOSE itself there, reporting back to the parent's own `tmp/<child-id>/work`+`notes`.**
-
-**WHEN the route above is FIRST-PASS ⟶ ALWAYS read
-ref:agent/grimorio.py-developer/phases/phase-4-verify.md next, carrying forward: MODE,
-CONTRACT READ, WIRE-CONTRACT SHAPES, REWORK/BUG-REPORT DETECTED, BUG-FIX-FIRST-TEST (Phase 2's own field WHEN
-this was a bug-report route, else "N/A — no bug flagged"), SURVEY NOTES, MODULE(S) BUILT, and DIFF SUMMARY,
-unconditionally.** MODE, CONTRACT READ, and BUG-FIX-FIRST-TEST are carried here even though THIS phase's own
-primary business is building code, not consuming any of the three — per
-ref:skill/grimorio.phase-splitting#progressive-revelation--mechanical-never-judgment's own
-"restate, inside a later phase's own file, any fact that phase depends on" rule. `grimorio.go-developer`'s own
-chain HAD this exact pair of drops at an equivalent hop — MODE dropped at its own Phase 3→4 hand-off, and
-BUG-FIX-FIRST-TEST never carried past its own producing phase at all — independently found during this
-redesign's own diagnosis, since closed in go-developer's own cycle-2 REWORK; neither gap is repeated here.
-**WHEN the route above is
-CHILD ⟶ this chain ends here — report the built file/module back to your own `tmp/<child-id>/work`+`notes` and
-close your turn, never reading Phase 4.**
+**WHEN this invocation is a fanned-out CHILD (step 1) ⟶ report the built file/module back to your own
+`tmp/<child-id>/work` and `notes`, and `--on child`; otherwise, on the FIRST-PASS route, `--on continue`.**

@@ -1,9 +1,7 @@
 # Python Developer — Phase 5: REPORT (terminal)
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own `dev-notes.md` is actually
-written (Pipeline mode) and its `## Close` line is set.** There is no Phase 6 to defer an unfinished field to,
-and this chain's only re-entry (Phase 4's own chain-level loop-back into Phase 3) never routes through here
-unfinished — this is always the terminal state once reached.
+written (Pipeline mode) and its `## Close` line is set.**
 
 ## The question this phase answers
 
@@ -31,8 +29,6 @@ never a bare pointer to "Phase 2 handled it"; SURVEY NOTES feeds `## Abstraction
 DIFF SUMMARY feed `## Changes Made` and `## Abstractions Created`; FULL SUITE RESULT and INVARIANT CONFIRMATION
 are this phase's own `## Close: VERIFIED` evidence, per step 6 below.
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node, terminal — write
-   `dev-notes.md`, decide the commit action, close — and nothing else; no spawn anywhere in this phase.**
 2. **IN PIPELINE MODE ⟶ ALWAYS write `dev-notes.md`** per the shared `## OUTPUT` template below, populating:
    Changes Made, Abstractions Reused/Created, Contracts (for other developers), Test Scenarios for QA, Known
    Limitations. **IN STANDALONE MODE ⟶ no dev-note is owed** — report the result directly per this same `##
@@ -146,22 +142,11 @@ this repo):
 weakened)
 ```
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- import:skill/grimorio.build-protocol/build-protocol.md (specifically its `## OUTPUT` template, "Who
-  commits" section, and "REWORK mode" section) — steps 2, 3, 5 above apply these directly.
-  FINGERPRINT: DEV-NOTES PATH + COMMIT ACTION TAKEN + REWORK CYCLE APPENDED fields below (a dev-note in the
-  shared shape, a correct commit call, and a correctly-appended REWORK section cannot be produced without these
-  sections).
 - ref:agent/grimorio.py-developer/memory/project.traps.md and ref:agent/grimorio.py-developer/memory/project.traps.md —
   step 6's own confirmation load; the CAPTURE rule itself is Phase 0's own standing statement, not restated
   here, only confirmed.
-- import:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11
-  — the CLOSE contract, step 7's own load.
-  FINGERPRINT: CLOSE field below (a real VERIFIED-naming-evidence or COULD-NOT-naming-the-blocker close, never
-  a self-graded status, cannot be produced without this contract).
-- **NEVER load `grimorio.python`, `grimorio.development-patterns`, or the fan-out ladder here** — this phase
-  only reports what earlier phases already produced.
 
 ## PHASE 5 DELIVERABLE
 
@@ -178,17 +163,3 @@ COMPLETION CRITERIA CHECKED:       <one line per item under ## Completion criter
 CLOSE:                              <VERIFIED, naming the completion-criteria evidence — or COULD NOT, naming
                               what blocked you and what is left>
 ```
-
-## Terminal — no further phase, one possible re-entry only via Phase 4's own loop-back
-
-**BEFORE this phase's own report is reported to the caller ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.py-developer/phases/phase-5-report.md`) and this phase's
-own filled PHASE 5 DELIVERABLE block, written to disk first per that gate's own algorithm — this phase has no
-next-phase file to gate a read against, so the gate runs against the CLOSE itself.**
-
-**This chain ends here, always, once reached.** `dev-notes.md` is written (Pipeline mode), `## Status` and `##
-Close` are emitted, and this phase closes VERIFIED or COULD NOT to the caller. The chain's ONLY re-entry path is
-Phase 4's own chain-level loop-back into Phase 3, which never routes through this file — this phase itself never
-loops back and never hands off anywhere but the caller. A subsequent, SEPARATE invocation starts fresh at Phase
-0 (ref:agent/grimorio.py-developer/behavior.md), never resumed mid-chain from this file.
