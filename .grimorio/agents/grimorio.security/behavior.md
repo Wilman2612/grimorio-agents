@@ -2,11 +2,8 @@
 
 This is the **behavior file of agent:grimorio.security**, and it is what the agent shell's Behavior block
 names. It is no longer the whole of what the auditor does — it is PHASE 0, the state-machine's entry point, per
-ref:skill/grimorio.phase-splitting. Everything the auditor actually DOES now lives one file per phase under
-`.grimorio/agents/grimorio.security/phases/`, loaded just-in-time, never all at once. The six phases are
-drawn together with their own loop/graph layer at
-cite:agent/grimorio.security/phases/security-quasi-software-view.md#layer-1--2--nodes-the-orchestration-graph-and-phases-the-state-machine
-— this file implements what that view draws; it does not re-derive it.
+ref:skill/grimorio.phase-splitting. Everything the auditor actually DOES lives one file per phase under
+`.grimorio/agents/grimorio.security/phases/`, revealed by the phase engine one at a time.
 
 **ALWAYS read this file first, in full, on every invocation — then execute what follows as your FIRST and ONLY
 instruction before touching anything else.**
@@ -21,14 +18,18 @@ artifact directory — and those inputs are CONTEXT you carry forward, never the
 reviewing files in this file's own context — this file has no OWASP checklist, no payload format, and no
 auth-bypass vectors loaded, on purpose. Its only job is to hand you, and the invocation's own inputs, to Phase 1.
 
-## You drive your own transitions
+## Transitions — script-driven
 
-**ALWAYS self-redirect at the end of each phase — read the next phase's own file yourself, the moment your
-current phase's required deliverable exists.** Per
-ref:skill/grimorio.phase-splitting#what-is-theory-and-what-is-open's own stated lean
-toward self-redirect: nobody sits between you and the next phase file. **WHEN you notice yourself claiming a
-phase is "done" without its own file's required deliverable actually written ⟶ you have not finished that
-phase — go back and produce it before reading further.**
+Each engine answer prints the phase file to READ, what to LOAD, what it PRODUCES, and the exit conditions (`ON`).
+
+1. Read the file in full, load what it lists, do its steps, and fill its deliverable block.
+2. **WHEN the engine printed `PRODUCES deliverable` ⟶ write your filled deliverable block to a file in
+   `tmp/<your-id>/` and run `record --run <id> deliverable <path>`** — the engine refuses `next` until every
+   fingerprint field in it carries a real value.
+3. `next --run <id> --on <condition>` — the phase's Hand-off section names the condition when there is more than
+   one.
+4. **WHEN you lose your place ⟶ `status --run <id>`.**
+5. Repeat until the engine prints TERMINAL.
 
 ## Two standing MODES — named once, operationalized by the phases below
 
@@ -48,9 +49,7 @@ full again.
 ## HARD-LOCKED non-recursive — the CHILDREN relationship, stated once
 
 **`disallowedTools: Agent` is set in your own shell, confirmed unchanged: you never invoke another agent, in
-any phase, for any reason.** The CHILDREN relationship every phase's own graph statement below names is
-trivially satisfied by this structural fact, not a per-phase habit — stated here explicitly rather than left
-for a reader to assume from silence.
+any phase, for any reason.**
 
 ## STANDING CONSTRAINTS — the six Rules, reproduced once, threaded through every phase below
 
@@ -64,9 +63,6 @@ again:
 5. Respect scope — only files changed in this feature. Note pre-existing vulns as "pre-existing", out of scope.
 6. Never introduce vulnerabilities — payloads stay in test files; never modify production code.
 
-## Hard hand-off — read Phase 1 now
+## Hand-off
 
-**ALWAYS read ref:agent/grimorio.security/phases/phase-1-search-first.md now, in full, carrying
-the invocation's own inputs (the changed files, the artifact directory) forward into it as Phase 1's own raw
-material.** Name the file explicitly to yourself before opening it — this is not "then move on to search," it
-is the literal next file to read, and nothing in this file substitutes for actually opening it.
+**ALWAYS start now: `node .grimorio/skills/grimorio.phase-splitting/scripts/phase-engine.mjs start --chain security`.**

@@ -1,0 +1,111 @@
+{
+  "agent": "grimorio.security",
+  "entry": "1",
+  "phases": [
+    {
+      "id": "1",
+      "file": ".grimorio/agents/grimorio.security/phases/phase-1-search-first.md",
+      "desc": "SEARCH-FIRST",
+      "loads": [
+        "skill/grimorio.reasoning-principles",
+        "skill/grimorio.working-memory"
+      ],
+      "fingerprints": {
+        "skill/grimorio.reasoning-principles": "OBJECTIVE + EXIT CONDITION"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "2"
+      }
+    },
+    {
+      "id": "2",
+      "file": ".grimorio/agents/grimorio.security/phases/phase-2-map-attack-surface.md",
+      "desc": "MAP-ATTACK-SURFACE",
+      "loads": [
+        "skill/grimorio.development-patterns"
+      ],
+      "fingerprints": {
+        "skill/grimorio.development-patterns": "AUTH BOUNDARIES"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "3"
+      }
+    },
+    {
+      "id": "3",
+      "file": ".grimorio/agents/grimorio.security/phases/phase-3-owasp-static-recon.md",
+      "desc": "OWASP-STATIC-RECON",
+      "loads": [
+        "agent/grimorio.security/memory#owasp-top-10-audit-checklist"
+      ],
+      "fingerprints": {
+        "agent/grimorio.security/memory#owasp-top-10-audit-checklist": "STATIC-ANALYSIS TABLE"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "4"
+      }
+    },
+    {
+      "id": "4",
+      "file": ".grimorio/agents/grimorio.security/phases/phase-4-targeted-payload-proof.md",
+      "desc": "TARGETED-PAYLOAD-PROOF",
+      "loads": [
+        "agent/grimorio.security/memory#attack-payload-format"
+      ],
+      "fingerprints": {
+        "agent/grimorio.security/memory#attack-payload-format": "PAYLOADS BUILT"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "5"
+      }
+    },
+    {
+      "id": "5",
+      "file": ".grimorio/agents/grimorio.security/phases/phase-5-auth-bypass-sweep.md",
+      "desc": "AUTH-BYPASS-SWEEP",
+      "loads": [
+        "agent/grimorio.security/memory#auth-bypass-testing--four-vectors-test-each-endpoint-individually"
+      ],
+      "fingerprints": {
+        "agent/grimorio.security/memory#auth-bypass-testing--four-vectors-test-each-endpoint-individually": "SWEEP TABLE"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "6"
+      }
+    },
+    {
+      "id": "6",
+      "file": ".grimorio/agents/grimorio.security/phases/phase-6-classify-and-report.md",
+      "desc": "CLASSIFY-AND-REPORT",
+      "loads": [
+        "agent/grimorio.security/memory#code-fix-vs-architectural-issue",
+        "agent/grimorio.security/memory#finding-quality--severity",
+        "skill/grimorio.feature-workflow"
+      ],
+      "fingerprints": {
+        "agent/grimorio.security/memory#code-fix-vs-architectural-issue": "FINDINGS CLASSIFIED",
+        "agent/grimorio.security/memory#finding-quality--severity": "FINDINGS CLASSIFIED",
+        "skill/grimorio.feature-workflow": "STATUS SET"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {}
+    }
+  ]
+}
