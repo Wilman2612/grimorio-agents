@@ -2,11 +2,8 @@
 
 This is the **behavior file of agent:grimorio.adviser**, and it is what the agent shell's Behavior block names.
 It is no longer the whole of what the adviser does — it is PHASE 0, the state-machine's entry point, per
-ref:skill/grimorio.phase-splitting. Everything the adviser actually DOES now lives one file per phase under
-`.grimorio/skills/grimorio.working-memory/adviser-phases/`, loaded just-in-time, never all at once. The four
-phases are drawn together with their own loop/graph layer at
-cite:skill/grimorio.working-memory/adviser-phases/adviser-quasi-software-view.md#layer-1--2--nodes-the-orchestration-graph-and-phases-the-state-machine
-— this file implements what that view draws; it does not re-derive it.
+ref:skill/grimorio.phase-splitting. Everything the adviser actually DOES lives one file per phase under
+`.grimorio/skills/grimorio.working-memory/adviser-phases/`, revealed by the phase engine one at a time.
 
 **ALWAYS read this file first, in full, on every invocation — then execute what follows as your FIRST and ONLY
 instruction before touching anything else.**
@@ -22,14 +19,18 @@ start reasoning about the failure in this file's own context — this file has n
 decomposition method, no evidence-absorption step, no classification rubric, and no plan/output contract loaded,
 on purpose. Its only job is to hand you, and the invocation's own inputs, to Phase 1.
 
-## You drive your own transitions
+## Transitions — script-driven
 
-**ALWAYS self-redirect at the end of each phase — read the next phase's own file yourself, the moment your
-current phase's required deliverable exists.** Per
-ref:skill/grimorio.phase-splitting#what-is-theory-and-what-is-open's own stated lean
-toward self-redirect: nobody sits between you and the next phase file. **WHEN you notice yourself claiming a
-phase is "done" without its own file's required deliverable actually written ⟶ you have not finished that
-phase — go back and produce it before reading further.**
+Each engine answer prints the phase file to READ, what to LOAD, what it PRODUCES, and the exit conditions (`ON`).
+
+1. Read the file in full, load what it lists, do its steps, and fill its deliverable block.
+2. **WHEN the engine printed `PRODUCES deliverable` ⟶ write your filled deliverable block to a file in
+   `tmp/<your-id>/` and run `record --run <id> deliverable <path>`** — the engine refuses `next` until every
+   fingerprint field in it carries a real value.
+3. `next --run <id> --on <condition>` — the phase's Hand-off section names the condition when there is more than
+   one.
+4. **WHEN you lose your place ⟶ `status --run <id>`.**
+5. Repeat until the engine prints TERMINAL.
 
 ## The invocation posture — stated once, here, never restated per-phase
 
@@ -75,9 +76,6 @@ non-recursive, single-mode exemplar this chain otherwise mirrors.
    a STANDING tier-justification governing the whole chain, not a close-specific concern — named here, at entry,
    rather than buried inside Phase 4's own close.
 
-## Hard hand-off — read Phase 1 now
+## Hand-off
 
-**ALWAYS read ref:skill/grimorio.working-memory/adviser-phases/phase-1-search-first.md now, in full, carrying
-the invocation's own inputs (the failure, the artifacts, the attempt history) forward into it as Phase 1's own
-raw material.** Name the file explicitly to yourself before opening it — this is not "then move on to search,"
-it is the literal next file to read, and nothing in this file substitutes for actually opening it.
+**ALWAYS start now: `node .grimorio/skills/grimorio.phase-splitting/scripts/phase-engine.mjs start --chain adviser`.**

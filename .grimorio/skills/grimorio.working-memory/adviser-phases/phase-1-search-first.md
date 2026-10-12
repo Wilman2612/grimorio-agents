@@ -1,9 +1,5 @@
 # Adviser — Phase 1: SEARCH-FIRST
 
-**NEVER read ref:skill/grimorio.working-memory/adviser-phases/phase-2-absorb-evidence.md until THIS phase's own
-DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Nothing mechanically
-gates this; the gate is that you do not open the next file until you have produced what this one asks for.
-
 ## The question this phase answers
 
 What does grimorio already know about this failure, and do the presented sub-problems survive being checked
@@ -22,10 +18,6 @@ carried from Phase 0.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — read the ledger,
-   decompose the presented problem against the bases — and nothing else; this phase never invokes another
-   agent.** The chain's ONE optional bounded spawn belongs to ref:skill/grimorio.working-memory/adviser-phases/phase-2-absorb-evidence.md
-   alone, never here — this phase is pure internal-memory reading, no external failing artifact is opened yet.
 2. **BEFORE absorbing anything ⟶ read the project's own defect record in full** — the standing ledger of
    ways grimorio itself has already failed (skipped pipeline steps, rules cited but never read, reminders used
    to paper over an unused agent) — **and name which of its OPEN entries your diagnosis touches**, so your
@@ -53,21 +45,12 @@ carried from Phase 0.
    on what survives. -> ref:skill/grimorio.report-design → "BEFORE you present: DECOMPOSE" for the wider doctrine
    this step applies, not restated here.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- import:skill/grimorio.reasoning-principles — specifically its objective/exit-condition contract,
-  ref:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11.
-  FINGERPRINT: OBJECTIVE + EXIT CONDITION fields below (a real objective/exit-condition pair cannot be produced
-  without applying this discipline).
-- import:skill/grimorio.working-memory — the `tmp/` staging convention `adviser-verdict.md` follows, and any
-  intermediate artifact a later phase produces before it, loaded ONCE here for the whole chain.
-- the project's own defect record — step 2's own live read.
 - ref:agent/grimorio.po/memory, ref:agent/grimorio.po/memory/project.md#where-the-rest-of-this-ledger-lives--open-by-what-you-want-to-know,
   the architecture memories — step 3's own BASES.
-- **NEVER load the evidence-gathering delegation slice, the diagnosis/prior-art discipline, or the plan/routing
-  knowledge here** — none of those are this phase's question; each belongs to a later phase alone.
 
-## PHASE 1 DELIVERABLE — do not read Phase 2 until this is filled
+## PHASE 1 DELIVERABLE
 
 ```
 OBJECTIVE:                 <the failure you were asked to diagnose, taken from your brief>
@@ -83,17 +66,3 @@ SURVIVORS CARRIED FORWARD:  <the sub-problems that survive to Phase 2, or "the w
 CORE RULE CHECK (ADVISE ONLY): <confirm this phase's own work stayed read-only — ledger + bases only, nothing
                            built, refactored, or committed>
 ```
-
-## Hard hand-off
-
-**BEFORE reading ref:skill/grimorio.working-memory/adviser-phases/phase-2-absorb-evidence.md ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/skills/grimorio.working-memory/adviser-phases/phase-1-search-first.md`) and this phase's own
-filled PHASE 1 DELIVERABLE block, written to disk first per that gate's own algorithm — the read below now runs
-on that gate's own PASS, never on the block merely existing in context.** This phase's own
-`import:skill/grimorio.reasoning-principles` carries a `FINGERPRINT:` annotation, so the gate is NOT inert here.
-
-**ALWAYS read ref:skill/grimorio.working-memory/adviser-phases/phase-2-absorb-evidence.md next, carrying
-forward: the objective and exit condition stated above, the ledger entries touched, and the surviving
-sub-problems.** Phase 2 goes and opens the real evidence for exactly those survivors — it does not re-decompose
-them or re-check them against the bases.

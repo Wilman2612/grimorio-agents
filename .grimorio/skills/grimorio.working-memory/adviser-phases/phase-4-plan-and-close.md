@@ -1,8 +1,7 @@
-# Adviser — Phase 4: PLAN-AND-CLOSE (terminal — no further hand-off)
+# Adviser — Phase 4: PLAN-AND-CLOSE
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own `adviser-verdict.md` is
 actually written, the ledger append actually happened, and the self-check gate below actually confirmed clean.**
-There is no Phase 5 to defer an unfinished field to.
 
 ## The question this phase answers
 
@@ -11,8 +10,8 @@ record/close complete? Understanding a diagnosis and executing its solution well
 (CEO ruling, 2026-07-19, translated: reaching the diagnosis of the solution, and executing that solution well
 even once you understand it, are two different things). A correct diagnosis that the caller then has to
 translate into work is where the fix gets diluted — this phase writes the plan itself so it never gets diluted
-in the handoff. **This phase is the SOLE writer of `adviser-verdict.md`** — Phase 3 only carried its own Part 1
-content forward in the chain's own hand-off; it never wrote the file itself, per
+in the handoff. **This phase is the SOLE writer of `adviser-verdict.md`** — Phase 3 only filled its own Part 1
+content into its deliverable; it never wrote the file itself, per
 ref:skill/grimorio.phase-splitting/flow-method.md's own Rule 8(b): many may ADVISE, but only ONE phase
 WRITES.
 
@@ -26,9 +25,6 @@ however concrete the plan gets.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node, terminal — write the
-   plan, append the ledger, close VERIFIED or COULD NOT — and nothing else; this phase never invokes another
-   agent.**
 2. **ALWAYS write the EXECUTABLE PLAN** (Part 2 of `## OUTPUT` below) — the diagnosis Phase 3 handed forward is
    not the deliverable on its own.
 3. **WHEN you notice something this whole chain found worth registering ⟶ append it to the same defect
@@ -63,32 +59,6 @@ however concrete the plan gets.
   "N/A" alone — never left ambiguous between the two.
 
 **Any one of these left unconfirmed means the close is an unearned claim, never a verified one.**
-
-## LOAD (JIT) — scoped to this phase only
-
-- import:skill/grimorio.agent-selection — which real agent TYPE each Part 2 plan step routes to: match an
-  agent's CONTRACT, never its name or area, and use the ESCALATION LADDER
-  (ref:skill/grimorio.agent-selection#the-escalation-ladder--five-signals-five-agents) when
-  stuck — match the signal, never restate the table here. This is the ONE phase in this chain that needs the
-  routing table, since only here is a plan step's routing actually written down.
-  FINGERPRINT: PART-2-PLAN-WRITTEN field below (a plan step naming which agent it routes to cannot be produced
-  without applying this table).
-- import:skill/grimorio.flow-delegation — how a routed step is raised, if the plan names a delegate to raise:
-  the flow-brief (objective verbatim + full context + numbered completion checks + default-on-silence + failsafe
-  bound) and the guardian protocol. Loaded here because THIS is where a plan step's own raise, if any, is
-  actually written down.
-- import:skill/grimorio.agent-tiers — tier for a routed step, so the plan never leaves "choose wisely" unstated
-  for whoever executes it.
-- import:skill/grimorio.reasoning-principles — the objective/exit-condition-and-close discipline,
-  ref:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11,
-  RESTATED fresh here — a THIRD distinct use across this chain (Phase 1 applied its objective/exit-condition
-  half; Phase 3 applied its decompose/refute half; this phase applies its VERIFIED-or-COULD-NOT close discipline)
-  per progressive revelation's own "never rely on an earlier phase's file still being in context" rule.
-  FINGERPRINT: STATUS/CLOSE field below (a close reading VERIFIED or COULD NOT, rather than a self-graded
-  status, cannot be produced without applying this discipline).
-- **NEVER load the ledger/decomposition-vs-bases discipline or the evidence-gathering delegation slice here** —
-  both are earlier phases' own already-closed questions; this phase consumes their output, it does not re-derive
-  it.
 
 ## OUTPUT
 
@@ -175,18 +145,3 @@ SELF-CHECK GATE:            <all ten confirmations above, Y or the gap found —
 STATUS/CLOSE:               <VERIFIED, naming the verification test as evidence, or COULD NOT, naming the
                           blocker and the decision-ready escalation>
 ```
-
-## Terminal state — no hand-off
-
-**BEFORE this phase's own report is reported to the caller ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/skills/grimorio.working-memory/adviser-phases/phase-4-plan-and-close.md`) and this phase's
-own filled PHASE 4 DELIVERABLE block, written to disk first per that gate's own algorithm — this phase has no
-NEXT phase file to gate a read against, so the gate runs against the CLOSE itself: `adviser-verdict.md` below is
-what this phase "reveals," and it now runs only on that gate's own PASS, never on the block merely existing in
-context.** This phase's own `import:skill/grimorio.agent-selection` and
-`import:skill/grimorio.reasoning-principles` each carry a `FINGERPRINT:` annotation, so the gate is NOT inert
-here.
-
-**This phase has no next file to read.** The chain ends here. A subsequent invocation starts fresh at Phase 0
-(ref:skill/grimorio.working-memory/adviser-behavior.md), never resumed mid-chain from this file.

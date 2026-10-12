@@ -1,9 +1,5 @@
 # Adviser — Phase 2: ABSORB-EVIDENCE
 
-**NEVER read ref:skill/grimorio.working-memory/adviser-phases/phase-3-diagnose-and-prescribe.md until THIS
-phase's own DELIVERABLE block, below, is actually filled in.** DIAGNOSE-AND-PRESCRIBE classifies a failure mode
-against evidence this phase names; handing it an unopened artifact leaves it nothing real to classify.
-
 ## The question this phase answers
 
 What actually happened, evidenced — for the sub-problems Phase 1 left standing? Nothing else. This phase does
@@ -33,20 +29,17 @@ same boundary — its own flow-brief (step 3 below) must state it too, never ass
    OWES a graph under that rule — never read the graph step 1 above states as a separate, lesser, ad hoc
    procedure standing beside that hard rule instead of BEING its actual instance.** **WHEN step 3's own optional
    child does NOT fire this pass ⟶ step 1's own SELF-only graph above does NOT, by itself, satisfy that rule:
-   what stands in its place is this phase's own written-and-read-back `tmp/<task-folder>/phase-2-deliverable.txt`
-   — already produced by this phase's own Hard hand-off below, which writes the filled PHASE 2 DELIVERABLE
-   block to that path and reads it back before proceeding, per
-   ref:skill/grimorio.phase-splitting/fingerprint-gate.md's own algorithm — the closest artifact this
-   chain currently produces for the no-spawn case, in place of the hard rule's own named
-   `tmp/<your-id>/graph.md`.** **WHETHER that artifact actually satisfies the hard rule is nobody's to assert
-   unilaterally: it carries none of the hard rule's own five named fields
+   what stands in its place is this phase's own filled PHASE 2 DELIVERABLE block, completed before the ordinary
+   `continue` route — the closest artifact this chain currently produces for the no-spawn case, in place of the
+   hard rule's own named `tmp/<your-id>/graph.md`.** **WHETHER that artifact actually satisfies the hard rule is
+   nobody's to assert unilaterally: it carries none of the hard rule's own five named fields
    (NODES/EDGES/TIER/OWNER-DOES-ITSELF/COULD-NOT-BE-ROUTED) and is not written to that rule's own literal
    `tmp/<your-id>/graph.md` path.** **WHETHER a fixed-protocol, always-sequential phase like this one may treat
    its own existing deliverable as satisfying that hard rule regardless, or must additionally write the rule's
    own literal artifact even in the no-spawn case, is an OPEN QUESTION this step does NOT resolve —
    `grimorio.code-reviewer` ESCALATED exactly this gap (cycle 2, this same dispatch) as a question only the CEO
    or the fan-out rule's own owning architect may settle, per
-   ref:skill/grimorio.conduct#choosing-what-to-work-on rule 5c.** **NEVER read this step's own text as having
+   ref:skill/grimorio.conduct#choosing-what-to-work-on rule 5c.** **NEVER take this step's own text as having
    answered that question — it names the gap, loudly, and leaves it open; it does not close it.** **WHEN step
    3's own optional child DOES fire ⟶ continue to step
    3's own 3a below, which states the artifact this same hard rule then requires.**
@@ -81,12 +74,8 @@ same boundary — its own flow-brief (step 3 below) must state it too, never ass
    states honestly for the corpus-wide case. **WHEN step 3's own trigger does NOT fire this pass ⟶ this step is
    N/A by construction** — step 1a above already closed the obligation for that path.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- **NEVER load reasoning-principles, the diagnosis/misconception/prior-art discipline, or the plan/routing
-  knowledge here** — none of those are this phase's question; each belongs to Phase 1 or Phase 3/4 alone. This
-  phase's own work is pure tool use (Read/open) against the task's own external artifacts, plus, conditionally,
-  one narrow spawn slice.
 - ref:skill/grimorio.flow-delegation#part-1--the-flow-brief-template-how-you-raise-the-delegate — step 3's own
   raise mechanics, loaded ONLY WHEN step 3's own trigger fires this pass. No `FINGERPRINT:` annotation on this
   bullet — the spawn is conditional/optional, never a mandatory content-producing dependency this phase's own
@@ -105,7 +94,7 @@ same boundary — its own flow-brief (step 3 below) must state it too, never ass
   own collapsed-one-line-graph precedent and write-then-prove-on-disk pattern exemplar, loaded ONLY WHEN step
   3's own trigger fires this pass.
 
-## PHASE 2 DELIVERABLE — do not read Phase 3 until this is filled
+## PHASE 2 DELIVERABLE
 
 ```
 TARGET/REFERENCE OPENED:   <confirm the real target/reference artifact was opened, never a summary, or the
@@ -126,20 +115,3 @@ GRAPH-ON-DISK PROOF (SPAWN-FIRED ONLY): <WHEN SPAWN RAISED = yes: the exact cont
 CORE RULE CHECK (ADVISE ONLY): <confirm this phase's own work — and any spawned child's — stayed read-only:
                           opening and reading artifacts, never fixing or building anything>
 ```
-
-## Hard hand-off
-
-**BEFORE reading ref:skill/grimorio.working-memory/adviser-phases/phase-3-diagnose-and-prescribe.md ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/skills/grimorio.working-memory/adviser-phases/phase-2-absorb-evidence.md`) and this phase's
-own filled PHASE 2 DELIVERABLE block, written to disk first per that gate's own algorithm.** This phase carries
-ZERO `FINGERPRINT:` annotations in its own `## LOAD (JIT)` section above — the spawn slice is conditional, never
-mandatory — so per that gate's own "MANDATORY on a fingerprinted phase, INERT on one with none" rule, this step
-still runs, exactly as written, and reports `PASS — all 0 declared FINGERPRINT field(s) carry real content`
-unconditionally. **Run it anyway** — the uniform step, never a per-phase judgment call about whether the gate
-"applies" this time.
-
-**ALWAYS read ref:skill/grimorio.working-memory/adviser-phases/phase-3-diagnose-and-prescribe.md next, carrying
-forward: the opened target/reference, the failing artifact, the code path, the attempt history, and whatever the
-spawned child returned if step 3 fired.** Phase 3 reasons over exactly this evidence — it does not re-open
-anything itself.

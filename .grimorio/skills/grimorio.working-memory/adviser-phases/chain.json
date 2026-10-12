@@ -1,0 +1,71 @@
+{
+  "agent": "grimorio.adviser",
+  "entry": "1",
+  "phases": [
+    {
+      "id": "1",
+      "file": ".grimorio/skills/grimorio.working-memory/adviser-phases/phase-1-search-first.md",
+      "desc": "SEARCH-FIRST",
+      "loads": [
+        "skill/grimorio.reasoning-principles",
+        "skill/grimorio.working-memory"
+      ],
+      "fingerprints": {
+        "skill/grimorio.reasoning-principles": "OBJECTIVE + EXIT CONDITION"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "2"
+      }
+    },
+    {
+      "id": "2",
+      "file": ".grimorio/skills/grimorio.working-memory/adviser-phases/phase-2-absorb-evidence.md",
+      "desc": "ABSORB-EVIDENCE",
+      "loads": [],
+      "next": {
+        "continue": "3"
+      }
+    },
+    {
+      "id": "3",
+      "file": ".grimorio/skills/grimorio.working-memory/adviser-phases/phase-3-diagnose-and-prescribe.md",
+      "desc": "DIAGNOSE-AND-PRESCRIBE",
+      "loads": [
+        "skill/grimorio.reasoning-principles"
+      ],
+      "fingerprints": {
+        "skill/grimorio.reasoning-principles": "CLASSIFICATION + MISCONCEPTION"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "4"
+      }
+    },
+    {
+      "id": "4",
+      "file": ".grimorio/skills/grimorio.working-memory/adviser-phases/phase-4-plan-and-close.md",
+      "desc": "PLAN-AND-CLOSE",
+      "loads": [
+        "skill/grimorio.agent-selection",
+        "skill/grimorio.flow-delegation",
+        "skill/grimorio.agent-tiers",
+        "skill/grimorio.reasoning-principles"
+      ],
+      "fingerprints": {
+        "skill/grimorio.agent-selection": "PART-2-PLAN-WRITTEN",
+        "skill/grimorio.reasoning-principles": "STATUS/CLOSE"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "done": "END"
+      }
+    }
+  ]
+}
