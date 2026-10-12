@@ -1,10 +1,6 @@
 # Phase Splitting — Reference: CORRECTION MODE, the narrowed re-entry that skips RE-DERIVATION, never RE-VERIFICATION
 
-Extracted as its own companion file inside ref:skill/grimorio.phase-splitting, general level, per this skill's
-own reference-depth discipline
-(ref:skill/grimorio.agent-writing#reference-depth-dont-hyper-compress--a-skill-can-and-should-have-many-reference-files)
-— the same move `./fingerprint-gate.md` and `./steps-vs-phases-test.md` already made for
-their own extracted decisions. Read by anyone authoring or judging a phased agent's own coordinating chain,
+Read by anyone authoring or judging a phased agent's own coordinating chain,
 general across any project this methodology travels to, never tied to one dispatch's own content.
 
 ## The general pattern

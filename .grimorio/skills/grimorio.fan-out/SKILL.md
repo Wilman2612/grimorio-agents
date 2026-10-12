@@ -436,12 +436,7 @@ orders a hook LAST, only after a hard rule is ignored on a real population, not 
 why the failure was located at REACH rather than obedience, and the full incident account.
 
 **WHEN you have written the graph to `tmp/<your-id>/graph.md` ⟶ ALWAYS immediately read it back from disk —
-never from your own held context — and confirm its content is really there, BEFORE your first spawn.** This is
-the SAME write-then-prove-on-disk shape ref:skill/grimorio.phase-splitting/fingerprint-gate.md's own
-algorithm already uses for a phased agent's own DELIVERABLE transitions elsewhere in this corpus, applied here
-to the graph specifically — the SAME discipline agent:grimorio.system-keeper's own chain already applies to
-itself, at its own step 1c
-(ref:skill/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md).
+never from your own held context — and confirm its content is really there, BEFORE your first spawn.**
 This closes a MEASURED failure that step names verbatim: a graph field filled as post-hoc rationalization of a
 shape already chosen, not a prior application whose answer could have gone either way. State plainly that this
 step DETECTS, it does not PREVENT: nothing here blocks the first `Agent` call from firing before the read-back

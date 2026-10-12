@@ -19,11 +19,7 @@ copied into it.
 
 ## Extraction and reference-depth
 
-Extracted as its own companion file inside ref:skill/grimorio.phase-splitting, general level, per this skill's
-own reference-depth discipline
-(ref:skill/grimorio.agent-writing#reference-depth-dont-hyper-compress--a-skill-can-and-should-have-many-reference-files)
-— the same move `./correction-mode.md` and `./fingerprint-gate.md` already made for their own
-extracted decisions. The GENERIC substance below already existed, fully worked, as
+The GENERIC substance below already existed, fully worked, as
 `grimorio.flow-delegation`'s own delegate-phases Core Rule 1 ("never park your turn") and Core Rule 2
 ("foreground stays your safe default") — proven on one loop-owner, `grimorio.delegate`. This file is that
 same substance, generalized so a SECOND loop-owner, `grimorio.system-keeper`, can execute under it too,

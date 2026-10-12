@@ -50,7 +50,7 @@ flowchart TB
 **Reading this diagram.** The solid rectangular spine (P1→P2→P3→P4→P5) is the STATE MACHINE. Three of its four
 forward edges — P1→P2, P2→P3, P4→P5 — are FINGERPRINT-gated: that phase's own Hard hand-off writes its filled
 DELIVERABLE to disk and runs `node scripts/check-phase-fingerprint.mjs` against it, per
-import:skill/grimorio.phase-splitting/fingerprint-gate.md, looping back to fix-then-rerun on a FAIL
+ref:repo/.grimorio/skills/grimorio.phase-splitting/scripts/check-phase-fingerprint.mjs, looping back to fix-then-rerun on a FAIL
 instead of letting the edge fire on an unverified block — never a trust-based transition. P3→P4 carries no
 FINGERPRINT (Phase 3's own LOAD (JIT) section declares none) and fires as a plain, unguarded regime branch. The
 dashed P3→P5 edge is the SAME regime branch's OTHER arm — a genuine skip, not a loop-back, taken when Phase 2

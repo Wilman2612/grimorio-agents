@@ -405,11 +405,11 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     with a directory-scan fallback) — never a subagent's own transcript, and never more than the hard-capped 20
     most recent qualifying turns.
 13. `ref:repo/.grimorio/skills/grimorio.phase-splitting/scripts/check-phase-fingerprint.mjs` — ANSWERS: does a phase's own filled DELIVERABLE block
-    genuinely carry real content for every `FINGERPRINT:` field its own `## LOAD (JIT)` section declares
-    against a mandatory `import:` target — the D8 gate, catching a copy-pasted, paraphrased, or still-`<...>`
-    unfilled-placeholder field a trust-based hand-off would otherwise accept silently. WHEN: at every
-    fingerprinted phase's own hard hand-off, per `ref:repo/.grimorio/skills/grimorio.phase-splitting/fingerprint-gate.md`'s
-    own algorithm — invoked BY the phase chain itself as it runs, never a standalone human-driven audit the way
+    genuinely carry real content for every fingerprint field its manifest entry declares against one of its
+    loads — the D8 gate, catching a copy-pasted, paraphrased, or still-`<...>`
+    unfilled-placeholder field a trust-based hand-off would otherwise accept silently. WHEN: on every
+    `next` from a phase whose manifest entry declares `fingerprints` — invoked BY the phase engine as the chain
+    runs, never a standalone human-driven audit the way
     most tools above are. Every invocation — PASS or FAIL alike — now also appends one JSONL line to
     `.grimorio/.cache/fingerprint-gate-log.jsonl`, carrying `ts` (ISO timestamp), `phase` (the phase
     file's own basename, no `.md`), `agent` (the calling agent's own declared type, or the literal string

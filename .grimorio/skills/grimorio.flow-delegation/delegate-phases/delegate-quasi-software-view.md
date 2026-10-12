@@ -93,7 +93,7 @@ Layer 4 would add nothing here.
 ## The fingerprint-gate mechanism — deliberately NOT wired into this chain, a named scope decision
 
 `grimorio.delegate`'s own five phase files carry **zero `FINGERPRINT:` annotations** in this pass. The
-`FINGERPRINT:` + fingerprint-checker mechanism (ref:skill/grimorio.phase-splitting/fingerprint-gate.md,
+`FINGERPRINT:` + fingerprint-checker mechanism (ref:repo/.grimorio/skills/grimorio.phase-splitting/scripts/check-phase-fingerprint.mjs,
 executed via ref:repo/.grimorio/skills/grimorio.phase-splitting/scripts/check-phase-fingerprint.mjs) — which EXECUTES the deliverable-before-next-file
 gate rather than trusting it as prose, already wired into both `grimorio.system-keeper`'s own chain and
 `grimorio.prompt-writer`'s own chain — is additional to structural progressive revelation, never itself

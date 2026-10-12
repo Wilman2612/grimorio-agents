@@ -374,7 +374,7 @@ different, later question — once an artifact is genuinely selected and present
 at authoring/closure time.
 
 **Composition, stated honestly, never assumed.** **NEVER let this gate read as composing with, or joining, a
-"mermaid-compile gate" or D8 (ref:skill/grimorio.phase-splitting/fingerprint-gate.md) — neither is
+"mermaid-compile gate" or D8 (ref:repo/.grimorio/skills/grimorio.phase-splitting/scripts/check-phase-fingerprint.mjs) — neither is
 wired machinery this gate extends.** `mermaid-compile` exists today only as a one-off, manually-produced proof
 file on branch `design/spend-contract-v3`, borrowed from an uncommitted prior package and never installed or
 wired anywhere in this repo; D8 is a different, unrelated mechanism (whether an agent-authoring phase's own
