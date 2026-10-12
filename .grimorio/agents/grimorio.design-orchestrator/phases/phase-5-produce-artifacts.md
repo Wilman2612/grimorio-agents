@@ -1,10 +1,5 @@
 # Design Orchestrator — Phase 5: PRODUCE THE ARTIFACTS
 
-**NEVER read ref:agent/grimorio.design-orchestrator/phases/phase-6-converge-verify-validate.md until THIS
-phase's own DELIVERABLE block, below, is actually filled in — including all four sub-mission checks, not a
-summary of any one of them.** Phase 6 converges and gates what was actually produced; a produced set that has
-not confirmed its own four sub-mission checks has nothing whole for that phase to converge.
-
 ## The question this phase answers
 
 Author what Phase 4 selected — nothing Phase 4 did not select. Distinct from Phase 4 (decides WHICH) — this
@@ -226,10 +221,9 @@ own Core Rule already states for every other sub-mission, applied here without e
   Event Modeling (Dymitruk, durable solution blueprint)** — a sequence diagram shows message ORDER, never an
   event's payload shape or its role as a durable record.
 
-## LOAD (JIT) — scoped to this phase only, per sub-mission actually run
+## Conditional loads
 
-- **Sub-mission A**: import:skill/grimorio.system-design (already loaded by Phase 4; no new load). **WHEN Phase 4's
-  selection names one of the 9 kit-covered types ⟶ ALSO load that type's own
+- **Sub-mission A**: **WHEN Phase 4's selection names one of the 9 kit-covered types ⟶ ALSO load that type's own
   ref:skill/grimorio.system-design/diagram-references/<type>.md plus its matching
   a script the project keeps at its own root<type>.mjs` — never all 9 unconditionally, only the one type actually
   selected.**
@@ -239,15 +233,8 @@ own Core Rule already states for every other sub-mission, applied here without e
   ASVS/SbD/SAMM; Cavoukian's 7 principles + GDPR Art.25 + DPIA.
 - **Sub-mission D**: OpenAPI/AsyncAPI/protobuf + Pact; ER modeling (Chen 1976); EventStorming (Brandolini) +
   Event Modeling (Dymitruk).
-- **NEVER load `artifact-design`, `artifact-diagramming`, or `dataviz` for ANY sub-mission above** — this
-  phase's own Core Rule states this guard PHASE-WIDE, not per sub-mission;
-  ref:memory/grimorio.system-design-memory/project.md#wrong-knowledge-skills-for-this-render-surface--never-load-these for why.
-- **NEVER load a sub-mission's own knowledge slice before Phase 4 actually named that family as selected** —
-  loading Sub-mission B's sources for a design that selected zero NFR artifacts is exactly the flat-mega-load
-  anti-pattern this phase's own JIT discipline exists to prevent.
-- **NEVER load the verification/validation gate here** — Phase 6's own question, not this one.
 
-## PHASE 5 DELIVERABLE — do not read Phase 6 until this is filled
+## PHASE 5 DELIVERABLE
 
 ```
 SUB-MISSIONS RUN:              <which of A/B/C/D fired this pass, per Phase 4's own selection —
@@ -281,9 +268,3 @@ WRITER-MECHANISM OPEN QUESTION: <confirm the three candidate mechanisms were nam
                                 "THE WRITER-MECHANISM OPEN QUESTION" above — never invented, never
                                 resolved by this pass>
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:agent/grimorio.design-orchestrator/phases/phase-6-converge-verify-validate.md next,
-carrying forward: every artifact this phase produced, across whichever sub-missions ran.** Phase 6 converges,
-verifies, and validates this set — it does not re-author anything here.

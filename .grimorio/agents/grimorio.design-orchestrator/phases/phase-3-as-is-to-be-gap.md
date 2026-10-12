@@ -1,10 +1,5 @@
 # Design Orchestrator — Phase 3: AS-IS / TO-BE & GAP
 
-**NEVER read ref:agent/grimorio.design-orchestrator/phases/phase-4-artifact-selection.md until THIS
-phase's own DELIVERABLE block, below, is actually filled in.** Phase 4 selects artifacts against the delta this
-phase establishes — reading ahead on an undecided AS-IS/TO-BE branch hands Phase 4 nothing real to select
-against.
-
 ## The question this phase answers
 
 For the elicited concern, what is the delta between what is built (AS-IS) and what is needed (TO-BE), and how
@@ -204,23 +199,15 @@ ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh any
    AS-IS carries mockups — as explicitly flagged-undetermined findings in this phase's own DELIVERABLE below,
    never invented answers.**
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
 - TOGAF ADM (Baseline/Target/Transition Architecture, Gap Analysis matrix) — the gap-matrix and
   transition-plan load, still THIS phase's own work.
 - BABOK (Current/Future State, Transition Requirements) — same load, complementary vocabulary.
-- import:skill/grimorio.agent-selection + import:skill/grimorio.fan-out — the spawn-correctness slice for
-  raising agent:grimorio.design-as-is per clause 1/3, step 1's own graph.
 - ref:skill/grimorio.agent-tiers#the-scale-task-archetype--tier — the close-time Haiku-tier/fan-out validity-check tier
   choice, named not built.
-- **NEVER load SWEBOK Ch.5 or the loop-and-graph WHILE/EXIT mechanics here** — both moved, with clause 1/3's own
-  raw production work, to agent:grimorio.design-as-is's own behavior file
-  (ref:agent/grimorio.design-as-is/behavior.md); this phase spawns and receives, it no longer
-  applies either directly.
-- **NEVER load artifact-selection criteria, production knowledge, or the verification/validation gate here** —
-  each is a later phase's own question.
 
-## PHASE 3 DELIVERABLE — do not read Phase 4 until this is filled
+## PHASE 3 DELIVERABLE
 
 ```
 BRANCH TAKEN PER CONCERN:    <clause 1 (survey/reverse-engineer, via agent:grimorio.design-as-is) / clause 2
@@ -261,9 +248,3 @@ SWAP-AT-IMPLEMENTATION NOTED:  <confirm clause 4's closing note was NOT executed
 CLOSE-TIME CHECKS NAMED:       <confirm both owed-checks above are named as findings, and that
                                .grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh was not touched>
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:agent/grimorio.design-orchestrator/phases/phase-4-artifact-selection.md next, carrying
-forward: the AS-IS baseline (or its absence), the TO-BE delta (or its absence), and the dispositioned gap
-matrix (or its absence).** Phase 4 selects artifacts against this delta — none of it is re-derived there.

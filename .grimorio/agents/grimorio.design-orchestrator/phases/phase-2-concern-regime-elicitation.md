@@ -1,9 +1,5 @@
 # Design Orchestrator — Phase 2: CONCERN & REGIME ELICITATION
 
-**NEVER read ref:agent/grimorio.design-orchestrator/phases/phase-3-as-is-to-be-gap.md until THIS phase's
-own DELIVERABLE block, below, is actually filled in.** Phase 3 asks for the delta between what is built and
-what is needed — it cannot answer that without knowing WHAT is being asked and for WHOM first.
-
 ## The question this phase answers
 
 Given what already exists, what is the actual open concern, for which stakeholder, how much design does it
@@ -38,9 +34,6 @@ own VALIDATION check is the second.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — elicit the concern,
-   decompose the brief, risk-scope, state the regime — and nothing else; no spawn belongs in this phase's own
-   graph.**
 2. **ALWAYS ELICIT the open concern(s) and their stakeholder(s) BEFORE picking any artifact.** (ISO 42010;
    Rozanski & Woods; SEI *Views and Beyond*.) A concern with no named stakeholder is not yet elicited — it is a
    guess wearing a concern's shape.
@@ -170,25 +163,14 @@ own VALIDATION check is the second.
    questions PLUS the per-type question set for every type the concern classified as — for each elicited
    concern.** Write the actual questions themselves, never a description of what the question set covers.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-**D8 note, updated:** this phase now carries exactly ONE mandatory `import:` target — the type-classification
-line below — so the prior "no import target, no fingerprint applies" statement no longer holds. Every OTHER
-LOAD line here stays `ref:` (lazy), citing external standards (ISO/IEC/IEEE 42010, Rozanski & Woods, Fairbanks,
-arc42 §3) with no in-repo skill file to import.
-
-- import:skill/grimorio.system-design/scope-completeness-method.md#1-the-spine--the-five-problem-types — the
-  problem-TYPE classification + spine/per-type question catalog, step 9's own load.
-  FINGERPRINT: QUESTION-SET DERIVED field below (a real, concrete per-concern question list cannot be produced
-  without applying this section's own spine + per-type tables).
 - ISO/IEC/IEEE 42010:2022 + Rozanski & Woods viewpoints/perspectives — the concern→viewpoint vocabulary, per
   ref:skill/grimorio.system-design/artifact-taxonomy.md#9-architecture-prose for the standard's own governing citation.
 - Fairbanks, *Just Enough Software Architecture* — the risk-driven scoping trigger, step 7 above.
 - arc42 §3 (context and scope) — the baseline CONTEXT & SCOPE artifact, step 4 above.
-- **NEVER load AS-IS/TO-BE mechanics, artifact-selection criteria, production knowledge, or the
-  verification/validation gate here** — each is a later phase's own question.
 
-## PHASE 2 DELIVERABLE — do not read Phase 3 until this is filled
+## PHASE 2 DELIVERABLE
 
 ```
 CONCERN(S) ELICITED:        <one row per concern — the question, and its stakeholder>
@@ -234,16 +216,3 @@ QUESTION-SET DERIVED:         <one row per concern from CONCERN(S) ELICITED abov
                               template value; a blank field, or a field naming only the TYPE with no actual
                               questions listed, is a D8 FAIL>
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:agent/grimorio.design-orchestrator/phases/phase-3-as-is-to-be-gap.md next, carrying
-forward: the elicited concern(s), stakeholder(s), each concern's own source (R36), the risk level(s), the
-regime, the NAMED DOMAINS list, the produced CONTEXT & SCOPE statement, the SUBJECT UNITY VERDICT, the
-PRINCIPAL FUNCTION VERDICT, the PROVISIONAL AS-IS-VOICE DETERMINATION, and the derived QUESTION-SET per concern
-(new step 9).** Phase 3
-consumes all of it to establish the AS-IS/TO-BE delta against — none of it is re-elicited there; Phase 3 is
-specifically the authority that CONFIRMS or OVERRIDES the AS-IS-VOICE DETERMINATION, per its own clause 1. **The
-QUESTION-SET DERIVED field specifically is carried FURTHER still, unchanged, through Phase 3 to Phase 4
-(artifact selection) and Phase 6 (the closure gate)** — Phase 3 does not consume or alter it, it only passes
-through.

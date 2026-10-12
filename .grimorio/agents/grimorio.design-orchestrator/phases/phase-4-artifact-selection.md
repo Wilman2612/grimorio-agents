@@ -1,9 +1,5 @@
 # Design Orchestrator — Phase 4: ARTIFACT-PER-PURPOSE SELECTION
 
-**NEVER read ref:agent/grimorio.design-orchestrator/phases/phase-5-produce-artifacts.md until THIS
-phase's own DELIVERABLE block, below, is actually filled in.** Phase 5 authors exactly what this phase selects
-— nothing more — so an unfinished selection hands Phase 5 nothing bounded to author against.
-
 ## The question this phase answers
 
 Given the concern and the gap, which SPECIFIC artifact(s) earn their keep, and why? Distinct from Phase 2
@@ -20,11 +16,6 @@ finding to flag (Phase 7's own refusals), never a scope this phase quietly grant
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — select one artifact
-   per concern via a three-way disposition (INCLUDE/OMIT/GAP), run a bounded design-time search inline WHEN a
-   GAP is domain-specific, decide views for multi-part components — and nothing else; no spawn belongs in this
-   phase's own graph, including the design-time search, which is a bounded inline lookup this agent performs
-   itself, never a spawned agent.**
 2. **ALWAYS run an explicit FOR-EACH over every concern Phase 2 elicited, ranging over the FULL system-design
    catalog — the classic set (import:skill/grimorio.system-design, sections 1-9) PLUS the modern lineage
    (import:skill/grimorio.system-design, sections 10-16) PLUS mockups — never the narrower original-9-plus-mockup
@@ -91,7 +82,7 @@ finding to flag (Phase 7's own refusals), never a scope this phase quietly grant
      concern.** An API boundary maps to OpenAPI; that is an INCLUDE, never a search.
    - **IS BOUNDED** — a targeted "how is X typically visualized/notated?" lookup, explicitly NEVER
      agent:grimorio.entropy's or agent:grimorio.researcher's own divergent-then-convergent research machinery
-     (ref:skill/grimorio.agent-selection) — this phase spawns neither, or anything else, per its own Step 1 graph above.
+     (ref:skill/grimorio.agent-selection) — this phase spawns neither, or anything else.
    - **WHEN the search finds a real notation/convention (SEARCH3y) ⟶ OUTPUT it BEFORE the artifact is produced,
      and RECLASSIFY the concern to INCLUDE for Step 3's own production gate below, anchored to that identified
      convention instead of a SELECTION PRINCIPLE row.** Phase 5 authors TO the identified convention, never
@@ -101,7 +92,9 @@ finding to flag (Phase 7's own refusals), never a scope this phase quietly grant
      3's production gate below does NOT auto-produce a concern left in this state.
 2c. **ALWAYS run BOTH directions of
    ref:skill/grimorio.system-design/scope-completeness-method.md#2-question--artifact-map--the-two-direction-decoration-detector's
-   own decoration detector as an EXPLICIT, separately-named check.** This COMPOSES WITH, never replaces, the
+   own decoration detector as an EXPLICIT, separately-named check.** Its question→artifact map and the
+   SELECTION PRINCIPLE map overlap, and neither outranks the other on a shared row — consult both, never one
+   instead of the other. This COMPOSES WITH, never replaces, the
    existing INCLUDE/OMIT/GAP disposition above — that disposition per concern already resolves most of what
    this check confirms, but this step makes the confirmation explicit and separately checkable rather than an
    implicit byproduct:
@@ -126,27 +119,13 @@ finding to flag (Phase 7's own refusals), never a scope this phase quietly grant
    multi-part (4-route) surface as NOT "genuinely multi-part," because the trigger itself was escapable — this
    rewrite closes the escape, not merely the judgment call inside it.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- import:skill/grimorio.system-design — the full catalog (classic §1-9 + modern lineage §10-16), reached FROM a concern
-  now, never as the entry point.
-- import:skill/grimorio.system-design#selection-principle--grounding-which-concern-earns-which-artifact — the sourced
-  concern-artifact-trigger map step 2's own FOR-EACH consults for each INCLUDE pick's own citation.
-- import:skill/grimorio.system-design/scope-completeness-method.md#2-question--artifact-map--the-two-direction-decoration-detector —
-  step 2c's own FORWARD/BACKWARD sweep. This map COMPOSES WITH, never replaces, the SELECTION PRINCIPLE map
-  above — per that section's own text, the two artifact vocabularies genuinely overlap and neither is more
-  authoritative than the other on their shared rows; a caller consults both, never picks one instead of the
-  other.
-  FINGERPRINT: DECORATION DETECTOR (both directions) field below (a genuine per-item forward/backward sweep
-  result cannot be produced without applying this section's own two-direction detector).
 - C4 (`c4model.com`)'s own "Recommended?" field, Kruchten 4+1 (1995), Nygard's ADR threshold, Larman's SSD /
   use-case-text judgment — the artifact-per-purpose criteria step 2 draws on where no SELECTION PRINCIPLE row
   matches directly.
-- import:skill/grimorio.report-design/complex-systems.md — step 4's own views taxonomy.
-- **NEVER load production knowledge (how to actually author a state machine, an ADR, a threat model) or the
-  verification/validation gate here** — each is a later phase's own question.
 
-## PHASE 4 DELIVERABLE — do not read Phase 5 until this is filled
+## PHASE 4 DELIVERABLE
 
 ```
 PER-CONCERN SELECTION:      <table: concern -> disposition (INCLUDE/OMIT/GAP) -> selected artifact type
@@ -190,16 +169,9 @@ VIEWS DECIDED:               <per concern, EVERY pass — the views-taxonomy det
                             when this design's whole lifetime produced zero concerns at all — never as a
                             stand-in for "this concern wasn't multi-part," which is itself a genuine
                             per-concern OUTCOME to record, never an escape from recording one>
-DECORATION DETECTOR
-(both directions):          <FORWARD — per INCLUDEd artifact: the question class it closes + the stakeholder
+DECORATION DETECTOR:        <both directions. FORWARD — per INCLUDEd artifact: the question class it closes + the stakeholder
                             it frames, or "decoration, removed" if neither could be named; BACKWARD — per
                             question in Phase 2's own QUESTION-SET DERIVED field: the artifact that closes it,
                             or "GAP" per step 2's own three-way disposition — never a bare "ran the detector"
                             with no per-item result>
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:agent/grimorio.design-orchestrator/phases/phase-5-produce-artifacts.md next, carrying
-forward: the per-concern artifact selection table and the N/A-with-reason list.** Phase 5 authors exactly what
-this table names — it does not re-select anything.

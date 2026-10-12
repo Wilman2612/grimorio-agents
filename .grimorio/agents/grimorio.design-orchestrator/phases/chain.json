@@ -1,0 +1,114 @@
+{
+  "agent": "grimorio.design-orchestrator",
+  "entry": "1",
+  "phases": [
+    {
+      "id": "1",
+      "file": ".grimorio/agents/grimorio.design-orchestrator/phases/phase-1-search-first.md",
+      "desc": "SEARCH-FIRST",
+      "loads": [
+        "skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11",
+        "skill/grimorio.agent-selection",
+        "skill/grimorio.agent-tiers",
+        "skill/grimorio.fan-out",
+        "skill/grimorio.working-memory"
+      ],
+      "fingerprints": {
+        "skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11": "OBJECTIVE + EXIT CONDITION"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "2"
+      }
+    },
+    {
+      "id": "2",
+      "file": ".grimorio/agents/grimorio.design-orchestrator/phases/phase-2-concern-regime-elicitation.md",
+      "desc": "CONCERN & REGIME ELICITATION",
+      "loads": [
+        "skill/grimorio.system-design/scope-completeness-method.md#1-the-spine--the-five-problem-types"
+      ],
+      "fingerprints": {
+        "skill/grimorio.system-design/scope-completeness-method.md#1-the-spine--the-five-problem-types": "QUESTION-SET DERIVED"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "3"
+      }
+    },
+    {
+      "id": "3",
+      "file": ".grimorio/agents/grimorio.design-orchestrator/phases/phase-3-as-is-to-be-gap.md",
+      "desc": "AS-IS / TO-BE & GAP",
+      "loads": [
+        "skill/grimorio.agent-selection",
+        "skill/grimorio.fan-out"
+      ],
+      "next": {
+        "continue": "4"
+      }
+    },
+    {
+      "id": "4",
+      "file": ".grimorio/agents/grimorio.design-orchestrator/phases/phase-4-artifact-selection.md",
+      "desc": "ARTIFACT-PER-PURPOSE SELECTION",
+      "loads": [
+        "skill/grimorio.system-design",
+        "skill/grimorio.system-design/scope-completeness-method.md#2-question--artifact-map--the-two-direction-decoration-detector",
+        "skill/grimorio.report-design/complex-systems.md"
+      ],
+      "fingerprints": {
+        "skill/grimorio.system-design/scope-completeness-method.md#2-question--artifact-map--the-two-direction-decoration-detector": "DECORATION DETECTOR"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "5"
+      }
+    },
+    {
+      "id": "5",
+      "file": ".grimorio/agents/grimorio.design-orchestrator/phases/phase-5-produce-artifacts.md",
+      "desc": "PRODUCE THE ARTIFACTS",
+      "loads": [
+        "skill/grimorio.system-design"
+      ],
+      "next": {
+        "continue": "6"
+      }
+    },
+    {
+      "id": "6",
+      "file": ".grimorio/agents/grimorio.design-orchestrator/phases/phase-6-converge-verify-validate.md",
+      "desc": "CONVERGE, VERIFY & VALIDATE",
+      "loads": [
+        "skill/grimorio.system-design/scope-completeness-method.md#3-the-closure-gate--the-5-point-checklist"
+      ],
+      "fingerprints": {
+        "skill/grimorio.system-design/scope-completeness-method.md#3-the-closure-gate--the-5-point-checklist": "CLOSURE TABLE"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "7",
+        "loop-back": "4"
+      }
+    },
+    {
+      "id": "7",
+      "file": ".grimorio/agents/grimorio.design-orchestrator/phases/phase-7-place-report.md",
+      "desc": "PLACE & REPORT",
+      "loads": [
+        "skill/grimorio.agent-selection",
+        "skill/grimorio.reasoning-principles"
+      ],
+      "next": {}
+    }
+  ]
+}

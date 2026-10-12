@@ -1,10 +1,5 @@
 # Design Orchestrator — Phase 1: SEARCH-FIRST
 
-**NEVER read ref:agent/grimorio.design-orchestrator/phases/phase-2-concern-regime-elicitation.md until
-THIS phase's own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.**
-Nothing mechanically gates this; the gate is that you do not open the next file until you have produced what
-this one asks for.
-
 ## The question this phase answers
 
 What does grimorio already know about this task, and what already exists? Nothing else. This phase does not
@@ -68,7 +63,7 @@ act on here.
    ref:agent/grimorio.po/memory/project.features-status.md#feature-status-ledger (already read this phase per
    step 4 above), and the project's own design record (already read per step 3) MAY carry an
    intent-hint about the subject under design — cross-check whatever any of the three actually says against
-   what step 4a's own enumeration found, and FLAG a contradiction as a named finding. **NEVER read any of the
+   what step 4a's own enumeration found, and FLAG a contradiction as a named finding. **NEVER treat any of the
    three as MANDATORY or PRIMARY for this determination, and NEVER let their absence block or degrade the
    AS-IS** — grimorio is experimental and its own memory files may be outdated, insufficient, or simply absent
    for a subject; **a repo carrying ZERO grimorio records about this subject at all MUST still yield a CORRECT
@@ -213,46 +208,14 @@ act on here.
    import:skill/grimorio.working-memory's own convention — scratch, never the deliverable, never cited as the source of
    a signed decision.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
 - ref:agent/grimorio.po/memory/project.features-status.md, the project's own design record — the loads step 3/4 above name.
 - ref:agent/grimorio.po/memory/project.decisions.md — step 4b's own SUPPLEMENTARY cross-check source, never a
   mandatory read; consulted only to compare against step 4a's own empirical enumeration, never as a PRIMARY or
   blocking source.
-- import:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11 —
-  the objective/exit-condition contract, step 2 above.
-  FINGERPRINT: OBJECTIVE + EXIT CONDITION fields below (a caller's own words restated as a checkable exit
-  state cannot be produced without applying this discipline).
-- import:skill/grimorio.agent-selection + import:skill/grimorio.agent-tiers + import:skill/grimorio.fan-out — the scout-raise slice ONLY,
-  per step 6 above. **NEVER load the general escalation ladder here** — that is Phase 7's own slice, not this
-  phase's question.
-- import:skill/grimorio.working-memory — the `tmp/` staging convention, step 8's own load.
-- The CEO's spend-contract exemplar's standing bar-anchor is held INLINE in step 5b's own prose above (writing
-  discipline — never the shape) — NEVER a load target of this section. **WHEN deeper evidence is genuinely
-  warranted ⟶ resolve `cold:ceo-spend-contract-exemplar`** (registered in
-  ref:skill/grimorio.agent-writing/cold-store.md), never opened by default. The source document's own
-  full text is carried SOLELY on that curated extract file itself
-  (ref:memory/grimorio.system-design-memory/project.design-orchestrator-exemplar-ceo-spend-contract.md) — never reprinted here, never
-  a load target of this section, and never something this phase instructs an agent to open.
-- The CEO's dashboard exemplar's standing bar-anchor is held INLINE in step 5c's own prose above (whole-system
-  writing discipline — never the shape) — NEVER a load target of this section. **WHEN deeper evidence is
-  genuinely warranted ⟶ resolve `cold:ceo-dashboard-exemplar`** (registered in
-  ref:skill/grimorio.agent-writing/cold-store.md), never opened by default. The source document's own
-  full text is carried SOLELY on that curated index-plus-companions file set itself
-  (ref:agent/grimorio.design-orchestrator/exemplar-ceo-dashboard.md and its six companions) — never
-  reprinted here, never a load target of this section, and never something this phase instructs an agent to
-  open.
-- **NEVER load gRFC A6 or MaMa-CRM from this section — neither is a standing AS-IS anchor any longer.** gRFC A6
-  (ref:agent/grimorio.design-orchestrator/exemplar-grpc-retries.md) is reserved for a future
-  TO-BE/proposal-writing phase this agent has not yet opened, per step 5b's own disposition note above; MaMa-CRM
-  (ref:agent/grimorio.design-orchestrator/exemplar-mama-crm.md) no longer holds a standing AS-IS role
-  at all, per step 5c's own disposition note above. Both extracts stay on disk, untouched, for whichever future
-  phase or step genuinely needs them — this phase simply never cites either as a load target any more.
-- **NEVER load anything about concern elicitation, AS-IS/TO-BE, artifact selection, production, or
-  verification/validation here** — none of those are this phase's question, and pulling them in now is exactly
-  the flat-mega-load anti-pattern ref:skill/grimorio.phase-splitting exists to fix.
 
-## PHASE 1 DELIVERABLE — do not read Phase 2 until this is filled
+## PHASE 1 DELIVERABLE
 
 ```
 OBJECTIVE:                  <verbatim from the brief, in your own reasoning, never invented>
@@ -285,17 +248,3 @@ SCOUT RAISED:                <WHEN the caller named domains this pass: one yes/n
                              familiar">
 THINKING-BASE STAGED:        <tmp/ path, per step 8>
 ```
-
-## Hard hand-off
-
-**BEFORE reading ref:agent/grimorio.design-orchestrator/phases/phase-2-concern-regime-elicitation.md ⟶
-apply import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.design-orchestrator/phases/phase-1-search-first.md`) and this phase's own
-filled PHASE 1 DELIVERABLE block, written to disk first per that gate's own algorithm — the read below now runs
-on that gate's own PASS, never on the block merely existing in context.**
-
-**ALWAYS read ref:agent/grimorio.design-orchestrator/phases/phase-2-concern-regime-elicitation.md next,
-carrying forward: what the project's own design record and ref:agent/grimorio.po/memory/project.features-status.md say already exists, the
-EMPIRICAL DOMAIN ENUMERATION (step 4a) and the PRODUCT-MEMORY HINT (step 4b), any documentation-memory precedent,
-and any scout report.** Phase 2 consumes all of it to elicit the actual concern
-against — none of it is re-gathered there.

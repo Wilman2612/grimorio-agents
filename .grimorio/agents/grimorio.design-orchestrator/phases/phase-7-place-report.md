@@ -1,7 +1,7 @@
 # Design Orchestrator — Phase 7: PLACE & REPORT (terminal — no hand-off)
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own `## OUTPUT` block, below, is
-actually filled in.** There is no Phase 8 to defer an unfinished field to.
+actually filled in.**
 
 ## The question this phase answers
 
@@ -63,14 +63,6 @@ does not have.
    actual current exit condition — Phase 7 is reached only on EXIT, so state that explicitly rather than
    leaving it implied by having reached this phase at all); a VERIFIED/COULD-NOT close.
 
-## LOAD (JIT) — scoped to this phase only
-
-- **No load needed for the platform-vs-game split** — the criterion is now stated INLINE in step 2 above, not
-  deferred to an external index file.
-- import:skill/grimorio.agent-selection — the escalation-ladder slice ONLY, steps 3 and 7 above. **NEVER re-import the
-  scout-raise slice here** — that was Phase 1's own, already spent.
-- import:skill/grimorio.reasoning-principles — the objective/exit-condition/VERIFIED-COULD-NOT contract, step 8's load.
-
 ## OUTPUT
 
 ```
@@ -96,8 +88,3 @@ EXIT CONDITION:              <the checkable state that means it holds>
 CLOSE:                       <VERIFIED, naming which evidence backs which claim — or COULD NOT,
                             naming what is still open, why, and what the next pass needs>
 ```
-
-## Terminal state — no hand-off
-
-**This phase has no next file to read.** The chain ends here. A subsequent task, if any, starts a fresh Phase 0
-(ref:agent/grimorio.design-orchestrator/behavior.md), never resumed mid-chain from this file.

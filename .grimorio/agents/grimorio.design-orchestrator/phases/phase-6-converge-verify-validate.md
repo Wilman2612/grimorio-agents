@@ -1,10 +1,5 @@
 # Design Orchestrator — Phase 6: CONVERGE, VERIFY & VALIDATE
 
-**NEVER read ref:agent/grimorio.design-orchestrator/phases/phase-7-place-report.md until THIS phase's own
-DELIVERABLE block, below, is actually filled in — including all three named checks, and the EXIT-vs-LOOP-BACK
-decision.** Phase 7 places and reports a design this phase has already declared whole and right; handing it an
-undeclared one just relocates this phase's own job one file later.
-
 ## The question this phase answers
 
 Is what I produced whole (verification), AND does it solve the right problem for the stakeholder Phase 2 named
@@ -108,18 +103,14 @@ handle it.
    RESOLVED, never open — only what survives this check may be logged as open.
 5. **Run three NAMED checks, never one undifferentiated bundle: VERIFICATION (is it built right),
    VALIDATION (is it the right thing), and COVERAGE (is anything missing).**
-   **BEFORE running them ⟶ read ref:agent/grimorio.design-orchestrator/phases/phase-6-the-three-checks.md**
+   **BEFORE running them ⟶ read ref:agent/grimorio.design-orchestrator/phases/step-5-the-three-checks.md**
    — what each check asks, what evidence each owes, and what a failure of each one routes to.
 
 6. **Decide EXIT or LOOP-BACK per the exit condition stated above, and state which, explicitly, in this
    phase's own DELIVERABLE.**
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- import:skill/grimorio.system-design/scope-completeness-method.md#3-the-closure-gate--the-5-point-checklist —
-  the per-question CLOSURE TABLE, THE LOOP section's own new exit condition above.
-  FINGERPRINT: CLOSURE TABLE (per question, 5 gates + LOCATOR) field below (a real per-question, 5-gate table
-  cannot be produced without applying this section's own checklist).
 - ref:skill/grimorio.loop-and-graph/design-completeness-gate.md — the 8-check gate, Check 1's own load.
 - Boehm 1979 / IEEE 1012 — the verification-vs-validation distinction, Check 3's own load.
 - SWEBOK Requirements KA (elicitation → analysis → specification → validation) — NAMED here as the missing
@@ -136,9 +127,8 @@ handle it.
   trivially matches (never falls below) design-orchestrator's own opus tier, so the floor question never fires
   for CHECK 3 and Phase 7's precedent applies there unchanged. **CHECK 1 and CHECK 3 no longer lean on the same
   justification — read each load line above against its own check, never assume both share one citation.**
-- **NEVER load placement or output-contract specifics here** — Phase 7's own question.
 
-## PHASE 6 DELIVERABLE — do not read Phase 7 until this is filled
+## PHASE 6 DELIVERABLE
 
 ```
 CONVERGED DELIVERABLE:         <confirm ONE `design.md`, OR the explicit FAMILY of files — state which shape
@@ -211,8 +201,8 @@ CHECK 3 — VALIDATION:          <agent:grimorio.entropy raised, foreground-conf
                                source was this agent's own inference — the underlying risk stays "MADE
                                VISIBLE, not CLOSED">
 
-CLOSURE TABLE
-(per question, 5 gates + LOCATOR): <one row PER QUESTION in Phase 2's own QUESTION-SET DERIVED field — never
+CLOSURE TABLE:                 <per question, 5 gates + LOCATOR — one row PER QUESTION in Phase 2's own
+                               QUESTION-SET DERIVED field — never
                                fewer rows than that field lists, a visible FAIL if it is — recording: (1)
                                disposition (answered/deferred-with-owner-and-date/excluded), (2)
                                verifiability (the finite check or fit criterion), (3) negative-scope Gate 3
@@ -235,11 +225,6 @@ EXIT OR LOOP-BACK:             <EXIT to Phase 7 (every CLOSURE TABLE row holds a
                                and that Phase 4/5/6 are the SAME three nodes re-run, never duplicated)>
 ```
 
-## Hard hand-off
+## Hand-off
 
-**WHEN this phase decided EXIT ⟶ ALWAYS read
-ref:agent/grimorio.design-orchestrator/phases/phase-7-place-report.md next, carrying forward the
-converged, gated, validated deliverable (`design.md`, or every file in the chosen family).** **WHEN this phase
-decided LOOP-BACK ⟶ your hand-off is back to
-ref:agent/grimorio.design-orchestrator/phases/phase-4-artifact-selection.md instead, carrying what
-coverage is still missing — do not proceed to Phase 7 on a design this phase itself found not yet enough.**
+**WHEN this phase decided LOOP-BACK (step 6) ⟶ `--on loop-back`, naming what coverage is still missing; otherwise (EXIT) `--on continue`.**
