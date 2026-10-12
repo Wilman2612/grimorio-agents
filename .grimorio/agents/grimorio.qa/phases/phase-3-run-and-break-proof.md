@@ -33,8 +33,7 @@ LOOP-BACK-A:                   <FIRED — naming the specific test + why it fail
                             NOT FIRE>
 PRE-EXISTING FAILURES BASELINE CARRIED FORWARD: <restated unchanged from Phase 1 (via Phase 2), verbatim, never
                             silently dropped>
-NEXT FILE:                     <phase-4-report-and-close.md (no loop) OR phase-2-write-tests-across-layers.md
-                            (LOOP-BACK-A fired), per the RESOLVED DESIGN DECISION above — never left implicit>
+ROUTE:                         <continue (no loop) | loop-back (LOOP-BACK-A fired)>
 ```
 
 ## Hand-off
