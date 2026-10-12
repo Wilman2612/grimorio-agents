@@ -32,9 +32,11 @@
 // system-keeper-improve-and-validate-mode.md step 4 already greps this file by those exact names.
 
 import { existsSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import { extname, dirname, join } from "node:path";
 import {
   usageError,
+  REPO_ROOT,
   resolveManifestPath,
   loadManifest,
   runStatePath,
@@ -178,11 +180,29 @@ function assertPhaseProducesRecorded(phase, runId, state, condition) {
   if (exempt.includes(condition)) return;
   const produces = phase.produces || [];
   const missing = produces.filter((name) => !state.artifacts[name]);
-  if (missing.length === 0) return;
+  if (missing.length === 0) return assertFingerprints(phase, state);
   console.error(
     `ERROR: phase "${phase.id}" has not recorded its own produces artifact(s) for run "${runId}": ${missing.join(", ")}`,
   );
   process.exit(1);
+}
+
+// A phase whose manifest entry declares `fingerprints` leaves only when its recorded `deliverable` carries a
+// real value in every fingerprint field (D8); the engine runs the gate so no phase file has to.
+function assertFingerprints(phase, state) {
+  if (!phase.fingerprints || !Object.keys(phase.fingerprints).length) return;
+  const artifact = state.artifacts.deliverable;
+  if (!artifact || !artifact.path) {
+    console.error(`ERROR: phase "${phase.id}" declares fingerprints; record its filled deliverable first: record --run <id> deliverable <path>`);
+    process.exit(1);
+  }
+  const gate = join(dirname(new URL(import.meta.url).pathname), "check-phase-fingerprint.mjs");
+  const r = spawnSync(process.execPath, [gate, phase.file, artifact.path, state.chain], { encoding: "utf8", cwd: REPO_ROOT });
+  if (r.status !== 0) {
+    process.stderr.write(r.stdout + r.stderr);
+    console.error(`ERROR: phase "${phase.id}" deliverable fails its fingerprint gate; fix the deliverable and re-run next`);
+    process.exit(1);
+  }
 }
 
 // CEO ruling: entering a phase (via `next` or `jump`) clears exactly THAT phase's own `produces`
@@ -204,6 +224,7 @@ function resolveNextTarget(phase, condition, manifest, chainName) {
     );
     process.exit(1);
   }
+  if (target === "END") return target;
   if (!manifest.byId.has(target)) usageError(`manifest error: phase "${phase.id}" points to unknown target "${target}"`, 2);
   return target;
 }
@@ -220,6 +241,16 @@ function cmdNext(flags) {
   assertPhaseRequiresRecorded(phase, runId, state);
   assertPhaseProducesRecorded(phase, runId, state, condition);
   const target = resolveNextTarget(phase, condition, manifest, state.chain);
+  // "END" is a reserved target: the run stops here on this condition, e.g. a child that owns one item.
+  if (target === "END") {
+    state.currentPhase = "END";
+    state.visited.push("END");
+    saveRunState(runId, state);
+    log({ cmd: "next", chain: state.chain, run: runId, from: phase.id, to: "END", on: condition });
+    console.log(`RUN ${runId}`);
+    console.log("TERMINAL — no further hand-off");
+    process.exit(0);
+  }
   clearOwnProducesOnEntry(manifest.byId.get(target), state);
 
   state.currentPhase = target;

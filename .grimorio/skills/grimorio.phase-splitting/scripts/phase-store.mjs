@@ -54,6 +54,9 @@ function findManifestCandidates(chainName) {
   for (const root of roots) {
     if (existsSync(root)) walkForManifest(root, target, SKIP, found);
   }
+  // An agent folder may name its chain directory plainly `phases/`; the folder name carries the chain.
+  const plain = join(REPO_ROOT, ".grimorio", "agents", `grimorio.${chainName}`, "phases", "chain.json");
+  if (!found.length && existsSync(plain)) found.push(plain);
   return found;
 }
 

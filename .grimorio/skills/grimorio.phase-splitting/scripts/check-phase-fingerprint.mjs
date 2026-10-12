@@ -6,7 +6,7 @@
 // Usage: node .grimorio/skills/grimorio.phase-splitting/scripts/check-phase-fingerprint.mjs <phase-file.md> <deliverable-instance.txt> [agent]
 
 import { readFileSync, existsSync, appendFileSync, mkdirSync } from 'node:fs';
-import { basename } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 import { cacheDir, cachePath } from "../../../../.grimorio/scripts/refobl/cache-paths.mjs";
 
 function usageError(msg) {
@@ -24,27 +24,32 @@ if (!existsSync(deliverablePath)) usageError(`deliverable instance not found: ${
 const phaseText = readFileSync(phasePath, 'utf8');
 const deliverableText = readFileSync(deliverablePath, 'utf8');
 
-// 1. Extract the "## LOAD (JIT)" section (from that heading to the next "##" heading, or end of file).
-const loadMatch = phaseText.match(/^##\s*LOAD[^\r\n]*[\r\n]+([\s\S]*?)(?=[\r\n]+##|(?![\s\S]))/m);
-if (!loadMatch) usageError(`no "## LOAD" section found in ${phasePath}`);
-const loadSection = loadMatch[1];
-
-// 2. Walk every top-level "- " bullet in that section (a bullet's own block runs until the next top-level
-//    "- " bullet or the section ends), and for each bullet whose first line contains a real import:skill/ or import:repo/ reference, look for a
-//    "FINGERPRINT: <NAME> field(s) below" annotation anywhere inside that same bullet's block.
-const bulletRe = /^- (.+(?:[\r\n](?!- ).*)*)/gm;
-let bullet;
+// 1. The fingerprints come from the phase's chain manifest entry when the manifest declares them
+//    (`fingerprints: { "<load>": "FIELD" }`), otherwise from the phase file's own "## LOAD" section.
 const fingerprintFields = [];
 const missingFingerprintImports = [];
-while ((bullet = bulletRe.exec(loadSection))) {
-  const block = bullet[1];
-  const firstLine = block.split('\n')[0];
-  if (!/import:(skill|repo)\//.test(firstLine)) continue; // only a real import:skill/ or import:repo/ reference is in scope for D8 — a bare "import:" substring inside backticked prose (e.g. "no mandatory `import:` target") must NOT match
-  const fpMatch = block.match(/FINGERPRINT:\s*([A-Z][A-Z0-9 +/()-]*?)\s+fields?\s+below/);
-  if (fpMatch) {
-    fingerprintFields.push(fpMatch[1].trim());
-  } else {
-    missingFingerprintImports.push(firstLine.trim());
+const manifestPath = join(dirname(phasePath), 'chain.json');
+const manifestEntry = existsSync(manifestPath)
+  ? (JSON.parse(readFileSync(manifestPath, 'utf8')).phases || []).find((p) => basename(p.file) === basename(phasePath))
+  : null;
+if (manifestEntry && manifestEntry.fingerprints) {
+  for (const load of manifestEntry.loads || []) {
+    const field = manifestEntry.fingerprints[load];
+    if (field) fingerprintFields.push(...field.split('+').map((f) => f.trim()));
+    else missingFingerprintImports.push(load);
+  }
+} else {
+  const loadMatch = phaseText.match(/^##\s*LOAD[^\r\n]*[\r\n]+([\s\S]*?)(?=[\r\n]+##|(?![\s\S]))/m);
+  if (!loadMatch) usageError(`no "## LOAD" section in ${phasePath}, and no fingerprints in ${manifestPath}`);
+  const bulletRe = /^- (.+(?:[\r\n](?!- ).*)*)/gm;
+  let bullet;
+  while ((bullet = bulletRe.exec(loadMatch[1]))) {
+    const block = bullet[1];
+    const firstLine = block.split('\n')[0];
+    if (!/import:(skill|repo)\//.test(firstLine)) continue;
+    const fpMatch = block.match(/FINGERPRINT:\s*([A-Z][A-Z0-9 +/()-]*?)\s+fields?\s+below/);
+    if (fpMatch) fingerprintFields.push(fpMatch[1].trim());
+    else missingFingerprintImports.push(firstLine.trim());
   }
 }
 
