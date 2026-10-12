@@ -1,0 +1,95 @@
+{
+  "agent": "grimorio.manual-verifier",
+  "entry": "1",
+  "phases": [
+    {
+      "id": "1",
+      "file": ".grimorio/agents/grimorio.manual-verifier/phases/phase-1-scope-and-delegate.md",
+      "desc": "SCOPE-AND-DELEGATE",
+      "loads": [
+        "skill/grimorio.reasoning-principles",
+        "skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm",
+        "skill/grimorio.working-memory#the-folder"
+      ],
+      "fingerprints": {
+        "skill/grimorio.reasoning-principles": "SCOPE",
+        "skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm": "FAN-OUT DECISION",
+        "skill/grimorio.working-memory#the-folder": "FAN-OUT DECISION"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "produces-exempt": [
+        "child"
+      ],
+      "next": {
+        "continue": "2",
+        "fan-out": "5",
+        "child": "2"
+      }
+    },
+    {
+      "id": "2",
+      "file": ".grimorio/agents/grimorio.manual-verifier/phases/phase-2-sanity-baseline.md",
+      "desc": "SANITY-BASELINE",
+      "loads": [],
+      "next": {
+        "continue": "3",
+        "skip-ahead": "5"
+      }
+    },
+    {
+      "id": "3",
+      "file": ".grimorio/agents/grimorio.manual-verifier/phases/phase-3-verify-acceptance-criteria.md",
+      "desc": "VERIFY-ACCEPTANCE-CRITERIA",
+      "loads": [
+        "agent/grimorio.manual-verifier/memory#state-machine-coverage-protocol-before-opening-the-browser",
+        "agent/grimorio.manual-verifier/memory#scenario-planning",
+        "agent/grimorio.manual-verifier/memory#visual-checklist-per-screen-mark-na-where-it-doesnt-apply"
+      ],
+      "fingerprints": {
+        "agent/grimorio.manual-verifier/memory#state-machine-coverage-protocol-before-opening-the-browser": "WORKBENCH VERIFICATION",
+        "agent/grimorio.manual-verifier/memory#scenario-planning": "PER-CRITERION PLAN",
+        "agent/grimorio.manual-verifier/memory#visual-checklist-per-screen-mark-na-where-it-doesnt-apply": "WORKBENCH VERIFICATION + APP VERIFICATION"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "4"
+      }
+    },
+    {
+      "id": "4",
+      "file": ".grimorio/agents/grimorio.manual-verifier/phases/phase-4-explore-for-regressions.md",
+      "desc": "EXPLORE-FOR-REGRESSIONS",
+      "loads": [
+        "agent/grimorio.manual-verifier/memory#error-capture"
+      ],
+      "fingerprints": {
+        "agent/grimorio.manual-verifier/memory#error-capture": "REGRESSION FINDINGS"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "5"
+      }
+    },
+    {
+      "id": "5",
+      "file": ".grimorio/agents/grimorio.manual-verifier/phases/phase-5-report-and-merge.md",
+      "desc": "REPORT-AND-MERGE (terminal — no further hand-off)",
+      "loads": [
+        "skill/grimorio.feature-workflow"
+      ],
+      "fingerprints": {
+        "skill/grimorio.feature-workflow": "STATUS VALUE"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {}
+    }
+  ]
+}

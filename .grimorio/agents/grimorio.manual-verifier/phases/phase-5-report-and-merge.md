@@ -1,7 +1,7 @@
 # Manual Verifier — Phase 5: REPORT-AND-MERGE (terminal — no further hand-off)
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own `verification-report.md` is
-actually written and its `## Status` line is set.** There is no Phase 6 to defer an unfinished field to.
+actually written and its `## Status` line is set.**
 
 ## The question this phase answers
 
@@ -97,7 +97,7 @@ with its one-line WHY declared:**
 **Item — both sanity baselines actually ran and passed, or correctly short-circuited to this phase on a
 genuine failure:**
 - **WHEN this is arrival 1 (fan-out-merge PARENT) ⟶ does not apply directly** — this PARENT never ran Phase 2
-  itself; per Phase 1's own RESOLVED DESIGN DECISION, a fired fan-out skips Phase 2-4 entirely, delegating that
+  itself; a fired fan-out skips Phase 2-4 entirely, delegating that
   work to the children. Confirm instead that the MERGE step's own rollup (step 3 above) correctly reflects
   each child's own baseline outcome.
 - **WHEN this is arrival 2 (SKIP-AHEAD), arrival 3 (PARENT running solo), or arrival 4 (fanned-out CHILD) ⟶
@@ -135,18 +135,6 @@ than cataloging "possibly X" and moving on:**
 
 Any item above left unconfirmed for the arrival it actually applies to means the close is an unearned claim,
 never a verified one.
-
-## LOAD (JIT) — scoped to this phase only
-
-- the `## OUTPUT` and `## Status` contracts, below — this agent's own, not an external skill; nothing further
-  to load for them.
-- import:skill/grimorio.feature-workflow — the REWORK cycle (max 2, per failing agent) your `FAIL` status
-  triggers, and the escalation rule for a `CRITICAL` finding that can't be auto-fixed — the ONE place in this
-  chain that needs it, governing what happens downstream to this phase's own status.
-  FINGERPRINT: STATUS VALUE field below (a status this pipeline's own downstream routing can act on cannot be
-  produced without knowing this rule).
-- **NEVER load the AC checklist, the regression heuristics, or the fan-out gate mechanics here** — each is an
-  earlier phase's own already-closed question; this phase only converges and reports what they produced.
 
 ## OUTPUT
 
@@ -200,17 +188,3 @@ SELF-CHECK GATE:              <every item from the Self-check gate section above
 CLOSE:                         <VERIFIED, naming the report path and Status value as evidence — or COULD NOT,
                           naming what blocked you and what is left>
 ```
-
-## Terminal state — no hand-off
-
-**BEFORE this phase's own report is reported to the caller ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.manual-verifier/phases/phase-5-report-and-merge.md`) and this
-phase's own filled PHASE 5 DELIVERABLE block, written to disk first per that gate's own algorithm — this phase
-has no NEXT phase file to gate a read against, so the gate runs against the CLOSE itself: the report below is
-what this phase "reveals," and it now runs only on that gate's own PASS, never on the block merely existing in
-context.** This phase's own `import:skill/grimorio.feature-workflow` bullet carries a `FINGERPRINT:` annotation,
-so the gate is NOT inert here.
-
-**This phase has no next file to read.** The chain ends here. A subsequent invocation starts fresh at Phase 0
-(ref:agent/grimorio.manual-verifier/behavior.md), never resumed mid-chain from this file.

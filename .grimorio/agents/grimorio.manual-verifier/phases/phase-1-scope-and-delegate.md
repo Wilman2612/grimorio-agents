@@ -1,16 +1,5 @@
 # Manual Verifier — Phase 1: SCOPE-AND-DELEGATE
 
-**NEVER read ref:agent/grimorio.manual-verifier/phases/phase-2-sanity-baseline.md (the SOLO route) or
-ref:agent/grimorio.manual-verifier/phases/phase-5-report-and-merge.md (the FAN-OUT route) until THIS
-phase's own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Whichever
-route this phase's own gate selects, the next phase consumes exactly what this phase produces; handing either
-one a promise instead of a real Impact Matrix and fan-out decision leaves it nothing to act on. **WHEN this
-invocation is itself a fanned-out CHILD (per step 1a below) ⟶ this gate does not apply at all — proceed
-straight to ref:agent/grimorio.manual-verifier/phases/phase-2-sanity-baseline.md, no PHASE 1
-DELIVERABLE block required**, because a CHILD's own scope/matrix/gate work was never performed to have anything
-real to gate, unlike the PARENT's own SOLO and FAN-OUT routes above, where steps 2-5 genuinely produce content
-worth gating.
-
 ## The question this phase answers
 
 What exactly is being verified, and should this run solo or fan out? Nothing else. This phase does not run a
@@ -39,8 +28,8 @@ establishes the scope, what it affects, and how the work ahead gets divided (or 
    a same-type child of itself, and only from the PARENT fan-out branch above.
 
 1a. **WHEN this invocation's own brief identifies it as a fanned-out CHILD ⟶ skip directly to Phase 2 — never
-   run steps 2-6 below** (this phase's entire remaining scope-declaration, Impact-Matrix-build, FAN-OUT BRANCH,
-   and RESOLVED DESIGN DECISION work).
+   run steps 2-5 below** (this phase's entire remaining scope-declaration, Impact-Matrix-build, and FAN-OUT
+   BRANCH work).
 
 2. **Declare the scope.** The scope tells you what's being verified. Without it, verification is blind — you
    can't tell a new bug from a pre-existing one. Valid scope, in order of preference: feature artifacts
@@ -87,35 +76,13 @@ establishes the scope, what it affects, and how the work ahead gets divided (or 
       other's screenshots. **A CHILD invocation skips this node's own scope-declaration (step 2) and the
       prior-report check (step 3) and this gate itself (step 5)**; it executes only the narrow scope (its one
       click-path or route) named in its own brief, and its own Phase 1 short-circuits straight through to
-      Phase 2 — see the RESOLVED DESIGN DECISION below, which governs the PARENT's own routing, not the
-      child's.
+      Phase 2.
 
-6. **RESOLVED DESIGN DECISION — the PARENT's own next-phase read depends on the fan-out outcome, decided here,
-   not left open.** **WHEN fan-out fired (step 5.2 above) ⟶ this phase's own next phase read is
-   ref:agent/grimorio.manual-verifier/phases/phase-5-report-and-merge.md DIRECTLY — skip Phase 2-4
-   entirely, that work is now delegated to the children — where the parent waits for and merges every child's
-   report.** **WHEN solo (step 5.3 above) ⟶ this phase's own next phase read is
-   ref:agent/grimorio.manual-verifier/phases/phase-2-sanity-baseline.md, proceeding normally through
-   Phase 2 → 3 → 4 → 5 itself.**
+## Conditional loads
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:skill/grimorio.reasoning-principles — specifically its objective/exit-condition contract,
-  ref:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11.
-  FINGERPRINT: SCOPE field below (a real scope declaration, distinct from a silently-assumed one, cannot be
-  produced without stating what "verified" checkably means for this pass).
-- import:skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm —
-  step 5's own gate, tier, and isolation rules.
-  FINGERPRINT: FAN-OUT DECISION field below (a real gate evaluation, spawn, or solo declaration cannot be
-  produced without applying this ladder).
-- import:skill/grimorio.working-memory#the-folder — the `tmp/<child-id>/{work,notes}` convention step 5.2 uses.
-  FINGERPRINT: FAN-OUT DECISION field below, jointly with the bullet above (a real per-child folder assignment
-  cannot be produced without this convention).
 - ref:skill/grimorio.feature-workflow#status-codes — step 2's own stateless-never-ask rule on missing scope.
-- **NEVER load the sanity-baseline criteria, the AC-verification checklist, the regression heuristics, or the
-  OUTPUT contract here** — none of those are this phase's question; each belongs to a later phase alone.
 
-## PHASE 1 DELIVERABLE — do not read the next phase until this is filled
+## PHASE 1 DELIVERABLE
 
 ```
 SCOPE:                     <the declared scope + its SOURCE, ranked per the preference order — feature
@@ -127,28 +94,11 @@ PRIOR-REPORT CHECK:         <a prior verification-report.md found on these same 
 FAN-OUT DECISION:           <GATE: HELD / DID NOT HOLD, per step 5.1 — WHEN HELD: N children spawned, their
                           tiers (haiku), their tmp/<child-id>/{work,notes} paths, per-path partitioning
                           confirmed non-colliding — WHEN DID NOT HOLD: the one-line WHY, per step 5.3>
-NEXT PHASE:                 <phase-5-report-and-merge.md (fan-out fired) OR phase-2-sanity-baseline.md (solo),
-                          per the RESOLVED DESIGN DECISION above — never left implicit>
+ROUTE:                      <fan-out (children fired) | continue (solo) | child>
 ```
 
-## Hard hand-off
+## Hand-off
 
-**BEFORE reading the next phase file, in EITHER direction ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.manual-verifier/phases/phase-1-scope-and-delegate.md`) and this
-phase's own filled PHASE 1 DELIVERABLE block, written to disk first per that gate's own algorithm — both routes
-below now run on that gate's own PASS, never on the block merely existing in context.** This phase's own
-`import:skill/grimorio.reasoning-principles`, `import:skill/grimorio.fan-out`, and
-`import:skill/grimorio.working-memory` bullets each carry a `FINGERPRINT:` annotation, so the gate is NOT inert
-here. **WHEN this invocation is a fanned-out CHILD (per step 1a above) ⟶ this fingerprint-gate step does not
-apply either — ALWAYS read ref:agent/grimorio.manual-verifier/phases/phase-2-sanity-baseline.md next
-directly, with no PHASE 1 DELIVERABLE block and no gate check, exactly as the opening gate note above already
-states.**
-
-**WHEN the FAN-OUT DECISION above is HELD (fan-out fired) ⟶ ALWAYS read
-ref:agent/grimorio.manual-verifier/phases/phase-5-report-and-merge.md next, carrying forward: the
-scope, the Impact Matrix, and the spawned children's own `tmp/<child-id>/` paths.** Phase 5 waits for and
-merges what those children produce — it does not re-derive any of it. **WHEN the FAN-OUT DECISION above DID NOT
-HOLD (solo) ⟶ ALWAYS read ref:agent/grimorio.manual-verifier/phases/phase-2-sanity-baseline.md next,
-carrying forward: the scope, the Impact Matrix, and the prior-report check.** Phase 2 consumes all of it — it
-does not re-derive any of it.
+**WHEN this invocation is a fanned-out CHILD (step 1a) ⟶ `--on child`; WHEN the FAN-OUT BRANCH gate held and
+children were spawned (step 5.2) ⟶ `--on fan-out` — Phases 2-4 are then the children's work, and the parent goes on
+to wait for and merge every child's report; otherwise (the gate did not hold, step 5.3) `--on continue`.**
