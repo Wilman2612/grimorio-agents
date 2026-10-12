@@ -1,0 +1,120 @@
+{
+  "agent": "grimorio.js-developer",
+  "entry": "1",
+  "phases": [
+    {
+      "id": "1",
+      "file": ".grimorio/agents/grimorio.js-developer/phases/phase-1-search-first.md",
+      "desc": "SEARCH-FIRST",
+      "loads": [
+        "agent/grimorio.js-developer/memory/project.traps.md",
+        "agent/grimorio.js-developer/memory/project.traps-runner-node.md"
+      ],
+      "fingerprints": {
+        "agent/grimorio.js-developer/memory/project.traps.md": "TRAPS CHECKED (OWN) + TRAPS CHECKED (SHARED)",
+        "agent/grimorio.js-developer/memory/project.traps-runner-node.md": "TRAPS CHECKED (OWN)"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "2"
+      }
+    },
+    {
+      "id": "2",
+      "file": ".grimorio/agents/grimorio.js-developer/phases/phase-2-plan-read-arch-decision.md",
+      "desc": "PLAN-READ-ARCH-DECISION",
+      "loads": [
+        "skill/grimorio.code-harness",
+        "skill/grimorio.build-protocol/build-protocol.md",
+        "skill/grimorio.agent-tiers/refusal-pattern.md",
+        "agent/grimorio.js-developer/memory/project.md#js-developer-scope--concrete-folder-paths",
+        "agent/grimorio.js-developer/memory/project.md#conventions-we-chose"
+      ],
+      "fingerprints": {
+        "skill/grimorio.code-harness": "HARNESS LOOKUP DONE",
+        "skill/grimorio.build-protocol/build-protocol.md": "MODE + MISSING-PLAN CHECK + REWORK/BUG-REPORT DETECTED",
+        "skill/grimorio.agent-tiers/refusal-pattern.md": "MISSING-PLAN CHECK",
+        "agent/grimorio.js-developer/memory/project.md#js-developer-scope--concrete-folder-paths": "SCOPE BOUNDARY CHECK",
+        "agent/grimorio.js-developer/memory/project.md#conventions-we-chose": "SCOPED FILE/MODULE LIST"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "3",
+        "scope-stop": "END",
+        "refused": "END"
+      }
+    },
+    {
+      "id": "3",
+      "file": ".grimorio/agents/grimorio.js-developer/phases/phase-3-implement.md",
+      "desc": "IMPLEMENT",
+      "loads": [
+        "skill/grimorio.javascript",
+        "skill/grimorio.development-patterns",
+        "skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step",
+        "agent/grimorio.js-developer/memory/project.traps.md",
+        "agent/grimorio.js-developer/memory/project.traps-runner-node.md",
+        "skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order",
+        "skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm",
+        "skill/grimorio.working-memory#the-folder"
+      ],
+      "fingerprints": {
+        "skill/grimorio.javascript": "MODULE(S)/FILE(S) BUILT",
+        "skill/grimorio.development-patterns": "MODULE(S)/FILE(S) BUILT",
+        "skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step": "SURVEY NOTES",
+        "agent/grimorio.js-developer/memory/project.traps.md": "RISKY-ZONE CONSULTED",
+        "agent/grimorio.js-developer/memory/project.traps-runner-node.md": "RISKY-ZONE CONSULTED",
+        "skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order": "BUG-FIX-FIRST-TEST",
+        "skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm": "FAN-OUT DECISION",
+        "skill/grimorio.working-memory#the-folder": "FAN-OUT DECISION"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "4",
+        "child": "END"
+      }
+    },
+    {
+      "id": "4",
+      "file": ".grimorio/agents/grimorio.js-developer/phases/phase-4-verify.md",
+      "desc": "VERIFY",
+      "loads": [
+        "agent/grimorio.js-developer/memory/project.md#conventions-we-chose",
+        "skill/grimorio.build-protocol/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park"
+      ],
+      "fingerprints": {
+        "agent/grimorio.js-developer/memory/project.md#conventions-we-chose": "INVARIANT CONFIRMATION",
+        "skill/grimorio.build-protocol/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park": "FULL SUITE RESULT"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "5"
+      }
+    },
+    {
+      "id": "5",
+      "file": ".grimorio/agents/grimorio.js-developer/phases/phase-5-report-and-commit.md",
+      "desc": "REPORT & COMMIT",
+      "loads": [
+        "skill/grimorio.build-protocol/build-protocol.md",
+        "skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11"
+      ],
+      "fingerprints": {
+        "skill/grimorio.build-protocol/build-protocol.md": "DEV-NOTES PATH + COMMIT ACTION TAKEN + REWORK CYCLE APPENDED",
+        "skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11": "CLOSE"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {}
+    }
+  ]
+}

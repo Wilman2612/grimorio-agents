@@ -1,10 +1,5 @@
 # Backend TS Developer — Phase 4: VERIFY
 
-**NEVER read ref:agent/grimorio.js-developer/phases/phase-5-report-and-commit.md until THIS
-phase's own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Phase 5's
-own `## Close: VERIFIED` line must cite the exact evidence this phase produces; reading ahead without it is
-closing on nothing.
-
 ## The question this phase answers
 
 Is what I built correct, tested, and free of any weakened hard invariant — safe to hand off? This phase does not
@@ -23,11 +18,6 @@ fixed here, inside this phase's own iteration, never by re-reading Phase 3's fil
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node, its own internal
-   plan→execute→check→iterate mini-loop — run the full suite and typecheck in the foreground, confirm every item
-   of the Definition-of-Done checklist, confirm no hard invariant was weakened, fix and re-run WHEN any check
-   fails — and nothing else; no spawn anywhere in this phase.** This agent never invokes another agent from
-   Phase 4 — the fan-out gate is Phase 3's own, already closed by the time this phase runs.
 2. **ALWAYS run the full test suite AND the typecheck, in the foreground — never backgrounded**, per
    ref:skill/grimorio.build-protocol/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park
    — invoke synchronously and BLOCK on the result. **WHEN the full suite is slow ⟶ narrow it with a
@@ -55,21 +45,7 @@ fixed here, inside this phase's own iteration, never by re-reading Phase 3's fil
    passes now (never re-derived here — carried forward from Phase 3, re-confirmed still green).** Any one of
    these left unconfirmed means Phase 5's own close is an unearned claim, never a verified one.
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:agent/grimorio.js-developer/memory/project.md#conventions-we-chose — this project's hard-invariant list,
-  step 4's own load.
-  FINGERPRINT: INVARIANT CONFIRMATION field below (a real, per-invariant confirmation, distinct from a blanket
-  "looks fine," cannot be produced without this pointer).
-- import:skill/grimorio.build-protocol/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park —
-  step 2's own foreground-run discipline.
-  FINGERPRINT: FULL SUITE RESULT field below (a genuinely foreground-run, non-parked result cannot be produced
-  without this discipline).
-- **NEVER load `javascript`, `development-patterns`, the fan-out ladder, or the OUTPUT template here** — each is
-  Phase 3's or Phase 5's own closed question; this phase reads and checks, it does not write new code shape or
-  the dev-note artifact.
-
-## PHASE 4 DELIVERABLE — do not read Phase 5 until this is filled
+## PHASE 4 DELIVERABLE
 
 ```
 OBJECTIVE:                  <carried forward from Phase 3, unchanged>
@@ -93,22 +69,3 @@ BUG-FIX-FIRST-TEST:                             <carried forward from Phase 3, u
 MODULE(S)/FILE(S) BUILT:                         <carried forward from Phase 3, unchanged>
 DIFF SUMMARY:                                     <carried forward from Phase 3, unchanged>
 ```
-
-## Hard hand-off
-
-**BEFORE reading ref:agent/grimorio.js-developer/phases/phase-5-report-and-commit.md ⟶
-apply import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.js-developer/phases/phase-4-verify.md`) and this phase's
-own filled PHASE 4 DELIVERABLE block, written to disk first per that gate's own algorithm — the read below now
-runs on that gate's own PASS, never on the block merely existing in context.**
-
-**ALWAYS read ref:agent/grimorio.js-developer/phases/phase-5-report-and-commit.md next,
-carrying forward: OBJECTIVE, EXIT CONDITION, MODE, WIRE/DAL CONTRACT SHAPES, REWORK/BUG-REPORT DETECTED,
-SECURITY-SENSITIVE FLAG, SURVEY NOTES, BUG-FIX-FIRST-TEST, MODULE(S)/FILE(S) BUILT, DIFF SUMMARY, FULL SUITE
-RESULT, TYPECHECK RESULT, DOD CHECKLIST CONFIRMATION, and INVARIANT CONFIRMATION, unconditionally — the first
-nine arrive already-widened from Phase 3's own hand-off and are re-forwarded here unchanged; this phase adds
-only its own four produced fields (FULL SUITE RESULT, TYPECHECK RESULT, DOD CHECKLIST CONFIRMATION, INVARIANT
-CONFIRMATION) to that cumulative set.** Phase 5 consumes exactly this as the evidence its own `## Close:
-VERIFIED` line must cite, and as the source for its own `## Objective / Exit Condition`, `## Abstractions
-Reused`, `## Contracts`, `## Test Scenarios for QA`, and `### REWORK Cycle {N}` sections — it does not re-derive
-or re-run any of it.

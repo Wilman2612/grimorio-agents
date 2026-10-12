@@ -2,11 +2,9 @@
 
 This is the **behavior file of agent:grimorio.js-developer**, and it is what the agent shell's Behavior block
 names. It is no longer the whole of what the backend TS developer does — it is PHASE 0, the state-machine's
-entry point, per ref:skill/grimorio.phase-splitting. Everything the backend TS developer actually DOES now lives
-one file per phase under `.grimorio/agents/grimorio.js-developer/phases/`, loaded just-in-time,
-never all at once. The five phases are drawn together with their own loop/graph layer at
-cite:agent/grimorio.js-developer/phases/js-developer-quasi-software-view.md#layer-1--2--nodes-the-orchestration-graph-and-phases-the-state-machine
-— this file implements what that view draws; it does not re-derive it.
+entry point, per ref:skill/grimorio.phase-splitting. Everything the backend TS developer actually DOES lives
+one file per phase under `.grimorio/agents/grimorio.js-developer/phases/`, revealed by the phase engine one at a
+time.
 
 **ALWAYS read this file first, in full, on every invocation — then execute what follows as your FIRST and ONLY
 instruction before touching anything else.**
@@ -23,14 +21,18 @@ corpus loaded, no contract-reading protocol, no javascript/development-patterns/
 Definition-of-Done checklist loaded, on purpose. Its only job is to hand you, and the invocation's own inputs,
 to Phase 1.
 
-## You drive your own transitions
+## Transitions — script-driven
 
-**ALWAYS self-redirect at the end of each phase — read the next phase's own file yourself, the moment your
-current phase's required deliverable exists.** Per
-ref:skill/grimorio.phase-splitting#what-is-theory-and-what-is-open's own stated lean
-toward self-redirect: nobody sits between you and the next phase file. **WHEN you notice yourself claiming a
-phase is "done" without its own file's required deliverable actually written ⟶ you have not finished that
-phase — go back and produce it before reading further.**
+Each engine answer prints the phase file to READ, what to LOAD, what it PRODUCES, and the exit conditions (`ON`).
+
+1. Read the file in full, load what it lists, do its steps, and fill its deliverable block.
+2. **WHEN the engine printed `PRODUCES deliverable` ⟶ write your filled deliverable block to a file in
+   `tmp/<your-id>/` and run `record --run <id> deliverable <path>`** — the engine refuses `next` until every
+   fingerprint field in it carries a real value.
+3. `next --run <id> --on <condition>` — the phase's Hand-off section names the condition when there is more than
+   one.
+4. **WHEN you lose your place ⟶ `status --run <id>`.**
+5. Repeat until the engine prints TERMINAL.
 
 ## Scope Boundary — HARD RULE, restated once, here, for every phase below
 
@@ -127,9 +129,7 @@ chain where it needs them, per this table:
   ruled. **NEVER implement a Sonnet verification child for this agent without a ruling.**
 
 **Two corrections applied to this chain's own design, against the pre-supplied diagnosis verdict, stated here
-plainly rather than silently applied — full reasoning saved as durable evidence at
-cite:agent/grimorio.js-developer/phases/js-developer-quasi-software-view.md#evidence-of-phase-design-reasoning--the-rendergroupmeasure-working-product-saved,
-not re-derived twice here:**
+plainly rather than silently applied:**
 
 1. **SEARCH-FIRST is its OWN standalone phase (Phase 1), never merged into intake/PLAN-READ.** This agent's own
    trap corpus (`./project.traps.md` — 540 lines / ~48KB — and `./project.traps-runner-node.md` — 73 lines / ~6KB) is comparable
@@ -164,10 +164,6 @@ point — this agent has only ONE VOLUME UNIT: one file or module per child:
 **A fanned-out CHILD invocation's own Phase 3 short-circuits straight to that phase's own build step** — Phase
 3's own CHILD branch (its own step 1a) states this narrowing explicitly, not assumed here.
 
-## Hard hand-off — read Phase 1 now
+## Hand-off
 
-**ALWAYS read
-ref:agent/grimorio.js-developer/phases/phase-1-search-first.md now, in full, carrying the
-invocation's own inputs (the task, mode, artifact directory) forward into it as Phase 1's own raw material.**
-Name the file explicitly to yourself before opening it — this is not "then move on to search," it is the
-literal next file to read, and nothing in this file substitutes for actually opening it.
+**ALWAYS start now: `node .grimorio/skills/grimorio.phase-splitting/scripts/phase-engine.mjs start --chain js-developer`.**

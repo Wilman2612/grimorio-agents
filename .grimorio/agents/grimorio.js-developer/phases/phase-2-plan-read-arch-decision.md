@@ -1,10 +1,5 @@
 # Backend TS Developer — Phase 2: PLAN-READ-ARCH-DECISION
 
-**NEVER read ref:agent/grimorio.js-developer/phases/phase-3-implement.md until THIS phase's
-own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Phase 3 builds
-against the scoped file/module list and wire-contract shapes THIS phase produces; reading ahead without them is
-implementing against nothing.
-
 ## The question this phase answers
 
 What does the contract require me to build, is it actually MINE to build (never a UI/presentation change), and
@@ -15,12 +10,6 @@ against an unread plan, a missing plan, or work that was never this agent's own 
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — walk the upward
-   harness lookup, determine MODE, read the architecture contract, run the Scope Boundary check, run the
-   missing-plan-refusal check, detect REWORK/bug-report mode, flag SECURITY-SENSITIVE, scope the file/module
-   list — and nothing else; no spawn anywhere in this phase.** This agent never invokes another agent from Phase
-   2 — the only agent this chain ever spawns is a same-type `haiku` child from Phase 3's own FAN-OUT BRANCH,
-   never from here.
 2. **BEFORE your FIRST read of any target file this pass ⟶ do the upward ref:skill/harness.md lookup** (target file's
    folder → repo root) and obey every co-located guardrail found — this IS the chain's first file-reading/
    scoping phase, per
@@ -70,37 +59,12 @@ against an unread plan, a missing plan, or work that was never this agent's own 
     the contract** — so the contract-read is not done blind to a gotcha this project has already paid for once
     (a Windows-orchestration, runner-boot, or wire-format trap this task's own area touches, if any).
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- import:skill/grimorio.code-harness — the co-located code-guardrail system and the upward lookup discipline,
-  step 2's own load.
-  FINGERPRINT: HARNESS LOOKUP DONE field below (a real upward lookup, distinct from an asserted "checked,"
-  cannot be produced without applying this discipline).
-- import:skill/grimorio.build-protocol/build-protocol.md (specifically its "Pipeline vs Standalone
-  mode", "Missing-plan refusal", and "Bug report → mandatory order" sections) — steps 3, 6, 8 above apply these
-  directly.
-  FINGERPRINT: MODE + MISSING-PLAN CHECK + REWORK/BUG-REPORT DETECTED fields below (a real mode determination, a
-  real refusal-or-proceed call, and a real REWORK/bug-report detection cannot be produced without applying these
-  three sections).
-- import:skill/grimorio.agent-tiers/refusal-pattern.md — the refusal triad + the charter-vs-hard
-  boundary test, step 6's own load, jointly with the bullet above.
-  FINGERPRINT: MISSING-PLAN CHECK field below, jointly with the build-protocol.md bullet above.
-- import:agent/grimorio.js-developer/memory/project.md#js-developer-scope--concrete-folder-paths — this project's
-  concrete server-side-vs-UI folder split, step 5's own load — the exact instrument the Scope Boundary check is
-  run against.
-  FINGERPRINT: SCOPE BOUNDARY CHECK field below (a real, grounded holds/STOP call, never a guess, cannot be
-  produced without this pointer).
-- import:agent/grimorio.js-developer/memory/project.md#conventions-we-chose — this project's hard-invariant list
-  and the exact package/service names, step 9's own scoping grounds against.
-  FINGERPRINT: SCOPED FILE/MODULE LIST field below (a correctly-bounded scope, never a guess or an invented
-  package name, cannot be produced without this pointer).
 - ref:skill/grimorio.agent-selection#the-dev-routing-tree--decide-by-what-the-change-touches — step 7's
   own security-routing load.
-- **NEVER load `javascript`, `development-patterns`, the fan-out ladder, or the Definition-of-Done checklist
-  here** — each is Phase 3's or Phase 4's own question, and pulling any of it in now front-loads a decision this
-  phase does not make.
 
-## PHASE 2 DELIVERABLE — do not read Phase 3 until this is filled
+## PHASE 2 DELIVERABLE
 
 ```
 OBJECTIVE:                  <carried forward from Phase 1, unchanged>
@@ -123,27 +87,10 @@ TRAPS/PRECEDENT CONSUMED:               <how Phase 1's own findings informed thi
                               "N/A — Phase 1 found none relevant">
 ```
 
-## Hard hand-off
+## Hand-off
 
-**BEFORE this phase's own hand-off fires, on EVERY route below ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.js-developer/phases/phase-2-plan-read-arch-decision.md`)
-and this phase's own filled PHASE 2 DELIVERABLE block, written to disk first per that gate's own algorithm — all
-three routes below now run on that gate's own PASS, never on the block merely existing in context.**
-
-**WHEN the SCOPE BOUNDARY CHECK above is STOP ⟶ this chain ends here; `dev-notes.md` was already written under
-step 5 above, close `## Close: VERIFIED (scope correctly handed to ui-developer)` per Phase 5's own `## OUTPUT`
-shape — never read Phase 3.** **WHEN the SCOPE BOUNDARY CHECK holds AND the MISSING-PLAN CHECK above DID refuse
-⟶ this chain also ends here; report the refusal per
-ref:agent/grimorio.js-developer/phases/phase-5-report-and-commit.md's own `## OUTPUT` shape,
-`## Close: COULD NOT`, rather than continuing to Phase 3 on work you already found unplannable-by-you.** **WHEN
-neither of the two exits above fired ⟶ ALWAYS read
-ref:agent/grimorio.js-developer/phases/phase-3-implement.md next, carrying forward:
-OBJECTIVE, EXIT CONDITION, MODE, WIRE/DAL CONTRACT SHAPES, REWORK/BUG-REPORT DETECTED, SECURITY-SENSITIVE FLAG,
-SCOPED FILE/MODULE LIST, and TRAP FILE(S) SELECTED (Phase 1's own field, re-forwarded here unchanged for Phase
-3's own reactive risky-zone consult), unconditionally — OBJECTIVE and EXIT CONDITION are Phase 1's own fields,
-re-forwarded here unchanged, per
-ref:skill/grimorio.phase-splitting#progressive-revelation--mechanical-never-judgment's own
-"restate, inside a later phase's own file, any fact that phase depends on" rule, never dropped merely because
-this phase does not itself consume them further.** Phase 3 consumes all of it to build against — none of it is
-re-derived there.
+**WHEN the SCOPE BOUNDARY CHECK is STOP (step 5) ⟶ `--on scope-stop`; `dev-notes.md` was already written under
+step 5, and the close is `## Close: VERIFIED (scope correctly handed to ui-developer)` per Phase 5's own `## OUTPUT`
+shape. WHEN the SCOPE BOUNDARY CHECK holds AND the MISSING-PLAN CHECK refused (step 6) ⟶ `--on refused`; report the
+refusal per ref:agent/grimorio.js-developer/phases/phase-5-report-and-commit.md's own `## OUTPUT` shape,
+`## Close: COULD NOT`. Otherwise `--on continue`.**

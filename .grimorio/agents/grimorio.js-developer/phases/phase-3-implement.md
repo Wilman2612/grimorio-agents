@@ -1,9 +1,5 @@
 # Backend TS Developer — Phase 3: IMPLEMENT
 
-**NEVER read ref:agent/grimorio.js-developer/phases/phase-4-verify.md until THIS phase's own
-DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Phase 4 verifies the
-diff THIS phase actually produces; reading ahead without it on disk is verifying nothing.
-
 ## The question this phase answers
 
 How do I build/fix this correctly, inside this project's own architectural layers, reusing what already exists?
@@ -104,41 +100,7 @@ something real to check the decomposition against.
    language's own backend service.** **WHEN a change is needed in another layer ⟶ write it as a note for the
    owning developer in `dev-notes.md`, never make it yourself.**
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:skill/grimorio.javascript — language rules (naming, async, 20-line limit, SOLID). Read FIRST, before
-  either of the two skills below.
-  FINGERPRINT: MODULE(S)/FILE(S) BUILT field below (TypeScript that actually follows this project's own naming/
-  async/20-line/SOLID conventions cannot be produced without it).
-- import:skill/grimorio.development-patterns — architectural rules (Repository, DI, Result, Route Guard, CQRS,
-  typed errors, structural limits) — the layer-placement rule step 5 above applies directly.
-  FINGERPRINT: MODULE(S)/FILE(S) BUILT field below, jointly with the `grimorio.javascript` bullet above (business
-  logic placed outside a route handler, persistence placed in a repository, cannot be produced without this).
-- import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step —
-  step 2's own survey-before-writing step.
-  FINGERPRINT: SURVEY NOTES field below (a real survey result, distinct from an unchecked "none," cannot be
-  produced without applying this discipline first).
-- import:agent/grimorio.js-developer/memory/project.traps.md and/or
-  import:agent/grimorio.js-developer/memory/project.traps-runner-node.md — whichever Phase 1 selected, step 2a's own
-  REACTIVE consultation, scoped narrowly to whichever risky zone the assigned file(s)/module(s) actually touch
-  (distinct from Phase 1's own PROACTIVE full-corpus search — this load is triggered and narrow, never a repeat
-  of that pass).
-  FINGERPRINT: RISKY-ZONE CONSULTED field below (a real reactive consultation result naming the zone and any
-  gotcha found, distinct from an unchecked "N/A," cannot be produced without opening this index when a risky
-  zone is actually touched).
-- import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — step 3's own
-  bug-order step.
-  FINGERPRINT: BUG-FIX-FIRST-TEST field below (a real failing-test-first sequence, distinct from an unchecked
-  "N/A," cannot be produced without applying this mandatory order first).
-- import:skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm
-  + import:skill/grimorio.working-memory#the-folder — step 4's own gate, tier, isolation, and per-child folder
-  rules.
-  FINGERPRINT: FAN-OUT DECISION field below (a real gate evaluation, spawn, or solo declaration cannot be
-  produced without applying this ladder and folder convention).
-- **NEVER load `arch-decision.md` (Phase 2's own closed question), the Definition-of-Done checklist (Phase 4's
-  own closed question), or the OUTPUT template (Phase 5's own closed question) here.**
-
-## PHASE 3 DELIVERABLE — do not read Phase 4 until this is filled
+## PHASE 3 DELIVERABLE
 
 ```
 OBJECTIVE:                  <carried forward from Phase 2, unchanged>
@@ -166,23 +128,6 @@ REWORK/BUG-REPORT DETECTED:                   <carried forward from Phase 2, unc
 SECURITY-SENSITIVE FLAG:                       <carried forward from Phase 2, unchanged>
 ```
 
-## Hard hand-off
+## Hand-off
 
-**BEFORE this phase's own hand-off fires, on EITHER route ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.js-developer/phases/phase-3-implement.md`) and this
-phase's own filled PHASE 3 DELIVERABLE block, written to disk first per that gate's own algorithm — this
-applies on the CHILD route too, even though it has no next-phase file to gate a read against: the gate runs
-against the CLOSE itself there, reporting back to the parent's own `tmp/<child-id>/work`+`notes`.**
-
-**WHEN the route above is FIRST-PASS ⟶ ALWAYS read
-ref:agent/grimorio.js-developer/phases/phase-4-verify.md next, carrying forward: OBJECTIVE,
-EXIT CONDITION, MODE, WIRE/DAL CONTRACT SHAPES, REWORK/BUG-REPORT DETECTED, SECURITY-SENSITIVE FLAG, SURVEY
-NOTES, BUG-FIX-FIRST-TEST, MODULE(S)/FILE(S) BUILT, and DIFF SUMMARY, unconditionally — OBJECTIVE, EXIT
-CONDITION, MODE, WIRE/DAL CONTRACT SHAPES, REWORK/BUG-REPORT DETECTED, and SECURITY-SENSITIVE FLAG arrive from
-Phase 2's own hand-off and are re-forwarded here unchanged because Phase 5 still needs every one of them; SURVEY
-NOTES and BUG-FIX-FIRST-TEST join them because Phase 5's own `## Abstractions Reused` section and its own
-Completion-criteria checklist need them too, and none of these nine is otherwise re-derivable once Phase 4 opens
-this file alone.** Phase 4 consumes exactly what this phase produced, plus this carried-forward set — it does
-not re-derive any of it. **WHEN the route above is CHILD ⟶ this chain ends here — report the built file/module
-back to your own `tmp/<child-id>/work`+`notes` and close your turn, never reading Phase 4.**
+**WHEN this invocation is a fanned-out CHILD (step 1a) ⟶ report the built file/module to your own `tmp/<child-id>/work` and `notes` and `--on child`; otherwise `--on continue`.**

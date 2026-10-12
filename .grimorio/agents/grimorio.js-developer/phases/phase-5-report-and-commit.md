@@ -1,8 +1,7 @@
 # Backend TS Developer — Phase 5: REPORT & COMMIT (terminal)
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own `dev-notes.md` is actually
-written (Pipeline mode) and its `## Close` line is set.** There is no Phase 6 to defer an unfinished field to,
-and this chain carries no loop-back into any earlier phase — this is always the terminal state.
+written (Pipeline mode) and its `## Close` line is set.**
 
 ## The question this phase answers
 
@@ -23,8 +22,6 @@ below; SURVEY NOTES feeds `## Abstractions Reused`; MODULE(S)/FILE(S) BUILT and 
 Made` and `## Abstractions Created`; the four Phase-4-produced fields, plus BUG-FIX-FIRST-TEST, are this phase's
 own `## Close: VERIFIED` evidence, per step 8 below.
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node, terminal — write
-   `dev-notes.md`, decide the commit action, close — and nothing else; no spawn anywhere in this phase.**
 2. **IN PIPELINE MODE (per the carried-forward MODE field) ⟶ ALWAYS write `dev-notes.md`** per the shared `##
    OUTPUT` template below, populating: Changes Made, Abstractions Reused/Created, Contracts (for
    agent:grimorio.ui-developer), Test Scenarios for QA, Known Limitations. **IN STANDALONE MODE ⟶ no dev-note is
@@ -145,25 +142,14 @@ this repo):
 ## Close: VERIFIED (pnpm test passed; pnpm typecheck 0 errors; every DoD item held; no hard invariant weakened)
 ```
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- import:skill/grimorio.build-protocol/build-protocol.md (specifically its `## OUTPUT` template, "Who
-  commits" section, and "REWORK mode" section) — steps 2, 3, 6 above apply these directly.
-  FINGERPRINT: DEV-NOTES PATH + COMMIT ACTION TAKEN + REWORK CYCLE APPENDED fields below (a dev-note in the
-  shared shape, a correct commit call, and a correctly-appended REWORK section cannot be produced without these
-  sections).
 - ref:agent/grimorio.js-developer/memory/project.traps.md,
   ref:agent/grimorio.js-developer/memory/project.traps.md, and
   ref:agent/grimorio.js-developer/memory/project.traps-runner-node.md — step 7's own confirmation load; the CAPTURE rule
   itself is Phase 0's own standing statement, not restated here, only confirmed.
 - ref:skill/grimorio.agent-selection#the-dev-routing-tree--decide-by-what-the-change-touches — step 4's
   own security-routing-note load, WHEN the SECURITY-SENSITIVE FLAG is YES.
-- import:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11
-  — the CLOSE contract, step 8's own load.
-  FINGERPRINT: CLOSE field below (a real VERIFIED-naming-evidence or COULD-NOT-naming-the-blocker close, never a
-  self-graded status, cannot be produced without this contract).
-- **NEVER load `javascript`, `development-patterns`, or the fan-out ladder here** — this phase only reports what
-  earlier phases already produced.
 
 ## PHASE 5 DELIVERABLE
 
@@ -182,15 +168,3 @@ COMPLETION CRITERIA CHECKED:            <one line per item under ## Completion c
 CLOSE:                                    <VERIFIED, naming the completion-criteria evidence — or COULD NOT,
                               naming what blocked you and what is left>
 ```
-
-## Terminal — no further phase, no loop-back
-
-**BEFORE this phase's own report is reported to the caller ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.js-developer/phases/phase-5-report-and-commit.md`) and
-this phase's own filled PHASE 5 DELIVERABLE block, written to disk first per that gate's own algorithm — this
-phase has no next-phase file to gate a read against, so the gate runs against the CLOSE itself.**
-
-**This chain ends here, always.** `dev-notes.md` is written (Pipeline mode), `## Status` and `## Close` are
-emitted, and this phase closes VERIFIED or COULD NOT to the caller. A subsequent invocation starts fresh at
-Phase 0 (ref:agent/grimorio.js-developer/behavior.md), never resumed mid-chain from this file.

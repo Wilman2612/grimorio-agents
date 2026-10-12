@@ -1,11 +1,5 @@
 # Backend TS Developer — Phase 1: SEARCH-FIRST
 
-**NEVER read
-ref:agent/grimorio.js-developer/phases/phase-2-plan-read-arch-decision.md until THIS phase's
-own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Phase 2 consumes
-this phase's own trap/precedent findings while reading the architecture contract; reading ahead without them is
-scoping blind to gotchas this project has already paid for once.
-
 ## The question this phase answers
 
 What does this project's own trap history already know about the specific area this task touches, before the
@@ -16,11 +10,6 @@ has already hit once.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — select which trap
-   file(s) this task's own area touches, search them, search the shared cross-language traps, note precedent —
-   and nothing else; no spawn anywhere in this phase.** This agent never invokes another agent from Phase 1 —
-   the only agent this chain ever spawns is a same-type `haiku` child from Phase 3's own FAN-OUT BRANCH, never
-   from here.
 2. **ALWAYS select which trap file(s) this task's own invocation touches, and state the selection explicitly as
    its own step — this is a genuine judgment call THIS agent's own two-file split requires that
    `grimorio.go-developer`'s own single `project.traps.md` never needed.** The area/file split, per
@@ -40,23 +29,7 @@ has already hit once.
    prior change to this same area, a comparable contract this project has already wired once** — so Phase 2's
    contract-read is not starting cold on a pattern this project has already established.
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:agent/grimorio.js-developer/memory/project.traps.md and/or
-  import:agent/grimorio.js-developer/memory/project.traps-runner-node.md — whichever step 2 above selects (one or both) —
-  this agent's own concrete TS/JS traps, split by project area.
-  FINGERPRINT: TRAPS CHECKED (OWN) field below (a real, targeted search result naming which file(s) were
-  searched and what was found, distinct from an unchecked "none," cannot be produced without opening the
-  selected file(s)).
-- import:agent/grimorio.js-developer/memory/project.traps.md — the shared cross-language trap file, step 4's own
-  load.
-  FINGERPRINT: TRAPS CHECKED (SHARED) field below (a real search result, distinct from an unchecked "none,"
-  cannot be produced without opening this file).
-- **NEVER load `arch-decision.md`, the wire/DAL contracts, `javascript`, `development-patterns`, the fan-out
-  ladder, or the Definition-of-Done checklist here** — none of those are this phase's question, and pulling any
-  of them in now is exactly the flat-mega-load anti-pattern ref:skill/grimorio.phase-splitting exists to fix.
-
-## PHASE 1 DELIVERABLE — do not read Phase 2 until this is filled
+## PHASE 1 DELIVERABLE
 
 ```
 OBJECTIVE:                <what this invocation was actually asked to do, taken from the brief>
@@ -70,17 +43,3 @@ TRAPS CHECKED (SHARED):        <what was searched in developer-memory/project.tr
                            "None found relevant", per step 4>
 PRECEDENT NOTED:                 <adjacent prior precedent for this task's own area, per step 5, or "None found">
 ```
-
-## Hard hand-off
-
-**BEFORE reading ref:agent/grimorio.js-developer/phases/phase-2-plan-read-arch-decision.md
-⟶ apply import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.js-developer/phases/phase-1-search-first.md`) and this
-phase's own filled PHASE 1 DELIVERABLE block, written to disk first per that gate's own algorithm — the read
-below now runs on that gate's own PASS, never on the block merely existing in context.**
-
-**ALWAYS read
-ref:agent/grimorio.js-developer/phases/phase-2-plan-read-arch-decision.md next, carrying
-forward: OBJECTIVE, EXIT CONDITION, TRAP FILE(S) SELECTED, TRAPS CHECKED (OWN), TRAPS CHECKED (SHARED), and
-PRECEDENT NOTED, unconditionally.** Phase 2 consumes all of it while reading the architecture contract — none of
-it is re-derived there.
