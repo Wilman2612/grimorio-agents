@@ -1,10 +1,5 @@
 # Experimenter — Phase 3: RUN
 
-**NEVER read ref:agent/grimorio.experimenter/experimenter-phases/phase-4-analyze.md or
-ref:agent/grimorio.experimenter/experimenter-phases/phase-5-document-and-close.md until THIS phase's own
-DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Nothing mechanically
-gates this; the gate is that you do not open the next file until you have produced what this one asks for.
-
 ## The question this phase answers
 
 Did we actually execute the pre-registered method faithfully and capture raw data, without shrinking N or
@@ -13,11 +8,8 @@ case, and does not write a line of the paper.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — RUN the sim — and
-   nothing else; this agent never invokes another agent, in any phase, ever.** **Restate CHILDREN here too**,
-   the same discipline the security-phases precedent applies at the phase most likely to be mistaken for
-   fan-out: **"kick off a long background execution and resume on ITS OWN completion — this is waiting on your
-   own computation, NOT fan-out and NOT parking on sub-agent children; you have no sub-agents."**
+1. **WHEN the run is long ⟶ kick off a background execution and resume on ITS OWN completion** — waiting on
+   your own computation, never fan-out: you have no sub-agents.
 2. **ALWAYS honor the code-writing boundary, verbatim from the prior Boundaries section:** "You MAY write
    experiment/probe/analysis/lab-config code — a decision-seed knob, a competence-tier scripted player, a
    metrics/analysis script, a projection probe. That is your instrument. You may NOT write the game MECHANIC
@@ -40,7 +32,7 @@ case, and does not write a line of the paper.
 6. **ALWAYS log the raw output either way** — this is this phase's own deliverable, not a derived summary of
    it.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
 - ref:agent/grimorio.experimenter/project.md#isolation--code-touching-experiments-run-in-a-worktree-ceo-guidance-2026-07-18 —
   step 3's own load.
@@ -49,11 +41,8 @@ case, and does not write a line of the paper.
 - ref:agent/grimorio.experimenter/SKILL.md#the-three-failure-modes--build-every-experiment-knowing-these-guardrails —
   narrow, ONLY failure mode 2 ("Determinism replays the same game") — the one that governs THIS phase's own
   seed-variation execution. **Failure modes 1 and 3 stay Phase 4's own load, in full, later.**
-- **NEVER load the metrics vocabulary, the statistics apparatus, the paper-structure contract, or the
-  digestible-companion contract here** — none of it is this phase's question; this phase produces raw data,
-  nothing else.
 
-## PHASE 3 DELIVERABLE — do not read Phase 4 or Phase 5 until this is filled
+## PHASE 3 DELIVERABLE
 
 ```
 CODE BOUNDARY CONFIRMED:  <what was written — instrument code only, never the mechanic under test — or "N/A,
@@ -66,13 +55,6 @@ RUN EXECUTED:                <SCENARIO: the constructed condition + the single b
 RAW DATA LOGGED:              <path/location of the raw output>
 ```
 
-## Hard hand-off — a real branch, this phase has no single next file
+## Hand-off
 
-**WHEN the regime carried from Phase 2 is SCENARIO ⟶ skip Phase 4 entirely — read
-ref:agent/grimorio.experimenter/experimenter-phases/phase-5-document-and-close.md directly, carrying the
-constructed condition + asserted outcome forward as the terminal analytical artifact.** "A SCENARIO run has
-nothing to analyze beyond the asserted outcome" — verbatim from the prior process.
-
-**WHEN the regime carried from Phase 2 is STOCHASTIC ⟶ read
-ref:agent/grimorio.experimenter/experimenter-phases/phase-4-analyze.md next, carrying the raw data
-forward.**
+**WHEN the regime carried from Phase 2 is SCENARIO ⟶ `--on scenario`; otherwise `--on continue`.**

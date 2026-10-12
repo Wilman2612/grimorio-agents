@@ -1,10 +1,5 @@
 # Experimenter — Phase 2: PRE-REGISTRATION
 
-**NEVER read ref:agent/grimorio.experimenter/experimenter-phases/phase-3-run.md until THIS phase's own
-DELIVERABLE block, below, is actually filled in.** This is the HARD anti-HARKing gate: Phase 3 is FORBIDDEN to
-start before a real Hypothesis + Method exists, and handing it a run with nothing pre-registered is exactly the
-HARKing (hypothesizing after results are known) this whole phase exists to block.
-
 ## The question this phase answers
 
 What falsifiable claim, method, and regime commits the analysis BEFORE any number exists? Nothing else — this
@@ -13,9 +8,6 @@ Results sections.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — write the
-   pre-registration, check the harness, decide the regime — and nothing else; this agent never invokes another
-   agent, in any phase, ever.**
 2. **ALWAYS honor the hypothesis-authorship handoff, verbatim from the prior Boundaries section:** "the
    falsifiable claim usually comes from agent:grimorio.game-architect (its `[H] pending-playtest` numbers ARE
    hypotheses) or the CEO; you may sharpen it into a testable form, but you do not invent the design you then
@@ -46,12 +38,8 @@ Results sections.
    grid) or a CHARACTERIZATION (a few representative runs + break point suffice)?** Never over-experiment for
    what the question needs.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- import:agent/grimorio.experimenter/SKILL.md#the-core-loop--every-experiment-follows-these-steps-in-order —
-  items 1-2 (HYPOTHESIS, CONTROLLED METHOD) only, step 3's own load.
-  FINGERPRINT: HYPOTHESIS + METHOD fields below (a real falsifiable claim + committed method cannot be
-  produced without applying the core loop's own first two items).
 - ref:agent/grimorio.experimenter/SKILL.md#scenario-first--construct-conditions-dont-grow-and-sweep-ceo-ruling-2026-07-22
   and its own "Statistics" section's two-regime WHEN-clause
   (ref:agent/grimorio.experimenter/SKILL.md#statistics--turn-raw-counts-into-inference-adopt-real-methods-do-not-invent) —
@@ -61,10 +49,8 @@ Results sections.
   the N-sizing / characterization-vs-statistical-claim doctrine, narrow, step 6's own load.
 - ref:agent/grimorio.experimenter/project.md#lab-limits--the-axes-the-current-harness-does-not-yet-provide-flag-until-built —
   the harness-capability check, step 4's own load.
-- **NEVER load the Wilson-interval / power / multiple-comparisons / Bayesian apparatus, the metrics vocabulary,
-  or the three failure modes here** — that is Phase 4's own load, only when the regime turns out to need it.
 
-## PHASE 2 DELIVERABLE — do not read Phase 3 until this is filled
+## PHASE 2 DELIVERABLE
 
 ```
 AUTHORSHIP SOURCE:        <sharpened from game-architect's [H] number / the CEO / — never invented here>
@@ -75,16 +61,3 @@ REGIME DECIDED:             <SCENARIO / STOCHASTIC, with the one-line reasoning 
                             own shape>
 RUN-SIZE CLASSIFICATION:    <statistical claim (full grid) / characterization (few representative runs)>
 ```
-
-## Hard hand-off
-
-**BEFORE reading ref:agent/grimorio.experimenter/experimenter-phases/phase-3-run.md ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.experimenter/experimenter-phases/phase-2-pre-registration.md`) and this
-phase's own filled PHASE 2 DELIVERABLE block, written to disk first per that gate's own algorithm — the read
-below now runs on that gate's own PASS, never on the block merely existing in context.** This phase's own first
-`SKILL.md` LOAD line carries a `FINGERPRINT:` annotation, so the gate is NOT inert here — this is the actual
-mechanism behind "Phase 3 is FORBIDDEN to start" above, not a prose-only promise.
-
-**ALWAYS read ref:agent/grimorio.experimenter/experimenter-phases/phase-3-run.md next, carrying forward:
-the hypothesis, the method, the harness-capability check result, the regime, and the run-size classification.**

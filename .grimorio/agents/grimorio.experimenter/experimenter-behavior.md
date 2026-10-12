@@ -2,14 +2,12 @@
 
 This is the **behavior file of agent:grimorio.experimenter**, and it is what the agent shell's Behavior block
 names. It is no longer the whole of what the experimenter does — it is PHASE 0, the state-machine's entry
-point, per ref:skill/grimorio.phase-splitting. Everything the experimenter actually DOES now lives one file per
-phase under `.grimorio/agents/grimorio.experimenter/experimenter-phases/`, loaded just-in-time, never all at
-once. The domain KNOWLEDGE (the paper structure, the grounded metric vocabulary, the statistics, the failure
+point, per ref:skill/grimorio.phase-splitting. Everything the experimenter actually DOES lives one file per
+phase under `.grimorio/agents/grimorio.experimenter/experimenter-phases/`, revealed by the phase engine one at a
+time. The domain KNOWLEDGE (the paper structure, the grounded metric vocabulary, the statistics, the failure
 modes) stays in `SKILL.md`; this project's lab paths/index/baseline stay in
 ref:agent/grimorio.experimenter/project.md — each phase loads only the section it actually needs, when it
-needs it, never both files whole up front. The five phases are drawn together with their own loop layer at
-cite:agent/grimorio.experimenter/experimenter-phases/experimenter-quasi-software-view.md#the-five-layers-at-a-glance-and-where-each-is-drawn
-— this file implements what that view draws, it does not re-derive it.
+needs it, never both files whole up front.
 
 **ALWAYS read this file first, in full, on every invocation — then execute what follows as your FIRST and ONLY
 instruction before touching anything else.**
@@ -26,16 +24,18 @@ start running a sim in this file's own context — this file has no knowledge lo
 hypothesis, decide a regime, or apply real inference correctly, on purpose. Its only job is to hand you, and
 the invocation's own inputs, to Phase 1.
 
-## You drive your own transitions
+## Transitions — script-driven
 
-**ALWAYS self-redirect at the end of each phase — read the next phase's own file yourself, the moment your
-current phase's required deliverable exists.** This is the CEO's own stated LEAN for this shape of agent, not a
-silent default this pass picked on its own:
-ref:skill/grimorio.phase-splitting#what-is-theory-and-what-is-open leaves who drives a phase
-transition an open design question in general, and states his lean as self-redirect, backed by a hard
-first-instruction plus a per-phase output artifact, escalating to caller-gating only where a probe shows
-false-loading in practice. This agent is built on that lean: nobody sits between you and the next phase file.
-**WHEN you notice yourself claiming a phase is "done" without its own file's required deliverable actually written ⟶ you have not finished that phase — go back and produce it before reading further.**
+Each engine answer prints the phase file to READ, what to LOAD, what it PRODUCES, and the exit conditions (`ON`).
+
+1. Read the file in full, load what it lists, do its steps, and fill its deliverable block.
+2. **WHEN the engine printed `PRODUCES deliverable` ⟶ write your filled deliverable block to a file in
+   `tmp/<your-id>/` and run `record --run <id> deliverable <path>`** — the engine refuses `next` until every
+   fingerprint field in it carries a real value.
+3. `next --run <id> --on <condition>` — the phase's Hand-off section names the condition when there is more than
+   one.
+4. **WHEN you lose your place ⟶ `status --run <id>`.**
+5. Repeat until the engine prints TERMINAL.
 
 ## LOOP + RELATIONSHIPS — the standing facts every phase carries, root instance here
 
@@ -59,10 +59,6 @@ not"** — verbatim from the prior hard rules, carried here as the root CHILDREN
 where it matters most (Phase 3 · RUN, since a long background execution there could otherwise be mistaken for
 fan-out).
 
-## Hard hand-off — read Phase 1 now
+## Hand-off
 
-**ALWAYS read ref:agent/grimorio.experimenter/experimenter-phases/phase-1-search-first.md now, in full,
-carrying the invocation's own raw material forward into it — the design question to settle, any prior paper
-reference, whatever the invocation actually handed you.** Name the file explicitly to yourself before opening
-it — this is not "then move on to search," it is the literal next file to read, and nothing in this file
-substitutes for actually opening it.
+**ALWAYS start now: `node .grimorio/skills/grimorio.phase-splitting/scripts/phase-engine.mjs start --chain experimenter`.**

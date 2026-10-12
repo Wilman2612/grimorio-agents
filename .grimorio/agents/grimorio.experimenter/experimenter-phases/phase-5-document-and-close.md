@@ -1,7 +1,7 @@
 # Experimenter — Phase 5: DOCUMENT & CLOSE (terminal — no further hand-off)
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own paper and companion are
-actually written and the INDEX is updated.** There is no Phase 6 to defer an unfinished field to.
+actually written and the INDEX is updated.**
 
 ## The question this phase answers
 
@@ -13,9 +13,6 @@ place they are ever enumerated (step 2 below).
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node, terminal — write the
-   paper, the companion, update the index, close — and nothing else; this agent never invokes another agent,
-   in any phase, ever.**
 2. **ALWAYS resolve EDGE CASES before writing the paper — SKILL.md's own core-loop item 6 states this is "a
    required section, never skipped," unconditionally, unlike the adjacent ANALYZE item that regime-gates
    itself; this step is what makes that true for a SCENARIO run too, one path this chain must never silently
@@ -56,27 +53,16 @@ place they are ever enumerated (step 2 below).
    (Goodhart). Simulation is a lever-finder and intent-checker, never an autopilot." "The paper is the source
    of truth, not memory or reasoning. Method before numbers. Not written + reproducible ⇒ not a result."
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
 - ref:agent/grimorio.experimenter/SKILL.md#the-core-loop--every-experiment-follows-these-steps-in-order —
   item 6 (EDGE CASES) only, step 2's own load. **Needed only on the SCENARIO branch** — a STOCHASTIC run
   arrives with Phase 4's own edge cases already computed, so this phase reads nothing new for that arm; loading
   this narrow slice here (rather than assuming Phase 4 already ran) is what makes step 2 fire correctly on
   BOTH regimes without a second, redundant load elsewhere in the chain.
-- import:agent/grimorio.experimenter/SKILL.md#the-paper--the-controlled-written-record-what-step-18-produce —
-  the paper structure, FULL, step 3's own load.
-  FINGERPRINT: PAPER WRITTEN field below (a real, structured paper cannot be produced without applying this
-  section in full).
-- import:agent/grimorio.experimenter/SKILL.md#the-digestible-ceo-companion--mandatory-final-step-do-not-skip —
-  the companion contract, FULL, step 5's own load.
-  FINGERPRINT: COMPANION WRITTEN field below (a real digestible companion cannot be produced without applying
-  this contract in full).
 - ref:agent/grimorio.experimenter/project.md#where-papers--companions-live-repo-auditable — the FLAGGED
   GAP, step 4's own load, read live every time, never assumed resolved from a prior pass.
 - ref:agent/grimorio.experimenter/project.INDEX.md — step 6's own write target.
-- import:skill/grimorio.reasoning-principles — the VERIFIED/COULD-NOT contract, step 8's own load.
-- **NEVER load the statistics/metrics apparatus here** — Phase 4 already computed and handed forward everything
-  this phase writes up; re-deriving it here would be redundant, never this phase's own job.
 
 ## OUTPUT
 
@@ -92,17 +78,3 @@ HANDOFF VERDICT:                   <held / refuted / open + deciding number + li
 GAME-ARCHITECT LABEL FLIP:          <named if applicable / N/A>
 CLOSE:                                <VERIFIED, naming evidence / COULD NOT, naming blocker>
 ```
-
-## Terminal state — no hand-off
-
-**BEFORE this phase's own `## OUTPUT` block is reported to your caller ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.experimenter/experimenter-phases/phase-5-document-and-close.md`) and
-this phase's own filled `## OUTPUT` block, written to disk first per that gate's own algorithm — this phase has
-no NEXT phase file to gate a read against, so the gate runs against the CLOSE itself: the report below is what
-this phase "reveals," and it now runs only on that gate's own PASS, never on the block merely existing in
-context.** This phase's own paper-structure AND companion-contract `SKILL.md` LOAD lines each open `import:`
-and each carry their own `FINGERPRINT:` annotation, so the gate is NOT inert here.
-
-**This phase has no next file to read.** The chain ends here. A subsequent invocation starts fresh at Phase 0
-(ref:agent/grimorio.experimenter/experimenter-behavior.md), never resumed mid-chain from this file.

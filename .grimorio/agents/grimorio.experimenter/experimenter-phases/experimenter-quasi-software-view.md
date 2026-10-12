@@ -56,7 +56,7 @@ FINGERPRINT (Phase 3's own LOAD (JIT) section declares none) and fires as a plai
 dashed P3→P5 edge is the SAME regime branch's OTHER arm — a genuine skip, not a loop-back, taken when Phase 2
 decided SCENARIO instead of STOCHASTIC. The dashed P1→EARLYEXIT edge is this chain's ONLY early-termination
 path — distinct from the regime branch, drawn with its own dashed style per this file's own visual convention
-for a non-forward edge. **NEVER read the P1→P2 edge's own FINGERPRINT gate as also covering the EARLYEXIT
+for a non-forward edge. **NEVER take the P1→P2 edge's own FINGERPRINT gate for also covering the EARLYEXIT
 edge** — Phase 1's own OBJECTIVE/EXIT CONDITION fields are explicitly "N/A, EARLY-EXIT" on that path (per
 Phase 1's own DELIVERABLE template), so there is nothing for the gate to check on that edge, and Phase 1's own
 Hard hand-off correctly wires the gate ONLY on the PROCEED branch, never on both.
@@ -72,7 +72,7 @@ EARLY-EXIT termination, both forward or terminal, never a LOOP-layer back-edge.
 
 ## The GRAPH layer is empty by construction
 
-**NEVER read the empty GRAPH layer above as an unfinished section.** No `Agent` tool appears in
+**NEVER take the empty GRAPH layer above for an unfinished section.** No `Agent` tool appears in
 `grimorio.experimenter`'s own shell `tools:` line (confirmed by reading its frontmatter directly for this
 view: `Bash, Glob, Grep, Read, Edit, Write, TodoWrite, WebFetch, WebSearch, NotebookEdit`), and every one of the
 five phase files states the same fact explicitly in its own Step 1: "this agent never invokes another agent, in

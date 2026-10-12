@@ -1,0 +1,90 @@
+{
+  "agent": "grimorio.experimenter",
+  "entry": "1",
+  "phases": [
+    {
+      "id": "1",
+      "file": ".grimorio/agents/grimorio.experimenter/experimenter-phases/phase-1-search-first.md",
+      "desc": "SEARCH-FIRST",
+      "loads": [
+        "skill/grimorio.reasoning-principles",
+        "skill/grimorio.working-memory"
+      ],
+      "fingerprints": {
+        "skill/grimorio.reasoning-principles": "OBJECTIVE + EXIT CONDITION"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "produces-exempt": [
+        "early-exit"
+      ],
+      "next": {
+        "continue": "2",
+        "early-exit": "END"
+      }
+    },
+    {
+      "id": "2",
+      "file": ".grimorio/agents/grimorio.experimenter/experimenter-phases/phase-2-pre-registration.md",
+      "desc": "PRE-REGISTRATION",
+      "loads": [
+        "agent/grimorio.experimenter/SKILL.md#the-core-loop--every-experiment-follows-these-steps-in-order"
+      ],
+      "fingerprints": {
+        "agent/grimorio.experimenter/SKILL.md#the-core-loop--every-experiment-follows-these-steps-in-order": "HYPOTHESIS + METHOD"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "3"
+      }
+    },
+    {
+      "id": "3",
+      "file": ".grimorio/agents/grimorio.experimenter/experimenter-phases/phase-3-run.md",
+      "desc": "RUN",
+      "loads": [],
+      "next": {
+        "continue": "4",
+        "scenario": "5"
+      }
+    },
+    {
+      "id": "4",
+      "file": ".grimorio/agents/grimorio.experimenter/experimenter-phases/phase-4-analyze.md",
+      "desc": "ANALYZE (STOCHASTIC-only)",
+      "loads": [
+        "agent/grimorio.experimenter/SKILL.md#statistics--turn-raw-counts-into-inference-adopt-real-methods-do-not-invent"
+      ],
+      "fingerprints": {
+        "agent/grimorio.experimenter/SKILL.md#statistics--turn-raw-counts-into-inference-adopt-real-methods-do-not-invent": "WILSON INTERVALS + MULTIPLE-COMPARISONS CORRECTION"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "5"
+      }
+    },
+    {
+      "id": "5",
+      "file": ".grimorio/agents/grimorio.experimenter/experimenter-phases/phase-5-document-and-close.md",
+      "desc": "DOCUMENT & CLOSE (terminal — no further hand-off)",
+      "loads": [
+        "agent/grimorio.experimenter/SKILL.md#the-paper--the-controlled-written-record-what-step-18-produce",
+        "agent/grimorio.experimenter/SKILL.md#the-digestible-ceo-companion--mandatory-final-step-do-not-skip",
+        "skill/grimorio.reasoning-principles"
+      ],
+      "fingerprints": {
+        "agent/grimorio.experimenter/SKILL.md#the-paper--the-controlled-written-record-what-step-18-produce": "PAPER WRITTEN",
+        "agent/grimorio.experimenter/SKILL.md#the-digestible-ceo-companion--mandatory-final-step-do-not-skip": "COMPANION WRITTEN"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {}
+    }
+  ]
+}
