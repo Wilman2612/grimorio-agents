@@ -35,9 +35,10 @@ function validate() {
 
   for (const i of items) if (!i.pass || !String(i.pass).trim()) fail("R1 pass condition", `item ${i.id} has no pass`);
 
+  const proves = (l) => (l.body || []).some((id) => ["probe", "verify"].includes(byId.get(id)?.kind));
   for (const l of loops) {
     if (l.type === "while" && !l.exit) fail("R2 loop exit", `while loop ${l.id} has no exit`);
-    if (!(Number.isInteger(l.retries) && l.retries > 0)) fail("R2 loop exit", `loop ${l.id} has no retries`);
+    if (proves(l) && !(Number.isInteger(l.retries) && l.retries > 0)) fail("R2 loop exit", `loop ${l.id} proves items but has no retries`);
     for (const id of l.body || []) {
       const n = byId.get(id);
       if (!n) fail("R8 hand-offs", `loop ${l.id} names unknown node ${id}`);
@@ -45,7 +46,13 @@ function validate() {
     }
     if (l.parallel && !(Number.isInteger(l.limit) && l.limit > 0)) fail("R4 fan-out limit", `parallel loop ${l.id} has no limit`);
   }
-  if (loops.length && !nodes.some((n) => n.kind === "finding")) fail("R2 loop exit", "no finding node receives retry exhaustion");
+  if (loops.some(proves) && !nodes.some((n) => n.kind === "finding")) fail("R2 loop exit", "no finding node receives retry exhaustion");
+  for (const l of loops) {
+    const ids = [...(l.body || []), ...(l.then || [])].map((id) => byId.get(id)).filter(Boolean);
+    const haikuWork = (l.body || []).some((id) => byId.get(id)?.kind === "work" && byId.get(id)?.model === "haiku");
+    const checked = ids.some((n) => ["probe", "verify"].includes(n.kind) && n.model !== "haiku");
+    if (haikuWork && !checked) fail("R11 executor checked", `loop ${l.id} runs a Haiku work node that nothing on another model checks`);
+  }
 
   for (const n of nodes) {
     if (!KINDS.has(n.kind)) fail("R8 hand-offs", `node ${n.id} has unknown kind ${n.kind}`);
@@ -59,8 +66,9 @@ function validate() {
   }
 
   const spawned = nodes.filter((n) => n.agent && n.agent !== "self");
-  if (items.some((i) => i.atomic) && loops.some((l) => (l.body || []).some((id) => byId.get(id)?.agent && byId.get(id).agent !== "self"))) {
-    fail("R7 atomic item", "an atomic item is handed to an agent other than self");
+  for (const i of items) {
+    const n = i.atomic && i.by ? byId.get(i.by) : null;
+    if (n && n.agent !== "self") fail("R7 atomic item", `atomic item ${i.id} is handed to ${n.agent}`);
   }
 
   if (!SHAPES.has(plan.shape)) fail("R9 shape", `shape is ${plan.shape ?? "missing"}`);

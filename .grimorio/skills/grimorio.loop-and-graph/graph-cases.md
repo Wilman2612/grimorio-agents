@@ -5,6 +5,16 @@ tree (ref:skill/grimorio.loop-and-graph#2c-the-plan-is-an-artifact-every-level-e
 
 A phase that executes a fixed step of a chain plans nothing and never uses this file.
 
+## The words
+
+| Word | Means |
+|---|---|
+| GRAPH | who raises whom, and what each one does: nodes are agents with their job, edges are hand-offs |
+| LOOP | iterate until the objective's exit condition holds; working can add items (ref:skill/grimorio.loop-and-graph#2b-the-population-grows--a-blocked-item-inserts-its-prerequisite) |
+| PLANNER | a node that decomposes and decides; it owns a graph |
+| JOB | a node raised to do one decided thing, with no planning of its own — the synthesizer, an executor |
+| TOOL | a deterministic script a node calls; one tool serves many nodes |
+
 ## How to use it
 
 1. **ALWAYS pick one case per stage of the work from the table below, by its WHEN column.** A stage that matches
@@ -29,6 +39,7 @@ A phase that executes a fixed step of a chain plans nothing and never uses this 
 | **C8 VOLUME CLONES** | one fully decided change repeated over many files | `gate → FOREACH ∥ (Haiku clone)` → `review-before-done` | once, on all clones' output | grimorio fan-out volume ladder |
 | **C9 RELAUNCH-FRESH** | your context is already heavy when the writing stage arrives | `fresh child (writing)` handed the decided plan | the caller's | grimorio (§3b) |
 | **C10 ROUTE** | an input must go to exactly one specialist | `classify → one of N paths` | the chosen path's | Anthropic: routing; grimorio agent-selection |
+| **C11 DECIDED-PLAN EXECUTOR** | every item's what and pass condition is decided, and executing is long — run tests, fix, re-run | `plan (self) → execute (Haiku job: a same-type clone, or the owning job agent) → check (self)` | the planner's check of the executor's output, never a review agent per item | grimorio fan-out ladder, keeper → writer |
 
 Exact cases for the hardest boundaries:
 
@@ -41,21 +52,31 @@ Exact cases for the hardest boundaries:
 | Make a selftest pass when you do not yet know what blocks it | C6 |
 | Rewrite one skill until the prompt-shape check and the deletion test pass | C7 |
 | Rename one constant | C1 |
+| The keeper decided placement and content for 9 files; the writer only has to land them and pass the checks | C11 |
+
+**C11's check, after the executor returns:**
+
+| The executor | Then |
+|---|---|
+| reached every item's pass condition | close the items |
+| spent its retries and fixed nothing | read what it did — its notes, or its transcript found by its id — before deciding; re-plan the item, or record a FINDING |
+| changed something no item asked for | revert that change and re-run the item |
 
 ## The deterministic rules — what the validator refuses
 
 | Rule | Refused when |
 |---|---|
 | R1 pass condition | an item has no `pass` |
-| R2 loop exit | a `while` loop has no `exit`, or any loop has no `retries`, or the plan has no `finding` node to receive retry exhaustion |
+| R2 loop exit | a `while` loop has no `exit`; or a loop that proves items (a `probe` or `verify` in its body) has no `retries`, or the plan then has no `finding` node |
 | R3 review placement | a `review` node sits inside a loop body |
 | R4 fan-out limit | a parallel loop has no `limit` |
 | R5 verifier tier | a `probe`, `verify` or `review` node runs on Opus or Fable without a `tierReason`, or on Haiku |
 | R6 planner tier | a `plan`, `route` or `synthesize` node runs on Haiku |
-| R7 atomic item | an item marked `atomic` is handed to any agent but `self` |
+| R7 atomic item | an item marked `atomic` names, in `by`, a node whose agent is not `self` |
 | R8 hand-offs | a node has no `in` or no `out` |
 | R9 shape | `shape` is missing, or is `do-it-yourself` while a node names an agent other than `self` |
 | R10 case | a stage names no case from the table |
+| R11 executor checked | a loop runs a `work` node on Haiku and no `probe` or `verify` on another model follows it in the body or after the loop |
 
 ## What the script cannot decide — the JUDGMENT column
 
@@ -90,6 +111,6 @@ Exact cases for the hardest boundaries:
 }
 ```
 
-`kind` is one of `plan`, `work`, `probe`, `verify`, `review`, `merge`, `synthesize`, `finding`, `route`, `gate`;
+An item may name, in `by`, the node that works it. `kind` is one of `plan`, `work`, `probe`, `verify`, `review`, `merge`, `synthesize`, `finding`, `route`, `gate`;
 `model` one of `haiku`, `sonnet`, `opus`, `fable`; `shape` one of `do-it-yourself`, `fan-out-with-limit`,
 `relaunch-fresh` (§3b).

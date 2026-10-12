@@ -150,7 +150,7 @@ remain. Retry-then-record is an edge inside one traversal.
 **A FINDING is fuel for the next iteration, never a dead end.** It carries the attempts and points at the
 items that DID get fixed, so the next pass has a worked example before anything reaches him.
 
-## 2b. THE POPULATION GROWS — a blocked item INSERTS its prerequisite (CEO, 2026-08-13)
+## 2b. THE POPULATION GROWS — a blocked item INSERTS its prerequisite
 
 > *"Pues hombre, es automatic testing… no tiene que ser 100% official channel, pero no tiene que ser un
 > blocker. ¿Es hueco en el loop? Supongo que ahora mismo el loop está tan fijo que le impide agendar una
