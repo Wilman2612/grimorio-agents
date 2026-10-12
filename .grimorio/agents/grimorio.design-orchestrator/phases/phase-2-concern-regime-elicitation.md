@@ -24,11 +24,9 @@ open-ended the concern in front of you looks.
 ## A1 — the requirements self-grading risk, named here (half of it)
 
 **NEVER route the requirements self-grading check (A1) to agent:grimorio.po — not as a spawned dependency, not
-as an elicitation hand-off.** It stays INSIDE this agent's OWN architect/solution-design logic — quoted, not
-paraphrased, from cite:agent/grimorio.design-orchestrator/quasi-software-view.md#a1--the-routing-half-of-sharp-question-2-is-decided-here-the-self-grading-risk-stays-made-visible-not-closed:
-*"It stays INSIDE `grimorio.design-orchestrator`'s OWN architect/solution-design logic instead: Phase 2's R36
+as an elicitation hand-off.** It stays INSIDE this agent's OWN architect/solution-design logic: Phase 2's R36
 (naming each concern's own source) and Phase 6's R37 (the VALIDATION check flagging a design-agent-inferred
-concern as a named risk)."* This is the ROUTING half; the underlying self-grading RISK stays **MADE VISIBLE,
+concern as a named risk). This is the ROUTING half; the underlying self-grading RISK stays **MADE VISIBLE,
 not CLOSED** — this phase's own R36 step below is the first of the two halves that make it visible; Phase 6's
 own VALIDATION check is the second.
 

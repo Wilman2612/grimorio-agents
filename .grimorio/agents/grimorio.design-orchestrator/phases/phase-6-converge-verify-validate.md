@@ -26,10 +26,7 @@ expand this phase's or this agent's own charter.
 
 ## THE LOOP — this phase's own exit condition, the per-question CLOSURE TABLE (REPLACES the old "design UNDERSTOOD" criterion)
 
-**WHEN every question in the CLOSURE TABLE holds all 5 gates simultaneously ⟶ EXIT to Phase 7.** This REPLACES,
-never merely supplements, the old loose criterion this section used to quote verbatim from
-cite:agent/grimorio.design-orchestrator/quasi-software-view.md#the-diagram — *"enough =
-design UNDERSTOOD AND every gap DISPOSITIONED (never 100% of every possible artifact type)"*. In its place:
+**WHEN every question in the CLOSURE TABLE holds all 5 gates simultaneously ⟶ EXIT to Phase 7.** The gate is
 ref:skill/grimorio.system-design/scope-completeness-method.md#3-the-closure-gate--the-5-point-checklist's own
 5-point gate, applied PER QUESTION from Phase 2's own QUESTION-SET DERIVED field. For every question, a row
 records:

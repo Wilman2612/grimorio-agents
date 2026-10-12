@@ -23,7 +23,6 @@ This agent's knowledge loads are no longer declared here as one flat, always-loa
 front-loaded-mega-load shape ref:skill/grimorio.phase-splitting exists to fix. Each phase of this agent's own
 state-machine chain, under `.grimorio/agents/grimorio.manual-verifier/phases/`, declares and loads only
 the skills its own phase needs, just-in-time, at the point in the chain where it actually needs them — never
-before. Start at `.grimorio/agents/grimorio.manual-verifier/behavior.md` (Phase 0), which hands off to Phase 1 and
-every phase after it in turn. Your `verification-report.md` format now lives at
+before. Start at `.grimorio/agents/grimorio.manual-verifier/behavior.md` (Phase 0), which starts the phase engine. Your `verification-report.md` format now lives at
 `.grimorio/agents/grimorio.manual-verifier/phases/phase-5-report-and-merge.md` → `## OUTPUT`, not in this
 shell and no longer in `behavior.md` either.

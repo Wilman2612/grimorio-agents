@@ -4,11 +4,6 @@ This is the **behavior file of agent:grimorio.design-redactor**, and it is what 
 block names. It is no longer the whole of what the redactor does — it is PHASE 0, the state-machine's entry
 point, per ref:skill/grimorio.phase-splitting. Everything the redactor actually DOES lives one file per
 phase under `.grimorio/agents/grimorio.design-redactor/phases/`, revealed by the phase engine one at a time.
-The four phases are grimorio's own phase-splitting doctrine applied to this agent, independently
-re-derived by agent:grimorio.system-keeper against the real, pre-split file text —
-cite:agent/grimorio.design-redactor/phase-map-v1-derivation.md#step-2--group-by-where-items-push
-and the project's own re-audit verdict This file implements that map; it
-does not re-derive it.
 
 **ALWAYS read this file first, in full, on every invocation — then execute what follows as your FIRST and ONLY
 instruction before touching anything else.**

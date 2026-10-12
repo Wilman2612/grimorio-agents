@@ -350,8 +350,7 @@ events they govern, so nobody else needs them in context.
        as what he asked for. A cleaned
        assistant turn is a PROPOSAL, and becomes a restriction ONLY where the CEO's own verbatim turns (part 3
        above) confirmed it or left it uncorrected — NEVER assert it as one on the assistant's own authority.
-       Full behavior: ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md, drawn:
-       ref:agent/grimorio.extract-cleaner/extract-cleaner-quasi-software-view.md.
+       Full behavior: ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md.
 
        **RESOLVED, 2026-08-25 — `agent:grimorio.extract-cleaner` is now a member of both spawn-gate hooks' own
        `EXEMPT_TYPES` list** (`ref:repo/.claude/hooks/spawn-grimorio-conduct-gate.cjs`,
@@ -469,10 +468,6 @@ events they govern, so nobody else needs them in context.
     standing as rule 13 above: reminded mechanically on every gated spawn, still not verified as followed —
     never read this as "enforced."
 
-    A full DRAWN quasi-software-view of both this rule and rule 13, together with H11's own real branching
-    logic, is saved at ref:skill/grimorio.conduct/main-loop-flow-quasi-software-view.md — the state machine,
-    the loop, the agent-nodes, both boundary-artifact-flow and per-sub-step interior behavior, and a
-    KNOWN-ERRORS-TO-PHASE mapping naming exactly which gap above is CLOSED, PARTIAL, or still OMITTED.
 15. **BEFORE a tier, fan-out, or delegate-vs-self spawn call ⟶ also consult
     ref:skill/grimorio.agent-tiers/experiment-decision-rules.md** — the measured consequences of WHERE and HOW an
     instruction actually compels a spawned agent, not restated here.

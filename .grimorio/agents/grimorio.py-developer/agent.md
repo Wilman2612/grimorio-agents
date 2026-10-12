@@ -24,8 +24,7 @@ plus two full behavior files, all executed together, every invocation, undiffere
 original 6 Steps was actually running). Each phase of this agent's own state-machine chain, under
 `.grimorio/agents/grimorio.py-developer/phases/`, declares and loads only the skills its own
 phase needs, just-in-time, at the point in the chain where it actually needs them — never before. Start at
-`.grimorio/agents/grimorio.py-developer/behavior.md` (Phase 0), which hands off to Phase 1 and every phase
-after it in turn. Your `dev-notes.md` format now lives at
+`.grimorio/agents/grimorio.py-developer/behavior.md` (Phase 0), which starts the phase engine. Your `dev-notes.md` format now lives at
 `.grimorio/agents/grimorio.py-developer/phases/phase-5-report.md` → `## OUTPUT` (reusing the
 shared `build-protocol.md` template, never a new one), not in this shell and no longer in `behavior.md`
 either. The fan-out trigger (one Haiku child per file/module, never `model` passed on a spawn) now lives at

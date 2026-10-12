@@ -289,7 +289,6 @@ Read it when you reach that step; it is one step of that phase, never a phase of
 
    **WHEN Phase 2 named a concern's own source as this agent's own inference rather than an
    independently-stated need (R36) ⟶ this check names that explicitly as a self-grading RISK, never silently
-   passes it.** This is R37, the second half of the A1 mitigation Phase 2 began — quoted, not paraphrased, from
-   cite:agent/grimorio.design-orchestrator/quasi-software-view.md#a1--the-routing-half-of-sharp-question-2-is-decided-here-the-self-grading-risk-stays-made-visible-not-closed:
-   the underlying risk stays *"MADE VISIBLE, not CLOSED"* — this check names it, it does not close it, and no
+   passes it.** This is R37, the second half of the A1 mitigation Phase 2 began — the underlying risk stays MADE
+   VISIBLE, not CLOSED: this check names it, it does not close it, and no
    step in this phase builds a real independent requirements-elicitation capability to close it either.

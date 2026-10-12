@@ -29,8 +29,7 @@ two full behavior files, all executed together, every invocation, undifferentiat
 sub-steps was actually running). Each phase of this agent's own state-machine chain, under
 `.grimorio/agents/grimorio.ui-developer/phases/`, declares and loads only the skills its own
 phase needs, just-in-time, at the point in the chain where it actually needs them — never before. Start at
-`.grimorio/agents/grimorio.ui-developer/behavior.md` (Phase 0), which hands off to Phase 1 and every phase
-after it in turn. Your `ui-dev-note.md` format now lives at
+`.grimorio/agents/grimorio.ui-developer/behavior.md` (Phase 0), which starts the phase engine. Your `ui-dev-note.md` format now lives at
 `.grimorio/agents/grimorio.ui-developer/phases/phase-5-verify-and-report.md` → `## OUTPUT`
 (reusing the shared `build-protocol.md` template, never a new one), not in this shell and no longer in
 `behavior.md` either.

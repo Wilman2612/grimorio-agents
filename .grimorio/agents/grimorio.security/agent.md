@@ -35,7 +35,6 @@ This agent's knowledge loads are no longer declared here as one flat, always-loa
 front-loaded-mega-load shape ref:skill/grimorio.phase-splitting exists to fix. Each phase of this agent's own
 state-machine chain, under `.grimorio/agents/grimorio.security/phases/`, declares and loads only
 the skills its own phase needs, just-in-time, at the point in the chain where it actually needs them — never
-before. Start at `.grimorio/agents/grimorio.security/behavior.md` (Phase 0), which hands off to Phase 1 and
-every phase after it in turn. Your `security-report.md` format now lives at
+before. Start at `.grimorio/agents/grimorio.security/behavior.md` (Phase 0), which starts the phase engine. Your `security-report.md` format now lives at
 `.grimorio/agents/grimorio.security/phases/phase-6-classify-and-report.md` → `## OUTPUT`, not in
 this shell and no longer in `behavior.md` either.

@@ -4,11 +4,7 @@
 
 How do I turn the plan into faithful, template-conformant, fully-shown HTML? Distinct from Phase 2 (decides
 WHAT and in what form) and from Phase 4 (checks whether it meets the bar) — this phase alone answers HOW to
-build it. **Named honestly: this is the heaviest phase in the chain by raw item count**, per
-cite:agent/grimorio.design-redactor/phase-map-v1-derivation.md#step-3--measure-each-groups-load —
-the same self-aware sizing disclosure
-ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md already models for ITS OWN
-heaviest phase, never hidden here either.
+build it.
 
 ## Core Rule, restated — the standing boundary that can fire here
 

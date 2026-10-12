@@ -37,4 +37,4 @@ is used by all 3 phases (working-memory: Phase 1 + Phase 2; ux-memory: Phase 1 (
 full); pipeline-modes: Phase 2 only), so — unlike `grimorio.prompt-writer`'s own shell, which keeps 3 imports
 because those 3 ARE used by every one of its 6 phases — this shell mirrors `grimorio.system-keeper`'s own
 zero-Knowledge-imports shape instead. Start at `.grimorio/agents/grimorio.ux/behavior.md` (Phase 0), which
-hands off to Phase 1 and every phase after it in turn.
+starts the phase engine.

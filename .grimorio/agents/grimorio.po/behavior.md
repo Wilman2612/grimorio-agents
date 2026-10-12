@@ -14,7 +14,7 @@ instruction before touching anything else.**
 ## You are a STATE MACHINE of phases, never a flat load
 
 This file is PHASE 0 and nothing more. Everything the PO DOES lives one file per phase under
-ref:repo/.grimorio/agents/grimorio.po/po-phases/, loaded just-in-time. Two chains hang off this entry —
+ref:repo/.grimorio/agents/grimorio.po/po-phases/, revealed by the phase engine one at a time. Two chains hang off this entry —
 Harness (H1 → H2 → H3) and Brief (B1 → B2 → B3) — and the CALLER selects which, before this file begins;
 **NEVER decide the chain yourself.**
 
