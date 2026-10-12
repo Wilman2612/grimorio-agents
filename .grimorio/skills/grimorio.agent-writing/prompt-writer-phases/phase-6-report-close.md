@@ -1,18 +1,22 @@
 # Prompt Writer — Phase 6: REPORT & CLOSE (terminal)
 
-**IN:** the deliverables of Phases 1-5. **OUT:** the report file and the CLOSE line. No rule text is written here.
+**IN:** the deliverables of the phases that ran. **OUT:** the report file and the CLOSE line.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph first:** one SELF node; it raises nothing.
-2. **CHECK, before writing the report: does it state what Phases 1-5 recorded, with nothing dropped, softened or
-   upgraded?** Re-read the carried deliverables, then write.
-3. **ALWAYS close in exactly one shape:** VERIFIED, naming the checks that held; COULD NOT, naming what blocked it,
-   at which phase, and what is left; or PLAN-FOR-REVIEW, naming what Phases 1-2 established and carrying the plan
-   in full.
-4. **ALWAYS write the `## OUTPUT` block below to `tmp/<your-id>/phase-6-report.md`**, then run
-   `node .grimorio/skills/grimorio.phase-splitting/scripts/phase-engine.mjs record --run <id> report-written <path>`.
-5. **ALWAYS return to the keeper only the report's path and its CLOSE line**, never the block narrated.
+1. **CHECK, before writing: does every field below carry what the earlier deliverables recorded, with nothing
+   dropped, softened or upgraded?**
+2. **ALWAYS choose the CLOSE by this table:**
+
+   | The run | CLOSE |
+   |---|---|
+   | reached here from Phase 1 or 2 with REFUSED, or Phase 4 has a check still at exit 1 | COULD NOT: the blocker, the phase, what is left |
+   | reached here from Phase 2 with a plan | PLAN-FOR-REVIEW, with the plan in PLAN |
+   | every check in Phase 4 exited 0 and every technique grade held | VERIFIED: the checks that held |
+
+3. **ALWAYS write the `## OUTPUT` block to `tmp/<your-id>/phase-6-report.md`** — that path is the `report-written`
+   artifact the engine prints for this phase.
+4. **ALWAYS return to the keeper only the report's path and its CLOSE line.**
 
 ## OUTPUT
 
@@ -21,7 +25,7 @@ PER-ARTIFACT REPORT:
   FILE:                <path>
   LEVEL:               <verified level>
   FORM + TECHNIQUES:   <from Phase 2>
-  POINTERS:            <added this pass, each with its check result from Phase 4 | "None new">
+  CHECKS:              <from Phase 4 | "N/A — Phase 4 did not run">
   DUPLICATION:         <from Phase 4 | "None">
   BIRTH-HARNESS:       <from Phase 4 | "N/A">
   VISION:              <path in design/ | "N/A">
@@ -30,7 +34,6 @@ PER-ARTIFACT REPORT:
 MECHANICAL-VOLUME:     <from Phase 1 | "None" | "N/A — CLONE-EXECUTOR MODE">
 MODE:                  <none | CORRECTION | CLONE-EXECUTOR | CORRECTION refused: <missing field>>
 PLAN:                  <the plan, in full | omitted unless PLAN-FOR-REVIEW>
-SELF-AUDIT:            <clean, matches Phases 1-5 | the discrepancy fixed>
 CLOSE:                 <VERIFIED: <checks> | COULD NOT: <blocker, phase, what is left> | PLAN-FOR-REVIEW>
 ```
 
@@ -41,7 +44,7 @@ PER-ARTIFACT REPORT:
   FILE:                .grimorio/agents/grimorio.ux/phases/phase-3-review.md
   LEVEL:               behavior file
   FORM + TECHNIQUES:   algorithm; K7 quote-then-judge, K2 exact cases
-  POINTERS:            None new
+  CHECKS:              --dead 0; --anchors 0; --graph-first 0; --examples 0; shape 0; size 0; diff +9 −14
   DUPLICATION:         None
   BIRTH-HARNESS:       N/A
   VISION:              N/A
@@ -50,6 +53,5 @@ PER-ARTIFACT REPORT:
 MECHANICAL-VOLUME:     None
 MODE:                  none
 PLAN:                  omitted
-SELF-AUDIT:            clean, matches Phases 1-5
-CLOSE:                 VERIFIED: --dead, --anchors, --graph-first, --examples, check-prompt-shape all 0; K7, K2 held
+CLOSE:                 VERIFIED: all seven Phase 4 checks exit 0; K7, K2 held
 ```

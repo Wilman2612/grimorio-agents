@@ -1,14 +1,8 @@
 # Technique Catalog — what a prompt-writer reaches for, and how a grader checks it
 
-**BEFORE you write a prompt ⟶ pick, for each judgement and each trap it carries, the technique below that
-handles it, and name the pick in your plan.** A technique not picked on purpose is not used.
-
-**WHEN you grade an authored prompt ⟶ apply each picked technique's STATIC test to its files, and its PROBE by running
-the authored agent on a task whose cue does not name the technique (D-group's probe rule, F7).** M = mandatory
-wherever its situation arises; O = optional.
-
-Two parts: KNOWN techniques, which any prompt engineer uses, and GRIMORIO techniques, this corpus's own. Each
-entry names its owning skill once, where one exists.
+Each entry: **id — name** (M = mandatory wherever its situation arises, O = optional), what it does, its *Static
+test* on the files, and where one exists a *Probe*: a task whose cue does not name the technique (F7). PART 1 holds
+techniques any prompt engineer uses; PART 2 holds grimorio's own, each group naming its owning skill once.
 
 ---
 
@@ -91,9 +85,10 @@ entry names its owning skill once, where one exists.
 
 ### D — Phases (ref:skill/grimorio.phase-splitting)
 
-- **D1 — A phase is its own file** (M). It carries its ACTION and its TRANSITION; its LOAD lives in the chain
-  manifest the engine prints.
-- **D2 — Deliverable before the next file** (M). The next phase stays unread until this phase's deliverable exists.
+- **D1 — A phase is its own file** (M). It carries its steps, its deliverable, and WHEN each exit condition
+  applies; its loads, its exit conditions and its graph live in the chain manifest, which the engine prints.
+- **D2 — The engine reveals the next file** (M). A phase file never says "do not read the next phase": the next
+  file's path exists only in the engine's answer to `next`.
 - **D3 — A real boundary** (M). A distinct question, deliverable and knowledge, or no boundary. *Probe:* give an
   atomic task; no phases get invented.
 - **D4 — Size by rendering** (M). Render each phase's full load, count it, split an overloaded one.

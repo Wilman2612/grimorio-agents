@@ -863,7 +863,13 @@ function firstItemText(body) {
 }
 
 const GRAPH_FIRST_RE = /\bown graph\b|\bstate.*graph\b/i;
-const stepsScan = files.map((f) => ({
+// A phased agent's graph IS its chain manifest, so a file the manifest lists owes no graph step of its own.
+const CHAIN_PHASE_FILES = new Set(
+  execFileSync("git", ["ls-files", "*chain.json"], { encoding: "utf8" }).split("\n").filter(Boolean).flatMap((m) => {
+    try { return JSON.parse(readFileSync(m, "utf8")).phases.map((p) => p.file); } catch { return []; }
+  }),
+);
+const stepsScan = files.filter((f) => !CHAIN_PHASE_FILES.has(f.replace(/\\/g, "/"))).map((f) => ({
   file: f.replace(/\\/g, "/"),
   sections: headingSections(readFileSync(f, "utf8"), (t, lvl) => (lvl === 2 || lvl === 3) && /^Steps$/.test(t)),
 }));

@@ -97,6 +97,8 @@ function printPointer(runId, manifest, phaseId) {
     console.log(
       `DONE WHEN you run: node .grimorio/skills/grimorio.phase-splitting/scripts/phase-engine.mjs next --run ${runId} --on <condition>`,
     );
+    // The conditions come from the manifest, so a phase file never has to restate them.
+    console.log(`ON    ${Object.entries(nextMap).map(([on, to]) => `${on} → ${to}`).join(" · ")}`);
   }
 }
 

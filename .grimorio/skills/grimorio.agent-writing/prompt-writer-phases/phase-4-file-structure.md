@@ -1,33 +1,25 @@
 # Prompt Writer — Phase 4: FILE STRUCTURE
 
-**NEVER read Phase 5 until this phase's deliverable is filled.**
-
 **IN:** the drafted text. **OUT:** the files on disk and the deliverable below, with every check's exit code.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph first:** one SELF node; it raises nothing.
-2. **ALWAYS write the file(s) to disk yourself.**
-3. **ALWAYS declare loads once.** A phase file's loads go in its chain manifest, never in a LOAD section of the
-   file; any other file declares them in one block, one line per target. Cite each target once per file.
-   **NEVER reference a design document from a prompt.**
-4. **ALWAYS keep a shell to identity, boundaries and one behavior entry point.** Everything the agent does lives in
-   its behavior file; its Vision and other design material live in the agent's `design/` folder. **NEVER split a
-   shell into companion files.**
-5. **WHEN a skill file passes ~500 lines ⟶ split it into an index plus topic files, moving content verbatim.**
-   Keep it whole only when it is the smallest unit a reader needs in one place, and say so.
-6. **WHEN the file defines two or more phases ⟶ size each affected phase**
-   (ref:skill/grimorio.phase-splitting#sizing-a-phase--render-group-measure-split) and split or flag an overloaded
-   one; **classify each affected node REPORT-ONLY or MODIFYING**
+1. **ALWAYS write the files to disk yourself.**
+2. **ALWAYS put a phase file's loads, exit conditions and graph in its chain manifest, never in the phase file.**
+   Any other file declares its loads in one block, one line per target, each target cited once.
+3. **ALWAYS keep a shell to what the agent does and its one behavior entry point.** Everything it does goes in the
+   behavior file; **WHEN Phase 2 derived a Vision ⟶ write it as the Vision file in the agent's `design/` folder.**
+4. **NEVER write the same method into two files** — extract it to the skill both load and point to it.
+5. **WHEN the file defines two or more phases ⟶ size each affected phase**
+   (ref:skill/grimorio.phase-splitting#sizing-a-phase--render-group-measure-split) **and classify each affected node
+   REPORT-ONLY or MODIFYING**
    (ref:skill/grimorio.phase-splitting/flow-method.md#rule-8--divide-phases-intelligently-for-delegation--parallelization).
-7. **NEVER write the same method into two files** — extract it to the skill both already load and point to it.
-8. **WHEN you add, rename or remove a `##` section in a file that has a `description:` ⟶ update the description.**
-9. **WHEN authoring a new agent ⟶ write its birth-harness to disk in this pass**, in the shape Phase 2 named.
-10. **WHEN the file is a durable artifact several readers consult — an index, a ledger ⟶ write into it a rule naming
-    its owner and when it is updated.**
-11. **WHEN the change alters a contract — what an artifact accepts, requires or enforces ⟶ grep for every site that
-    describes the old contract and reconcile each one in this pass.**
-12. **ALWAYS run, for each file written, each check below as its own command, and act on the exit code:**
+6. **WHEN you add, rename or remove a `##` section in a file that has a `description:` ⟶ update the description.**
+7. **WHEN authoring a new agent ⟶ write its birth-harness to disk**, in the shape Phase 2 named.
+8. **WHEN the file is an index or ledger several readers consult ⟶ write into it who updates it and when.**
+9. **WHEN the change alters what an artifact accepts, requires or enforces ⟶ grep for every site that describes
+   the old behavior and update each.**
+10. **ALWAYS run these on every file written, one command each:**
 
     ```
     node .grimorio/scripts/audit-chain.mjs --dead <path-fragment>
@@ -35,51 +27,44 @@
     node .grimorio/scripts/audit-chain.mjs --graph-first <path-fragment>
     node .grimorio/scripts/audit-chain.mjs --examples <path-fragment>
     node .grimorio/skills/grimorio.agent-writing/scripts/check-prompt-shape.mjs <file>
+    node .grimorio/scripts/check-file-size.mjs --limit 500 <file>
+    git diff --stat -- <file>
     ```
 
-    | Exit | Meaning | Do |
-    |---|---|---|
-    | 0 | clean | record the command and its result |
-    | 1 | a violation in the file | fix the file and re-run; after 2 retries, stop and report the output verbatim |
-    | 2 | the fragment matched no file | fix the fragment, never the file; this is not a retry |
+    | Result | Do |
+    |---|---|
+    | exit 0 | write the command and its result in CHECKS |
+    | exit 1 | fix the file and re-run; after two retries, stop with the output verbatim |
+    | exit 2 | the fragment matched no file: fix the fragment, never the file — not a retry |
+    | check-file-size reports OVER | split the file into an index plus topic files, moving content verbatim |
+    | `git diff --stat` on a rewrite shows insertions and no deletions | find what the new text replaces, remove it, re-run |
 
-13. **WHEN the pass rewrites an existing file ⟶ run `git diff --stat -- <file>`. WHEN it shows insertions and no
-    deletions ⟶ the file only grew: find what the new text replaces, remove it, and re-run.**
-
-## PHASE 4 DELIVERABLE — do not read Phase 5 until this is filled
+## Deliverable
 
 ```
 FILES WRITTEN:          <path per file>
 LOADS:                  <where declared: chain manifest | one block> — <targets>
-SHELL PURITY:           <"identity, boundaries, entry point only" | what moved out, and where | "N/A — no shell">
-SIZE:                   <lines per skill file; SPLIT | WHOLE: <reason> | under limit>
-PHASE SIZING:           <per affected phase: size and REPORT-ONLY | MODIFYING | "N/A — no phases">
+VISION WRITTEN:         <path in design/ | "N/A">
 DUPLICATION:            <what was extracted, to where | "None">
+PHASE SIZING:           <per affected phase: size and REPORT-ONLY | MODIFYING | "N/A — no phases">
 DESCRIPTION SYNC:       <updated | "N/A">
 BIRTH-HARNESS WRITTEN:  <path | "N/A — not a new agent">
 UPDATE RULE:            <written into <file> | "N/A">
-CONTRACT SITES:         <sites reconciled | "N/A — no contract change">
-CHECKS:                 <one line per command: exit code>
-GROWTH:                 <insertions/deletions per rewritten file | "N/A — new files only">
+OLD-BEHAVIOR SITES:     <sites updated | "N/A">
+CHECKS:                 <one line per command: result>
 ```
 
-Example of a filled block:
+Example:
 
 ```
 FILES WRITTEN:          .grimorio/agents/grimorio.ux/phases/phase-3-review.md
 LOADS:                  chain manifest — no new target
-SHELL PURITY:           N/A — no shell
-SIZE:                   under limit
-PHASE SIZING:           phase 3: 61 lines against siblings of 48-70; MODIFYING
+VISION WRITTEN:         N/A
 DUPLICATION:            None
+PHASE SIZING:           phase 3: 61 lines against siblings of 48-70; MODIFYING
 DESCRIPTION SYNC:       N/A
 BIRTH-HARNESS WRITTEN:  N/A — not a new agent
 UPDATE RULE:            N/A
-CONTRACT SITES:         N/A — no contract change
-CHECKS:                 --dead 0; --anchors 0; --graph-first 0; --examples 0; check-prompt-shape 0
-GROWTH:                 phase-3-review.md +9 −14
+OLD-BEHAVIOR SITES:     N/A
+CHECKS:                 --dead 0; --anchors 0; --graph-first 0; --examples 0; shape 0; size 0; diff +9 −14
 ```
-
-## Hard hand-off
-
-**ALWAYS run `next --run <id> --on always`, carrying the files written and the check results into Phase 5.**
