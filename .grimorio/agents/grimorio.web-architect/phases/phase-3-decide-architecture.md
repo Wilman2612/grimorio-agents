@@ -1,10 +1,5 @@
 # Web Architect — Phase 3: DECIDE-ARCHITECTURE (files / patterns / reuse / contract)
 
-**NEVER read ref:agent/grimorio.web-architect/phases/phase-4-write-the-decision-and-gate.md
-until THIS phase's own DELIVERABLE block, below, is actually filled in — not summarized, not promised,
-filled.** Phase 4 writes `arch-decision.md` from what THIS phase decides; reading ahead without the decisions
-already made is writing the artifact before the judgment behind it exists.
-
 ## The question this phase answers
 
 What should the developer build, where does it go, and how? This is the judgment-heavy core of the whole
@@ -45,7 +40,7 @@ rather than a pincho requiring a further split — it is not artificially split 
     phase-2-search-first-explore-the-codebase.md's own step 7) **— never the default, never a builder.** **WHEN
     this fork does not fire here ⟶ state "N/A" plainly.**
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
 - ref:skill/grimorio.development-patterns#pattern-composition--heuristics — step 6's own pattern-selection
   target.
@@ -57,10 +52,8 @@ rather than a pincho requiring a further split — it is not artificially split 
 - ref:skill/grimorio.agent-tiers#the-scale-task-archetype--tier and
   ref:skill/grimorio.fan-out#part-1--decompose-spawn-in-parallel-synthesize — step 12's own conditional-scout
   mechanics, loaded ONLY WHEN that fork fires here rather than already having fired at Phase 2.
-- **NEVER load Phase 4's own gate-check items, the `arch-decision.md` template, or Phase 5's capture specifics
-  here** — each is a later phase's own question.
 
-## PHASE 3 DELIVERABLE — do not read Phase 4 until this is filled
+## PHASE 3 DELIVERABLE
 
 ```
 FILE LIST:                <CREATE/MODIFY/DELETE + layer, one row per file>
@@ -78,9 +71,3 @@ BLOCKER STATUS:            <"None — every trade-off resolved, no open question
 SCOUT VERIFICATION:        <N/A — Phase 2 already covered any needed verification / FIRED HERE — naming what
                            was verified and by whom, per step 12>
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:agent/grimorio.web-architect/phases/phase-4-write-the-decision-and-gate.md
-next, carrying forward: every field above.** Phase 4 writes `arch-decision.md` and runs the gate check against
-what this phase decided — it does not re-decide any of it.

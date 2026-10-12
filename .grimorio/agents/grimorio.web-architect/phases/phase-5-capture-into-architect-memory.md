@@ -1,7 +1,7 @@
 # Web Architect — Phase 5: CAPTURE-INTO-ARCHITECT-MEMORY (terminal — no hand-off)
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own DELIVERABLE block, below, is
-actually filled in.** There is no Phase 6 to defer an unfinished field to.
+actually filled in.**
 
 ## The question this phase answers
 
@@ -16,14 +16,10 @@ of anything that existed before this pass.
 
 **This phase only runs WHEN Phase 4's own HARNESS-WORTHY field above was `Y`** — a decision that settled
 nothing non-obvious (routine coding, a mechanical file addition with no real design judgment in it) never
-reaches this phase at all, per Phase 4's own Hard hand-off.
+reaches this phase at all, per Phase 4's own Hand-off.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — judge whether this
-   decision is worth remembering, write it into the right target, apply the currency rule if it supersedes a
-   prior entry, run the custody check before citing it as signed — and nothing else; this phase never invokes
-   another agent.**
 2. **ALWAYS judge whether this settled decision is "worth remembering"** — a non-obvious architecture decision
    (how we organize things, why we chose a structure, how pieces combine), restating the harness-mode trigger
    (ref:agent/grimorio.web-architect/behavior.md#harness-mode--architecture-knowledge-partner-standing-context-restated-where-each-phase-actually-uses-it)
@@ -49,15 +45,13 @@ reaches this phase at all, per Phase 4's own Hard hand-off.
    check exists specifically for the moment a decision is cited as settled/signed, never for a still-open,
    not-yet-decided entry.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
 - ref:agent/grimorio.web-architect/memory/project.md#domain-memory--split-by-topic-2026-08-03-claudemds-500-line-smell-rule-this-file-passed-500-lines —
   step 3's own split-threshold precedent.
 - ref:skill/grimorio.agent-writing#quality-standards-for-agents — step 5's own Currency rule.
 - ref:agent/grimorio.web-architect/memory/SKILL.md#custody--a-signedaccepted-architecture-decision-must-be-repo-tracked-not-a-tmp-pointer —
   step 6's own custody mechanics.
-- **NEVER load Phase 1-4's own intake/search/decide/gate specifics here** — this phase consumes their settled
-  OUTPUT, it does not re-run any of their judgment.
 
 ## PHASE 5 DELIVERABLE — this IS the final report; no further phase consumes it
 
@@ -76,6 +70,3 @@ CUSTODY CHECK:            <confirmed tracked via `git ls-files` / N/A — still 
 what this phase captured** (or explicitly nothing, WHEN WORTH REMEMBERING above is `N` — state that plainly,
 never pad the report to look like something was captured when nothing was). This report reaches whoever holds
 Phase 0's own PARENT relationship — a PO, an orchestrator, or agent:grimorio.system-keeper.
-
-**This phase has no next file to read.** The chain ends here. A subsequent task, if any, starts a fresh Phase 0
-(ref:agent/grimorio.web-architect/behavior.md), never resumed mid-chain from this file.

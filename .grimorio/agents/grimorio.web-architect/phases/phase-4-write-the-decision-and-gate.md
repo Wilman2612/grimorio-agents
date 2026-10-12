@@ -1,7 +1,7 @@
 # Web Architect — Phase 4: WRITE-THE-DECISION + GATE → loop to Phase 3, or DONE/BLOCKED
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own DELIVERABLE block, below, is
-actually filled in.** There is no Phase 6 to defer an unfinished field to.
+actually filled in.**
 
 ## The question this phase answers
 
@@ -14,11 +14,7 @@ which is exactly why this chain never adds one.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — write
-   `arch-decision.md`, run the 7-item gate, set the final status — with one LOOP back-edge to Phase 3 when the
-   gate fails on content — and nothing else; this phase never invokes another agent.**
-2. **ALWAYS create `arch-decision.md` following the format in `## OUTPUT` below**, carrying forward every
-   decision Phase 3 made.
+2. **ALWAYS create `arch-decision.md` following the format in `## OUTPUT` below.**
 3. **BEFORE setting status ⟶ ENSURE every architecture gate-check box below holds:**
    - [ ] Every file is in the correct layer.
    - [ ] No ORM imports will end up outside the persistence layer.
@@ -121,14 +117,6 @@ does not hold and why).** This wraps the whole deliverable; it does not replace 
 
 Your decision is the **blueprint**. If it's wrong, everything downstream is wrong.
 
-## LOAD (JIT) — scoped to this phase only
-
-- N/A — no `import:` target this phase, every LOAD line here is `ref:` (lazy); the `## OUTPUT` template above
-  IS this phase's own knowledge, not a pointer to fetch.
-- **NEVER load Phase 5's capture-into-memory specifics here** — WORTH REMEMBERING is a judgment Phase 5 makes
-  on its own, conditional on this phase's own HARNESS-WORTHY field below; pulling its criteria in now
-  front-loads a decision this phase does not make.
-
 ## PHASE 4 DELIVERABLE — do not close until this is filled
 
 ```
@@ -140,13 +128,8 @@ HARNESS-WORTHY:           <Y — a non-obvious architecture decision was actuall
                           Phase 5 / N — terminal, report to caller, no Phase 5>
 ```
 
-## Hard hand-off
+## Hand-off
 
-**WHEN step 4's loop-back fires (a gate box fails on deficient content) ⟶ ALWAYS read
-ref:agent/grimorio.web-architect/phases/phase-3-decide-architecture.md again, carrying forward:
-the exact box that failed and why.** This is the chain's own LOOP-BACK — Phase 3 runs identically against this
-new information, per its own "restated here, never assumed remembered" section. **WHEN HARNESS-WORTHY above is
-Y ⟶ ALWAYS read ref:agent/grimorio.web-architect/phases/phase-5-capture-into-architect-memory.md
-next, carrying forward: the settled decision this phase just wrote.** **WHEN HARNESS-WORTHY above is N ⟶ this
-chain is DONE — report `arch-decision.md`'s path, the gate check, and the CLOSE line to your caller; this chain
-never proceeds to Phase 5 on a decision that settled nothing worth remembering.**
+**WHEN step 4's loop-back fires (a gate box fails on deficient content) ⟶ `--on loop-back`, naming the exact box
+that failed and why. WHEN HARNESS-WORTHY is N ⟶ report `arch-decision.md`'s path, the gate check, and the CLOSE
+line to your caller and `--on done`. Otherwise (HARNESS-WORTHY is Y) `--on continue`.**

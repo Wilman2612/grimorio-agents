@@ -1,10 +1,5 @@
 # Web Architect — Phase 2: SEARCH-FIRST / EXPLORE-THE-CODEBASE
 
-**NEVER read ref:agent/grimorio.web-architect/phases/phase-3-decide-architecture.md until THIS
-phase's own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Phase 3
-decides files/patterns/contract against what THIS phase found; reading ahead without the map already built is
-deciding architecture blind.
-
 ## The question this phase answers
 
 What does grimorio already know about this feature area, and what already exists in the codebase that covers
@@ -51,20 +46,16 @@ exact phase, because this is the phase it gates.
    **WHEN this fork does not fire ⟶ state "N/A — no claim needed independent verification" plainly, rather than
    leaving the field silent.**
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- import:agent/grimorio.web-architect/memory — SKILL.md (general) + `project.md` (this project's settled decisions) +
-  the `{area}.md` detail files for the areas this feature touches. Step 2's own target, this phase's map.
 - ref:agent/grimorio.po/memory/project.md#current-milestone--m8-the-workflow-builder-drives-the-game —
   step 3's own ledger read.
 - ref:skill/grimorio.pipeline-modes — the NORMAL/LIGERO distinction step 2's own WHEN-clause applies.
 - ref:skill/grimorio.agent-tiers#the-scale-task-archetype--tier and
   ref:skill/grimorio.fan-out#part-1--decompose-spawn-in-parallel-synthesize — step 7's own conditional-scout
   mechanics, loaded ONLY WHEN that fork fires.
-- **NEVER load file-list, contract, pattern-selection, security, trade-off, gate-check, or capture specifics
-  here** — each is a later phase's own question.
 
-## PHASE 2 DELIVERABLE — do not read Phase 3 until this is filled
+## PHASE 2 DELIVERABLE
 
 ```
 LEDGER CHECK:             <what project.md says already exists, relevant to this brief — per
@@ -77,10 +68,3 @@ AFFECTED LAYERS:          <DB? API endpoint? UI? auth? — one line each, or "N/
 SCOUT VERIFICATION:       <N/A — no claim needed independent verification / FIRED — naming what was verified
                           and by whom, per step 7>
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:agent/grimorio.web-architect/phases/phase-3-decide-architecture.md next,
-carrying forward: this phase's own map (the ledger check, the existing abstractions, the affected layers, the
-70% verdict) plus Phase 1's own SCOPE READ and OPEN QUESTIONS.** Phase 3 decides architecture against what this
-phase found — it does not re-explore or re-search.

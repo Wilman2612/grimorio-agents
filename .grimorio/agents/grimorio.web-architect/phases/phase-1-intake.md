@@ -1,11 +1,5 @@
 # Web Architect — Phase 1: INTAKE (REVIEW-THE-BRIEF)
 
-**NEVER read
-ref:agent/grimorio.web-architect/phases/phase-2-search-first-explore-the-codebase.md until THIS
-phase's own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Nothing
-mechanically gates this; the gate is that you do not open the next file until you have produced what this one
-asks for.
-
 ## The question this phase answers
 
 What is actually being asked, and is it even the web-architect's to decide? Nothing else. This phase does not
@@ -29,8 +23,6 @@ ref:agent/grimorio.web-architect/behavior.md#harness-mode--architecture-knowledg
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — read the brief,
-   route WEB vs GAME, note ambiguity — and nothing else; this phase never invokes another agent.**
 2. **BEFORE reading memory ⟶ state, as part of your own reasoning — never as a question back to your caller —
    your OBJECTIVE (the architecture decision you were actually asked to produce, taken from the PO brief) and
    your EXIT CONDITION (Phase 4's own architecture gate check, every box holding, OR status explicitly
@@ -42,23 +34,14 @@ ref:agent/grimorio.web-architect/behavior.md#harness-mode--architecture-knowledg
 4. **Scope note — WHEN a change touches the game (the game's simulation service or its render) ⟶ that is a
    different discipline and belongs to agent:grimorio.game-architect (which designs the mechanic AND lands it
    in game code), NEVER architected through the web-CRUD frame this chain runs.** Route it there and set this
-   phase's own ROUTING VERDICT to GAME — this chain stops at this phase; it never proceeds to Phase 2 on a
-   game-industry decision.
+   phase's own ROUTING VERDICT to GAME.
 5. **WHEN the brief already leaves an architectural question unanswered at this early reading ⟶ note it now,
    as OPEN QUESTIONS below — carried forward, never yet `BLOCKED`.** Full CR2 thread:
    ref:agent/grimorio.web-architect/behavior.md#the-two-core-rules--threaded-not-restated-as-a-block. `BLOCKED`
    is only ever SET at Phase 4, once Phase 3 has had the chance to resolve what it can — this phase only
    records the earliest sighting of a gap, it never decides the final status.
 
-## LOAD (JIT) — scoped to this phase only
-
-- N/A — no `import:` target this phase, every LOAD line here is `ref:` (lazy).
-- **NEVER load `ref:agent/grimorio.web-architect/memory` (SKILL.md, `project.md`, or any `{area}.md`) here** — CR1
-  gates that read at Phase 2, not this one; opening it now front-loads a decision this phase does not make.
-- **NEVER load exploration, file-list, contract, gate-check, or capture specifics here** — each is a later
-  phase's own question.
-
-## PHASE 1 DELIVERABLE — do not read Phase 2 until this is filled
+## PHASE 1 DELIVERABLE
 
 ```
 OBJECTIVE:               <the architecture decision actually asked for, verbatim from the PO brief>
@@ -70,11 +53,7 @@ ROUTING VERDICT:          <WEB — proceed to Phase 2 / GAME — route to agent:
 OPEN QUESTIONS:           <ambiguity noticed at this reading, carried forward — or "None yet">
 ```
 
-## Hard hand-off
+## Hand-off
 
-**WHEN ROUTING VERDICT above is WEB ⟶ ALWAYS read
-ref:agent/grimorio.web-architect/phases/phase-2-search-first-explore-the-codebase.md next,
-carrying forward: the OBJECTIVE, the EXIT CONDITION, the SCOPE READ, and any OPEN QUESTIONS.** Phase 2 explores
-against what this phase established — it does not re-read the brief. **WHEN ROUTING VERDICT above is GAME ⟶ this
-chain ends here — hand the brief to agent:grimorio.game-architect and report that routing to your own caller;
-this chain never proceeds to Phase 2 on a game-industry decision.**
+**WHEN ROUTING VERDICT is GAME (step 4) ⟶ hand the brief to agent:grimorio.game-architect, report that routing to
+your own caller, and `--on game`; otherwise `--on continue`.**

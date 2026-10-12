@@ -1,0 +1,50 @@
+{
+  "agent": "grimorio.web-architect",
+  "entry": "1",
+  "phases": [
+    {
+      "id": "1",
+      "file": ".grimorio/agents/grimorio.web-architect/phases/phase-1-intake.md",
+      "desc": "INTAKE (REVIEW-THE-BRIEF)",
+      "next": {
+        "continue": "2",
+        "game": "END"
+      }
+    },
+    {
+      "id": "2",
+      "file": ".grimorio/agents/grimorio.web-architect/phases/phase-2-search-first-explore-the-codebase.md",
+      "desc": "SEARCH-FIRST / EXPLORE-THE-CODEBASE",
+      "loads": [
+        "agent/grimorio.web-architect/memory"
+      ],
+      "next": {
+        "continue": "3"
+      }
+    },
+    {
+      "id": "3",
+      "file": ".grimorio/agents/grimorio.web-architect/phases/phase-3-decide-architecture.md",
+      "desc": "DECIDE-ARCHITECTURE (files / patterns / reuse / contract)",
+      "next": {
+        "continue": "4"
+      }
+    },
+    {
+      "id": "4",
+      "file": ".grimorio/agents/grimorio.web-architect/phases/phase-4-write-the-decision-and-gate.md",
+      "desc": "WRITE-THE-DECISION + GATE → loop to Phase 3, or DONE/BLOCKED",
+      "next": {
+        "continue": "5",
+        "loop-back": "3",
+        "done": "END"
+      }
+    },
+    {
+      "id": "5",
+      "file": ".grimorio/agents/grimorio.web-architect/phases/phase-5-capture-into-architect-memory.md",
+      "desc": "CAPTURE-INTO-ARCHITECT-MEMORY (terminal — no hand-off)",
+      "next": {}
+    }
+  ]
+}
