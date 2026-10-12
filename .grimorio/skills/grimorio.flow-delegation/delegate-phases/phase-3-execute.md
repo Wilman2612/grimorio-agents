@@ -1,8 +1,5 @@
 # Delegate — Phase 3: EXECUTE
 
-**NEVER read ref:skill/grimorio.flow-delegation/delegate-phases/phase-4-gate-and-verify.md until THIS phase's
-own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.**
-
 ## The question this phase answers
 
 Is the actual work done — every item Phase 2's own plan named, either by you directly or by a child you spawned
@@ -41,23 +38,13 @@ itself — so this relationship is real here, not assertion.
    foreground stays your safe default, with backgrounding your own children a considered trade per Core Rule 2,
    never a silent default.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- import:skill/grimorio.phase-splitting/loop-owner-turn-discipline.md — Core Rules 1-2's own PRIMARY
-  HOME: the full generic statement, the mechanical fact Core Rule 1 rests on, and the foreground/backgrounding
-  trade Core Rule 2 names.
-- import:skill/grimorio.code-harness — before you inspect **or** modify code, do the upward ref:skill/harness.md lookup
-  and obey what you find. Inspection counts; the hook only fires on writes.
-- import:skill/grimorio.working-memory — the `tmp/` staging convention. Note the standing rule: `tmp/` is
-  scratch and is NOT a citable source of record. If something you produce must survive, it goes to a
-  repo-tracked file.
 - ref:skill/grimorio.fan-out#part-2--stay-reachable-report-back-without-parking — your operating plumbing: your
   id, your workspace (`tmp/<your-id>/`), the notes-folder protocol that lets you raise a question without
   stopping, carried forward from Phase 2's own load of this skill.
-- **NEVER load `report-design`, `objective-harness`'s close mechanics, or `reasoning-principles`'s
-  VERIFIED/COULD-NOT contract here** — each is Phase 4 or Phase 5's own question.
 
-## PHASE 3 DELIVERABLE — do not read Phase 4 until this is filled
+## PHASE 3 DELIVERABLE
 
 ```
 CHILDREN SPAWNED THIS PHASE: <one line per node: agent type -> foreground/background (with the Core Rule 2
@@ -68,9 +55,3 @@ BLOCKERS RAISED:            <any question/blocker written to your notes folder t
 WORK DONE:                  <what was actually produced/changed this phase, per the plan Phase 2 handed you —
                              never a claim that a check "should" pass; that is Phase 4's own question>
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:skill/grimorio.flow-delegation/delegate-phases/phase-4-gate-and-verify.md next, carrying
-forward: what was actually done this phase, by you or by any converged child.** Phase 4 verifies this work — it
-does not re-derive or re-perform it.

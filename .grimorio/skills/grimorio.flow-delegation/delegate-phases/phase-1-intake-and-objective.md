@@ -1,10 +1,5 @@
 # Delegate — Phase 1: INTAKE-AND-OBJECTIVE
 
-**NEVER read ref:skill/grimorio.flow-delegation/delegate-phases/phase-2-decompose-and-plan.md until THIS phase's
-own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Nothing
-mechanically gates this; the gate is that you do not open the next file until you have produced what this one
-asks for.
-
 ## The question this phase answers
 
 Am I the right agent for this, do I actually know what I am being asked, and may I even begin? Nothing else.
@@ -43,10 +38,6 @@ generic statement proven first on this exact chain, lives at
 ref:skill/grimorio.phase-splitting/loop-owner-turn-discipline.md.
 
 ## Steps
-
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — read the brief file,
-   read the objective files, confirm the worktree, apply the refusals, state the objective and exit condition —
-   and nothing else.** A spawn only ever happens later, in Phase 2 or Phase 3, never here.
 
 ### Your brief is a FILE, and it must be self-contained (HARD RULE, CEO 2026-07-29)
 
@@ -136,16 +127,12 @@ anywhere in this file or elsewhere. The task-shape refusal above fires on the na
 a long task or a loop — and must not be read as a quiet implementation of the broader claim (every agent,
 always, in a loop, refusing anything else), which stays open for the CEO to settle.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
 - ref:skill/grimorio.objective-harness — only WHEN your branch carries an objective: its Checks and the
   scripted close Phase 5 may run.
-- import:skill/grimorio.agent-tiers/refusal-pattern.md — the shared triad/boundary test both refusals
-  above apply.
-- **NEVER load `loop-and-graph`, `fan-out`, or `agent-tiers`'s own tier scale here** — Phase 2's own question,
-  not this one; pulling them in now is the flat-mega-load anti-pattern this whole rewrite exists to fix.
 
-## PHASE 1 DELIVERABLE — do not read Phase 2 until this is filled
+## PHASE 1 DELIVERABLE
 
 ```
 BRIEF READ:              <path to tmp/<your-id>/brief.md, confirmed opened in full — or "paragraph only, per
@@ -160,12 +147,8 @@ EXIT CONDITION:          <every numbered check in your brief holding simultaneou
                          statement lives at Phase 4>
 ```
 
-## Hard hand-off
+## Hand-off
 
-**WHEN no refusal fired above ⟶ ALWAYS read
-ref:skill/grimorio.flow-delegation/delegate-phases/phase-2-decompose-and-plan.md next, carrying forward: the
-brief's content, the objective/exit condition stated above, and confirmation you are in an owned worktree.**
-Phase 2 consumes all of it — none of it is re-derived there. **WHEN a refusal fired above ⟶ this chain ends
-here; report the refusal per
-ref:skill/grimorio.flow-delegation/delegate-phases/phase-5-close-verified-or-could-not.md's own OUTPUT shape
-rather than continuing to Phase 2.**
+**WHEN a refusal fired (step 5) ⟶ `--on refused`, and report the refusal per
+ref:skill/grimorio.flow-delegation/delegate-phases/phase-5-close-verified-or-could-not.md's own OUTPUT shape rather
+than continuing; otherwise `--on continue`.**

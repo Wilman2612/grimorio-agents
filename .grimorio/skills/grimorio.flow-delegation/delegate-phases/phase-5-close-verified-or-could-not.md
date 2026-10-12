@@ -1,7 +1,7 @@
 # Delegate — Phase 5: CLOSE-VERIFIED-OR-COULD-NOT
 
-**This is the terminal phase — no next phase file to reveal.** Everything below must actually be true before
-you report it; this phase has no downstream gate to catch a claim that was not.
+Everything below must actually be true before you report it; this phase has no downstream gate to catch a claim
+that was not.
 
 ## The question this phase answers
 
@@ -21,8 +21,6 @@ instead.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: single SELF — run the pre-report
-   self-check, close or STACK, produce the final report — no spawn.**
 2. **WHEN every numbered check holds (per Phase 4's own route) ⟶ close the cycle yourself: run
    ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh.** **WHEN closing is genuinely
    barred ⟶
@@ -117,20 +115,7 @@ Closed via close-branch.sh — branch merged, worktree removed.
 -> ref:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11
 for the full rule.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- import:skill/grimorio.objective-harness — `close-branch.sh`/STACK mechanics, step 2 above. Already loaded in
-  Phase 1 for the objective-file read; this is its close-mechanics half, used for the first time here.
-- import:skill/grimorio.report-design — how to hand your result back digestibly: the verdict first, then the
-  detail. Applied to the final report this phase produces.
 - ref:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11 —
   the VERIFIED/COULD-NOT contract this phase's own `## OUTPUT` implements.
-- import:memory/grimorio.board-memory/project.vision.md#b2-the-ownership-half — the output-format fields step 2a's own
-  board-write step cites: the ask verbatim, the state from the fixed spine, the blocker context when blocked,
-  and the named actor identity.
-
-## Terminal state — no hand-off
-
-This phase has no next file to read. The chain ends here. A subsequent task, if any, starts a fresh Phase 1
-(ref:skill/grimorio.flow-delegation/delegate-phases/phase-1-intake-and-objective.md), never resumed mid-chain
-from this file.

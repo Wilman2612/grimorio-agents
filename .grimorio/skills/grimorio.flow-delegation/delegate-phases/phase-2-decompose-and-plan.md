@@ -1,8 +1,5 @@
 # Delegate — Phase 2: DECOMPOSE-AND-PLAN
 
-**NEVER read ref:skill/grimorio.flow-delegation/delegate-phases/phase-3-execute.md until THIS phase's own
-DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.**
-
 ## The question this phase answers
 
 What are the real, independent pieces of this task, and who — if anyone — does each piece? A genuinely
@@ -20,14 +17,6 @@ case again, grounded by a weaker, single N=1 cue-blind probe (2026-08-15), never
 explicit numbered step instead of a background Knowledge-block line — was independently re-probed and ALSO
 failed: the behavior file itself was never opened that run.** Full derivation, with each item's own actual
 evidence class: ref:skill/grimorio.agent-writing/carrier-placement.md.
-**NEVER read this phase's own hard hand-off as ceremony — it is the direct, measured fix for a failure this
-exact agent has already produced twice, under two different mitigations.** This phase's own separate file,
-revealed only once Phase 1's own DELIVERABLE exists, makes skipping this load structurally HARDER to fall into
-than a bare Core-rule line buried in a flat file ever was — never read as making it impossible: nothing in this
-chain executes a mechanical gate on the hand-off itself (the fingerprint-checker mechanism that would is
-deliberately not wired this pass, per ref:skill/grimorio.flow-delegation/delegate-phases/delegate-quasi-software-view.md's
-own "fingerprint-gate mechanism" section), so an agent that never opens this file at all is still an open
-failure mode this rewrite reduces, not one it forecloses.
 
 ## LOOP + RELATIONSHIPS threaded here — to your CHILDREN, for real (dimension b)
 
@@ -81,25 +70,13 @@ exact chain, lives at ref:skill/grimorio.phase-splitting/loop-owner-turn-discipl
 stays your safe default; backgrounding your own children for real parallelism is a considered trade, declared
 as such in the TIER field above, never a silent default.**
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- import:skill/grimorio.loop-and-graph — the machine you run to own a task end to end; per step 2 above, loaded
-  and run IN FULL here, never deferred and never skipped.
-- import:skill/grimorio.fan-out — binds you on BOTH halves. Part 1
-  (ref:skill/grimorio.fan-out#part-1--decompose-spawn-in-parallel-synthesize) is the parallelism imperative this
-  phase's own graph declaration applies. Part 2
-  (ref:skill/grimorio.fan-out#part-2--stay-reachable-report-back-without-parking) is your operating plumbing —
-  your id, your workspace (`tmp/<your-id>/`), the notes-folder protocol — carried into Phase 3, where it is
-  actually used.
-- import:skill/grimorio.agent-tiers — the lever that lets you scale execution down at low cost; step 4 above is
-  where it is applied.
 - ref:skill/grimorio.agent-selection — WHICH agent to raise, and WHEN, for any node in your graph that is NOT
   already-planned mechanical volume. Match an agent's CONTRACT, never its name or area; use the ESCALATION
   LADDER (agent-selection → "The ESCALATION LADDER") when you are stuck. NEVER `general-purpose` as a grunt.
-- **NEVER load `code-harness`, `working-memory`'s own scratch convention, or `report-design` here** — each is a
-  later phase's own question.
 
-## PHASE 2 DELIVERABLE — do not read Phase 3 until this is filled
+## PHASE 2 DELIVERABLE
 
 ```
 LOOP-AND-GRAPH LOADED:   <Y — confirm the full skill was actually opened this pass, never assumed carried>
@@ -111,9 +88,3 @@ FAN-OUT GRAPH:           <one line per node: item -> agent type -> TIER (with re
 MECHANICAL-VOLUME DISPATCHED: <per step 4 — child(ren) dispatched at model:"haiku", retry count used (0-3), or
                          "N/A — no already-planned mechanical volume this pass">
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:skill/grimorio.flow-delegation/delegate-phases/phase-3-execute.md next, carrying forward: the
-decomposition, the fan-out graph, and any mechanical-volume child(ren) already dispatched above.** Phase 3
-executes against this plan — it does not re-derive it.

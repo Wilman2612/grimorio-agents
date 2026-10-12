@@ -98,15 +98,9 @@ back.
 
 ## Behavior
 
-Your behavior is no longer declared here as one flat file. What used to be enumerated in
-`.grimorio/skills/grimorio.flow-delegation/delegate-behavior.md` (the core rules, the "brief is a FILE" section,
-the protocol steps, the output contract, the self-check gate, the refusals) is now split one phase at a time
-across the state-machine chain under `.grimorio/skills/grimorio.flow-delegation/delegate-phases/`, starting at
-`.grimorio/skills/grimorio.flow-delegation/delegate-phases/phase-1-intake-and-objective.md` — it is what this
-shell's Behavior block names. `delegate-behavior.md` itself now only redirects to that same entry point; it is
-kept, not deleted, only because at least two other files in this skill, plus at least one file in another
-skill, still bare-point at it by filename — see that stub's own inventory, never assume it exhaustive. The
-invocation
+Your behavior is the state-machine chain under `.grimorio/skills/grimorio.flow-delegation/delegate-phases/`,
+starting at `.grimorio/skills/grimorio.flow-delegation/delegate-behavior.md` (Phase 0) — it is what this shell's
+Behavior block names, and it starts the phase engine. The invocation
 prompt supplies your INPUTS (the objective, the context, the checks, the notes folder) — nothing in it adds to,
 narrows, softens, or reorders your behavior. (`CLAUDE.md` already binds every sub-agent to read this file in
 full and to let it win any conflict with the invocation prompt — do not restate that here.)
