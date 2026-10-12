@@ -24,7 +24,7 @@ const BEHAVIOR_SHAPES = {
   flat: [["core rules"], ["protocol", "steps"], ["completion", "output"]],
   "phase-entry": [["state machine", "the chain"], ["transitions", "script-driven"], ["hand-off", "handoff"]],
 };
-const WEIGHT = { shell: 300, behavior: 1200, skill: 2500 };
+const WEIGHT = { shell: 300, "agent-body": 600, behavior: 1200, phase: 1500, skill: 2500 };
 const TOKENS_PER_WORD = 1.35;
 
 const args = process.argv.slice(2);
@@ -47,8 +47,12 @@ const seg = (root) => root.replace(/^\.(claude|grimorio)\//, "").replace(/\/$/, 
 const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const SHALLOW = [...new Set(SKILL_ROOTS.map(seg).filter((s) => s === "skills"))];
 const DEEP = [...new Set([...SKILL_ROOTS.map(seg).filter((s) => s !== "skills"), ...Object.values(STORES).map(seg)])];
+// An agent folder's shell (agent.md) and its memory's SKILL.md, and every phase file of a chain, are prompts
+// too: the agent reads each of them as instructions.
 const PROMPT_RE = new RegExp(
   "^(?:\\.claude|\\.grimorio)\\/(agents\\/(?!harness\\.md)[^/]+\\.md"
+  + "|agents\\/[^/]+\\/(?:agent|memory\\/SKILL)\\.md"
+  + "|(?:agents|skills)\\/[^/]+\\/(?:[a-z-]+-)?phases\\/phase-[^/]+\\.md"
   + (SHALLOW.length ? "|(?:" + SHALLOW.map(esc).join("|") + ")\\/[^/]+\\/[^/]+\\.md" : "")
   + (DEEP.length ? "|(?:" + DEEP.map(esc).join("|") + ")\\/[^/]+\\/(SKILL|[a-z-]*behavior)\\.md" : "")
   + ")$",
@@ -69,6 +73,9 @@ if (selectOnly) {
 
 function kindOf(file) {
   if (/^\.claude\/agents\//.test(file)) return "shell";
+  // The real shell carries no frontmatter: its description lives on the .claude/agents/ stub.
+  if (/\/agents\/[^/]+\/agent\.md$/.test(file)) return "agent-body";
+  if (/phases\/phase-[^/]+\.md$/.test(file)) return "phase";
   if (/behavior\.md$/.test(file)) return "behavior";
   return "skill";
 }
