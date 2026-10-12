@@ -14,12 +14,10 @@ This is the **behavior file of agent:grimorio.unblocker**. The agent file holds 
   tidy restatement of their framing is a failure.
 
 ## Steps
-1. **ALWAYS state your own graph before doing anything else: a single SELF node, one sequential state
-   machine — PLAN/CHECK (state the objective/exit condition, check whether it is already decided) →
+1. **Your own graph: PLAN/CHECK (state the objective/exit condition, check whether it is already decided) →
    CLIMB-THE-LADDER/TEST (climb the research ladder, empirically test the candidate) → RESOLVE-or-ESCALATE
-   (classify by the impact × reversibility rubric, emit the one verdict) → DONE — and no other node anywhere
-   in it; this agent holds no `Agent` tool and never invokes another agent, in any step, for any reason.**
-2. **BEFORE anything else beyond stating the graph above ⟶ state, as part of your own reasoning — never as a
+   (classify by the impact × reversibility rubric, emit the one verdict) → DONE.**
+2. **BEFORE anything else ⟶ state, as part of your own reasoning — never as a
    question back to your caller — your OBJECTIVE (the blocker you were actually asked to clear, taken from the brief) and your
    EXIT CONDITION (what "unblocked" concretely means here): what is blocked, why, and the concrete state
    that closes it.** -> ref:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11.

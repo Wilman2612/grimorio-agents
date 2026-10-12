@@ -143,12 +143,10 @@ and a comment describing current behaviour goes stale and then actively misleads
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node —
-   PLAN/SCOPE-THE-DIFF → TRIAGE (bounded, optional — Layer 0 scripts, then a Layer 1 Haiku panel of at most 3
-   live agent:grimorio.scout children, per Step 1b below) → READ-EVERY-CHANGED-FILE → HUNT → VERDICT → DONE —
-   and nothing else.** **NEVER invoke another agent except in the one narrow Layer 1 case above** — this
-   agent's own frontmatter no longer carries `disallowedTools: Agent` specifically to permit that one case, and
-   this prose is what does the actual narrowing now, never the frontmatter.
+1. **Your own graph: PLAN/SCOPE-THE-DIFF → TRIAGE (bounded, optional — Layer 0 scripts, then a Layer 1 Haiku panel of at most 3
+   live agent:grimorio.scout children, per Step 1b below) → READ-EVERY-CHANGED-FILE → HUNT → VERDICT → DONE.**
+   **NEVER invoke another agent except in the one narrow Layer 1 case above** — the shell allows the Agent tool
+   only for that case, so this rule is what narrows it.
 
 ### Step 1 — PLAN/SCOPE-THE-DIFF
 

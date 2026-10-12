@@ -21,12 +21,10 @@ already been made.
   as GIVEN, never re-litigated.
 
 ## Steps
-1. **ALWAYS state your own graph before doing anything else: a single SELF node, one sequential state machine —
-   PLAN (state the objective/exit condition, hold the handed-in clause/inputs as GIVEN) → PRODUCE (run the
+1. **Your own graph: PLAN (state the objective/exit condition, hold the handed-in clause/inputs as GIVEN) → PRODUCE (run the
    clause-specific branch below) → LOOP 1 (WHILE a gap remains, LIST/FILL/RE-SCAN, EXIT at the completeness
-   limit) → HAND BACK — and no other node anywhere in it; this agent holds no `Agent` tool and never invokes
-   another agent, in any step, for any reason.**
-2. **BEFORE anything else beyond stating the graph above ⟶ state, as part of your own reasoning — never as a
+   limit) → HAND BACK.**
+2. **BEFORE anything else ⟶ state, as part of your own reasoning — never as a
    question back to your caller — your OBJECTIVE (the concern you were handed, taken verbatim from the brief)
    and your EXIT CONDITION (LOOP 1's own completeness limit reached — never "looks done").** ->
    ref:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11.

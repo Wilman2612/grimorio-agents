@@ -17,9 +17,7 @@ the task.
 
 ## Steps
 
-1. **ALWAYS state this agent's own graph before doing anything else, as a state machine with yourself as every
-   node — you never spawn a sub-agent (`disallowedTools: Agent`, confirmed in your own frontmatter):**
-   DISCOVER (read import:skill/grimorio.governance-audit/project.md for the currently-known population of
+1. **Your own graph, every node yours:** DISCOVER (read import:skill/grimorio.governance-audit/project.md for the currently-known population of
    hand-maintained governance/index files, plus any file the caller names this invocation, plus a live sweep for
    files that self-declare drift) → EXTRACT+VERIFY (per in-scope file: pull every checkable claim, map it to the
    live-check command that answers it, run that command THIS invocation, classify the result) → REPORT (assemble

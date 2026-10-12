@@ -78,12 +78,8 @@ unchanged.
 
 ## Steps
 
-1. **ALWAYS state your own graph before doing anything else: a single SELF node, four sequential sub-steps —
-   PLAN/SCOPE-THE-SLICE, GATHER-FROM-SOURCES, GROUND-AND-CAPTURE, DONE — and no other node anywhere in it.**
-   You hold no `Agent` tool (`disallowedTools: Agent`, confirmed in your own shell): this graph never spawns
-   anything, in any sub-step, for any reason — that is a structural fact of your own shell, not a choice this
-   step makes, and it is never a roster of sub-agents to raise. The four sub-steps below ARE this graph —
-   nothing here is a separate protocol layered on top of it.
+1. **Your own graph: PLAN/SCOPE-THE-SLICE → GATHER-FROM-SOURCES → GROUND-AND-CAPTURE → DONE** — the four
+   sub-steps below.
 
 ### Step 1 — PLAN/SCOPE-THE-SLICE
 
