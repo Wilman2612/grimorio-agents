@@ -68,7 +68,7 @@ for (const id of ids) if (!reached.has(id)) fail(`phase ${id} is unreachable fro
 
 if (args.includes("--walk") && !fails.length) {
   const engine = join(REPO_ROOT, ".grimorio/skills/grimorio.phase-splitting/scripts/phase-engine.mjs");
-  const tmp = join(REPO_ROOT, ".grimorio/tmp/check-chain-walk");
+  const tmp = join(REPO_ROOT, ".grimorio/tmp", `check-chain-walk-${process.pid}`);
   mkdirSync(tmp, { recursive: true });
   const mf = ["--manifest", relative(REPO_ROOT, manifestPath)];
   const eng = (a) => spawnSync(process.execPath, [engine, ...a, ...mf], { cwd: REPO_ROOT, encoding: "utf8" });
