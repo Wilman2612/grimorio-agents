@@ -1,10 +1,5 @@
 # Convergent Researcher — Phase 2: SPAWN-SCOUTS-PER-SLICE
 
-**NEVER read
-ref:skill/grimorio.fan-out/researcher-phases/phase-3-converge-and-close.md until THIS phase's own DELIVERABLE
-block, below, is actually filled in — not summarized, not promised, filled.** CONVERGE-AND-CLOSE reads what the
-scouts actually wrote to `tmp/`; handing it a promise instead of real files gives it nothing to converge.
-
 ## The question this phase answers
 
 For each named slice, how is a self-contained, tiered, synchronous scout brief constructed and dispatched so
@@ -44,19 +39,14 @@ scouts gather + cite + persist to `tmp/` without this agent's own turn ending be
    **Background-spawning ends your turn before the panel returns — a real observed failure, never a
    hypothetical one.**
 8. **WHEN Phase 1's own SINGLE-SLICE COLLAPSE flag reads YES ⟶ this node collapses to "no spawn" — gather the
-   one slice yourself, sequentially, and proceed straight to Phase 3** with your own gathered, cited notes in
-   place of a scout's `tmp/` file.
+   one slice yourself, sequentially**, with your own gathered, cited notes in place of a scout's `tmp/` file.
 9. **NEVER decide.** Restated here, in this phase's own words: dispatching scouts is orchestration, never a
    verdict — a scout brief that quietly asks "which of these should we pick" instead of "gather what exists on
    this slice" has smuggled a decision into a gather step, and this phase refuses that framing exactly as Phase
    1 already refused it in the topic itself.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- import:skill/grimorio.flow-delegation — the flow-brief template + the lightweight guardian form, step 4's own
-  load. FINGERPRINT: SCOUTS SPAWNED field below (a real per-slice scout brief cannot be produced without
-  applying this discipline).
-- import:skill/grimorio.agent-tiers — Haiku tiering for gather slices, step 2's own load.
 - ref:agent/grimorio.scout — the scouts persist to `tmp/` as they go; this phase hands each one the
   file to append to.
 - ref:skill/grimorio.working-memory — the `tmp/` convention itself.
@@ -64,10 +54,8 @@ scouts gather + cite + persist to `tmp/` without this agent's own turn ending be
   mechanics (the PARALLEL half of that method, applied per slice).
 - ref:skill/playwright-cli — named only for the escalation instruction step 5 hands scouts; never loaded
   eagerly by this agent itself.
-- **NEVER load anything about converging findings, the OUTPUT contract, or the VERIFIED/COULD-NOT close here**
-  — Phase 3's own question, not this one's.
 
-## PHASE 2 DELIVERABLE — do not read Phase 3 until this is filled
+## PHASE 2 DELIVERABLE
 
 ```
 SLICES RECEIVED:              <the SLICE LIST carried forward from Phase 1, restated>
@@ -78,16 +66,3 @@ SCOUTS SPAWNED:                <N scouts, their tiers, and confirmation the pane
 SCOUT TMP FILES:               <one path per slice, plus confirmation each carries cited findings — or, on the
                                collapse, the path/notes this phase gathered itself>
 ```
-
-## Hard hand-off
-
-**BEFORE reading ref:skill/grimorio.fan-out/researcher-phases/phase-3-converge-and-close.md ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/skills/grimorio.fan-out/researcher-phases/phase-2-spawn-scouts-per-slice.md`) and this
-phase's own filled PHASE 2 DELIVERABLE block, written to disk first per that gate's own algorithm — the read
-below now runs on that gate's own PASS, never on the block merely existing in context.** This phase's own
-`import:skill/grimorio.flow-delegation` carries a `FINGERPRINT:` annotation, so the gate is NOT inert here.
-
-**ALWAYS read ref:skill/grimorio.fan-out/researcher-phases/phase-3-converge-and-close.md next, carrying
-forward: the scouts' own `tmp/` files (or the self-gathered single-slice content) named above.** Phase 3
-converges what this phase produced — it does not re-derive or re-gather any of it.

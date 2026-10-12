@@ -1,7 +1,7 @@
 # Convergent Researcher — Phase 3: CONVERGE-AND-CLOSE (terminal — no further hand-off)
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own `## OUTPUT` block, below, is
-actually filled in.** There is no Phase 4 to defer an unfinished field to.
+actually filled in.**
 
 ## The question this phase answers
 
@@ -11,9 +11,6 @@ highest-leverage takeaway do they jointly support, and does Phase 1's own object
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — read every scout's
-   `tmp/` file (or Phase 2's own self-gathered notes), merge, dedupe, resolve conflicts, organise, close — and
-   nothing else; this phase never invokes another agent.**
 2. **ALWAYS converge** — read the scouts' ref:tmp files, merge, dedupe, resolve conflicts, organise. THIS is
    where your own reasoning goes; tier yourself up for it, per
    ref:skill/grimorio.agent-tiers#the-scale-task-archetype--tier — you spent your own reasoning budget here, not
@@ -25,7 +22,9 @@ highest-leverage takeaway do they jointly support, and does Phase 1's own object
 4. **ALWAYS ground every claim in a real, cited source** — yours and every scout's. No source = a guess, and a
    guess never enters the cited summary below as if it were a finding.
 5. **ALWAYS produce your output exactly per the `## OUTPUT` section below, and close there** — never inline it
-   here as a second copy; the contract lives in one place, not two.
+   here as a second copy; the contract lives in one place, not two. This phase's own DELIVERABLE below IS this
+   agent's final return to its caller — the `## OUTPUT` block is what gets returned, never a separate report
+   written on top of it.
 
 ## Self-check — this phase's own completion gate, before the `## OUTPUT` block is reported
 
@@ -42,16 +41,12 @@ principle:**
 - Did Phase 1 state the objective and exit condition before any scout was spawned, and does this close read
   VERIFIED or COULD NOT rather than a self-graded status?
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
 - ref:skill/grimorio.reasoning-principles#measuring-is-not-proving--a-check-needs-a-falsifiable-hypothesis-hard-rule-ceo-2026-07-30
   — a scout's cited measurement inherits none of this agent's own confidence merely by arriving in a report;
   every claim converged into the summary below still needs its own refutation condition, never inherited
   trust.
-- the `## OUTPUT` contract itself, below — this agent's own, not an external skill; nothing further to load for
-  it.
-- **NEVER load rule-syntax, file-structure, or placement specifics here** — none of those are this phase's
-  question.
 
 ## PHASE 3 DELIVERABLE
 
@@ -92,18 +87,3 @@ Coverage gaps: no slice covered GDPR-adjacent rate-limit-log retention requireme
 Recommendation: adopt a Redis-backed token-bucket limiter — no source surveyed recommended an
 alternative for this scale.
 ```
-
-## Terminal state — no hand-off
-
-**This phase's own DELIVERABLE above IS this agent's final return to its caller — the `## OUTPUT` block is
-what gets returned, never a separate report written on top of it.** **No fingerprint-gate invocation is
-required on this terminal phase** — this phase's own `## LOAD (JIT)` section above carries no `import:`
-target, only `ref:`, so no `FINGERPRINT:` annotation exists for the gate to check; unlike
-ref:skill/grimorio.agent-writing/system-keeper-phases/phase-d-close-out.md (which DOES wire the gate in
-against its own terminal close, because its own LOAD section carries real `import:` fingerprints), this phase's
-own knowledge stays entirely `ref:` (lazy, optional, never mandatory), by design — the convergence reasoning
-this phase does is this agent's own judgment, not a discipline borrowed from an external skill's mandatory
-contract, so there is nothing here for the gate to verify was actually applied.
-
-**This phase has no next file to read.** The chain ends here. A subsequent task, if any, starts a fresh Phase 0
-(ref:skill/grimorio.fan-out/researcher-behavior.md), never resumed mid-chain from this file.

@@ -1,0 +1,48 @@
+{
+  "agent": "grimorio.researcher",
+  "entry": "1",
+  "phases": [
+    {
+      "id": "1",
+      "file": ".grimorio/skills/grimorio.fan-out/researcher-phases/phase-1-decompose-the-topic.md",
+      "desc": "DECOMPOSE-THE-TOPIC",
+      "loads": [
+        "skill/grimorio.reasoning-principles"
+      ],
+      "fingerprints": {
+        "skill/grimorio.reasoning-principles": "OBJECTIVE + EXIT CONDITION"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "2"
+      }
+    },
+    {
+      "id": "2",
+      "file": ".grimorio/skills/grimorio.fan-out/researcher-phases/phase-2-spawn-scouts-per-slice.md",
+      "desc": "SPAWN-SCOUTS-PER-SLICE",
+      "loads": [
+        "skill/grimorio.flow-delegation",
+        "skill/grimorio.agent-tiers"
+      ],
+      "fingerprints": {
+        "skill/grimorio.flow-delegation": "SCOUTS SPAWNED"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "3"
+      }
+    },
+    {
+      "id": "3",
+      "file": ".grimorio/skills/grimorio.fan-out/researcher-phases/phase-3-converge-and-close.md",
+      "desc": "CONVERGE-AND-CLOSE (terminal — no further hand-off)",
+      "loads": [],
+      "next": {}
+    }
+  ]
+}
