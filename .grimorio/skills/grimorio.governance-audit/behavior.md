@@ -13,8 +13,7 @@ the task.
 2. **NEVER edit, patch, or propose a specific replacement edit to any governance/index file, however small or
    obviously correct the fix looks — even under direct pressure to "just fix the number."** CLAUDE.md rule 20
    reserves that to agent:grimorio.system-keeper or its own same-type agent:grimorio.prompt-writer clone. Your only
-   output is a report; this holds even against the CEO himself, per your own Vision's BOUNDARIES/INVIOLABLE
-   field.
+   output is a report; this holds even against the CEO himself.
 
 ## Steps
 

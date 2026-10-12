@@ -1,7 +1,6 @@
 # Design As-Is — Behavior (executed by `grimorio.design-as-is`)
 
-This is the **behavior file of agent:grimorio.design-as-is**. The agent shell holds only its identity and its
-own Vision; everything the AS-IS describer DOES is defined here, and it executes this file in full, exactly as
+This is the **behavior file of agent:grimorio.design-as-is**. The agent shell holds only its identity; everything the AS-IS describer DOES is defined here, and it executes this file in full, exactly as
 written, on every invocation. This agent's own job is EXTRACTED from
 ref:agent/grimorio.design-orchestrator/phases/phase-3-as-is-to-be-gap.md#the-branch--as-isto-be-is-conditional-never-one-fixed-act's
 own clause 1/clause 3 AS-IS production mechanics and LOOP 1 — that phase file is still the authority that

@@ -551,9 +551,9 @@ Layers connect through explicit pointers, not implicit convention.
 
 ### The agent shell — identity in the agent file
 
-The shell's sections run, in order: first the identity/personality prose — WHO the agent is: identity, character, stance; then, **WHEN the agent was authored brand-new, or split off an existing agent's own charter ⟶ place a `## Vision` section here** — never carried by every agent, only one born or split under that trigger; then the Behavior block; then the Knowledge list. **No steps, no protocol, no output formats, no self-checks; and no facts, no lists of options, no technology names.** Target size: a shell reads in under a minute.
+The shell's sections run, in order: first the identity/personality prose — WHO the agent is: identity, character, stance; then the Behavior block; then the Knowledge list. **No steps, no protocol, no output formats, no self-checks; and no facts, no lists of options, no technology names.** Target size: a shell reads in under a minute.
 
--> deeper: ref:skill/grimorio.agent-writing/agent-vision.md#the-six-required-top-level-fields (the six required fields) and ref:skill/grimorio.agent-writing/agent-vision.md#the-wiringharness-negative-test (its own WIRING+HARNESS negative test) — never restated here.
+**WHEN the agent was authored brand-new, or split off an existing agent's own charter ⟶ write its Vision as a design document in the agent's `design/` folder, never in the shell** (ref:skill/grimorio.agent-writing/agent-vision.md#where-it-is-carried--the-vision-file-in-the-agents-own-design-folder). -> deeper: ref:skill/grimorio.agent-writing/agent-vision.md#the-six-required-top-level-fields (the six required fields) and ref:skill/grimorio.agent-writing/agent-vision.md#the-wiringharness-negative-test (its own WIRING+HARNESS negative test) — never restated here.
 
 Naming the auth system, billing provider, or any project concept inside the agent file is a violation — those belong in the loaded skills. Writing a protocol step inside the agent file is equally a violation — that belongs in the behavior file, out of the invocation prompt's reach.
 
@@ -807,7 +807,7 @@ The skill layers (behavior · general · project · code) are **modification poi
 
 ## What a Well-Written Agent (Shell) Contains
 
-Every agent file must have these sections, in this order — all of them unconditional except item 3 (Vision), which applies only when its own trigger fires. The whole file stays minimal — it is a shell.
+Every agent file must have these sections, in this order. The whole file stays minimal — it is a shell.
 
 ### 1. Frontmatter
 ```yaml
@@ -823,16 +823,10 @@ Who the agent IS — role, not task. 2–5 sentences: what it exists for, its ch
 
 Three companion rules govern invoking and briefing an EXISTING adversarial/gatekeeping agent — INVOCATION-BIAS, PRINCIPAL-INTENT FIDELITY, and HIS CLAIMS AND MINE ARE ALWAYS DIFFERENTIATED — dense, CEO-quote-heavy content needed specifically for that task. -> deeper: ./invocation-bias-and-principal-fidelity.md — read it whenever you write an agent's identity paragraph, or a brief/invocation prompt for an existing adversarial/gatekeeping agent.
 
-### 3. Vision (conditional)
-Not every shell carries this section — its own trigger and placement are already stated at
-ref:skill/grimorio.agent-writing#the-agent-shell--identity-in-the-agent-file. Its own six required fields and
-negative test: ref:skill/grimorio.agent-writing/agent-vision.md#the-six-required-top-level-fields and
-ref:skill/grimorio.agent-writing/agent-vision.md#the-wiringharness-negative-test — never restated here.
-
-### 4. Behavior block
+### 3. Behavior block
 The load-and-execute instruction, per the standard wording in the Split Template above. Exactly one entry point (or, for a family sharing a protocol, the shared file + the agent's own file, both named explicitly).
 
-### 5. Knowledge list
+### 4. Knowledge list
 The knowledge skills the agent draws on — name + one line on what it uses each for. No criteria copied inline.
 
 ---

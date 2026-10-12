@@ -120,19 +120,18 @@ and a comment describing current behaviour goes stale and then actively misleads
     a second time here.** **NEVER let either lane substitute for the other** — both apply on every review of a
     file outside the allowlist.
 
-13. **Missing or inadequate `## Vision` on a brand-new or split agent shell** — **WHEN the diff authors a
-    brand-new agent shell (a new file under `.claude/agents/`, or its `project.<name>.md` counterpart) OR
-    carves an existing agent's charter into one or more new agents ⟶ check whether the new/split shell(s) —
-    and, on a split, the PARENT shell too, WHEN it did not already carry one — carry a `## Vision` section
-    placed AFTER the identity/personality prose and BEFORE the `## Behavior` block, and whether that Vision
+13. **Missing or inadequate Vision on a brand-new or split agent** — **WHEN the diff authors a brand-new
+    agent OR carves an existing agent's charter into one or more new agents ⟶ check whether the new/split
+    agent(s) — and, on a split, the PARENT too, WHEN it did not already carry one — carry a Vision file in the
+    agent's `design/` folder (never a `## Vision` section in the shell), and whether that Vision
     actually passes ref:skill/grimorio.agent-writing/agent-vision.md#the-six-required-top-level-fields's
     own six-field format and ref:skill/grimorio.agent-writing/agent-vision.md#the-wiringharness-negative-test's
     own two-part negative test.** Cite that file for both the six fields and the negative test — NEVER restate
     either inline here.
 
     **This is an AGENT-JUDGMENT hunt item, never a mechanically enforceable one** — exactly like items
-    2/4/8/10/11 above. A mechanical pass can flag the STRUCTURAL trigger (a new/split shell exists in this
-    diff) and the section's bare presence and slot; it can never render the actual judgment the cited file's
+    2/4/8/10/11 above. A mechanical pass can flag the STRUCTURAL trigger (a new/split agent exists in this
+    diff) and the Vision file's bare presence; it can never render the actual judgment the cited file's
     own negative test demands — could a caller wire this agent without opening its behavior file, could a
     reader judge it over- or under-dimensioned from this section alone. That judgment is yours to render on
     the flagged shell, never a regex's to settle.
@@ -204,8 +203,8 @@ judges or signs a verdict. Never skip a cheaper layer to reach a more expensive 
     - **(b) MECHANICAL RULE PASS**, on prompt files this diff touches (agent shells, behaviors, phases,
       `SKILL.md`, the prose inside hooks): decision-history narration outside a ledger (hunt #12's own ban),
       non-English instruction text (grimorio-conduct's own rule 21), the pointer separator `→` used where a
-      rule's own `⟶` belongs, a rule with no ALWAYS/NEVER/BEFORE/WHEN opener, a `## Vision` section missing or
-      misplaced on a new or split shell (hunt #13), a path reference with no relation prefix, a file past
+      rule's own `⟶` belongs, a rule with no ALWAYS/NEVER/BEFORE/WHEN opener, a Vision missing, or placed in the
+      shell, on a new or split agent (hunt #13), a path reference with no relation prefix, a file past
       ~500 lines with no stated reason.
     - **(c) TESTS-ONLY PASS**, on test files this diff touches: duplicate tests (same assertions, different
       names), tests that assert nothing or only that code ran, assertions weakened in this diff (before and

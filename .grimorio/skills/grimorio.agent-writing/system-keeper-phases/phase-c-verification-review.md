@@ -65,8 +65,8 @@ one node per cycle, up to two), THEN a SELF node that routes per the verdict.**
    concluding anything about that file.**
 7. **WHEN the diff includes a genuinely NEW agent ⟶ open its BIRTH-HARNESS file directly (run the selftest, or
    read the probe-spec) — never accept the writer's report field as proof on its own. Missing or inadequate ⟶
-   defect, sent back.** **WHEN the diff includes a new agent or a charter split ⟶ open the shell's own
-   `## Vision` section directly and re-apply
+   defect, sent back.** **WHEN the diff includes a new agent or a charter split ⟶ open the Vision file in
+   the agent's `design/` folder directly and re-apply
    ref:skill/grimorio.agent-writing/agent-vision.md#the-wiringharness-negative-test independently — confirm
    all six required fields carry real, non-generic content.**
 8. **WHEN the diff includes a new durable multi-reader artifact ⟶ open it directly and confirm it now carries
