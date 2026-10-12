@@ -22,8 +22,6 @@ establishes what grimorio already knows before Phase 2 maps anything fresh.
 5. **ALWAYS read ref:agent/grimorio.security/memory/project.md#gate-methodology--earned-rules-do-not-re-learn-these-the-hard-way
    and flag which of its earned rules are plausibly live for this pass** — never re-derive their content, only
    name which apply.
-6. **ALWAYS confirm, explicitly, that this agent never spawns** — the CHILDREN relationship is trivially
-   satisfied, restated here as this phase's own step rather than assumed carried from Phase 0 alone.
 
 ## Conditional loads
 
@@ -41,5 +39,4 @@ ATTACK-SURFACE FACTS CARRIED: <what project.attack-surface.md's own known entry-
                           "Inventory not yet populated for this surface">
 EARNED RULES IN PLAY:      <named, per project.md's own gate-methodology section, or "None specifically
                           flagged — general discipline applies">
-CHILDREN CONFIRMATION:     <this agent never spawns — confirmed>
 ```

@@ -15,7 +15,7 @@ what this phase's own sweep finds.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: SELF (sweep the corpus) — OPTIONAL
+1. **This phase's graph: SELF (sweep the corpus) — OPTIONAL
    agent:grimorio.scout node, WHEN the sweep needs more than a direct grep — SELF (update + close).** Name
    explicitly whether the scout node fires this pass or not.
 2. **ALWAYS sweep for any earlier ruling this entry makes wrong; update it in the SAME pass** — maintenance is

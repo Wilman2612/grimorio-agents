@@ -24,9 +24,7 @@ ref:skill/grimorio.phase-splitting's own "base requirements grouped into one cog
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node, terminal — write or
-   merge the report, emit status, run the self-check gate, close — and nothing else; this agent never invokes
-   another agent from this phase.** This phase is reachable from FOUR different arrivals, never three:
+1. **This phase is reachable from FOUR different arrivals, never three:**
    - **Phase 1 (fan-out fired)** — the PARENT merging every fanned-out child's own report.
    - **Phase 2 (SKIP-AHEAD)** — a failed sanity baseline; no Phase 3/4 content exists.
    - **Phase 4, PARENT running solo** — the normal solo path: Phase 2's PASS baseline + Phase 3's

@@ -28,7 +28,7 @@ assertion.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: SELF (load `loop-and-graph`, decompose) →
+1. **This phase's graph: SELF (load `loop-and-graph`, decompose) →
    conditionally a MECH-CHILD per already-planned mechanical item (this phase's own step 4).** A spawn here is a
    choice this phase's own step 4 makes only where a slice is genuinely already-planned mechanical volume —
    never the node this phase opens with.

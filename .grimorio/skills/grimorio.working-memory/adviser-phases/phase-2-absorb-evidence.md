@@ -17,7 +17,7 @@ same boundary — its own flow-brief (step 3 below) must state it too, never ass
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: SELF (open the target/reference, the
+1. **This phase's graph: SELF (open the target/reference, the
    failing artifact, the code path, the attempt history) is the default and only mandatory node.** An
    `agent:` evidence-gathering child (step 3 below) is a SECOND node that exists ONLY when this phase's own
    evidence-gathering genuinely needs an independent worker — name explicitly, in this phase's own DELIVERABLE,

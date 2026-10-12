@@ -16,7 +16,7 @@ assumed.**
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — the entropy gate
+1. **This phase's graph: a single SELF node — the entropy gate
    check, the read/explore bundle, converge the design, stage the doc — with ONE conditional fork to a scoped
    `agent:grimorio.scout` verifier, and nothing else.** This agent never invokes another agent as a second node
    of its own graph — the scout fork is a bounded sub-call made FROM this node, per

@@ -8,7 +8,7 @@ draws the boundaries between pieces and, on a big ask, gathers a wider view befo
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: SELF (decompose) + a CONDITIONAL,
+1. **This phase's graph: SELF (decompose) + a CONDITIONAL,
    BOUNDED fork/join of `agent:grimorio.scout` — one scout per capability piece, raised ONLY on a big or
    cross-cutting ask, never the default.**
 2. **ALWAYS decompose into capability-sized pieces, each traceable to specific user stories** from Phase 1's

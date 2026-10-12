@@ -61,7 +61,7 @@ handle it.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a SELF node — converge the document,
+1. **This phase's graph: a SELF node — converge the document,
    ground open items against the bases, disposition every surviving gap, decide EXIT vs LOOP-BACK — plus two
    INDEPENDENT-INSPECTOR nodes this phase now always raises, one per check below: `agent:grimorio.scout` for
    CHECK 1 and `agent:grimorio.entropy` for CHECK 3, both foreground, both raised FROM this phase, neither

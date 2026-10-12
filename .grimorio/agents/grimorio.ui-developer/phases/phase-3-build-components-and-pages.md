@@ -16,8 +16,8 @@ something real to check the decomposition against.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else, as ONE of THREE branches — a FIRST-PASS
-   branch, a RE-ENTRY branch, or a CHILD branch, never as a single undifferentiated statement:**
+1. **This phase's graph is ONE of THREE branches — a FIRST-PASS
+   branch, a RE-ENTRY branch, or a CHILD branch:**
    - **FIRST-PASS branch**: a SELF node (survey, decompose into independent items, evaluate the FAN-OUT
      BRANCH gate, build) fanning out into N `agent:grimorio.ui-developer` `haiku` children — one per
      component/page — foreground and synchronous, WHEN the gate holds.

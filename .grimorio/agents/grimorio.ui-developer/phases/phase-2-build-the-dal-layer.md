@@ -8,8 +8,8 @@ adapter, the Real adapter, the Functional Core, and the repository factory, as O
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else, as ONE of TWO branches — a FIRST-PASS
-   branch or a RE-ENTRY branch, never as a single undifferentiated statement:**
+1. **This phase's graph is ONE of TWO branches — a FIRST-PASS
+   branch or a RE-ENTRY branch:**
    - **FIRST-PASS branch**: a SELF node — harness-lookup, survey the DAL folder, define the interface, build
      the Fake adapter, build the Real adapter, build the Functional Core, build the repository factory.
    - **RE-ENTRY branch**: a SELF node alone — fix ONLY the DAL-layer item Phase 5's own LOOP-BACK-DAL named,

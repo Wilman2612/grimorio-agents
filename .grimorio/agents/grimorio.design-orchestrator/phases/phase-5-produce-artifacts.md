@@ -72,13 +72,9 @@ this phase has made on his behalf.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — author each selected
-   artifact, per its own governing sub-mission below — and nothing else.** agent:grimorio.web-architect and
-   agent:grimorio.game-architect are NAMED here as agents this phase's own artifacts may one day be produced
-   in collaboration with — drawn dashed, **future — NOT wired**, in
-   cite:agent/grimorio.design-orchestrator/quasi-software-view.md#the-diagram. **NEVER spawn
-   either on this branch, or on any branch, until that decision is made elsewhere** — this phase's own graph
-   has zero live spawn nodes.
+1. agent:grimorio.web-architect and agent:grimorio.game-architect are agents this phase's own artifacts may
+   one day be produced in collaboration with — **future — NOT wired. NEVER spawn either until that decision is
+   made elsewhere.**
 2. **Run exactly the sub-missions Phase 4's selection table named — never a sub-mission Phase 4 did not
    select, and never skip one it did.**
 3. **WHEN Phase 1 recorded an EMPIRICAL DOMAIN ENUMERATION (fired for an API/domain subject)

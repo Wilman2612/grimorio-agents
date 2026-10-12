@@ -10,7 +10,7 @@ rather than a pincho requiring a further split — it is not artificially split 
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — decide the file list,
+1. **This phase's graph: a single SELF node — decide the file list,
    the FE↔BE contract, reuse, patterns, data model, security, trade-offs — with the SAME conditional fork to a
    scoped `agent:grimorio.scout` verifier Phase 2 also carries — and nothing else.**
 2. **ALWAYS decide, before writing anything, every file the developer should touch** (CREATE/MODIFY/DELETE +

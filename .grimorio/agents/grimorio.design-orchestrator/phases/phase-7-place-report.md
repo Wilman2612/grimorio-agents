@@ -18,7 +18,7 @@ does not have.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — decide the location,
+1. **This phase's graph: a single SELF node — decide the location,
    write the design deliverable(s), report — with an optional escalation node (step 3 below) only WHEN
    genuinely warranted; and nothing else.**
 2. **ALWAYS structure the `design.md` deliverable's own location by PLATFORM vs GAMES: reusable-across-every-game

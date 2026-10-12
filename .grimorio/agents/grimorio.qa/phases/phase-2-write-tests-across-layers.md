@@ -16,8 +16,8 @@ something real to check the split against.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else, as ONE of THREE branches — a FIRST-PASS
-   branch, a RE-ENTRY branch, or a CHILD branch, never as a single undifferentiated statement:**
+1. **This phase's graph is ONE of THREE branches — a FIRST-PASS
+   branch, a RE-ENTRY branch, or a CHILD branch:**
    - **FIRST-PASS branch**: a SELF node (decompose the matrix into independent items, evaluate the FAN-OUT
      BRANCH gate, write tests per the matrix, add negative tests) fanning out into N agent:grimorio.qa `haiku`
      children — one per test spec/path — foreground and synchronous, WHEN the gate holds.

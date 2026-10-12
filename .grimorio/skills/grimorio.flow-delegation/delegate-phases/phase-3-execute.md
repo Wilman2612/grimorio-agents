@@ -27,7 +27,7 @@ itself — so this relationship is real here, not assertion.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: SELF, converging with every independent
+1. **This phase's graph: SELF, converging with every independent
    child node Phase 2's own fan-out graph named for THIS phase (never mechanical-volume children, already
    dispatched and converged in Phase 2).**
 2. **ALWAYS spawn your OWN independent children foreground, in ONE message, and converge in the same turn.**

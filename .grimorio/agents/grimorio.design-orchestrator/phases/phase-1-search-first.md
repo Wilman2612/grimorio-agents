@@ -21,7 +21,7 @@ act on here.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a SELF node (read the brief, read
+1. **This phase's graph: a SELF node (read the brief, read
    the project's own design record, read ref:agent/grimorio.po/memory/project.features-status.md, check `documentation-memory` precedent)
    is the default and only mandatory node.** An agent:grimorio.scout node (step 6 below) is a SECOND node that exists only
    WHEN the domain touched is genuinely unfamiliar — name explicitly, in this phase's own DELIVERABLE, whether

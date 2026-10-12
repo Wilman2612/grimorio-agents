@@ -13,8 +13,8 @@ establishes the scope, what it affects, and how the work ahead gets divided (or 
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else, as ONE of THREE branches — a PARENT
-   fan-out branch, a PARENT solo branch, or a CHILD branch — never as a two-branch statement:**
+1. **This phase's graph is ONE of THREE branches — a PARENT
+   fan-out branch, a PARENT solo branch, or a CHILD branch:**
    - **PARENT, fan-out branch**: a SELF node (declare the scope, check for a prior report, build the Impact
      Matrix, evaluate the FAN-OUT BRANCH gate) fanning out into N agent:grimorio.manual-verifier `haiku`
      children — one per scripted click-path or one route's screenshot capture — foreground and synchronous,

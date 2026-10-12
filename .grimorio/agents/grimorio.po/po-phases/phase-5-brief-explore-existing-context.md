@@ -12,7 +12,7 @@ what this phase's own search finds.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: SELF (search) — OPTIONAL
+1. **This phase's graph: SELF (search) — OPTIONAL
    agent:grimorio.scout node, WHEN the search is wider than a direct lookup — SELF (receive).** Name explicitly
    whether the scout node fires this pass or not.
 2. **In NORMAL mode, WHEN the request references existing behavior (e.g. "the login doesn't redirect") ⟶

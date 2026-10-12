@@ -18,7 +18,7 @@ exact phase, because this is the phase it gates.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — read architect-memory,
+1. **This phase's graph: a single SELF node — read architect-memory,
    read the ledger, search existing abstractions, map affected layers, judge modify-vs-create — with one
    CONDITIONAL fork to a scoped `agent:grimorio.scout` verifier — and nothing else.**
 2. **ALWAYS read import:agent/grimorio.web-architect/memory (SKILL.md + the detail files for the areas this feature

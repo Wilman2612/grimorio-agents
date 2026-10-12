@@ -26,8 +26,8 @@ something real to check the decomposition against.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else, as ONE of TWO branches — a FIRST-PASS
-   branch or a CHILD branch, never as a single undifferentiated statement:**
+1. **This phase's graph is ONE of TWO branches — a FIRST-PASS
+   branch or a CHILD branch:**
    - **FIRST-PASS branch**: a SELF node (survey, build against the checklist or the confirmed-red test,
      decompose into independent items, evaluate the FAN-OUT BRANCH gate, build) fanning out into N
      `agent:grimorio.py-developer` `haiku` children — one per file/module — foreground and synchronous, WHEN the

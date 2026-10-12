@@ -25,8 +25,8 @@ reason, at its own step 3.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else, as ONE of TWO branches — a PARENT branch
-   or a CHILD branch, never as a single undifferentiated statement:**
+1. **This phase's graph is ONE of TWO branches — a PARENT branch
+   or a CHILD branch:**
    - **PARENT branch**: a SELF node — read THE BRIEF, read the pipeline artifacts, plan the layers, declare the
      Test Matrix, run the baseline, explore the changed files — and nothing else; no spawn anywhere in this
      phase.

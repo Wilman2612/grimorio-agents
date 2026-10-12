@@ -7,7 +7,7 @@ phase does not converge, does not judge the findings, and does not close the tas
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a SELF node (build the briefs, tier) fanning
+1. **This phase's graph: a SELF node (build the briefs, tier) fanning
    out into N agent:grimorio.scout nodes, one per Phase 1's own scoped lens, foreground and synchronous.**
 2. **You are an ORCHESTRATOR here, not a lone gatherer.** Run the panel as a **FAN-OUT, not one view**: one
    INDEPENDENT sub-agent per perspective, each in clean context so the lenses cannot contaminate each other, then

@@ -8,7 +8,7 @@ scouts gather + cite + persist to `tmp/` without this agent's own turn ending be
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a SELF node (build the brief, decide the
+1. **This phase's graph: a SELF node (build the brief, decide the
    collapse) fanning out into N agent:grimorio.scout nodes, one per slice, foreground and synchronous — or, on
    the single-slice collapse, a SELF node alone, no spawn at all.**
 2. **You are an ORCHESTRATOR here, not a lone gatherer.** **WHEN Phase 1's own SINGLE-SLICE COLLAPSE flag reads

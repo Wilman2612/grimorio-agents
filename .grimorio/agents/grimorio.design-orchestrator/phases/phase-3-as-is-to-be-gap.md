@@ -162,7 +162,7 @@ ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh any
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a SELF node — decide the branch, build the
+1. **This phase's graph: a SELF node — decide the branch, build the
    gap matrix, name the transition plan — PLUS an agent:grimorio.design-as-is node, one per concern that runs
    clause 1 or clause 3, foreground, per grimorio-conduct rule 9c(3); no other spawn belongs in this phase's own
    graph.**
