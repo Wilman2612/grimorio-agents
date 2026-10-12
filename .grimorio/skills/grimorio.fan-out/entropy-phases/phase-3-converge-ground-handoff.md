@@ -1,7 +1,7 @@
 # Devil's Advocate — Phase 3: CONVERGE-GROUND-HANDOFF (terminal — no further hand-off)
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own `## OUTPUT` block, below, is
-actually filled in.** There is no Phase 4 to defer an unfinished field to.
+actually filled in.**
 
 ## The question this phase answers
 
@@ -10,9 +10,6 @@ against prior art, how do they rank by impact × likelihood, and who owns each o
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node** — read every scout's
-   `tmp/` file, force the prior-art question, ground and rank, separate blocking from worth-considering, route,
-   produce output — **and nothing else; this phase never invokes another agent.**
 2. **ALWAYS bring outside prior-art — and FORCE the "does this already exist?" question (the highest-value
    unknown-unknown).** How do others solve this; what standard are we ignoring. **ALWAYS explicitly ask, and
    research the web to answer: is there an existing service, public repo, pretrained artifact, or published
@@ -38,7 +35,8 @@ against prior art, how do they rank by impact × likelihood, and who owns each o
 6. **NEVER decide, build, design, or archive.** Restated here, one final time, since this is the LAST phase and
    the one where a caller-pressure to "just tell us what to do" is highest.
 7. **ALWAYS produce your output exactly per the `## OUTPUT` section below, and close there** — never inline it
-   here as a second copy; the contract lives in one place, not two.
+   here as a second copy; the contract lives in one place, not two. This phase's own DELIVERABLE + `## OUTPUT`
+   block IS this agent's final return to its caller — never a separate report written on top of it.
 
 ## Self-check — this phase's own completion gate, before the `## OUTPUT` block is reported
 
@@ -50,15 +48,6 @@ principle:
 - Did I attack where the team is most confident, not just restate risks they already listed?
 - Are BOTH the naive first-timer AND the expert-the-team-lacks represented?
 - Did I stay in my lane — provoke and question, never decide / build / design / archive?
-
-## LOAD (JIT) — scoped to this phase only
-
-- Web-research/grounding discipline for the prior-art question — no named skill import exists for this beyond
-  ordinary WebSearch/WebFetch use; stated plainly here rather than inventing a skill import that does not exist.
-- The 5-item Self-check gate above + the `## OUTPUT` contract below — this agent's own, not an external skill;
-  nothing further to load for either.
-- **NEVER load ref:skill/grimorio.flow-delegation, ref:skill/grimorio.agent-tiers, or ref:skill/grimorio.fan-out
-  here** — the delegation act is already done by the time this phase runs.
 
 ## PHASE 3 DELIVERABLE
 
@@ -114,13 +103,3 @@ Top 3 the team should not commit without answering:
   front of them. A finding with no grounding and no novelty is cut.
 - **WHEN your only objection to something is that you dislike it, with no rule and no prior-art behind it ⟶ cut
   it or go find the grounding.** Taste is not a finding.
-
-## Terminal state — no hand-off
-
-**This phase's own DELIVERABLE + `## OUTPUT` block above IS this agent's final return to its caller — never a
-separate report written on top of it.** **No fingerprint-gate invocation is required on this terminal phase** —
-this phase's own `## LOAD (JIT)` section above carries no `import:` target, only plain statements and `ref:`
-pointers, so no `FINGERPRINT:` annotation exists for the gate to check.
-
-**This phase has no next file to read.** The chain ends here. A subsequent task, if any, starts a fresh Phase 0
-(ref:skill/grimorio.fan-out/entropy-behavior.md), never resumed mid-chain from this file.

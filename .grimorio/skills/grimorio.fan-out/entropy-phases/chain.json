@@ -1,0 +1,49 @@
+{
+  "agent": "grimorio.entropy",
+  "entry": "1",
+  "phases": [
+    {
+      "id": "1",
+      "file": ".grimorio/skills/grimorio.fan-out/entropy-phases/phase-1-frame.md",
+      "desc": "FRAME",
+      "loads": [
+        "skill/grimorio.reasoning-principles"
+      ],
+      "fingerprints": {
+        "skill/grimorio.reasoning-principles": "OBJECTIVE + EXIT CONDITION"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "2"
+      }
+    },
+    {
+      "id": "2",
+      "file": ".grimorio/skills/grimorio.fan-out/entropy-phases/phase-2-spawn-and-gather.md",
+      "desc": "SPAWN-AND-GATHER",
+      "loads": [
+        "skill/grimorio.flow-delegation",
+        "skill/grimorio.agent-tiers"
+      ],
+      "fingerprints": {
+        "skill/grimorio.flow-delegation": "SCOUTS SPAWNED",
+        "skill/grimorio.agent-tiers": "TIER PER SCOUT"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "3"
+      }
+    },
+    {
+      "id": "3",
+      "file": ".grimorio/skills/grimorio.fan-out/entropy-phases/phase-3-converge-ground-handoff.md",
+      "desc": "CONVERGE-GROUND-HANDOFF (terminal — no further hand-off)",
+      "loads": [],
+      "next": {}
+    }
+  ]
+}

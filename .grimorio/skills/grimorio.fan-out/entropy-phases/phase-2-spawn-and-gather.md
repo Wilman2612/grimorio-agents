@@ -1,10 +1,5 @@
 # Devil's Advocate — Phase 2: SPAWN-AND-GATHER
 
-**NEVER read ref:skill/grimorio.fan-out/entropy-phases/phase-3-converge-ground-handoff.md until THIS phase's own
-DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.**
-CONVERGE-GROUND-HANDOFF reads what the scouts actually wrote to `tmp/`; handing it a promise instead of real
-files gives it nothing to converge.
-
 ## The question this phase answers
 
 For each lens Phase 1 scoped in, who executes it, briefed how, tiered how, returning what? Nothing else — this
@@ -47,22 +42,17 @@ phase does not converge, does not judge the findings, and does not close the tas
      actually true?), another hunts what the team doesn't know it doesn't know, a third pressure-tests the
      assumptions once they are delivered.
 7. **ALWAYS spawn the scout panel SYNCHRONOUSLY (foreground, `run_in_background: false`) in ONE message — block
-   until they all return, then hand off to Phase 3 in the SAME turn.** Do NOT spawn them in the background and
-   end your turn — you would never converge, a real observed failure, never a hypothetical one.
+   until they all return, then take the ordinary `continue` route in the SAME turn.** Do NOT spawn them in the
+   background and end your turn — you would never converge, a real observed failure, never a hypothetical one.
 8. **NEVER decide, build, design, or archive.** Restated here, in this phase's own words: dispatching scouts is
    orchestration, never a verdict — a scout brief that quietly asks "which of these matters" instead of "what
    does THIS lens catch" has smuggled a decision into a gather step.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
 - ref:skill/grimorio.agent-selection — narrow: only the concern of matching agent:grimorio.scout's own CONTRACT
   and the ESCALATION LADDER for when you are stuck, step 3's own load; never the whole routing table restated
   here.
-- import:skill/grimorio.flow-delegation — the flow-brief template + the LIGHTWEIGHT form, step 4's own load.
-  FINGERPRINT: SCOUTS SPAWNED field below (a real per-lens scout brief cannot be produced without applying this
-  discipline).
-- import:skill/grimorio.agent-tiers — Haiku/Sonnet tiering for gather lenses, step 5's own load. FINGERPRINT:
-  TIER PER SCOUT field below (a tiering call cannot exist without applying this scale).
 - ref:skill/grimorio.fan-out — the panel-as-fan-out mechanics (the PARALLEL half of that method, applied per
   lens).
 - ref:skill/grimorio.working-memory + ref:agent/grimorio.scout — the `tmp/` convention + as-you-go
@@ -70,11 +60,8 @@ phase does not converge, does not judge the findings, and does not close the tas
 - Domain canon PER ACTIVE LENS, loaded conditionally, only for the lenses Phase 1 actually scoped in, never
   eagerly for all 5: ref:agent/grimorio.ux/memory → "Design Canon" for the UX/design-expert lens,
   ref:agent/grimorio.security/memory for the attacker lens.
-- **NEVER load ref:skill/grimorio.reasoning-principles' objective/exit-condition contract here** (already
-  established in Phase 1) **or Phase 3's own web-grounding/self-check knowledge** — each is a different phase's
-  own question.
 
-## PHASE 2 DELIVERABLE — do not read Phase 3 until this is filled
+## PHASE 2 DELIVERABLE
 
 ```
 SCOPED LENSES RECEIVED: <the SCOPED LENS LIST carried forward from Phase 1, restated>
@@ -83,17 +70,3 @@ TIER PER SCOUT:         <one tier per scout, per step 5>
 SCOUT TMP FILES:        <one path per lens, plus confirmation each carries grounded findings per the scout's own
                         completion check>
 ```
-
-## Hard hand-off
-
-**BEFORE reading ref:skill/grimorio.fan-out/entropy-phases/phase-3-converge-ground-handoff.md ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/skills/grimorio.fan-out/entropy-phases/phase-2-spawn-and-gather.md`) and this phase's own
-filled PHASE 2 DELIVERABLE block, written to disk first per that gate's own algorithm — the read below now runs
-on that gate's own PASS, never on the block merely existing in context.** This phase's own
-`import:skill/grimorio.flow-delegation` and `import:skill/grimorio.agent-tiers` each carry a `FINGERPRINT:`
-annotation, so the gate is NOT inert here.
-
-**ALWAYS read ref:skill/grimorio.fan-out/entropy-phases/phase-3-converge-ground-handoff.md next, carrying
-forward: the scouts' own `tmp/` files, tagged by perspective, named above.** Phase 3 converges what this phase
-produced — it does not re-derive or re-gather any of it.
