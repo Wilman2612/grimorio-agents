@@ -132,7 +132,8 @@ techniques any prompt engineer uses; PART 2 holds grimorio's own, each group nam
 - **F3 — Guardian** (M). Holds the saved objective; reviews milestones as a separate reader.
 - **F4 — Caller owns the split** (M). The brief names one child per independent item, or declares solo.
 - **F5 — Tier by rule** (M). Haiku executes, Sonnet is standard, Opus or Fable reasons; planning is never Haiku.
-- **F6 — Plan and graph before spawning** (M).
+- **F6 — Plan and graph before spawning** (M). One case per stage from ref:skill/grimorio.loop-and-graph/graph-cases.md,
+  written as its plan file. *Static test:* the validator of that file exits 0 on the plan.
 - **F7 — Probe with a hidden cue** (M). Never ask "is it in your context".
 - **F8 — Never end a turn on a dependency** (M). Foreground what you need next.
 - **F9 — Keeper decides where, writer decides how** (M). A governed-file change routes keeper ⟶ writer.

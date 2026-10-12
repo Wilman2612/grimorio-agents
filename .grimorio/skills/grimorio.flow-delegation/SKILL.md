@@ -201,7 +201,7 @@ yet — STOP and define it.**
    review — no floor or tie-breaker needed. `grimorio.scout`'s own declared default is already `sonnet`, so
    raising it this way needs no `model` override. This depends on item 2's plan being a genuine WRITTEN
    ARTIFACT structured clause-by-clause, per
-   ref:skill/grimorio.loop-and-graph#2c-the-plan-is-an-artifact-every-level-expands-ceo-2026-08-13, never an ad hoc
+   ref:skill/grimorio.loop-and-graph#2c-the-plan-is-an-artifact-every-level-expands, never an ad hoc
    paragraph the evaluator has to reverse-engineer.
 
    **WHEN the flow is a one-shot mechanical patch ⟶ this gate does not apply** — the SAME LIGHTWEIGHT form

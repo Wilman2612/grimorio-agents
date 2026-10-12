@@ -857,13 +857,14 @@ The behavior. Numbered for sequence; `if X → do Y` for conditionals; one decis
 **The graph belongs to an agent that PLANS — one that decomposes work into items, loops or children
 (ref:skill/grimorio.loop-and-graph).** A phase that executes a fixed step of a chain plans nothing, so it owes no
 graph step: the chain manifest fixes its order and the engine logs every transition. `audit-chain --graph-first`
-skips the files a manifest lists.
+skips the files a manifest lists. The graph step of an agent that plans writes the plan file of
+ref:skill/grimorio.loop-and-graph/graph-cases.md and runs its validator.
 
 **WHEN the task handed to the agent is already a single, fully-scoped item — a Haiku-tier executor working an already-decomposed brief handed down by a planner, a pure lookup ⟶ the graph IS that one item, stated in one line, and the step is satisfied without further decomposition.** This step is never a license to re-litigate a scope the caller already fixed. This is the SAME instinct as the hard NEVER above against spawning for an atomic task, named from two directions rather than left for the reader to connect: that NEVER forbids an agent from manufacturing a spawn node where none was needed; this clause states the mirror case — an already-atomic brief collapses the whole graph to the one node that does the work, with nothing left to decompose.
 
 This is NOT a duplicate of ref:skill/grimorio.conduct#planning-before-execution (rule 27): that rule governs WHETHER a full analysis/planning pass is owed at all before touching or executing a task — and is never performed by a Haiku-tier agent. THIS step governs HOW every agent frames its own execution, always, regardless of tier, so the two compose rather than conflict: a Haiku-tier agent still owes the one-line graph-statement above even on a task that owes it no full planning pass.
 
-**WHEN a caller or the CEO needs to review the graph before execution proceeds ⟶ it must be WRITTEN, not left in unwritten reasoning** — the existing mechanism is ref:skill/grimorio.loop-and-graph#2c-the-plan-is-an-artifact-every-level-expands-ceo-2026-08-13; do not invent a new artifact convention.
+**WHEN a caller or the CEO needs to review the graph before execution proceeds ⟶ it must be WRITTEN, not left in unwritten reasoning** — the existing mechanism is ref:skill/grimorio.loop-and-graph#2c-the-plan-is-an-artifact-every-level-expands; do not invent a new artifact convention.
 
 ### 4. Output section
 The binding output contract: exact file name and path, format (inline or via skill pointer), disk-before-chat rule if applicable ("Write first, report only the path"), and which sections to omit when empty.

@@ -112,11 +112,16 @@ WHILE items remain unproven
         │      ↓              (branch = copy of the CURRENT branch)          │
         │  probe            does it actually work / fire, under a real cue?  │
         │      ↓                                                             │
-        │   ┌── passes ──→ code-reviewer ──→ MERGE ──→ discard branch        │
+        │   ┌── passes ──→ item PROVEN, its branch waits                     │
         │   └── fails ───→ FIX ──→ re-probe ──→ retry, max N                 │
         │                    └── still failing after N ──→ FINDING           │
         └────────────────────────────────────────────────────────────────────┘
         close the item, move to the next
+
+AFTER the loop exits
+  code-reviewer, ONCE, on the combined result of every PROVEN item
+      ↓ approved ──→ MERGE every proven branch ──→ discard the branches
+      ↓ REWORK  ──→ the named items re-enter the loop
 
 EXIT when every item is either:
   (1) PROVEN — probed, fixed if it needed fixing, and it works; or
@@ -179,7 +184,7 @@ de loop que está en Internet, pero bueno."* It is the standard shape — a work
 pipeline, a bounded retry, and a dead-letter for what the retries could not settle. The names differ; the
 machine does not.
 
-## 2c. THE PLAN IS AN ARTIFACT EVERY LEVEL EXPANDS (CEO, 2026-08-13)
+## 2c. THE PLAN IS AN ARTIFACT EVERY LEVEL EXPANDS
 
 > *"Todos deberían estar expandiendo el artifact del loop, supongo que en subarchivos y carpetas, para que
 > sea auditable."*
@@ -226,7 +231,9 @@ it stood when it was made.
 > instrucción, y se cierra un ítem de dirección."*
 
 **Each worker gets a NEW branch that is a COPY OF THE CURRENT BRANCH — no longer always `develop`.** It merges
-at the end and the branch is discarded. Because there is a merge, the graph must carry a `code-reviewer`
+at the end and the branch is discarded. **NEVER put the review inside the loop body:** the probe runs per item;
+the `code-reviewer` runs ONCE, after the loop, on the combined result, before the merge. Because there is a merge,
+the graph must carry that `code-reviewer`
 before it, plus whatever test agents the item needs.
 
 **The coordinator coordinates; the workers are Sonnet, and some items are Haiku work.** *"los que hacen el
@@ -260,6 +267,11 @@ PLANNING step itself must make, per item, before the first child is spawned.
 **WHEN the parent's own context is already heavy by the time it reaches the writing/TO-BE phase ⟶ relaunch a FRESH child in clean context to do that writing, rather than authoring from a context already spent on prior spawns and reports.** Writing from an exhausted context produces the same WEAK/BIASED failure named above even when the parent could technically still produce output — the fix is a fresh child, never "push through on what's left."
 
 **THE PLANNING STEP ITSELF must detect which case applies, before any spawning happens.** WHEN planning a task ⟶ classify it, explicitly, in the plan artifact §2c already requires, as one of DO-IT-YOURSELF (single/small domain), FAN-OUT-WITH-A-LIMIT (genuine parallelism/volume, bounded per the ladder above), or RELAUNCH-FRESH (the parent's own context is already heavy going into writing/TO-BE) — and state which, and why, before the first child is spawned. This detection is itself part of the doctrine, never left implicit for later.
+
+**BEFORE the first spawn or edit of a planned task ⟶ load import:skill/grimorio.loop-and-graph/graph-cases.md,
+pick one case per stage, write the plan file it specifies into your plan tree, and run its validator until it
+exits 0.** The validator holds the deterministic rules — review after the loop, a limit on every fan-out, a pass
+condition per item, the tier of each verifier; the case's judgment column stays yours.
 
 ## 4. THE PROBE — what counts as proof
 
