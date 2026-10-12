@@ -1,10 +1,5 @@
 # Solution Architect — Phase 5: WIDEN-AND-CHALLENGE
 
-**NEVER read ref:agent/grimorio.solution-architect/solution-architect-phases/phase-6-recommend.md until THIS
-phase's own DELIVERABLE block, below, is actually filled in.** RECOMMEND synthesizes this phase's own findings
-into the actual call — handing it nothing to synthesize just produces a recommendation that reflects the
-requester's own inputs back at them, the exact failure this role most often ships.
-
 ## The question this phase answers
 
 What are we missing? The requester can only ask about what they can see; this phase's whole purpose is the
@@ -14,9 +9,6 @@ surfaced has failed, however neatly organized.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — run the
-   unknown-unknowns checklist, cite canon, challenge assumptions — and nothing else; this phase never invokes
-   another agent.**
 2. **ALWAYS run the unknown-unknowns checklist against this piece:** What's the failure mode, and what happens
    at 3am? Where's the scaling wall (rows, RPS, concurrency, DB connections)? What's the consistency/idempotency
    story (double-charge, lost write, replay drift)? What's the security/abuse surface? What's the cost at 10×
@@ -41,9 +33,8 @@ surfaced has failed, however neatly organized.
 9. **WHEN a candidate finding is genuinely uncertain rather than a real risk ⟶ say so and flag it as
    uncertain — NEVER manufacture a finding just to satisfy step 7's own requirement.**
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- N/A — no `import:` target this phase, every LOAD line here is `ref:` (lazy).
 - ref:agent/grimorio.solution-architect/SKILL.md#bring-entropy--add-knowledge-dont-reflect-inputs — the full
   entropy discipline: carry the canon, widen the option set, challenge inherited assumptions, turn blockers into
   workarounds, separate essence from accident.
@@ -51,10 +42,8 @@ surfaced has failed, however neatly organized.
   knowledge this phase cites from (Hohpe, Richards & Ford, Kleppmann, Nygard, Newman, Nystrom, and the rest).
 - ref:agent/grimorio.solution-architect/SKILL.md#checklists--run-these-dont-wing-it — the unknown-unknowns
   checklist verbatim, step 2's own operative source.
-- **NEVER load requirements, decomposition, design, tech-selection, or persistence specifics here** — each is a
-  different phase's own question.
 
-## PHASE 5 DELIVERABLE — do not read Phase 6 until this is filled
+## PHASE 5 DELIVERABLE
 
 ```
 PIECE:                     <which capability-sized piece this pass widens>
@@ -68,10 +57,3 @@ ESSENCE VS ACCIDENT:        <the invariant vs the swappable choice, for this pie
 NEW FINDING NOT ALREADY NAMED: <at least one failure mode / risk / cheaper option / pattern the requester did
                             not already surface — never blank>
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:agent/grimorio.solution-architect/solution-architect-phases/phase-6-recommend.md next,
-carrying forward: this piece's own widened findings, cited canon, and the new finding above.** Phase 6
-synthesizes this alongside Phase 4's own tech verdict into the actual recommendation — it does not re-run the
-widening.

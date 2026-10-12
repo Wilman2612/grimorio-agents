@@ -1,9 +1,5 @@
 # Solution Architect — Phase 2: SCOPE-AND-DECOMPOSE
 
-**NEVER read ref:agent/grimorio.solution-architect/solution-architect-phases/phase-3-design.md until THIS
-phase's own DELIVERABLE block, below, is actually filled in.** DESIGN works per capability-sized piece; handing
-it an undecomposed blob just relocates the decomposition one phase later, where it is harder to isolate.
-
 ## The question this phase answers
 
 How does this decompose into capability-sized pieces, and does it need parallel scouting? A genuinely different
@@ -35,19 +31,16 @@ draws the boundaries between pieces and, on a big ask, gathers a wider view befo
    pieces toward a consensus yourself** — on a big ask you are the decomposer and consensus-builder, not a lone
    decider.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- N/A — no `import:` target this phase, every LOAD line here is `ref:` (lazy).
 - ref:skill/grimorio.fan-out#part-1--decompose-spawn-in-parallel-synthesize — step 3's own fan-out methodology,
   loaded ONLY WHEN the big/cross-cutting branch fires.
 - ref:skill/grimorio.flow-delegation#part-1--the-flow-brief-template-how-you-raise-the-delegate — step 3's own
   flow-brief template, same trigger.
 - ref:skill/grimorio.agent-tiers#the-scale-task-archetype--tier — step 3's own tiering discipline, same trigger.
 - ref:skill/grimorio.working-memory — step 4's own `tmp/` staging convention, same trigger.
-- **NEVER load design, tech-selection, widening, recommendation, or persistence specifics here** — each is a
-  later phase's own question.
 
-## PHASE 2 DELIVERABLE — do not read Phase 3 until this is filled
+## PHASE 2 DELIVERABLE
 
 ```
 PIECES:                    <the capability-sized decomposition, one line per piece, each naming the story it
@@ -59,9 +52,3 @@ FAN-OUT (IF FIRED):         <one row per scout raised, its piece, its finding �
 CONVERGED CONSENSUS
 (IF FAN-OUT FIRED):         <the settled per-piece view after convergence, or "N/A">
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:agent/grimorio.solution-architect/solution-architect-phases/phase-3-design.md next, carrying
-forward: the capability-sized piece list above, and, if fan-out fired, the converged consensus per piece.**
-Phase 3 designs what this phase decomposed — it does not re-decompose or re-run any gathering.

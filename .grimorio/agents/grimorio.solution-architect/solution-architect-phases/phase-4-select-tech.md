@@ -1,10 +1,5 @@
 # Solution Architect — Phase 4: SELECT-TECH (reuse ▸ borrow ▸ buy ▸ build)
 
-**NEVER read ref:agent/grimorio.solution-architect/solution-architect-phases/phase-5-widen-and-challenge.md
-until THIS phase's own DELIVERABLE block, below, is actually filled in.** WIDEN-AND-CHALLENGE stress-tests a
-tech verdict that must already exist — handing it a piece with no reuse/borrow/buy/build call yet gives it
-nothing concrete to widen against.
-
 ## The question this phase answers
 
 What do we build this piece from? The LAST stage of the whole design, never the starting point — this phase
@@ -13,9 +8,6 @@ it.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — walk the reuse ladder,
-   judge the candidate, check the standing tech-selection rules — and nothing else; this phase never invokes
-   another agent.**
 2. **ALWAYS answer, in order, and stop at the first "yes": (1) Do we ALREADY have it?** — does an existing
    service/library/piece of our stack already provide this capability (even partially)? **IF yes ⟶ REUSE it.**
    Rebuilding what you already run is the most common and most expensive mistake. **(2) Can we BORROW it?** —
@@ -39,9 +31,8 @@ it.
    the ladder, the debate over the five-lens judgment, and why any rejected option was rejected. Auditable
    chain-of-thought, not reconstructed afterward.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- N/A — no `import:` target this phase, every LOAD line here is `ref:` (lazy).
 - ref:agent/grimorio.solution-architect/SKILL.md#the-core-question — the reuse ▸ borrow ▸ buy ▸ build ladder in
   full, this phase's own operative sequence.
 - ref:agent/grimorio.solution-architect/SKILL.md#cost-is-opex-not-dev — the five-lens judgment table (OPEX,
@@ -52,10 +43,8 @@ it.
 - ref:agent/grimorio.solution-architect/SKILL.md#research-discipline — current/primary-sourced findings
   (docs/repo/pricing/license/release date), distinguishing hype from real traction, this phase's own sourcing
   standard for judging a candidate.
-- **NEVER load design, widening, recommendation, or persistence specifics here** — each is a different phase's
-  own question.
 
-## PHASE 4 DELIVERABLE — do not read Phase 5 until this is filled
+## PHASE 4 DELIVERABLE
 
 ```
 PIECE:                     <which capability-sized piece this pass selects technology for>
@@ -66,10 +55,3 @@ REUSE-JUSTIFICATION CHECK:  <N/A if the ladder stopped at REUSE/BORROW/BUY — o
 LIABILITY FLAG:             <named, if the chosen dependency is frozen/abandoned/copyleft/patented — or "None">
 OPEX LINE:                  <the explicit recurring-cost consequence — never omitted>
 ```
-
-## Hard hand-off
-
-**ALWAYS read
-ref:agent/grimorio.solution-architect/solution-architect-phases/phase-5-widen-and-challenge.md next, carrying
-forward: this piece's own ladder result, five-lens judgment, and OPEX line.** Phase 5 stress-tests this
-verdict — it does not re-run the ladder or re-judge the candidate.

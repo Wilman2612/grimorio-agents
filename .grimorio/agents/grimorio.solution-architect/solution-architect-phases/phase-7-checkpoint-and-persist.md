@@ -1,7 +1,7 @@
 # Solution Architect — Phase 7: CHECKPOINT-AND-PERSIST → loop to Phase 3, or DONE
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own DELIVERABLE block, below, is
-actually filled in.** There is no Phase 8 to defer an unfinished field to.
+actually filled in.**
 
 ## The question this phase answers
 
@@ -11,8 +11,6 @@ context reset, and does the CHAIN continue or end."
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — checkpoint the piece,
-   decide loop-back or DONE — and nothing else; this phase never invokes another agent.**
 2. **WHILE a piece is still actively being explored or debated ⟶ keep it in `tmp/`, never persist it yet.**
 3. **ALWAYS persist a piece the MOMENT it settles — never hold the whole design hostage to one final
    sign-off.** **WHEN a piece settles — even only to RECOMMENDED, NOT SIGNED ⟶ write it into
@@ -28,9 +26,8 @@ context reset, and does the CHAIN continue or end."
    `project.md` at the old section's location. ->
    ref:skill/grimorio.agent-writing#reference-depth-dont-hyper-compress--a-skill-can-and-should-have-many-reference-files
    before you do this — apply its doctrine, do not restate it here.
-6. **WHEN capability-sized pieces from Phase 2's own decomposition remain unchecked ⟶ loop back to
-   ref:agent/grimorio.solution-architect/solution-architect-phases/phase-3-design.md for the next piece.**
-   **WHEN every piece is checkpointed ⟶ DONE — report the full settled design to the caller.**
+6. **WHEN capability-sized pieces from Phase 2's own decomposition remain unchecked ⟶ the `loop-back` route, for
+   the next piece. WHEN every piece is checkpointed ⟶ the `done` route.**
 
 A worked example of ONE checkpoint write, for an invented capability on an unrelated internal-tools project —
 the shape every settled piece takes when it actually lands in `project.md`, not a description of that shape:
@@ -49,17 +46,14 @@ the shape every settled piece takes when it actually lands in `project.md`, not 
   distribution list crosses 400 recipients.
 ```
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- N/A — no `import:` target this phase, every LOAD line here is `ref:` (lazy).
 - ref:agent/grimorio.solution-architect/project.md#what-we-already-run-reuse-first--check-here-before-proposing-anything —
   the persist target, step 3's own destination.
 - ref:skill/grimorio.working-memory — the `tmp/`-while-exploring, persist-once-settled convention, step 2's own
   grounding.
 - ref:skill/grimorio.agent-writing#reference-depth-dont-hyper-compress--a-skill-can-and-should-have-many-reference-files —
   step 5's own split doctrine, loaded ONLY WHEN the size threshold fires.
-- **NEVER load requirements, decomposition, design, tech-selection, widening, or recommendation specifics
-  here** — each is an earlier phase's own question.
 
 ## PHASE 7 DELIVERABLE — do not close until this is filled
 
@@ -94,11 +88,9 @@ CLOSE: VERIFIED — both pieces persisted, tagged, and traceable; see each proje
 per-piece trail (invariant/NFR, C4, sequence, mechanism, OPEX, flagged risks).
 ```
 
-## Hard hand-off
+## Hand-off
 
-**WHEN the REMAINING PIECES field above names at least one unchecked piece ⟶ ALWAYS read
-ref:agent/grimorio.solution-architect/solution-architect-phases/phase-3-design.md again, carrying forward: the
-next unchecked piece from Phase 2's own decomposition.** This is the chain's own LOOP-BACK — Phase 3 runs
-identically against this new piece, per its own "restated here, never assumed remembered" section. **WHEN
-REMAINING PIECES names none ⟶ this chain is DONE — report the full settled design to the caller**, naming every
-piece persisted, its tag (RECOMMENDED, NOT SIGNED or SIGNED, DECIDED), and where each landed in `project.md`.
+**WHEN the REMAINING PIECES field above names at least one unchecked piece ⟶ `--on loop-back`, naming the next
+unchecked piece from Phase 2's own decomposition. WHEN REMAINING PIECES names none ⟶ `--on done`, and report the
+full settled design to the caller** per the `## OUTPUT` above, naming every piece persisted, its tag (RECOMMENDED,
+NOT SIGNED or SIGNED, DECIDED), and where each landed in `project.md`.

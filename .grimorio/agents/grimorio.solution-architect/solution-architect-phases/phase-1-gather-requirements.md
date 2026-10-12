@@ -1,10 +1,5 @@
 # Solution Architect — Phase 1: GATHER-REQUIREMENTS
 
-**NEVER read ref:agent/grimorio.solution-architect/solution-architect-phases/phase-2-scope-and-decompose.md until
-THIS phase's own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.**
-Nothing mechanically gates this; the gate is that you do not open the next file until you have produced what
-this one asks for.
-
 ## The question this phase answers
 
 What does the client actually need, and has this been designed before? Nothing else. This phase does not
@@ -18,9 +13,6 @@ so Phase 2 has something real to decompose.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — read what already
-   exists for this topic, gate on the feature inventory, gather requirements and stories — and nothing else;
-   this phase never invokes another agent.**
 2. **BEFORE anything else in this phase ⟶ state your OBJECTIVE (the capability or product you were actually
    asked to design, taken from the brief) and your EXIT CONDITION (the checkable state that means the design
    holds — every artifact traces to a story, every recommendation carries its OPEX line, per this chain's own
@@ -52,19 +44,15 @@ so Phase 2 has something real to decompose.
 6. **ALWAYS produce requirements + user stories** (Gherkin + acceptance) for the IN-scope features, once the
    inventory (or its revision) is signed off.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- N/A — no `import:` target this phase, every LOAD line here is `ref:` (lazy).
 - ref:agent/grimorio.solution-architect/project.md#what-we-already-run-reuse-first--check-here-before-proposing-anything —
   step 3's own read-existing-first target.
 - ref:agent/grimorio.solution-architect/SKILL.md#the-process--the-sequence-gated-you-cannot-skip-forward — the
   Gate-0/feature-inventory/requirements sequence in full (step 0 through step 2 of that section), this phase's
   own operative source.
-- **NEVER load decomposition, design, tech-selection, widening, recommendation, or persistence specifics here**
-  — each is a later phase's own question, and pulling any of them in now front-loads a decision this phase
-  does not make.
 
-## PHASE 1 DELIVERABLE — do not read Phase 2 until this is filled
+## PHASE 1 DELIVERABLE
 
 ```
 OBJECTIVE:                <the capability or product actually asked for, verbatim from the brief>
@@ -80,9 +68,3 @@ HUMAN SIGN-OFF:            <confirmed / awaiting — nothing downstream proceeds
 REQUIREMENTS + STORIES:    <the Gherkin + acceptance stories for IN-scope features, or "N/A — awaiting sign-off
                            above">
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:agent/grimorio.solution-architect/solution-architect-phases/phase-2-scope-and-decompose.md
-next, carrying forward: the signed feature/scope inventory and the requirements + user stories above.** Phase 2
-decomposes what this phase established — it does not re-gather or re-verify any of it.
