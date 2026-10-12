@@ -1,10 +1,5 @@
 # Frontend Developer — Phase 4: STORYBOOK — STORY PER NAMED STATE
 
-**NEVER read ref:agent/grimorio.ui-developer/phases/phase-5-verify-and-report.md until
-THIS phase's own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.**
-Phase 5 verifies the dev runtime and Storybook's own rendered output against what this phase actually writes;
-reading ahead without real Stories on disk is verifying nothing.
-
 ## The question this phase answers
 
 How is each named state materialized so it can be inspected/critiqued externally, by `agent:grimorio.ux`? This
@@ -80,38 +75,7 @@ artifact that replaces the old UX-mockup-writing step.
    what Storybook itself is for**, the same materialize-states-correctly concern the unstyled-render trap above
    already guards.
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step —
-  step 2's own survey-before-writing step, scoped to the Stories/`.stories.tsx` folder for this domain.
-  FINGERPRINT: STORIES WRITTEN field below (a Story set that actually reuses or extends an existing Story,
-  rather than duplicating one, cannot be produced without applying this discipline first).
-- import:skill/grimorio.frontend-development (specifically Section 3 named states, Section 4 Storybook) — step
-  5's own install/preview-config/story-folder mechanics.
-  FINGERPRINT: STORIES WRITTEN field below (a Story set that actually follows this project's own Storybook
-  mechanics cannot be produced without this section).
-- import:agent/grimorio.ui-developer/memory/project.md (specifically its own "Storybook" section: viewport
-  list, the mandatory-Story component list, the unstyled-render trap, the `RunCostMeter` hidden-below-`lg`
-  inverse trap) — step 5's own project-specific conventions.
-  FINGERPRINT: STORIES WRITTEN + PREVIEW-CSS CONFIRMED fields below (a Story set covering the mandatory
-  component list, at the right viewports, avoiding both known traps, cannot be produced without this section).
-- import:skill/grimorio.javascript — authoring conventions every written Story must follow.
-  FINGERPRINT: STORIES WRITTEN field below (a `.stories.tsx` file that actually follows this project's own
-  authoring conventions cannot be produced without it).
-- import:skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm
-  + import:skill/grimorio.working-memory#the-folder — step 4's own gate, tier, isolation, and per-child folder
-  rules.
-  FINGERPRINT: FAN-OUT DECISION field below (a real gate evaluation, spawn, or solo declaration cannot be
-  produced without applying this ladder and folder convention).
-- import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — step 4a's own
-  bug-order step, scoped to a Story-layer bug Phase 1 flagged (carried forward via Phase 2 -> Phase 3's own
-  `BUG-REPORT CARRIED FORWARD` field).
-  FINGERPRINT: BUG-FIX-FIRST-TEST field below (a real failing-test-first sequence, distinct from an unchecked
-  "N/A," cannot be produced without applying this mandatory order first).
-- **NEVER load DAL sections (Phase 2's own closed question) or `development-patterns` (Phase 3's own closed
-  question) here.**
-
-## PHASE 4 DELIVERABLE — do not read Phase 5 until this is filled
+## PHASE 4 DELIVERABLE
 
 ```
 ROUTE:                     <FIRST-PASS, RE-ENTRY, or CHILD, per step 1>
@@ -141,18 +105,8 @@ ARTIFACTS CARRIED FORWARD:       <DAL package (Phase 2) + components/pages (Phas
                             needs" is a legitimate CHILD-route answer>
 ```
 
-## Hard hand-off
+## Hand-off
 
-**BEFORE this phase's own hand-off fires, on ANY route ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.ui-developer/phases/phase-4-storybook-story-per-state.md`)
-and this phase's own filled PHASE 4 DELIVERABLE block, written to disk first per that gate's own algorithm —
-this applies on the CHILD route too, even though it has no next-phase file to gate a read against: the gate
-runs against the CLOSE itself there, reporting back to the parent's own `tmp/<child-id>/work`+`notes`.**
-
-**WHEN the route above is FIRST-PASS or RE-ENTRY ⟶ ALWAYS read
-ref:agent/grimorio.ui-developer/phases/phase-5-verify-and-report.md next, carrying
-forward: STORIES WRITTEN and everything carried forward, unconditionally.** Phase 5 consumes exactly what this
-phase produced — it does not re-derive any of it. **WHEN the route above is CHILD ⟶ this chain ends here —
-report the written Story back to your own `tmp/<child-id>/work`+`notes` and close your turn, never reading
-Phase 5.**
+**WHEN this invocation is a fanned-out CHILD (step 1b) ⟶ report the written Story to your own
+`tmp/<child-id>/work` and `notes` and `--on child`; otherwise, on the FIRST-PASS and RE-ENTRY routes alike,
+`--on continue`.**

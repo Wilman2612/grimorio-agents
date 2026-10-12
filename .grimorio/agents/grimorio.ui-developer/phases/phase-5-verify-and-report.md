@@ -3,8 +3,7 @@ DAL-layer symptom, to Phase 3 on a component/page symptom OR a Story-only sympto
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own `ui-dev-note.md` is
 actually written (Pipeline mode) and its `## Close` line is set — UNLESS a loop-back below fires, in which
-case this phase's own close is deferred until the fix re-converges clean.** There is no Phase 6 to defer an
-unfinished field to.
+case this phase's own close is deferred until the fix re-converges clean.**
 
 ## The question this phase answers
 
@@ -14,11 +13,6 @@ artifact the rest of the pipeline reads.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node, terminal on a clean
-   pass — verify `dev:fake`, verify typecheck, classify any failure, write `ui-dev-note.md`, close — with TWO
-   distinct possible LOOP-BACK edges (to Phase 2 on a DAL-layer symptom, to Phase 3 on a component/page symptom
-   OR a Story-only symptom — two named sub-cases within the SAME edge, never a third edge); no spawn anywhere
-   in this phase.**
 2. **ALWAYS verify the project's `dev:fake` runtime boots against fake data — FOREGROUND, never backgrounded**,
    per import:skill/grimorio.build-protocol/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park
    — invoke synchronously and BLOCK on the result; never dispatch to the background and idle.
@@ -32,7 +26,7 @@ artifact the rest of the pipeline reads.
    - **a Story-only symptom** (the underlying component/page is fine; only its `.stories.tsx` file, or its
      Fake-fixture selection, is wrong) **⟶ LOOP-BACK-UI to Phase 3, naming what broke — sub-case (b), Story-only
      symptom.** Phase 3 does not fix this itself — its own RE-ENTRY branch passes the named Story issue through
-     unchanged to Phase 4, via the SAME forward hand-off a converged component fix already uses; this is still
+     unchanged to Phase 4 on the ordinary `continue` route; this is still
      the SAME LOOP-BACK-UI edge to Phase 3, never a new edge to Phase 4.
    **NEVER emit a bare "re-run" — always name the specific broken piece, which loop-back it routes to, and, on
    LOOP-BACK-UI, which of the two named sub-cases above it is.**
@@ -132,36 +126,10 @@ features:
 - loading: a skeleton grid renders before data resolves.
 ```
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:agent/grimorio.ui-developer/memory/project.md#dev-fake-runtime — the exact boot command and what
-  "boots" means, step 2's own load.
-  FINGERPRINT: DEV:FAKE BOOT RESULT field below (a real, verified boot result cannot be produced without
-  knowing this project's own boot command).
-- import:skill/grimorio.build-protocol/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park —
-  steps 2-3's own foreground-run discipline.
-  FINGERPRINT: DEV:FAKE BOOT RESULT + TYPECHECK RESULT fields below (a genuinely foreground-run, non-parked
-  result for either check cannot be produced without this discipline).
-- import:skill/grimorio.build-protocol/build-protocol.md (specifically its `## OUTPUT` template,
-  "Who commits" section, and "REWORK mode" section) — steps 5, 6, 7 above apply these directly.
-  FINGERPRINT: UI-DEV-NOTE PATH + COMMIT ACTION TAKEN + REWORK CYCLE APPENDED fields below (a dev-note in the
-  shared shape, a correct commit call, and a correctly-appended REWORK section cannot be produced without these
-  sections).
-- import:skill/grimorio.feature-workflow#artifact-directory-structure — where `ui-dev-note.md` is written, and
-  the REWORK cycle's own Prompt Template that instructs updating it on the next pass.
-  FINGERPRINT: UI-DEV-NOTE PATH field below (the correct pipeline path cannot be produced without this
-  structure).
-- import:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11
-  — the CLOSE contract, step 8's own load.
-  FINGERPRINT: CLOSE field below (a real VERIFIED-naming-evidence or COULD-NOT-naming-the-blocker close, never
-  a self-graded status, cannot be produced without this contract).
-- **NEVER load the DAL/component/Storybook build conventions here** — this phase only verifies and reports what
-  earlier phases already produced.
-
 ## PHASE 5 DELIVERABLE
 
 ```
-DEV:FAKE BOOT RESULT:       <boots clean / failed, naming the error, per step 2>
+DEV FAKE BOOT RESULT:       <boots clean / failed, naming the error, per step 2>
 TYPECHECK RESULT:            <passes / fails, naming the error, per step 3>
 LOOP-BACK CLASSIFICATION:     <LOOP-BACK-DAL (naming what broke) / LOOP-BACK-UI — sub-case (a) component/page
                              symptom (naming what broke) / LOOP-BACK-UI — sub-case (b) Story-only symptom
@@ -178,21 +146,8 @@ CLOSE:                           <VERIFIED, naming the completion-criteria evide
                              outstanding>
 ```
 
-## Terminal state — hand-off ONLY on a fired loop-back
+## Hand-off
 
-**BEFORE this phase's own report is reported to the caller ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.ui-developer/phases/phase-5-verify-and-report.md`) and
-this phase's own filled PHASE 5 DELIVERABLE block, written to disk first per that gate's own algorithm — this
-applies WHEN no loop-back fires, or a fired one already re-converged clean; this phase has no terminal
-NEXT-phase file to gate a read against on that route, so the gate runs against the CLOSE itself.**
-
-**WHEN no loop-back fires ⟶ this chain ends here.** `ui-dev-note.md` is written (Pipeline mode), `## Status`
-and `## Close` are emitted, and this phase closes VERIFIED or COULD NOT to the caller — no further phase. A
-subsequent invocation starts fresh at Phase 0 (ref:agent/grimorio.ui-developer/behavior.md), never
-resumed mid-chain from this file. **WHEN LOOP-BACK-DAL fired ⟶ apply the SAME fingerprint-gate algorithm
-against this phase's own filled DELIVERABLE (naming the fired loop-back), THEN ALWAYS read
-ref:agent/grimorio.ui-developer/phases/phase-2-build-the-dal-layer.md next, naming what
-broke.** **WHEN LOOP-BACK-UI fired ⟶ apply the same gate, THEN ALWAYS read
-ref:agent/grimorio.ui-developer/phases/phase-3-build-components-and-pages.md next, naming
-what broke.** This phase's own close is deferred in either case, never emitted on an outstanding loop-back.
+**WHEN LOOP-BACK-DAL fired (step 4) ⟶ `--on loop-back-dal`, naming what broke; WHEN LOOP-BACK-UI fired ⟶
+`--on loop-back-ui`, naming what broke and which of the two sub-cases it is; this phase's close is deferred in either
+case, never emitted on an outstanding loop-back; otherwise `--on done`.**

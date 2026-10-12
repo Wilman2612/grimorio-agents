@@ -1,10 +1,5 @@
 # Frontend Developer — Phase 1: PLAN
 
-**NEVER read ref:agent/grimorio.ui-developer/phases/phase-2-build-the-dal-layer.md until
-THIS phase's own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.**
-Phase 2 builds the DAL layer against the scope THIS phase declares; reading ahead without a real MODE, a real
-data-access answer, and real TRAPS CHECKED is building against nothing.
-
 ## The question this phase answers
 
 What UI slice was I actually asked to build, does a plan exist for it, how does data reach the frontend, and is
@@ -32,11 +27,6 @@ assumed.**
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — determine mode,
-   check for a missing plan, detect REWORK, read the pipeline artifacts (Pipeline mode only), resolve the
-   data-access-strategy question, and search `developer-memory/project.traps.md` — and nothing else; no spawn
-   anywhere in this phase.** This agent never invokes another agent, in any phase, ever, except a same-type
-   `haiku` child from Phase 3's or Phase 4's own FAN-OUT BRANCH — never from here.
 2. **BEFORE reading anything else ⟶ state your OBJECTIVE (the UI slice you were actually asked to build, taken
    from your invocation prompt) and your EXIT CONDITION (Phase 5's own `## Completion criteria` checklist, all
    items holding).**
@@ -72,36 +62,7 @@ assumed.**
 8. **ALWAYS run a SEARCH-FIRST precedent pass against `developer-memory/project.traps.md`** for anything
    relevant to this domain/task — known gotchas, prior findings a future build should not silently repeat.
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:skill/grimorio.reasoning-principles — the objective/exit-condition contract, step 2 above applies.
-  FINGERPRINT: OBJECTIVE + EXIT CONDITION fields below (a real objective/exit-condition pair, distinct from a
-  restated task description, cannot be produced without this contract).
-- import:skill/grimorio.build-protocol/build-protocol.md (specifically its "Missing-plan refusal",
-  "Pipeline vs Standalone mode", and "Bug report → mandatory order" sections) — steps 3-5 above apply these
-  directly.
-  FINGERPRINT: MODE + MISSING-PLAN CHECK + REWORK/BUG-REPORT DETECTED fields below (a real mode determination,
-  a real refusal-or-proceed call, and a real REWORK/bug-report detection cannot be produced without applying
-  these three sections).
-- import:skill/grimorio.agent-tiers/refusal-pattern.md — the refusal triad + the charter-vs-hard
-  boundary test, step 4's own load, jointly with the bullet above.
-  FINGERPRINT: MISSING-PLAN CHECK field below, jointly with the build-protocol.md bullet above.
-- import:skill/grimorio.feature-workflow#artifact-directory-structure — the pipeline artifact directory
-  structure step 6 above reads from.
-  FINGERPRINT: ARTIFACTS READ field below (a real per-artifact read under the correct `tmp/features/{slug}/`
-  directory, distinct from a guessed layout, cannot be produced without knowing this structure).
-- import:agent/grimorio.ui-developer/memory/project.md#data-access-strategy — the concrete decision rule step 7
-  resolves against.
-  FINGERPRINT: DATA-ACCESS-STRATEGY ANSWER field below (a real resolved answer, distinct from an invented
-  per-task split, cannot be produced without this rule).
-- import:agent/grimorio.ui-developer/memory/project.traps.md — the known-traps index step 8 searches.
-  FINGERPRINT: TRAPS CHECKED field below (a real search result, distinct from an unchecked "none," cannot be
-  produced without opening this index).
-- **NEVER load `frontend-development`'s DAL/Storybook mechanics, `development-patterns`, or `javascript`
-  here** — each is a later phase's own question, and pulling any of them in now front-loads a decision this
-  phase does not make.
-
-## PHASE 1 DELIVERABLE — do not read Phase 2 until this is filled
+## PHASE 1 DELIVERABLE
 
 ```
 OBJECTIVE:                <the UI slice actually asked for, verbatim from the invocation, per step 2>
@@ -119,18 +80,8 @@ TRAPS CHECKED:              <what was found in developer-memory/project.traps.md
                            "None found relevant", per step 8>
 ```
 
-## Hard hand-off
+## Hand-off
 
-**BEFORE reading ref:agent/grimorio.ui-developer/phases/phase-2-build-the-dal-layer.md ⟶
-apply import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.ui-developer/phases/phase-1-plan.md`) and this phase's
-own filled PHASE 1 DELIVERABLE block, written to disk first per that gate's own algorithm — the read below now
-runs on that gate's own PASS, never on the block merely existing in context.**
-
-**WHEN the MISSING-PLAN CHECK above did NOT refuse ⟶ ALWAYS read
-ref:agent/grimorio.ui-developer/phases/phase-2-build-the-dal-layer.md next, carrying
-forward: MODE, ARTIFACTS READ, DATA-ACCESS-STRATEGY ANSWER, and REWORK/BUG-REPORT DETECTED, unconditionally.**
-Phase 2 consumes all of it to build against — none of it is re-derived there. **WHEN the MISSING-PLAN CHECK
-above DID refuse ⟶ this chain ends here; report the refusal per
-ref:agent/grimorio.ui-developer/phases/phase-5-verify-and-report.md's own `## OUTPUT`
-shape, `## Close: COULD NOT`, rather than continuing to Phase 2 on work you already found unplannable-by-you.**
+**WHEN the MISSING-PLAN CHECK (step 4) refused ⟶ `--on refused`, and report the refusal per
+ref:agent/grimorio.ui-developer/phases/phase-5-verify-and-report.md's own `## OUTPUT` shape, `## Close: COULD NOT`,
+rather than continuing on work you already found unplannable-by-you; otherwise `--on continue`.**

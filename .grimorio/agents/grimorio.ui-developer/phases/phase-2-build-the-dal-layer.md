@@ -1,10 +1,5 @@
 # Frontend Developer — Phase 2: BUILD-THE-DAL-LAYER
 
-**NEVER read ref:agent/grimorio.ui-developer/phases/phase-3-build-components-and-pages.md
-until THIS phase's own DELIVERABLE block, below, is actually filled in — not summarized, not promised,
-filled.** Phase 3's own components/pages import the interface, the Functional Core, and the repository factory
-this phase produces; reading ahead without them written to disk is building against nothing.
-
 ## The question this phase answers
 
 What is the decoupled data-access contract, and its two implementations? This phase does not build a single
@@ -45,7 +40,7 @@ adapter, the Real adapter, the Functional Core, and the repository factory, as O
    phase touches production code.
 3b. **WHEN Phase 1 flagged a component/page or Story-layer bug instead (never DAL — already handled by step 3a
    above) ⟶ this phase never acts on it: restate that flag verbatim in this phase's own DELIVERABLE below
-   (`BUG-REPORT CARRIED FORWARD`) and forward it, unconditionally, to Phase 3 via this phase's own Hard hand-off
+   (`BUG-REPORT CARRIED FORWARD`), where Phase 3 reads it
    — the layer that actually owns it applies the mandatory order, never this one.** This fires on the FIRST-PASS
    route only, mirroring step 1a's own "skip steps 2-3" RE-ENTRY exclusion (this sub-step is part of that same
    step-3 family): a RE-ENTRY invocation is a repair pass over what Phase 5 itself just named, not a relay of
@@ -63,40 +58,7 @@ adapter, the Real adapter, the Functional Core, and the repository factory, as O
    imports, importable by Vitest.
 8. **ALWAYS provide a repository factory** — one FILE per domain, the single place that picks Fake vs Real.
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:skill/grimorio.code-harness — the co-located code-guardrail system and the upward lookup discipline,
-  step 2's own load.
-  FINGERPRINT: HARNESS LOOKUP DONE field below (a real upward lookup, distinct from an asserted "checked,"
-  cannot be produced without applying this discipline).
-- import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step —
-  step 3's own survey-before-writing step, scoped to this domain's own DAL folder.
-  FINGERPRINT: SURVEY NOTES field below, jointly with INTERFACE FILE + FAKE ADAPTER + REAL ADAPTER + FUNCTIONAL
-  CORE + REPO FACTORY (a real survey result, distinct from an unchecked "none," and the written files that
-  actually reuse or extend what that survey found, cannot be produced without applying this discipline first).
-- import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — step 3a's own
-  bug-order step, scoped to a DAL-layer bug Phase 1 flagged.
-  FINGERPRINT: BUG-FIX-FIRST-TEST field below (a real failing-test-first sequence, distinct from an unchecked
-  "N/A," cannot be produced without applying this mandatory order first).
-- import:skill/grimorio.frontend-development (specifically Section 1 the Dependency Rule, Section 2 Functional
-  Core / Imperative Shell, Section 3 named states) — steps 4, 5, 7, 8 build directly against these sections.
-  FINGERPRINT: INTERFACE FILE + FUNCTIONAL CORE + REPO FACTORY + FAKE ADAPTER fields below (a real interface,
-  a pure Functional Core, a single-place factory, and a Fake adapter covering all named states cannot be
-  produced without this architecture).
-- import:agent/grimorio.ui-developer/memory/project.md#ui-developer-scope--concrete-folder-paths — the verified
-  concrete file paths and naming conventions every written file below resolves against, including whether the
-  Real adapter carries a `server-only` guard in THIS project.
-  FINGERPRINT: every file-path/naming sub-field inside INTERFACE FILE, FAKE ADAPTER, REAL ADAPTER, FUNCTIONAL
-  CORE, and REPO FACTORY below (a correctly-placed, correctly-named file cannot be produced without this
-  pointer — never hardcoded from memory).
-- import:skill/grimorio.javascript — authoring conventions every written file below must follow.
-  FINGERPRINT: INTERFACE FILE + FAKE ADAPTER + REAL ADAPTER + FUNCTIONAL CORE + REPO FACTORY fields below,
-  jointly with the two bullets above (a file that actually follows this project's own conventions cannot be
-  produced without it).
-- **NEVER load `development-patterns`, Storybook conventions, or the fan-out ladder here** — this phase is
-  never fanned out and never builds a component or a Story.
-
-## PHASE 2 DELIVERABLE — do not read Phase 3 until this is filled
+## PHASE 2 DELIVERABLE
 
 ```
 ROUTE:                     <FIRST-PASS or RE-ENTRY, per step 1>
@@ -118,20 +80,3 @@ REAL ADAPTER:                  <path + whether it carries server-only, per the v
 FUNCTIONAL CORE:               <path + confirmed no web-framework runtime import>
 REPO FACTORY:                   <path + confirms one file per domain>
 ```
-
-## Hard hand-off
-
-**BEFORE reading ref:agent/grimorio.ui-developer/phases/phase-3-build-components-and-pages.md
-⟶ apply import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.ui-developer/phases/phase-2-build-the-dal-layer.md`) and
-this phase's own filled PHASE 2 DELIVERABLE block, written to disk first per that gate's own algorithm — both
-the FIRST-PASS and RE-ENTRY routes now run on that gate's own PASS, never on the block merely existing in
-context.**
-
-**ALWAYS read ref:agent/grimorio.ui-developer/phases/phase-3-build-components-and-pages.md
-next, carrying forward: INTERFACE FILE + FAKE ADAPTER + FUNCTIONAL CORE + REPO FACTORY, unconditionally, on
-BOTH the FIRST-PASS and RE-ENTRY routes — AND, per step 3b above, BUG-REPORT CARRIED FORWARD, unconditionally
-too (real content or its own "N/A"), so Phase 3 can apply its own bug-order step against a component/page-layer
-bug, or relay a Story-layer bug on to Phase 4 in turn.** Unlike Phase 3/4's own two-different-loop-back
-convergence, this phase's own hand-off never branches — Phase 3 always consumes exactly this package, whether
-it was just built fresh or just repaired.

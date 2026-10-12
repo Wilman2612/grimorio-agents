@@ -1,0 +1,149 @@
+{
+  "agent": "grimorio.ui-developer",
+  "entry": "1",
+  "phases": [
+    {
+      "id": "1",
+      "file": ".grimorio/agents/grimorio.ui-developer/phases/phase-1-plan.md",
+      "desc": "PLAN",
+      "loads": [
+        "skill/grimorio.reasoning-principles",
+        "skill/grimorio.build-protocol/build-protocol.md",
+        "skill/grimorio.agent-tiers/refusal-pattern.md",
+        "skill/grimorio.feature-workflow#artifact-directory-structure",
+        "agent/grimorio.ui-developer/memory/project.md#data-access-strategy",
+        "agent/grimorio.ui-developer/memory/project.traps.md"
+      ],
+      "fingerprints": {
+        "skill/grimorio.reasoning-principles": "OBJECTIVE + EXIT CONDITION",
+        "skill/grimorio.build-protocol/build-protocol.md": "MODE + MISSING-PLAN CHECK + REWORK/BUG-REPORT DETECTED",
+        "skill/grimorio.agent-tiers/refusal-pattern.md": "MISSING-PLAN CHECK",
+        "skill/grimorio.feature-workflow#artifact-directory-structure": "ARTIFACTS READ",
+        "agent/grimorio.ui-developer/memory/project.md#data-access-strategy": "DATA-ACCESS-STRATEGY ANSWER",
+        "agent/grimorio.ui-developer/memory/project.traps.md": "TRAPS CHECKED"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "produces-exempt": [
+        "refused"
+      ],
+      "next": {
+        "continue": "2",
+        "refused": "END"
+      }
+    },
+    {
+      "id": "2",
+      "file": ".grimorio/agents/grimorio.ui-developer/phases/phase-2-build-the-dal-layer.md",
+      "desc": "BUILD-THE-DAL-LAYER",
+      "loads": [
+        "skill/grimorio.code-harness",
+        "skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step",
+        "skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order",
+        "skill/grimorio.frontend-development",
+        "agent/grimorio.ui-developer/memory/project.md#ui-developer-scope--concrete-folder-paths",
+        "skill/grimorio.javascript"
+      ],
+      "fingerprints": {
+        "skill/grimorio.code-harness": "HARNESS LOOKUP DONE",
+        "skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step": "SURVEY NOTES + INTERFACE FILE + FAKE ADAPTER + REAL ADAPTER + FUNCTIONAL CORE + REPO FACTORY",
+        "skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order": "BUG-FIX-FIRST-TEST",
+        "skill/grimorio.frontend-development": "INTERFACE FILE + FUNCTIONAL CORE + REPO FACTORY + FAKE ADAPTER",
+        "agent/grimorio.ui-developer/memory/project.md#ui-developer-scope--concrete-folder-paths": "INTERFACE FILE + FAKE ADAPTER + REAL ADAPTER + FUNCTIONAL CORE + REPO FACTORY",
+        "skill/grimorio.javascript": "INTERFACE FILE + FAKE ADAPTER + REAL ADAPTER + FUNCTIONAL CORE + REPO FACTORY"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "3"
+      }
+    },
+    {
+      "id": "3",
+      "file": ".grimorio/agents/grimorio.ui-developer/phases/phase-3-build-components-and-pages.md",
+      "desc": "BUILD-COMPONENTS-AND-PAGES",
+      "loads": [
+        "skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step",
+        "skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order",
+        "skill/grimorio.development-patterns",
+        "skill/grimorio.javascript",
+        "skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm",
+        "skill/grimorio.working-memory#the-folder"
+      ],
+      "fingerprints": {
+        "skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step": "SURVEY NOTES",
+        "skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order": "BUG-FIX-FIRST-TEST",
+        "skill/grimorio.development-patterns": "COMPONENTS/PAGES BUILT",
+        "skill/grimorio.javascript": "COMPONENTS/PAGES BUILT",
+        "skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm": "DECOMPOSE DECLARATION + FAN-OUT DECISION",
+        "skill/grimorio.working-memory#the-folder": "DECOMPOSE DECLARATION + FAN-OUT DECISION"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "4",
+        "child": "END"
+      }
+    },
+    {
+      "id": "4",
+      "file": ".grimorio/agents/grimorio.ui-developer/phases/phase-4-storybook-story-per-state.md",
+      "desc": "STORYBOOK — STORY PER NAMED STATE",
+      "loads": [
+        "skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step",
+        "skill/grimorio.frontend-development",
+        "agent/grimorio.ui-developer/memory/project.md",
+        "skill/grimorio.javascript",
+        "skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm",
+        "skill/grimorio.working-memory#the-folder",
+        "skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order"
+      ],
+      "fingerprints": {
+        "skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step": "STORIES WRITTEN",
+        "skill/grimorio.frontend-development": "STORIES WRITTEN",
+        "agent/grimorio.ui-developer/memory/project.md": "STORIES WRITTEN + PREVIEW-CSS CONFIRMED",
+        "skill/grimorio.javascript": "STORIES WRITTEN",
+        "skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm": "FAN-OUT DECISION",
+        "skill/grimorio.working-memory#the-folder": "FAN-OUT DECISION",
+        "skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order": "BUG-FIX-FIRST-TEST"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "5",
+        "child": "END"
+      }
+    },
+    {
+      "id": "5",
+      "file": ".grimorio/agents/grimorio.ui-developer/phases/phase-5-verify-and-report.md",
+      "desc": "VERIFY-AND-REPORT",
+      "loads": [
+        "agent/grimorio.ui-developer/memory/project.md#dev-fake-runtime",
+        "skill/grimorio.build-protocol/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park",
+        "skill/grimorio.build-protocol/build-protocol.md",
+        "skill/grimorio.feature-workflow#artifact-directory-structure",
+        "skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11"
+      ],
+      "fingerprints": {
+        "agent/grimorio.ui-developer/memory/project.md#dev-fake-runtime": "DEV FAKE BOOT RESULT",
+        "skill/grimorio.build-protocol/build-protocol.md#run-every-test--build--render-step-foreground--never-background-and-park": "DEV FAKE BOOT RESULT + TYPECHECK RESULT",
+        "skill/grimorio.build-protocol/build-protocol.md": "UI-DEV-NOTE PATH + COMMIT ACTION TAKEN + REWORK CYCLE APPENDED",
+        "skill/grimorio.feature-workflow#artifact-directory-structure": "UI-DEV-NOTE PATH",
+        "skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11": "CLOSE"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "loop-back-dal": "2",
+        "loop-back-ui": "3",
+        "done": "END"
+      }
+    }
+  ]
+}

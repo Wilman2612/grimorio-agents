@@ -1,10 +1,5 @@
 # Frontend Developer — Phase 3: BUILD-COMPONENTS-AND-PAGES
 
-**NEVER read ref:agent/grimorio.ui-developer/phases/phase-4-storybook-story-per-state.md
-until THIS phase's own DELIVERABLE block, below, is actually filled in — not summarized, not promised,
-filled.** Phase 4 writes Stories against the components/pages this phase actually builds; reading ahead without
-them on disk is materializing states for components that do not exist.
-
 ## The question this phase answers
 
 What are the presentational components and Imperative-Shell pages that consume the Functional Core Phase 2
@@ -30,8 +25,7 @@ something real to check the decomposition against.
      re-entry from Phase 5's own LOOP-BACK-UI classification: **sub-case (a)**, a component/page symptom — fix
      ONLY the named component/page Phase 5 identified, nothing else; **sub-case (b)**, a Story-only symptom —
      this phase touches NO component/page (nothing is wrong there) and instead passes the named Story issue
-     forward UNCHANGED to Phase 4, via this phase's own existing unconditional forward hand-off below, never a
-     new edge.
+     forward UNCHANGED to Phase 4 in this phase's deliverable, on the ordinary `continue` route.
    - **CHILD branch**: a SELF node alone — build ONLY the one component/page named in your own brief, nothing
      else — WHEN this invocation is itself a fanned-out child of THIS phase's own FAN-OUT BRANCH.
 
@@ -84,7 +78,7 @@ something real to check the decomposition against.
    never drop it silently.**
 3b. **WHEN Phase 2's own `BUG-REPORT CARRIED FORWARD` field instead names a Story-layer bug (not
    component/page) ⟶ this phase does not act on it — restate it verbatim in this phase's own DELIVERABLE below
-   and forward it, unconditionally, to Phase 4, via this phase's own existing unconditional forward hand-off** —
+   for Phase 4 to read, on the ordinary `continue` route** —
    the same pass-through shape RE-ENTRY sub-case (b) above already uses for a Phase-5-detected Story-only
    symptom, reused here for a Phase-1-detected one. This fires on the FIRST-PASS branch only, for the same
    reason step 3a above is FIRST-PASS-only.
@@ -92,31 +86,7 @@ something real to check the decomposition against.
    Functional Core call, fed the repository factory's result, per Phase 2's own package). On the CHILD branch,
    this step is scoped to the one assigned item alone.
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step —
-  step 2's own survey-before-writing step, scoped to the components/pages this task touches.
-  FINGERPRINT: SURVEY NOTES field below (a real survey result, distinct from an unchecked "none," cannot be
-  produced without applying this discipline first).
-- import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — step 3a's own
-  bug-order step, scoped to a component/page-layer bug Phase 1 flagged (carried forward via Phase 2's own
-  `BUG-REPORT CARRIED FORWARD` field).
-  FINGERPRINT: BUG-FIX-FIRST-TEST field below (a real failing-test-first sequence, distinct from an unchecked
-  "N/A," cannot be produced without applying this mandatory order first).
-- import:skill/grimorio.development-patterns — mandatory patterns, structural limits, the COMMENT rule.
-  FINGERPRINT: COMPONENTS/PAGES BUILT field below (a component/page that actually follows this project's own
-  architecture cannot be produced without it).
-- import:skill/grimorio.javascript — authoring conventions, jointly with the bullet above.
-  FINGERPRINT: COMPONENTS/PAGES BUILT field below, jointly with the `development-patterns` bullet above.
-- import:skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm
-  + import:skill/grimorio.working-memory#the-folder — step 3's own gate, tier, isolation, and per-child folder
-  rules.
-  FINGERPRINT: DECOMPOSE DECLARATION + FAN-OUT DECISION fields below (a real gate evaluation, spawn, or solo
-  declaration cannot be produced without applying this ladder and folder convention).
-- **NEVER load `frontend-development`'s DAL sections (Phase 2's own closed question) or Storybook sections
-  (Phase 4's own closed question) here.**
-
-## PHASE 3 DELIVERABLE — do not read Phase 4 until this is filled
+## PHASE 3 DELIVERABLE
 
 ```
 ROUTE:                     <FIRST-PASS, RE-ENTRY, or CHILD, per step 1>
@@ -150,23 +120,8 @@ DAL ARTIFACTS CARRIED FORWARD: <INTERFACE FILE + FAKE ADAPTER + FUNCTIONAL CORE 
                             CHILD-route answer>
 ```
 
-## Hard hand-off
+## Hand-off
 
-**BEFORE this phase's own hand-off fires, on ANY route ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.ui-developer/phases/phase-3-build-components-and-pages.md`)
-and this phase's own filled PHASE 3 DELIVERABLE block, written to disk first per that gate's own algorithm —
-this applies on the CHILD route too, even though it has no next-phase file to gate a read against: the gate
-runs against the CLOSE itself there, reporting back to the parent's own `tmp/<child-id>/work`+`notes`.**
-
-**WHEN the route above is FIRST-PASS or RE-ENTRY ⟶ ALWAYS read
-ref:agent/grimorio.ui-developer/phases/phase-4-storybook-story-per-state.md next, carrying
-forward: COMPONENTS/PAGES BUILT and the DAL artifacts carried forward, unconditionally — and, on RE-ENTRY
-sub-case (b) specifically, the named Story issue from FIX TARGET (RE-ENTRY ONLY) above.** That field's own
-sub-case (a)/(b) label IS the signal Phase 4 reads to tell a genuinely fixed component it must re-story from a
-Story-only issue it must fix directly — never assume either sub-case by default; read the label. **ALWAYS ALSO
-carry forward, on FIRST-PASS specifically, this phase's own `BUG-REPORT CARRIED FORWARD` field (step 3b),
-unconditionally (real content or its own "N/A") — so Phase 4 can apply its own bug-order step against a
-Story-layer bug Phase 1 originally flagged.** Phase 4 consumes exactly what this phase produced — it does not
-re-derive any of it. **WHEN the route above is CHILD ⟶ this chain ends here — report the built component/page
-back to your own `tmp/<child-id>/work`+`notes` and close your turn, never reading Phase 4.**
+**WHEN this invocation is a fanned-out CHILD (step 1b) ⟶ report the built component/page to your own
+`tmp/<child-id>/work` and `notes` and `--on child`; otherwise, on the FIRST-PASS and RE-ENTRY routes alike,
+`--on continue`.**
