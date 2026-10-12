@@ -1,11 +1,5 @@
 # Go Developer — Phase 1: SEARCH-FIRST
 
-**NEVER read
-ref:agent/grimorio.go-developer/phases/phase-2-plan-read-arch-decision.md until THIS
-phase's own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Phase 2's
-own contract-read consumes this phase's own traps/precedent list "so the contract-read is not done blind to
-prior gotchas" — reading ahead without it written is starting Phase 2 with nothing to consume.
-
 ## The question this phase answers
 
 What does grimorio already know about THIS specific task — precedent, known Go-service traps, prior invocations
@@ -40,11 +34,6 @@ assumed.**
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — read the invocation,
-   determine what this task touches, search `./project.traps.md` and `developer-memory/project.traps.md` against it —
-   and nothing else; no spawn anywhere in this phase.** This agent never invokes another agent from Phase 1 —
-   the only agent this chain ever spawns is a same-type `haiku` child from Phase 3's own FAN-OUT BRANCH, never
-   from here.
 2. **BEFORE reading anything else ⟶ state your OBJECTIVE (the task you were actually asked to build/fix, taken
    from your invocation prompt) and your EXIT CONDITION (Phase 5's own Completion criteria, all items
    holding).**
@@ -61,24 +50,7 @@ assumed.**
    `arch-decision.md`. **WHEN nothing adjacent is named or implied ⟶ state that plainly rather than inventing
    precedent.**
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:skill/grimorio.reasoning-principles — the objective/exit-condition contract, step 2 above applies.
-  FINGERPRINT: OBJECTIVE + EXIT CONDITION fields below (a real objective/exit-condition pair, distinct from a
-  restated task description, cannot be produced without this contract).
-- import:agent/grimorio.go-developer/memory/project.traps.md — this agent's own concrete Go-service traps, step 3's own
-  targeted search.
-  FINGERPRINT: TRAPS CHECKED (OWN) field below (a real search result against this large corpus, distinct from
-  an unchecked "none," cannot be produced without opening this index).
-- import:agent/grimorio.go-developer/memory/project.traps.md — the shared cross-language traps index, step 4's own
-  search.
-  FINGERPRINT: TRAPS CHECKED (SHARED) field below (a real search result, distinct from an unchecked "none,"
-  cannot be produced without opening this index).
-- **NEVER load `arch-decision.md`, `grimorio.golang`, `grimorio.game-patterns`, the fan-out ladder, or the
-  determinism-verification checklist here** — each is a later phase's own question, and pulling any of them in
-  now front-loads a decision this phase does not make.
-
-## PHASE 1 DELIVERABLE — do not read Phase 2 until this is filled
+## PHASE 1 DELIVERABLE
 
 ```
 OBJECTIVE:                <the task actually asked for, verbatim from the invocation, per step 2>
@@ -90,16 +62,3 @@ TRAPS CHECKED (SHARED):     <what was found in developer-memory/project.traps.md
 PRECEDENT NOTED:             <an adjacent prior contract/module this task builds on, or "None named or
                            implied", per step 5>
 ```
-
-## Hard hand-off
-
-**BEFORE reading ref:agent/grimorio.go-developer/phases/phase-2-plan-read-arch-decision.md
-⟶ apply import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.go-developer/phases/phase-1-search-first.md`) and this
-phase's own filled PHASE 1 DELIVERABLE block, written to disk first per that gate's own algorithm — the read
-below now runs on that gate's own PASS, never on the block merely existing in context.**
-
-**ALWAYS read ref:agent/grimorio.go-developer/phases/phase-2-plan-read-arch-decision.md
-next, carrying forward: OBJECTIVE, EXIT CONDITION, TRAPS CHECKED (OWN), TRAPS CHECKED (SHARED), and PRECEDENT
-NOTED, unconditionally.** Phase 2 consumes all of it while reading the architecture contract — none of it is
-re-derived there.

@@ -1,10 +1,5 @@
 # Go Developer — Phase 2: PLAN-READ-ARCH-DECISION
 
-**NEVER read ref:agent/grimorio.go-developer/phases/phase-3-implement.md until THIS phase's
-own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Phase 3 builds
-against the scoped module list and wire-contract shapes THIS phase produces; reading ahead without them is
-implementing against nothing.
-
 ## The question this phase answers
 
 What does the contract require me to build, and am I actually equipped — a real plan exists — to build it? This
@@ -14,11 +9,6 @@ check, so Phase 3 never starts implementing against an unread or absent plan.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — walk the upward
-   harness lookup, determine MODE, read the architecture contract, scope the module/file list, run the
-   missing-plan-refusal check, detect REWORK/bug-report mode — and nothing else; no spawn anywhere in this
-   phase.** This agent never invokes another agent from Phase 2 — the only agent this chain ever spawns is a
-   same-type `haiku` child from Phase 3's own FAN-OUT BRANCH, never from here.
 2. **BEFORE your FIRST read of any target file this pass ⟶ do the upward ref:skill/harness.md lookup** (target file's
    folder → repo root) and obey every co-located guardrail found — this IS the chain's first file-reading/
    scoping phase, per
@@ -52,30 +42,7 @@ check, so Phase 3 never starts implementing against an unread or absent plan.
    the contract** — so the contract-read is not done blind to a gotcha this project has already paid for once
    (a flow-field/boids/morale/collision/economy pattern this task's own module touches, if any).
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:skill/grimorio.code-harness — the co-located code-guardrail system and the upward lookup discipline,
-  step 2's own load.
-  FINGERPRINT: HARNESS LOOKUP DONE field below (a real upward lookup, distinct from an asserted "checked,"
-  cannot be produced without applying this discipline).
-- import:skill/grimorio.build-protocol/build-protocol.md (specifically its "Pipeline vs Standalone
-  mode", "Missing-plan refusal", and "Bug report → mandatory order" sections) — steps 3, 5, 6 above apply these
-  directly.
-  FINGERPRINT: MODE + MISSING-PLAN CHECK + REWORK/BUG-REPORT DETECTED fields below (a real mode determination, a
-  real refusal-or-proceed call, and a real REWORK/bug-report detection cannot be produced without applying these
-  three sections).
-- import:skill/grimorio.agent-tiers/refusal-pattern.md — the refusal triad + the charter-vs-hard
-  boundary test, step 5's own load, jointly with the bullet above.
-  FINGERPRINT: MISSING-PLAN CHECK field below, jointly with the build-protocol.md bullet above.
-- import:agent/grimorio.go-developer/memory/project.md#conventions-we-chose — this project's hard-invariant list
-  and the exact backend-service name/directory, step 4's own scoping grounds against.
-  FINGERPRINT: SCOPED MODULE/FILE LIST field below (a correctly-bounded scope, never a guess or an invented
-  service name, cannot be produced without this pointer).
-- **NEVER load `grimorio.golang`, `grimorio.game-patterns`, the fan-out ladder, or the determinism-verification
-  checklist here** — each is Phase 3's or Phase 4's own question, and pulling any of it in now front-loads a
-  decision this phase does not make.
-
-## PHASE 2 DELIVERABLE — do not read Phase 3 until this is filled
+## PHASE 2 DELIVERABLE
 
 ```
 HARNESS LOOKUP DONE:        <the upward harness.md chain walked, any guardrail found and obeyed, per step 2>
@@ -92,24 +59,8 @@ TRAPS/PRECEDENT CONSUMED:       <how Phase 1's own findings informed this contra
                             Phase 1 found none relevant">
 ```
 
-## Hard hand-off
+## Hand-off
 
-**BEFORE this phase's own hand-off fires, in EITHER direction below ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.go-developer/phases/phase-2-plan-read-arch-decision.md`)
-and this phase's own filled PHASE 2 DELIVERABLE block, written to disk first per that gate's own algorithm —
-both routes below now run on that gate's own PASS, never on the block merely existing in context.**
-
-**WHEN the MISSING-PLAN CHECK above did NOT refuse ⟶ ALWAYS read
-ref:agent/grimorio.go-developer/phases/phase-3-implement.md next, carrying forward:
-OBJECTIVE, EXIT CONDITION, MODE, CONTRACT READ, SCOPED MODULE/FILE LIST, WIRE-CONTRACT SHAPES, and
-REWORK/BUG-REPORT DETECTED, unconditionally — OBJECTIVE and EXIT CONDITION are Phase 1's own fields, received by
-this phase and re-forwarded here unchanged, per ref:skill/grimorio.phase-splitting#progressive-revelation--mechanical-never-judgment's
-own "restate, inside a later phase's own file, any fact that phase depends on" rule, never dropped merely
-because this phase does not itself consume them; CONTRACT READ joins them because Phase 5's own Completion
-criteria, first bullet ("the architecture contract was actually read this invocation"), needs it as its own
-cited evidence, and it was never forwarded past this point before this fix.** Phase 3 consumes all of it to
-build against — none of it is re-derived there. **WHEN the MISSING-PLAN CHECK above DID
-refuse ⟶ this chain ends here; report the refusal per
-ref:agent/grimorio.go-developer/phases/phase-5-write-dev-notes-report.md's own `## OUTPUT`
-shape, `## Close: COULD NOT`, rather than continuing to Phase 3 on work you already found unplannable-by-you.**
+**WHEN the MISSING-PLAN CHECK refused (step 5) ⟶ `--on refused`, reporting the refusal per
+ref:agent/grimorio.go-developer/phases/phase-5-write-dev-notes-report.md's own `## OUTPUT` shape, `## Close: COULD NOT`,
+rather than continuing to Phase 3 on work you already found unplannable-by-you; otherwise `--on continue`.**

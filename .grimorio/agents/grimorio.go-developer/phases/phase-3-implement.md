@@ -1,10 +1,5 @@
 # Go Developer — Phase 3: IMPLEMENT
 
-**NEVER read
-ref:agent/grimorio.go-developer/phases/phase-4-verify-determinism-and-invariants.md until
-THIS phase's own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.**
-Phase 4 verifies the diff THIS phase actually produces; reading ahead without it on disk is verifying nothing.
-
 ## The question this phase answers
 
 How do I build/fix this correctly, inside the service's own layout, keeping the functional core pure? This
@@ -99,47 +94,15 @@ something real to check the decomposition against.
    not the shared TS contracts, not another language's backend service. **WHEN a change is needed in another
    layer ⟶ write it as a note for the owning developer in `dev-notes.md`, never make it yourself.**
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- import:skill/grimorio.golang — layout, error handling, concurrency, determinism traps, hot-loop performance.
-  Read FIRST, before either of the two skills below.
-  FINGERPRINT: MODULE(S) BUILT field below (Go code that actually follows this project's own layout/error/
-  concurrency/determinism conventions cannot be produced without it).
 - WHEN this project declares a `project.`-prefixed simulation or content-model skill ⟶ load it BEFORE
   touching that layer. Conditional because the skill is the project's: an installation without one has
   nothing to load. Here it is the project's own simulation/content-model skill — the data-vs-code boundary, the content-model shape (Type Object,
   Component, data templates), and the diagnostics that catch a per-variant `if` before it ships. MANDATORY
   before touching any unit/weapon/structure/terrain-effect/rule system.
-  FINGERPRINT: MODULE(S) BUILT field below, jointly with the `grimorio.golang` bullet above (a unit/weapon/
-  structure/rule-system change that stays DATA-shaped, never a per-variant `if`, cannot be produced without
-  this).
-- import:skill/grimorio.development-patterns — mandatory patterns, structural limits, and the sparse-comments
-  rule.
-  FINGERPRINT: MODULE(S) BUILT field below, jointly with the two bullets above.
-- import:skill/grimorio.build-protocol/build-protocol.md#survey-before-writing-mandatory-first-step —
-  step 2's own survey-before-writing step.
-  FINGERPRINT: SURVEY NOTES field below (a real survey result, distinct from an unchecked "none," cannot be
-  produced without applying this discipline first).
-- import:agent/grimorio.go-developer/memory/project.traps.md — this agent's own concrete Go-service traps, step 2a's own
-  REACTIVE consultation, scoped narrowly to whichever risky zone the assigned module(s) actually touch (distinct
-  from Phase 1's own PROACTIVE full-corpus search — this load is triggered and narrow, never a repeat of that
-  pass).
-  FINGERPRINT: RISKY-ZONE CONSULTED field below (a real reactive consultation result naming the zone and any
-  gotcha found, distinct from an unchecked "N/A," cannot be produced without opening this index when a risky
-  zone is actually touched).
-- import:skill/grimorio.build-protocol/build-protocol.md#bug-report--mandatory-order — step 3's own
-  bug-order step.
-  FINGERPRINT: BUG-FIX-FIRST-TEST field below (a real failing-test-first sequence, distinct from an unchecked
-  "N/A," cannot be produced without applying this mandatory order first).
-- import:skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm
-  + import:skill/grimorio.working-memory#the-folder — step 4's own gate, tier, isolation, and per-child folder
-  rules.
-  FINGERPRINT: FAN-OUT DECISION field below (a real gate evaluation, spawn, or solo declaration cannot be
-  produced without applying this ladder and folder convention).
-- **NEVER load `arch-decision.md` (Phase 2's own closed question), the determinism-verification checklist
-  (Phase 4's own closed question), or the OUTPUT template (Phase 5's own closed question) here.**
 
-## PHASE 3 DELIVERABLE — do not read Phase 4 until this is filled
+## PHASE 3 DELIVERABLE
 
 ```
 ROUTE:                     <FIRST-PASS or CHILD, per step 1>
@@ -161,24 +124,7 @@ DIFF SUMMARY:                   <files touched + lines changed, own + any merged
                             own hand-off>
 ```
 
-## Hard hand-off
+## Hand-off
 
-**BEFORE this phase's own hand-off fires, on EITHER route ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.go-developer/phases/phase-3-implement.md`) and this
-phase's own filled PHASE 3 DELIVERABLE block, written to disk first per that gate's own algorithm — this
-applies on the CHILD route too, even though it has no next-phase file to gate a read against: the gate runs
-against the CLOSE itself there, reporting back to the parent's own `tmp/<child-id>/work`+`notes`.**
-
-**WHEN the route above is FIRST-PASS ⟶ ALWAYS read
-ref:agent/grimorio.go-developer/phases/phase-4-verify-determinism-and-invariants.md next,
-carrying forward: OBJECTIVE, EXIT CONDITION, MODE, CONTRACT READ, WIRE-CONTRACT SHAPES, REWORK/BUG-REPORT
-DETECTED, SURVEY NOTES, BUG-FIX-FIRST-TEST, MODULE(S) BUILT, and DIFF SUMMARY, unconditionally — the first six
-arrive from Phase 2's own hand-off (OBJECTIVE/EXIT CONDITION originally Phase 1's) and are re-forwarded here
-unchanged; SURVEY NOTES and BUG-FIX-FIRST-TEST join them from this SAME phase's own DELIVERABLE — SURVEY NOTES
-because Phase 5's own `## Abstractions Reused` section needs it, BUG-FIX-FIRST-TEST because Phase 5's own
-Completion criteria, second bullet ("WHEN the task was a bug report, the failing test actually ran and actually
-failed BEFORE any production code changed"), needs it as its own cited evidence on the bug-report path — and
-none of these eight is otherwise re-derivable once Phase 4 opens this file alone.** Phase 4 consumes exactly
-what this phase produced, plus this carried-forward set — it does not re-derive any of it. **WHEN the route above is CHILD ⟶ this chain ends here — report the
-built file/package back to your own `tmp/<child-id>/work`+`notes` and close your turn, never reading Phase 4.**
+**WHEN this invocation is a fanned-out CHILD (step 1) ⟶ report the built file/package to your own
+`tmp/<child-id>/work` and `notes` and `--on child`; otherwise (FIRST-PASS) `--on continue`.**
