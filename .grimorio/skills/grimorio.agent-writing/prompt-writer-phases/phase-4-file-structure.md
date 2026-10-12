@@ -5,7 +5,7 @@
 ## Steps
 
 1. **ALWAYS write the files to disk yourself.**
-2. **ALWAYS put a phase file's loads, exit conditions and graph in its chain manifest, never in the phase file.**
+2. **ALWAYS put a phase file's loads and exit conditions in its chain manifest, never in the phase file.**
    Any other file declares its loads in one block, one line per target, each target cited once.
 3. **ALWAYS keep a shell to what the agent does and its one behavior entry point.** Everything it does goes in the
    behavior file; **WHEN Phase 2 derived a Vision ⟶ write it as the Vision file in the agent's `design/` folder.**

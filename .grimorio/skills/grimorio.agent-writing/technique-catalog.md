@@ -86,7 +86,8 @@ techniques any prompt engineer uses; PART 2 holds grimorio's own, each group nam
 ### D — Phases (ref:skill/grimorio.phase-splitting)
 
 - **D1 — A phase is its own file** (M). It carries its steps, its deliverable, and WHEN each exit condition
-  applies; its loads, its exit conditions and its graph live in the chain manifest, which the engine prints.
+  applies; its loads and exit conditions live in the chain manifest, which the engine prints. A phase that only executes owes
+  no graph step; the graph is the plan of an agent that plans (F6).
 - **D2 — The engine reveals the next file** (M). A phase file never says "do not read the next phase": the next
   file's path exists only in the engine's answer to `next`.
 - **D3 — A real boundary** (M). A distinct question, deliverable and knowledge, or no boundary. *Probe:* give an

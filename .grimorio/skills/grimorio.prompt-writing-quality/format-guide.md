@@ -137,9 +137,9 @@ tolerated debt from before the store existed, never a second valid form to keep 
 The grammar exists so a dead reference is findable; it is never a licence to cite. **ALWAYS make a reference
 something the reader will OPEN at that step** — anything else is plain text, or nothing.
 
-- **A phased agent declares its loads, its exit conditions and its graph in its chain manifest**; the engine prints
-  them at every step. **NEVER repeat them in a phase file** — no LOAD section, no "do not read the next phase", no
-  graph statement, no `next` command where the phase has a single exit.
+- **A phased agent declares its loads and its exit conditions in its chain manifest**; the engine prints them at
+  every step. **NEVER repeat them in a phase file** — no LOAD section, no "do not read the next phase", no `next`
+  command where the phase has a single exit.
 - **A file that is not a phase declares its loads ONCE**, as one block, one line per target:
   `import:skill/<x> — <the step that needs it>`. NEVER a justification paragraph per line.
 - **Cite a target once per file.** After the first reference, name its section in prose; NEVER re-cite the same
