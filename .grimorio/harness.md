@@ -14,9 +14,9 @@ and reword the passage. If BEHAVIOUR could change, it is a PROMPT. If only the p
 RECORD.
 
 **ALWAYS apply that test per SECTION, never per file.** A prompt file legitimately contains sections
-that are not instructions — the evidence behind a rule, a worked example, the incident that earned it.
-**NEVER force an opener onto one of those.** A measurement written as `ALWAYS the count was 258` is
-nonsense, and a checker that demands it will teach you to write nonsense to satisfy it.
+that are not instructions — a worked example, an output skeleton, a decision table. **NEVER force an
+opener onto one of those.** What a prompt never carries — provenance, evidence, the incident behind a
+rule — is set by ref:skill/grimorio.prompt-writing-quality, "WHAT A PROMPT CONTAINS".
 
 ## CHECK — answer these before you finish the edit, not after
 
@@ -24,8 +24,7 @@ nonsense, and a checker that demands it will teach you to write nonsense to sati
 names an omission the rule alone has already failed to prevent in this repo.
 
 1. **Did every clause I added open with ALWAYS / NEVER / BEFORE / WHEN — or CHECK?** A bolded sentence
-   with no opener is prose, and the reader owes prose nothing. This is the exact defect the CEO caught
-   in ref:skill/grimorio.prompt-reading/SKILL.md on 2026-08-09: a file about how rules bind, written without any.
+   with no opener is prose, and the reader owes prose nothing.
 2. **Did every conditional carry `⟶`?** `WHEN <trigger> ⟶ <action>`, never a colon, never `→`.
 3. **Did I remove, supersede or relocate something — or is this diff pure ADDITION?** A file that only
    grows is a file nobody is maintaining.

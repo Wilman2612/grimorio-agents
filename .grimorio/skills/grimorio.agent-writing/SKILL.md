@@ -741,7 +741,7 @@ When reviewing an existing agent or skill, apply these in addition to the Qualit
 
 > For the full nine-lens audit with finding formats and an audit-report template (general to any prompt), use the **ref:skill/grimorio.prompt-writing-quality** skill. The table below is the quick reference for the agent-specific lenses while writing.
 
--> deeper: ./technique-catalog.md — the full 69-technique cold-grading instrument (a STATIC test + a PROBE design per technique, Groups A-H) both agent:grimorio.system-keeper and agent:grimorio.prompt-writer load to self-check their own authored output against; the table below is the agent-specific quick reference, that file is the complete authoring-technique standard.
+-> deeper: ./technique-catalog.md — the techniques a writer picks from, known and grimorio's own, each with a STATIC test and, where one exists, a PROBE; the table below is the agent-specific quick reference.
 
 | Lens | What to check |
 |---|---|

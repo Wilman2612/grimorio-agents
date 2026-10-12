@@ -118,24 +118,11 @@ agent's shell ⟶ it independently re-applies this SAME two-part test to the Vis
 taken on `grimorio.prompt-writer`'s own report field alone, per the "## Consumption" section below, not
 re-derived twice in this same file.
 
-## Where it is carried — the shell's own `## Vision` section
+## Where it is carried — the Vision file in the agent's own `design/` folder
 
-**ALWAYS carry a Vision on the agent's own SHELL** (`.claude/agents/grimorio.<name>.md`, or its
-`project.<name>.md` counterpart for a project-scoped agent), **as a new `## Vision` section placed AFTER the
-identity/personality prose and BEFORE the `## Behavior` block.** ->
-ref:skill/grimorio.agent-writing#the-agent-shell--identity-in-the-agent-file names this exact ordering slot for
-every other shell section in sequence; a Vision takes the same slot, never a new class of section standing
-outside that order.
-
-**NEVER carry a Vision only inside a phase file, a comment, or anywhere only the agent itself ever reads.** The
-founding reason for grounding this in the shell specifically, translated: *"that isn't documented anywhere... I
-want every agent to carry it as a design reason"* —
-cite:agent/grimorio.po/agent-purpose.md@645d8ed940b3488a0159166c83403578edb78b5a#why-it-must-be-carried-not-merely-known.
-
-A `## Vision` section is IDENTITY-ADJACENT content — the same class as the Personality paragraph already
-legitimately living in a shell, never protocol, never an output format, never a self-check. -> the rule that
-keeps a Vision-bearing shell from ever failing the shell-purity check on this basis:
-ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md#steps, check 1.
+**ALWAYS carry a Vision as its own file in the agent's `design/` folder.** It is a design document: the keeper
+and the writer read it when designing the agent or a neighbour that calls it. **NEVER put it in the shell or in
+any file the agent reads at runtime** — an executing agent never needs its own design reasons to act.
 
 ## Maintenance — FIXED at birth, revised only on a deliberate re-design
 

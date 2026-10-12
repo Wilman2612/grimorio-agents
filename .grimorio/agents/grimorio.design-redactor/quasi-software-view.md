@@ -19,7 +19,7 @@ MEASURE evidence at
 
 Same class of artifact as the two shipped precedents in this same corpus —
 `ref:agent/grimorio.design-orchestrator/quasi-software-view.md` (this agent's own sibling,
-same skill home) and `ref:skill/grimorio.agent-writing/prompt-writer-phases/prompt-writer-quasi-software-view.md`
+same skill home) and `ref:agent/grimorio.prompt-writer/design/quasi-software-view.md`
 (the closer structural match — also `disallowedTools: Agent`, also an empty GRAPH layer) — but sized to what a
 4-phase, non-recursive, single-loop-back chain actually needs, never inflated to match either precedent's own
 larger page count.
@@ -55,7 +55,7 @@ agent's own shell (`ref:repo/.claude/agents/grimorio.design-redactor.md`, frontm
 it directly for this view), and every one of the four phase files states the same fact explicitly in its own Step
 1: "this agent never invokes another agent, in any phase, ever." Zero agent-nodes is therefore the correct,
 complete rendering — the SAME empty-GRAPH shape
-`ref:skill/grimorio.agent-writing/prompt-writer-phases/prompt-writer-quasi-software-view.md#layer-1--nodes-empty-by-construction`
+`ref:agent/grimorio.prompt-writer/design/quasi-software-view.md#layer-1--nodes-empty-by-construction`
 already documents for its own sibling non-recursive chain, matched here rather than duplicated with different
 wording. **Unlike `grimorio.design-orchestrator`'s own Phase 1 (which MAY raise `grimorio.scout` on an unfamiliar
 domain), this agent's own Phase 1 carries NO such option, ever** — its own text says so explicitly (Step 1: "This
@@ -215,7 +215,7 @@ OMISSION or N/A ⟶ that is a real, currently-true state, never a placeholder.**
 stylistic one.** `disallowedTools: Agent` means this chain cannot invoke anything, ever, in any phase — there is
 no second running thing it could run concurrently WITH. The one LOOP-BACK edge (P4→P3) is a re-entry into the
 SAME single-threaded execution, never a second thread — the identical distinction
-`ref:skill/grimorio.agent-writing/prompt-writer-phases/prompt-writer-quasi-software-view.md#layer-4--parallelization-structurally-impossible`
+`ref:agent/grimorio.prompt-writer/design/quasi-software-view.md#layer-4--parallelization-structurally-impossible`
 already draws for its own sibling chain, applied here rather than re-derived.
 
 ## Layer 5 — EXPECTED OUTPUTS: WORK vs ORCHESTRATION, per phase

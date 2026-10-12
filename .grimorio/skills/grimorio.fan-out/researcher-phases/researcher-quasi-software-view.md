@@ -68,7 +68,7 @@ ref:skill/grimorio.phase-splitting/quasi-view-requirements.md#half-a--boundary-a
 Per this brief's own explicit scope, only half (a) (boundary artifact-flow) is drawn for this chain — half (b)
 (per-phase interior flowcharts + a KNOWN-ERRORS-TO-PHASE mapping) is optional per that same file and out of
 scope for this pass, exactly as it remains for
-ref:skill/grimorio.agent-writing/prompt-writer-phases/prompt-writer-quasi-software-view.md today.
+ref:agent/grimorio.prompt-writer/design/quasi-software-view.md today.
 
 **One artifact node per phase BOUNDARY, never two.** A three-phase chain has two internal boundaries
 (P1↔P2, P2↔P3) plus the terminal phase's own output reaching the caller — three artifact nodes total, never one

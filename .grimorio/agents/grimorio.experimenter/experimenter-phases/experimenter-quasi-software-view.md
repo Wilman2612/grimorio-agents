@@ -12,7 +12,7 @@ they actually say; it never invents or re-authors content independently of them,
 the five phase files is reflected here in the same pass, never left stale.
 
 Same class of artifact as
-`ref:skill/grimorio.agent-writing/prompt-writer-phases/prompt-writer-quasi-software-view.md`,
+`ref:agent/grimorio.prompt-writer/design/quasi-software-view.md`,
 `ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md`, and
 `ref:agent/grimorio.ux/phases/ux-quasi-software-view.md` — this file mirrors their shape (the same
 five-layer split, the same "at a glance" summary near the top, the same DFD grounding paragraph pattern for the

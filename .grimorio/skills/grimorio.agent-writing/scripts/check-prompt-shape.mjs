@@ -253,7 +253,7 @@ function bareReferencesAdded(file) {
 // A DESIGN DOCUMENT explains the system to whoever changes it; an executing prompt never loads one, and a
 // prompt never carries provenance (prompt-writing-quality, "WHAT A PROMPT CONTAINS"). Both are judged on
 // ADDED lines only, so a file is cleaned as it is touched rather than all at once.
-const DESIGN_DOC_RE = /(?:quasi-software-view|derivation)[\w.-]*\.md|GRIMORIO-(?:VISION|CHAIN|INDEX)\.md|ARCHITECTURE\.md|project\.vision|grimorio-vision/;
+const DESIGN_DOC_RE = /\/design\/[\w./-]+|(?:quasi-software-view|derivation)[\w.-]*\.md|GRIMORIO-(?:VISION|CHAIN|INDEX)\.md|ARCHITECTURE\.md|project\.vision|grimorio-vision/;
 const PROVENANCE_RE = /\b20\d\d-\d\d-\d\d\b|\(CEO[,)]|\bCEO ruling\b|\btranslated\b|\bhis own words\b|\b[Mm]easured\b/;
 function addedLines(file) {
   return (fullDiffSections().get(file) || []).filter((l) => l.startsWith("+") && !l.startsWith("+++")).map((l) => l.slice(1));

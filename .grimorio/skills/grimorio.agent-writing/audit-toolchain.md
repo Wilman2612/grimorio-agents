@@ -221,7 +221,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
    inside a `*-phases/` folder, named explicitly per `grimorio.code-reviewer`'s own FINDING-06 (Dispatch F,
    INFO):** only `phase-N-*.md` files inside a `*-phases/` folder are in population — a non-`phase-N` file one
    level inside the SAME folder (e.g. a saved quasi-software-view reference like
-   ref:skill/grimorio.agent-writing/prompt-writer-phases/prompt-writer-quasi-software-view.md) is currently OUTSIDE this scan's population,
+   the prompt-writer's own quasi-software view) is currently OUTSIDE this scan's population,
    even though it is equally portable, general-level content. Not a false negative today (checked live: no
    marker hit inside that specific file), but a real, narrower-than-the-stated-intent boundary — widen it if a
    future incident is ever found there, rather than assuming coverage this pass never actually built. Also

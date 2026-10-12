@@ -31,11 +31,19 @@ A prompt earns its words in exactly two ways, and a sentence serving neither is 
 - each judgement it owns, with its criterion and its check;
 - the traps: a rule exists only where the model's default would go wrong without it;
 - its inputs, and where they are;
-- what it must load, declared once (format-guide, "HOW MANY REFERENCES").
+- what it must load, declared once (format-guide, "HOW MANY REFERENCES");
+- examples that show instead of tell: exact cases (`WHEN x ⟶ y`, or a decision table) and the output format
+  followed by one real instance of it.
+
+**BEFORE you write ⟶ pick the technique for each judgement and each trap from
+ref:skill/grimorio.agent-writing/technique-catalog.md**, known techniques and grimorio's own alike, and name the
+picks in your plan.
 
 **NEVER write into a prompt:**
-- provenance: a date, an incident, a measurement, who ruled, a principal's quote. The rule stays; its story
-  goes in the commit message. Keep one clause of WHY only when the why changes what the reader does;
+- provenance: a date, an incident, who ruled, a principal's quote. The rule stays; its story goes in the
+  commit message. Keep one clause of WHY only when the why changes what the reader does;
+- a measurement as evidence. Research findings enter a prompt only as LOGIC the reader applies (a threshold, a
+  budget, a limit), never as data for it to reason from;
 - a defence against a hypothetical misreading, or an essay justifying a rule;
 - what the model already does unprompted;
 - a rule another file owns: point to it once;
@@ -370,14 +378,6 @@ You are ...
 
 ---
 
-## Anti-Overfitting Rule
-
-**If the user gave an example in the conversation, do NOT include anything remotely similar in the improved output.** Create a completely different example that demonstrates you understood the generalization, not the specific case. Reusing the user's example — even paraphrased — signals pattern matching, not understanding. A different domain, different surface, same underlying principle: that is understanding.
-
-Applies to examples illustrating a rule, anti-examples showing bad output, and any scenario used to ground an instruction. Test yourself: if the user's example was about procrastination and work, your example should involve neither — pick something structurally equivalent in an unrelated domain.
-
----
-
 ## Audit Lenses
 
 When reviewing an existing prompt, agent, or skill, apply all twelve lenses. For each, list ALL findings or write "None". Report each with its tag and a concrete quote or section reference.
@@ -466,19 +466,3 @@ Finding format: `[L12] Reference sprawl: "{ref}" — {merge into the file's one 
 ```
 
 Severity: **Critical** = breaks/mispopulates a downstream artifact (L3 in output contract, L5 missing path). **Important** = degrades quality without breaking the pipeline (L4 duplicates, L8 portability). **Minor** = cosmetic/structural (L7 bloat, L6 reordering). Every finding cites its lens tag + a concrete quote. A lens with zero findings is reported as "None". Do not merge findings from different lenses into one item.
-
----
-
-## Advanced Writing Techniques
-
-Apply in WRITE mode, after the Quality Checklist, before finalizing.
-
-**Persona injection** — give the agent an adversarial identity matching the resistance its job needs. "You are an evil security auditor" produces stronger tests than "You perform security audits." Use for evaluative/adversarial/gatekeeping roles; do NOT use for purely procedural agents (it adds friction without improving output).
-
-**Decision boundaries** — for every decision, write an explicit IF-THEN. The model fills implicit gaps with the path of least resistance (why that default wins, and the word built against it: ./control-flow-vocabulary.md#prioritize--favor--weighting-not-forcing). Anti-pattern: "handle edge cases appropriately" — name the edge case and its rule.
-
-**Failure-mode specification** — define the output for hard cases (missing input, contradicting sources, an artifact the agent cannot produce), not only the happy path. Undefined hard-case output → the agent invents something inconsistent each run.
-
-**Positive framing** — "Do X" over "Don't do Y"; positive instructions are followed more reliably. Reserve "NEVER"/"Do NOT" for prohibitions where the violation is the primary risk — using it everywhere dilutes the emphasis.
-
-**Self-check gate** — add an explicit pre-output checklist; each item names the failure it catches ("Did I read all inputs in full?", "Are findings specific — quotes/refs/field names?", "Does output match what downstream agents expect?"). Include it when output is consumed by other agents; optional for terminal output. Anti-pattern: a gate that only asks "is the output complete?" — too vague to catch a specific failure.

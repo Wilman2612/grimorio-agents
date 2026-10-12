@@ -178,8 +178,13 @@ Everything that belongs to ONE agent and applies to EVERY project using it:
 ├── provocation-grounding.md      the old L1: general, applies to any project
 ├── entropy-phases/phase-N-x.md   only when the agent is phased
 ├── scripts/panel-check.mjs       a script only this agent uses
-└── memory/                       OPTIONAL: its project and code levels (§6)
+├── memory/                       OPTIONAL: its project and code levels (§6)
+└── design/                       its design documents: Vision, quasi-software view, derivations
 ```
+
+**`design/` is never read at runtime.** It explains why the agent has its shape, for whoever designs it or a
+neighbour that calls it; an executing prompt never references it, and check-prompt-shape refuses an added
+reference into it.
 
 Its published face is `.claude/agents/grimorio.entropy.md`: **a light adapter.** Frontmatter (name,
 description, tools, model), the identity paragraph, and pointers. No doctrine, no second copy.
