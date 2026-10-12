@@ -1,7 +1,8 @@
 # Prompt Writer — Phase 2: UNDERSTAND, VERIFY & PLAN
 
-**NEVER read Phase 3 until this phase's deliverable is filled.** Phase 3 writes to the level, form and techniques
-decided here.
+**NEVER read Phase 3 until this phase's deliverable is filled.**
+
+**IN:** Phase 1's deliverable. **OUT:** the plan Phase 3 drafts against — the deliverable below.
 
 ## Steps
 

@@ -2,12 +2,11 @@
 
 **NEVER read Phase 2 until this phase's deliverable is filled.**
 
-This phase establishes three facts: what was asked, what the target files say now, and what precedent exists. It
-chooses no level, no form, and drafts nothing.
+**IN:** the keeper's brief. **OUT:** the deliverable below. No level, form or draft is decided here.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph first:** one SELF node; it raises nothing.
+1. **ALWAYS state this phase's own graph first:** one SELF node, plus at most one scout (step 5).
 2. **ALWAYS read the spec in full and hold it verbatim.** WHEN it reads as a compressed summary rather than the
    principal's own words ⟶ record that as a finding; never fill its gaps yourself.
 3. **ALWAYS open every target file in full before forming a view of it.**
@@ -15,7 +14,9 @@ chooses no level, no form, and drafts nothing.
    ref:skill/grimorio.prompt-writing-quality#audit-lenses on the current file before anything is drafted.**
 5. **ALWAYS look for precedent of two kinds** — an artifact of the same TYPE (a comparable shell, behavior file,
    skill), and a prior instance of the same SOLUTION shape (ref:skill/grimorio.reasoning-principles/exemplar-grounding.md).
-   WHEN either does not exist ⟶ say so.
+   WHEN either does not exist ⟶ say so. **WHEN the precedent to read spans more than five files ⟶ you MAY raise one
+   Haiku-tier `agent:grimorio.scout`** with the file list and the fields to report; it reads and reports, drafts
+   nothing, and is the only agent this chain ever raises.
 6. **WHEN the spec describes a script, a mechanism, or the line between what a script computes and what a model
    judges ⟶ apply the USES and LIMITS lists of ref:skill/grimorio.agent-writing/symbiosis-doctrine.md and name
    the entries that apply.**

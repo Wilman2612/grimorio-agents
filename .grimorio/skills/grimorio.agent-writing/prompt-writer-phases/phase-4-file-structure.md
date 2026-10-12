@@ -1,7 +1,8 @@
 # Prompt Writer — Phase 4: FILE STRUCTURE
 
-**NEVER read Phase 5 until this phase's deliverable is filled.** This phase assembles the drafted text into files,
-writes them, and runs the deterministic checks.
+**NEVER read Phase 5 until this phase's deliverable is filled.**
+
+**IN:** the drafted text. **OUT:** the files on disk and the deliverable below, with every check's exit code.
 
 ## Steps
 
@@ -42,6 +43,9 @@ writes them, and runs the deterministic checks.
     | 1 | a violation in the file | fix the file and re-run; after 2 retries, stop and report the output verbatim |
     | 2 | the fragment matched no file | fix the fragment, never the file; this is not a retry |
 
+13. **WHEN the pass rewrites an existing file ⟶ run `git diff --stat -- <file>`. WHEN it shows insertions and no
+    deletions ⟶ the file only grew: find what the new text replaces, remove it, and re-run.**
+
 ## PHASE 4 DELIVERABLE — do not read Phase 5 until this is filled
 
 ```
@@ -56,6 +60,7 @@ BIRTH-HARNESS WRITTEN:  <path | "N/A — not a new agent">
 UPDATE RULE:            <written into <file> | "N/A">
 CONTRACT SITES:         <sites reconciled | "N/A — no contract change">
 CHECKS:                 <one line per command: exit code>
+GROWTH:                 <insertions/deletions per rewritten file | "N/A — new files only">
 ```
 
 Example of a filled block:
@@ -72,6 +77,7 @@ BIRTH-HARNESS WRITTEN:  N/A — not a new agent
 UPDATE RULE:            N/A
 CONTRACT SITES:         N/A — no contract change
 CHECKS:                 --dead 0; --anchors 0; --graph-first 0; --examples 0; check-prompt-shape 0
+GROWTH:                 phase-3-review.md +9 −14
 ```
 
 ## Hard hand-off

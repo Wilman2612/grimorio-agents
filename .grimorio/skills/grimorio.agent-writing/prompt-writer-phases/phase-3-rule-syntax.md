@@ -1,7 +1,8 @@
 # Prompt Writer — Phase 3: RULE SYNTAX
 
-**NEVER read Phase 4 until this phase's deliverable is filled.** This phase drafts the text against Phase 2's plan,
-or against the pre-decided plan a mode handed in.
+**NEVER read Phase 4 until this phase's deliverable is filled.**
+
+**IN:** Phase 2's deliverable, or the plan a mode handed in. **OUT:** the drafted text and the deliverable below.
 
 ## Steps
 

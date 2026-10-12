@@ -26,6 +26,20 @@ A prompt earns its words in exactly two ways, and a sentence serving neither is 
    path, a lookup: whatever a script can compute is a tool or a job the prompt CALLS. NEVER write prose that
    makes a model re-derive what a script already knows (ref:skill/grimorio.agent-writing/symbiosis-doctrine.md).
 
+**A PROMPT DESCRIBES A MACHINE, NEVER A STANCE.** Every sentence sits in exactly one of four places and names
+what it connects to:
+
+| Place | It states | Example |
+|---|---|---|
+| CONTRACT | an input (from whom, in what form) or an output (to whom, in what form) | "INPUT: the keeper's brief — content verbatim, target file, level" |
+| STEP | an action inside a phase, in order, producing a named field | "Step 3: open every target in full ⟶ TARGET FILE(S) READ" |
+| CHECK | when it runs, how it decides (a command and its exit code, or a criterion with exact cases), what a failure blocks and where it goes | "Phase 4: `audit-chain --dead <file>`; exit 1 after two retries ⟶ Phase 6, CLOSE COULD NOT" |
+| EXAMPLE | one real instance of an input, a field or an output | a filled deliverable block |
+
+**WHEN a sentence fits none of the four — a value ("correctness over finishing"), a stance ("you never grade your
+own work"), a description of what another agent does ⟶ rewrite it as a CHECK at a named moment, or delete it.**
+The test: point at the step that executes it and the field or transition it changes. No pointer ⟶ it floats.
+
 **ALWAYS write, and only write:**
 - the job: what the reader produces, and what DONE looks like;
 - each judgement it owns, with its criterion and its check;
@@ -380,7 +394,7 @@ You are ...
 
 ## Audit Lenses
 
-When reviewing an existing prompt, agent, or skill, apply all twelve lenses. For each, list ALL findings or write "None". Report each with its tag and a concrete quote or section reference.
+When reviewing an existing prompt, agent, or skill, apply all thirteen lenses. For each, list ALL findings or write "None". Report each with its tag and a concrete quote or section reference.
 
 ### L1 — Language compliance
 All instruction text in English. Examples may show another language; the surrounding instruction must be English. Heuristic: scan for non-ASCII in instruction text (not in examples). Anti-pattern: flagging a non-English word that appears only inside an example output.
@@ -436,6 +450,11 @@ load, or a reference to something the reader will never open. Heuristic: would t
 this step? No → plain text or delete.
 Finding format: `[L12] Reference sprawl: "{ref}" — {merge into the file's one load line / delete / plain text}.`
 
+
+### L13 — Floating statement
+A sentence that is not a contract item, a step, a check or an example: a value, a stance, a description of another
+agent. Heuristic: name the step that executes it and the field or transition it changes; none ⟶ it floats.
+Finding format: `[L13] Floating: "{quote}" — rewrite as a check at {moment}, or delete.`
 ---
 
 ## Audit Report Format

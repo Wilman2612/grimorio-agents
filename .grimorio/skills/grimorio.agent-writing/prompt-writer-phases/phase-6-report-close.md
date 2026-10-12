@@ -1,6 +1,6 @@
 # Prompt Writer — Phase 6: REPORT & CLOSE (terminal)
 
-This phase reports what Phases 1-5 recorded and closes the run. It writes no rule text.
+**IN:** the deliverables of Phases 1-5. **OUT:** the report file and the CLOSE line. No rule text is written here.
 
 ## Steps
 
