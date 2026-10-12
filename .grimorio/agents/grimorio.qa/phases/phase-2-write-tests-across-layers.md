@@ -1,10 +1,5 @@
 # QA — Phase 2: WRITE-TESTS-ACROSS-LAYERS
 
-**NEVER read ref:agent/grimorio.qa/phases/phase-3-run-and-break-proof.md until THIS phase's own
-DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Phase 3 runs and
-break-proofs whatever this phase actually wrote; handing it a promise instead of real test files leaves it
-nothing to execute.
-
 ## The question this phase answers
 
 Given the Test Matrix (or, on a loop-back re-entry, a named fix), what test files actually get written, and
@@ -85,40 +80,7 @@ something real to check the split against.
 5. **ALWAYS include negative tests**: invalid input → typed error via Result; missing auth → 401/403; absent
    optional data → component/API handles null; the `empty`/`error` states from the brief.
 
-## RESOLVED DESIGN DECISION — this phase's own next-phase read, decided here, not left open
-
-**ALWAYS read ref:agent/grimorio.qa/phases/phase-3-run-and-break-proof.md next, unconditionally, on
-BOTH the FIRST-PASS (after steps 2-5) and RE-ENTRY (after step 1a's fix) routes above.** Unlike
-agent:grimorio.manual-verifier's own Phase 1, whose two routes diverge to two DIFFERENT next phases, these two
-routes converge on the SAME next phase — Phase 3 re-runs and re-break-proofs the fixed test exactly as it runs
-any other test, on either route, so there is no second read to choose between.
-
-**WHEN the route above is CHILD (after step 1b's single assigned test) ⟶ this phase's own next-phase read never
-fires at all — it does NOT converge on Phase 3.** A CHILD's own chain terminates at THIS phase's own
-DELIVERABLE: report the written test file back to your own `tmp/<child-id>/work`+`notes` per the parent's own
-FAN-OUT BRANCH convention (step 3.2 above) and close your turn. Phase 3 is the PARENT's own aggregate
-run-and-break-proof pass over every test — its own, plus every converged child's — together, never each child's
-own separate responsibility; running or break-proofing your own one test yourself would duplicate exactly what
-the PARENT's own Phase 3 already does once, over everything, after convergence.
-
-## LOAD (JIT) — scoped to this phase only
-
-- import:skill/grimorio.javascript — testing/authoring conventions the written test files must follow.
-  FINGERPRINT: WRITTEN TEST FILES field below (a test file that actually follows this project's own
-  conventions cannot be produced without it).
-- import:skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm —
-  step 3's own gate, tier, and isolation rules.
-  FINGERPRINT: FAN-OUT DECLARATION field below (a real gate evaluation, spawn, or solo declaration cannot be
-  produced without applying this ladder).
-- import:skill/grimorio.working-memory#the-folder — the `tmp/<child-id>/{work,notes}` convention step 3.2 uses.
-  FINGERPRINT: FAN-OUT DECLARATION field below, jointly with the bullet above.
-- import:skill/grimorio.development-patterns — the cross-layer-shortcut / frontend-importing-backend
-  architecture-boundary rule step 4 checks written tests against.
-  FINGERPRINT: WRITTEN TEST FILES field below, jointly with the `grimorio.javascript` bullet.
-- **NEVER load the break-proof protocol, the per-project run commands beyond what step 4 already cites, or the
-  failure-taxonomy here** — each belongs to a later phase alone.
-
-## PHASE 2 DELIVERABLE — do not read Phase 3 until this is filled
+## PHASE 2 DELIVERABLE
 
 ```
 ROUTE:                       <FIRST-PASS, RE-ENTRY, or CHILD, per step 1>
@@ -138,20 +100,6 @@ PRE-EXISTING FAILURES BASELINE CARRIED FORWARD: <restated unchanged from Phase 1
                             is a legitimate CHILD-route answer>
 ```
 
-## Hard hand-off
+## Hand-off
 
-**BEFORE this phase's own hand-off fires, on ANY route ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.qa/phases/phase-2-write-tests-across-layers.md`) and this phase's
-own filled PHASE 2 DELIVERABLE block, written to disk first per that gate's own algorithm — this applies on the
-CHILD route too, even though it has no next-phase file to gate a read against: the gate runs against the CLOSE
-itself there, exactly as ref:agent/grimorio.qa/phases/phase-4-report-and-close.md's own Terminal
-state section already does for its own no-next-file route.**
-
-**WHEN the route above is FIRST-PASS or RE-ENTRY ⟶ ALWAYS read
-ref:agent/grimorio.qa/phases/phase-3-run-and-break-proof.md next, carrying forward: the written test
-files (or the single fixed test, on RE-ENTRY) and the Pre-existing Failures baseline, unchanged, per the
-RESOLVED DESIGN DECISION above.** Phase 3 runs and break-proofs exactly what this phase produced — it does not
-re-derive any of it. **WHEN the route above is CHILD ⟶ this chain ends here — report the written test file back
-to your own `tmp/<child-id>/work`+`notes` and close your turn, never reading Phase 3**, per the RESOLVED DESIGN
-DECISION above.
+**WHEN this invocation is a fanned-out CHILD (step 1b) ⟶ report the written test file to your own `tmp/<child-id>/work` and `notes` and `--on child`; a child never runs or break-proofs its own test — the parent's Phase 3 runs every test together. Otherwise, on the FIRST-PASS and RE-ENTRY routes alike, `--on continue`.**

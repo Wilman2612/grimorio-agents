@@ -34,6 +34,8 @@ const runOf = (out) => out.split("\n")[0].replace("RUN ", "").trim();
 
 let r = sh("check-chain.mjs", ["--manifest", m]);
 t("check-chain passes a sound manifest", r.code === 0, r.out);
+r = sh("check-chain.mjs", ["--manifest", m, "--walk"]);
+t("check-chain --walk takes every condition through the engine", r.code === 0, r.out);
 
 let s = sh("phase-engine.mjs", ["start", "--chain", "zz", "--manifest", m]);
 r = sh("phase-engine.mjs", ["next", "--run", runOf(s.out), "--on", "child", "--manifest", m]);

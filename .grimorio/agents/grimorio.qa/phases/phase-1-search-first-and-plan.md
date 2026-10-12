@@ -1,16 +1,5 @@
 # QA — Phase 1: SEARCH-FIRST & PLAN
 
-**NEVER read ref:agent/grimorio.qa/phases/phase-2-write-tests-across-layers.md until THIS phase's own
-DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Phase 2 writes actual
-test files against the Test Matrix this phase produces; reading ahead without a real matrix is writing tests
-with nothing to write them against.
-
-**WHEN this invocation is itself a fanned-out CHILD (per step 1a below) ⟶ this gate does not apply at all —
-proceed straight to ref:agent/grimorio.qa/phases/phase-2-write-tests-across-layers.md, no PHASE 1
-DELIVERABLE block required**, because a CHILD's own brief/pipeline-artifact/Test-Matrix/baseline work was never
-performed to have anything real to gate, unlike the PARENT branch below, where steps 2-7 genuinely produce
-content worth gating.
-
 ## The question this phase answers
 
 What does the feature in front of you actually need tested, and what does the system already look like before
@@ -79,26 +68,7 @@ reason, at its own step 3.
    classify a raw suite failure against it.**
 7. **ALWAYS explore each changed file** before testing it.
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:skill/grimorio.feature-workflow#artifact-directory-structure — the pipeline artifact directory
-  structure step 3 above reads from.
-  FINGERPRINT: PIPELINE ARTIFACTS READ field below (a real per-artifact read, distinct from a guessed layout,
-  cannot be produced without knowing this structure).
-- import:agent/grimorio.qa/memory (general — specifically
-  ref:agent/grimorio.qa/memory#where-e2e-sits--the-happy-path-floor-not-an-on-demand-layer-ceo-2026-08-13 and
-  ref:agent/grimorio.qa/memory#weak-test-anti-patterns) — the E2E-floor doctrine step 4 applies, and the
-  anti-patterns the declared matrix must not fall into.
-  FINGERPRINT: TEST MATRIX field below (a matrix that actually places the E2E floor first per criterion cannot
-  be produced without this doctrine).
-- import:skill/grimorio.development-patterns — to assign each declared test's own layer correctly (unit vs
-  integration vs e2e, per the architecture's own layer boundaries).
-  FINGERPRINT: TEST MATRIX field below, jointly with the bullet above (a correctly layer-assigned matrix cannot
-  be produced without this).
-- **NEVER load the fan-out ladder, the write-per-matrix authoring conventions, the break-proof protocol, or the
-  failure-taxonomy here** — none of those are this phase's question; each belongs to a later phase alone.
-
-## PHASE 1 DELIVERABLE — do not read Phase 2 until this is filled
+## PHASE 1 DELIVERABLE
 
 ```
 THE BRIEF HELD:              <confirm what form THE BRIEF arrived in and that it was read in full — or "no
@@ -114,20 +84,6 @@ PRE-EXISTING FAILURES BASELINE: <the baseline run's own results — what already
 CHANGED-FILE EXPLORATION NOTES: <per step 7 — what was found in each changed file, before testing it>
 ```
 
-## Hard hand-off
+## Hand-off
 
-**BEFORE reading ref:agent/grimorio.qa/phases/phase-2-write-tests-across-layers.md ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.qa/phases/phase-1-search-first-and-plan.md`) and this phase's own
-filled PHASE 1 DELIVERABLE block, written to disk first per that gate's own algorithm — the read below now runs
-on that gate's own PASS, never on the block merely existing in context.**
-
-**WHEN this invocation is a fanned-out CHILD (per step 1a above) ⟶ this fingerprint-gate step does not apply
-either — ALWAYS read ref:agent/grimorio.qa/phases/phase-2-write-tests-across-layers.md next directly,
-with no PHASE 1 DELIVERABLE block and no gate check, exactly as the opening gate note above already states,
-carrying forward only the CHILD's own brief (its one assigned test spec/path).**
-
-**WHEN this invocation is the PARENT branch above ⟶ ALWAYS read
-ref:agent/grimorio.qa/phases/phase-2-write-tests-across-layers.md next, carrying forward: the Test
-Matrix and the Pre-existing Failures baseline, both produced above.** Phase 2 writes to this matrix — it does
-not re-derive it.
+**WHEN this invocation is a fanned-out CHILD (step 1a) ⟶ `--on child`; otherwise `--on continue`.**

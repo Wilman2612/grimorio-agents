@@ -1,0 +1,93 @@
+{
+  "agent": "grimorio.qa",
+  "entry": "1",
+  "phases": [
+    {
+      "id": "1",
+      "file": ".grimorio/agents/grimorio.qa/phases/phase-1-search-first-and-plan.md",
+      "desc": "SEARCH-FIRST & PLAN",
+      "loads": [
+        "skill/grimorio.feature-workflow#artifact-directory-structure",
+        "agent/grimorio.qa/memory",
+        "skill/grimorio.development-patterns"
+      ],
+      "fingerprints": {
+        "skill/grimorio.feature-workflow#artifact-directory-structure": "PIPELINE ARTIFACTS READ",
+        "agent/grimorio.qa/memory": "TEST MATRIX",
+        "skill/grimorio.development-patterns": "TEST MATRIX"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "produces-exempt": [
+        "child"
+      ],
+      "next": {
+        "continue": "2",
+        "child": "2"
+      }
+    },
+    {
+      "id": "2",
+      "file": ".grimorio/agents/grimorio.qa/phases/phase-2-write-tests-across-layers.md",
+      "desc": "WRITE-TESTS-ACROSS-LAYERS",
+      "loads": [
+        "skill/grimorio.javascript",
+        "skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm",
+        "skill/grimorio.working-memory#the-folder",
+        "skill/grimorio.development-patterns"
+      ],
+      "fingerprints": {
+        "skill/grimorio.javascript": "WRITTEN TEST FILES",
+        "skill/grimorio.fan-out#the-volume-fan-out-ladder--when-an-agent-fans-out-n-children-of-its-own-type-six-step-algorithm": "FAN-OUT DECLARATION",
+        "skill/grimorio.working-memory#the-folder": "FAN-OUT DECLARATION",
+        "skill/grimorio.development-patterns": "WRITTEN TEST FILES"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "3",
+        "child": "END"
+      }
+    },
+    {
+      "id": "3",
+      "file": ".grimorio/agents/grimorio.qa/phases/phase-3-run-and-break-proof.md",
+      "desc": "RUN & BREAK-PROOF",
+      "loads": [
+        "agent/grimorio.qa/memory#the-break-proof--a-test-you-have-not-seen-fail-is-not-evidence",
+        "agent/grimorio.qa/memory/project.md#test-frameworks-verified-against-the-repo-2026-07-20"
+      ],
+      "fingerprints": {
+        "agent/grimorio.qa/memory#the-break-proof--a-test-you-have-not-seen-fail-is-not-evidence": "BREAK-PROOF LOG",
+        "agent/grimorio.qa/memory/project.md#test-frameworks-verified-against-the-repo-2026-07-20": "RUN RESULTS"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "4",
+        "loop-back": "2"
+      }
+    },
+    {
+      "id": "4",
+      "file": ".grimorio/agents/grimorio.qa/phases/phase-4-report-and-close.md",
+      "desc": "REPORT-AND-CLOSE",
+      "loads": [
+        "skill/grimorio.feature-workflow#artifact-directory-structure"
+      ],
+      "fingerprints": {
+        "skill/grimorio.feature-workflow#artifact-directory-structure": "REPORT PATH"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "loop-back": "2",
+        "done": "END"
+      }
+    }
+  ]
+}
