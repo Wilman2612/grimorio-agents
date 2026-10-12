@@ -52,6 +52,19 @@ for (const p of m.phases || []) {
   for (const ex of p["produces-exempt"] || []) if (!(ex in (p.next || {}))) fail(`phase ${p.id}: produces-exempt names ${ex}, which is not one of its conditions`);
 }
 
+// Prose the engine replaced: a phase file that still carries it tells the agent to route itself.
+const PROSE_MACHINERY = [
+  [/^## LOAD\b/m, "a LOAD section (its imports belong in loads)"],
+  [/^## (Hard hand-off|Terminal state)/m, "a prose hand-off section (routes belong in next)"],
+  [/\b(NEVER|[Dd]o not) read\b[^\n]*(\bPhase \d|phase-\d)/, "a read-gate on another phase"],
+  [/ALWAYS state this phase's own graph/, "the graph-statement ritual"],
+];
+for (const p of m.phases || []) {
+  if (!p.file || !existsSync(join(REPO_ROOT, p.file)) || p.file.endsWith("behavior.md")) continue;
+  const text = readFileSync(join(REPO_ROOT, p.file), "utf8");
+  for (const [re, what] of PROSE_MACHINERY) if (re.test(text)) fail(`phase ${p.id}: ${p.file} still carries ${what}`);
+}
+
 const dir = dirname(manifestPath);
 const listed = new Set((m.phases || []).map((p) => basename(p.file || "")));
 for (const f of readdirSync(dir)) {

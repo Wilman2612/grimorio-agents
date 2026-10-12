@@ -98,4 +98,16 @@ if [ -n "$wp_files" ]; then
     || fail "a staged file looks like a work product landing outside tmp/ (see the lines above) -- move it to tmp/features/{slug}/ or tmp/<task-slug>/, or, if this is a deliberate new corpus convention, say so in the commit message."
 fi
 
+# 8. A staged phase file or chain.json keeps its chain walkable: every condition of the manifest that owns it
+#    is taken through the real engine (files exist, loads resolve, fingerprints parse, every phase has an exit).
+#    The engine's own selftest fixtures are deliberately malformed and are skipped.
+chain_check=".grimorio/skills/grimorio.phase-splitting/scripts/check-chain.mjs"
+manifests=$(echo "$staged" | grep -v '/selftest/fixtures/' | while read -r f; do
+  d=$(dirname "$f"); [ -f "$d/chain.json" ] && echo "$d/chain.json"; done | sort -u)
+if [ -n "$manifests" ] && [ -f "$chain_check" ]; then
+  for m in $manifests; do
+    node "$chain_check" --manifest "$m" --walk || fail "a phase chain no longer walks (see the FAIL lines above): node $chain_check --manifest $m --walk"
+  done
+fi
+
 exit 0
