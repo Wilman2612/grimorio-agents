@@ -104,7 +104,7 @@ Split out of ref:skill/grimorio.fan-out#emit-the-loop-graph-before-you-spawn-or-
 operative rule ("nothing enforces this yet, never assume a gate exists because the rule now does") stays in
 `SKILL.md`; this section holds the evidence behind it.
 
-ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has-ceo-2026-07-30--the-sessions-main-finding-translated
+ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has
 orders a hook LAST, only after a hard rule has been IGNORED — here is what was actually measured, no more: an
 in-population agent (`grimorio.qa`), tested under the corrected trigger and the dry-run mode, did not produce
 the artifact; the rule reaches only 1 of the 30 agents' own behavior files (`grimorio.delegate`'s is the one

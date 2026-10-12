@@ -250,6 +250,15 @@ function bareReferencesAdded(file) {
   return out;
 }
 
+// A DESIGN DOCUMENT explains the system to whoever changes it; an executing prompt never loads one, and a
+// prompt never carries provenance (prompt-writing-quality, "WHAT A PROMPT CONTAINS"). Both are judged on
+// ADDED lines only, so a file is cleaned as it is touched rather than all at once.
+const DESIGN_DOC_RE = /(?:quasi-software-view|derivation)[\w.-]*\.md|GRIMORIO-(?:VISION|CHAIN|INDEX)\.md|ARCHITECTURE\.md|project\.vision|grimorio-vision/;
+const PROVENANCE_RE = /\b20\d\d-\d\d-\d\d\b|\(CEO[,)]|\bCEO ruling\b|\btranslated\b|\bhis own words\b|\b[Mm]easured\b/;
+function addedLines(file) {
+  return (fullDiffSections().get(file) || []).filter((l) => l.startsWith("+") && !l.startsWith("+++")).map((l) => l.slice(1));
+}
+
 const rows = [];
 for (const file of paths.length ? paths : allPrompts()) {
   let text;
@@ -311,6 +320,13 @@ for (const file of paths.length ? paths : allPrompts()) {
         detail: `${tmpAdded.slice(0, 3).join(", ")}${tmpAdded.length > 3 ? ", ..." : ""} -- the temp folder is WRITE-only: say to write there, never load from it`,
       });
     }
+  }
+  if (addedOnly && !DESIGN_DOC_RE.test(file)) {
+    const added = addedLines(file);
+    const design = added.flatMap((l) => l.match(/(?:import|ref|cite):[^\s)`,;]+/g) || []).filter((r) => DESIGN_DOC_RE.test(r));
+    if (design.length) findings.push({ code: "DESIGN_REFERENCE_ADDED", fail: true, detail: `${design.slice(0, 3).join(", ")} -- a design document is never read at runtime; inline what the reader needs` });
+    const story = added.filter((l) => PROVENANCE_RE.test(l));
+    if (story.length) findings.push({ code: "PROVENANCE_ADDED", fail: true, detail: `"${story[0].trim().slice(0, 80)}"${story.length > 1 ? ` (+${story.length - 1} more)` : ""} -- keep the rule, move its story to the commit message` });
   }
   const w = words(text);
   const tokens = Math.round(w * TOKENS_PER_WORD);

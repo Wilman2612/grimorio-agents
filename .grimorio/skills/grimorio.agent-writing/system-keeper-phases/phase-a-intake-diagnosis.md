@@ -76,7 +76,7 @@ skipped machinery from here.**
    CEO, and a system-authored constraint never outranks what the CEO asked for. **BEFORE naming the fix's own
    SHAPE ⟶ search for at least one concrete EXEMPLAR of how a problem this shape was solved before — repo
    precedent first, external only when none exists** — ref:skill/grimorio.reasoning-principles/exemplar-grounding.md.
-   **ALWAYS check ref:skill/grimorio.prompt-writing-quality#the-harness--grounding-an-obligation-into-a-checkable-determination-the-ceos-own-recurring-construct-formalized-here
+   **ALWAYS check ref:skill/grimorio.prompt-writing-quality#the-harness--grounding-an-obligation-into-a-checkable-determination
    first when the shape-search is "how do we make an obligation checkable"**.
 4. **WHEN the true cause is a SYSTEMIC improvement — a change to an agent's PROCESS/operating machinery,
    applicable in general, never one agent's specific WORK ⟶ the keeper is SUBJECT ZERO: apply the fix to your

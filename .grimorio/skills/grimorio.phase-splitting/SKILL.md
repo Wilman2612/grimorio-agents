@@ -8,7 +8,7 @@ description: "Load before splitting one agent's long job into sequential phases,
 A job written as one front-loaded pass lets an agent skip whatever is inconvenient, including a step it holds
 in context: a rule fires only when it names an action owed INSIDE the task's own momentum, and a step outside
 that momentum goes undone.
--> ref:skill/grimorio.prompt-writing-quality#a-step-outside-the-tasks-own-sequence-goes-undone--inertia-and-ordering-ceo-translated
+-> ref:skill/grimorio.prompt-writing-quality#a-step-outside-the-tasks-own-sequence-goes-undone--inertia-and-ordering
 
 Phases remove the OPTION to skip, because the next phase cannot begin until this one produces its checkable
 deliverable.
@@ -30,7 +30,7 @@ drops — the sequential shape of the graph-of-loops in ref:skill/grimorio.loop-
 **This is prose on purpose.** Where a boundary falls, how many phases a job warrants, and whether a candidate
 phase is real or an artificial chop are judgment calls; written as an algorithm they would be read literally in
 exactly the space that needs latitude.
--> ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose-ceo-2026-07-30-translated
+-> ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose
 
 A real boundary is an ARTICULATION of the work: a distinct QUESTION, answered in order, producing a distinct
 DELIVERABLE the next phase consumes, drawing on distinct KNOWLEDGE.
@@ -108,7 +108,7 @@ a fixed amount. A phase's own "do the work" step may itself run ref:skill/grimor
 
 **NEVER treat a phase's self-contained scope as incompatible with carrying a completion gate.** Self-contained
 is what it LOADS and DECIDES; gated is how it HANDS OFF. Both hold of every phase, always.
--> the gate's own mechanics: ref:skill/grimorio.prompt-writing-quality#output-format-as-an-anti-least-resistance-device-ceo-translated
+-> the gate's own mechanics: ref:skill/grimorio.prompt-writing-quality#output-format-as-an-anti-least-resistance-device
 
 **WHEN a message arrives mid-phase and changes the plan while the receiver is EXECUTING ⟶ it corrupts the
 context that phase stands in, whether it came from inside the chain or from an outside caller.**

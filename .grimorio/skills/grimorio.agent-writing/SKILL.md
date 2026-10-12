@@ -714,7 +714,7 @@ survive as a symptom of judgment that was never moved into a script in the first
   shape (a script-run `prepare`/`finalize` pair bracketing a single Read and a single judgment-bearing
   reasoning pass) is the worked instance of this rule actually applied, not merely stated.
 
--> ref:skill/grimorio.prompt-writing-quality#the-harness--grounding-an-obligation-into-a-checkable-determination-the-ceos-own-recurring-construct-formalized-here
+-> ref:skill/grimorio.prompt-writing-quality#the-harness--grounding-an-obligation-into-a-checkable-determination
 (the OUTPUT side — exhaust measurement, judge only the residue) and
 ref:skill/grimorio.prompt-writing-quality#the-symbiosis--the-input-side-twin-of-the-harness (the INPUT side — a
 script constructs everything except the judgment-bearing residue) — cross-referenced here, never restated: THE

@@ -56,7 +56,7 @@ it cannot tell apart from success.
 
 Completeness IS exit criteria — which is why the gate below is STRUCTURAL, never left to judgment. This is the
 same mechanism
-ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has-ceo-2026-07-30--the-sessions-main-finding-translated
+ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has
 already states for a rule's own text: prose alone does not force anything, and a design's completeness needs
 the same coverage-scan discipline a hard rule needs before it can bind at all.
 

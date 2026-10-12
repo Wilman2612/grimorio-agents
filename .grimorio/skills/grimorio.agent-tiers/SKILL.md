@@ -197,7 +197,7 @@ prior results forward, and LABELLED every criterion it did not verify.
 
 **The algorithm form does not make a weaker model smarter — it makes a weaker model's corner-cutting LEGIBLE.**
 **WHEN fanning work out to Haiku on a task it might shortcut ⟶ prefer the algorithm form so the shortcut is
-visible.** -> ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose-ceo-2026-07-30-translated.
+visible.** -> ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose.
 
 Measured cost: Haiku used ~2.9× fewer tokens and finished ~5.6× faster than Sonnet on the same task; combined
 with price, roughly 6-9× cheaper. Total-token figures, no input/output split.

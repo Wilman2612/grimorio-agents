@@ -423,7 +423,7 @@ data-flow diagram, a rendered credential×route matrix, or a real C4 container v
 (reports which mermaid TYPE tokens and matrix-shaped tables exist — never judges sufficiency); the SUFFICIENCY
 judgment (does the inventory satisfy THIS gate's own required set for the concern's classified TYPE) is an
 AGENT-BASED VERIFIER step, run by grimorio.scout at Phase 6 CHECK 1 — state this composition explicitly, citing
-ref:skill/grimorio.prompt-writing-quality#the-harness--grounding-an-obligation-into-a-checkable-determination-the-ceos-own-recurring-construct-formalized-here's
+ref:skill/grimorio.prompt-writing-quality#the-harness--grounding-an-obligation-into-a-checkable-determination's
 own "exhaust the deterministic measure before judgment" discipline, never presented as if the CLI flag alone
 gates this.
 

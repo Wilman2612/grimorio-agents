@@ -38,7 +38,7 @@ agent, reading only its Vision, recognise that a handed instruction serves the w
 real objective instead?
 
 **Why a FORMAT is owed at all, rather than leaving each Vision to whatever a given pass produces** — the same
-argument ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has-ceo-2026-07-30--the-sessions-main-finding-translated
+argument ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has
 already makes for a rule's own opener, applied here to a document's own required fields instead. His own words,
 relayed via grimorio.system-keeper, translated for reading only:
 

@@ -123,7 +123,7 @@ proceeding on a level you believe is wrong. This is the SECOND of the four phase
    already applied by Phase 4's own step 3b once the edit reaches disk — not re-run here, only flagged as owed).
 4. **ALWAYS choose FORM before wording: does this rule need a LITERAL reading (algorithm — numbered steps,
    explicit IF-THEN) or LATITUDE (prose)?** ->
-   ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose-ceo-2026-07-30-translated
+   ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose
    → "FORM IS THE LATITUDE INSTRUCTION". Name which you chose and why in this phase's own DELIVERABLE — Phase 3
    writes every rule to this decision, it does not re-decide FORM per rule. **WHEN step 3c's own verdict is
    PHASES with a brand-new chain or a boundary change ⟶ this choice is provisional** — step 5 below fires before
@@ -184,7 +184,7 @@ proceeding on a level you believe is wrong. This is the SECOND of the four phase
    AND what it does not, against the complete scope, so agent:grimorio.system-keeper reviewing it can DEDUCE an
    omission from a gap, rather than approving the plan because it merely "looks" complete. A rule sitting only
    inside an imported skill, with no action named inside this task's own Steps, does not reliably fire —
-   ref:skill/grimorio.prompt-writing-quality#an-opener-is-necessary-but-not-sufficient--a-rule-must-also-name-an-action-owed-inside-the-task-main-loop--grimoriosystem-keeper-2026-08-11
+   ref:skill/grimorio.prompt-writing-quality#an-opener-is-necessary-but-not-sufficient--a-rule-must-also-name-an-action-owed-inside-the-task
    is exactly why this is stated here, as its own step, rather than left for step 5's own citations to carry
    alone.
 6. **ALWAYS state explicitly, in this phase's own DELIVERABLE, whether the SYSTEMIC process/machinery change
@@ -209,7 +209,7 @@ proceeding on a level you believe is wrong. This is the SECOND of the four phase
 - import:skill/grimorio.phase-splitting/steps-vs-phases-test.md — step 3c's own decision test, in full.
 - ref:skill/grimorio.agent-writing#how-to-decide-where-something-goes — the five-question placement ladder, this
   phase's own verification instrument.
-- ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose-ceo-2026-07-30-translated —
+- ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose —
   the algorithm-vs-prose decision.
 - ref:skill/grimorio.system-design/scope-completeness-method.md#1-the-spine--the-five-problem-types —
   Cockburn's own user-goal ("go to lunch") test, this phase's own step 2c load. Loaded ONLY WHEN the artifact

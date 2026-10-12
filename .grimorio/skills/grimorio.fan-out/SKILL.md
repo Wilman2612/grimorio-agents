@@ -430,7 +430,7 @@ groups, before deciding whether the run is worth paying for.
 questions, and only the first is settled here. The one measurement behind that: an in-population agent
 (`grimorio.qa`), tested under the corrected trigger and dry-run mode, did not produce the artifact — **that is
 ONE clean instance, not a pattern**, and it does not license a hook yet
-(ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has-ceo-2026-07-30--the-sessions-main-finding-translated
+(ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has
 orders a hook LAST, only after a hard rule is ignored on a real population, not one probe). -> deeper:
 ./measured-runs.md — the full evidence: which agents' own behavior files even carry a pointer to this rule,
 why the failure was located at REACH rather than obedience, and the full incident account.

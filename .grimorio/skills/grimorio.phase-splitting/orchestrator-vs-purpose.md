@@ -79,7 +79,7 @@ b. **LOOP + RELATIONSHIPS (parent / itself / children)** — every grimorio agen
 
 c. **KNOWN ERRORS / MEASUREMENTS / FACTS** — a purpose-driven agent's split must not repeat mistakes this corpus
    has ALREADY measured for the SPECIFIC kind of function this agent performs, not generic knowledge-loading in
-   the abstract: ref:skill/grimorio.prompt-writing-quality#a-step-outside-the-tasks-own-sequence-goes-undone--inertia-and-ordering-ceo-translated
+   the abstract: ref:skill/grimorio.prompt-writing-quality#a-step-outside-the-tasks-own-sequence-goes-undone--inertia-and-ordering
    and its sibling measured cases, ref:skill/grimorio.agent-tiers, LOST: documentation-memory (deleted 2026-10-04, recoverable at f942b355), and this project's own
    dated measurement write-ups — a general-level skill never cites that project-tree state directly, per
    ref:skill/grimorio.agent-writing#general-level-content-must-never-cite-project-level-or-code-level-state-hard-rule-ceo-ruling-2026-08-15;

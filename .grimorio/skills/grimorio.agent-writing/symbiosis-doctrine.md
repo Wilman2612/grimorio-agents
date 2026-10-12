@@ -7,7 +7,7 @@ it.
 
 ## Relationship to THE HARNESS, THE SYMBIOSIS, and THE SHAPE — read this first, never skip it as ceremony
 
-ref:skill/grimorio.prompt-writing-quality#the-harness--grounding-an-obligation-into-a-checkable-determination-the-ceos-own-recurring-construct-formalized-here
+ref:skill/grimorio.prompt-writing-quality#the-harness--grounding-an-obligation-into-a-checkable-determination
 answers, for an agent's own OUTPUT: which of its claims needs external grounding, and at what tier (deterministic
 / agent-based verifier / structural). ref:skill/grimorio.prompt-writing-quality#the-symbiosis--the-input-side-twin-of-the-harness
 answers, for an agent's own INPUT: what a script should already have constructed before an agent ever reads it,

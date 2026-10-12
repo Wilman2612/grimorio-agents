@@ -20,7 +20,7 @@ it is not, never REPEATABLE run to run. A FLOW — a drawable control structure 
 expressed as a drawable control FLOW; prose is reserved for INFORMATION, and even that INFORMATION is wrapped
 in a control structure (Rule 4, below).
 
-This is already standing doctrine, not new: ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose-ceo-2026-07-30-translated
+This is already standing doctrine, not new: ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose
 already establishes algorithm form as the literal-reading instrument and prose as the latitude instrument — the
 same WHEN/IF-ELSE/BEFORE/loop-to-drawable-control-flow translation this rule states is that section's own
 mechanism, read here as this methodology's own Rule 1, never restated a second time.

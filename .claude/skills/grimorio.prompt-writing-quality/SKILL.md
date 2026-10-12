@@ -1,6 +1,6 @@
 ---
 name: grimorio.prompt-writing-quality
-description: "Load before writing any text a model will act on: the rule form, the four openers, the reference grammar, the audit lenses."
+description: "Load before writing any text a model will act on: what a prompt contains and what it never does, the rule form, the reference grammar, the audit lenses."
 ---
 
 # Grimorio Prompt Writing Quality - Claude Code adapter

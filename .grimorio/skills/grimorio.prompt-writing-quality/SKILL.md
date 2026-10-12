@@ -1,6 +1,6 @@
 ---
 name: grimorio.prompt-writing-quality
-description: "Load before writing any text a model will act on: the rule form, the four openers, the reference grammar, the audit lenses."
+description: "Load before writing any text a model will act on: what a prompt contains and what it never does, the rule form, the reference grammar, the audit lenses."
 ---
 
 # Prompt Writing Quality
@@ -16,11 +16,40 @@ The concrete SYNTAX every rule here is written in lives in two companion files, 
 
 > **Relationship to ref:skill/grimorio.agent-writing#the-split-principle--the-agent-is-who-it-is-the-skill-is-what-it-does**: the split line is *how to write it* versus *where it goes*. HOW — the craft and the syntax, including the two companion files above — lives HERE, because this is the skill every prompt-author is forced to load. WHERE — grimorio's four-level placement doctrine (behavior · general · project · code), the personality/behavior split, the memory-skill layout, and ref:skill/grimorio.agent-writing/output-placement.md for where an agent's output format belongs — stays in ref:skill/grimorio.agent-writing. Use both together: structure from there, craft and syntax from here.
 
-## HARD RULES ARE THE ONLY MECHANISM PROSE HAS (CEO, 2026-07-30 — the session's main finding, translated)
+## WHAT A PROMPT CONTAINS — substance before form
 
-> *"I can give you a lot of knowledge, a lot of skill, a lot of everything. The issue is: if I don't force you
-> to do things with hard prefixes — ALWAYS, NEVER, BEFORE, WHEN — you won't do it. I can even tell you 'read
-> this skill' and you'll read it, but if the skill itself doesn't say DO THIS, you won't do it."*
+A prompt earns its words in exactly two ways, and a sentence serving neither is cut:
+
+1. **A clear way of thinking.** The judgements the reader owns, the criterion for each, and the check that proves
+   each was met (THE HARNESS, below).
+2. **Delegation of what is deterministic.** Phase order, what each phase loads, a synthesis pass, a count, a
+   path, a lookup: whatever a script can compute is a tool or a job the prompt CALLS. NEVER write prose that
+   makes a model re-derive what a script already knows (ref:skill/grimorio.agent-writing/symbiosis-doctrine.md).
+
+**ALWAYS write, and only write:**
+- the job: what the reader produces, and what DONE looks like;
+- each judgement it owns, with its criterion and its check;
+- the traps: a rule exists only where the model's default would go wrong without it;
+- its inputs, and where they are;
+- what it must load, declared once (format-guide, "HOW MANY REFERENCES").
+
+**NEVER write into a prompt:**
+- provenance: a date, an incident, a measurement, who ruled, a principal's quote. The rule stays; its story
+  goes in the commit message. Keep one clause of WHY only when the why changes what the reader does;
+- a defence against a hypothetical misreading, or an essay justifying a rule;
+- what the model already does unprompted;
+- a rule another file owns: point to it once;
+- a mechanism's build status, a known gap, a baseline from a previous pass;
+- a procedure a script already runs: call the script.
+
+**NEVER load a DESIGN DOCUMENT at runtime.** Vision, architecture, chain maps, phase-map derivations and
+quasi-software views explain why the system has its shape, for whoever changes it. An executing agent never
+reads one: whatever it needs from one is written into its prompt as an instruction.
+
+**BEFORE a sentence ships ⟶ delete it in your head. WHEN the reader would act the same without it ⟶ it does not
+ship.**
+
+## HARD RULES ARE THE ONLY MECHANISM PROSE HAS
 
 **There are exactly four openers, and anything else is prose:**
 
@@ -62,49 +91,25 @@ this skill's own sibling files, `./format-guide.md` and `./control-flow-vocabula
 writing the rule itself, this section when deciding whether it needs one. Where an agent's OUTPUT FORMAT is
 allowed to live at all is a different, PLACEMENT question and stays in ref:skill/grimorio.agent-writing/output-placement.md.
 
-### AN OPENER IS NECESSARY BUT NOT SUFFICIENT — a rule must also name an ACTION owed INSIDE the task (main loop / grimorio.system-keeper, 2026-08-11)
+### AN OPENER IS NECESSARY BUT NOT SUFFICIENT — a rule must also name an ACTION owed INSIDE the task
 
-The section above (ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has-ceo-2026-07-30--the-sessions-main-finding-translated)
+The section above (ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has)
 established that a rule needs one of the four openers to bind at all. What follows sharpens that: an opener
 gets you INTO the rule form, but whether the rule then FIRES depends on what it names once you're there.
 
-**A hard rule fires when it names an ACTION the agent owes INSIDE the task it was given — not when it names a
-STATE, and not when it sits beside the work.** Controlled comparison, same task, same tier, same session: the
-identical rule stated directly as a line of the brief FIRED (complete objective, exit condition, population,
-command, VERIFIED); the identical rule quoted under "this is context about the project, not part of your task"
-did NOT fire (absent entirely) — **measured n=1 per arm, thin, treat as open, not settled.** Four clauses already
-on record independently confirm the same shape (not part of this one comparison, but corroborating it), and all
-four name a step INSIDE executing the task — reading the upward `harness.md` chain before touching a file,
-surveying before writing code, loading this skill before writing a prompt, writing the output in the required
-language. The one clause repeatedly measured NOT firing names a method to hold BESIDE unrelated work, with no
-action stated inline — true of nearly any investigative task.
+**A hard rule fires when it names an ACTION the agent owes INSIDE the task it was given** — not when it names a
+STATE, and not when it sits beside the work.
 
-**Identity is what makes an agent REFUSE, not what makes it take an extra step.** A second, separate comparison,
-both arms already in hard-rule form (so this is not about a missing opener): "BEFORE you analyse a problem ⟶
-load `X`" fired; "ALWAYS act as this kind of agent... NEVER improvise your own method, yours is defined in `X`"
-did not — **measured n=1 per arm, thin, treat as open, not settled.** Both are hard rules; only the first names
-an ACTION ("load"). The identity form was observed working elsewhere, but only as a REFUSAL — an agent citing its
-own charter to refuse a caller's order, three times in one session. **A refusal follows from who you are; a load
-follows from an action you owe in the work in front of you.** Do not read the first comparison as "make every
-rule an identity statement" — that produces refusals, not compliance, and does nothing for a rule whose job is to
-make the agent DO something.
+**Identity makes an agent REFUSE; an action owed makes it take a step.** "ALWAYS act as this kind of agent" yields
+refusals; "BEFORE you analyse ⟶ load X" yields the load. Write the action.
 
-**A brief position is not privileged because of WHERE it sits — it is privileged because brief text defaults to
-being read as a step, and that default can be suppressed by framing.** The same reference, moved bare into a
-caller's brief with no surrounding prose, fired reliably where the identical construct in ambient `CLAUDE.md` did
-not — but placed IN THE BRIEF and explicitly labelled "context, not part of your task," it did NOT fire, same
-location, same wording, only the framing changed. Several `CLAUDE.md` rules fire reliably from ambient context
-precisely because they read as steps inside the task by their own wording — location and framing were confounded
-at first; framing is what actually decides it.
+**Framing decides, not position.** A rule placed in a brief but labelled "context, not part of your task" does not
+fire; the same rule written as a step of the task does.
 
-**WHEN authoring a rule you expect a brief to carry to a spawned child ⟶ do not assume it fires reliably below
-Sonnet tier.** Every "the brief compels a load" result on record is a Sonnet result; in the same session a
-Haiku-tier agent, spawned with a brief carrying a direct, gate-guaranteed skill-load instruction, loaded nothing —
-not even the separately-guaranteed instruction the same gate forces into every prompt. One direct measurement
-contradicts the assumption; treat it as open, not settled. -> ref:skill/grimorio.agent-tiers#it-does-not-reliably-recognise-its-own-skills--name-them-explicitly
-for the fuller Haiku-reliability treatment.
+**WHEN a brief must carry a rule to a child below Sonnet tier ⟶ never assume it fires: check the child's output for
+the step's footprint.**
 
-### A STEP OUTSIDE THE TASK'S OWN SEQUENCE GOES UNDONE — inertia and ordering (CEO, translated)
+### A STEP OUTSIDE THE TASK'S OWN SEQUENCE GOES UNDONE — inertia and ordering
 
 The section above names the ACTION test. This names where, structurally, that action has to sit for the test to
 matter at all — a rule that names an action perfectly can still go unfired if it is placed wrong.
@@ -125,7 +130,7 @@ appended after the main work.** Both failures are the same mechanism: the model 
 as the task's own momentum, and a step outside that momentum — whether hidden under it or trailing after it —
 is not part of it either way.
 
-### OUTPUT FORMAT AS AN ANTI-LEAST-RESISTANCE DEVICE (CEO, translated)
+### OUTPUT FORMAT AS AN ANTI-LEAST-RESISTANCE DEVICE
 
 His own answer to the failures above, and to the same least-resistance mechanism named in
 ref:skill/grimorio.prompt-writing-quality/control-flow-vocabulary.md#prioritize--favor--weighting-not-forcing: *"Forcing
@@ -140,14 +145,11 @@ fill, a section the step's output must populate — rather than relying on the a
 step correctly on its own.
 
 **This device proves only that a step HAPPENED — one half of a fuller split, stated further down in this
-file.** -> ref:skill/grimorio.prompt-writing-quality#the-two-owner-split--a-check-proves-one-of-two-things-and-the-two-have-different-owners-ceo-translated-this-session
+file.** -> ref:skill/grimorio.prompt-writing-quality#the-two-owner-split--a-check-proves-one-of-two-things-and-the-two-have-different-owners
 → "THE TWO-OWNER SPLIT" — a check may also need to prove the RESULT IS GOOD, a separate obligation with a
 separate owner, and there is a forbidden middle neither half may fall into.
 
-### FORM IS THE LATITUDE INSTRUCTION — algorithm vs prose (CEO, 2026-07-30, translated)
-
-> *"What we call hard rules is probably better described as: when a literal interpretation is wanted, write it
-> in algorithm language; when a looser interpretation is wanted, it can be done with prose."*
+### FORM IS THE LATITUDE INSTRUCTION — algorithm vs prose
 
 **WHEN you want a LITERAL interpretation ⟶ write it in algorithm form** — numbered steps, explicit openers, an
 explicit alternative branch.
@@ -156,49 +158,27 @@ explicit alternative branch.
 they have — not only a single clause needing an opener, but the whole SHAPE of the surrounding text telling the
 reader whether to read literally or generously.
 
-**The evidence.** A complete algorithm-form twin of one agent was built beside the untouched original and both
-were run on the same render, twice — once on Sonnet, once on Haiku (Haiku's own run and findings:
-ref:skill/grimorio.agent-tiers#what-haiku-is-and-isnt-good-for--form-controls-legibility-not-accuracy-main-loops-conclusion-2026-07-30--not-a-ceo-ruling
-→ "WHAT HAIKU IS AND ISN'T GOOD FOR").
-
-- The two Sonnet arms reached OPPOSITE verdicts on the same evidence. Both measured the camera zoom floor at
-  the same value. The prose arm scored PASS (the wheel reaches it, capability confirmed). The algorithm arm
-  scored PARTIAL and traced the code, finding a zoom floor DERIVED FROM MAP SIZE — exactly what the canon
-  forbids, and an unfixed catalogued defect, verified independently. One arm asked *"can you zoom out a lot?"*;
-  the other asked the question the canon actually asks.
-- The algorithm arm was WORSE on a different step, for the same reason: given an ambiguous state-tracking input
-  it resolved a crisp conditional as a binary existence check and skipped the step silently, while the prose's
-  vagueness made the other arm reason its way to the right answer.
-
 **The gain and the loss are ONE property, not two: an algorithm-form instruction is executed more literally.**
 Prose fails SOFT — an under-specified clause gets read generously. An algorithm fails HARD — it does exactly
 what the condition says. Decide which failure mode you want BEFORE you pick the form, not after.
 
-### THE HARNESS — grounding an obligation into a checkable determination (the CEO's own recurring construct, formalized here)
+### THE HARNESS — grounding an obligation into a checkable determination
 
-A **HARNESS**, in this sense, is a mechanism that turns an otherwise-ambiguous "is this correct / complete?" into an EXECUTABLE, checkable determination against a RULE — so the agent writing or verifying the artifact cannot simply INVENT the plausible answer. The CEO asks for harnesses constantly, in his own word, and grounding work in reality is already recurring practice across this corpus (ref:repo/.claude/hooks/harness-lookup.cjs's injected code guardrails, ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh's numbered gates, ref:repo/.grimorio/scripts/audit-chain.mjs itself); what was missing until now was not the practice but the FORMALIZED concept — a name the writer, the keeper, and the main loop can reach for deliberately, on purpose, instead of rediscovering the same need one clause at a time. **This is a FOURTH, distinct sense of the word "harness," and it must never be conflated with the other three this corpus already tracks — a code-tree harness.md file, the four knowledge-harness memory-writing agents, and a branch objective's own harness.md gate — enumerated at ref:repo/.grimorio/GRIMORIO-CHAIN.md#5-where-knowledge-lives-and-who-owns-it.** Those three name WHAT governs a piece of the system; this one names an authoring-time choice — WHICH ENFORCEMENT STRENGTH a rule that must OBLIGE actually gets, decided when the rule is written, never a governance artifact sitting in the tree.
-
-**Attribution note, stated once, governing every "the CEO's own X" claim in this entry (including its own heading above):** none of them is independently quotable by whoever authored this entry — each is relayed via `grimorio.system-keeper`, paraphrased from the CEO's own reasoning, not independently quoted, per ref:skill/grimorio.conduct#reasoning-and-reporting → "NEVER state a claim of yours as his" (rule 11). The label stands here once, at the top, so the instances below never repeat it.
+A **HARNESS**, in this sense, is a mechanism that turns an otherwise-ambiguous "is this correct / complete?" into an EXECUTABLE, checkable determination against a RULE — so the agent writing or verifying the artifact cannot simply INVENT the plausible answer. Grounding work in reality is already recurring practice across this corpus (ref:repo/.claude/hooks/harness-lookup.cjs's injected code guardrails, ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh's numbered gates, ref:repo/.grimorio/scripts/audit-chain.mjs itself); what was missing until now was not the practice but the FORMALIZED concept — a name the writer, the keeper, and the main loop can reach for deliberately, on purpose, instead of rediscovering the same need one clause at a time. **This is a fourth sense of the word, never to be confused with a code-tree guardrail file, the memory-owning agents, or a branch objective's marker file:** it names an authoring-time choice — WHICH ENFORCEMENT STRENGTH a rule that must OBLIGE gets.
 
 **The three harness types available, honestly ranked, weakest named as weakest.**
 
 - **Deterministic / exact harnesses** — the hardest tier, code-checkable: a script that exits 0 or 1 on a mechanical fact, ref:repo/.grimorio/scripts/audit-chain.mjs's own checks, ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh's numbered gates, the selftests under `scripts/selftest/`, unit tests, and a code-tree harness.md file's own injected rule — ref:skill/grimorio.code-harness#the-lookup-protocol-how-you-use-a-harness carries that lookup protocol in full, not re-derived here.
 - **Agent-based verifiers** — still harnesses, but LESS exact than the deterministic tier: agent:grimorio.code-reviewer, or a coverage-gate agent:grimorio.scout raised for the sole purpose of verifying something someone else built, never to build it itself — "launching an agent just to verify" is the pattern, not an accident. State this plainly rather than implying otherwise: this tier is less reliable than a deterministic check BECAUSE the domain it operates in — prompt and design correctness — is not checkable the exact mechanical way code is; the CEO named that limitation himself, and it stays named here rather than smoothed into false parity with a script's exit code. An agent-based verifier is never simply "ask the agent": this tier still admits real objective measurement — a count, a threshold, a ratio, a coverage percentage, a formal anchor where one genuinely applies to the artifact under review. **WHEN such a measurement is available for what an agent-based verifier is about to judge ⟶ exhaust it before judgment, and reserve judgment for the residue it cannot reach.** What survives that exhaustion is an **irreducible** residue — not because that residue is impossible to measure, but because the objective measures that would reach it are hyper-complex and partial. The agent judges that residue, and only that residue, never the whole domain a count or threshold could already have settled — reaching straight for judgment where a mechanical measurement was available is misusing the tier, not merely using a weaker one.
-- **Structural harnesses** — the phase-split itself, ref:skill/grimorio.phase-splitting#phase-splitting--one-agents-long-job-as-a-state-machine: breaking one long single-context job into a sequential state machine of phases is itself a harness, because it removes the OPTION to silently skip a step rather than merely asking the agent not to — ref:skill/grimorio.prompt-writing-quality#output-format-as-an-anti-least-resistance-device-ceo-translated, one section up in this same file, is this same tier under a different name: a required output artifact standing in for the step it depends on.
+- **Structural harnesses** — the phase-split itself, ref:skill/grimorio.phase-splitting#phase-splitting--one-agents-long-job-as-a-state-machine: breaking one long single-context job into a sequential state machine of phases is itself a harness, because it removes the OPTION to silently skip a step rather than merely asking the agent not to — ref:skill/grimorio.prompt-writing-quality#output-format-as-an-anti-least-resistance-device, one section up in this same file, is this same tier under a different name: a required output artifact standing in for the step it depends on.
 
-**THE TIER-AWARENESS DECISION — the operative rule this whole entry exists to install.** **WHEN a rule you are writing must OBLIGE an agent's behavior — not merely inform or bias it ⟶ ask explicitly which HARNESS TYPE the obligation needs, and never substitute firmer prose for a harness a soft self-check structurally cannot provide.** The four openers (ALWAYS/NEVER/BEFORE/WHEN) already bind a rule into HARD-RULE form per ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has-ceo-2026-07-30--the-sessions-main-finding-translated — but hard-rule FORM and a HARNESS are not the same axis. A hard-rule-form self-check ("ALWAYS verify your own work before reporting done") is still, mechanically, the exact unreliable configuration the measured refutation below names: the model judging itself, no external signal, opener or no opener. **Being in hard-rule form answers "does this bind at all." Which HARNESS TYPE it needs answers "can the agent actually fake compliance anyway" — a stricter, separate question, and the harder-earned one.** Reach for the DETERMINISTIC tier when the check is genuinely mechanical (a file exists, a count is zero, a command exits 0); reach for an AGENT-BASED VERIFIER when the domain cannot be reduced to a mechanical check but a second, independent reader can still catch what a self-check cannot, and say so honestly — this tier is weaker, not free of the self-judging problem, only once-removed from it; reach for a STRUCTURAL harness (phase-splitting, forced decomposition) when the risk is omission-under-load rather than dishonesty about a single claim. **WHEN none of the three is available and the obligation still matters ⟶ that gap is itself a finding to name, never a reason to write firmer prose and call the gap closed.**
+**THE TIER-AWARENESS DECISION — the operative rule this whole entry exists to install.** **WHEN a rule you are writing must OBLIGE an agent's behavior — not merely inform or bias it ⟶ ask explicitly which HARNESS TYPE the obligation needs, and never substitute firmer prose for a harness a soft self-check structurally cannot provide.** The four openers (ALWAYS/NEVER/BEFORE/WHEN) already bind a rule into HARD-RULE form per ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has — but hard-rule FORM and a HARNESS are not the same axis. A hard-rule-form self-check ("ALWAYS verify your own work before reporting done") is still, mechanically, the exact unreliable configuration the refutation below names: the model judging itself, no external signal, opener or no opener. **Being in hard-rule form answers "does this bind at all." Which HARNESS TYPE it needs answers "can the agent actually fake compliance anyway" — a stricter, separate question, and the harder-earned one.** Reach for the DETERMINISTIC tier when the check is genuinely mechanical (a file exists, a count is zero, a command exits 0); reach for an AGENT-BASED VERIFIER when the domain cannot be reduced to a mechanical check but a second, independent reader can still catch what a self-check cannot, and say so honestly — this tier is weaker, not free of the self-judging problem, only once-removed from it; reach for a STRUCTURAL harness (phase-splitting, forced decomposition) when the risk is omission-under-load rather than dishonesty about a single claim. **WHEN none of the three is available and the obligation still matters ⟶ that gap is itself a finding to name, never a reason to write firmer prose and call the gap closed.**
 
 **THE MEASURED REFUTATION — why a soft self-check cannot be the fix.** Huang, Chen, Mishra, Zheng, Yu, Song, and Zhou, "Large Language Models Cannot Self-Correct Reasoning Yet" (arXiv:2310.01798, 2023; ICLR 2024), measured directly what this doctrine assumes rather than asserts: an LLM STRUGGLES TO self-correct its own reasoning without EXTERNAL feedback, and its performance can DEGRADE after trying — their own abstract states it plainly: *"LLMs struggle to self-correct their responses without external feedback, and at times, their performance even degrades after self-correction."* A self-check written as prose — "review your own work," "ENSURE this is right," an anti-plausibility instruction asking the model to judge its own output — is EXACTLY this unreliable configuration: the model checking itself, with no external signal. **The fix is NOT firmer prose. It is a HARNESS**: external grounding — a tool, a test, a separate reader, never your own re-reading — or a deterministic/hook check.
 
 **Carry the opposite caveat in the same breath, never presenting either as a free lunch.** Tam, Fan, Dong, Zhang, Yang, Cui, Sun, Lin, and Jiang, "Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models" (EMNLP 2024 Industry Track, arXiv:2408.02442), found that forcing LLM output into rigid formats — JSON, XML, YAML — costs reasoning quality too: *"a significant decline in LLMs' reasoning abilities under format restrictions, with stricter format constraints generally leading to greater performance degradation in reasoning tasks."* **The resolution, stated plainly**: a harness enforces SHAPE — that a check happened, that a field exists, that a step ran — it does not, by itself, enforce TRUTH. Truth still needs external grounding; a rigid shape is not a substitute for it, and over-constraining shape can even cost some of the reasoning quality you needed to get truth in the first place.
 
-#### THE TWO-OWNER SPLIT — a check proves ONE of two things, and the two have different OWNERS (CEO, translated, this session)
-
-**Attribution, governing both quotes below, per ref:skill/grimorio.conduct#reasoning-and-reporting → "NEVER state a claim of yours as his" (rule 11):** both were originally said in Spanish and appear here in translation only, never the original words, per this corpus's own rule against embedding a principal's non-English words into an executable file; neither is independently quotable beyond the translated text given — the first reaches this entry via agent:grimorio.extract-cleaner's own byte-preserved extraction of the CEO's own turn; the second was relayed by agent:grimorio.system-keeper, this same session, as a direct relay of the CEO's own words. Only the translated claim below is his; the framing and the worked examples around it are this entry's own construction, never a further claim about what he said.
-
-> *"hmm let's see .. well I don't know if it's the same thing but we already have the state machine, right? sounds like we need similar contracts .... and about the new checks, don't hold onto the verbatim wording — hold onto the underlying reason .. that thing of checking whether something has some FORM or not already punished us once, with that very same agent, for reviewing the form and not the substance"* (CEO, translated)
-
-> *"look, if there's something I learned from the synthesizer's hook, it's that there are 2 things to test... when I asked you to prove the FORM was being followed, you found the workaround.. then I asked you to check the SPAWN, and you could no longer skip it.. and the form itself could still be wrong.. but that already had its own check .. in a way it's the same logic as what QA does"* (CEO, translated)
+#### THE TWO-OWNER SPLIT — a check proves ONE of two things, and the two have different OWNERS
 
 **WHEN you are about to build a new check, gate, or hook meant to OBLIGE an agent's behavior ⟶ decide explicitly which of exactly two things it is proving before writing a line of it, and NEVER let it answer both, or neither, at once.**
 
@@ -357,7 +337,7 @@ Release 4.2 — 2 blockers open.
 the other.** `node .grimorio/scripts/audit-chain.mjs --examples [filter]` exits 1 on any `## OUTPUT` section carrying
 zero fenced code blocks — proof of ABSENCE only, never proof that a present block is a genuine sample rather
 than a stylized placeholder that merely looks like one; that judgment stays the author's and the verifier's
-own, per ref:skill/grimorio.prompt-writing-quality#the-harness--grounding-an-obligation-into-a-checkable-determination-the-ceos-own-recurring-construct-formalized-here's
+own, per ref:skill/grimorio.prompt-writing-quality#the-harness--grounding-an-obligation-into-a-checkable-determination's
 own three-tier ranking. -> the named, enforced actions: ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md#steps's
 own HARNESS-VALIDATE step runs the mechanical check on every file it writes;
 ref:skill/grimorio.agent-writing/system-keeper-phases/phase-c-verification-review.md's own step 5 addendum runs the same
@@ -400,7 +380,7 @@ Applies to examples illustrating a rule, anti-examples showing bad output, and a
 
 ## Audit Lenses
 
-When reviewing an existing prompt, agent, or skill, apply all nine lenses. For each, list ALL findings or write "None". Report each with its tag and a concrete quote or section reference.
+When reviewing an existing prompt, agent, or skill, apply all twelve lenses. For each, list ALL findings or write "None". Report each with its tag and a concrete quote or section reference.
 
 ### L1 — Language compliance
 All instruction text in English. Examples may show another language; the surrounding instruction must be English. Heuristic: scan for non-ASCII in instruction text (not in examples). Anti-pattern: flagging a non-English word that appears only inside an example output.
@@ -437,6 +417,24 @@ Finding format: `[L8] Portability violation: "{quote}" names {tech or project ar
 ### L9 — Reasoning sequence
 Chain-of-thought is prospective — the model reasons when a step executes. If step N needs reasoning that step M produces, N must appear before M; a reasoning step placed after the action it should inform becomes post-hoc rationalization. Classify before you act; verify before you commit. Also check that the prompt uses chain-of-thought, positive framing, explicit decision boundaries, and failure-mode specification where they add value. Heuristic: for each step, ask "what must the model know to execute this correctly?" — if a later step produces it → finding. Anti-pattern: flagging a final self-check gate on a non-destructive agent (post-hoc review of a finished artifact is correct).
 Finding format: `[L9] Reasoning sequence: step "{N}" depends on step "{M}" which appears after it. Reorder: M before N.`
+
+### L10 — Provenance
+Dates, incidents, measurements, rulings and quotes inside instruction text. Heuristic: does the sentence tell the
+reader what to DO, or what HAPPENED? What happened → cut, keeping the rule. Anti-pattern: flagging a date that is
+part of an example output.
+Finding format: `[L10] Provenance: "{quote}" — keep "{the rule}", cut the story.`
+
+### L11 — Design document at runtime
+An `import:` or `ref:` from an executing prompt into a vision, architecture, chain-map, derivation or
+quasi-software-view file. Heuristic: is the target there to explain the system, or to instruct this reader?
+Explain → inline what the reader needs, drop the reference.
+Finding format: `[L11] Design reference: "{ref}" — inline "{what the reader needs}" or drop it.`
+
+### L12 — Reference sprawl
+The same target cited at several anchors, a LOAD list repeating a chain manifest, a justification paragraph per
+load, or a reference to something the reader will never open. Heuristic: would the reader open this target at
+this step? No → plain text or delete.
+Finding format: `[L12] Reference sprawl: "{ref}" — {merge into the file's one load line / delete / plain text}.`
 
 ---
 

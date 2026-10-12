@@ -1,7 +1,7 @@
 # Control-Flow Vocabulary — an extension of the four openers
 
 This is a companion to this skill's own sibling `SKILL.md`, at
-ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has-ceo-2026-07-30--the-sessions-main-finding-translated
+ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has
 → "HARD RULES ARE THE ONLY MECHANISM PROSE HAS" and "FORM IS THE LATITUDE INSTRUCTION". Read those first — this
 file assumes the four-opener doctrine (ALWAYS / NEVER / BEFORE / WHEN, plus CHECK) as settled ground and
 extends it with a second, smaller vocabulary for logical functions the four openers alone don't name cleanly:

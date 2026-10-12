@@ -179,7 +179,7 @@ Read it when you reach that step; it is one step of that phase, never a phase of
    AND against Phase 4's own INSTANCE COVERAGE field (a concern's own required per-instance BEHAVIORAL-class
    count must be met — never fewer diagram instances of that class than the concern's own N). This is the
    deterministic-inventory-plus-agent-based-verifier composition this corpus's own HARNESS doctrine names as
-   correct (ref:skill/grimorio.prompt-writing-quality#the-harness--grounding-an-obligation-into-a-checkable-determination-the-ceos-own-recurring-construct-formalized-here) — the tool measures WHAT EXISTS, mechanically;
+   correct (ref:skill/grimorio.prompt-writing-quality#the-harness--grounding-an-obligation-into-a-checkable-determination) — the tool measures WHAT EXISTS, mechanically;
    `grimorio.scout` judges WHETHER IT IS ENOUGH against Gate 7's own required set, the residue no mechanical
    count alone can resolve. **WHEN a required class is missing, or a per-instance behavioral-class count falls
    below the concern's own INSTANCE COVERAGE N ⟶ that is a Group-1-style STRUCTURAL FAIL, the SAME evidentiary

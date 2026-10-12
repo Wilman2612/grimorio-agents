@@ -9,7 +9,7 @@ instead of reconstructing it from a conversation or from scattered examples.
 
 **This file is HOW a prompt is written; it never says WHERE the content goes.** The doctrine these forms
 serve — why a hard rule needs an opener at all — lives in this skill's own sibling `SKILL.md`, at
-ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has-ceo-2026-07-30--the-sessions-main-finding-translated
+ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has
 → "HARD RULES ARE THE ONLY MECHANISM PROSE HAS". Grimorio's four-level PLACEMENT doctrine (which FILE a rule
 belongs in) is a separate question and stays in ref:skill/grimorio.agent-writing. Read the sibling SKILL.md section when
 deciding whether a clause needs an opener at all; read this file once you are writing the rule itself.
@@ -131,6 +131,21 @@ axis over). **It exists ONLY for the files frozen to the CEO by grimorio-conduct
 writes the stale `skill/<x>` form for something that now lives in a store. **NEVER write a NEW reference this way.** The store
 token naming the real container is the entire point of having two axes at all — a healed reference is
 tolerated debt from before the store existed, never a second valid form to keep writing.
+
+### HOW MANY REFERENCES — fewer, grouped, declared once
+
+The grammar exists so a dead reference is findable; it is never a licence to cite. **ALWAYS make a reference
+something the reader will OPEN at that step** — anything else is plain text, or nothing.
+
+- **A phased agent declares its loads in its chain manifest** (the `loads` array of its chain manifest). **NEVER
+  give a phase file a LOAD section that repeats its manifest entry.**
+- **A file that is not a phase declares its loads ONCE**, as one block, one line per target:
+  `import:skill/<x> — <the step that needs it>`. NEVER a justification paragraph per line.
+- **Cite a target once per file.** After the first reference, name its section in prose; NEVER re-cite the same
+  skill at a new anchor for every paragraph that leans on it.
+- **NEVER write `cite:` in a prompt.** Proof for a claim belongs in a record or a design document; a prompt
+  instructs.
+- **NEVER reference a design document from a prompt** (ref:skill/grimorio.prompt-writing-quality, "WHAT A PROMPT CONTAINS").
 
 ### WHEN AN ANCHOR IS OWED — the reader's cost, not the citing sentence
 

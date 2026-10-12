@@ -53,5 +53,5 @@ main loop — never one alone:
   decision input the main loop consults before a tier/grimorio.fan-out/delegate-vs-self spawn call.
 
 Neither channel is mechanically enforced — like most of this corpus, both stand on the reader loading the file
-they were pointed at. -> ref:skill/grimorio.prompt-writing-quality#the-harness--grounding-an-obligation-into-a-checkable-determination-the-ceos-own-recurring-construct-formalized-here
+they were pointed at. -> ref:skill/grimorio.prompt-writing-quality#the-harness--grounding-an-obligation-into-a-checkable-determination
 for what would make this a stronger harness than prose, not invented here.

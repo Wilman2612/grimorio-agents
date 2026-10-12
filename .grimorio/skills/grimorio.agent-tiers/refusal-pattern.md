@@ -18,7 +18,7 @@ Those identity-based safeguards are, I think, also very useful, and they work in
 prevent errors, since they're so strongly embedded in every agent."* (CEO, 2026-08-12)
 
 Identity is the frame chosen here specifically, not a stylistic preference:
-ref:skill/grimorio.prompt-writing-quality#an-opener-is-necessary-but-not-sufficient--a-rule-must-also-name-an-action-owed-inside-the-task-main-loop--grimoriosystem-keeper-2026-08-11
+ref:skill/grimorio.prompt-writing-quality#an-opener-is-necessary-but-not-sufficient--a-rule-must-also-name-an-action-owed-inside-the-task
 already measured that identity framing produces a REFUSAL, never a silently-taken extra step — a rule stated as
 "act as this kind of agent" did not fire as compliance, but an agent citing its own charter to refuse a caller's
 order fired three times in one session. Do not re-derive that measurement here; this file only APPLIES it.

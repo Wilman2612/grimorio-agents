@@ -70,7 +70,7 @@ uncoordinated diagrams either:**
 **Visual-differentiation guidance is GUIDANCE, written as prose, on purpose** — the same "form is the latitude
 instruction" discipline
 ref:skill/grimorio.phase-splitting#where-a-boundary-falls--judgment-never-an-algorithm already applies
-(ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose-ceo-2026-07-30-translated),
+(ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose),
 for the same reason: HOW two node types read as visually distinct is a judgment call, never a rigid algorithm.
 Draw the phases as the sequential spine, solid forward edges. Draw a LOOP back-edge visually distinct from that
 forward spine — dashed is the natural choice — and always carry the actual exit-condition text as its label; an
@@ -147,7 +147,7 @@ against the current file, every time this layer is drawn or redrawn.
 and NEVER a markdown table.** A markdown table is the SPECIFIC forbidden failure mode this rule names, not
 merely one option among several: per the CEO's own governing thesis behind this whole methodology (the same
 "form is the latitude instruction" discipline this file already applies above,
-ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose-ceo-2026-07-30-translated,
+ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose,
 now pushed to its logical floor) — prose is RANDOMLY satisfactory, it informs but does not OBLIGE, so a
 prose-only rendering works when the reader happens to be careful and omits when they are not, never REPEATABLE;
 a FLOW obliges, because it is drawable, traceable node-by-node, and does not omit — a table INFORMS a reader

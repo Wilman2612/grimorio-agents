@@ -44,7 +44,7 @@ rule about the SHAPE of what it is handed.
 
 **A brief needs no explicit conclusion to remove all judgement.** Numbered completion checks, prescribed
 ACTIONS, and an output contract specifying the artefact's internals are exactly the algorithm-form
-ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose-ceo-2026-07-30-translated
+ref:skill/grimorio.prompt-writing-quality#form-is-the-latitude-instruction--algorithm-vs-prose
 describes — form IS the latitude instruction, and that form tells the reader to execute literally. That is
 exactly right for a FLOW DELEGATE and exactly wrong for an architect, whose entire value is the judgement
 that form suppresses.
@@ -78,7 +78,7 @@ unmodified.
 **Unmeasured, and say so plainly.** Whether this fires is unmeasured. What distinguishes it from a rule that
 was written and ignored is that this defence has never existed at all — the failure is ABSENCE, not decay —
 which is why it gets a hard rule now and no mechanism.
-ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has-ceo-2026-07-30--the-sessions-main-finding-translated
+ref:skill/grimorio.prompt-writing-quality#hard-rules-are-the-only-mechanism-prose-has
 orders hooks LAST, only after a hard rule has been ignored.
 
 ## PRINCIPAL-INTENT FIDELITY — don't narrow the principal's intent when you write the brief
