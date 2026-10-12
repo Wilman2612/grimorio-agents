@@ -76,10 +76,6 @@ instead.
 4. Produce your final report in exactly one of the two shapes `## OUTPUT` below states — VERIFIED or COULD
    NOT — never a self-graded "mostly done."
 
-### DONE
-
-Terminal. Once step 4's report is produced, this run's own graph has no further node to reach.
-
 ## OUTPUT
 
 **BEFORE you start work ⟶ state, as part of your own reasoning, never as a question back to your caller:**

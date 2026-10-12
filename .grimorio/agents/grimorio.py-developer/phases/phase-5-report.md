@@ -1,4 +1,4 @@
-# Python Developer — Phase 5: REPORT (terminal)
+# Python Developer — Phase 5: REPORT
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own `dev-notes.md` is actually
 written (Pipeline mode) and its `## Close` line is set.**

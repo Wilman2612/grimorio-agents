@@ -1,4 +1,4 @@
-# Convergent Researcher — Phase 3: CONVERGE-AND-CLOSE (terminal — no further hand-off)
+# Convergent Researcher — Phase 3: CONVERGE-AND-CLOSE
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own `## OUTPUT` block, below, is
 actually filled in.**

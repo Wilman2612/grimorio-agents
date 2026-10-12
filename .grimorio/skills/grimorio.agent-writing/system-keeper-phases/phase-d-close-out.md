@@ -1,4 +1,4 @@
-# System Keeper — Phase D: CLOSE-OUT & REPORT (terminal — no hand-off)
+# System Keeper — Phase D: CLOSE-OUT & REPORT
 
 Is the durable record complete and honest, and what does the caller need to be told? Neither "is it correct"
 (Phase C's self-check) nor "would an adversary find something" (Phase C's reviewer gate) — a third question,

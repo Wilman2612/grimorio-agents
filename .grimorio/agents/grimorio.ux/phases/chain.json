@@ -35,7 +35,9 @@
       "file": ".grimorio/agents/grimorio.ux/phases/phase-3-severity-synthesis-report.md",
       "desc": "SEVERITY SYNTHESIS & REPORT",
       "loads": [],
-      "next": {}
+      "next": {
+        "done": "END"
+      }
     }
   ]
 }

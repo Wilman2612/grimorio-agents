@@ -1,4 +1,4 @@
-# Experimenter — Phase 5: DOCUMENT & CLOSE (terminal — no further hand-off)
+# Experimenter — Phase 5: DOCUMENT & CLOSE
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own paper and companion are
 actually written and the INDEX is updated.**

@@ -1,4 +1,4 @@
-# Go Developer — Phase 5: WRITE-DEV-NOTES-REPORT (terminal)
+# Go Developer — Phase 5: WRITE-DEV-NOTES-REPORT
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own `dev-notes.md` is actually
 written (Pipeline mode) and its `## Close` line is set.**

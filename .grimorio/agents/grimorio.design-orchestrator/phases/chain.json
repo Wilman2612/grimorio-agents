@@ -108,7 +108,9 @@
         "skill/grimorio.agent-selection",
         "skill/grimorio.reasoning-principles"
       ],
-      "next": {}
+      "next": {
+        "done": "END"
+      }
     }
   ]
 }

@@ -1,4 +1,4 @@
-# Game Architect — Phase 2: CODE-LANDING (wholly subsequent — terminal, no hand-off)
+# Game Architect — Phase 2: CODE-LANDING
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own DELIVERABLE block, below, is
 actually filled in.**

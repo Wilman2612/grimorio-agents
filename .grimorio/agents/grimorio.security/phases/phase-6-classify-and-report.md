@@ -1,4 +1,4 @@
-# Security Auditor — Phase 6: CLASSIFY-AND-REPORT (terminal — no further hand-off)
+# Security Auditor — Phase 6: CLASSIFY-AND-REPORT
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own `security-report.md` is
 actually written and its `## Status` line is set.**

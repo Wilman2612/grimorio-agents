@@ -40,9 +40,11 @@
     {
       "id": "3",
       "file": ".grimorio/skills/grimorio.fan-out/researcher-phases/phase-3-converge-and-close.md",
-      "desc": "CONVERGE-AND-CLOSE (terminal — no further hand-off)",
+      "desc": "CONVERGE-AND-CLOSE",
       "loads": [],
-      "next": {}
+      "next": {
+        "done": "END"
+      }
     }
   ]
 }

@@ -41,9 +41,11 @@
     {
       "id": "3",
       "file": ".grimorio/skills/grimorio.fan-out/entropy-phases/phase-3-converge-ground-handoff.md",
-      "desc": "CONVERGE-GROUND-HANDOFF (terminal — no further hand-off)",
+      "desc": "CONVERGE-GROUND-HANDOFF",
       "loads": [],
-      "next": {}
+      "next": {
+        "done": "END"
+      }
     }
   ]
 }

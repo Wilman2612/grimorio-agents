@@ -1,4 +1,4 @@
-# Prompt Writer — Phase 6: REPORT & CLOSE (terminal)
+# Prompt Writer — Phase 6: REPORT & CLOSE
 
 **IN:** the deliverables of the phases that ran. **OUT:** the report file and the CLOSE line.
 

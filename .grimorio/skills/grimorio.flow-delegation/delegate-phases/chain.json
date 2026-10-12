@@ -59,7 +59,9 @@
         "skill/grimorio.report-design",
         "memory/grimorio.board-memory/project.vision.md"
       ],
-      "next": {}
+      "next": {
+        "done": "END"
+      }
     }
   ]
 }

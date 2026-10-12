@@ -79,7 +79,7 @@
     {
       "id": "5",
       "file": ".grimorio/agents/grimorio.manual-verifier/phases/phase-5-report-and-merge.md",
-      "desc": "REPORT-AND-MERGE (terminal — no further hand-off)",
+      "desc": "REPORT-AND-MERGE",
       "loads": [
         "skill/grimorio.feature-workflow"
       ],
@@ -89,7 +89,9 @@
       "produces": [
         "deliverable"
       ],
-      "next": {}
+      "next": {
+        "done": "END"
+      }
     }
   ]
 }

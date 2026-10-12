@@ -62,12 +62,14 @@
     {
       "id": "6",
       "file": ".grimorio/skills/grimorio.agent-writing/prompt-writer-phases/phase-6-report-close.md",
-      "desc": "REPORT & CLOSE (terminal)",
+      "desc": "REPORT & CLOSE",
       "loads": [],
       "produces": [
         "report-written"
       ],
-      "next": {}
+      "next": {
+        "done": "END"
+      }
     }
   ]
 }

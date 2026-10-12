@@ -1,4 +1,4 @@
-# UX Critic — Phase 3: SEVERITY SYNTHESIS & REPORT (terminal — no Phase 4)
+# UX Critic — Phase 3: SEVERITY SYNTHESIS & REPORT
 
 **NEVER close this task, or report anything to the caller, until THIS phase's own `## OUTPUT` block, below, is
 actually written to disk as `ux-review.md`.**

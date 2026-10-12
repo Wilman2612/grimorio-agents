@@ -80,7 +80,7 @@
     {
       "id": "D",
       "file": ".grimorio/skills/grimorio.agent-writing/system-keeper-phases/phase-d-close-out.md",
-      "desc": "CLOSE-OUT & REPORT (terminal)",
+      "desc": "CLOSE-OUT & REPORT",
       "loads": [
         "skill/grimorio.objective-harness",
         "skill/grimorio.report-design",
@@ -89,7 +89,9 @@
       "requires": [
         "verification-clean"
       ],
-      "next": {}
+      "next": {
+        "done": "END"
+      }
     }
   ]
 }

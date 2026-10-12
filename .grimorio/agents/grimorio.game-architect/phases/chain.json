@@ -16,8 +16,10 @@
     {
       "id": "2",
       "file": ".grimorio/agents/grimorio.game-architect/phases/phase-2-code-landing.md",
-      "desc": "CODE-LANDING (wholly subsequent — terminal, no hand-off)",
-      "next": {}
+      "desc": "CODE-LANDING",
+      "next": {
+        "done": "END"
+      }
     }
   ]
 }

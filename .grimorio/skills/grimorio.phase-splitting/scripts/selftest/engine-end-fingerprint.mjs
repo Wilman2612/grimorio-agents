@@ -19,7 +19,7 @@ const good = {
   phases: [
     { id: "1", file: `${rel}/phase-1-a.md`, loads: ["skill/grimorio.fan-out"], fingerprints: { "skill/grimorio.fan-out": "PLAN" },
       produces: ["deliverable"], "produces-exempt": ["child"], next: { continue: "2", child: "END" } },
-    { id: "2", file: `${rel}/phase-2-b.md`, next: {} },
+    { id: "2", file: `${rel}/phase-2-b.md`, next: { done: "END" } },
   ],
 };
 writeFileSync(join(dir, "chain.json"), JSON.stringify(good));
@@ -57,6 +57,10 @@ t("next passes a filled deliverable", r.code === 0 && r.out.includes("PHASE 2"),
 writeFileSync(join(dir, "chain.json"), JSON.stringify({ ...good, phases: [{ ...good.phases[0], next: { continue: "9" }, loads: ["skill/grimorio.no-such"] }, good.phases[1]] }));
 r = sh("check-chain.mjs", ["--manifest", m]);
 t("check-chain refuses an unknown target, a dead load, a fingerprint outside its loads", r.code === 1 && /unknown phase 9/.test(r.out) && /does not resolve/.test(r.out) && /does not load/.test(r.out), r.out);
+
+writeFileSync(join(dir, "chain.json"), JSON.stringify({ ...good, phases: [good.phases[0], { ...good.phases[1], next: {} }] }));
+r = sh("check-chain.mjs", ["--manifest", m]);
+t("check-chain refuses a phase with no exit", r.code === 1 && /phase 2: no exit/.test(r.out), r.out);
 
 rmSync(join(root, ".grimorio/tmp/selftest-end-fp"), { recursive: true, force: true });
 console.log(failed ? `engine-end-fingerprint selftest: ${failed} FAILED` : "engine-end-fingerprint selftest: all cases passed");

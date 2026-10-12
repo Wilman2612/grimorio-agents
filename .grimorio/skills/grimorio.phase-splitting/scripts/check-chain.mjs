@@ -31,6 +31,8 @@ if (!ids.has(m.entry)) fail(`entry ${m.entry} is not a phase`);
 
 for (const p of m.phases || []) {
   if (!p.file || !existsSync(join(REPO_ROOT, p.file))) fail(`phase ${p.id}: file ${p.file} does not exist`);
+  // With no exit the engine prints TERMINAL beside the phase's READ line and never gates its produces.
+  if (!Object.keys(p.next || {}).length) fail(`phase ${p.id}: no exit — give it "done": "END"`);
   for (const [on, to] of Object.entries(p.next || {})) {
     if (to !== "END" && !ids.has(to)) fail(`phase ${p.id}: condition ${on} goes to unknown phase ${to}`);
   }

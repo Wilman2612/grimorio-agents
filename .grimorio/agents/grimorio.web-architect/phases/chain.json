@@ -43,8 +43,10 @@
     {
       "id": "5",
       "file": ".grimorio/agents/grimorio.web-architect/phases/phase-5-capture-into-architect-memory.md",
-      "desc": "CAPTURE-INTO-ARCHITECT-MEMORY (terminal — no hand-off)",
-      "next": {}
+      "desc": "CAPTURE-INTO-ARCHITECT-MEMORY",
+      "next": {
+        "done": "END"
+      }
     }
   ]
 }

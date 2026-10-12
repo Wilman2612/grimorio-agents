@@ -1,4 +1,4 @@
-# Devil's Advocate — Phase 3: CONVERGE-GROUND-HANDOFF (terminal — no further hand-off)
+# Devil's Advocate — Phase 3: CONVERGE-GROUND-HANDOFF
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own `## OUTPUT` block, below, is
 actually filled in.**

@@ -1,4 +1,4 @@
-# Web Architect — Phase 5: CAPTURE-INTO-ARCHITECT-MEMORY (terminal — no hand-off)
+# Web Architect — Phase 5: CAPTURE-INTO-ARCHITECT-MEMORY
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own DELIVERABLE block, below, is
 actually filled in.**
@@ -64,7 +64,7 @@ CUSTODY CHECK:            <confirmed tracked via `git ls-files` / N/A — still 
                           step 6's own UNLESS clause>
 ```
 
-## OUTPUT — the final report to the caller (terminal, no hand-off)
+## OUTPUT — the final report to the caller
 
 **ALWAYS close this chain's own final report by carrying forward Phase 4's own VERIFIED/COULD NOT close, plus
 what this phase captured** (or explicitly nothing, WHEN WORTH REMEMBERING above is `N` — state that plainly,

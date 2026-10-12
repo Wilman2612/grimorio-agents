@@ -114,7 +114,9 @@
       "produces": [
         "deliverable"
       ],
-      "next": {}
+      "next": {
+        "done": "END"
+      }
     }
   ]
 }

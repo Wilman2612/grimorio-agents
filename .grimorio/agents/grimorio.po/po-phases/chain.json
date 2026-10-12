@@ -37,7 +37,9 @@
       "file": ".grimorio/agents/grimorio.po/po-phases/phase-3-harness-maintain-obsolete-rulings.md",
       "desc": "HARNESS — MAINTAIN OBSOLETE RULINGS (H3)",
       "loads": [],
-      "next": {}
+      "next": {
+        "done": "END"
+      }
     },
     {
       "id": "4",
@@ -64,7 +66,9 @@
       "file": ".grimorio/agents/grimorio.po/po-phases/phase-6-brief-write-and-close-the-brief.md",
       "desc": "BRIEF — WRITE & CLOSE THE BRIEF (B3)",
       "loads": [],
-      "next": {}
+      "next": {
+        "done": "END"
+      }
     }
   ]
 }

@@ -101,7 +101,7 @@
     {
       "id": "5",
       "file": ".grimorio/agents/grimorio.py-developer/phases/phase-5-report.md",
-      "desc": "REPORT (terminal)",
+      "desc": "REPORT",
       "loads": [
         "skill/grimorio.build-protocol/build-protocol.md",
         "skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11"
@@ -113,7 +113,9 @@
       "produces": [
         "deliverable"
       ],
-      "next": {}
+      "next": {
+        "done": "END"
+      }
     }
   ]
 }

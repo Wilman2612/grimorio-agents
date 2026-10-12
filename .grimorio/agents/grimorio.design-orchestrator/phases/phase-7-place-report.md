@@ -1,4 +1,4 @@
-# Design Orchestrator — Phase 7: PLACE & REPORT (terminal — no hand-off)
+# Design Orchestrator — Phase 7: PLACE & REPORT
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own `## OUTPUT` block, below, is
 actually filled in.**

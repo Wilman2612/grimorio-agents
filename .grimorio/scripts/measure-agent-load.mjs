@@ -3,9 +3,8 @@
 // a re-run of this tool reproducible without guessing, not just descriptive prose about this file alone.
 // Reusable, reproducible load measurement for a phased agent's chain — the "before/after with the
 // command that produces it, never an estimate" tool. No chain name is hardcoded anywhere below the CLI
-// flag; every path is derived from the `--chain <agent>` value plus fixed, generic conventions (the
-// `.grimorio/skills/grimorio.agent-writing/<agent>-behavior.md` / `<agent>-phases/` layout both migrated
-// chains already share, and the new `<agent>-phases/chain.json` manifest for --mode new).
+// flag; every path is derived from the `--chain <agent>` value: --mode new finds the manifest the way the
+// phase engine does and the Phase 0 file beside the agent's folder or its `<agent>-phases/` directory.
 //
 // Word-count method, stated once so a re-run is reproducible without guessing:
 //   text.split(/\s+/).filter(Boolean).length
@@ -21,6 +20,7 @@ import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 import { findRepoRoot } from "../skills/grimorio.phase-splitting/scripts/repo-root.mjs";
+import { resolveManifestPath } from "../skills/grimorio.phase-splitting/scripts/phase-store.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = findRepoRoot(HERE);
@@ -107,17 +107,20 @@ function modeOld(chain) {
 }
 
 function loadLiveManifest(chain) {
-  const manifestPath = join(REPO_ROOT, AW, `${chain}-phases`, "chain.json");
-  if (!existsSync(manifestPath)) {
-    throw new Error(`no live manifest at ${relative(REPO_ROOT, manifestPath)} — has chain.json been created yet?`);
-  }
-  return JSON.parse(readFileSync(manifestPath, "utf8"));
+  const manifestPath = resolveManifestPath(chain);
+  return { ...JSON.parse(readFileSync(manifestPath, "utf8")), dir: dirname(relative(REPO_ROOT, manifestPath)) };
 }
 
-function floorFiles(chain) {
+const firstExisting = (paths) => paths.find((p) => existsSync(join(REPO_ROOT, p))) || paths[0];
+
+function floorFiles(chain, manifest) {
+  const agentDir = `.grimorio/agents/grimorio.${chain}`;
   return [
-    { label: "shell", path: `.claude/agents/grimorio.${chain}.md` },
-    { label: "behavior (new, adapter)", path: `${AW}/${chain}-behavior.md` },
+    { label: "shell", path: firstExisting([`${agentDir}/agent.md`, `.claude/agents/grimorio.${chain}.md`]) },
+    {
+      label: "behavior (Phase 0)",
+      path: firstExisting([`${agentDir}/behavior.md`, `${dirname(manifest.dir)}/${chain}-behavior.md`, `${AW}/${chain}-behavior.md`]),
+    },
     { label: "conduct/SKILL.md", path: ".grimorio/skills/grimorio.conduct/SKILL.md" },
     { label: "prompt-reading/SKILL.md", path: ".grimorio/skills/grimorio.prompt-reading/SKILL.md" },
   ];
@@ -174,15 +177,15 @@ function walkPath(chain, manifest, pathIds) {
     steps.push({ id, added, cumulative: total });
   }
 
-  addStep("FLOOR", floorFiles(chain).map((f) => fileEntry(f.label, f.path)));
+  addStep("FLOOR", floorFiles(chain, manifest).map((f) => fileEntry(f.label, f.path)));
 
   for (const id of pathIds) {
     const phase = byId.get(id);
     const candidates = [fileEntry(`phase: ${phase.file}`, phase.file)];
     for (const loadRef of phase.loads || []) {
       const contentPath = resolver.toContentPath(`ref:${loadRef}`);
-      if (!contentPath) throw new Error(`could not resolve load "${loadRef}" for phase "${id}"`);
-      candidates.push(fileEntry(`load: ${loadRef}`, contentPath));
+      // An agent's memory is optional, so a load into an absent one counts zero words.
+      candidates.push(contentPath ? fileEntry(`load: ${loadRef}`, contentPath) : { label: `load: ${loadRef}`, abs: loadRef, words: 0, note: "UNRESOLVED" });
     }
     addStep(id, candidates);
   }
@@ -207,19 +210,20 @@ function printPathTable(chain, manifest, pathIds) {
 // Enumerates every root-to-terminal path through the manifest's own `next` graph, forward-only: an edge
 // that would revisit a phase already in the CURRENT path is a dead end for enumeration and is simply not
 // followed (never emitted as a truncated "path"), so a back-edge (a loop-back like `defect-found: B`) never
-// generates an infinite or a fake-terminal path. A phase with an empty `next` map is the only real terminal.
+// generates an infinite or a fake-terminal path. A path ends where a condition leads to END (or, in an old
+// manifest, at a phase with an empty `next` map).
 function enumeratePaths(manifest) {
   const byId = new Map(manifest.phases.map((p) => [p.id, p]));
   const paths = [];
 
   function dfs(current, path, visited) {
-    const nextIds = [...new Set(Object.values(byId.get(current).next || {}))];
-    if (nextIds.length === 0) {
-      paths.push([...path]);
-      return;
-    }
+    const targets = [...new Set(Object.values(byId.get(current).next || {}))];
+    const nextIds = targets.filter((t) => t !== "END");
+    if (targets.length === 0 || targets.includes("END")) paths.push([...path]);
+    if (nextIds.length === 0) return;
     const forward = nextIds.filter((nxt) => !visited.has(nxt)); // back-edges pruned: dead ends for path-enumeration purposes only
     if (forward.length === 0) {
+      if (targets.includes("END")) return;
       // Every outgoing edge from `current` is a back-edge already in this path (a cycle-only dead end,
       // no forward escape at all) — this branch is genuinely dropped from the enumerated set, so it must
       // say so loudly rather than silently vanish, per this corpus's measured-not-assumed discipline.

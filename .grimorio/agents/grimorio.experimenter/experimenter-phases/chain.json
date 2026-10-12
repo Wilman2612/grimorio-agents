@@ -71,7 +71,7 @@
     {
       "id": "5",
       "file": ".grimorio/agents/grimorio.experimenter/experimenter-phases/phase-5-document-and-close.md",
-      "desc": "DOCUMENT & CLOSE (terminal — no further hand-off)",
+      "desc": "DOCUMENT & CLOSE",
       "loads": [
         "agent/grimorio.experimenter/SKILL.md#the-paper--the-controlled-written-record-what-step-18-produce",
         "agent/grimorio.experimenter/SKILL.md#the-digestible-ceo-companion--mandatory-final-step-do-not-skip",
@@ -84,7 +84,9 @@
       "produces": [
         "deliverable"
       ],
-      "next": {}
+      "next": {
+        "done": "END"
+      }
     }
   ]
 }

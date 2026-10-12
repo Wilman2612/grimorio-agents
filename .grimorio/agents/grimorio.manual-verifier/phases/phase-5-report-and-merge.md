@@ -1,4 +1,4 @@
-# Manual Verifier — Phase 5: REPORT-AND-MERGE (terminal — no further hand-off)
+# Manual Verifier — Phase 5: REPORT-AND-MERGE
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own `verification-report.md` is
 actually written and its `## Status` line is set.**
