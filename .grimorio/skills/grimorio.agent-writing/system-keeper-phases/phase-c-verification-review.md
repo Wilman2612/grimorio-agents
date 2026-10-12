@@ -111,9 +111,6 @@ work, run the fan-out, THEN run rework cycles through this phase at the end.
 
 ## Hand-off
 
-**WHEN a defect was found ⟶** hand off to Phase B on condition `defect-found`, carrying the specific defect to
-fix — no artifact is recorded on this branch, since verification did not come back clean. **WHEN clean ⟶**
-record `verification-clean`, then hand off on condition `clean-no-mode` (IMPROVE-AND-VALIDATE MODE not entered)
-or `clean-mode-entered` (mode entered, reading
-ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-improve-and-validate-mode.md next) —
-carrying forward the final disposition and full cycle history either way. Mechanics per Phase 0's own Protocol.
+**WHEN a defect was found ⟶ `--on defect-found`, naming the defect to fix; nothing is recorded on this route.
+WHEN verification came back clean ⟶ record `verification-clean`, then `--on clean-mode-entered` WHEN
+IMPROVE-AND-VALIDATE MODE was entered, otherwise `--on clean-no-mode`.**

@@ -72,17 +72,35 @@ if (args.includes("--walk") && !fails.length) {
   mkdirSync(tmp, { recursive: true });
   const mf = ["--manifest", relative(REPO_ROOT, manifestPath)];
   const eng = (a) => spawnSync(process.execPath, [engine, ...a, ...mf], { cwd: REPO_ROOT, encoding: "utf8" });
+  const byId = new Map(m.phases.map((p) => [p.id, p]));
+  // A path from the entry to every phase, as [phaseId, condition] steps, so each walk earns what a phase requires.
+  const route = new Map([[m.entry, []]]);
+  for (let queue = [m.entry]; queue.length; ) {
+    const id = queue.shift();
+    for (const [on, to] of Object.entries(byId.get(id).next || {})) {
+      if (to !== "END" && !route.has(to)) { route.set(to, [...route.get(id), [id, on]]); queue.push(to); }
+    }
+  }
+  const produce = (run, p) => {
+    for (const name of p.produces || []) {
+      const file = join(tmp, `${run}-${name}.md`);
+      const fields = name === "deliverable" ? [...new Set(Object.values(p.fingerprints || {}).flatMap((f) => f.split("+").map((x) => x.trim())))] : [];
+      writeFileSync(file, fields.map((f) => `${f}:   walked`).join("\n") + "\n");
+      eng(["record", "--run", run, name, relative(REPO_ROOT, file)]);
+    }
+  };
   for (const p of m.phases) {
     for (const on of Object.keys(p.next || {})) {
-      const st = eng(["start", "--chain", m.agent, "--at", p.id]);
+      const st = eng(["start", "--chain", m.agent]);
       const run = (st.stdout.split("\n")[0] || "").replace("RUN ", "").trim();
-      if (st.status !== 0) { fail(`walk: start --at ${p.id} refused: ${st.stderr.trim()}`); continue; }
-      if ((p.produces || []).includes("deliverable")) {
-        const fields = [...new Set(Object.values(p.fingerprints || {}).flatMap((f) => f.split("+").map((x) => x.trim())))];
-        const file = join(tmp, `${run}.md`);
-        writeFileSync(file, fields.map((f) => `${f}:   walked`).join("\n") + "\n");
-        eng(["record", "--run", run, "deliverable", relative(REPO_ROOT, file)]);
+      let ok = st.status === 0;
+      for (const [id, cond] of route.get(p.id) || []) {
+        produce(run, byId.get(id));
+        const r = eng(["next", "--run", run, "--on", cond]);
+        if (r.status !== 0) { fail(`walk: reaching ${p.id}, phase ${id} --on ${cond} refused: ${(r.stderr || r.stdout).trim().split("\n").pop()}`); ok = false; break; }
       }
+      if (!ok) continue;
+      produce(run, p);
       const nx = eng(["next", "--run", run, "--on", on]);
       if (nx.status !== 0) fail(`walk: phase ${p.id} --on ${on} refused: ${(nx.stderr || nx.stdout).trim().split("\n").pop()}`);
     }

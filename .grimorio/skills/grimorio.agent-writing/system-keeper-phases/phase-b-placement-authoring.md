@@ -142,10 +142,3 @@ caution.**
    ref:skill/grimorio.agent-writing/prompt-writer-behavior.md#clone-executor-mode--entry-point-for-a-haiku-tiered-same-type-clone.**
    **WHEN Haiku-cloned ⟶ name explicitly that Phase C's own review of that node's return IS the judicious
    reality check — a Haiku output never reaches Phase C's reviewer gate or ships before that check runs.**
-
-## Hand-off
-
-**ALWAYS carry forward into Phase C: the placement decision, every node's tier and dispatch shape, and what
-`grimorio.prompt-writer`/the delegate(s) actually returned — including every refusal and flag, verbatim.**
-Record and hand off per Phase 0's own Protocol — this phase's own artifact is `placement-authored`, but its
-`next --on` condition is `authored`, NOT the artifact name.

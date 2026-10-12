@@ -20,13 +20,6 @@ closing.**
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before reporting complete: a single SELF node — ledger update, final
-   sweep, the chain-integrity check (step 4 below), the report — and NOTHING ROUTED OUT, because this phase
-   never spawns.** Per ref:skill/grimorio.fan-out#emit-the-loop-graph-before-you-spawn-or-write-hard-rule-ceo-2026-08-08's
-   own third bound ("BEFORE you report the task complete," not only before a spawn or a source write), this
-   phase's own act of reporting is itself the trigger — its own field 5 (WHAT COULD NOT BE ROUTED) is answered
-   "nothing; this phase is terminal by design" every time, which fan-out's own text names explicitly as a valid,
-   expected entry, never a reason to omit stating it.
 2. **ALWAYS bring the branch's own ledger current** — checks, log, feature line — before closing.
 3. **ALWAYS run the final sweep above.**
 4. **BEFORE the `CLOSE:` line below is written ⟶ ALWAYS run `node
@@ -73,8 +66,3 @@ CLOSE:                                      <VERIFIED, naming which evidence bac
                                              is open, why (a FAILED chain-integrity check is a valid why), and
                                              what the next pass needs>
 ```
-
-## Terminal state — no hand-off
-
-**This phase has no next file to read.** The chain ends here. A subsequent task starts a fresh Phase 0
-(ref:skill/grimorio.agent-writing/system-keeper-behavior.md), never resumed mid-chain from this file.

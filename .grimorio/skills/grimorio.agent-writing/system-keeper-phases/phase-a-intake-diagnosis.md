@@ -116,12 +116,3 @@ skipped machinery from here.**
    quote-back proves OBEDIENCE only for `CLAUDE.md` and `objectives/harness.md` (prose a model complies with);
    for the other four it proves only that the text was read, never that the harness reloaded it. Does not apply
    to a skill file reached fresh via a live `Skill()` call, which already reads from disk.
-
-## Hand-off
-
-**ALWAYS carry forward into Phase B: the objective/exit condition, the verbatim content held, the
-LIGHTWEIGHT/FULL-CEREMONY classification, the refuted-or-adopted verdicts, the true cause and who authored the
-constraint, the SYSTEMIC-vs-SPECIFIC classification and any propagation/AS-IS-survey targets found, and whether
-IMPROVE-AND-VALIDATE MODE was entered.** Record and hand off per Phase 0's own Protocol — this phase's own
-artifact and its `next --on` condition are both `diagnosis-complete`, a reasoning artifact, not a file on
-disk.
