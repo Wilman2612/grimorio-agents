@@ -1,10 +1,5 @@
 # Product Owner — Phase 5: BRIEF — EXPLORE EXISTING CONTEXT (B2)
 
-**NEVER read ref:agent/grimorio.po/po-phases/phase-6-brief-write-and-close-the-brief.md until THIS
-phase's own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Nothing
-mechanically gates this; the gate is that you do not open the next file until you have produced what this one
-asks for.
-
 ## The question this phase answers
 
 What does the codebase actually do TODAY, versus what's wanted — the contrast the brief's own stories will be
@@ -30,14 +25,7 @@ what this phase's own search finds.
    phase's own contrast findings are legitimately EMPTY — state that plainly, never invent a contrast that
    doesn't exist.**
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:skill/grimorio.pipeline-modes — NORMAL vs LIGERO governs whether this phase even runs a search at all
-  (mandatory — this phase cannot decide its own scope without it) — plus, conditionally, THIS PHASE'S OWN
-  narrow scout-raise slice (agent-selection/agent-tiers, hard-locked non-recursive, tiered, never Opus for a
-  grunt), loaded only WHEN step 3 actually fires.
-
-## PHASE 5 DELIVERABLE — do not read Phase 6 until this is filled
+## PHASE 5 DELIVERABLE
 
 ```
 MODE:                    <NORMAL or LIGERO, as declared by the invocation>
@@ -45,8 +33,3 @@ SCOUT RAISED:            <yes/no — what it found, or "not needed">
 CONTRAST FINDINGS:       <current vs. desired behavior — or "empty — LIGERO mode / greenfield feature, stated
                          plainly" per step 4>
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:agent/grimorio.po/po-phases/phase-6-brief-write-and-close-the-brief.md next, carrying
-forward B1's own scoped request PLUS this phase's own contrast findings.**

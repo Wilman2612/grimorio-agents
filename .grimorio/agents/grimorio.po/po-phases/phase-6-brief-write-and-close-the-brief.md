@@ -1,8 +1,7 @@
 # Product Owner — Phase 6: BRIEF — WRITE & CLOSE THE BRIEF (B3)
 
-**This phase is TERMINAL for the Brief chain — no Phase 7 file to gate against.** Instead, **VERIFIED/COULD NOT
-closure (in the `## OUTPUT` section below) does not fire until this phase's own DELIVERABLE block
-is filled.**
+**VERIFIED/COULD NOT closure (in the `## OUTPUT` section below) does not fire until this phase's own
+DELIVERABLE block is filled.**
 
 ## The question this phase answers
 
@@ -16,8 +15,6 @@ what this phase writes.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — write the brief,
-   close — and nothing else; no spawn.**
 2. **ALWAYS write `po-brief.md` following the `## OUTPUT` format below**: Gherkin
    (Given/When/Then) user stories, one testable behavior each, happy path plus at least one error/edge case,
    from the user's perspective; acceptance criteria each verifiable by a test, in measurable language ("shows
@@ -95,10 +92,6 @@ Your brief is the **contract** the whole team works from. The architect decides 
 criteria; ux and manual-verifier check against your named states. If it's vague, everything downstream
 suffers.
 
-## LOAD (JIT) — scoped to this phase only
-
-- The OUTPUT template + Quality Checklist above (inline, no external skill load needed).
-
 ## PHASE 6 DELIVERABLE — this IS the chain's own terminal output, filled before closing
 
 ```
@@ -116,8 +109,3 @@ QUALITY CHECKLIST, confirmed/not, one line each:
 
 CLOSE:                    <VERIFIED (naming what the brief specifies) or COULD NOT (naming the blocker)>
 ```
-
-## Terminal state — no hand-off
-
-**This phase has no next file to read.** The chain ends here. A subsequent task, if any, starts a fresh
-Phase 0 (ref:agent/grimorio.po/behavior.md), never resumed mid-chain from this file.

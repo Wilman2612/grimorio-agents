@@ -1,8 +1,7 @@
 # Product Owner — Phase 3: HARNESS — MAINTAIN OBSOLETE RULINGS (H3)
 
-**This phase is TERMINAL for the Harness chain — no Phase 4 file to gate against.** Instead, **VERIFIED/COULD
-NOT closure (in the `## OUTPUT` section below) does not fire until this phase's own DELIVERABLE
-block is filled.**
+**VERIFIED/COULD NOT closure (in the `## OUTPUT` section below) does not fire until this phase's own
+DELIVERABLE block is filled.**
 
 ## The question this phase answers
 
@@ -66,12 +65,6 @@ the new entry makes wrong was updated in the same pass (this phase's own step 2,
 update); the updated file reads as the CURRENT truth top to bottom, not merely appended to (catches append-only
 drift). Any one of these left unconfirmed means the close is an unearned VERIFIED, never a real one.
 
-## LOAD (JIT) — scoped to this phase only
-
-- The Maintenance rule above (inline, no external load) — plus, WHEN step 3 actually fires, THIS PHASE'S OWN
-  narrow scout-raise slice: agent-selection/agent-tiers, hard-locked non-recursive, tiered, never Opus for a
-  grunt.
-
 ## PHASE 3 DELIVERABLE — this IS the chain's own terminal output, filled before closing
 
 ```
@@ -93,8 +86,3 @@ SELF-CHECK GATE, confirmed/not, one line each:
 CLOSE:                             <VERIFIED (naming what the memory file now says) or COULD NOT (naming the
                                    blocker)>
 ```
-
-## Terminal state — no hand-off
-
-**This phase has no next file to read.** The chain ends here. A subsequent task, if any, starts a fresh
-Phase 0 (ref:agent/grimorio.po/behavior.md), never resumed mid-chain from this file.

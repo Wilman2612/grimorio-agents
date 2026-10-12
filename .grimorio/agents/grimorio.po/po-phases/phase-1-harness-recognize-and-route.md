@@ -1,9 +1,5 @@
 # Product Owner — Phase 1: HARNESS — RECOGNIZE & ROUTE (H1)
 
-**NEVER read ref:agent/grimorio.po/po-phases/phase-2-harness-verify-and-capture.md until THIS phase's own
-DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Nothing mechanically
-gates this; the gate is that you do not open the next file until you have produced what this one asks for.
-
 ## The question this phase answers
 
 What was actually just decided or expressed — a settled product decision vs a vision/roadmap/ambition
@@ -48,17 +44,6 @@ ref:skill/grimorio.agent-writing#the-split-principle--the-agent-is-who-it-is-the
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — lightly recognize
-   what kind of statement this is, grep the now-identified candidate memory file, then formally route it — and
-   nothing else; no spawn, ever, in this phase (the optional scout lives at H3, never here).** Recognizing WHICH
-   of the three candidate memory files is even relevant is a lightweight, informal read of the user's own
-   words — it is NOT yet Step 5's formal routing decision, only enough to know what to grep — so it runs FIRST;
-   only once a candidate target is named does this phase's own required SEARCH-FIRST opening fire: **BEFORE
-   routing or writing anything ⟶ grep that now-identified candidate memory file**, per grimorio-conduct rule 22
-   ("before adding to any memory or vision file, grep it for what is there and say what you found") — state
-   what was found. Grepping a target before any candidate has been named would grep nothing real; naming a
-   candidate before grepping it would violate rule 22's grep-before-add discipline — this order is the only one
-   that satisfies both.
 2. **BEFORE anything else ⟶ state OBJECTIVE (the settled decision or vision statement being captured, taken
    verbatim from the request) and EXIT CONDITION (what the routing decision must identify for it to hold)**,
    per Core rule 1 in Phase 0.
@@ -84,14 +69,12 @@ ref:skill/grimorio.agent-writing#the-split-principle--the-agent-is-who-it-is-the
    ref:agent/grimorio.po/po-phases/phase-2-harness-verify-and-capture.md#currency-in-full — H2's own
    "Currency, in full" section) — never build a chain of cross-referencing corrections beside it.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
 - ref:agent/grimorio.po/memory/project.vision.md#classification--every-section-by-axis-and-where-its-text-lives —
   the classification axis, needed nowhere else in this chain.
-- **NEVER load the custody-check rule, the Currency rule, or the Maintenance rule here** — those are H2's and
-  H3's own JIT slices; loading them here would defeat the whole point of just-in-time loading.
 
-## PHASE 1 DELIVERABLE — do not read Phase 2 until this is filled
+## PHASE 1 DELIVERABLE
 
 ```
 OBJECTIVE:              <the settled decision or vision statement being captured, verbatim from the request>
@@ -102,9 +85,3 @@ GREP RESULT:             <what step 4's SEARCH-FIRST grep of that now-identified
                          anything is routed or written>
 ROUTING TARGET:          <the exact file path from step 5, confirmed against the grep above>
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:agent/grimorio.po/po-phases/phase-2-harness-verify-and-capture.md next, carrying
-forward the recognized statement and the routing target above.** Phase 2 acts on exactly what this phase
-decided — it does not re-recognize or re-route.

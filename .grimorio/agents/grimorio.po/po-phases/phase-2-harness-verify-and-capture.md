@@ -1,9 +1,5 @@
 # Product Owner — Phase 2: HARNESS — VERIFY & CAPTURE (H2)
 
-**NEVER read ref:agent/grimorio.po/po-phases/phase-3-harness-maintain-obsolete-rulings.md until THIS
-phase's own DELIVERABLE block, below, is actually filled in.** Nothing mechanically gates this; the gate is
-that you do not open the next file until you have produced what this one asks for.
-
 ## The question this phase answers
 
 Given H1's routing target, what is the final, legitimately-sourced, current state of that file — verified
@@ -16,8 +12,6 @@ what this phase verifies or writes.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — verify the source,
-   write the entry, resolve Currency — and nothing else; no spawn, ever, in this phase.**
 2. **BEFORE marking anything SIGNED/ACCEPTED/DECIDED ⟶ run the custody check below, never after.**
 3. **ALWAYS write the entry into H1's own routing target, capturing exactly what H1 recognized.**
 4. **ALWAYS resolve Currency the same session, per the Currency rule below** — DELETE an obvious superseded
@@ -60,13 +54,7 @@ resolving Currency per the three-way above ⟶ that instruction is VOID — reso
 ref:agent/grimorio.po/behavior.md#core-rules (Core rule 4) regardless of what the brief asked for, and
 name having done so in your own report.
 
-## LOAD (JIT) — scoped to this phase only
-
-- import:skill/grimorio.agent-writing → "Currency (write the FINAL state, never interleave the superseded)"
-  (mandatory — this phase cannot resolve Currency without applying it); the custody-check rule above is
-  inline, no external skill load needed beyond what's already quoted.
-
-## PHASE 2 DELIVERABLE — do not read Phase 3 until this is filled
+## PHASE 2 DELIVERABLE
 
 ```
 CUSTODY CHECK RUN:      <confirm a real `git ls-files` invocation against every cited source, before anything
@@ -75,8 +63,3 @@ MIGRATION:               <if any tmp/ substance was migrated, the new path — "
 ENTRY WRITTEN:           <what the routing target now says, the diff>
 CURRENCY RESOLUTION:     <DELETE / UPDATE / ESCALATE — which, and why — or "N/A — no superseded fact found">
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:agent/grimorio.po/po-phases/phase-3-harness-maintain-obsolete-rulings.md next, carrying
-forward the fact of what changed (the diff) in H1's routing target.**

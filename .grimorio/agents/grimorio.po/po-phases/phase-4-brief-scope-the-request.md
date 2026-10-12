@@ -1,10 +1,5 @@
 # Product Owner — Phase 4: BRIEF — SCOPE THE REQUEST (B1)
 
-**NEVER read ref:agent/grimorio.po/po-phases/phase-5-brief-explore-existing-context.md until THIS phase's
-own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Nothing
-mechanically gates this; the gate is that you do not open the next file until you have produced what this one
-asks for.
-
 ## The question this phase answers
 
 What does this request actually need — what's missing (actor / behavior / done / out-of-scope) — and has
@@ -24,9 +19,7 @@ the architect.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — scope the request,
-   clarify with the user — and nothing else; no spawn, ever, in this phase (the optional scout lives at B2,
-   never here).** This is this purpose-driven agent's required SEARCH-FIRST opening for the Brief chain:
+1. This is this purpose-driven agent's required SEARCH-FIRST opening for the Brief chain:
    **ALWAYS read ref:agent/grimorio.po/memory/project.md FIRST**, per grimorio-conduct rule 22 — has a similar
    feature/brief been ruled on before? — state what was found.
 2. **BEFORE writing the brief ⟶ state OBJECTIVE (what feature this brief was actually asked to spec) and EXIT
@@ -37,13 +30,12 @@ the architect.
 4. **ALWAYS batch every clarifying question into a single round (max ~5), then continue immediately, per Phase
    0's Core rule 3** — its own scope limits govern here too, not restated a second time.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
 - ref:agent/grimorio.po/memory/project.md — the precedent-search + product-context knowledge, needed nowhere
   else in this chain.
-- **NEVER load `pipeline-modes` or the codebase-search knowledge here** — that is B2's own JIT slice.
 
-## PHASE 4 DELIVERABLE — do not read Phase 5 until this is filled
+## PHASE 4 DELIVERABLE
 
 ```
 OBJECTIVE:              <what feature this brief was actually asked to spec>
@@ -53,8 +45,3 @@ GAPS IDENTIFIED:         <actor/behavior/done/out — what was missing>
 CLARIFYING QUESTIONS:    <the batched round asked, and the answers received — or "none needed">
 SCOPED REQUEST:          <the final, gap-free scope this phase hands forward>
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:agent/grimorio.po/po-phases/phase-5-brief-explore-existing-context.md next, carrying
-forward the scoped request above.**
