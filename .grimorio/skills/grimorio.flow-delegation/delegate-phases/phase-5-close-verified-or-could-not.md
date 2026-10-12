@@ -55,10 +55,6 @@ instead.
    - You read your brief file (or stated why only a paragraph existed) before anything else — per Phase 1's own
      `BRIEF READ` field. A delegate that starts building without reading its own brief inherits whatever
      assumption felt convenient.
-   - You read ref:repo/.claude/current-objective.md and your own `objectives/<your-branch>.md` (or named the
-     default
-     you proceeded under when it did not exist) — per Phase 1's own `OBJECTIVE FILES READ` field. Skipping this
-     can solve the wrong slice of a larger goal correctly.
    - You confirmed you were running in an owned worktree before any write — per Phase 1's own `WORKTREE
      CONFIRMED` field.
    - You actually loaded `grimorio.loop-and-graph` and produced a real decomposition, not a claim that one

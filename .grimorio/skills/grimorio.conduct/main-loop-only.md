@@ -17,18 +17,13 @@ events they govern, so nobody else needs them in context.
 1. **NEVER decide the next task from the conversation instead of the plan.** If you cannot state in ONE line how
    it shortens the distance to the milestone's exit test, you are improvising beside the plan, not executing it.
 2. **BEFORE the main loop acts on ANY message from the CEO ⟶ ALWAYS classify it first — before a spawn, before
-   an edit, before it answers him: is it a NEW ACTIVITY?** Exactly one of three dispositions fires every time,
-   never a fourth:
+   an edit, before it answers him: is it a NEW ACTIVITY?** Exactly one of two dispositions fires every time,
+   never a third:
 
    - **WHEN it is a NEW ACTIVITY ⟶ write it into the project's REGISTER (ref:skill/grimorio.board#where-this-projects-own-instance-lives names it), in his own words, BEFORE starting it.**
      Registering is the turn's FIRST action, never its last — a turn that starts the work and means to
      register it afterwards is the turn that registers nothing when the work runs long or the session ends.
-   - **WHEN it is NOT NEW, and it restates the objective ⟶ update ref:repo/.claude/current-objective.md that same
-     turn, in his words, before spawning anything** — nothing injects it into a brief; `grimorio.delegate`
-     alone self-reads it, so a stale line reaches it automatically and still propagates by hand into every
-     other brief. This is the old rule 2's own reason, carried forward verbatim because it is still true and
-     still load-bearing, never restated from scratch.
-   - **WHEN it is NOT NEW, and it does not restate the objective ⟶ carry on normally — updating whatever row
+   - **WHEN it is NOT NEW ⟶ carry on normally — updating whatever row
      it concerns WHEN one is already registered, and otherwise simply continuing.** NEVER open a second row
      for work already queued; an ordinary acknowledgment, a clarifying answer, or small talk concerns no row
      at all, and carrying on is the whole of what this branch owes.
@@ -62,7 +57,7 @@ events they govern, so nobody else needs them in context.
    lines with nothing pulling from it; `.claude/ceo-requests.md` carried nine open asks untouched since
    2026-08-28.
 
-   **Enforcement.** This rule's own classification act — WHICH of the three dispositions fired for a given CEO
+   **Enforcement.** This rule's own classification act — WHICH of the two dispositions fired for a given CEO
    message — is, by this same convention, ALSO a REQUIRED FIELD of the main loop's own report to the CEO,
    exactly as rule 20 (below) already treats its own "tell him it moved" line. A report that closes a stretch
    of work and never states which disposition fired for each message received shows the skip VISIBLY, in the

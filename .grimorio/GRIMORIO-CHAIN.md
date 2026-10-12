@@ -72,7 +72,6 @@ flowchart LR
         A["The brief<br/>prose the caller wrote — where compression happens"]
         C["Its own files<br/>agent .md + named skills + auto-matched skills"]
         D["Its own id<br/>subagent-id-injection.cjs, SubagentStart (H7)"]
-        E["Its objective — grimorio.delegate ONLY<br/>self-read: current-objective.md + objectives/&lt;branch&gt;.md"]
     end
     subgraph Y["does NOT cross"]
         direction TB
@@ -88,11 +87,8 @@ caller's NEXT decision — never the child it was about to spawn. A freshly spaw
 its own id (H7, which DOES fire inside the child's own context assembly) and `CLAUDE.md` (§1); it never carries
 a spawn check or the principal's own objective.
 
-**The branch-objective gap (row E) is real and open for everyone but `grimorio.delegate`.** `grimorio.delegate`
-self-reads `.claude/current-objective.md` and `objectives/<its-branch>.md` off its own disk at task start
-(`grimorio.flow-delegation/delegate-behavior.md`) — a file already tracked in its worktree, nothing a hook needs
-to hand it. No other spawnable agent type has an equivalent self-read instruction; for everything spawned as
-something other than `grimorio.delegate`, nothing currently delivers the branch's objective at all.
+**No agent reads an objective file.** A child learns its task from the brief alone; a branch objective, where
+one exists, is read only by `close-branch.sh`.
 
 ---
 
@@ -411,7 +407,7 @@ flowchart TB
 | 8 | skills → agents | Loaded only if the agent NAMES them. Three are named by nobody (§6) | **OPEN** |
 | 9 | `agent-selection`'s domain-routing table → the spawn | `grimorio.go-developer` (scope: `services/battlesim`) raised 0 of 516 times against 143 historical commits in that tree; `grimorio.delegate` wrote that work itself on Opus for 7 loops instead. Same shape for `js-developer`. Three written rules (this table, `agent-tiers`, the delegate's own charter) never fired. Re-measured 2026-08-08 at 565 spawns, and it is NOT a uniform zero across the table's three tracked rows: `go-developer` still 0 and `ui-developer` still 0, but the third tracked row `js-developer` reads **10**. (`game-developer` is also 0, and is deliberately NOT a tracked row — `domain-table.cjs` excludes it as an unresolved routing decision, so it must not be counted as if it were one) | **REOPENED 2026-08-09 — closed for exactly one day.** Both gates and the domain table itself were deleted in `e2dee5a2` (§3). Nothing checks domain routing at spawn OR at write, and the only declaration of which tree each specialist claimed exclusively went with them — so the table above is now the sole record that those claims existed. **NEVER cite this row's 2026-08-08 closure as current** |
 | 10 | `agent-stats.sh` field 10 (the milestone-link deviation) → a reader | Measured, populated on every spawn since the field was built, read by nobody: 501 of 508 plan-aware spawns (99%) logged `MISSING`, re-measured 2026-08-07 | **REOPENED 2026-08-09** — the gate that demanded the line was deleted in `e2dee5a2`, and `log-agent-invocation.cjs` field 10 was retired with it and is now always empty (§3). `MILESTONE-LINK:` is read by nothing; a brief still carrying one is following a convention, not a check |
-| 11 | the CEO's own DESIGN GUIDANCE (the reasoning behind an ask, distinct from the ask itself) → the corpus | `agent:grimorio.board-feeder`'s own charter is ASKS-only ("turns the principal's new asks into board items"); nothing else captures the REASONING he gives for HOW a system should work. His own words: *"cuando levantes el sintetizador y esas cosas te vas a dar cuenta que te he dado muchas pistas para muchas cosas"* — reasoning given across many turns, for agents beyond any single dispatch's own scope, surviving today only in whichever context happened to be live when he said it | **OPEN — no mechanism.** Candidate, named, not built: an accumulating file analogous in shape to `ref:repo/.claude/current-objective.md` (verbatim-carrying, authoritative, always current) but for design reasoning rather than the branch objective, or a new lane inside `ref:agent/grimorio.po/memory`'s own design-archive, written to on the SAME cadence `grimorio.board-feeder` already runs on rather than only once a decision is already settled — a proposal for whoever picks this up, not a decision made here |
+| 11 | the CEO's own DESIGN GUIDANCE (the reasoning behind an ask, distinct from the ask itself) → the corpus | `agent:grimorio.board-feeder`'s own charter is ASKS-only ("turns the principal's new asks into board items"); nothing else captures the REASONING he gives for HOW a system should work. His own words: *"cuando levantes el sintetizador y esas cosas te vas a dar cuenta que te he dado muchas pistas para muchas cosas"* — reasoning given across many turns, for agents beyond any single dispatch's own scope, surviving today only in whichever context happened to be live when he said it | **OPEN — no mechanism.** Candidate, named, not built: an accumulating file for design reasoning — verbatim-carrying, authoritative, always current, or a new lane inside `ref:agent/grimorio.po/memory`'s own design-archive, written to on the SAME cadence `grimorio.board-feeder` already runs on rather than only once a decision is already settled — a proposal for whoever picks this up, not a decision made here |
 
 **Measured the same day, not itself a loss to fix but the shape worth naming: `.grimorio/scripts/agent-stats.sh` block 5,
 2026-08-07 — 328 of 516 logged spawns (64%) are `grimorio.scout` + `grimorio.prompt-writer` +
@@ -422,8 +418,8 @@ box for; recorded here because rows 9-10 above are two symptoms of the same shap
 "why is domain routing broken" should see the volume distribution that produced it, not just its two sharpest
 instances.
 
-**Loss 5 is the one with no mechanism at all, and it is asymmetric in a dangerous way.** The forward path has a
-carrier for the CEO's words (`current-objective.md`, verbatim, marked authoritative). The return path has none:
+**Loss 5 is the one with no mechanism at all, and it is asymmetric in a dangerous way.** The forward path carries
+the CEO's words only as far as the brief quotes them. The return path has none:
 a child's finding arrives as plain text and merges into the main loop's voice with nothing marking whose claim
 it was. The rule *"if you cannot quote him, it is not his"* is the prose patch over a missing mechanical field.
 

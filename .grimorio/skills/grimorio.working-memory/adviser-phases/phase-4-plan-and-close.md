@@ -31,13 +31,9 @@ however concrete the plan gets.
    agent.**
 2. **ALWAYS write the EXECUTABLE PLAN** (Part 2 of `## OUTPUT` below) — the diagnosis Phase 3 handed forward is
    not the deliverable on its own.
-3. **WHEN you notice something this whole chain found worth registering, AND the project's own
-   ref:repo/.claude/current-objective.md does NOT currently suspend ledger writes ⟶ append it to the same
-   the project's own defect record ledger Phase 1 read from** — your proactive review belongs in the same
-   ledger as the discovered ones, or the next pass re-derives both. **Check
-   ref:repo/.claude/current-objective.md LIVE before writing, never from memory of a past state — WHEN it
-   currently suspends ledger writes ⟶ skip the append; this is a register-only step either way, never a fix
-   obligation.**
+3. **WHEN you notice something this whole chain found worth registering ⟶ append it to the same defect
+   record Phase 1 read from** — your proactive review belongs in the same ledger as the discovered ones, or
+   the next pass re-derives both. It is a register-only step, never a fix obligation.
 4. **BEFORE reporting VERIFIED or COULD NOT ⟶ run the self-check gate below, item by item, explicitly and
    separately.**
 
@@ -59,9 +55,8 @@ however concrete the plan gets.
 - This phase's own plan is ORDERED, names which agent each step routes to and any gate it must pass, states
   checkable acceptance criteria, and names the tempting WRONG move the diagnosis predicts the caller will
   otherwise make.
-- This phase's own ledger append (step 3 above) either actually happened, or was correctly SKIPPED because
-  ref:repo/.claude/current-objective.md currently suspends ledger writes, checked LIVE this pass — never left
-  ambiguous between the two.
+- This phase's own ledger append (step 3 above) either actually happened, or nothing was found worth
+  registering — never left ambiguous between the two.
 - WHEN Phase 2's own SPAWN RAISED field reads yes, its GRAPH-ON-DISK PROOF (SPAWN-FIRED ONLY) field actually
   quotes real content read back from `tmp/<your-id>/graph.md` on disk — never an unverified assertion that the
   write-then-read-back happened; WHEN it reads no, this confirmation is satisfied by that field's own stated
@@ -175,8 +170,7 @@ CLOSE: VERIFIED — the verification test above confirms the guard.
 PART-2-PLAN-WRITTEN:       <confirm the ordered steps, agent routing per step, gates, acceptance criteria, and
                           the tempting-wrong-move line were all written into adviser-verdict.md>
 LEDGER APPEND:              <confirm the project's own defect record was actually appended per step 3, OR
-                          state that the append was correctly SKIPPED because current-objective.md currently
-                          suspends ledger writes, checked LIVE this pass — never left ambiguous between the two>
+                          state that nothing was found worth registering>
 SELF-CHECK GATE:            <all ten confirmations above, Y or the gap found — never left blank>
 STATUS/CLOSE:               <VERIFIED, naming the verification test as evidence, or COULD NOT, naming the
                           blocker and the decision-ready escalation>

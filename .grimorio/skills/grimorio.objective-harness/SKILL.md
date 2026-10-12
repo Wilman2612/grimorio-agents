@@ -5,7 +5,7 @@ description: "Load before opening, writing checks for, or closing a branch with 
 
 ## What this is
 
-One file per live branch, at `objectives/<branch>.md` — the path is *derived from the branch name*, so
+One file per branch that opens one, at `objectives/<branch>.md` — the path is *derived from the branch name*, so
 there is no registry to keep in sync and nothing to maintain by hand. When the branch closes, the file is
 deleted. `ls objectives/` therefore answers *"where are we, how are we doing, what is open?"* by
 construction: what is on disk is what is live.
@@ -233,32 +233,11 @@ Merging also moves the codebase's own map: **ALWAYS update the `harness.md` of e
 touched** before the merge lands, so the next reader's upward lookup (see import:skill/grimorio.code-harness) still
 describes what is actually there.
 
-## Where the objective reaches — the injection
+## Where the objective reaches
 
-Where an objective exists, it is resolved from the branch name with nobody having to paste it:
-
-| Reached by | Mechanism | Form |
-|---|---|---|
-| **A delegate-type agent's own spawns** (worktree-isolated included) | self-read at task start | the FULL objective: both the project's own current-focus file and its own `objectives/<branch>.md` |
-| **Every other spawnable agent type** | none | nothing reaches it at spawn time — an open gap, not a solved one |
-| **Loops and recurring prompts** | none, unless a project wires its own injection hook | nothing reaches it by default — this path needs a project-level mechanism to close |
-
-**A hook that tries to hand a spawned child its objective BEFORE that child's context exists cannot work.**
-A `PreToolUse: Agent`-style hook runs in the CALLER's own turn, before the spawned child's own context is
-assembled — so anything it injects never reaches the child at all; it only ever informs the caller, who
-already had a direct way to read the same file. The mechanism that actually works is the opposite
-direction: the CHILD reads its own tracked files after it exists, rather than a hook trying to hand it
-something before it exists. Build the self-read into whichever agent type owns a task end to end, not a
-pre-spawn injection hook.
-
-**Which objective governs a branch must be decided in exactly ONE place** — one resolver function, reached
-by every hook and every script that needs the answer through the same call path. A second implementation
-in a different language will drift on its first edit, and that drift has the worst possible failure mode: a
-worker told it is working inside one scope while the gate measures it against another.
-
-**ALWAYS have the injection degrade to nothing rather than block.** No objective, no git, no bash, a broken
-resolver — all of these should degrade to injecting nothing, letting the spawn or turn proceed. A
-methodology that can break a session over a missing file is a methodology that gets switched off.
+Only ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh reads it. **NEVER point an agent at
+an objective file to learn its task** — the file exists only on the branch that opened it, and the brief
+carries the task.
 
 ## When the methodology is live
 

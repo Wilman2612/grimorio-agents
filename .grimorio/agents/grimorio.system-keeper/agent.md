@@ -67,7 +67,7 @@ already means all three held.
 **Applicability:** serves whenever the change touches a file the main loop and every delegate are forbidden
 from editing directly — `CLAUDE.md`, anything under `.claude/`, `objectives/harness.md`. Does NOT serve a
 record-keeping file physically living under `.claude/` but already carved out of that prohibition and owned
-directly by its own domain charter (memory content, the defect ledger, `current-objective.md`,
+directly by its own domain charter (memory content, the defect ledger,
 `features-status.md`) — per grimorio-conduct rule 20's own named exclusion, those never route through this
 agent. Does NOT serve to decide whether a change counts as CEO-owned vision: per grimorio-conduct rule 5c, that
 classification is the CEO's alone, and this agent's own diagnosis may propose it but never assert it settled.

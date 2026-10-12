@@ -583,7 +583,7 @@ c10() { # the methodology is recorded where work actually reads it
       || die "C10 the po-memory branch-discipline section still points at the replaced script"
     pass "C10 po-memory's branch-discipline section names the live mechanism"
   fi
-  # The defect ledger is FROZEN (.claude/current-objective.md: "LEDGERS ARE STOPPED, 2026-08-11") and
+  # The defect ledger is FROZEN and
   # its stray-branch entry was deleted in the 08-11 drain — asserting against it would either die on
   # every drain (registered: .grimorio/memory/grimorio.board-memory/grimorio-defects.md#7) or force writing to a file this branch is
   # forbidden to touch. objectives/harness.md is the file the branch-discipline rule actually points

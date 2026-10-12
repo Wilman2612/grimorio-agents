@@ -79,19 +79,9 @@ everywhere is what made a plan-first era produce enormous documents. A brief is 
    **WHEN you were handed only a paragraph instead of a file ⟶ say so, treat the paragraph itself as your
    objective and context, and START working on what you can** — Core Rule 1's default-and-continue mechanic,
    not a second hard stop.
-3. **BEFORE you start your task ⟶ READ ref:repo/.claude/current-objective.md (the branch's general focus) and
-   `objectives/<your-branch>.md` (your own slice of it).** The pair is deliberate, not incidental: you get the
-   global focus plus your own objective so you know what to focus on without losing the wider context you serve
-   -> ref:repo/.grimorio/skills/grimorio.objective-harness/SKILL.md#the-branch-model--ceo-ruling-2026-07-30.
-   **WHEN `objectives/<your-branch>.md` does not exist ⟶ do not infer your objective and proceed as if it did.**
-   Say so to your parent, state the default you are proceeding under — the nearest ancestor's objective per
-   ref:repo/.grimorio/skills/grimorio.objective-harness/SKILL.md#hard-invariants--these-are-gates-not-preferences
-   rule 12, or absent that, your brief's own stated task — and KEEP WORKING. This is Core Rule 1's
-   default-and-continue mechanic, not a second hard stop like the worktree step below: a missing objective file
-   carries none of the corruption risk an un-isolated shared tree does. This is what makes Core Rule 3
-   applicable honestly, not a duplicate of it: rule 3 fires once you already know the objective and compares it
-   to your brief; this step is how you go get the objective at all, rather than trusting whatever your brief
-   happened to carry.
+3. **NEVER go looking for an objective file to stand in for your brief.** The brief, and the principal's own
+   words it carries, is the whole objective; Core Rule 3 compares it against what the principal actually
+   asked.
 4. **NEVER begin work — no write, no edit, no commit — until you are running in a worktree of your own or can
    create one yourself.** **WHEN neither holds ⟶ say so to your parent and STOP** — that is the correct outcome
    here, not a state to route around. NEVER fall back to working directly in a shared tree, and NEVER improvise
@@ -148,9 +138,8 @@ always, in a loop, refusing anything else), which stays open for the CEO to sett
 
 ## LOAD (JIT) — scoped to this phase only
 
-- import:skill/grimorio.objective-harness — the branch-objective methodology this phase's own step 3 applies:
-  the current-objective/branch-objective pair, the missing-file fallback, and the open/close scripts. You write
-  objective Checks and may run the scripted close yourself, later, in Phase 5.
+- ref:skill/grimorio.objective-harness — only WHEN your branch carries an objective: its Checks and the
+  scripted close Phase 5 may run.
 - import:skill/grimorio.agent-tiers/refusal-pattern.md — the shared triad/boundary test both refusals
   above apply.
 - **NEVER load `loop-and-graph`, `fan-out`, or `agent-tiers`'s own tier scale here** — Phase 2's own question,
@@ -161,8 +150,6 @@ always, in a loop, refusing anything else), which stays open for the CEO to sett
 ```
 BRIEF READ:              <path to tmp/<your-id>/brief.md, confirmed opened in full — or "paragraph only, per
                          the fallback" naming what you were actually handed>
-OBJECTIVE FILES READ:    <.claude/current-objective.md + objectives/<branch>.md, both confirmed read — or the
-                         named default you are proceeding under per step 3's own missing-file fallback>
 WORKTREE CONFIRMED:      <Y — you are running in your own worktree or created one / STOP — say so to your
                          parent, this chain ends here>
 REFUSALS APPLIED:        <"None fired — proceeding" / the refusal that fired, verbatim RESPONSE + CALLER-FIX,

@@ -236,7 +236,7 @@ The forbidden categories, kept identical to the `PROJECT_OR_CODE` list in ref:re
 the prose and the code never drift apart — extend both together from real evidence, never one alone:
 
 ```
-the repo-root ledgers: current-objective.md, grimorio-defects.md (and its -narrative variant)
+the repo-root ledgers: grimorio-defects.md (and its -narrative variant)
 the chain manifest: GRIMORIO-CHAIN.md
 any log under the .claude cache directory
 any per-skill project.md, vision.md / vision-pointers.md, or features-status.md

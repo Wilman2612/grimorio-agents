@@ -385,13 +385,12 @@ regressions.
 ## 13. DEFERRED, AND NOT GUESSED HERE
 
 - **The adopter's own agents** (§9). No structure designed. Untouched.
-- **`.grimorio/memory/grimorio.board-memory/` and `.claude/current-objective.md`** — grimorio's own, at the publication surface, and
-  they fit NO container above. They are STATE, but not the gitignored runtime kind `.cache/` holds: the
-  registers (`register.md`, `grimorio-backlog.md`, `grimorio-defects.md`) and the current objective are
+- **`.grimorio/memory/grimorio.board-memory/`** — grimorio's own, and it fits NO container above. They are STATE, but not the gitignored runtime kind `.cache/` holds: the
+  registers (`register.md`, `grimorio-backlog.md`, `grimorio-defects.md`) are
   TRACKED DOCUMENTS a human reads and git versions. `.cache/` already takes the board's claim ledger and its
   index, which is the machine half. Where the HUMAN half lives is a decision, not a move, so it is not made
   here -- per this file's own rule that a file fitting nowhere means the spec is wrong, not that a folder
-  should be invented. Eight scripts write under `.grimorio/memory/grimorio.board-memory/`; two name `current-objective.md`.
+  should be invented. Eight scripts write under `.grimorio/memory/grimorio.board-memory/`.
 - **`tools/`** — parked. The empty folder may stand; nothing moves into it.
 - **`grimorio.system-design-memory` and `grimorio.board-memory`** — their agents (design-orchestrator and
   design-redactor; board-feeder and board-writer) are due a redesign, so their memory stays in

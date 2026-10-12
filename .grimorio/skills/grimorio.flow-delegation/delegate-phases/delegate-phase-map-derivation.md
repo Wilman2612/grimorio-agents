@@ -60,8 +60,7 @@ it read pre-rewrite, before this pass)
   pre-rewrite file itself: PLAN/READ-BRIEF-AND-STATE-COVERAGE (steps 2-6), DECOMPOSE-AND-PLAN (steps 7-9),
   EXECUTE (steps 10-11), GATE-AND-VERIFY (step 12), CLOSE-VERIFIED-OR-COULD-NOT (steps 13-14).
   - Step 2: read the brief file; paragraph-only fallback.
-  - Step 3: read ref:repo/.claude/current-objective.md + `objectives/<branch>.md`; missing-file fallback (nearest
-    ancestor's objective or the brief's own stated task).
+  - Step 3: never substitute an objective file for the brief; the brief is the whole objective.
   - Step 4: worktree hard-stop — never begin work without an owned worktree; never `git checkout` in a shared
     tree.
   - Step 5: apply task-shape + skip-planning refusals here; a fired refusal ends the chain.
