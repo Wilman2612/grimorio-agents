@@ -8,7 +8,7 @@ supposed to have honored.
 
 ## Grounded in an already-live gate class — this adds ONE executed action, it invents nothing
 
-ref:skill/grimorio.phase-splitting#progressive-revelation--mechanical-never-judgment already states,
+ref:skill/grimorio.phase-splitting#progressive-revelation--the-engine-routes-the-phase-file-never-does already states,
 as a hard mechanical rule (lines 364-367 of that file, quoted verbatim):
 
 > "**ALWAYS write each phase into its own SEPARATE file, and reveal the next phase's file only once the

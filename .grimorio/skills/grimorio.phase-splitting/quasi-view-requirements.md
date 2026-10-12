@@ -12,7 +12,7 @@ that anchor still resolves there, unaffected by this move.
 ## The three-layer HARD requirement
 
 Progressive revelation and The two universal givens, both defined in `SKILL.md`
-(ref:skill/grimorio.phase-splitting#progressive-revelation--mechanical-never-judgment,
+(ref:skill/grimorio.phase-splitting#progressive-revelation--the-engine-routes-the-phase-file-never-does,
 ref:skill/grimorio.phase-splitting#the-two-universal-givens--true-of-every-phase-no-exceptions), are this section's
 model: mechanical, not judgment, the same standing throughout — not a third, softer variant of "sometimes
 required."

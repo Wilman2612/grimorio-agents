@@ -22,11 +22,8 @@ the same ground with a genuinely different, open-ended lens.
 
 ## Conditional loads
 
-- **Browser tooling, restated from ref:agent/grimorio.manual-verifier/behavior.md#browser-tooling — never
-  re-derived, only carried forward to the phase that actually opens a browser, per
-  ref:skill/grimorio.phase-splitting#progressive-revelation--mechanical-never-judgment's own
-  restatement rule:** Use **`playwright-cli`** for all browser
-  interaction — never inline Playwright `.cjs` boilerplate.
+- **Browser tooling, restated from ref:agent/grimorio.manual-verifier/behavior.md#browser-tooling:**
+  Use **`playwright-cli`** for all browser interaction — never inline Playwright `.cjs` boilerplate.
   ```bash
   playwright-cli open {local URL — see ref:agent/grimorio.manual-verifier/memory/project.local-setup.md}/some-route
   playwright-cli snapshot          # accessibility tree of current state

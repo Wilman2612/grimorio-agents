@@ -145,7 +145,7 @@ This is the diagram's own VISIBLE proof of the fix this chain's whole redesign e
 CONTRACT READ (both Phase 1's own fields) ride EVERY doc node from `D1` through `D4`, all the way to Phase 5's
 own consumption — they are named explicitly in `D2`, `D3`, and `D4` above even though Phase 2, Phase 3, and
 Phase 4 each consume neither directly, per
-ref:skill/grimorio.phase-splitting#progressive-revelation--mechanical-never-judgment's own
+ref:skill/grimorio.phase-splitting#progressive-revelation--the-engine-routes-the-phase-file-never-does's own
 "restate, inside a later phase's own file, any fact that phase depends on" rule.** And
 **BUG-FIX-FIRST-TEST (Phase 2's own new field, produced only on the bug-report route) rides `D2`, `D3`, and
 `D4` all the way to Phase 5 as well** — the actual carried evidence (a test, a command, a confirmed error),

@@ -135,7 +135,7 @@ green; WIRE/DAL CONTRACT SHAPES, REWORK/BUG-REPORT FLAG, and SECURITY-SENSITIVE 
 ride through `D3` and `D4` for Phase 5's own `## Contracts` section, its `### REWORK Cycle {N}` step, and its
 own security routing note, respectively; SURVEY NOTES (Phase 3's own field) rides through `D4` for Phase 5's own
 `## Abstractions Reused` section. Grounded in
-ref:skill/grimorio.phase-splitting#progressive-revelation--mechanical-never-judgment's own
+ref:skill/grimorio.phase-splitting#progressive-revelation--the-engine-routes-the-phase-file-never-does's own
 "ALWAYS restate, inside a later phase's own file, any fact that phase depends on" rule — this diagram draws that
 rule's effect, it does not invent a new one.
 

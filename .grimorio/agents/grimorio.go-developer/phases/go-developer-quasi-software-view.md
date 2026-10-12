@@ -129,7 +129,7 @@ section and its `### REWORK Cycle {N}` step; SURVEY NOTES (Phase 3's own field) 
 path) rides through `D3` and `D4` too, as Phase 5's own cited evidence for its Completion criteria's second
 bullet ("WHEN the task was a bug report, the failing test actually ran and actually failed BEFORE any
 production code changed"). Grounded in
-ref:skill/grimorio.phase-splitting#progressive-revelation--mechanical-never-judgment's own
+ref:skill/grimorio.phase-splitting#progressive-revelation--the-engine-routes-the-phase-file-never-does's own
 "ALWAYS restate, inside a later phase's own file, any fact that phase depends on" rule — this diagram draws that
 rule's effect, it does not invent a new one.
 

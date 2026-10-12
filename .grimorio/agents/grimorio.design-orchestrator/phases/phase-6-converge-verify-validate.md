@@ -78,7 +78,7 @@ handle it.
    view-count that decided it, and — WHEN a FAMILY was chosen — an INDEX naming each per-view file and what
    it holds.** This is the SAME digestible-pieces, referenced-not-inlined principle
    ref:skill/grimorio.phase-splitting/flow-method.md#rule-6--phases-are-digestible-pieces-never-dumped-all-at-once
-   and ref:skill/grimorio.phase-splitting#progressive-revelation--mechanical-never-judgment
+   and ref:skill/grimorio.phase-splitting#progressive-revelation--the-engine-routes-the-phase-file-never-does
    already mandate for a phase FILE, applied here to a design's own OUTPUT instead — cross-referenced, never
    re-derived; ref:skill/grimorio.conduct#branches-commits-and-knowledge rule 23's ~500-line file smell
    corroborates the same threshold from a different angle, cited here as corroborating only, never

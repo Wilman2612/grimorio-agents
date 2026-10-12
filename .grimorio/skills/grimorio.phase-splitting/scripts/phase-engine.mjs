@@ -3,9 +3,8 @@
 // names below are read by name from other files (system-keeper-improve-and-validate-mode.md's own step 4
 // greps the transition log by cmd/chain/from/to/on), not just descriptive prose about this file alone.
 // General, chain-agnostic phase-hand-off engine. No chain data lives in this file — every chain is a
-// manifest at `<agent>-phases/chain.json` (searched under .claude/, or pointed at directly with
-// --manifest). Supersedes the old per-agent-hardcoded
-// .grimorio/skills/grimorio.agent-writing/system-keeper-phases/scripts/phase-server.mjs.
+// manifest at `<agent>-phases/chain.json` or `.grimorio/agents/grimorio.<agent>/phases/chain.json` (found by
+// phase-store.mjs, or pointed at directly with --manifest).
 //
 // Subcommands (space-separated `--flag value`, or `--flag=value` — both accepted):
 //   list   --chain <agent> [--manifest <path>]
@@ -19,8 +18,9 @@
 //   facts  --target <path>[,<path>...]
 //
 // @keep-comment
-// Manifest shape: { agent, entry, phases: [{ id, file, loads?, requires?, produces?, "produces-exempt"?,
-// next, desc? }] }. `requires`/`produces` gate `record`/`next`/`start --at`; `loads` and `desc` are
+// Manifest shape: { agent, entry, phases: [{ id, file, loads?, fingerprints?, requires?, produces?,
+// "produces-exempt"?, next, desc? }] }. A `next` target is a phase id or END, which ends the run;
+// `fingerprints` maps a load to the deliverable field(s) `next` checks for a real value. `requires`/`produces` gate `record`/`next`/`start --at`; `loads` and `desc` are
 // informational, printed verbatim in the pointer. A phase with neither requires nor produces is a legal
 // pure passthrough. `produces-exempt` is OPTIONAL: `next` condition names, on this SAME phase, for which
 // the OUTGOING produces check is skipped (a declared loop-back, going back to redo work) — never exempts

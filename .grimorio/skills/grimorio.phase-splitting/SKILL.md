@@ -79,20 +79,25 @@ author merely reaches for.**
 **WHEN one group's load dwarfs its neighbours ⟶ that group is a pincho: split it, or give its bulk to a child
 with a narrower scope.**
 
-## Progressive revelation — mechanical, never judgment
+## Progressive revelation — the engine routes, the phase file never does
 
-The shared runtime that TRAVERSES a chain once you have designed it already exists —
-`ref:repo/.grimorio/skills/grimorio.phase-splitting/scripts/phase-engine.mjs` — read it before wiring a new
-chain's own `loads`/`requires`/`produces`, never re-derived here.
+**ALWAYS write each phase into its own SEPARATE file and list it in the chain manifest, in the
+same folder.** Per phase: `file`, `desc`, `loads` (what it imports), `fingerprints` (a load → the deliverable
+field only that load could fill), `produces`, `produces-exempt`, and `next` (condition → phase id, or `END`).
+ref:repo/.grimorio/skills/grimorio.phase-splitting/scripts/phase-engine.mjs reveals one phase at a time and
+refuses `next` until what the phase produces is recorded and every fingerprint field holds a real value.
 
-**ALWAYS write each phase into its own SEPARATE file, and reveal the next phase's file only once this one's
-deliverable exists.**
+**NEVER write routing into a phase file** — no "read Phase N next", no read-gate on a later phase, no LOAD
+section, no hand-off section naming a file. WHEN a phase has more than one exit ⟶ one `## Hand-off` line names
+which condition to pass. The last phase exits on `done` → `END`, so its own gate runs too. Phase 0, the behavior
+file, carries the Transitions block and the `start` command — ref:agent/grimorio.qa/behavior.md is the exemplar.
 
-**ALWAYS end a phase by naming the EXACT next phase — its file and the deliverable it must consume — never a
-soft "then continue".**
+**ALWAYS run `node .grimorio/skills/grimorio.phase-splitting/scripts/check-chain.mjs --chain <agent> --walk`
+after writing or editing a chain** — it takes every condition through the real engine and refuses routing prose
+left in a phase file; pre-commit runs it on every chain a commit touches.
 
-**NEVER load a later phase's skills or references into an earlier phase "just in case."** A phase's LOAD is
-its own and nothing more.
+**NEVER load a later phase's skills or references into an earlier phase "just in case."** A phase's `loads` are
+its own and nothing more; a reference it needs only on a condition sits under its `## Conditional loads`.
 
 **ALWAYS restate, inside a later phase's own file, any fact that phase depends on.** Never rely on an earlier
 phase's context surviving into it.
@@ -116,8 +121,8 @@ context that phase stands in, whether it came from inside the chain or from an o
 
 ## The drawn view
 
-**ALWAYS produce a DRAWN (mermaid) quasi-software design view, SAVED as a reference file, for every phased
-agent.** It is a DESIGN-time instrument: it makes the flow, and the consequence of breaking one edge, visible
+**ALWAYS produce a DRAWN (mermaid) quasi-software design view, SAVED in the agent's `design/` folder, for
+every phased agent.** It is a DESIGN-time instrument: it makes the flow, and the consequence of breaking one edge, visible
 in a way prose cannot.
 -> what it must contain: ref:skill/grimorio.phase-splitting/quasi-view-requirements.md
 
@@ -144,5 +149,6 @@ hypothesis consistent with the measurements, not a measured mechanism.
 **The named risk: a chain long enough to cost more in hand-offs than the flat pass it replaced.** Its two
 mitigations already exist — the sizing check above, and the ban on manufacturing phases.
 
-**OPEN, not resolved here: what ENFORCES traversal of an authored chain**, as opposed to authoring it. Do not
-close it by inertia.
+**What enforces traversal:** the engine enforces order, recorded artifacts and fingerprints within a run, and
+`phase-engine.mjs verify-chain --run <id>` checks a finished run against its manifest. **OPEN: nothing yet
+obliges a caller to run that check, or proves the agent started the engine at all.** Do not close it by inertia.

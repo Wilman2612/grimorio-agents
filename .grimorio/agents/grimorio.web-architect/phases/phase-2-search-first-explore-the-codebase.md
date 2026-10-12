@@ -29,7 +29,7 @@ exact phase, because this is the phase it gates.
    for this feature area, so Phase 3 wires the GAP instead of re-deriving the substrate. This is the exact
    ledger read the shell's own Knowledge list already points at as a "FIRST READ" — restated here, at the phase
    that actually IS the SEARCH-FIRST archetype, per progressive revelation
-   (ref:skill/grimorio.phase-splitting#progressive-revelation--mechanical-never-judgment: "restate
+   (ref:skill/grimorio.phase-splitting#progressive-revelation--the-engine-routes-the-phase-file-never-does: "restate
    any fact a later phase depends on, never rely on an earlier phase's file still being in context"). Three
    capabilities were re-discovered in one session because this read was skipped once before — the fix is this
    phase owning the read as a first-class LOAD, not a shell-level aside nobody actually consults at the moment

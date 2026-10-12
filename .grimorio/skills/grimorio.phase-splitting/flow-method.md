@@ -68,7 +68,7 @@ ARTIFACT) and step 5 (PLAN-BEFORE-IMPLEMENTING) already state it on the AUTHORIN
 ## Rule 6 — phases are DIGESTIBLE pieces, never dumped all at once
 
 Already standing doctrine, cross-referenced rather than restated:
-ref:skill/grimorio.phase-splitting#progressive-revelation--mechanical-never-judgment already mandates
+ref:skill/grimorio.phase-splitting#progressive-revelation--the-engine-routes-the-phase-file-never-does already mandates
 writing each phase into its own separate file, revealed only once the current phase's own deliverable exists —
 the mechanical requirement this rule names.
 
