@@ -1,0 +1,41 @@
+{
+  "agent": "grimorio.ux",
+  "entry": "1",
+  "phases": [
+    {
+      "id": "1",
+      "file": ".grimorio/agents/grimorio.ux/phases/phase-1-search-first-setup.md",
+      "desc": "SEARCH-FIRST & SETUP",
+      "loads": [
+        "skill/grimorio.working-memory"
+      ],
+      "next": {
+        "continue": "2",
+        "blocker-fail": "3"
+      }
+    },
+    {
+      "id": "2",
+      "file": ".grimorio/agents/grimorio.ux/phases/phase-2-teardown.md",
+      "desc": "TEARDOWN",
+      "loads": [
+        "skill/grimorio.working-memory",
+        "agent/grimorio.ux/memory",
+        "agent/grimorio.ux/memory/component-reference.md",
+        "agent/grimorio.ux/memory/premium-aesthetics.md",
+        "agent/grimorio.ux/memory/project.design-context.md",
+        "skill/grimorio.pipeline-modes"
+      ],
+      "next": {
+        "continue": "3"
+      }
+    },
+    {
+      "id": "3",
+      "file": ".grimorio/agents/grimorio.ux/phases/phase-3-severity-synthesis-report.md",
+      "desc": "SEVERITY SYNTHESIS & REPORT",
+      "loads": [],
+      "next": {}
+    }
+  ]
+}

@@ -57,7 +57,7 @@ SKIPs, never a LOOP-layer back-edge.
 
 ## The GRAPH layer is empty by construction
 
-**NEVER read the empty GRAPH layer above as an unfinished section.** `disallowedTools: Agent` is set in this
+**NEVER take the empty GRAPH layer above for an unfinished section.** `disallowedTools: Agent` is set in this
 agent's own shell (ref:repo/.claude/agents/grimorio.ux.md, confirmed by reading its frontmatter directly for this
 view), and every one of the three phase files states the same fact explicitly in its own Step 1: "this agent
 never invokes another agent, in any phase, ever." Zero agent-nodes is therefore the correct, complete rendering

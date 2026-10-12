@@ -1,9 +1,5 @@
 # UX Critic — Phase 2: TEARDOWN
 
-**NEVER read ref:agent/grimorio.ux/phases/phase-3-severity-synthesis-report.md until THIS phase's own
-DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Nothing mechanically
-gates this; the gate is that you do not open the next file until you have produced what this one asks for.
-
 ## The question this phase answers
 
 What's wrong with THIS specific rendered state, across all 8 axes, grounded in a cited principle — never taste?
@@ -16,9 +12,6 @@ cruel — the target is the design, and the goal is a UI that respects the user.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — one internal loop over
-   every validated rendered state Phase 1 handed forward — and nothing else; this agent never invokes another
-   agent, in any phase, ever.**
 1b. **ALWAYS carry forward Phase 1's own MISSING-STATE BLOCKER(S) list (possibly empty) unchanged into this
     phase's own finding set below — never re-derive them, never drop them, never re-rank them differently from
     any other finding this phase produces.**
@@ -41,27 +34,12 @@ cruel — the target is the design, and the goal is a UI that respects the user.
 3. **ALWAYS ground every finding in evidence over opinion — every finding references a screenshot and a
    concrete observation.**
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-This is where the FULL weight belongs — nothing here was needed by Phase 1, and nothing here is needed by
-Phase 3:
-
-- import:skill/grimorio.working-memory — the tmp/ working-folder convention, for saving per-state screenshots.
-- import:agent/grimorio.ux/memory — universal UX principles + the Nielsen heuristics evaluation framework
-  (general) + this project's design system (project/code), in full: Norman's 5 concepts, the 7 Laws of UX, 5
-  Refactoring-UI/Gestalt fundamentals, 4 WCAG thresholds, Krug, responsive/mobile-first, the 10 Nielsen
-  heuristics + priority + interaction-state rule + anti-patterns, the Component Inventory reuse lens. The axis
-  table above is your primary teardown lens; the heuristics are supplementary reasoning support for judging
-  severity and rationale.
-- import:agent/grimorio.ux/memory/component-reference.md
-- import:agent/grimorio.ux/memory/premium-aesthetics.md
-- import:agent/grimorio.ux/memory/project.design-context.md
 - ref:agent/grimorio.ux/memory/project.md — this skill's own Design Language + Component System + Accessibility
   Bar sections.
-- import:skill/grimorio.pipeline-modes — NORMAL vs LIGERO, governs how deep the reuse/consistency check goes
-  for this pass.
 
-## PHASE 2 DELIVERABLE — do not read Phase 3 until this is filled
+## PHASE 2 DELIVERABLE
 
 ```
 FINDING SET (raw, unranked, one entry per axis-hit, PLUS Phase 1's own carried-forward MISSING-STATE
@@ -73,8 +51,3 @@ BLOCKER(S) included unchanged, none silently skipped):
 
 STATES COVERED:          <every validated rendered state Phase 1 handed forward, confirmed none skipped>
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:agent/grimorio.ux/phases/phase-3-severity-synthesis-report.md next, carrying
-forward the COMPLETE cross-state finding set** — Phase 3 cannot begin meaningfully on a partial set.
