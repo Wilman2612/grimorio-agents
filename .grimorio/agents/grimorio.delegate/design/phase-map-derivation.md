@@ -175,6 +175,6 @@ derivation leaves open by omission.
 ## Cross-reference
 
 The mermaid quasi-software-view drawn from this derivation lives at
-ref:skill/grimorio.flow-delegation/delegate-phases/delegate-quasi-software-view.md — this file is the numeric
+ref:agent/grimorio.delegate/design/quasi-software-view.md — this file is the numeric
 evidence behind that diagram's own five-node spine; the diagram does not repeat this file's own counts, and this
 file does not repeat the diagram's own edges.

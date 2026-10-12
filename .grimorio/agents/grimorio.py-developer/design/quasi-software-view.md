@@ -4,7 +4,7 @@ This is `grimorio.py-developer`'s own DRAWN quasi-software design view, produced
 ref:skill/grimorio.phase-splitting#the-drawn-view's
 standing requirement that every agent-design plan carry one, saved alongside the agent's own design as a
 reference file. It mirrors
-ref:agent/grimorio.go-developer/phases/go-developer-quasi-software-view.md's own
+ref:agent/grimorio.go-developer/design/quasi-software-view.md's own
 already-shipped five-section shape (a purpose-driven, non-hard-locked agent with a real own-type gated
 fan-out) IN FORM, never in CONTENT — this agent's own domain (Python/Pydantic, not Go/determinism) differs
 throughout. It is STRUCTURALLY DIFFERENT from that exemplar in exactly TWO respects, both deliberate, both
@@ -84,7 +84,7 @@ Haiku child, and nowhere else in the chain.
 DELIBERATELY OMITTED from this diagram, stated here explicitly rather than silently dropped.** Unlike the
 CHILDREN relationship above, this ladder is reachable from EVERY phase in the chain (Phase 0's own "Standing
 awareness" section states this), not from one specific dispatch point — the same reasoning
-ref:agent/grimorio.go-developer/phases/go-developer-quasi-software-view.md's own equivalent
+ref:agent/grimorio.go-developer/design/quasi-software-view.md's own equivalent
 section already states for its own chain, reused here rather than re-derived. **No other future/not-wired
 agent-node belongs in this graph** — a full read of Phase 0 plus all five phase files surfaced no language
 naming any agent this chain MAY one day lean on beyond the escalation ladder (already addressed above) and the

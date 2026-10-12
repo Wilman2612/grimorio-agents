@@ -4,7 +4,7 @@ This is `grimorio.adviser`'s own DRAWN quasi-software design view, produced per
 ref:skill/grimorio.phase-splitting#the-drawn-view's
 standing requirement that every agent-design plan carry one, saved alongside the agent's own design as a
 reference file. It mirrors
-ref:agent/grimorio.security/phases/security-quasi-software-view.md's own already-shipped
+ref:agent/grimorio.security/design/quasi-software-view.md's own already-shipped
 five-layer shape — read in full as this file's own structural exemplar, never as its content — adapted to a
 FOUR-phase, sequential-but-not-hard-locked chain instead of a six-phase, fully-sequential, hard-locked
 non-recursive one. This file draws all layers directly from
@@ -29,7 +29,7 @@ ref:skill/grimorio.phase-splitting#the-model--a-phase-is-a-state-with-three-fiel
 NO LOOP-BACK edge anywhere: nothing in any of these four phase files re-enters an earlier phase of THIS
 invocation; each phase's own Hard hand-off moves strictly forward, once, per invocation — a fully linear STATE
 MACHINE spine is a legitimate shape here, not an unfinished one, exactly as
-ref:agent/grimorio.security/phases/security-quasi-software-view.md's own exemplar already states
+ref:agent/grimorio.security/design/quasi-software-view.md's own exemplar already states
 for its own six-phase chain. A `FAIL`-shaped verdict here (a COULD NOT close) routes EXTERNALLY, to whoever the
 Part 2 plan names as the decision-owner, never an internal loop-back to an earlier phase.
 
@@ -50,7 +50,7 @@ dashed style here marks CONDITIONALITY of firing, not absence of wiring.
 **Grounding — shared across every quasi-view that draws this layer, not re-derived here:**
 ref:skill/grimorio.phase-splitting/quasi-view-requirements.md#half-a--boundary-artifact-flow-unchanged.
 Per this agent's own scope (mirroring
-ref:agent/grimorio.security/phases/security-quasi-software-view.md's own identical scope), only
+ref:agent/grimorio.security/design/quasi-software-view.md's own identical scope), only
 half (a) (boundary artifact-flow) is drawn for this chain — half (b) (per-phase interior flowcharts + a
 KNOWN-ERRORS-TO-PHASE mapping) is optional per that same file and out of scope for this pass.
 
@@ -80,7 +80,7 @@ applies, now applied to this chain.
 
 **This chain is sequential end to end at the STATE-MACHINE level — P1 → P2 → P3 → P4, one phase at a time, no
 fan-out anywhere in the spine.** This is the ONE place this chain differs structurally from
-ref:agent/grimorio.security/phases/security-quasi-software-view.md's own exemplar, which draws
+ref:agent/grimorio.security/design/quasi-software-view.md's own exemplar, which draws
 PARALLELIZATION as "none, structurally" because `disallowedTools: Agent` makes every one of its phases a single
 SELF node by construction. `grimorio.adviser` is NOT hard-locked, so its own Layer 4 cannot claim the same
 absolute "none" — the honest statement is: the FOUR-PHASE SPINE is sequential by design (each phase's own

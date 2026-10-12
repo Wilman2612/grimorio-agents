@@ -1,7 +1,7 @@
 # Design Orchestrator — Exemplar: gRPC Retry Design (gRFC A6)
 
 A companion reference file in the `system-design` skill, the same tier and mechanism as
-ref:agent/grimorio.design-orchestrator/quasi-software-view.md — the FULL, real text of an external,
+ref:agent/grimorio.design-orchestrator/design/quasi-software-view.md — the FULL, real text of an external,
 human-vetted design document, held here as an INDEX plus three verbatim companion files, not a distillation or
 a "why this is good" essay layered on top of fragments. This file exists so the bar-anchor
 ref:agent/grimorio.design-orchestrator/phases/phase-1-search-first.md's own step 5b holds does not depend

@@ -3,7 +3,7 @@
 This is `grimorio.go-developer`'s own DRAWN quasi-software design view, produced per
 ref:skill/grimorio.phase-splitting#the-drawn-view's
 standing requirement that every agent-design plan carry one, saved alongside the agent's own design as a
-reference file. It mirrors ref:agent/grimorio.ui-developer/phases/ui-developer-quasi-software-view.md's
+reference file. It mirrors ref:agent/grimorio.ui-developer/design/quasi-software-view.md's
 own already-shipped five-section shape (a purpose-driven, non-hard-locked agent with a real own-type gated
 fan-out) but is STRUCTURALLY SIMPLER than that exemplar in two respects, stated explicitly rather than padded to
 match it: this chain has NO loop-back edges (unlike ui-developer's two — a defect Phase 4 finds is fixed inside
@@ -66,7 +66,7 @@ per Haiku child, and nowhere else in the chain.
 DELIBERATELY OMITTED from this diagram, stated here explicitly rather than silently dropped.** Unlike the
 CHILDREN relationship above, this ladder is reachable from EVERY phase in the chain (Phase 0's own "Standing
 awareness" section states this), not from one specific dispatch point — the same reasoning
-ref:agent/grimorio.ui-developer/phases/ui-developer-quasi-software-view.md's own equivalent
+ref:agent/grimorio.ui-developer/design/quasi-software-view.md's own equivalent
 section already states for its own chain, reused here rather than re-derived. **No other future/not-wired
 agent-node belongs in this graph** — a full read of Phase 0 plus all five phase files surfaced no language
 naming any agent this chain MAY one day lean on beyond the escalation ladder (already addressed above) and the

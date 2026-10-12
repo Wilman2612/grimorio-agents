@@ -13,8 +13,8 @@ the five phase files is reflected here in the same pass, never left stale.
 
 Same class of artifact as
 `ref:agent/grimorio.prompt-writer/design/quasi-software-view.md`,
-`ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md`, and
-`ref:agent/grimorio.ux/phases/ux-quasi-software-view.md` — this file mirrors their shape (the same
+`ref:agent/grimorio.system-keeper/design/quasi-software-view.md`, and
+`ref:agent/grimorio.ux/design/quasi-software-view.md` — this file mirrors their shape (the same
 five-layer split, the same "at a glance" summary near the top, the same DFD grounding paragraph pattern for the
 INTERNAL layer), SCALED to this agent's own 5 phases — much lighter than `system-keeper`'s 7, no extra weight
 manufactured to match that precedent's own scale. Two of the five phases (PRE-REGISTRATION, ANALYZE) carry a

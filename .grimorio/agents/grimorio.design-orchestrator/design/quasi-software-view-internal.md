@@ -1,7 +1,7 @@
 # Design Orchestrator — Quasi-Software View: Layer 3 (INTERNAL) — per-phase artifact-flow + interior behavior
 
 This is the OPTIONAL Layer 3 companion to
-ref:agent/grimorio.design-orchestrator/quasi-software-view.md — read that file first for the
+ref:agent/grimorio.design-orchestrator/design/quasi-software-view.md — read that file first for the
 STATE MACHINE/LOOP/GRAPH layers this file does not repeat.
 
 ## Layer 3 (INTERNAL) — per-phase artifact-flow (IN → OUT) + interior behavior

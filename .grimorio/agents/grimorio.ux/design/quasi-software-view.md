@@ -12,7 +12,7 @@ draws their consequences, it does not re-author any of them.
 
 Same class of artifact as
 `ref:agent/grimorio.prompt-writer/design/quasi-software-view.md` and
-`ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md` — this file mirrors
+`ref:agent/grimorio.system-keeper/design/quasi-software-view.md` — this file mirrors
 their shape (the same five-layer split, the same "at a glance" summary near the top, the same DFD grounding
 paragraph pattern for the INTERNAL layer), SCALED DOWN to this agent's own 3 phases; this chain has no
 CLONE-EXECUTOR mode and no fingerprint gates, so neither is drawn or invented here.

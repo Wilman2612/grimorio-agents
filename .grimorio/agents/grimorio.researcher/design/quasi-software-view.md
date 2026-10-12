@@ -4,7 +4,7 @@ This is `grimorio.researcher`'s own DRAWN quasi-software design view, produced p
 ref:skill/grimorio.phase-splitting#the-drawn-view's
 standing requirement that every agent-design plan carry one, saved alongside the agent's own design as a
 reference file. It mirrors
-ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md#the-five-layers-at-a-glance-and-where-each-is-drawn's
+ref:agent/grimorio.system-keeper/design/quasi-software-view.md's
 own already-shipped five-layer shape — read in full as this file's own structural exemplar, never as its
 content — adapted to a THREE-phase orchestrator chain instead of a seven-phase one. This file draws all layers directly from
 ref:skill/grimorio.fan-out/researcher-behavior.md and its three
@@ -51,7 +51,7 @@ own report, not silently substituted.
 The one circular agent-node, `SCOUT`, is the GRAPH layer's own contribution — per
 ref:skill/grimorio.loop-and-graph#3-the-graph--who-is-in-it-and-the-branch-rule — drawn in a shape visually
 distinct from the three rectangular phase-nodes, the same convention
-ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md already established,
+ref:agent/grimorio.system-keeper/design/quasi-software-view.md already established,
 so a reader tells a phase from a spawned agent at a glance, with no legend doing that
 work. `SCOUT` represents N independent instances (one per slice), not one fixed spawn — P2's own step 3 states
 plainly it is the ONLY agent type ever spawned here (`disallowedTools: Agent` on every one, hard-locked
@@ -73,7 +73,7 @@ ref:agent/grimorio.prompt-writer/design/quasi-software-view.md today.
 **One artifact node per phase BOUNDARY, never two.** A three-phase chain has two internal boundaries
 (P1↔P2, P2↔P3) plus the terminal phase's own output reaching the caller — three artifact nodes total, never one
 IN/OUT pair per phase individually, for the identical reason
-ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md's own Layer 3 already
+ref:agent/grimorio.system-keeper/design/quasi-software-view.md's own Layer 3 already
 states: each phase's own Hard hand-off text already names Phase N's OUT as the exact content Phase N+1 consumes
 as its IN.
 
@@ -89,7 +89,7 @@ flowchart LR
 The dotted edges here are the SAME visual convention as the LOOP/short-circuit edge in Layer 1+2 (dashed,
 distinct from a solid forward edge) but carry a DIFFERENT meaning — "consumes"/"produces" (data moving), never
 "EXIT"/collapse (control moving) — the identical DFD process-vs-flow separation
-ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md's own Layer 3
+ref:agent/grimorio.system-keeper/design/quasi-software-view.md's own Layer 3
 already applies, now applied to this chain.
 
 **What this diagram deliberately omits, and why.** The P1 DELIVERABLE also names an OBJECTIVE and EXIT

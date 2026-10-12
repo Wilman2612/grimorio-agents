@@ -1,6 +1,6 @@
 # Solution Architect — RENDER / GROUP / MEASURE / SPLIT evidence
 
-Saved per ref:skill/grimorio.phase-splitting/project.quasi-view-requirements.md's own "Evidence of phase-design
+Saved per ref:skill/grimorio.phase-splitting/quasi-view-requirements.md's own "Evidence of phase-design
 reasoning" obligation — the working product of applying `SKILL.md`'s own RENDER/GROUP/MEASURE/SPLIT algorithm to
 `.claude/skills/grimorio.solution-architecture/behavior.md` (current, flat, 197-line file), BEFORE any phase file
 was drafted. This is the durable artifact that lets a later reader check the saved evidence against the
@@ -9,7 +9,7 @@ complete rendered scope, rather than trusting a phase chain that merely "looks" 
 ## STEPS vs PHASES verdict — applied fresh, not adopted from the brief unchecked
 
 The dispatching brief diagnosed this as a textbook PHASES case. Independently applying
-`ref:skill/grimorio.phase-splitting/project.steps-vs-phases-test.md`: the current file's own `## Steps` heading
+`ref:skill/grimorio.phase-splitting/steps-vs-phases-test.md`: the current file's own `## Steps` heading
 already numbers 13 steps spanning 7 explicitly named "Node" headers, each drawing on genuinely different
 knowledge (confirmed below, item by item, not merely asserted) — this is the exact shape the test's own
 diagnosis names as the measured incident (a genuine multi-stage state machine flattened into one `## Steps`

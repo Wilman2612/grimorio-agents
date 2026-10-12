@@ -4,7 +4,7 @@ This is `grimorio.entropy`'s own DRAWN quasi-software design view, produced per
 ref:skill/grimorio.phase-splitting#the-drawn-view's
 standing requirement that every agent-design plan carry one, saved alongside the agent's own design as a
 reference file. It mirrors
-ref:skill/grimorio.fan-out/researcher-phases/researcher-quasi-software-view.md's own already-shipped,
+ref:agent/grimorio.researcher/design/quasi-software-view.md's own already-shipped,
 already-approved three-phase shape — read in full as this file's own structural exemplar, never as its content
 — the closest precedent for the SAME orchestrator archetype: a homogeneous `grimorio.scout` panel spawned to
 gather independent perspectives/slices, then converged by the orchestrator itself. This file draws all layers
@@ -42,7 +42,7 @@ researcher's own collapse mechanic where it does not apply.
 The one circular agent-node, `SCOUT`, is the GRAPH layer's own contribution — per
 ref:skill/grimorio.loop-and-graph#3-the-graph--who-is-in-it-and-the-branch-rule — drawn in a shape visually
 distinct from the three rectangular phase-nodes, the same convention
-ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md and researcher's own
+ref:agent/grimorio.system-keeper/design/quasi-software-view.md and researcher's own
 quasi-view already establish, so a reader tells a phase from a spawned agent at a glance, with no legend doing
 that work. `SCOUT` represents N independent instances (one per scoped lens), never one fixed spawn — Phase 2's
 own step 3 states plainly it is the ONLY agent type ever spawned here (hard-locked non-recursive,
@@ -68,7 +68,7 @@ ref:skill/grimorio.phase-splitting/quasi-view-requirements.md#half-a--boundary-a
 Per this pass's own explicit scope, only half (a) (boundary artifact-flow) is drawn for this chain — half (b)
 (per-phase interior flowcharts + a KNOWN-ERRORS-TO-PHASE mapping) is optional per that same file and out of
 scope for this pass, exactly as it remains for
-ref:skill/grimorio.fan-out/researcher-phases/researcher-quasi-software-view.md today.
+ref:agent/grimorio.researcher/design/quasi-software-view.md today.
 
 **One artifact node per phase BOUNDARY, never two.** A three-phase chain has two internal boundaries
 (P1↔P2, P2↔P3) plus the terminal phase's own output reaching the caller — three artifact nodes total, never one
@@ -87,7 +87,7 @@ flowchart LR
 The dotted edges here are the SAME visual convention as a loop/short-circuit edge would be in Layer 1+2 (dashed,
 distinct from a solid forward edge) but carry a DIFFERENT meaning — "consumes"/"produces" (data moving), never
 "EXIT"/collapse (control moving) — the identical DFD process-vs-flow separation
-ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md and researcher's own
+ref:agent/grimorio.system-keeper/design/quasi-software-view.md and researcher's own
 Layer 3 already apply, now applied to this chain.
 
 **What this diagram deliberately omits, and why.** The P1 DELIVERABLE also names an OBJECTIVE and EXIT

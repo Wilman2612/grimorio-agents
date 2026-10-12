@@ -100,9 +100,8 @@ unchanged, below;
 (b) **per-phase interior behavior** — that phase's own internal steps and decision logic, PLUS a
 KNOWN-ERRORS-TO-PHASE mapping — both new, defined below.
 
-Two shipped quasi-views already draw half (a):
-ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md#the-five-layers-at-a-glance-and-where-each-is-drawn
-and the prompt-writer's own quasi-software view. Neither yet draws half
+Two shipped quasi-views already draw half (a): the system-keeper's own quasi-software view and the
+prompt-writer's own. Neither yet draws half
 (b) — bringing them up to this deepened requirement is a separate, later dispatch, out of scope here; this file
 only defines what they now owe. A future quasi-view adding this layer states only what is genuinely
 FILE-SPECIFIC (its own boundary-artifact count and names, its own phases' steps and decision logic, its own
@@ -231,8 +230,7 @@ redesign of this file's three-layer (+ optional Layer 4) standard never has to r
 ALWAYS/NEVER requirements layered onto the HARD requirement above.
 
 1. **Two extra, unformalized "layers" appear widely.** At least two files
-   (ref:skill/grimorio.fan-out/entropy-phases/entropy-quasi-software-view.md,
-   the prompt-writer's own quasi-software view) draw a
+   (the entropy agent's own quasi-software view and the prompt-writer's own) draw a
    "Layer 4 — PARALLELIZATION" (which spawns can run
    concurrently) and a "Layer 5 — EXPECTED OUTPUTS" (a WORK-vs-ORCHESTRATION table), beyond the three
    layers plus the optional INTERNAL 4th this file defines. Neither is named anywhere in this standard — a

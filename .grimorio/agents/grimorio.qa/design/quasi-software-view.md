@@ -4,9 +4,9 @@ This is `grimorio.qa`'s own DRAWN quasi-software design view, produced per
 ref:skill/grimorio.phase-splitting#the-drawn-view's
 standing requirement that every agent-design plan carry one, saved alongside the agent's own design as a
 reference file. It mirrors
-ref:agent/grimorio.manual-verifier/phases/verifier-quasi-software-view.md's own already-shipped
+ref:agent/grimorio.manual-verifier/design/quasi-software-view.md's own already-shipped
 five-section shape (a purpose-driven, non-hard-locked agent with a real own-type gated fan-out) and reuses
-ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md's own Layer 1+2
+ref:agent/grimorio.system-keeper/design/quasi-software-view.md's own Layer 1+2
 dashed-edge-with-verbatim-trigger-label mermaid convention for drawing a genuine phase-to-phase LOOP-BACK — this
 chain is the first purpose-driven, own-type-fan-out chain in the corpus that ALSO carries a real internal
 loop-back, so it draws on both exemplars rather than either alone. This file draws all layers directly from
@@ -37,7 +37,7 @@ flowchart TB
 files' own chain, per ref:skill/grimorio.phase-splitting#the-model--a-phase-is-a-state-with-three-fields.
 **This chain carries TWO distinct LOOP-BACK edges, both re-entering P2, drawn as two visually distinct dashed
 edges each carrying its own verbatim trigger label** — the same mermaid convention
-ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md's own Layer 1+2
+ref:agent/grimorio.system-keeper/design/quasi-software-view.md's own Layer 1+2
 diagram already establishes for its own P5↔P4/P6↔P4 edges, reused here rather than invented fresh. **The two
 edges are NEVER merged into one**, because they fire from different phases, at different discovery moments,
 over different failure populations: LOOP-BACK-A fires live, inside P3's own break-proof mutation, over a NEW
@@ -52,7 +52,7 @@ a second dashed edge for the return trip.
 **The one circular agent-node, `CHILD`, is the GRAPH layer's own contribution** — per
 ref:skill/grimorio.loop-and-graph#3-the-graph--who-is-in-it-and-the-branch-rule — drawn in a shape visually
 distinct from the four rectangular phase-nodes, the same convention
-ref:agent/grimorio.manual-verifier/phases/verifier-quasi-software-view.md's own `CHILD` node already
+ref:agent/grimorio.manual-verifier/design/quasi-software-view.md's own `CHILD` node already
 establishes, so a reader tells a phase from a spawned agent at a glance. `CHILD` represents N independent
 instances (one per test spec/path, this agent's own VOLUME UNIT), reachable ONLY from Phase 2's own FAN-OUT
 BRANCH — no other phase in this chain ever spawns. **This is the deliberate INVERSE of
@@ -220,7 +220,7 @@ undercounted for the identical reason, at 3 instead of 4; P2 (5) and P4 (6) were
 correctly and are restated here unchanged, now visibly following the same stated rule rather than reading as
 independently arrived-at. The honest, now-consistent ranking is P1 (7) > P4 (6) > P2 (5) > P3 (4). Neither axis
 shows a 5×-sibling pincho the way
-ref:agent/grimorio.manual-verifier/phases/verifier-quasi-software-view.md's own pre-split
+ref:agent/grimorio.manual-verifier/design/quasi-software-view.md's own pre-split
 "sanity-baseline" stage measured — no further SPLIT is warranted, matching `grimorio.system-keeper`'s own
 independently re-derived MEASURE verdict rather than merely trusting it.
 

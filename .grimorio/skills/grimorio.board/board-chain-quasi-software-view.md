@@ -8,7 +8,7 @@ ref:skill/grimorio.phase-splitting/quasi-view-requirements.md#the-three-layer-ha
 agent shell to hang the view off — the exact class that EXTENDED clause names. Model and conventions follow
 ref:skill/grimorio.conduct/main-loop-flow-quasi-software-view.md (PRIMARY exemplar — the other shipped
 instance of a non-agent phased process) and
-ref:agent/grimorio.extract-cleaner/extract-cleaner-quasi-software-view.md (SECONDARY exemplar — how a
+ref:agent/grimorio.extract-cleaner/design/quasi-software-view.md (SECONDARY exemplar — how a
 single agent's own interior is drawn once, and pointed at rather than re-derived, when it appears as one node
 inside a larger chain).
 

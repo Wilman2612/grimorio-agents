@@ -6,7 +6,7 @@ in full for the 2026-09-16 mechanism rewrite — the prior 850-line version accr
 log (numbered "Dispatch" sections, review-status paragraphs, a REWORK log) beside the diagrams themselves; this
 file states only the CURRENT design. Git history, not this file, holds the dispatch-by-dispatch story. Kept to
 the same fidelity as the sibling
-ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md — the six phase files
+ref:agent/grimorio.system-keeper/design/quasi-software-view.md — the six phase files
 themselves are the authority on WHAT each phase does; this file is only the drawn SHAPE, per the ~500-line smell
 threshold (ref:skill/grimorio.conduct#branches-commits-and-knowledge rule 23).
 

@@ -9,7 +9,7 @@ undrawn, for the main loop's own spawn-phase flow. That absence is exactly what 
 only its LOGIC drawn (phases, an algorithm) and none of its IMPLEMENTATION depth — the CEO's own diagnosis,
 translated: *"your quasi-software view shows the correct logic, but very little depth... the logic is great,
 the implementation, no."* Model and conventions follow
-ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md#the-five-layers-at-a-glance-and-where-each-is-drawn's
+ref:agent/grimorio.system-keeper/design/quasi-software-view.md's
 own precedent — cited for the general layer/labeling discipline (DFD doc-shaped artifact nodes, dashed vs
 solid edge meaning, circular vs rectangular node shape), never re-derived here.
 

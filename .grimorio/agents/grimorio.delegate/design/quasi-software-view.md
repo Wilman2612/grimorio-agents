@@ -6,7 +6,7 @@ standing requirement that every agent-design plan carry one, saved alongside the
 reference file. It draws the three-layer HARD minimum
 (ref:skill/grimorio.phase-splitting/quasi-view-requirements.md#the-three-layer-hard-requirement) in one
 diagram, following `grimorio.system-keeper`'s own precedent
-(ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md#layer-1--2--nodes-the-orchestration-graph-and-phases-the-state-machine)
+(ref:agent/grimorio.system-keeper/design/quasi-software-view.md#layer-1--nodes-the-orchestration-graph)
 of keeping NODES and PHASES together — a phase-node and an agent-node read correctly only against the same
 spine, and this chain's own five phases plus two conditional agent-node classes are small enough that splitting
 them into separate diagrams would cost legibility, not add it.
@@ -108,4 +108,4 @@ either.
 
 The sizing evidence behind this view's own five-node spine — the full RENDER inventory, the GROUP reasoning, and
 the MEASURE counts (no pincho found) — lives separately, cross-referenced rather than duplicated here:
-ref:skill/grimorio.flow-delegation/delegate-phases/delegate-phase-map-derivation.md.
+ref:agent/grimorio.delegate/design/phase-map-derivation.md.

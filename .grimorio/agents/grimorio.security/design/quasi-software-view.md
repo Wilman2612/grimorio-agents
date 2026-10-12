@@ -4,7 +4,7 @@ This is `grimorio.security`'s own DRAWN quasi-software design view, produced per
 ref:skill/grimorio.phase-splitting#the-drawn-view's
 standing requirement that every agent-design plan carry one, saved alongside the agent's own design as a
 reference file. It mirrors
-ref:skill/grimorio.fan-out/researcher-phases/researcher-quasi-software-view.md's own already-shipped five-layer
+ref:agent/grimorio.researcher/design/quasi-software-view.md's own already-shipped five-layer
 shape — read in full as this file's own structural exemplar, never as its content — adapted to a SIX-phase,
 fully sequential, non-recursive chain instead of a three-phase orchestrator one. This file draws all layers
 directly from ref:agent/grimorio.security/behavior.md and its six

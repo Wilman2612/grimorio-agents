@@ -1,6 +1,6 @@
 # Web Architect — RENDER / GROUP / MEASURE / SPLIT evidence
 
-Saved per ref:skill/grimorio.phase-splitting/project.quasi-view-requirements.md's own "Evidence of phase-design
+Saved per ref:skill/grimorio.phase-splitting/quasi-view-requirements.md's own "Evidence of phase-design
 reasoning" obligation — the working product of applying `SKILL.md`'s own RENDER/GROUP/MEASURE/SPLIT algorithm to
 `.claude/skills/grimorio.architect-memory/behavior.md` (the PRE-SPLIT, flat, 124-line file), BEFORE any phase
 file was drafted. This is the durable artifact that lets a later reader check the saved evidence against the
@@ -12,7 +12,7 @@ The pre-split file's own `## Steps` heading already numbered 19 steps under 5 ex
 headers (REVIEW-THE-BRIEF, EXPLORE-THE-CODEBASE, DECIDE-ARCHITECTURE, WRITE-THE-DECISION, DONE), each drawing on
 genuinely different knowledge (confirmed below, item by item), gated by load-bearing sequencing rules ("BEFORE
 opening any codebase file," "BEFORE setting status ⟶ ENSURE every gate-check box holds") — the exact shape
-ref:skill/grimorio.phase-splitting/project.steps-vs-phases-test.md names as a measured incident (a genuine
+ref:skill/grimorio.phase-splitting/steps-vs-phases-test.md names as a measured incident (a genuine
 multi-stage state machine flattened into one `## Steps` list). **VERDICT CONFIRMED: PHASES, not STEPS.** The
 refutation attempt: could this instead be ONE atomic mission? No — the file's own Harness-mode section already
 promises a capture act ("captures settled web-architecture decisions into architect-memory") that the file never

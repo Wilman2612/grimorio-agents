@@ -15,10 +15,10 @@ alongside the agent's own design" rule.
 `ref:agent/grimorio.design-redactor/phases/phase-4-verify-report.md`), authored by
 `grimorio.prompt-writer` from `grimorio.system-keeper`'s own verbatim content assignment, per the RENDER/GROUP/
 MEASURE evidence at
-`ref:agent/grimorio.design-redactor/phase-map-v1-derivation.md`.
+`ref:agent/grimorio.design-redactor/design/phase-map-derivation.md`.
 
 Same class of artifact as the two shipped precedents in this same corpus —
-`ref:agent/grimorio.design-orchestrator/quasi-software-view.md` (this agent's own sibling,
+`ref:agent/grimorio.design-orchestrator/design/quasi-software-view.md` (this agent's own sibling,
 same skill home) and `ref:agent/grimorio.prompt-writer/design/quasi-software-view.md`
 (the closer structural match — also `disallowedTools: Agent`, also an empty GRAPH layer) — but sized to what a
 4-phase, non-recursive, single-loop-back chain actually needs, never inflated to match either precedent's own
@@ -184,7 +184,7 @@ flowchart TB
 **Reading these four flowcharts as a measurement instrument, not decoration — the pincho check.** Raw step
 counts, counted fresh against each phase file's own numbered `## Steps` list: P1=5, P2=6, P3=8 (incl. the Core
 Rule branch), P4=5. This matches
-`ref:agent/grimorio.design-redactor/phase-map-v1-derivation.md#step-3--measure-each-groups-load`'s
+`ref:agent/grimorio.design-redactor/design/phase-map-derivation.md#step-3--measure-each-groups-load`'s
 own MEASURE table (A=3, B=6, C=9, D grouped) closely enough to confirm no drift crept in between that derivation
 and what actually shipped — the small deltas (P1's 5 steps vs the derivation's 3 rendered Core-rule items reflect
 the two ADDED standing requirements, OBJECTIVE/EXIT CONDITION and the graph-statement step, both accounted for in

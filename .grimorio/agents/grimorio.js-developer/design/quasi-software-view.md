@@ -3,7 +3,7 @@
 This is `grimorio.js-developer`'s own DRAWN quasi-software design view, produced per
 ref:skill/grimorio.phase-splitting#the-drawn-view's
 standing requirement that every agent-design plan carry one, saved alongside the agent's own design as a
-reference file. It mirrors ref:agent/grimorio.go-developer/phases/go-developer-quasi-software-view.md's
+reference file. It mirrors ref:agent/grimorio.go-developer/design/quasi-software-view.md's
 own already-shipped five-section shape (a purpose-driven, non-hard-locked agent with a real own-type gated
 fan-out, and the SAME structural simplifications go-developer's own view already states explicitly rather than
 padded away: no loop-back edges — a defect Phase 4 finds is fixed inside that phase's own mini-loop, never by
@@ -70,7 +70,7 @@ the chain.
 DELIBERATELY OMITTED from this diagram, stated here explicitly rather than silently dropped.** Unlike the
 CHILDREN relationship above, this ladder is reachable from EVERY phase in the chain (Phase 0's own "Standing
 awareness" section states this), not from one specific dispatch point — the same reasoning
-ref:agent/grimorio.go-developer/phases/go-developer-quasi-software-view.md's own equivalent
+ref:agent/grimorio.go-developer/design/quasi-software-view.md's own equivalent
 section already states for its own chain, reused here rather than re-derived. Likewise, `agent:grimorio.security`
 and `agent:grimorio.code-reviewer` — named in Phase 2's own SECURITY-SENSITIVE flag and Phase 5's own routing
 note — are DELIBERATELY OMITTED too: this agent never spawns either; it only writes a routing NOTE into

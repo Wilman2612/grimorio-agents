@@ -1,6 +1,6 @@
 # Game Architect — RENDER / GROUP / MEASURE / SPLIT evidence
 
-Saved per ref:skill/grimorio.phase-splitting/project.quasi-view-requirements.md's own "Evidence of phase-design
+Saved per ref:skill/grimorio.phase-splitting/quasi-view-requirements.md's own "Evidence of phase-design
 reasoning" obligation — the working product of applying `SKILL.md`'s own RENDER/GROUP/MEASURE/SPLIT algorithm to
 `.claude/skills/grimorio.game-design/designer-behavior.md` (the PRE-SPLIT, flat, 182-line file), against the
 pre-supplied diagnosis at `objectives/grimorio/phase-reaudit-verdicts/game-architect.md`. `grimorio.system-keeper`
@@ -13,7 +13,7 @@ The pre-split file's own `## Steps` heading numbers 7 steps under 2 explicit `##
 CODE-LANDING), each drawing on genuinely different knowledge (confirmed below), gated by load-bearing
 sequencing rules ("ONLY once the design is settled... do NOT re-open the design", "NEVER re-litigate the design
 while coding it, and NEVER let a schema drive the mechanic") — the exact shape
-ref:skill/grimorio.phase-splitting/project.steps-vs-phases-test.md names as a genuine multi-stage state machine,
+ref:skill/grimorio.phase-splitting/steps-vs-phases-test.md names as a genuine multi-stage state machine,
 here already CLAIMED in prose/description but never actually split into separate files with real JIT loading.
 Refutation attempt: could this instead be ONE atomic mission? No — DESIGN and CODE-LANDING answer categorically
 different questions (what the mechanic is, vs how/where it lands in code), consume/produce genuinely different

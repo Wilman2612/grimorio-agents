@@ -12,7 +12,7 @@ not sketched in advance.
 ## STEPS vs PHASES verdict, and the orchestrator/purpose-driven classification
 
 **VERDICT: PHASES, purpose-driven.** Full reasoning saved at
-cite:repo/objectives/design/game-architect-phase-map-v1-derivation.md. Short form: the prior flat
+cite:agent/grimorio.game-architect/design/phase-map-derivation.md. Short form: the prior flat
 ref:agent/grimorio.game-architect/behavior.md carried 7 numbered steps under a shared Step-1 opener plus 2
 explicit `### Phase N` headers (DESIGN, CODE-LANDING), each drawing on genuinely different knowledge (confirmed
 in the derivation), gated by load-bearing sequencing rules ("ONLY once the design is settled... do NOT re-open

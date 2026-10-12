@@ -4,9 +4,9 @@ This is `grimorio.manual-verifier`'s own DRAWN quasi-software design view, produ
 ref:skill/grimorio.phase-splitting#the-drawn-view's
 standing requirement that every agent-design plan carry one, saved alongside the agent's own design as a
 reference file. It mirrors
-ref:agent/grimorio.security/phases/security-quasi-software-view.md's own already-shipped
+ref:agent/grimorio.security/design/quasi-software-view.md's own already-shipped
 five-layer shape (a fully sequential chain) AND
-ref:skill/grimorio.fan-out/researcher-phases/researcher-quasi-software-view.md's own already-shipped shape (a
+ref:agent/grimorio.researcher/design/quasi-software-view.md's own already-shipped shape (a
 circular same-type/scout agent-node reachable from one branch) — both read in full as this file's own
 structural exemplars, never as its content — adapted to a FIVE-phase chain that is NOT hard-locked: this agent
 CAN spawn `haiku`-tier children of its own type, but ONLY from Phase 1's own fan-out branch, the closer
@@ -46,7 +46,7 @@ THIS invocation. The two dashed edges in this diagram are BOTH non-loop-back dev
 they are two DIFFERENT KINDS, stated explicitly rather than conflated: the P2→P5 edge is a SKIP-AHEAD
 short-circuit forward (a failed sanity baseline invalidates everything downstream, so this pass jumps straight
 to reporting it — never returns to retry an earlier phase, the identical distinction
-ref:skill/grimorio.fan-out/researcher-phases/researcher-quasi-software-view.md's own SINGLE-SLICE-COLLAPSE edge
+ref:agent/grimorio.researcher/design/quasi-software-view.md's own SINGLE-SLICE-COLLAPSE edge
 already states for its own chain); the P1→CHILD/CHILD→P5/P1→P5 edges are a FAN-OUT dispatch, not a
 short-circuit at all — Phase 1 itself is always read and executed on every pass (its own file states this: the
 FAN-OUT BRANCH is a sub-node INSIDE Phase 1, never a bypass of it), and the branch only decides whether Phase

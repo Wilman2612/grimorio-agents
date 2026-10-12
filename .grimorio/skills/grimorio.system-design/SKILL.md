@@ -29,54 +29,19 @@ taste.
 
 ## Where the pieces of this skill live
 
-- **This file (general)** — the 16 numbered sections below (the classic 9 plus the modern lineage, sections
-  10-16): universal, portable to any project using this discipline.
-- **`./design-orchestrator-behavior.md`** — agent:grimorio.design-orchestrator's Phase 0, the entry point of its
-  own 7-phase concern-first state machine; every phase past Phase 0 lives one file per phase under
-  `./design-orchestrator-phases/`.
-- **`./design-orchestrator-phases/`** — the seven phase files agent:grimorio.design-orchestrator's own chain
-  loads just-in-time, one at a time, past Phase 0.
-- **`./design-redactor-behavior.md`** — agent:grimorio.design-redactor's own Phase 0, the entry point of its own
-  4-phase state machine; every phase past Phase 0 lives one file per phase under `./design-redactor-phases/`.
-  Renders a finished design — `design.md` alone, or the family of files Phase 6 converged to — into the
-  project's one HTML template.
-- **`./design-redactor-phases/`** — the four phase files agent:grimorio.design-redactor's own chain loads
-  just-in-time, one at a time, past Phase 0.
-- **`./design-orchestrator-quasi-software-view.md`** — agent:grimorio.design-orchestrator's own drawn
-  quasi-software view (state machine + loop + graph) for its v1 phase map, landed ahead of the shell, per
-  ref:skill/grimorio.phase-splitting#the-drawn-view's new standing
-  requirement.
-- **`./design-orchestrator-exemplar-grpc-retries.md`** — the real, full-text "gRPC Retry Design" (gRFC
-  A6) proposal. RE-SCOPED, never deleted: no longer anchors
-  ref:agent/grimorio.design-orchestrator/phases/phase-1-search-first.md's own step 5b — a genuine
-  TO-BE/proposal document, wrongly anchored to an AS-IS phase, now RESERVED for a future TO-BE/proposal-writing
-  phase not yet opened, reached on demand via `cold:grpc-a6-retry-exemplar`.
-- **`./design-orchestrator-exemplar-mama-crm.md`** — the real, full-text "MaMa-CRM" arc42 SAD. DROPPED
-  as a standing AS-IS anchor, never deleted: no longer anchors
-  ref:agent/grimorio.design-orchestrator/phases/phase-1-search-first.md's own step 5c — its own
-  multi-view SAD shape is independently already produced by this agent's own doctrine today; its 6-file extract
-  stays untouched, reached on demand via `cold:arc42-mama-crm-exemplar`.
-- **`./project.design-orchestrator-exemplar-ceo-spend-contract.md`** — the real, full-text CEO-authored "Spend
-  Contract — AS-IS Technical Design" (`services/runner-node` <-> `apps/web`), anchoring a FUNCTIONALITY-TYPE
-  AS-IS writing-discipline bar inline at
-  ref:agent/grimorio.design-orchestrator/phases/phase-1-search-first.md's own step 5b, reached on
-  demand via `cold:ceo-spend-contract-exemplar`.
-- **`./design-orchestrator-exemplar-ceo-dashboard.md`** (index) plus its six companions under
-  `./design-orchestrator-exemplar-ceo-dashboard/*.md` — the real, full-text CEO-authored "Iterable/Grafana
-  Email-Deliverability Dashboard" exemplar, anchoring a MULTI-PART/WHOLE-SYSTEM-TYPE AS-IS writing-discipline
-  bar inline at ref:agent/grimorio.design-orchestrator/phases/phase-1-search-first.md's own step
-  5c, reached on demand via `cold:ceo-dashboard-exemplar`.
-- **`./project.md`** — this project's concrete facts: the one existing render template, and where the
-  reusable SVG-diagram kit lives.
-- **`./diagram-references/`** — the 9 grounded formal references (Section A definition / B examples / C
-  anti-patterns / D an 11-ish-point mechanical checklist each) `./design-orchestrator-phases/phase-5-produce-artifacts.md`'s
-  own Sub-mission A reads to run its kit-based production loop.
-- **A pointer to a script the project keeps at its own root, at the repo root** — the correct-by-construction
-  generate/validate-model/lint CLI (one `.mjs` file per kit-covered diagram type) mechanizing each
-  `./diagram-references/` file's own Section D, `./design-orchestrator-phases/phase-5-produce-artifacts.md`'s
-  own production tool. **NEVER refer to this as bare "the kit" — always name it "the mermaid diagram-kit" to
-  keep it distinct from `./project.md`'s own reusable-SVG kit**, `agent:grimorio.design-redactor`'s completely
-  unrelated hand-authored HTML/SVG rendering-component library.
+- **This file** — the 16 numbered artifact types (the classic 9 plus the modern lineage, sections 10-16) and
+  the SELECTION PRINCIPLE: universal, portable to any project using this discipline.
+- ref:skill/grimorio.system-design/artifact-taxonomy.md — per artifact type: what it standardly shows and the
+  standard that governs it. Read the entry for the artifact you are about to produce.
+- ref:skill/grimorio.system-design/scope-completeness-method.md — problem type → owed questions → the artifact
+  that closes each → the closure gate.
+- `./diagram-references/` — one grounded formal reference per kit-covered diagram type (A definition, B
+  examples, C anti-patterns, D a mechanical checklist), read by agent:grimorio.design-orchestrator's
+  produce-artifacts phase. The project's mermaid diagram-kit script mechanizes each file's Section D. **NEVER
+  call it bare "the kit"** — the project memory's reusable SVG kit, which agent:grimorio.design-redactor
+  renders with, is a different thing.
+- ref:memory/grimorio.system-design-memory/project.md — this project's concrete facts: the one render template
+  and where the reusable SVG kit lives.
 
 ## Shared rule — delete-on-consume
 

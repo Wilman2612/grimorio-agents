@@ -9,7 +9,7 @@ reference file. PO's own six phase files, authored this same pass under
 from those seven files, read in full for this pass; it changes none of their content.
 
 Unlike its own precedent at
-ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md#the-five-layers-at-a-glance-and-where-each-is-drawn,
+ref:agent/grimorio.system-keeper/design/quasi-software-view.md,
 PO's own chain carries no PARALLELIZATION or EXPECTED-OUTPUTS layer here — those two are not part of this pass's own required
 content, and are not invented to match a heavier precedent's own shape. This file holds exactly the three-layer
 hard minimum (STATE MACHINE + LOOP + GRAPH, one diagram) plus the INTERNAL layer, BOTH halves — boundary
@@ -101,7 +101,7 @@ DELIVERABLE of its own to hand off; it only routes the caller's raw request forw
 quoting `quasi-view-requirements.md`'s own now-STALE line that "two shipped quasi-views already draw
 half (a)... neither yet draws half (b)... a separate, later dispatch, out of scope here," and calling that "the
 SAME scope choice" this file was making.** Re-checked directly against both cited files this pass, not assumed:
-`ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md` now carries a full
+`ref:agent/grimorio.system-keeper/design/quasi-software-view.md` now carries a full
 "### Half (b) — per-phase interior behavior + KNOWN-ERRORS-TO-PHASE mapping" section (seven per-phase
 flowcharts, P1 through P7, plus a Known-Errors-To-Phase table), and
 `ref:agent/grimorio.prompt-writer/design/quasi-software-view.md` carries the identical

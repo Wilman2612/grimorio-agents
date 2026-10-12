@@ -3,7 +3,7 @@
 This is `grimorio.ui-developer`'s own DRAWN quasi-software design view, produced per
 ref:skill/grimorio.phase-splitting#the-drawn-view's
 standing requirement that every agent-design plan carry one, saved alongside the agent's own design as a
-reference file. It mirrors ref:agent/grimorio.qa/phases/qa-quasi-software-view.md's own already-shipped
+reference file. It mirrors ref:agent/grimorio.qa/design/quasi-software-view.md's own already-shipped
 five-section shape (a purpose-driven, non-hard-locked agent with a real own-type gated fan-out AND a real
 internal loop-back) and EXTENDS it in two ways that chain does not need: TWO loop-back edges re-entering
 DIFFERENT phases rather than the same one, and TWO separate fan-out dispatch points rather than one, because
@@ -43,8 +43,8 @@ files' own chain, per ref:skill/grimorio.phase-splitting#the-model--a-phase-is-a
 **This chain carries TWO distinct LOOP-BACK edges, re-entering TWO DIFFERENT phases — never the same one,
 unlike the QA exemplar this file extends — drawn as two visually distinct dashed edges each carrying its own
 verbatim trigger label**, the same mermaid convention
-ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-quasi-software-view.md's own Layer 1+2
-diagram and ref:agent/grimorio.qa/phases/qa-quasi-software-view.md's own diagram already establish,
+ref:agent/grimorio.system-keeper/design/quasi-software-view.md's own Layer 1+2
+diagram and ref:agent/grimorio.qa/design/quasi-software-view.md's own diagram already establish,
 reused here rather than invented fresh. LOOP-BACK-DAL fires from P5's own failure classification when the
 symptom traces to the interface, either adapter, the Functional Core, or the repository factory, and re-enters
 P2. LOOP-BACK-UI fires from the SAME classification step when the symptom traces to a presentational component,
@@ -92,7 +92,7 @@ awareness" section states this), not from one or two specific dispatch points �
 already-shipped quasi-view in this corpus (the QA exemplar, the verifier exemplar, the system-keeper exemplar)
 surfaced no existing convention for drawing a from-every-phase escalation ladder as a THIRD, visually distinct
 node style in a Layer-1+2 macro diagram; the closest precedent
-(ref:agent/grimorio.design-orchestrator/quasi-software-view.md's own per-phase Half-(b)
+(ref:agent/grimorio.design-orchestrator/design/quasi-software-view.md's own per-phase Half-(b)
 flowcharts) draws escalation as an inline branch INSIDE one phase's own interior flowchart, a different diagram
 shape from this one. Per
 ref:skill/grimorio.phase-splitting/quasi-view-requirements.md's own "WHEN a graph names a future,

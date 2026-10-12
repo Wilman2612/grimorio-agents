@@ -19,7 +19,7 @@ finding into Table 1, cutting 616 lines to 567 — still over the threshold, so 
 needed after it landed. **Pass 9 did not repeat that "attempted, still over" story — it performed the actual
 split instead**: the entire optional Layer 3 (INTERNAL) — both halves, all seven per-phase Half (b) flowcharts,
 the pincho-check paragraph, the "measurement instrument" paragraph — moved VERBATIM into a new companion file,
-ref:agent/grimorio.design-orchestrator/quasi-software-view-internal.md, per
+ref:agent/grimorio.design-orchestrator/design/quasi-software-view-internal.md, per
 ref:skill/grimorio.phase-splitting/quasi-view-requirements.md#layer-4--internal-when-drawn-both-halves-are-owed-never-boundary-flow-alone's
 own standing that Layer 3 is genuinely OPTIONAL, unlike the HARD-REQUIRED Layers 1-2 (STATE MACHINE + LOOP +
 GRAPH) this file still draws in full below. At Pass 9 this file measured 409 lines post-split — genuinely
@@ -223,7 +223,7 @@ Layer 3 (per-phase artifact-flow IN → OUT + interior behavior) is the OPTIONAL
 ref:skill/grimorio.phase-splitting/quasi-view-requirements.md#layer-4--internal-when-drawn-both-halves-are-owed-never-boundary-flow-alone
 allows a quasi-view to add — distinct from the HARD-REQUIRED Layers 1-2 (STATE MACHINE + LOOP + GRAPH) drawn
 above, which stay in THIS file. It is drawn in full, both halves together, in a SEPARATE companion file:
-ref:agent/grimorio.design-orchestrator/quasi-software-view-internal.md.
+ref:agent/grimorio.design-orchestrator/design/quasi-software-view-internal.md.
 
 **Why it moved out, not why it exists — this file already crossed the ~500-line smell**
 (ref:skill/grimorio.conduct#branches-commits-and-knowledge rule 23), and a prior pass's own attempt to fix that
