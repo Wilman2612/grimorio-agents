@@ -1,0 +1,23 @@
+{
+  "agent": "grimorio.game-architect",
+  "entry": "1",
+  "phases": [
+    {
+      "id": "1",
+      "file": ".grimorio/agents/grimorio.game-architect/phases/phase-1-design.md",
+      "desc": "DESIGN (the main act — opens with SEARCH-FIRST, seeing the real code)",
+      "loads": [
+        "skill/grimorio.game-design"
+      ],
+      "next": {
+        "continue": "2"
+      }
+    },
+    {
+      "id": "2",
+      "file": ".grimorio/agents/grimorio.game-architect/phases/phase-2-code-landing.md",
+      "desc": "CODE-LANDING (wholly subsequent — terminal, no hand-off)",
+      "next": {}
+    }
+  ]
+}

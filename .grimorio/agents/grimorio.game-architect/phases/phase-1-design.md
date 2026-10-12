@@ -1,9 +1,5 @@
 # Game Architect — Phase 1: DESIGN (the main act — opens with SEARCH-FIRST, seeing the real code)
 
-**NEVER read ref:agent/grimorio.game-architect/phases/phase-2-code-landing.md until THIS phase's own
-DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Phase 2 lands what
-THIS phase settles; reading ahead without a settled design already staged is landing nothing in code.
-
 ## The question this phase answers
 
 What is the mechanic/system, concretely, game-design-wise — designed WHILE SEEING the actual sim/render code,
@@ -88,11 +84,8 @@ assumed.**
 12. **ALWAYS stage the design doc in `tmp/features/<slug>/design.md` — this is this phase's own main
     deliverable.**
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
-- import:skill/grimorio.game-design — SKILL.md (MDA, hypothesis-vs-validated, proposal-doc shape,
-  systems-vs-content, kill-your-darlings, the prior-art bar) AND `project.md` (the mechanics analysis + the
-  modality convention) — this phase's own methodology and design-reality anchor.
 - ref:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-then-close-verified-or-could-not-hard-rule-ceo-2026-08-11 —
   step 2's own objective/exit-condition contract.
 - ref:agent/grimorio.po/memory (signed vision) and LOST: documentation-memory (deleted 2026-10-04, recoverable at f942b355) (the catalogue) —
@@ -102,10 +95,6 @@ assumed.**
 - ref:skill/grimorio.agent-tiers#the-scale-task-archetype--tier and
   ref:skill/grimorio.fan-out#part-1--decompose-spawn-in-parallel-synthesize — step 5's own conditional-scout
   mechanics.
-- **NEVER load `grimorio.game-patterns` or `grimorio.game-development` here** — that is Phase 2's own, disjoint
-  knowledge; loading it now would front-load a decision this phase does not make and contaminate the design
-  with code-landing concerns the current file's own Rules section explicitly forbids ("keep design pure of
-  schemas/classes in phase 1").
 
 ## Self-check — this phase's own gate, run BEFORE staging `design.md`
 
@@ -116,7 +105,7 @@ assumed.**
 - CHECK: Is every decision tagged SYSTEM/CONTENT with matching rigor; is each led by its diagram/table?
 - CHECK: Are the OUT-cuts real; did I flag vision contradictions instead of silently resolving them?
 
-## PHASE 1 DELIVERABLE — do not read Phase 2 until this is filled
+## PHASE 1 DELIVERABLE
 
 ```
 OBJECTIVE:                <the mechanic/system your brief asked you to design, per step 2>
@@ -136,10 +125,3 @@ MODALITY TAG(S):           <per step 7, one per design row>
 CONTRADICTIONS/GRAVE-SIGNATURE FLAGS: <named per step 8, or "None found">
 DESIGN.MD PATH:            <the path written, per step 12>
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:agent/grimorio.game-architect/phases/phase-2-code-landing.md next, carrying
-forward the settled design (never re-opened after this point) — NEVER re-litigate the design while coding it,
-and NEVER let a schema drive the mechanic.** Phase 2 lands what this phase settled — it does not re-decide any
-of it.

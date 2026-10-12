@@ -1,7 +1,7 @@
 # Game Architect — Phase 2: CODE-LANDING (wholly subsequent — terminal, no hand-off)
 
 **NEVER close this task, or report anything to your caller, until THIS phase's own DELIVERABLE block, below, is
-actually filled in.** There is no Phase 3 to defer an unfinished field to.
+actually filled in.**
 
 ## The question this phase answers
 
@@ -21,16 +21,14 @@ previously-unimplemented capture promise explicit.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — survey+reuse, write
-   the decision, gate check, set status, then (conditionally) the custody+migration close — and nothing else;
-   this phase never spawns.**
 2. **WHEN Phase 1's `design.md` exists ⟶ treat the design as settled — NEVER re-open it in this phase.**
+   NEVER let a schema drive the mechanic.
 3. **ALWAYS survey existing sim/render abstractions FIRST and decide reuse / extend / refactor before adding
    anything new** — landing is INTEGRATION, not append; duplication is a defect. Emit existing state as DATA
    before adding new state (game=DATA).
-4. **ALWAYS write `tmp/features/<slug>/arch-decision.md`**, following the format in `## OUTPUT` below, carrying
-   forward every decision Phase 1 settled: files to touch (CREATE/MODIFY/DELETE + which subsystem); abstractions
-   to REUSE (your primary defense against duplication); new abstractions (only if justified); patterns applied
+4. **ALWAYS write `tmp/features/<slug>/arch-decision.md`**, following the format in `## OUTPUT` below: files to
+   touch (CREATE/MODIFY/DELETE + which subsystem); abstractions to REUSE (your primary defense against
+   duplication); new abstractions (only if justified); patterns applied
    (from ref:skill/project.game-patterns#the-pattern-index for the sim / ref:skill/project.game-development for
    the render — NOT web-CRUD framing); the sim↔render/data contract, if any; determinism + fog + harness-gate
    checks; and a decision matrix for any real trade-off. **WHEN a trade-off is a genuine human-level fork ⟶ name
@@ -63,7 +61,7 @@ previously-unimplemented capture promise explicit.
 9. **WHEN status is `BLOCKED` ⟶ skip step 8 entirely — state "N/A — BLOCKED, nothing to migrate" explicitly**,
    rather than leaving the field silently empty; nothing settled to migrate or cite as landed yet.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
 - ref:skill/project.game-patterns#the-pattern-index — sim architecture canon, step 4's own reuse/pattern
   target.
@@ -79,9 +77,6 @@ previously-unimplemented capture promise explicit.
   ref:agent/grimorio.game-architect/memory/docs/, ref:agent/grimorio.game-architect/memory/project.tuning-ledger.md) +
   ref:skill/grimorio.agent-writing#quality-standards-for-agents — the Currency rule ("write the FINAL state,
   never interleave the superseded"). This is the agent's own MEMORY, never its METHODOLOGY skill.
-- **NEVER load `grimorio.game-design`'s own SKILL.md (the MDA/hypothesis-vs-validated/proposal-doc-shape
-  methodology canon) anywhere in this phase** — the design is already settled and must never be re-litigated
-  here; loading it would risk exactly that.
 
 ## OUTPUT
 
@@ -102,6 +97,9 @@ ref:skill/grimorio.reasoning-principles#state-your-objective-and-exit-condition-
 - **COULD NOT** — this phase is `BLOCKED` on a genuine human-level fork, or Phase 1 could not settle (e.g. the
   entropy gate is missing, per Phase 1's own step 3); name exactly what blocked you and escalate it
   decision-ready.
+
+Report the full CLOSE line, both artifact paths, and the gate-check result to your caller (a PO, an
+orchestrator, or agent:grimorio.system-keeper).
 
 A worked example of the VERIFIED shape, on an invented mechanic (never a real one from this project's own
 sheets/docs — pick a fresh mechanic name each time, do not reuse this one):
@@ -165,8 +163,3 @@ MIGRATION:                 <path + what migrated into sheets/docs/tuning-ledger,
 CLOSE:                     <VERIFIED — naming both artifact paths / COULD NOT — naming the blocker,
                           decision-ready, per this phase's own OUTPUT section>
 ```
-
-## Hard hand-off
-
-**This phase is TERMINAL — no next file.** Report the full CLOSE line, both artifact paths, and the gate-check
-result to your caller (a PO, an orchestrator, or agent:grimorio.system-keeper).
