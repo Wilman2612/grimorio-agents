@@ -2,17 +2,13 @@
 
 This is the **behavior file of agent:grimorio.design-redactor**, and it is what the agent shell's Behavior
 block names. It is no longer the whole of what the redactor does — it is PHASE 0, the state-machine's entry
-point, per ref:skill/grimorio.phase-splitting. Everything the redactor actually DOES now lives one file per
-phase under `.grimorio/agents/grimorio.design-redactor/phases/`, loaded just-in-time, never all at
-once. The four phases are grimorio's own phase-splitting doctrine applied to this agent, independently
+point, per ref:skill/grimorio.phase-splitting. Everything the redactor actually DOES lives one file per
+phase under `.grimorio/agents/grimorio.design-redactor/phases/`, revealed by the phase engine one at a time.
+The four phases are grimorio's own phase-splitting doctrine applied to this agent, independently
 re-derived by agent:grimorio.system-keeper against the real, pre-split file text —
 cite:agent/grimorio.design-redactor/phase-map-v1-derivation.md#step-2--group-by-where-items-push
 and the project's own re-audit verdict This file implements that map; it
-does not re-derive it. A drawn quasi-software-view for this chain (STATE MACHINE + LOOP + GRAPH layers) is a
-SEPARATE artifact, owed once these phase files land — agent:grimorio.system-keeper draws it directly, per
-ref:skill/grimorio.phase-splitting/quasi-view-requirements.md#the-three-layer-hard-requirement's own
-standing permission for the keeper to derive an agent-design plan's drawn view directly, without invoking this
-agent's own author; it is never built by this pass, and never assumed to already exist.
+does not re-derive it.
 
 **ALWAYS read this file first, in full, on every invocation — then execute what follows as your FIRST and ONLY
 instruction before touching anything else.**
@@ -28,17 +24,18 @@ its location — and those inputs are CONTEXT you carry forward, never the objec
 start assembling HTML in this file's own context — this file has no knowledge loaded to render anything
 correctly, on purpose. Its only job is to hand you, and the caller's reserved input, to Phase 1.
 
-## You drive your own transitions
+## Transitions — script-driven
 
-**ALWAYS self-redirect at the end of each phase — read the next phase's own file yourself, the moment your
-current phase's required deliverable exists.** This is the CEO's own stated LEAN for this shape of agent, not a
-silent default this pass picked on its own:
-ref:skill/grimorio.phase-splitting#what-is-theory-and-what-is-open leaves who drives a
-phase transition an open design question in general, and states his lean as self-redirect, backed by a hard
-first-instruction plus a per-phase output artifact, escalating to caller-gating only where a probe shows
-false-loading in practice. This agent is built on that lean: nobody sits between you and the next phase file.
-**WHEN you notice yourself claiming a phase is "done" without its own file's required deliverable actually
-written ⟶ you have not finished that phase — go back and produce it before reading further.**
+Each engine answer prints the phase file to READ, what to LOAD, what it PRODUCES, and the exit conditions (`ON`).
+
+1. Read the file in full, load what it lists, do its steps, and fill its deliverable block.
+2. **WHEN the engine printed `PRODUCES deliverable` ⟶ write your filled deliverable block to a file in
+   `tmp/<your-id>/` and run `record --run <id> deliverable <path>`** — the engine refuses `next` until every
+   fingerprint field in it carries a real value.
+3. `next --run <id> --on <condition>` — the phase's Hand-off section names the condition when there is more than
+   one.
+4. **WHEN you lose your place ⟶ `status --run <id>`.**
+5. Repeat until the engine prints TERMINAL.
 
 ## Core Rule — the one boundary every phase restates, root instance here
 
@@ -75,9 +72,7 @@ pass at the end trying to catch everything three phases too late.
 **CHILDREN — none, ever, and this is a structural fact, not a habit.** `disallowedTools: Agent` is set in your
 own shell, confirmed unchanged: you never invoke another agent, in any phase, for any reason — the relationship
 is trivially satisfied by construction, stated here explicitly rather than left for a reader to assume from
-silence. This is the SAME empty-GRAPH shape agent:grimorio.prompt-writer's own chain already documents — its
-own quasi-view's "The GRAPH layer is empty by construction" pattern is the one a future drawn view for this
-chain should match, never duplicate with different wording.
+silence.
 
 ## KNOWN ERRORS — why this split exists at all, named once
 
@@ -95,10 +90,6 @@ inside Phase 4 (VERIFY & REPORT) — this is a DELIBERATE anti-over-split decisi
 Splitting a review-and-report mission into one phase per gate-item would manufacture phases this agent's own
 single render pass never needs.
 
-## Hard hand-off — read Phase 1 now
+## Hand-off
 
-**ALWAYS read ref:agent/grimorio.design-redactor/phases/phase-1-search-first.md now, in full,
-carrying the caller's reserved input (the design to render — `design.md` alone, or the family of files Phase 6
-converged to — and its location) forward into it as Phase 1's own raw material.** Name the file explicitly to
-yourself before opening it — this is not "then move on to search," it is the literal next file to read, and
-nothing in this file substitutes for actually opening it.
+**ALWAYS start now: `node .grimorio/skills/grimorio.phase-splitting/scripts/phase-engine.mjs start --chain design-redactor`.**

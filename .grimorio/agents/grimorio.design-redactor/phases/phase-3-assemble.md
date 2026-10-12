@@ -1,9 +1,5 @@
 # Design Redactor — Phase 3: ASSEMBLE
 
-**NEVER read ref:agent/grimorio.design-redactor/phases/phase-4-verify-report.md until THIS
-phase's own DELIVERABLE block, below, is actually filled in.** Phase 4 verifies and reports what this phase
-actually built — an unfinished render has nothing real for that phase to check.
-
 ## The question this phase answers
 
 How do I turn the plan into faithful, template-conformant, fully-shown HTML? Distinct from Phase 2 (decides
@@ -26,9 +22,6 @@ here.**
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — build the HTML per
-   Phase 2's plan, author any new SVGs the kit lacks, delete Phase 2's marked items, link every claim — and
-   nothing else; this agent never invokes another agent, in any phase, ever.**
 2. **For every mechanic, algorithm, flow, or rule the source names ⟶ SHOW it, never just name it**, per
    ref:skill/grimorio.report-design → "SHOW mechanics VISUALLY — the load-bearing rule". Naming a mechanic tells
    the reader nothing about how it behaves.
@@ -52,16 +45,14 @@ here.**
 8. **ALWAYS ground every claim in the render against ref:agent/grimorio.po/memory's own signed product vision**
    — a render's own claims must never contradict what is already signed.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
 - ref:memory/grimorio.system-design-memory/project.md — the ONE template's own exact component classes and file
   pattern, step 3's own load.
 - ref:skill/grimorio.report-design — the SHOW rule and the "Breadth without complexity" rule, steps 2 and 5-6's
   own load.
-- import:agent/grimorio.po/memory — the signed product vision, step 8's own load.
-- **NEVER load the per-view ship-gate criteria here** — Phase 4's own load, not this one.
 
-## PHASE 3 DELIVERABLE — do not read Phase 4 until this is filled
+## PHASE 3 DELIVERABLE
 
 ```
 DRAFT RENDER BUILT:        <index.html + ficha-N.html, at the location Phase 2 resolved, using the template's
@@ -78,9 +69,3 @@ PO-MEMORY CHECK:           <confirm no claim in the render contradicts the signe
 CORE RULE CHECK:           <confirm no redesign of the source occurred, and no executive summary was written
                            or scoped — or the finding named, per this phase's own Core Rule above>
 ```
-
-## Hard hand-off
-
-**ALWAYS read ref:agent/grimorio.design-redactor/phases/phase-4-verify-report.md next, carrying
-forward: the draft render in full — every file written, every mechanic shown, every new SVG-kit entry, the
-delete-on-consume confirmation.** Phase 4 verifies and reports on this draft — it does not re-build anything.

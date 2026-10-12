@@ -1,10 +1,5 @@
 # Design Redactor — Phase 1: SEARCH-FIRST
 
-**NEVER read ref:agent/grimorio.design-redactor/phases/phase-2-intake-decompose.md until THIS
-phase's own DELIVERABLE block, below, is actually filled in — not summarized, not promised, filled.** Nothing
-mechanically gates this; the gate is that you do not open the next file until you have produced what this one
-asks for.
-
 ## The question this phase answers
 
 What rendering assets/precedent already exist that this render must reuse rather than reinvent? Nothing else.
@@ -13,14 +8,6 @@ establishes what already exists, so Phase 2 has something real to plan against.
 
 ## Steps
 
-1. **ALWAYS state this phase's own graph before doing anything else: a single SELF node — read MAP.md, confirm
-   the ONE-template fact, confirm the NEVER-load boundary, state OBJECTIVE and EXIT CONDITION — and nothing
-   else.** This agent never invokes another agent, in any phase, ever — `disallowedTools: Agent` in your own
-   shell hard-locks it. **This phase carries NO scout-fan-out option, and never will**: unlike
-   agent:grimorio.design-orchestrator's own Phase 1, which may raise agent:grimorio.scout for prior-art on an
-   unfamiliar domain, this agent's own non-recursive lock rules that option out structurally — state that
-   explicitly here rather than silently omitting it, so a reader familiar with the sibling precedent never
-   expects it.
 2. **BEFORE reading the design source itself ⟶ state your OBJECTIVE (what design or file family this
    invocation was actually handed, verbatim from the caller) and your EXIT CONDITION (the checkable state that
    means the render is done).** ->
@@ -40,39 +27,18 @@ establishes what already exists, so Phase 2 has something real to plan against.
    requirement, confirmed here as this phase's own reuse manifest fact rather than left implicit in the shell
    alone.
 
-## LOAD (JIT) — scoped to this phase only
+## Conditional loads
 
 - ref:skill/grimorio.system-design SKILL.md — taxonomy awareness only, so you recognise what you're about to
   render.
-- the project's own design record — step 3's own load.
-- import:skill/grimorio.reasoning-principles — specifically its objective/exit-condition contract, step 2's own
-  load.
-  FINGERPRINT: OBJECTIVE + EXIT CONDITION fields below (a caller's own words restated as a checkable exit state
-  cannot be produced without applying this discipline).
-- **NEVER load the form-per-concept table, the per-view ship-gate criteria, or the template's exact component
-  classes here** — each is a later phase's own question, and pulling any of them in now front-loads a decision
-  this phase does not make.
 
-## PHASE 1 DELIVERABLE — do not read Phase 2 until this is filled
+## PHASE 1 DELIVERABLE
 
 ```
 OBJECTIVE:                <verbatim from the caller — what design or file family this invocation was handed>
 EXIT CONDITION:            <the checkable state that means the render is done — a blank or copy-pasted-brief
                            value here is a D8 FAIL>
-GRAPH STATED:              <SELF node only, confirm no scout-fan-out option exists or was considered>
 MAP.md READ:               <confirm read in full; what already exists for this render's domain, reused>
 ONE-TEMPLATE CONFIRMED:    <confirm the ONE-template-as-only-home fact, awareness level only>
 NEVER-LOAD CONFIRMED:      <confirm artifact-design/artifact-diagramming/dataviz are not loaded>
 ```
-
-## Hard hand-off
-
-**BEFORE reading ref:agent/grimorio.design-redactor/phases/phase-2-intake-decompose.md ⟶ apply
-import:skill/grimorio.phase-splitting/fingerprint-gate.md against THIS file
-(`ref:repo/.grimorio/agents/grimorio.design-redactor/phases/phase-1-search-first.md`) and this
-phase's own filled PHASE 1 DELIVERABLE block, written to disk first per that gate's own algorithm — the read
-below now runs on that gate's own PASS, never on the block merely existing in context.**
-
-**ALWAYS read ref:agent/grimorio.design-redactor/phases/phase-2-intake-decompose.md next, carrying
-forward: the reuse manifest above (what MAP.md already has, the ONE-template fact, the NEVER-load boundary), and
-your OBJECTIVE/EXIT CONDITION.** Phase 2 consumes all of it to plan against — none of it is re-gathered there.

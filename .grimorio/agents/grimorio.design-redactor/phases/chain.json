@@ -1,0 +1,55 @@
+{
+  "agent": "grimorio.design-redactor",
+  "entry": "1",
+  "phases": [
+    {
+      "id": "1",
+      "file": ".grimorio/agents/grimorio.design-redactor/phases/phase-1-search-first.md",
+      "desc": "SEARCH-FIRST",
+      "loads": [
+        "skill/grimorio.reasoning-principles"
+      ],
+      "fingerprints": {
+        "skill/grimorio.reasoning-principles": "OBJECTIVE + EXIT CONDITION"
+      },
+      "produces": [
+        "deliverable"
+      ],
+      "next": {
+        "continue": "2"
+      }
+    },
+    {
+      "id": "2",
+      "file": ".grimorio/agents/grimorio.design-redactor/phases/phase-2-intake-decompose.md",
+      "desc": "INTAKE & DECOMPOSE",
+      "loads": [],
+      "next": {
+        "continue": "3"
+      }
+    },
+    {
+      "id": "3",
+      "file": ".grimorio/agents/grimorio.design-redactor/phases/phase-3-assemble.md",
+      "desc": "ASSEMBLE",
+      "loads": [
+        "agent/grimorio.po/memory"
+      ],
+      "next": {
+        "continue": "4"
+      }
+    },
+    {
+      "id": "4",
+      "file": ".grimorio/agents/grimorio.design-redactor/phases/phase-4-verify-report.md",
+      "desc": "VERIFY & REPORT",
+      "loads": [
+        "skill/grimorio.reasoning-principles"
+      ],
+      "next": {
+        "loop-back": "3",
+        "done": "END"
+      }
+    }
+  ]
+}
