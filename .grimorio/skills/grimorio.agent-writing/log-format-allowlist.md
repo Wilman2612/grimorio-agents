@@ -96,7 +96,7 @@ also covers objectives/measurements/
 **/*quasi-software-view*.md  — a per-agent design-family pattern, not a single path — the trailing `*` before
 `.md` is deliberate, not `**/*quasi-software-view.md`: it also covers an OPTIONAL Layer-3/INTERNAL companion
 file of the same family (e.g. `*-quasi-software-view-internal.md`), never only the exact base name. Sanctioned
-as a ledger destination by ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-5-content-guardrails.md's
+as a ledger destination by ref:agent/grimorio.prompt-writer/phases/phase-5-content-guardrails.md's
 own step 5b, so a quasi-software-view's own decision-history layer (its KNOWN-ERRORS/review-history record) is
 exempt wherever the file actually lives
 .grimorio/skills/grimorio.hooks/project.*.md  — matches exactly the five WHY/history companion files

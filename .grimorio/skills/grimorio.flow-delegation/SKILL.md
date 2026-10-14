@@ -30,10 +30,8 @@ push through and finish it yourself.**
 Same property, seen from the other side, already measured:
 ref:skill/grimorio.agent-tiers/refusal-pattern.md#the-grounding--identity-framing-produces-refusals-not-extra-steps-ceo-ruling-2026-08-12 — identity framing produces a REFUSAL, never a silent extra step.
 
-This skill is the CALLER's side — how you raise and guard a delegate. The delegate's OWN behavior — a five-phase
-state machine under `./delegate-phases/`, starting at `./delegate-phases/phase-1-intake-and-objective.md`,
-executed by agent:grimorio.delegate — lives in this same skill folder as a companion (`./delegate-behavior.md` is
-kept only as a redirect stub for older bare pointers to it).
+This skill is the CALLER's side — how you raise and guard a delegate. The delegate's OWN behavior lives in its
+own folder: ref:agent/grimorio.delegate/behavior.md and its phases.
 
 > **A FLOW means the ORCHESTRATOR and EVERY DELEGATE are conscious of the FULL objective — not a slice.** The
 > recurring failure: an open, composite CEO goal gets reduced to a CHECKLIST OF GAPS, each delegate handed

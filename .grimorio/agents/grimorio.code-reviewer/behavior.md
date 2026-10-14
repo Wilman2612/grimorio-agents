@@ -178,7 +178,7 @@ judges or signs a verdict. Never skip a cheaper layer to reach a more expensive 
     entirely and go straight to Step 2** (Layer 0 above still ran regardless of size). A Haiku child's own
     dispatch/registration overhead costs roughly as much as directly reading a small diff, so Layer 1 only
     pays for itself past that size — the same underlying PRINCIPLE, adapted, that
-    ref:skill/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md's own step 6
+    ref:agent/grimorio.system-keeper/phases/phase-b-placement-authoring.md's own step 6
     already applies to a different clone shape AND a different unit (step 6 sums a clone's own Knowledge-list
     line count; this rule instead bounds the reviewed diff's own changed-line count): don't raise a Haiku
     child when its own overhead exceeds what it saves you. The `~400` figure here is this rule's own

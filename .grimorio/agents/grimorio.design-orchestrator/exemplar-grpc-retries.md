@@ -14,7 +14,7 @@ file backs it only when a reader genuinely needs to go deeper than that inline s
 **Why an index plus companions, not one file** — this exemplar crossed the ~500-line smell threshold
 (ref:skill/grimorio.conduct#branches-commits-and-knowledge rule 23), and SPLIT is the now-live default remedy
 for an oversized skill reference/exemplar file
-(ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md — step 2 of its own Steps section). This
+(ref:agent/grimorio.prompt-writer/phases/phase-4-file-structure.md — step 2 of its own Steps section). This
 file stays the short index — provenance, the source's own table of contents, Abstract/Background/Overview, and
 pointers to the three companions below — and the three companions hold the rest of the source text VERBATIM,
 moved, never compressed or distilled. Splitting does not raise the concern a prior version of this file's own

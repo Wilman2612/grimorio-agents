@@ -59,7 +59,7 @@ t "facts reports a .mjs target as a script/model boundary" "$(echo "$out" | grep
 out=$(node .grimorio/skills/grimorio.phase-splitting/scripts/phase-engine.mjs facts --target zz-nonexistent-file-xyz.md 2>&1)
 t "facts reports a missing file as not existing, never crashes" "$(echo "$out" | grep -c 'exists=false')" "1"
 
-out=$(node .grimorio/skills/grimorio.phase-splitting/scripts/phase-engine.mjs facts --target .grimorio/skills/grimorio.agent-writing/system-keeper-phases/phase-a-intake-diagnosis.md 2>&1)
+out=$(node .grimorio/skills/grimorio.phase-splitting/scripts/phase-engine.mjs facts --target .grimorio/agents/grimorio.system-keeper/phases/phase-a-intake-diagnosis.md 2>&1)
 t "facts detects a chain.json sibling for a real phase-chain file" "$(echo "$out" | grep -c 'chain-json-sibling=true')" "1"
 
 echo

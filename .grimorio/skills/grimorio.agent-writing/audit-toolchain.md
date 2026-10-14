@@ -391,7 +391,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     hand-recalling a conversation when building a spawn's verbatim-originating-words section (the H11 gate,
     `ref:repo/.claude/hooks/spawn-verbatim-origin-gate.cjs`). WHEN: its PRIMARY caller is now
     agent:grimorio.extract-cleaner itself, invoked autonomously against its own session as the first step of its
-    own redesigned behavior (`ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md`'s own Step 1), per
+    own redesigned behavior (`ref:agent/grimorio.extract-cleaner/behavior.md`'s own Step 1), per
     `ref:skill/grimorio.conduct/main-loop-only.md`'s own rule 13 — never the main loop directly anymore,
     though a human or another tool may still run it by hand for a different purpose; the tool itself did not
     become single-purpose, only its main-loop-facing role changed. Prints a `user:`/`agent:` labeled extract,
@@ -437,7 +437,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     INSIDE `extract-cleaner-finalize.mjs`'s own internal `spawnSync` call — now purely a defense-in-depth
     re-validation against the agent's own echoed `--keep-last-user`, never trusting the agent's own copy of the
     window; `splice` still runs INSIDE `extract-cleaner-finalize.mjs` only. WHEN: its own callers are entries 21
-    and 22 below, never this agent directly, per `ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md`.
+    and 22 below, never this agent directly, per `ref:agent/grimorio.extract-cleaner/behavior.md`.
 15. `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/extract-cleaner-prepare.mjs [--work-dir <dir>] [--out <bundle-path>]`
     — ANSWERS (REWRITTEN this pass to the watermark-delta contract — the prior HIT/MISS reuse-cache design is
     GONE): resolves `CLAUDE_CODE_SESSION_ID` itself (fails loudly, exit 1, if unset; default `--work-dir` is
@@ -465,7 +465,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     `read-watermark` replaces it, and there is no "reuse" concept left to validate, since a turn is only ever
     fetched fresh, once. WHEN: its own caller is `agent:grimorio.extract-cleaner`'s own Step 2 (PREPARE), via
     Bash, exactly once per invocation, never with any caller-supplied session/file/count argument, per
-    `ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md`.
+    `ref:agent/grimorio.extract-cleaner/behavior.md`.
 16. `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/extract-cleaner-finalize.mjs --keep-last-user <K> --abstracts <path> [--work-dir <dir>]
     [--out <path>]` — ANSWERS (REWRITTEN this pass — the CASE A/B/BELOW-FLOOR distinction is GONE): given a `K`
     and an abstracts file already written to the SAME work-dir entry 21 resolved, FIRST verifies the
@@ -487,7 +487,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     watermark always advances to "the newest turn this run ever saw" — REPLACES the old `write-cache` call this
     pass, non-fatal on failure, logged, exactly as before), runs `extract-cleaner-cache.mjs sweep-expired`
     (non-gating, UNCHANGED), and reads the project's REGISTER's own "## Open asks" section verbatim (or one
-    of the two literal ABSENT strings `ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md`'s own
+    of the two literal ABSENT strings `ref:agent/grimorio.extract-cleaner/behavior.md`'s own
     OUTPUT section defines for the missing-file/missing-heading cases, UNCHANGED). Prints ONE consolidated
     stdout report (harness verdict — no more CASE A/B + BELOW-FLOOR flag in it — register-relay quote,
     sweep-expired output, final artifact path); exits 0 ONLY on harness PASS after the sweep and relay also ran,
@@ -498,7 +498,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     SAME turn, a `Write`-tool call that writes the `--abstracts` file at the path entry 21 reported (never a
     heredoc), up to 2 retries (looping back to that agent's own Step 4 (COMPRESS), re-running both the Write and
     this Bash call, never re-invoking entry 21), per
-    `ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md`. **`extract-cleaner-cache.mjs` itself, this
+    `ref:agent/grimorio.extract-cleaner/behavior.md`. **`extract-cleaner-cache.mjs` itself, this
     pass, now exposes exactly 3 subcommands** — `read-watermark --cache-dir <dir>` (entry 21's own call),
     `write-watermark --cache-dir <dir> --raw-fetch <path>` (this entry's own call), `sweep-expired` (unchanged)
     — the old `check-reuse`/`write-cache` HIT/MISS machinery and the whole per-turn content-hash reuse-validity
@@ -529,7 +529,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
 18. `ref:repo/.grimorio/scripts/registration-cost.mjs` — ANSWERS: the total line count across a caller-named list of
     files (a target agent's Knowledge-list files plus its actually-read phase files), replacing a manual
     multi-call `ref:repo/.grimorio/scripts/audit-chain.mjs --shape`-and-add-by-hand sum. WHEN: `grimorio.system-keeper`'s
-    own ref:skill/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md's own step 8
+    own ref:agent/grimorio.system-keeper/phases/phase-b-placement-authoring.md's own step 8
     REGISTRATION-COST THRESHOLD gate, before deciding whether a mechanical-volume target clears the bar for a
     same-type Haiku clone. POPULATION: exactly the files passed as CLI arguments, in the order given. **NEVER
     read this as a corpus-wide scan** — `--self-test` runs in ADDITION to any file arguments given (never

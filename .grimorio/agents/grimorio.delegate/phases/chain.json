@@ -1,0 +1,67 @@
+{
+  "agent": "grimorio.delegate",
+  "entry": "1",
+  "phases": [
+    {
+      "id": "1",
+      "file": ".grimorio/agents/grimorio.delegate/phases/phase-1-intake-and-objective.md",
+      "desc": "INTAKE-AND-OBJECTIVE",
+      "loads": [
+        "skill/grimorio.agent-tiers/refusal-pattern.md"
+      ],
+      "next": {
+        "continue": "2",
+        "refused": "END"
+      }
+    },
+    {
+      "id": "2",
+      "file": ".grimorio/agents/grimorio.delegate/phases/phase-2-decompose-and-plan.md",
+      "desc": "DECOMPOSE-AND-PLAN",
+      "loads": [
+        "skill/grimorio.loop-and-graph",
+        "skill/grimorio.fan-out",
+        "skill/grimorio.agent-tiers"
+      ],
+      "next": {
+        "continue": "3"
+      }
+    },
+    {
+      "id": "3",
+      "file": ".grimorio/agents/grimorio.delegate/phases/phase-3-execute.md",
+      "desc": "EXECUTE",
+      "loads": [
+        "skill/grimorio.phase-splitting/loop-owner-turn-discipline.md",
+        "skill/grimorio.code-harness",
+        "skill/grimorio.working-memory"
+      ],
+      "next": {
+        "continue": "4"
+      }
+    },
+    {
+      "id": "4",
+      "file": ".grimorio/agents/grimorio.delegate/phases/phase-4-gate-and-verify.md",
+      "desc": "GATE-AND-VERIFY",
+      "loads": [],
+      "next": {
+        "continue": "5",
+        "loop-back": "3"
+      }
+    },
+    {
+      "id": "5",
+      "file": ".grimorio/agents/grimorio.delegate/phases/phase-5-close-verified-or-could-not.md",
+      "desc": "CLOSE-VERIFIED-OR-COULD-NOT",
+      "loads": [
+        "skill/grimorio.objective-harness",
+        "skill/grimorio.report-design",
+        "memory/grimorio.board-memory/project.vision.md"
+      ],
+      "next": {
+        "done": "END"
+      }
+    }
+  ]
+}

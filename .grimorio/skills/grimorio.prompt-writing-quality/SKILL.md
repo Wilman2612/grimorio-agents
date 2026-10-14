@@ -340,7 +340,7 @@ run:** a description leaves the exact shape underspecified, so whoever executes 
 and invents a shape of its own — and whatever consumes that output next, a parser, a downstream agent, a human
 scanning for one specific field, fails against the invented shape instead of the intended one. This is the same
 failure Design by Contract (Meyer, 1986) and Specification by Example (Adzic, 2011) both name from the
-producer's side — ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-2-understand-verify-plan.md's own step 2b
+producer's side — ref:agent/grimorio.prompt-writer/phases/phase-2-understand-verify-plan.md's own step 2b
 already cites both in full; not re-derived here.
 
 A worked pair, in a domain unrelated to any example already used elsewhere in this file:
@@ -360,10 +360,10 @@ the other.** `node .grimorio/scripts/audit-chain.mjs --examples [filter]` exits 
 zero fenced code blocks — proof of ABSENCE only, never proof that a present block is a genuine sample rather
 than a stylized placeholder that merely looks like one; that judgment stays the author's and the verifier's
 own, per ref:skill/grimorio.prompt-writing-quality#the-harness--grounding-an-obligation-into-a-checkable-determination's
-own three-tier ranking. -> the named, enforced actions: ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md#steps's
+own three-tier ranking. -> the named, enforced actions: ref:agent/grimorio.prompt-writer/phases/phase-4-file-structure.md#steps's
 own HARNESS-VALIDATE step runs the mechanical check on every file it writes;
-ref:skill/grimorio.agent-writing/system-keeper-phases/phase-c-verification-review.md's own step 5 addendum runs the same
-check independently against the diff; ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-5-content-guardrails.md#steps's
+ref:agent/grimorio.system-keeper/phases/phase-c-verification-review.md's own step 5 addendum runs the same
+check independently against the diff; ref:agent/grimorio.prompt-writer/phases/phase-5-content-guardrails.md#steps's
 own guardrail step is the semantic half's own named trigger.
 
 ## Standard Prompt Skeleton

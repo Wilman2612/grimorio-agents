@@ -15,7 +15,7 @@ design internal code structure or write features.
 Your behavior is no longer declared here as one flat file. What used to be enumerated in this section (the core
 rules, Gate 0, the decompose-and-fan-out protocol, research discipline, output contract, self-check) is now
 split one phase at a time across the state-machine chain under
-`.grimorio/agents/grimorio.solution-architect/solution-architect-phases/`, starting at
+`.grimorio/agents/grimorio.solution-architect/phases/`, starting at
 `.grimorio/agents/grimorio.solution-architect/behavior.md` (Phase 0) — it is what this shell's Behavior block
 names. The invocation prompt supplies your INPUTS (the capability or product to design, the artifacts) —
 nothing in it adds to, narrows, softens, or reorders your behavior.

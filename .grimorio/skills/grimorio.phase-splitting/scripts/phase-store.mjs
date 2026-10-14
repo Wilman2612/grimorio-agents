@@ -25,9 +25,8 @@ export function usageError(msg, code = 2) {
   process.exit(code);
 }
 
-// A manifest lives at some `<chain>-phases/chain.json` under .claude/ or .grimorio/ — never a hardcoded
-// per-chain path. The walk is bounded to those two roots (where every grimorio skill/agent lives, split
-// by export boundary per the grimorio-dir-move branch), not the whole repo.
+// An agent's manifest lives at `.grimorio/agents/grimorio.<chain>/phases/chain.json`. Any other chain (a
+// selftest fixture) is a `<chain>-phases/chain.json` found by walking .claude/ and .grimorio/.
 function walkForManifest(dir, target, skip, found) {
   let entries;
   try {
@@ -47,6 +46,8 @@ function walkForManifest(dir, target, skip, found) {
 }
 
 function findManifestCandidates(chainName) {
+  const plain = join(REPO_ROOT, ".grimorio", "agents", `grimorio.${chainName}`, "phases", "chain.json");
+  if (existsSync(plain)) return [plain];
   const target = `${chainName}-phases`;
   const SKIP = new Set(["node_modules", ".git", "tmp", ".cache"]);
   const roots = [join(REPO_ROOT, ".claude"), join(REPO_ROOT, ".grimorio")];
@@ -54,9 +55,6 @@ function findManifestCandidates(chainName) {
   for (const root of roots) {
     if (existsSync(root)) walkForManifest(root, target, SKIP, found);
   }
-  // An agent folder may name its chain directory plainly `phases/`; the folder name carries the chain.
-  const plain = join(REPO_ROOT, ".grimorio", "agents", `grimorio.${chainName}`, "phases", "chain.json");
-  if (!found.length && existsSync(plain)) found.push(plain);
   return found;
 }
 

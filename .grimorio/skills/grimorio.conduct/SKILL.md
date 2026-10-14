@@ -171,9 +171,9 @@ injected "Scratchpad Directory" path, which is where this bites most often.** Gi
     **The one exception: a same-type `grimorio.prompt-writer` clone, at any tier, raised by `grimorio.system-keeper`
     for already-decided mechanical authoring volume, SUPERVISED — the spawning parent reviews its output before
     anything lands.** It never reaches any other child type.
-    -> ref:skill/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md,
-    ref:skill/grimorio.agent-writing/system-keeper-phases/phase-c-verification-review.md,
-    ref:skill/grimorio.agent-writing/prompt-writer-behavior.md#clone-executor-mode--entry-point-for-a-haiku-tiered-same-type-clone
+    -> ref:agent/grimorio.system-keeper/phases/phase-b-placement-authoring.md,
+    ref:agent/grimorio.system-keeper/phases/phase-c-verification-review.md,
+    ref:agent/grimorio.prompt-writer/behavior.md#clone-executor-mode--entry-point-for-a-haiku-tiered-same-type-clone
 21. **NEVER write an instruction file or a subagent prompt in anything but English.** User-facing chat replies
     stay in Spanish.
 22. **BEFORE adding to any memory or vision file ⟶ grep it for what is there and SAY what you found.**

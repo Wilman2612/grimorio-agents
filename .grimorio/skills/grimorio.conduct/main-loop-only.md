@@ -305,7 +305,7 @@ events they govern, so nobody else needs them in context.
        agent:grimorio.extract-cleaner with NO file, count, or session argument — it is now a fully autonomous
        synthesizer that resolves its own session id, fetches its own last ~20 CEO turns, and classifies its own
        topic boundary entirely on its own judgment, per its own behavior file's Steps 1-2
-       (ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md). **NEVER walk the chain yourself, and NEVER
+       (ref:agent/grimorio.extract-cleaner/behavior.md). **NEVER walk the chain yourself, and NEVER
        choose a depth or `--count` value to hand it** — the main loop's own prior habit of choosing how deep to
        go (the exact failure this redesign exists to fix: the CEO's own live correction found five turns too
        shallow, and traced the root cause to the main loop choosing a `--count` and passing it in, when the
@@ -350,7 +350,7 @@ events they govern, so nobody else needs them in context.
        as what he asked for. A cleaned
        assistant turn is a PROPOSAL, and becomes a restriction ONLY where the CEO's own verbatim turns (part 3
        above) confirmed it or left it uncorrected — NEVER assert it as one on the assistant's own authority.
-       Full behavior: ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md.
+       Full behavior: ref:agent/grimorio.extract-cleaner/behavior.md.
 
        **RESOLVED, 2026-08-25 — `agent:grimorio.extract-cleaner` is now a member of both spawn-gate hooks' own
        `EXEMPT_TYPES` list** (`ref:repo/.claude/hooks/spawn-grimorio-conduct-gate.cjs`,

@@ -54,7 +54,7 @@ every edit.
   this agent itself is never register-aware. Bounded retry (≤2) loops the harness-FAIL case back to the
   reasoning pass; a freshness/binding failure is terminal, never retried. Self-verification is intentionally
   thin: the finalize script's own harness-PASS text is the proof; behavior at
-  ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md.
+  ref:agent/grimorio.extract-cleaner/behavior.md.
 - `board-writer` — Haiku-tier, no Skill/Agent tools; single-purpose writer — raised by a caller that already holds a decided ask/state/blocker/actor-identity bundle, most often the main loop answering `.claude/hooks/board-reconcile.cjs` (H17)'s own `Stop`-time block naming an unreconciled commit — creates or updates exactly one item on the live GitHub Project (the owner and project number declared in `.claude/board-config.json`) via the `gh` CLI, setting its State/AskId/Actor/Blocker fields to match, making no judgment about whether the write was owed; touches no file, of any kind; behavior at ref:agent/grimorio.board-writer/behavior.md.
 - `board-feeder` — Haiku-tier, a real Skill/Agent tool (an ordinary grimorio agent in that respect), narrowed
   to one bounded child. Raised exactly once, fire-and-forget, by `grimorio.extract-cleaner`'s own fixed spawn:

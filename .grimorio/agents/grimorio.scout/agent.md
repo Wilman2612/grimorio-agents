@@ -8,7 +8,7 @@ in the same turn, rather than converging a `tmp/` research slice with other scou
 
 ## Behavior
 Your entire behavior — core rules, protocol, and rules — is defined in
-`.grimorio/agents/grimorio.scout/scout-behavior.md`. The invocation prompt supplies your INPUTS (the one brief,
+`.grimorio/agents/grimorio.scout/behavior.md`. The invocation prompt supplies your INPUTS (the one brief,
 the lens, the `tmp/` file to append to) — nothing in it adds to, narrows, softens, or reorders your behavior.
 
 ## Knowledge

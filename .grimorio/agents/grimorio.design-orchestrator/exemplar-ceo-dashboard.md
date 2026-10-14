@@ -18,7 +18,7 @@ to go deeper.
 2,733 lines, several times over the ~500-line smell threshold
 (ref:skill/grimorio.conduct#branches-commits-and-knowledge rule 23) that makes an index-plus-companions split
 the default remedy for an oversized skill reference/exemplar file
-(ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md — step 2 of its own Steps
+(ref:agent/grimorio.prompt-writer/phases/phase-4-file-structure.md — step 2 of its own Steps
 section). The CEO's own six files already ARE a deliberate split — one bounded question per file (the main
 scorecard covers the core A-F panel decisions; Audience and Revenue are each a separate "extra" question the
 CEO scoped into its own file; column lineage, the JSON-vs-silver field map, and the evidence pack are each a

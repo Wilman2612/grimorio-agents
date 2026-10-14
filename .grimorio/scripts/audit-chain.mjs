@@ -726,14 +726,14 @@ const portableSkillFiles = files.filter((f) => {
   const rest = skillRelative(rel);
   const m = rest && rest.match(/^(grimorio\.[^/]+)\/(.+)$/);
   if (!m) return false;
-  const restPath = m[2]; // path INSIDE the skill folder, e.g. "behavior.md" or "prompt-writer-phases/phase-1-search-first.md"
+  const restPath = m[2]; // path INSIDE the skill folder, e.g. "behavior.md" or "phases/phase-1-search-first.md"
   const base = restPath.split("/").pop();
   if (/^project\./.test(base)) return false;
   // DIRECT child only -- behavior.md/SKILL.md/*-behavior.md; excludes nested docs/*-behavior.md research
   // archives (documentation-memory's own domain, not this scan's).
   if (!restPath.includes("/")) return /^(behavior|SKILL)\.md$/.test(base) || /^[a-z0-9-]+-behavior\.md$/.test(base);
-  // ONE level inside a "*-phases" folder -- the phase-chain files (phase-1-*.md, phase-2-*.md, ...).
-  const phaseDirMatch = restPath.match(/^[a-z0-9.-]+-phases\/([^/]+)$/);
+  // ONE level inside a "phases" folder -- the phase-chain files (phase-1-*.md, phase-2-*.md, ...).
+  const phaseDirMatch = restPath.match(/^(?:[a-z0-9.-]+-)?phases\/([^/]+)$/);
   if (phaseDirMatch) return /^phase-\d+-.*\.md$/.test(phaseDirMatch[1]);
   return false;
 });

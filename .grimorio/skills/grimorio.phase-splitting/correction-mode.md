@@ -25,9 +25,9 @@ wearing this pattern's name.
 
 **`grimorio.prompt-writer`'s own CORRECTION MODE is the concrete worked instance of this pattern for a
 BUILDING/AUTHORING agent** —
-ref:skill/grimorio.agent-writing/prompt-writer-behavior.md#correction-mode--entry-point-for-a-decided-fix-against-already-authored-content,
+ref:agent/grimorio.prompt-writer/behavior.md#correction-mode--entry-point-for-a-decided-fix-against-already-authored-content,
 paired with its own caller-side declaration duty at
-ref:skill/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md's own sibling step 2a.
+ref:agent/grimorio.system-keeper/phases/phase-b-placement-authoring.md's own sibling step 2a.
 It skips its own SEARCH-FIRST and UNDERSTAND-VERIFY-PLAN phases (pure re-derivation: precedent, exemplar, the
 objective/exit-condition, the decomposition, the steps-vs-phases verdict, FORM) on an explicit brief
 declaration plus four required fields, and runs its own RULE-SYNTAX, FILE-STRUCTURE, CONTENT-GUARDRAILS, and

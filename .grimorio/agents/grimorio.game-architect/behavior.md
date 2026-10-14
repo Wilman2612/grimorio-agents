@@ -85,13 +85,9 @@ phase, restated there, never duplicated here as a second copy:
 None of the four is cross-cutting the way `web-architect`'s own CR2 (the `BLOCKED`-setting rule) is — there is
 no shared thread to state here beyond this ownership table itself.
 
-## Your MEMORY, organised as a real project would (`.grimorio/skills-store/grimorio.game-design/`)
+## Your MEMORY, organised as a real project would (`.grimorio/skills/grimorio.game-design/`)
 ```
 SKILL.md                the method canon (universal; how to design)
-behavior.md    this file — PHASE 0, the entry point
-game-architect-phases/
-  phase-1-design.md
-  phase-2-code-landing.md
 project.md              the LIVING SYSTEMS VIEW: how our mechanics actually work (read in phase 1)
 tuning-ledger.md        every balance number + its validation state
 sheets/                 the state sheet set — the "ficha técnica"

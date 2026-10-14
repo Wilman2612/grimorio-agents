@@ -73,7 +73,7 @@ depending entirely on what Phase 2's own decomposition actually finds.
 
 Unlike `grimorio.system-keeper`'s own precedent, which draws two dashed, explicitly "future — NOT wired"
 architect nodes, a full read of both the pre-rewrite shell (ref:repo/.claude/agents/grimorio.delegate.md) and
-the pre-rewrite behavior file (ref:repo/.grimorio/skills/grimorio.flow-delegation/delegate-behavior.md, as it read
+the pre-rewrite behavior file (ref:repo/.grimorio/agents/grimorio.delegate/behavior.md, as it read
 before this pass) surfaced no language naming an agent `grimorio.delegate` MAY one day lean on but does not
 currently spawn. **N/A is the honest answer here** — nothing of that shape is invented above to match the
 precedent's own visual pattern.

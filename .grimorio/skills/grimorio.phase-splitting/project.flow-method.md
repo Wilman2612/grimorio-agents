@@ -5,4 +5,4 @@
 > the imports naming it. An empty file left here is worse than no file: it answers the load and says nothing.
 
 **Imported by**
-- `.grimorio/skills/grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md`
+- `.grimorio/agents/grimorio.prompt-writer/phases/phase-4-file-structure.md`

@@ -18,7 +18,7 @@ non-overlapping knowledge slice from `./project.traps.md` (this agent's own larg
 corpus — flow-field/boids/morale/collision/economy/perception/lab traps spanning at least six numbered waves).
 This phase's own deliverable (the carried-forward traps/precedent list) is CONSUMED by Phase 2's own
 contract-read — a genuine Unix-pipe hand-off, not a bolt-on — grounded in the concrete shipped exemplar
-ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-1-search-first.md, cited by name in
+ref:agent/grimorio.prompt-writer/phases/phase-1-search-first.md, cited by name in
 ref:skill/grimorio.phase-splitting#phase-archetypes-you-can-reach-for's own "Phase archetypes" section as the
 worked hard-locked SEARCH-FIRST-as-its-own-phase case — read there for HOW a standalone SEARCH-FIRST phase is
 voiced, never for its content, which is a different domain (this agent is NOT hard-locked, unlike that

@@ -1,6 +1,6 @@
 # Nested background — the trade, and how it is rescued
 
-Companion to `./SKILL.md` (Part 1, flow-brief item 7) and ref:skill/grimorio.flow-delegation/delegate-phases/phase-3-execute.md (Core Rule 2). The CEO's own
+Companion to `./SKILL.md` (Part 1, flow-brief item 7) and ref:agent/grimorio.delegate/phases/phase-3-execute.md (Core Rule 2). The CEO's own
 ruling that reversed the prior blanket prohibition is quoted verbatim, with translation, at its canonical site:
 ref:skill/grimorio.conduct#spawning-an-agent rule 8 — this file does not re-quote it, it carries the mechanism
 the ruling depends on.

@@ -62,7 +62,7 @@ outside a live `Skill()` call) leaves no trace this instrument can see, firing o
 ## The probe — a step still didn't fire, and why
 
 **MEASURED, and it is a negative: a step in the right position still does not fire if the file holding it is
-never opened.** The obligation was moved into ref:skill/grimorio.flow-delegation/delegate-behavior.md as an executable
+never opened.** The obligation was moved into ref:agent/grimorio.delegate/behavior.md as an executable
 step, then probed cue-blind against a real `grimorio.delegate` task (2026-08-15, Sonnet, dead-export sweep,
 the machine named nowhere in the brief). `loop-and-graph` did not load. The subject's own account of its
 startup — SELF-REPORT, the only instrument that exists for a `Read`, and weak evidence — was that it never

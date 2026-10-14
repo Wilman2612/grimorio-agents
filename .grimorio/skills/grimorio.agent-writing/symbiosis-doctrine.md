@@ -203,7 +203,7 @@ instance, never invent one to illustrate a use this corpus has not actually exer
     a separate gate.** `ref:repo/.grimorio/scripts/registration-cost.mjs` counts lines across a caller-named file list,
     prints one `  <count>  <path>` line per file plus a `TOTAL:` line, and exits 0 (or exits 1 with a usage
     message on zero file arguments); `grimorio.system-keeper`'s own
-    ref:skill/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md's own step 8
+    ref:agent/grimorio.system-keeper/phases/phase-b-placement-authoring.md's own step 8
     REGISTRATION-COST THRESHOLD gate now reads that `TOTAL:` line as the fact to compare against the
     mechanical-volume saving estimate, rather than the agent re-deriving the sum by hand across several
     `audit-chain.mjs --shape` calls.
@@ -275,14 +275,14 @@ C's own post-authoring toolchain re-run.
 **Four of the keeper's own OTHER prose-driven mechanical checks — distinct from the three named above — are
 wired to a named, runnable command, each replacing what would otherwise be a vague "consult"/"OPENING"/"a
 comparison" instruction with the literal command the agent runs:**
-ref:skill/grimorio.agent-writing/system-keeper-phases/phase-a-intake-diagnosis.md's own Part 2 step 2
+ref:agent/grimorio.system-keeper/phases/phase-a-intake-diagnosis.md's own Part 2 step 2
 (index/hooks consult) runs `grep`/`ls` against the named capability;
-ref:skill/grimorio.agent-writing/system-keeper-phases/phase-c-verification-review.md's own Part 1 step 1
+ref:agent/grimorio.system-keeper/phases/phase-c-verification-review.md's own Part 1 step 1
 (pointer verification) runs `audit-chain.mjs --dead`/`--anchors` output grepped for the touched file — neither
 flag carries its own `[filter]`, verified live, so the grep match against the printed lines is the real
 scoped signal, never the script's own corpus-wide exit code — and Part 1 step 3's first bullet (the
 monotonic-growth check) runs `git diff --stat`; and
-ref:skill/grimorio.agent-writing/system-keeper-phases/system-keeper-improve-and-validate-mode.md's own step 4
+ref:agent/grimorio.system-keeper/phases/system-keeper-improve-and-validate-mode.md's own step 4
 (the firing-log query) runs a `node -e` one-liner since `jq` is not installed in this environment, confirmed
 live, and step 5a (the byte-diff gate) runs `cmp -s`.
 

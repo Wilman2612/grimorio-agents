@@ -49,7 +49,7 @@ does not have.
    raise either in the FOREGROUND and wait on it directly**, per ref:skill/grimorio.conduct#spawning-an-agent,
    rule 9c(3). **WHEN raising either agent per this step ⟶ NEVER pass `model` without a NAMED reason, and NEVER
    tier either below `sonnet`** — mirroring `grimorio.system-keeper`'s own critic-integrity tier-floor
-   discipline (ref:skill/grimorio.agent-writing/system-keeper-phases/phase-c-verification-review.md's own step 3 and LOAD
+   discipline (ref:agent/grimorio.system-keeper/phases/phase-c-verification-review.md's own step 3 and LOAD
    section, itself grounded in ref:skill/grimorio.agent-tiers#critic-integrity--the-one-tiering-rule-you-cannot-cheap-out-on
    — a reviewing agent's tier is floored at the generator's tier, never lower): `agent:grimorio.unblocker`
    already declares `sonnet` and `agent:grimorio.entropy` already declares `opus` as their own defaults, so the

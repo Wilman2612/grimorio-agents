@@ -62,14 +62,14 @@ stateDiagram-v2
 | 6 | `phase-6-report-close.md` | What does my parent need to know, and is this close honest? (terminal) |
 
 Every edge above is a real transition in
-`.grimorio/skills/grimorio.agent-writing/prompt-writer-phases/chain.json`'s own `next` map, per phase — this
+`.grimorio/agents/grimorio.prompt-writer/phases/chain.json`'s own `next` map, per phase — this
 diagram and that manifest must never drift out of sync; a change to one is a change to both, in the same pass.
 
 **A `jump --run <id> --to 3 --reason "..."` call is the mechanical, logged entry CORRECTION MODE and
 CLONE-EXECUTOR MODE both use to reach Phase 3 directly, skipping Phase 1 and Phase 2 — never a graph edge of its
 own**, drawn above as the single dashed `[*] --> 3` transition rather than as two separate named entries,
 because both share the identical target and skip footprint.
-ref:skill/grimorio.agent-writing/prompt-writer-behavior.md's own CORRECTION MODE and CLONE-EXECUTOR MODE
+ref:agent/grimorio.prompt-writer/behavior.md's own CORRECTION MODE and CLONE-EXECUTOR MODE
 sections state which condition and which required fields distinguish the two. Both replace what used to be a
 prose self-redirect ("SKIP Phase 1 and Phase 2, read Phase 3 directly") with this same logged call — the
 mechanical, queryable proof (`.grimorio/.cache/phase-server-log.jsonl`) that the shortcut was actually taken.
@@ -77,7 +77,7 @@ mechanical, queryable proof (`.grimorio/.cache/phase-server-log.jsonl`) that the
 **There is no repeating back-edge in this chain.** Re-evaluation of what this agent produces lives one level
 up, inside `agent:grimorio.system-keeper`'s own VERIFICATION and ADVERSARIAL REVIEW phases — never inside this
 chain itself, per
-ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-6-report-close.md's own "Why there is no evaluation
+ref:agent/grimorio.prompt-writer/phases/phase-6-report-close.md's own "Why there is no evaluation
 phase in this chain" section.
 
 ## Layer 3 — INTERNAL artifact flow, per phase

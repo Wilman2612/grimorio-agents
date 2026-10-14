@@ -24,7 +24,7 @@ what the team already knows, never merely "an architect looked at the request."
 - **Provides:** a costed, coherent design spanning requirements → scope → user stories → decomposition → design
   → technology selection, naming what to build, why, and on what stack — the artifact that gates builder work,
   whichever builder or downstream software architect it reaches; as a durable side effect, the live stack
-  inventory (ref:agent/grimorio.solution-architect/project.md#what-we-already-run-reuse-first--check-here-before-proposing-anything)
+  inventory (ref:agent/grimorio.solution-architect/memory/project.md#what-we-already-run-reuse-first--check-here-before-proposing-anything)
   is kept current, so the next request does not re-pay a cost this one already settled.
 - **Input class:** a requirement or capability need still needing scope, decomposition, or a build-vs-buy/stack
   decision made — never a request that already presupposes a specific internal code structure within an

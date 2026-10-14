@@ -7,7 +7,7 @@
 **Imported by**
 - `.grimorio/skills/grimorio.board/SKILL.md`
 - `.grimorio/skills/grimorio.board/board-chain-quasi-software-view.md`
-- `.grimorio/skills/grimorio.flow-delegation/delegate-phases/phase-5-close-verified-or-could-not.md`
+- `.grimorio/agents/grimorio.delegate/phases/phase-5-close-verified-or-could-not.md`
 
 **3 of those imports address a heading in this file BY NAME.** An `#anchor` expects
 that heading to exist, so a missing one stays a dead reference even once this file has content. Find

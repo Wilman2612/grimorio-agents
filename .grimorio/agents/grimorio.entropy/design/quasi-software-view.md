@@ -8,10 +8,10 @@ ref:agent/grimorio.researcher/design/quasi-software-view.md's own already-shippe
 already-approved three-phase shape — read in full as this file's own structural exemplar, never as its content
 — the closest precedent for the SAME orchestrator archetype: a homogeneous `grimorio.scout` panel spawned to
 gather independent perspectives/slices, then converged by the orchestrator itself. This file draws all layers
-directly from ref:skill/grimorio.fan-out/entropy-behavior.md and its three
-ref:skill/grimorio.fan-out/entropy-phases/phase-1-frame.md,
-ref:skill/grimorio.fan-out/entropy-phases/phase-2-spawn-and-gather.md, and
-ref:skill/grimorio.fan-out/entropy-phases/phase-3-converge-ground-handoff.md, all read/authored in full THIS
+directly from ref:agent/grimorio.entropy/behavior.md and its three
+ref:agent/grimorio.entropy/phases/phase-1-frame.md,
+ref:agent/grimorio.entropy/phases/phase-2-spawn-and-gather.md, and
+ref:agent/grimorio.entropy/phases/phase-3-converge-ground-handoff.md, all read/authored in full THIS
 pass, in the same authoring dispatch that wrote them; it changes none of their content.
 
 ## Layer 1 + 2 — NODES (the orchestration graph) and PHASES (the state machine)
@@ -142,7 +142,7 @@ delegating, converging) actually needed it.
 
 **Two further items, beyond the original 8, disclosed here as a deliberate scope addition — not part of the
 original flat file.** `grimorio.po-memory` and `grimorio.architect-memory` — Phase 1's own step 4 SEARCH-FIRST
-memory check (ref:skill/grimorio.fan-out/entropy-phases/phase-1-frame.md's own LOAD section) needs both to check
+memory check (ref:agent/grimorio.entropy/phases/phase-1-frame.md's own LOAD section) needs both to check
 what the relevant memory skills already settled about the target before the panel is scoped; neither one was
 ever in the original flat file's 8-entry Knowledge list. This mirrors, and is flagged the same way as, the
 `grimorio.agent-selection` addition to P2 documented a few lines below — a genuine addition this authoring pass

@@ -177,12 +177,12 @@ writeFileSync(
 );
 
 // Real phase files already shipped in this repo, used exactly AS-IS — never modified for this selftest.
-const PHASE_KEEPER_TWO_FIELD = '.grimorio/skills/grimorio.working-memory/adviser-phases/phase-1-search-first.md';
+const PHASE_KEEPER_TWO_FIELD = '.grimorio/agents/grimorio.adviser/phases/phase-1-search-first.md';
 // Case 6 needs a REAL corpus file declaring zero FINGERPRINT fields — naming one outright would couple this
 // test to content that can legitimately change, so it is discovered live and case 6 skips loudly when none
 // remain (case 10 covers the same zero-field path against a fixture this test owns either way).
 let PHASE_KEEPER_NO_IMPORT = '';
-const skDir = '.grimorio/skills/grimorio.agent-writing/system-keeper-phases';
+const skDir = '.grimorio/agents/grimorio.system-keeper/phases';
 if (existsSync(skDir)) {
   for (const f of readdirSync(skDir).sort()) {
     if (!f.endsWith('.md')) continue;
@@ -194,7 +194,7 @@ if (existsSync(skDir)) {
     }
   }
 }
-const PHASE_CROSS_CHAIN_TWO_FIELD = '.grimorio/skills/grimorio.fan-out/entropy-phases/phase-1-frame.md';
+const PHASE_CROSS_CHAIN_TWO_FIELD = '.grimorio/agents/grimorio.entropy/phases/phase-1-frame.md';
 
 console.log('');
 console.log('=== 1. REAL PASS — single fingerprint field, genuine content ===');

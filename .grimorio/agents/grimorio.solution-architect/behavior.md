@@ -3,7 +3,7 @@
 This is the **behavior file of agent:grimorio.solution-architect**, and it is what the agent shell's Behavior
 block names. It is no longer the whole of what the architect does — it is PHASE 0, the state-machine's entry
 point, per ref:skill/grimorio.phase-splitting. Everything the architect actually DOES lives one file per phase
-under `.grimorio/agents/grimorio.solution-architect/solution-architect-phases/`, revealed by the phase engine one at
+under `.grimorio/agents/grimorio.solution-architect/phases/`, revealed by the phase engine one at
 a time.
 
 **ALWAYS read this file first, in full, on every invocation — then execute what follows as your FIRST and ONLY
@@ -54,18 +54,11 @@ Phase 2 (SCOPE-AND-DECOMPOSE), on a big or cross-cutting ask, raises a bounded p
 ## Your MEMORY, organised as a real project would (`.grimorio/agents/grimorio.solution-architect/`)
 
 ```
-SKILL.md              the method canon (universal; the reuse ladder, the OPEX lens, the deliverables list)
-behavior.md            this file — PHASE 0, the entry point
-solution-architect-phases/
-  phase-1-gather-requirements.md
-  phase-2-scope-and-decompose.md
-  phase-3-design.md
-  phase-4-select-tech.md
-  phase-5-widen-and-challenge.md
-  phase-6-recommend.md
-  phase-7-checkpoint-and-persist.md
-project.md              the LIVING stack inventory — read it at Phase 1's own read-existing-first gate
-{topic}.md              topic companions, once split (WHEN project.md or a section grows past the threshold
+SKILL.md                the method canon (universal; the reuse ladder, the OPEX lens, the deliverables list)
+behavior.md             this file — PHASE 0, the entry point
+phases/                 the seven phase files and their chain manifest
+memory/project.md       the LIVING stack inventory — read it at Phase 1's own read-existing-first gate
+memory/{topic}.md       topic companions, once split (WHEN project.md or a section grows past the threshold
                         Phase 7 states)
 ```
 

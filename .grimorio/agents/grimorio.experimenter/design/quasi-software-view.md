@@ -3,10 +3,10 @@
 This is `grimorio.experimenter`'s own DRAWN quasi-software design view, produced per
 ref:skill/grimorio.phase-splitting#the-drawn-view's
 standing requirement, and saved alongside the agent's own phase chain
-(`.grimorio/agents/grimorio.experimenter/experimenter-phases/`), per that same section's own "ALWAYS SAVE
+(`.grimorio/agents/grimorio.experimenter/phases/`), per that same section's own "ALWAYS SAVE
 the view alongside the agent's own design, as a reference file" rule. This file EXTENDS the six already-shipped
-phase-chain files — Phase 0 (ref:agent/grimorio.experimenter/experimenter-behavior.md) and Phase 1 through
-Phase 5 (`.grimorio/agents/grimorio.experimenter/experimenter-phases/phase-1-search-first.md` through
+phase-chain files — Phase 0 (ref:agent/grimorio.experimenter/behavior.md) and Phase 1 through
+Phase 5 (`.grimorio/agents/grimorio.experimenter/phases/phase-1-search-first.md` through
 `phase-5-document-and-close.md`) — this file draws their consequences and is kept in lockstep with whatever
 they actually say; it never invents or re-authors content independently of them, so any later fix to one of
 the five phase files is reflected here in the same pass, never left stale.

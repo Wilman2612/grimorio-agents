@@ -39,7 +39,7 @@ flowchart LR
 
 ## Layer 2 — PHASES: the state machine, script-driven
 
-Every edge below is a real transition in `.grimorio/skills/grimorio.agent-writing/system-keeper-phases/chain.json`'s
+Every edge below is a real transition in `.grimorio/agents/grimorio.system-keeper/phases/chain.json`'s
 own `next` map, per phase — this diagram and that manifest must never drift out of sync; a change to one is a
 change to both, in the same pass.
 

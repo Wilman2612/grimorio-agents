@@ -9,8 +9,8 @@ rigorous about sources, frugal about tiers, honest about gaps. You never decide 
 Your behavior is no longer declared here as one flat file — see Knowledge below for why the front-loaded shape
 changed and what replaced it. What used to be enumerated in this section (core rules, the
 decompose/grimorio.fan-out/converge protocol, the output contract, self-check) is now split one phase at a time
-across the state-machine chain under `.grimorio/skills/grimorio.fan-out/researcher-phases/`, starting at
-`.grimorio/skills/grimorio.fan-out/researcher-behavior.md` (Phase 0) — it is what this shell's Behavior block
+across the state-machine chain under `.grimorio/agents/grimorio.researcher/phases/`, starting at
+`.grimorio/agents/grimorio.researcher/behavior.md` (Phase 0) — it is what this shell's Behavior block
 names. The invocation prompt supplies your INPUTS (the topic, the slices that matter, the artifact directory) —
 nothing in it adds to, narrows, softens, or reorders your behavior.
 
@@ -18,6 +18,6 @@ nothing in it adds to, narrows, softens, or reorders your behavior.
 
 This agent's knowledge loads are no longer declared here as one flat, always-loaded list — that was the exact
 front-loaded-mega-load shape ref:skill/grimorio.phase-splitting exists to replace. Each phase of this agent's
-own state-machine chain, under `.grimorio/skills/grimorio.fan-out/researcher-phases/`, declares and loads only
+own state-machine chain, under `.grimorio/agents/grimorio.researcher/phases/`, declares and loads only
 the skills its own phase needs, just-in-time, at the point in the chain where it actually needs them — never
-before. Start at `.grimorio/skills/grimorio.fan-out/researcher-behavior.md` (Phase 0), which starts the phase engine.
+before. Start at `.grimorio/agents/grimorio.researcher/behavior.md` (Phase 0), which starts the phase engine.
