@@ -108,7 +108,7 @@ function main() {
   // Anchor on CLAUDE_PROJECT_DIR, not a bare process.cwd() -- mirrors extract-cleaner-cache.mjs's own
   // runSweepExpired (same rationale: process.cwd() alone is silently wrong the moment this tool is invoked
   // from anywhere other than the repo root, e.g. a worktree subshell).
-  const workDir = flags["--work-dir"] || path.join(process.env.CLAUDE_PROJECT_DIR || process.cwd(), "tmp", "extract-cleaner", sessionId);
+  const workDir = flags["--work-dir"] || path.join(process.env.CLAUDE_PROJECT_DIR || process.cwd(), WORK_ROOT, "extract-cleaner", sessionId);
   const rawFetchPath = path.join(workDir, "raw-fetch.txt");
   if (!existsSync(rawFetchPath)) {
     error(
