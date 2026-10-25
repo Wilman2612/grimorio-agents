@@ -1,7 +1,7 @@
 # Task flow — pseudo-spec
 
 The principal's own words on how grimorio should take a task from conversation to a delivered result. Built from
-all 39 messages of session `ab161c11` (2026-10-10 to 2026-10-20), re-read in full, not from a summary. Quotes are
+all 40 messages of session `ab161c11` (2026-10-10 to 2026-10-25), re-read in full, not from a summary. Quotes are
 verbatim Spanish excerpts; `…` marks a cut. U2, U3, U4, U17 and U19 are harness messages, not his words, and are
 left out.
 
@@ -146,6 +146,18 @@ the architecture already agreed:
 | I5 | U26 | "más allá de validar que un paso se siga, no, no le veo ahí otra cosa, porque es mucho de inteligencia" | view §9 |
 | I6 | U7 | "un check que escribes al final no ayuda mucho. Un check que escribes al principio tampoco va a ayudar mucho. A menos que lo vincule al, que lo vincule al, al que vamos a generar" | view §4; README D6 |
 | I7 | U10 | "delegar y pre compilar cosas deternministicas como la maquinaria de fases o el agente sintetizador"; "en cuanto a la vision y eso.. solo son documentos de diseño .. nunca deberian leerse en ejecucion" | view §9 |
+
+### J. Not every message runs the whole flow
+
+| # | U | His words | Answered in |
+|---|---|---|---|
+| J1 | U40 | "como ya sabemos que parte del trabajo es cuando se invoca al subagente, se puede declarar tipo, ah, ya, esto es una corrección, para que no tenga que estar haciendo todo el tiempo" | view §2; README D7 |
+| J2 | U40 | "si es una corrección, que es continuar el trabajo, si es parar" | view §2 |
+| J3 | U40 | "yo siempre planeo un trabajo, pero no es cierto. A veces solo es un, oye, continúa, oye, sí, sigue, dale, adelante." | view §2 |
+| J4 | U40 | "estoy notando que se demora un montón, pero fácil puede ser por errores de, el board, me refiero, siempre se revisa el board. Cuando es literalmente un continúa, ¿no?" | view §2, §7 |
+| J5 | U40 | "O con una corrección sobre lo que está haciendo, por ejemplo, veo que está haciendo algo mal, lo reencamino." | view §2, §3 |
+| J6 | U40 | "no siempre tiene que meterse todo el flujo. Entonces, eso también es un una economía importante." | view §2 |
+| J7 | U40 | "si hay problemas con respecto a el div, oye, tenemos calculado" | view §2, §7 |
 
 ## 3. Tensions inside his own messages, and how they ended
 

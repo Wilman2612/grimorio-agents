@@ -1,8 +1,8 @@
 # Task flow — design for review
 
 How grimorio takes a task from the principal's "execute" to a delivered, proven result: mission, architecture,
-execution plan, steps, subtasks, evidence and support documents. Written 2026-10-20 from all 39 messages of
-session `ab161c11`, for his review. **Nothing here is built yet.**
+execution plan, steps, subtasks, evidence and support documents. Written 2026-10-20 from the messages of session
+`ab161c11`, and updated 2026-10-25 with his 40th, for his review. **Nothing here is built yet.**
 
 | File | What it holds |
 |---|---|
@@ -23,6 +23,7 @@ the decisions below. The pseudo-spec is there to check that nothing of his was d
 | D4 | how he views the support documents | a page rendered from the folder (opened locally, or published as a private page from a cloud session) / a GitHub board or ticket | **the rendered page**; GitHub later, at most as a mirror of the steps. Call limits, latency, and transcripts and screenshots do not fit an issue (H4) |
 | D5 | the one-line reminder on every message while a task is open | a new hook on his message, silent when no task is open / no hook, only the explicit moments (opening, on demand, before a spawn) | **the hook, silent without an open task**, so it never fires when grimorio is not in use (C7). Adding a hook needs his yes |
 | D6 | what happens to the branch objective file | retire it / keep it only as the slice of a plan that one branch closes / leave it as is | **keep it only as a slice**: its checks are copied from the gates of the steps that branch closes, which makes it the pre-check tied to what will be generated (I6) |
+| D7 | each hand-over declares its message kind (new task, continue, correction), and the spawn gate runs only what that kind needs | change the gate / leave it requiring a full synthesizer run after every message of his | **change it**: this is his own proposal (J1), and today a plain "continúa" pays for a synthesizer run, the board feeder and a coverage scout (J4). The gate is a hook, so the change needs his yes when it is built |
 
 ## After his review
 

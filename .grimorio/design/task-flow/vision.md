@@ -46,6 +46,8 @@ messages of conversation.
 
 - a one-line fix or a lookup, which the caller does itself;
 - a conversation of ideas, where nothing is executed yet; those ideas are only recorded [B1];
+- a "continue" or a correction to a task already open: the first resumes the next step, the second reopens only
+  the steps it touches, and neither runs the whole flow again [J3, J5, J6];
 - designing the target itself, which is the architect's job; this flow consumes an architecture and never
   produces one.
 
@@ -82,7 +84,9 @@ Checkable, in this order:
    afterwards [E12, F5].
 6. **Everything survives compaction.** The main loop can resume the task from its folder alone, without the
    conversation [B5].
-7. **Two fixed cases pass.** The paywall migration and the static-to-dynamic conversion each yield a plan whose
+7. **A "continue" costs no flow.** It runs no synthesizer, no board and no coverage check; the open task resumes
+   at its next step [J4].
+8. **Two fixed cases pass.** The paywall migration and the static-to-dynamic conversion each yield a plan whose
    steps he approves; that is his judgment. A five-step toy plan whose third step fails on purpose ends with steps
    1 and 2 verified, step 3 failed with its finding, and steps 4 and 5 pending; a script checks that [E1, E2].
 
