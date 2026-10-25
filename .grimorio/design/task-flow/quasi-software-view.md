@@ -101,27 +101,34 @@ these states.
 
 ## 2. S0 and S1: what kind of message, and opening a task
 
-Not every message is a new task (J3), and only a new task runs the whole flow (J6). The main loop names the kind of
-every message of his, and the flow runs only what that kind needs:
+Not every message is a new task (J3), and only a new task runs the whole flow (J6). **The kind is read from the
+delta:** the messages of his since the last synthesizer run, which the script already computes (J7). The delta
+cannot tell whether the whole task is complete. It does tell what his last messages were about: a correction, the
+planning of something new, a plain go-ahead (J8). The kind then decides what travels to the agent: the task folder
+alone, the delta, or the full accumulated record (J9).
 
-| Kind | Sounds like | What runs | What does not run |
-|---|---|---|---|
-| idea | something for later | "I'm saving this", and it goes to the ideas list (B1) | no spawn |
-| new task | "execute", or a yes to the main loop's proposal | S1: the task opens, every ask in the accumulated record goes to this task's mission, to ideas, or is marked already done, and the plan is pinned (B2, C1) | nothing skipped |
-| continue | "continúa", "sí, sigue", "dale" (J3) | the open task resumes at its next step; the brief points at the task folder | no synthesizer run, no board, no coverage check (J4) |
-| correction | "veo que está haciendo algo mal, lo reencamino" (J5) | E5: his message is appended to the record (the delta is already computed, J7), the ask is amended, the steps that cover it reopen, and the brief carries the task folder plus his correction verbatim | no new plan; the coverage check reads only the correction |
-| stop | "para" | the task pauses with every state kept | no spawn |
-| question | "¿qué falta?" | answered from the task folder | no spawn |
+| Kind | Sounds like | What travels to the agent | What runs | What does not run |
+|---|---|---|---|---|
+| idea | something for later | nothing, no spawn | "I'm saving this", and it goes to the ideas list (B1) | |
+| new task | "execute", or a yes to the main loop's proposal | the full accumulated record | S1: every ask in the record goes to this task's mission, to ideas, or is marked already done; the plan is pinned; the coverage check reads the full record (B2, C1) | nothing skipped |
+| continue | "continúa", "sí, sigue", "dale" (J3) | the task folder only | the open task resumes at its next step | consolidation, coverage check, board (J4, J10) |
+| correction | "veo que está haciendo algo mal, lo reencamino" (J5) | the task folder plus the delta verbatim | E5: the ask is amended and the steps that cover it reopen; the coverage check reads only the delta | a new plan |
+| stop | "para" | nothing, no spawn | the task pauses with every state kept | |
+| question | "¿qué falta?" | nothing, no spawn | answered from the task folder | |
 
 While a task is open, the conversation can move on and the plan waits (B3).
 
-**The kind travels with the hand-over (J1).** The main loop writes it as one line in the spawn brief, and the spawn
-gate runs only what that kind needs. Today, after every new message of his, the next grimorio spawn requires a
-fresh synthesizer run, which also starts the board feeder, plus a coverage scout. A plain "continúa" pays all of
-that (J4). Changing it means changing the spawn gate, which is a hook: README D7.
+**Who names the kind.** The synthesizer names it on its delta run, and writes it into its output with the asks the
+delta touches (§7). The hand-over carries that kind (J1): the main loop attaches what the kind needs, and the spawn
+gate checks against the kind the synthesizer wrote. Because the kind comes from his words, the caller cannot label a
+new task a "continue" to skip the checks.
 
-**What guards a wrong kind.** A "continue" or a "correction" is accepted only while a task is open. The kind of
-every hand-over shows in "how it is going", so a new task passed off as a "continue" is visible there.
+**Why it matters today.** After every new message of his, the next grimorio spawn requires a full synthesizer run,
+which also starts the board feeder, plus a coverage scout. A plain "continúa" pays all of that (J4). Narrowing it
+changes the spawn gate, which is a hook: README D7.
+
+**What the delta does not answer.** Whether the whole task is still covered is checked when the task opens, by the
+consolidation, and by the plan checker (§9), never by the per-message step (J8).
 
 ## 3. Entry cases
 
@@ -234,6 +241,7 @@ A job, not a planner (E10). Its purpose stays: nothing he asked is forgotten (T1
 
 | Moment | What it does | Needs a hook |
 |---|---|---|
+| every new message, on its delta | names the kind of the message and the asks it touches (§2, J8) | no: it runs before the next spawn, as today |
 | S1, the task opens | consolidates: every ask in the record goes to the mission, to ideas, or is marked already done (C1) | no |
 | before a spawn, **only for a new task or a correction** | checks the brief against the record, and names any ask the brief drops (C4); a "continue" skips it (§2) | exists today for every spawn; narrowing it changes the gate (D7) |
 | on demand ("review the messages") | the same consolidation | no |

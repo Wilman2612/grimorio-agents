@@ -1,7 +1,7 @@
 # Task flow — pseudo-spec
 
 The principal's own words on how grimorio should take a task from conversation to a delivered result. Built from
-all 40 messages of session `ab161c11` (2026-10-10 to 2026-10-25), re-read in full, not from a summary. Quotes are
+all 41 messages of session `ab161c11` (2026-10-10 to 2026-10-25), re-read in full, not from a summary. Quotes are
 verbatim Spanish excerpts; `…` marks a cut. U2, U3, U4, U17 and U19 are harness messages, not his words, and are
 left out.
 
@@ -158,6 +158,9 @@ the architecture already agreed:
 | J5 | U40 | "O con una corrección sobre lo que está haciendo, por ejemplo, veo que está haciendo algo mal, lo reencamino." | view §2, §3 |
 | J6 | U40 | "no siempre tiene que meterse todo el flujo. Entonces, eso también es un una economía importante." | view §2 |
 | J7 | U40 | "si hay problemas con respecto a el div, oye, tenemos calculado" | view §2, §7 |
+| J8 | U41 | "del div puedes saber ciertamente, de repente, no si todo lo anterior, ¿cierto? Toda la tarea, todas las tareas si falta algo, pero puedes saber de lo último que te hablé" | view §2, §7 |
+| J9 | U41 | "Fue algunas correcciones, fue parte de la planeación de algo nuevo, merece otra cosa, pero ya lo puedes sacar del div y luego sí adjuntar al otro, pues el chat completo." | view §2, §7; README D7 |
+| J10 | U41 | "Algunos no requerían tanto el board, por ejemplo" | view §2 |
 
 ## 3. Tensions inside his own messages, and how they ended
 

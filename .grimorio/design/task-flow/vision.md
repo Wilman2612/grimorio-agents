@@ -84,8 +84,9 @@ Checkable, in this order:
    afterwards [E12, F5].
 6. **Everything survives compaction.** The main loop can resume the task from its folder alone, without the
    conversation [B5].
-7. **A "continue" costs no flow.** It runs no synthesizer, no board and no coverage check; the open task resumes
-   at its next step [J4].
+7. **A "continue" costs only the delta read.** The synthesizer reads the new messages and names their kind; there
+   is no consolidation, no board and no coverage check, and the open task resumes at its next step. The kind comes
+   from his words, never from the caller [J4, J8, J9].
 8. **Two fixed cases pass.** The paywall migration and the static-to-dynamic conversion each yield a plan whose
    steps he approves; that is his judgment. A five-step toy plan whose third step fails on purpose ends with steps
    1 and 2 verified, step 3 failed with its finding, and steps 4 and 5 pending; a script checks that [E1, E2].
