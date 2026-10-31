@@ -1,7 +1,7 @@
 # Task flow — pseudo-spec
 
 The principal's own words on how grimorio should take a task from conversation to a delivered result. Built from
-all 47 messages of session `ab161c11` (2026-10-10 to 2026-10-31), re-read in full, not from a summary. Quotes are
+all 48 messages of session `ab161c11` (2026-10-10 to 2026-10-31), re-read in full, not from a summary. Quotes are
 verbatim Spanish excerpts; `…` marks a cut. U2, U3, U4, U17 and U19 are harness messages, not his words, and are
 left out.
 
@@ -185,6 +185,7 @@ the architecture already agreed:
 | L7 | U46 | "el delta es para no tener que resumir o extraer más de lo necesario"; "puedes tener mucho, mucho texto tuyo y no quiero que hagas tanto tokens prontamente"; "seguimos apoyándonos en, scripts lo más posible" | view §7 |
 | L8 | U46 | "ahorita el resumen ocurre sin contexto"; "primero lee el prompt, entiendes los porqués, entiendes el qué, entiendes el cómo, lo que sea. Y elaboras tus preguntas, ¿cierto? Pasas tu informe"; "el resumen ocurriría después del informe, para que puedas guardar lo relevante"; "omitir, tipo, no sé, comandos o texto inútil de más, o no sé, respuestas entre agentes"; "Más que un resumen, una limpieza, supongo." | view §7 |
 | L10 | U47 | "yo añadiría el paso que también hace ahorita el cleaner, que es decir, oye, ¿te olvidaste de algo? No, por si acaso."; "no perdemos nada poniendo una sección adicional de cosas que te olvidaste pedir, ¿no?" | view §7 |
+| L11 | U48 | "Yo añadiría que siempre debería revisar por si acaso eso, ¿no?"; "primero que haga las preguntas como un evaluador independiente, uno independiente, o sea, como una prueba de caja negra, ¿sabes? Y luego otro con el ya con el brief y lo complete como prueba de caja blanca"; "Y ya, con eso ya estamos, creo." | view §7 |
 | L9 | U44 | "Claro que ya no te haría el board, ¿no? El board tendría que ser algo más manual. Que no me gusta, por cierto. O dejarlo como está esa parte." | README D8 |
 
 ## 3. Tensions inside his own messages, and how they ended

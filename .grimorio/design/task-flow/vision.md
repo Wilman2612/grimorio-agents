@@ -88,9 +88,10 @@ Checkable, in this order:
    afterwards [E12, F5].
 6. **Everything survives compaction.** The main loop can resume the task from its folder alone, without the
    conversation [B5].
-7. **Every hand-off from the main loop is read cold before it launches.** Missing context, dropped instructions, the asks
-   the brief left out, and contradictions come back listed with their message numbers. A "continue" costs only reading the delta, and its
-   brief passes unchanged [L5, L10, J4, J8].
+7. **Every hand-off from the main loop is read twice before it launches:** first by a reader that sees only the
+   brief, then against the conversation. Missing context, dropped instructions, the asks the brief left out, and
+   contradictions come back listed with their message numbers. A "continue" costs only reading the delta for asks
+   left out [L5, L10, L11, J4, J8].
 8. **Two fixed cases pass.** The paywall migration and the static-to-dynamic conversion each yield a plan whose
    steps he approves; that is his judgment. A five-step toy plan whose third step fails on purpose ends with steps
    1 and 2 verified, step 3 failed with its finding, and steps 4 and 5 pending; a script checks that [E1, E2].

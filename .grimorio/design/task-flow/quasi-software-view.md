@@ -109,7 +109,7 @@ his messages since its last run, and names the kind from his words (J8). The kin
 |---|---|---|---|
 | idea | something for later | no hand-off | "I'm saving this", and it goes to the ideas list (B1) |
 | new task | "execute", or a yes to the main loop's proposal | the delta and the whole cleaned record | S1: every ask goes to this task's mission, to ideas, or is marked already done; the plan is pinned (B2, C1) |
-| continue | "continúa", "sí, sigue", "dale" (J3) | the delta only, and the brief passes unchanged | the open task resumes at its next step; no consolidation, no board (J4, J10) |
+| continue | "continúa", "sí, sigue", "dale" (J3) | the delta only: it checks for asks left out, and the brief otherwise passes unchanged | the open task resumes at its next step; no consolidation, no board (J4, J10) |
 | correction | "veo que está haciendo algo mal, lo reencamino" (J5) | the delta, the task folder, and the record entries the correction touches | E5: the ask is amended and the steps that cover it reopen |
 | stop | "para" | no hand-off | the task pauses with every state kept |
 | question | "¿qué falta?" | no hand-off | answered from the task folder |
@@ -224,19 +224,16 @@ Rules for the views:
 The synthesizer summarized recent turns before every spawn, without knowing what the spawn was for, and attached
 the result to the brief. It is replaced, not repaired (L1, L2). Its goal stays: nothing he said is lost. Its
 mechanism goes. Context is lost every time work passes to a new agent, and nobody reviews the brief (L3). So the
-reviewer reads the brief the main loop was about to send the way the next agent would, cold, against the
-conversation that agent never saw (L4, L5). It is the cleaner's new job, and it is not a pseudo-spec: its purpose is
+brief the main loop was about to send is read twice before it launches: first cold, by a reader that sees only
+the brief, as the next agent would; then against the conversation that agent never saw (L4, L5, L11). It is the cleaner's new job, and it is not a pseudo-spec: its purpose is
 to stop context from being lost (L6).
 
 ```mermaid
 flowchart TB
-    IN(["the brief the main loop was about to send"]) --> R1["R1 · READ THE BRIEF<br/>why, what, how; the questions a cold reader would ask"]
-    R1 --> R2["R2 · READ THE DELTA<br/>his new messages and the replies; name the kind"]
-    R2 -->|"continue"| R4
-    R2 -->|"correction"| RC{{"script: the task folder and the record entries it touches"}}
-    R2 -->|"new task"| RN{{"script: the whole cleaned record"}}
-    RC --> R3["R3 · ANSWER THE QUESTIONS<br/>missing context, dropped instructions, contradictions"]
-    RN --> R3
+    IN(["the brief the main loop was about to send"]) --> R1["R1 · NAME THE KIND<br/>read the delta the script fetched"]
+    R1 -->|"continue"| R3
+    R1 -->|"correction or new task"| R2["R2 · BLACK BOX<br/>a fresh reader sees only the brief<br/>and writes the questions the next agent would ask"]
+    R2 --> R3["R3 · WHITE BOX<br/>brief plus conversation: answer the questions,<br/>add what is missing, list the asks left out"]
     R3 --> R4["R4 · REPORT<br/>the corrected brief, its additions, the asks it left out, open questions"]
     R4 --> R5["R5 · CLEAN THE DELTA<br/>mark the spans worth keeping"]
     R5 --> WM{{"script: append the spans, verify the record, advance the watermark"}}
@@ -245,9 +242,9 @@ flowchart TB
 
 | Step | What it owes | Done by |
 |---|---|---|
-| R1 read the brief | the brief's why, what and how; the questions the next agent would have to ask (L5, L8) | the model |
-| R2 read the delta | the kind of his new messages (J8). The script fetches the delta and bounds it, so nothing is read twice (L7) | the script fetches; the model names the kind |
-| R3 answer | every question answered from his messages or from what exists, with the history inside the window, such as "asked at message N, reported fixed, still broken at message M" (L5). For a new task, every ask in the record also gets a place: this task's mission, ideas, or already done (C1) | the model |
+| R1 name the kind | the kind of his new messages (J8). The script fetches the delta and bounds it, so nothing is read twice (L7) | the script fetches; the model names the kind |
+| R2 black box | skipped for a continue. A fresh reader in its own context sees only the brief, never the conversation or the record, like a black-box test (L11). It answers: is the brief understood, is it enough to start, does anything contradict, what would the next agent have to ask (L5) | a child the reviewer raises on Sonnet, handed the brief alone |
+| R3 white box | with the brief and what its kind reads (§2), like a white-box test (L11): it answers the black-box questions and adds the missing context, with the history inside the window, such as "asked at message N, reported fixed, still broken at message M" (L5). It lists the asks the brief left out on every review, a continue included (L10, L11). For a new task, every ask in the record also gets a place: this task's mission, ideas, or already done (C1) | the reviewer |
 | R4 report | four sections: the corrected brief; each addition with its message number; **the asks the brief left out**, each with its message number, just in case (L10); the contradictions and open questions. For each ask left out, the main loop adds it or says where it goes: another hand-off, ideas, or already done. Contradictions are never settled alone | the model writes it; a script stamps the brief's digest for the gate |
 | R5 clean | runs after the report, so it cleans knowing what mattered (L8): it chooses which spans of the delta to keep | the model marks spans; the script copies them byte for byte and appends them |
 
@@ -275,6 +272,7 @@ paraphrased. The delta exists so that each run cleans only what is new and never
 |---|---|
 | the window reader and the watermark, which bound the delta | the extract attached to every brief |
 | byte-exact copying by line range (today's slice and splice) | the abstracts of agent turns |
+| the cleaner raising one child, now the black-box reader instead of the board feeder | |
 | the provenance digest, now stamped on the reviewed brief | the coverage scout as a separate agent; its question survives as the "asks left out" section of the report |
 | | the board feeder in this path (D8) |
 
