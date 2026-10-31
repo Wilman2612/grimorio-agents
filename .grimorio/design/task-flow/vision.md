@@ -17,6 +17,7 @@ that grimorio was built to own.** Three named instances:
   impossible [G3, F3, F7].
 - **What was agreed does not survive the conversation.** Asks and decisions spread over many messages are lost to
   the context window and to compaction, and the plan he made never reaches the agent that executes [B4, B5, D2].
+  Context is lost at every hand-off to a new agent, and nobody reviews the brief [L3].
 
 ## 2. OBJECTIVE
 
@@ -55,7 +56,8 @@ messages of conversation.
 
 **NEVER-SKIP**
 
-- The principal's asks are kept **verbatim and accumulated**; a summary never replaces them [C3, C4].
+- His messages are kept **verbatim and accumulated**. The record is cleaned by keeping spans, never paraphrased
+  [C3, L8].
 - The **first step captures how things work today**, so "it works the same" can be proven later [E1].
 - **Each subtask's proof is chosen when the plan is written**, not when the report is written [G6, G8].
 - **Evidence is captured by tools and saved to disk**, never retyped by the model [G9].
@@ -86,9 +88,9 @@ Checkable, in this order:
    afterwards [E12, F5].
 6. **Everything survives compaction.** The main loop can resume the task from its folder alone, without the
    conversation [B5].
-7. **A "continue" costs only the delta read.** The synthesizer reads the new messages and names their kind; there
-   is no consolidation, no board and no coverage check, and the open task resumes at its next step. The kind comes
-   from his words, never from the caller [J4, J8, J9].
+7. **Every hand-off from the main loop is read cold before it launches.** Missing context, dropped instructions and
+   contradictions come back listed with their message numbers. A "continue" costs only reading the delta, and its
+   brief passes unchanged [L5, J4, J8].
 8. **Two fixed cases pass.** The paywall migration and the static-to-dynamic conversion each yield a plan whose
    steps he approves; that is his judgment. A five-step toy plan whose third step fails on purpose ends with steps
    1 and 2 verified, step 3 failed with its finding, and steps 4 and 5 pending; a script checks that [E1, E2].

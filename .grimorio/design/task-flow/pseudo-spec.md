@@ -1,7 +1,7 @@
 # Task flow — pseudo-spec
 
 The principal's own words on how grimorio should take a task from conversation to a delivered result. Built from
-all 42 messages of session `ab161c11` (2026-10-10 to 2026-10-31), re-read in full, not from a summary. Quotes are
+all 46 messages of session `ab161c11` (2026-10-10 to 2026-10-31), re-read in full, not from a summary. Quotes are
 verbatim Spanish excerpts; `…` marks a cut. U2, U3, U4, U17 and U19 are harness messages, not his words, and are
 left out.
 
@@ -172,12 +172,26 @@ the architecture already agreed:
 | K4 | U42 | "Va a invocar a un agente y va a pedir el pseudo spect. Y técnicamente todo está bien. O al menos evito que se olvide de cosas" | view §7 |
 | K5 | U42 | "en lugar de olvidarse simplemente está poniendo cosas que yo pasé por alto, o cosas que no quiero, o cosas que él dijo y yo no le corregí. O sea, tampoco es que sea un gran seguro, ¿no?" | view §6, §7, §9 |
 
+### L. Replace the synthesizer with a hand-off reviewer
+
+| # | U | His words | Answered in |
+|---|---|---|---|
+| L1 | U43 | "el peor error de un ingeniero es optimizar algo que nunca debió existir para empezar"; "El diseño ha tenido buenos resultados en situaciones particulares y también malos desempeños en otras situaciones." | view §7 |
+| L2 | U44 | "el script estaba fallando. Lo estuve revisando a mano y estaba mal." | view §7 |
+| L3 | U44 | "es usual que se pierda contexto cada vez que se invoca un nuevo agente, porque además nadie le revisa el trabajo" | view §7 |
+| L4 | U44 | "lo que haría pasándole al delegado, pero se lo pase al cleaner, y el cleaner le dice, oye, ay, se ha perdido esto, se ha perdido el otro, ¿no?"; "como él sí tiene el contexto a diferencia de los otros, sí puede arreglar las cosas" | view §7 |
+| L5 | U45 | "Dame lo que le ibas a decir a él. Yo voy a revisar si entiendo todo lo que me has dicho."; "si el siguiente tuviese una pregunta, ¿qué sabría? ¿Me entiendes? ¿Qué le faltaría saber?"; "Este error fue hace 10 mensajes, ¿no? Te dijeron que lo arreglaras, no lo arreglaste. Ahora te están diciendo que lo arregles. Tienes que pasarle contexto de los mensajes de tales." | view §7 |
+| L6 | U45 | "ya no un set de spec, literalmente es evitar la pérdida de contexto." | view §7 |
+| L7 | U46 | "el delta es para no tener que resumir o extraer más de lo necesario"; "puedes tener mucho, mucho texto tuyo y no quiero que hagas tanto tokens prontamente"; "seguimos apoyándonos en, scripts lo más posible" | view §7 |
+| L8 | U46 | "ahorita el resumen ocurre sin contexto"; "primero lee el prompt, entiendes los porqués, entiendes el qué, entiendes el cómo, lo que sea. Y elaboras tus preguntas, ¿cierto? Pasas tu informe"; "el resumen ocurriría después del informe, para que puedas guardar lo relevante"; "omitir, tipo, no sé, comandos o texto inútil de más, o no sé, respuestas entre agentes"; "Más que un resumen, una limpieza, supongo." | view §7 |
+| L9 | U44 | "Claro que ya no te haría el board, ¿no? El board tendría que ser algo más manual. Que no me gusta, por cierto. O dejarlo como está esa parte." | README D8 |
+
 ## 3. Tensions inside his own messages, and how they ended
 
 | # | Between | Outcome |
 |---|---|---|
-| T1 | U6 "el sintetizador está bien, le falta… consolidar" / U30 "no sé si fue la mejor idea" | **Resolved (U33, U35, U36):** the purpose stays (nothing is forgotten). It accumulates mechanically instead of summarizing, briefs are checked against it, it reminds the main loop, and the board leaves it. |
-| T2 | U27 "no necesariamente usar a fuerza el board, pero sí sería bueno" / U30 "no lo puedo ver" | **Resolved (U36):** the board leaves the synthesizer; the agent that plans the work keeps its own breakdown. The viewing tool is open (README D4). |
+| T1 | U6 "el sintetizador está bien, le falta… consolidar" / U30 "no sé si fue la mejor idea" | **Resolved (U43–U46):** the purpose stays: nothing he said is lost, and no context is lost at a hand-off. The synthesizer is replaced by a hand-off reviewer that reads each brief cold against the conversation, and the record is cleaned, not summarized. |
+| T2 | U27 "no necesariamente usar a fuerza el board, pero sí sería bueno" / U30 "no lo puedo ver" | **Resolved (U36, U44):** the board leaves the per-spawn path; the agent that plans the work keeps its own breakdown. How the board is kept is open (README D8), and so is the viewing tool (README D4). |
 | T3 | U7 an objective checked inside the branch / U28–U30 "no todo es una rama", "la ubicación es lo de menos" | **Partly resolved:** the plan does not live in a branch and its location does not matter, as long as it exists and survives. Where exactly is open (README D3). |
 | T4 | U14 "tenemos que scriptear eso" / U26 "es mucho de inteligencia" | **No conflict:** scripts check structure and that steps are followed; judgment stays with whoever plans. |
 | T5 | U34 automatic versus useful | **Open:** when the reminder fires (README D5). |
@@ -191,6 +205,7 @@ the architecture already agreed:
 | U32 | an agent-by-agent plan | a poor plan: it must be PO-level, by category, before and after, grouped for testing, with the full route |
 | U37 | joining the agents' logs into a view | the logs already exist; the problem is what he can see |
 | U38 | a report mock that opened on the current state | the support documents start at the mission and fill in as the work advances |
+| U43 | more rules for the synthesizer, one message at a time | first judge whether the design should exist at all |
 
 ## 5. Asks from this session outside this flow
 

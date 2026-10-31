@@ -55,7 +55,7 @@ flowchart TB
 
     ML(("main loop")) -.-> S0
     ML -.-> S1
-    SYN(("synthesizer<br/>job")) -.-> S1
+    REVW(("hand-off<br/>reviewer")) -.-> S1
     PO(("PO")) -.-> S2
     ARC(("architect")) -.-> S3
     PLN(("planner<br/>NEW")) -.-> S4
@@ -101,34 +101,30 @@ these states.
 
 ## 2. S0 and S1: what kind of message, and opening a task
 
-Not every message is a new task (J3), and only a new task runs the whole flow (J6). **The kind is read from the
-delta:** the messages of his since the last synthesizer run, which the script already computes (J7). The delta
-cannot tell whether the whole task is complete. It does tell what his last messages were about: a correction, the
-planning of something new, a plain go-ahead (J8). The kind then decides what travels to the agent: the task folder
-alone, the delta, or the full accumulated record (J9).
+Not every message is a new task (J3), and only a new task runs the whole flow (J6). Every hand-off from the main
+loop to a grimorio agent passes first through the hand-off reviewer (§7). The reviewer reads the delta, which holds
+his messages since its last run, and names the kind from his words (J8). The kind sets how much else it reads (J9):
 
-| Kind | Sounds like | What travels to the agent | What runs | What does not run |
-|---|---|---|---|---|
-| idea | something for later | nothing, no spawn | "I'm saving this", and it goes to the ideas list (B1) | |
-| new task | "execute", or a yes to the main loop's proposal | the full accumulated record | S1: every ask in the record goes to this task's mission, to ideas, or is marked already done; the plan is pinned; the coverage check reads the full record (B2, C1) | nothing skipped |
-| continue | "continúa", "sí, sigue", "dale" (J3) | the task folder only | the open task resumes at its next step | consolidation, coverage check, board (J4, J10) |
-| correction | "veo que está haciendo algo mal, lo reencamino" (J5) | the task folder plus the delta verbatim | E5: the ask is amended and the steps that cover it reopen; the coverage check reads only the delta | a new plan |
-| stop | "para" | nothing, no spawn | the task pauses with every state kept | |
-| question | "¿qué falta?" | nothing, no spawn | answered from the task folder | |
+| Kind | Sounds like | What the reviewer reads | What runs |
+|---|---|---|---|
+| idea | something for later | no hand-off | "I'm saving this", and it goes to the ideas list (B1) |
+| new task | "execute", or a yes to the main loop's proposal | the delta and the whole cleaned record | S1: every ask goes to this task's mission, to ideas, or is marked already done; the plan is pinned (B2, C1) |
+| continue | "continúa", "sí, sigue", "dale" (J3) | the delta only, and the brief passes unchanged | the open task resumes at its next step; no consolidation, no board (J4, J10) |
+| correction | "veo que está haciendo algo mal, lo reencamino" (J5) | the delta, the task folder, and the record entries the correction touches | E5: the ask is amended and the steps that cover it reopen |
+| stop | "para" | no hand-off | the task pauses with every state kept |
+| question | "¿qué falta?" | no hand-off | answered from the task folder |
 
-While a task is open, the conversation can move on and the plan waits (B3).
+While a task is open, the conversation can move on and the plan waits (B3). A one-line reminder on each of his
+messages while a task is open is OPEN (D5).
 
-**Who names the kind.** The synthesizer names it on its delta run, and writes it into its output with the asks the
-delta touches (§7). The hand-over carries that kind (J1): the main loop attaches what the kind needs, and the spawn
-gate checks against the kind the synthesizer wrote. Because the kind comes from his words, the caller cannot label a
-new task a "continue" to skip the checks.
+**Because the kind comes from his words,** the main loop cannot label a new task a "continue" to skip the reading.
 
 **Why it matters today.** After every new message of his, the next grimorio spawn requires a full synthesizer run,
-which also starts the board feeder, plus a coverage scout. A plain "continúa" pays all of that (J4). Narrowing it
-changes the spawn gate, which is a hook: README D7.
+which also starts the board feeder, plus a coverage scout. A plain "continúa" pays all of that (J4). The change
+touches the spawn gate, which is a hook: README D7.
 
 **What the delta does not answer.** Whether the whole task is still covered is checked when the task opens, by the
-consolidation, and by the plan checker (§9), never by the per-message step (J8).
+consolidation, and by the plan checker (§9), never on each hand-off (J8).
 
 ## 3. Entry cases
 
@@ -223,42 +219,75 @@ Rules for the views:
   (F5).
 - The viewing tool is OPEN (D4).
 
-## 7. The synthesizer in this flow
+## 7. The hand-off reviewer, in place of the synthesizer
 
-A job, not a planner (E10). Its purpose stays: nothing he asked is forgotten (T1).
+The synthesizer summarized recent turns before every spawn, without knowing what the spawn was for, and attached
+the result to the brief. It is replaced, not repaired (L1, L2). Its goal stays: nothing he said is lost. Its
+mechanism goes. Context is lost every time work passes to a new agent, and nobody reviews the brief (L3). So the
+reviewer reads the brief the main loop was about to send the way the next agent would, cold, against the
+conversation that agent never saw (L4, L5). It is the cleaner's new job, and it is not a pseudo-spec: its purpose is
+to stop context from being lost (L6).
 
-**Fixes owed, checked against the code on 2026-10-20:**
+```mermaid
+flowchart TB
+    IN(["the brief the main loop was about to send"]) --> R1["R1 · READ THE BRIEF<br/>why, what, how; the questions a cold reader would ask"]
+    R1 --> R2["R2 · READ THE DELTA<br/>his new messages and the replies; name the kind"]
+    R2 -->|"continue"| R4
+    R2 -->|"correction"| RC{{"script: the task folder and the record entries it touches"}}
+    R2 -->|"new task"| RN{{"script: the whole cleaned record"}}
+    RC --> R3["R3 · ANSWER THE QUESTIONS<br/>missing context, dropped instructions, contradictions"]
+    RN --> R3
+    R3 --> R4["R4 · REPORT<br/>the corrected brief, each addition with its message, open questions"]
+    R4 --> R5["R5 · CLEAN THE DELTA<br/>mark the spans worth keeping"]
+    R5 --> WM{{"script: append the spans, verify the record, advance the watermark"}}
+    WM --> OUT(["back to the main loop, which launches the reviewed brief"])
+```
 
-| Today | Fix |
-|---|---|
-| each run overwrites the extract with the delta only | append the delta to one record that only grows (C3) |
-| asks for 60 turns, gets 20; a gap of more than 20 turns is never read | read from the watermark forward, with no cap (C2) |
-| the watermark advances before the extract is verified | advance it only after verification |
-| it starts the board feeder | the feeder leaves this pipeline (H1, H3) |
-| no test proves a run loses nothing | a selftest with two runs 25 turns apart that asserts no turn is lost (C8) |
-
-**When it acts:**
-
-| Moment | What it does | Needs a hook |
+| Step | What it owes | Done by |
 |---|---|---|
-| every new message, on its delta | names the kind of the message and the asks it touches (§2, J8) | no: it runs before the next spawn, as today |
-| S1, the task opens | consolidates: every ask in the record goes to the mission, to ideas, or is marked already done (C1) | no |
-| before a spawn, **only for a new task or a correction** | checks the brief against the record, and names any ask the brief drops (C4); a "continue" skips it (§2) | exists today for every spawn; narrowing it changes the gate (D7) |
-| on demand ("review the messages") | the same consolidation | no |
-| every message he sends, **only while a task is open** | one line to the main loop: task, current step, next step, ideas saved (C5) | yes, OPEN (D5) |
+| R1 read the brief | the brief's why, what and how; the questions the next agent would have to ask (L5, L8) | the model |
+| R2 read the delta | the kind of his new messages (J8). The script fetches the delta and bounds it, so nothing is read twice (L7) | the script fetches; the model names the kind |
+| R3 answer | every question answered from his messages or from what exists, with the history inside the window, such as "asked at message N, reported fixed, still broken at message M" (L5). For a new task, every ask in the record also gets a place: this task's mission, ideas, or already done (C1) | the model |
+| R4 report | the corrected brief, each addition with its message number, and the contradictions and open questions. Those go back to the main loop and are never settled alone | the model writes it; a script stamps the brief's digest for the gate |
+| R5 clean | runs after the report, so it cleans knowing what mattered (L8): it chooses which spans of the delta to keep | the model marks spans; the script copies them byte for byte and appends them |
 
-**What the record keeps apart (K5).** The record guards against forgetting. On its own it does not guard against
-the opposite: an agent's idea turning into one of his asks. Three rules close that gap:
+**What the reviewer may add, and what it may not:**
 
-| Rule | Why |
+- It may add his words, and things that exist: a folder, a file, a decision with the message where he took it.
+- An agent's proposal he never confirmed is flagged, never added (K5).
+- It reviews; it never rewrites the task or plans it again.
+- It runs on Sonnet: finding what is missing is judgment, and a reviewer never runs on Haiku.
+
+**The record is cleaned, not summarized (L8):**
+
+| Kept | Dropped |
 |---|---|
-| his messages are kept verbatim, and they are the only source of an ask | what he said is never paraphrased into something else |
-| what an agent said is kept as a proposal, never as an ask. The synthesizer already writes it that way; nothing downstream keeps it apart today | "cosas que él dijo y yo no le corregí": silence is not assent |
-| a correction marks what it replaces ("no, haz lo otro"), so a chain of corrections leaves one live version of each ask | the chain "haz lo otro, y haz lo otro" (K2, K3) |
+| his messages, verbatim | commands and tool output |
+| from the replies, the spans that carry content: decisions, results, proposals marked as proposals | filler, and replies between agents |
+| one live version of each ask, because a correction marks what it replaces (K2) | |
 
-**Where the safeguard really is.** It is not in the record. It is in the "how it was split" view, where every item
-shows its source and items resting only on an unconfirmed proposal wait for his yes (§6, D2), and in the evidence
-each step leaves.
+The script copies the spans from the transcript and the model never retypes them, so nothing he said is
+paraphrased. The delta exists so that each run cleans only what is new and never re-emits the whole record (L7).
+
+**Today's machinery:**
+
+| Stays | Goes |
+|---|---|
+| the window reader and the watermark, which bound the delta | the extract attached to every brief |
+| byte-exact copying by line range (today's slice and splice) | the abstracts of agent turns |
+| the provenance digest, now stamped on the reviewed brief | the coverage scout before every spawn |
+| | the board feeder in this path (D8) |
+
+The fixes found in `remaju-aprobado-private` apply to what stays, and none of them is in this repo yet:
+
+- the watermark anchored on the last complete block, and advanced only after verification;
+- which queued messages are his;
+- the model's output read from its own transcript, never passed through a shell, after three submissions were
+  silently corrupted on 2026-10-26.
+
+**Where the safeguard really is.** The reviewer lowers the loss; it does not guarantee anything. The backstop stays
+the "how it was split" view, where every item shows its source and items resting only on an unconfirmed proposal
+wait for his yes (§6, D2), and the evidence each step leaves.
 
 ## 8. Planning, by role
 
@@ -303,9 +332,9 @@ heuristics and worked examples (E7).
 | every plan item names its source; an item whose only source is an unconfirmed agent proposal is flagged | whether a flagged proposal is worth keeping, which is his call |
 | the support documents are rendered from the folder, never written by hand | |
 
-**Tools this needs, all NEW except the first:** the synthesizer's accumulator (exists, needs the §7 fixes); a plan
-checker; a step gate; evidence capture (browser screenshots, command output, query before and after); the render
-script for §6.
+**Tools this needs, all NEW except the first:** the window reader and the watermark (they exist, and need the
+fixes listed in §7); a plan checker; a step gate; evidence capture (browser screenshots, command output, query
+before and after); the render script for §6.
 
 **The honest bound** (I4, I5): no script and no hook forces a model to follow a plan; the synthesizer hook was
 bypassed while it was live (C8). What this design can guarantee is that skipping a step **shows**: the views come

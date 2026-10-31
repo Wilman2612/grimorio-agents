@@ -2,13 +2,13 @@
 
 How grimorio takes a task from the principal's "execute" to a delivered, proven result: mission, architecture,
 execution plan, steps, subtasks, evidence and support documents. Written 2026-10-20 from the messages of session
-`ab161c11`, and updated through his 42nd message (2026-10-31), for his review. **Nothing here is built yet.**
+`ab161c11`, and updated through his 46th message (2026-10-31), for his review. **Nothing here is built yet.**
 
 | File | What it holds |
 |---|---|
 | ref:repo/.grimorio/design/task-flow/pseudo-spec.md | his asks verbatim, by category, with what answers each; the tensions and how they ended; my proposals he corrected; the session's other asks, so none is lost |
 | ref:repo/.grimorio/design/task-flow/vision.md | the six-field harness the flow is judged against |
-| ref:repo/.grimorio/design/task-flow/quasi-software-view.md | the flow drawn: states, loops, who acts on each state, entry cases, the step loop, evidence, support documents, the synthesizer, planning by role, scripts against judgment |
+| ref:repo/.grimorio/design/task-flow/quasi-software-view.md | the flow drawn: states, loops, who acts on each state, entry cases, the step loop, evidence, support documents, the hand-off reviewer, planning by role, scripts against judgment |
 
 **Read in this order:** the vision first, which is two minutes. Then the main diagram at the top of the view, then
 the decisions below. The pseudo-spec is there to check that nothing of his was dropped.
@@ -23,7 +23,8 @@ the decisions below. The pseudo-spec is there to check that nothing of his was d
 | D4 | how he views the support documents | a page rendered from the folder (opened locally, or published as a private page from a cloud session) / a GitHub board or ticket | **the rendered page**; GitHub later, at most as a mirror of the steps. Call limits, latency, and transcripts and screenshots do not fit an issue (H4) |
 | D5 | the one-line reminder on every message while a task is open | a new hook on his message, silent when no task is open / no hook, only the explicit moments (opening, on demand, before a spawn) | **the hook, silent without an open task**, so it never fires when grimorio is not in use (C7). Adding a hook needs his yes |
 | D6 | what happens to the branch objective file | retire it / keep it only as the slice of a plan that one branch closes / leave it as is | **keep it only as a slice**: its checks are copied from the gates of the steps that branch closes, which makes it the pre-check tied to what will be generated (I6) |
-| D7 | the synthesizer reads the kind of his new messages from the delta (new task, continue, correction), the hand-over carries it, and the spawn gate requires only what that kind needs | change the gate / leave it requiring a full synthesizer run and a coverage scout after every message of his | **change it**: this is his own proposal (J1, J8, J9), and today a plain "continúa" pays for a synthesizer run, the board feeder and a coverage scout (J4). The gate is a hook, so the change needs his yes when it is built |
+| D7 | what the spawn gate checks before a grimorio spawn | that the launched prompt is the brief the reviewer returned, by its digest / leave it requiring a synthesizer extract and a coverage scout after every message of his | **the digest check**: it is cheap, and it puts the review where context is lost (L3). A "continue" still passes through the reviewer, which only reads the delta. The gate is a hook, so the change needs his yes when it is built |
+| D8 | how the GitHub board is kept | updated by a script when a task opens and when it closes / kept by hand / left as it is, fed on every spawn | **a script at open and close**: he does not want it manual (L9), and feeding it on every spawn is the slow part (J4). Each task's own steps live in its "how it is going" view (§6) |
 
 ## After his review
 
