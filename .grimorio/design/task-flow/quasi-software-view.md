@@ -237,7 +237,7 @@ flowchart TB
     R2 -->|"new task"| RN{{"script: the whole cleaned record"}}
     RC --> R3["R3 · ANSWER THE QUESTIONS<br/>missing context, dropped instructions, contradictions"]
     RN --> R3
-    R3 --> R4["R4 · REPORT<br/>the corrected brief, each addition with its message, open questions"]
+    R3 --> R4["R4 · REPORT<br/>the corrected brief, its additions, the asks it left out, open questions"]
     R4 --> R5["R5 · CLEAN THE DELTA<br/>mark the spans worth keeping"]
     R5 --> WM{{"script: append the spans, verify the record, advance the watermark"}}
     WM --> OUT(["back to the main loop, which launches the reviewed brief"])
@@ -248,7 +248,7 @@ flowchart TB
 | R1 read the brief | the brief's why, what and how; the questions the next agent would have to ask (L5, L8) | the model |
 | R2 read the delta | the kind of his new messages (J8). The script fetches the delta and bounds it, so nothing is read twice (L7) | the script fetches; the model names the kind |
 | R3 answer | every question answered from his messages or from what exists, with the history inside the window, such as "asked at message N, reported fixed, still broken at message M" (L5). For a new task, every ask in the record also gets a place: this task's mission, ideas, or already done (C1) | the model |
-| R4 report | the corrected brief, each addition with its message number, and the contradictions and open questions. Those go back to the main loop and are never settled alone | the model writes it; a script stamps the brief's digest for the gate |
+| R4 report | four sections: the corrected brief; each addition with its message number; **the asks the brief left out**, each with its message number, just in case (L10); the contradictions and open questions. For each ask left out, the main loop adds it or says where it goes: another hand-off, ideas, or already done. Contradictions are never settled alone | the model writes it; a script stamps the brief's digest for the gate |
 | R5 clean | runs after the report, so it cleans knowing what mattered (L8): it chooses which spans of the delta to keep | the model marks spans; the script copies them byte for byte and appends them |
 
 **What the reviewer may add, and what it may not:**
@@ -275,7 +275,7 @@ paraphrased. The delta exists so that each run cleans only what is new and never
 |---|---|
 | the window reader and the watermark, which bound the delta | the extract attached to every brief |
 | byte-exact copying by line range (today's slice and splice) | the abstracts of agent turns |
-| the provenance digest, now stamped on the reviewed brief | the coverage scout before every spawn |
+| the provenance digest, now stamped on the reviewed brief | the coverage scout as a separate agent; its question survives as the "asks left out" section of the report |
 | | the board feeder in this path (D8) |
 
 The fixes found in `remaju-aprobado-private` apply to what stays, and none of them is in this repo yet:
