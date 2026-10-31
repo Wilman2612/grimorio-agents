@@ -1,7 +1,7 @@
 # Task flow — pseudo-spec
 
 The principal's own words on how grimorio should take a task from conversation to a delivered result. Built from
-all 41 messages of session `ab161c11` (2026-10-10 to 2026-10-25), re-read in full, not from a summary. Quotes are
+all 42 messages of session `ab161c11` (2026-10-10 to 2026-10-31), re-read in full, not from a summary. Quotes are
 verbatim Spanish excerpts; `…` marks a cut. U2, U3, U4, U17 and U19 are harness messages, not his words, and are
 left out.
 
@@ -161,6 +161,16 @@ the architecture already agreed:
 | J8 | U41 | "del div puedes saber ciertamente, de repente, no si todo lo anterior, ¿cierto? Toda la tarea, todas las tareas si falta algo, pero puedes saber de lo último que te hablé" | view §2, §7 |
 | J9 | U41 | "Fue algunas correcciones, fue parte de la planeación de algo nuevo, merece otra cosa, pero ya lo puedes sacar del div y luego sí adjuntar al otro, pues el chat completo." | view §2, §7; README D7 |
 | J10 | U41 | "Algunos no requerían tanto el board, por ejemplo" | view §2 |
+
+### K. The record is a memory, not a safeguard
+
+| # | U | His words | Answered in |
+|---|---|---|---|
+| K1 | U42 | "yo había decidido que el delta, ¿cierto? Tenía que... Bueno, el delta se invocara siempre ese agente." | view §2, §7 |
+| K2 | U42 | "luego se olvida de algo y luego dices, no, haz lo otro. Y haz lo otro, y haz lo otro, y haz lo otro. Y entonces, claro, termina fallando." | view §7 |
+| K3 | U42 | "oye, la página está mal, ¿no? Y me dice, ah, ya, sí, mira, me di esto. Y yo, ah, ya, pero te falta lo otro. Y yo, ya, y me dice otra cosa. Y luego, ya está, ya, bueno, ya arregla lo que puedas." | view §7 |
+| K4 | U42 | "Va a invocar a un agente y va a pedir el pseudo spect. Y técnicamente todo está bien. O al menos evito que se olvide de cosas" | view §7 |
+| K5 | U42 | "en lugar de olvidarse simplemente está poniendo cosas que yo pasé por alto, o cosas que no quiero, o cosas que él dijo y yo no le corregí. O sea, tampoco es que sea un gran seguro, ¿no?" | view §6, §7, §9 |
 
 ## 3. Tensions inside his own messages, and how they ended
 

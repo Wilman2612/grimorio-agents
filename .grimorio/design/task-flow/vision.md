@@ -67,6 +67,8 @@ messages of conversation.
   the same place he reads [G10, C8].
 - **What the principal or an architect already decided is adopted, never planned again** [D2, D3].
 - **A failure reopens only the failing step and what depends on it.** Verified steps are never redone [F5, E13].
+- **An agent's proposal never becomes one of his asks unless he said yes.** Silence is not assent; an item that
+  rests only on a proposal he never confirmed waits for him [K5].
 
 ## 6. ACCEPTABLE RESULT
 

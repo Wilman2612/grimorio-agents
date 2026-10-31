@@ -2,7 +2,7 @@
 
 How grimorio takes a task from the principal's "execute" to a delivered, proven result: mission, architecture,
 execution plan, steps, subtasks, evidence and support documents. Written 2026-10-20 from the messages of session
-`ab161c11`, and updated 2026-10-25 with his 40th and 41st, for his review. **Nothing here is built yet.**
+`ab161c11`, and updated through his 42nd message (2026-10-31), for his review. **Nothing here is built yet.**
 
 | File | What it holds |
 |---|---|

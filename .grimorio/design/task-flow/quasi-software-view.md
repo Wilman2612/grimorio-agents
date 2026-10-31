@@ -210,7 +210,7 @@ They exist from the moment the plan exists and fill in as steps close (G2), alwa
 | View | It answers | It shows |
 |---|---|---|
 | **What we are achieving** | why, and what for | the mission in his words; the target architecture on one screen; the entry case |
-| **How it was split** | how it was split (G1) | the plan as a PO reads it: the categories of work, each one's before and after, which steps are tested together and which apart, and the whole route; each step's gate; the ideas left out (E11) |
+| **How it was split** | how it was split (G1) | the plan as a PO reads it: the categories of work, each one's before and after, which steps are tested together and which apart, and the whole route; each step's gate; the ideas left out (E11); where each item came from, his message or an agent's proposal, with any item that rests only on a proposal he never confirmed flagged for his yes or no (K5) |
 | **How it is going** | where it stands | every step's state; per subtask, its evidence in its type's format; where the work stopped; the failure card; the decision he owes (G4) |
 
 Rules for the views:
@@ -246,6 +246,19 @@ A job, not a planner (E10). Its purpose stays: nothing he asked is forgotten (T1
 | before a spawn, **only for a new task or a correction** | checks the brief against the record, and names any ask the brief drops (C4); a "continue" skips it (§2) | exists today for every spawn; narrowing it changes the gate (D7) |
 | on demand ("review the messages") | the same consolidation | no |
 | every message he sends, **only while a task is open** | one line to the main loop: task, current step, next step, ideas saved (C5) | yes, OPEN (D5) |
+
+**What the record keeps apart (K5).** The record guards against forgetting. On its own it does not guard against
+the opposite: an agent's idea turning into one of his asks. Three rules close that gap:
+
+| Rule | Why |
+|---|---|
+| his messages are kept verbatim, and they are the only source of an ask | what he said is never paraphrased into something else |
+| what an agent said is kept as a proposal, never as an ask. The synthesizer already writes it that way; nothing downstream keeps it apart today | "cosas que él dijo y yo no le corregí": silence is not assent |
+| a correction marks what it replaces ("no, haz lo otro"), so a chain of corrections leaves one live version of each ask | the chain "haz lo otro, y haz lo otro" (K2, K3) |
+
+**Where the safeguard really is.** It is not in the record. It is in the "how it was split" view, where every item
+shows its source and items resting only on an unconfirmed proposal wait for his yes (§6, D2), and in the evidence
+each step leaves.
 
 ## 8. Planning, by role
 
@@ -287,6 +300,7 @@ heuristics and worked examples (E7).
 | every step has a gate; every subtask has an owner, a tier, an output and a proof type | whether the steps really are independent |
 | step N+1 does not open while step N lacks its evidence | whether a failure was earned or the tries were wasted |
 | a `verified` subtask has its evidence on disk | whether the evidence convinces him |
+| every plan item names its source; an item whose only source is an unconfirmed agent proposal is flagged | whether a flagged proposal is worth keeping, which is his call |
 | the support documents are rendered from the folder, never written by hand | |
 
 **Tools this needs, all NEW except the first:** the synthesizer's accumulator (exists, needs the §7 fixes); a plan
