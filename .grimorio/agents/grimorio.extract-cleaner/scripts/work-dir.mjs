@@ -3,7 +3,7 @@
 import path from "node:path";
 import { readFileSync } from "node:fs";
 
-export const WORK_ROOT = JSON.parse(
+const WORK_ROOT = JSON.parse(
   readFileSync(new URL("../../../../.grimorio/scripts/refobl/skill-roots.json", import.meta.url), "utf8"),
 ).workRoot;
 

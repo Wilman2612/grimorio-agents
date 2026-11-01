@@ -111,16 +111,6 @@ different, non-overlapping cases, and must not be collapsed into one.
 never defaulted via a ternary — an earlier version of this hook family silently dropped its own injection on an
 unexpected input shape by doing exactly that; the fix is recorded in this repo's git history, not restated here.
 
-**Git-hook install.** On every `SessionStart`, the same hook runs
-ref:repo/.grimorio/hooks/ensure-git-hooks.mjs: a clone's `.git/hooks` is not versioned, so a fresh clone — every
-cloud session's — started with no pre-commit or pre-push gate, and pushes to `master` went unreviewed. When either
-shim is missing, stale or not executable it runs ref:repo/.grimorio/scripts/install-hooks.sh. It acts only at the
-root of a repo where grimorio is installed and `gitGates.enabled` is on in ref:repo/.claude/grimorio-config.json
-(an installation turns it off in its own local override of that file). It leaves alone a clone with its own `core.hooksPath` and any hook that is not
-grimorio's. The identity is written first and the install runs after it, so a broken installer never costs the
-session its identity. A foreign hook or a failed install adds one line to the context; the install can take up to
-10 seconds and never blocks the session.
-
 **Compaction-reload branch, added 2026-09-22.** On `session_source === "compact"`, the hook ALSO appends one
 short instruction to the identity text: reload now via `Skill(grimorio.conduct)`, whose own first step compels
 `grimorio.prompt-reading` and `grimorio.reasoning-principles` in turn. Every other `session_source` (`startup`,

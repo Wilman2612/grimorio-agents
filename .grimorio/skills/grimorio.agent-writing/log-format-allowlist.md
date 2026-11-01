@@ -22,7 +22,7 @@ reader, never as changelog-style assertion in a governed file. A reviewer readin
 keyed to a specific tool, also closes the enforceability gap a tool-matcher can always be routed around.
 
 This is reached automatically wherever a review already gates the diff before it ships — ref:repo/.grimorio/scripts/pre-push.sh's
-own GUARDED-path requirement (`.claude/`, `scripts/`, `objectives/`, `CLAUDE.md`), and the ordinary REWORK-cycle
+own GUARDED-path requirement (`.claude/`, `.grimorio/`, `scripts/`, `objectives/`, `CLAUDE.md`), and the ordinary REWORK-cycle
 gate every feature diff already passes through before SHIP — never a mechanism of its own.
 
 A second, independent lane — reviewer judgment only, no mechanical pass, no date requirement — is stated below

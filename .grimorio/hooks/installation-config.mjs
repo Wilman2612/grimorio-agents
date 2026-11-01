@@ -4,22 +4,18 @@
 import { readFileSync, existsSync } from "fs";
 import path from "path";
 
-const projectRoot = process.env.CLAUDE_PROJECT_DIR || ".";
-const cache = new Map();
+const root = process.env.CLAUDE_PROJECT_DIR || ".";
+const COMMITTED = path.join(root, ".claude/grimorio-config.json");
+const LOCAL = path.join(root, ".claude/grimorio-config.local.json");
+
+let cached = null;
 
 function readJson(p) {
   return JSON.parse(readFileSync(p, "utf8"));
 }
 
-/** True WHEN grimorio is installed at `root`: its committed config is there. */
-export function isGrimorioInstalled(root = projectRoot) {
-  return existsSync(path.join(root, ".claude/grimorio-config.json"));
-}
-
-export function loadInstallationConfig(root = projectRoot) {
-  if (cache.has(root)) return cache.get(root);
-  const COMMITTED = path.join(root, ".claude/grimorio-config.json");
-  const LOCAL = path.join(root, ".claude/grimorio-config.local.json");
+export function loadInstallationConfig() {
+  if (cached) return cached;
   if (!existsSync(COMMITTED)) {
     throw new Error(`installation-config: missing committed config at ${COMMITTED}`);
   }
@@ -30,13 +26,11 @@ export function loadInstallationConfig(root = projectRoot) {
     ...local.tokens,
     categories: { ...committed.tokens.categories, ...(local.tokens && local.tokens.categories) },
   };
-  const config = {
+  cached = {
     language: local.language || committed.language,
     tokens,
     writeGuard: local.writeGuard || committed.writeGuard,
     grimorioOwnedPrefixes: local.grimorioOwnedPrefixes || committed.grimorioOwnedPrefixes,
-    gitGates: { enabled: true, ...committed.gitGates, ...local.gitGates },
   };
-  cache.set(root, config);
-  return config;
+  return cached;
 }

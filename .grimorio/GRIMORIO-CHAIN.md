@@ -127,7 +127,7 @@ flowchart TB
         H7["<b>subagent-id-injection.cjs</b><br/>SubagentStart: *<br/>hands the CHILD its own agent_id"]
         H8["<b>worktree-create-from-develop.cjs</b><br/>WorktreeCreate<br/>REPLACES git — creates from develop's tip<br/><i>never exits non-zero</i>"]
         H10["<b>log-agent-completion.cjs</b><br/><b>SubagentStop: *</b><br/>appends the CHILD's own id/type + last message<br/>on completion — RECORDS only, cannot wake anyone"]
-        H16["<b>session-start-identity.cjs</b><br/>SessionStart<br/>hands the TOP-LEVEL SESSION its own identity —<br/>symmetric to H7; installs the git gate shims when missing<br/><i>additionalContext, plus a shim install of up to 10 s</i>"]
+        H16["<b>session-start-identity.cjs</b><br/>SessionStart<br/>hands the TOP-LEVEL SESSION its own identity —<br/>symmetric to H7<br/><i>never blocks, additionalContext only</i>"]
     end
     subgraph HOOKGATE["hooks — settings.json — hooks that refuse a TOOL CALL, the main loop's own turn, or a subagent's own turn directly (five: two PreToolUse: Agent, one PreToolUse: Edit/Write/MultiEdit + Bash, one PreToolUse: Bash + Stop, one SubagentStop)"]
         H9["<b>spawn-grimorio-conduct-gate.cjs</b><br/><b>PreToolUse: Agent</b><br/>SCOPED to grimorio./project.-prefixed spawn<br/>targets only; DENIES the scoped spawn<br/>outright when the prompt carries no compelling<br/>grimorio-conduct instruction<br/><i>verified live: DENY bare, ALLOW compelled,<br/>ALLOW foreign/built-in type unconditionally</i>"]
@@ -212,8 +212,7 @@ than implied.
 row and a resolution row per spawn. Full account: ref:skill/grimorio.hooks/logging-and-identity.md.
 
 `session-start-identity.cjs` (H16) is the `SessionStart` mirror of H7, handing the top-level session its own
-identity. It also installs grimorio's pre-commit and pre-push shims when they are missing or stale, which can take
-up to 10 seconds. Full account: ref:skill/grimorio.hooks/logging-and-identity.md.
+identity. Full account: ref:skill/grimorio.hooks/logging-and-identity.md.
 
 `mark-skill-loaded.cjs` (H5) runs on every `Skill` call, keeping an always-on debug log plus an inert
 TRACKED-marker half. Full account: ref:skill/grimorio.hooks/misc.md.
