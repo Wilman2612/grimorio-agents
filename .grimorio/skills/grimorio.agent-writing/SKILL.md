@@ -55,17 +55,26 @@ failure of prose-only enforcement: -> ./claude-md-pointer-discipline.md
 
 Every piece of knowledge or behavior belongs to exactly one level. The levels are not a hierarchy of importance — they are a hierarchy of **portability** (can it travel to another project?) and **stability** (how often does it change?). Above them sits the **agent shell**, which is identity, not knowledge.
 
-All of a skill's files live in the **same folder**: `.claude/skills/{skill-name}/` — behavior, project, and code files are companion files alongside SKILL.md, not a separate directory.
+Everything ONE agent owns lives in its own folder; a skill folder holds only what several agents load:
 
-| Layer | File | Ask yourself | Stability |
+```
+.grimorio/agents/<agent>/
+├── agent.md          the shell — published as the .claude/agents/<agent>.md stub
+├── behavior.md       Phase 0 when phased, the whole method otherwise
+├── phases/           phase-N-<x>.md beside chain.json — only when phased
+├── scripts/          what only this agent runs
+├── SKILL.md          knowledge only this agent loads
+├── memory/           project.md and code-level topics — optional, never exports
+└── design/           Vision, quasi-software view, derivations — never read at runtime
+```
+
+| Layer | Where | Ask yourself | Stability |
 |---|---|---|---|
-| **agent (shell)** | `.claude/agents/{agent}.md` | "Who IS the agent — its identity, character, stance?" | Changes only when the role itself changes |
-| **behavior** | `{skill}/{role}-behavior.md` (or `{skill}/behavior.md`) inside a skill the agent loads | "What does this agent DO — its protocol, rules, self-checks, output contract?" | Changes when the agent's method is redesigned |
-| **general** | `{skill}/SKILL.md` (+ topic reference companions) | "What is always true about this domain, regardless of project?" | Changes only when the approach is redesigned |
-| **project** | `{skill}/project.md` | "What did WE decide for THIS project?" | Changes when architectural decisions change |
-| **code** | `{skill}/{topic}.md` | "What is true in the current codebase right now?" | Drifts — verify before acting on it |
-
-Example: ref:agent/grimorio.security/memory contains `SKILL.md` (general) + `behavior.md` (the security agent's behavior) + `project.md` (project) + `attack-surface.md` (code). Four files, one folder.
+| **agent (shell)** | the agent's shell | "Who IS the agent — its identity, character, stance?" | Changes only when the role itself changes |
+| **behavior** | its behavior file, plus its phases when phased | "What does this agent DO — its protocol, rules, self-checks, output contract?" | Changes when the agent's method is redesigned |
+| **general** | its own knowledge file when only it loads it; a skill when several do | "What is always true about this domain, regardless of project?" | Changes only when the approach is redesigned |
+| **project** | its memory's project file | "What did WE decide for THIS project?" | Changes when architectural decisions change |
+| **code** | a topic file in its memory | "What is true in the current codebase right now?" | Drifts — verify before acting on it |
 
 > **This is what makes the public repo public.** The agent shells, behavior files, and general knowledge are non-specific and ship with full body. Project and code files are where a project's private decisions and codebase facts live — they ship as empty templates. Adopting grimorio = filling in project/code files, never editing shells, behavior, or general knowledge.
 
@@ -257,15 +266,19 @@ several citing more than one of the patterns above, including `grimorio.conduct/
 agent in the system. This pass reports that population; it does NOT fix the 20 violations — closing them is a
 separate, later pass.
 
-### Where a behavior file lives — NEVER a skill of its own
+### Where an agent's own files live — its folder, never a skill
 
-A behavior file always lives **inside a skill the agent already loads** — an agent loads ONE home skill (its behavior + its own knowledge) plus the SHARED knowledge skills it needs. In order of preference:
+**ALWAYS put everything ONE agent owns in its own folder**, in the layout of the Levels section above.
 
-1. **The agent's own folder** — `.grimorio/agents/<agent>/behavior.md`. Its project knowledge, when an installation writes any, goes in `memory/` inside that same folder (ref:repo/.grimorio/ARCHITECTURE.md → section 6).
-2. **The agent's defining method/canon skill** — `{method-skill}/{role}-behavior.md` when the agent's method skill is its natural home: the four map agents' and the brush-critic's behavior files live in the project's own map-design skill; the entropy and researcher behavior files live in ref:skill/grimorio.fan-out#part-1--decompose-spawn-in-parallel-synthesize (their protocols ARE fan-outs); the scout's lives in ref:agent/grimorio.scout; the unblocker's in ref:agent/grimorio.unblocker.
-3. **A shared behavior file** when several agents share a method (the developers' shared build protocol in ref:skill/grimorio.build-protocol/build-protocol.md) — one canonical copy; per-agent behavior files hold only what differs. Never duplicate a shared method per agent.
+**NEVER put one agent's behavior, phases, scripts or own knowledge inside a skill folder** — not even the skill
+its method uses. A skill is what SEVERAL agents load; one agent's files inside it are noise to every other
+reader of that skill, and the agent reaches its own method through someone else's container.
 
-**Creating a NEW skill that holds only one agent's behavior is FORBIDDEN (skill-proliferation anti-pattern).** Every skill's name+description loads into every session's listing — a behavior-only skill pays that cost to serve one agent, and makes the agent load two things instead of one home. If an agent has no natural home skill at all, place its behavior in the skill whose convention it genuinely uses (e.g. the adviser's behavior lives in ref:skill/grimorio.working-memory, whose tmp/ convention its verdict follows). Reusing SHARED knowledge skills across agents is fine — that is reuse, not proliferation.
+**WHEN several agents share a method ⟶ one shared file in a skill** (the developers' build protocol,
+ref:skill/grimorio.build-protocol/build-protocol.md); each agent's behavior holds only what differs.
+
+**NEVER create a skill that only one agent loads.** Every skill's name and description loads into every
+session's listing; the agent's own folder costs nothing there.
 
 ### How to decide where something goes
 
@@ -324,22 +337,17 @@ argument classifies as not belonging in grimorio's own corpus in the first place
 ```
 GRIMORIO'S OWN ──────────────────── EXPORTS
 .grimorio/
-├── skills/<skill>/            ambient — real content, name-discovered every session
-├── skills-store/<skill>/      non-ambient — real content, reached only by an explicit import:/ref: pointer
-│   ├── SKILL.md               general doctrine
-│   ├── <x>-behavior.md        one agent's behavior
-│   ├── <x>-phases/            its phases: phase-N-<x>.md — only when that agent is itself phased
-│   └── project.<x>.md         never exports, even here
-└── agents/                    behavior files that hang off no skill
+├── skills/<skill>/            what several agents load, name-discovered every session
+│   └── SKILL.md (+ companions)
+└── agents/<agent>/            everything one agent owns
+    ├── agent.md · behavior.md · phases/ · scripts/ · SKILL.md
+    ├── memory/                project facts — never exports
+    └── design/                never read at runtime
 
 FABRICATED WITH GRIMORIO ────────── NEVER EXPORTS
 .claude/project/
 ├── skills/<skill>/            same vocabulary, same shape
-│   ├── SKILL.md
-│   ├── <x>-behavior.md
-│   ├── <x>-phases/            same condition: only for a phased agent
-│   └── project.md
-└── agents/
+└── agents/<agent>/
 
 WHAT CLAUDE CODE DISCOVERS ──────── neither exports
 .claude/
@@ -351,21 +359,10 @@ WHAT CLAUDE CODE DISCOVERS ──────── neither exports
 fabricated-with-grimorio container takes once something is actually placed there, never a claim that a
 migration into it has already happened.
 
-**The `skills/` vs `skills-store/` split inside GRIMORIO'S OWN is a DIFFERENT, already-existing axis** —
-ambient-listing cost, not ownership: `.grimorio/skills/` holds the skills name-discovered every session, by
-Claude Code's own session listing; `.grimorio/skills-store/` holds the rest, reached only by an explicit
-`import:`/`ref:` pointer, never by name-discovery. Both `skills/` and `skills-store/` are GRIMORIO'S OWN; the
-ownership axis this section adds crosscuts that axis, it never replaces or duplicates it.
-
-**The vocabulary is a set of OPTIONAL pieces, never a fixed count every skill must carry identically.**
-The general SKILL file is the one required piece. A project file and a per-agent behavior file are added
-per agent or per decision, as needed. `<x>-phases/` exists only when that skill's own agent is itself phased —
-measured live: `grimorio.fan-out`, a grimorio-owned skill, carries TWO `<x>-phases/` directories, because two
-of its agents (the entropy agent and the researcher) are phased; `grimorio.map-design`, a skill fabricated for
-arena, carries NONE, because none of its five critics are phased. This is not an asymmetry between the
-containers — it is the SAME vocabulary applied correctly to different agents. The identical optional-piece
-vocabulary applies inside BOTH the grimorio's-own container and the fabricated-with-grimorio container; a
-container difference is about WHO OWNS the content, never about which piece-kinds are available to it.
+**The pieces of an agent folder are OPTIONAL, never a fixed set.** The shell is the one required piece;
+`phases/` exists only when the agent is phased, `memory/` only when an installation writes project facts. The
+same vocabulary applies in BOTH containers: a container difference is about WHO OWNS the content, never about
+which pieces are available.
 
 **The discovery layer is NOT symmetric with the other two containers.** Claude Code's own Skill-tool/agent
 scan discovers agents only at `.claude/agents/` and project skills only at `.claude/skills/`, so a shell or an
@@ -400,7 +397,7 @@ question the Levels table's own "How to decide where something goes" ladder alre
 asked here of the OWNERSHIP axis instead. If no — if it names this project's own domain, its own agents'
 own specific subject matter, in a way that would have to change before a different project could reuse it
 unchanged — it is FABRICATED WITH GRIMORIO. This is the test
-ref:skill/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md's own pointer sends a
+ref:agent/grimorio.system-keeper/phases/phase-b-placement-authoring.md's own pointer sends a
 reader to; a self-judgment made on the spot, never a question addressed to anyone else.
 
 **NEVER write, here or anywhere else, a rule obliging a reader to ASK, CONFIRM, or DECLARE OWNERSHIP before
@@ -411,7 +408,7 @@ mechanism this doctrine uses to keep a later migration cheap — never a questio
 (ref:skill/grimorio.conduct#branches-commits-and-knowledge rule 23). It earns that overage under the SAME
 standing rationale already invoked by the "phase-splitting" and "THE SHAPE" additions above, never a fresh
 reason picked for this one — the second of step 2's own two legitimate LAST-RESORT grounds
-(ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md's own step 2): splitting
+(ref:agent/grimorio.prompt-writer/phases/phase-4-file-structure.md's own step 2): splitting
 this section out would sever content that has to be read together at the exact moment it is needed, right
 beside "How to decide where something goes" and the Levels table it is a second axis to. This is not new
 bulk content that should instead have been trimmed or split out; it is a short, load-bearing doctrine section
@@ -593,17 +590,17 @@ Concrete, verifiable, consequential facts. **Verify in code before acting — th
 
 ## One Agent, Multiple Skills
 
-An agent loads its home skill (behavior + own knowledge), and as many shared knowledge skills as it needs — that is correct design, not bloat.
+An agent loads its own folder (behavior, phases, own knowledge), and as many shared knowledge skills as it needs — that is correct design, not bloat.
 
 | Situation | Do this |
 |---|---|
 | The agent needs knowledge from a new domain | Add a knowledge skill to the existing agent |
-| The work requires a completely different role/perspective | Create a new agent (shell + behavior file in a home skill) |
+| The work requires a completely different role/perspective | Create a new agent, in its own folder |
 | The existing agent's job would double in scope | Create a new agent |
-| The agent needs project-specific context | Add a project file to an existing skill |
+| The agent needs project-specific context | Add a project file to its `memory/` |
 | Several agents share a method | One shared behavior file; per-agent files hold only the differences |
 
-The 1:1 fallacy — "each agent needs exactly one skill" — is wrong. Skills are knowledge modules; an agent assembles what it needs. The inverse is equally wrong: a brand-new skill per agent just to hold its behavior (see the proliferation anti-pattern).
+The 1:1 fallacy — "each agent needs exactly one skill" — is wrong. Skills are shared knowledge modules; an agent assembles what it needs, and keeps what is only its own in its own folder.
 
 ---
 
@@ -728,7 +725,7 @@ one: THE SHAPE is exactly the kind of decision-core content an author needs open
 something goes" and the Quality Standards above it while placing a NEW piece of authoring doctrine — splitting
 it into a separate file would sever content that has to be read together at the exact moment it is needed,
 which is the second of step 2's own two legitimate LAST-RESORT grounds
-(ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md's own step 2). This is not new
+(ref:agent/grimorio.prompt-writer/phases/phase-4-file-structure.md's own step 2). This is not new
 bulk content that should instead have been trimmed or split out; it is a short, load-bearing doctrine section
 closing a real gap this file previously never named — that a script-sizeable residue governs how much agent
 should exist at all, prior to and distinct from either output-side verification or input-side construction.

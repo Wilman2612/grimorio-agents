@@ -163,7 +163,7 @@ function refuseDirtyTree(repoRoot, lines) {
 // push; this hook has no push protocol to hand it a fresh base, so it diffs from the marker itself
 // instead (see EMPTY_TREE_SHA and the Tier 0B block in `main()` below) — a different mechanism for a
 // different moment, not a second copy of the same one. @keep-comment
-const GUARDED_RE = /^(\.claude\/|scripts\/|objectives\/|CLAUDE\.md)/;
+const GUARDED_RE = /^(\.claude\/|\.grimorio\/|scripts\/|objectives\/|CLAUDE\.md)/;
 
 // The well-known empty-tree object hash — every git repository has this object, so it is always a valid,
 // resolvable diff base. Used only when no marker has ever been stamped in THIS checkout: diffing from the

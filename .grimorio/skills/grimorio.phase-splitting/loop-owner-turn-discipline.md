@@ -20,10 +20,10 @@ copied into it.
 ## Extraction and reference-depth
 
 The GENERIC substance below already existed, fully worked, as
-`grimorio.flow-delegation`'s own delegate-phases Core Rule 1 ("never park your turn") and Core Rule 2
+`grimorio.delegate`'s own phases' Core Rule 1 ("never park your turn") and Core Rule 2
 ("foreground stays your safe default") — proven on one loop-owner, `grimorio.delegate`. This file is that
 same substance, generalized so a SECOND loop-owner, `grimorio.system-keeper`, can execute under it too,
-without either chain duplicating the other's prose. -> ref:skill/grimorio.flow-delegation/delegate-phases/phase-3-execute.md
+without either chain duplicating the other's prose. -> ref:agent/grimorio.delegate/phases/phase-3-execute.md
 for the worked instance this file was extracted from.
 
 ## Rule 1 — NEVER end your turn believing a blocker will be resolved for you while you wait
@@ -83,9 +83,9 @@ worktree"* ("Right... except for the worktree") — name the worktree as the one
 NOT generalize into this shared file. **WHEN a governed file is among your own targets ⟶ whether and when to
 open a worktree is decided entirely by YOUR OWN agent's own existing doctrine**, never by this file — e.g.
 `grimorio.system-keeper`'s own "Worktree isolation is for SELF-MODIFICATION"
-(ref:skill/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md)
+(ref:agent/grimorio.system-keeper/phases/phase-b-placement-authoring.md)
 or `grimorio.delegate`'s own Phase 1 worktree hard-stop
-(ref:skill/grimorio.flow-delegation/delegate-phases/phase-1-intake-and-objective.md#steps, its own step 4) —
+(ref:agent/grimorio.delegate/phases/phase-1-intake-and-objective.md#steps, its own step 4) —
 conditional on each agent's own six-governed-class or isolation situation, never a general rule this shared
 file could state, because generalizing it would make every loop-owner open a worktree for a one-line change.
 

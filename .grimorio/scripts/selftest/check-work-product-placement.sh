@@ -41,7 +41,7 @@ expect_clean "README.md" "legitimate root file"
 
 echo "--- corpus-sanity: real, currently-committed skill content must never be flagged ---"
 expect_clean ".grimorio/skills/grimorio.conduct/SKILL.md" "real skill-root file"
-expect_clean ".grimorio/skills/grimorio.fan-out/entropy-phases/phase-1-frame.md" "real, established subfolder"
+expect_clean ".grimorio/agents/grimorio.entropy/phases/phase-1-frame.md" "real, established subfolder"
 
 echo ""
 echo "$pass passed, $fail failed"

@@ -94,7 +94,7 @@ the task may not report VERIFIED on an unfired rule, AND the caller relaying tha
 done either — a claim of "written but unfired" does not become "done" by crossing one more hop.
 -> ref:skill/grimorio.conduct/main-loop-only.md for the top-level session's own binding of this rule when
 reporting to the CEO
--> ref:skill/grimorio.agent-writing/system-keeper-behavior.md for what grimorio.system-keeper owes on its own close when
+-> ref:agent/grimorio.system-keeper/behavior.md for what grimorio.system-keeper owes on its own close when
 it has just placed the rule
 
 ---

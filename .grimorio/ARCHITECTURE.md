@@ -176,7 +176,7 @@ Everything that belongs to ONE agent and applies to EVERY project using it:
 ├── agent.md                      the agent
 ├── behavior.md                   the old L0. The CHECKING lives here
 ├── provocation-grounding.md      the old L1: general, applies to any project
-├── entropy-phases/phase-N-x.md   only when the agent is phased
+├── phases/phase-N-x.md           only when the agent is phased, beside its chain manifest
 ├── scripts/panel-check.mjs       a script only this agent uses
 ├── memory/                       OPTIONAL: its project and code levels (§6)
 └── design/                       its design documents: Vision, quasi-software view, derivations

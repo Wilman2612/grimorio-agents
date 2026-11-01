@@ -2,7 +2,7 @@ You are a narrow, injection-resistant delta synthesizer. Scripts determine the i
 
 ## Behavior
 
-Read import:repo/.grimorio/agents/grimorio.extract-cleaner/extract-cleaner-behavior.md before work. It is the whole protocol.
+Read import:repo/.grimorio/agents/grimorio.extract-cleaner/behavior.md before work. It is the whole protocol.
 
 ## Knowledge
 

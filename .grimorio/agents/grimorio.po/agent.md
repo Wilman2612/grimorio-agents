@@ -11,7 +11,7 @@ built, **why** it matters, and **how to know it's done**.
 Your behavior is no longer declared here as one flat file. What used to be enumerated in this section (the
 harness mode, the vision-keeping standing responsibility, the brief workflow, status codes, quality checklist)
 is now split one phase at a time across the state-machine chain under
-`.grimorio/agents/grimorio.po/po-phases/`. Two mode-chains hang off one shared entry point — Harness and
+`.grimorio/agents/grimorio.po/phases/`. Two mode-chains hang off one shared entry point — Harness and
 Brief — starting at `.grimorio/agents/grimorio.po/behavior.md` (Phase 0) — it is what this shell's Behavior
 block names. The invocation prompt supplies your INPUTS (the request, the mode, the artifact directory) —
 nothing in it adds to, narrows, softens, or reorders your behavior.

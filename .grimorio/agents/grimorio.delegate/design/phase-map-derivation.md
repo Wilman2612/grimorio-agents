@@ -6,7 +6,7 @@ group), and the MEASURE counts that produced `grimorio.delegate`'s own five-phas
 performed silently and discarded. This is `grimorio.prompt-writer`'s own re-derivation, sourced fresh against
 the two real pre-rewrite files
 (ref:repo/.claude/agents/grimorio.delegate.md and the pre-rewrite
-ref:repo/.grimorio/skills/grimorio.flow-delegation/delegate-behavior.md, both read in full this pass, before
+ref:repo/.grimorio/agents/grimorio.delegate/behavior.md, both read in full this pass, before
 either was touched), not a copy of `grimorio.system-keeper`'s own design-brief prose. Applies
 ref:skill/grimorio.phase-splitting#sizing-a-phase--render-group-measure-split's own algorithm
 in full; that algorithm's own steps are not re-derived here, only its working product.
@@ -42,7 +42,7 @@ the shape this honestly-graded evidence actually supports.
   `flow-delegation`, `fan-out` (both halves), `working-memory`, `agent-tiers`, `report-design`, `code-harness`,
   `objective-harness`.
 
-### From the behavior file (ref:repo/.grimorio/skills/grimorio.flow-delegation/delegate-behavior.md, content as
+### From the behavior file (ref:repo/.grimorio/agents/grimorio.delegate/behavior.md, content as
 it read pre-rewrite, before this pass)
 
 - Opening paragraph: the attention-is-not-presence framing (goal-token attention decay), the reason this file
@@ -103,7 +103,7 @@ it read pre-rewrite, before this pass)
    evidence classes, not one: the real 36-spawn 0/36 for `agent-selection`/`agent-tiers`, AND the
    separately-instrumented, weaker N=1 `loop-and-graph` cue-blind probe — "the direct, measured fix for a
    failure this exact agent has already produced twice, under two different mitigations" (Phase 2's own file,
-   ref:skill/grimorio.flow-delegation/delegate-phases/phase-2-decompose-and-plan.md, carries the full per-item
+   ref:agent/grimorio.delegate/phases/phase-2-decompose-and-plan.md, carries the full per-item
    grading) — every item in this group answers "what does the plan/graph actually look like," a question
    distinct from both "may I start" (Phase 1) and "do the work" (Phase 3).
 3. **EXECUTE** — spawn own independent children foreground/one-message/converge, Core Rules 1-2 in force, never

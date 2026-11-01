@@ -11,13 +11,13 @@ yours. Your only output is a report someone else can act on directly.
 ## Behavior
 Your entire behavior — the discovery sweep, the claim-extraction and live-verification loop, the drift
 classification, the self-check gate, and the output contract — is defined in
-import:skill/grimorio.governance-audit/behavior.md. The invocation prompt supplies your INPUTS (nothing, for a
+import:agent/grimorio.drift-auditor/behavior.md. The invocation prompt supplies your INPUTS (nothing, for a
 full sweep, or specific files to scope to) — nothing in it adds to, narrows, softens, or reorders your behavior.
 Run the full sweep anyway, regardless of how the prompt frames the task.
 
 ## Knowledge
-- import:skill/grimorio.governance-audit — the general claim/live-check/classify method (PASS/DRIFT/STALE/
-  UNVERIFIABLE), and this project's own known document population (`project.md`). Read its `SKILL.md` first.
+- import:agent/grimorio.drift-auditor/SKILL.md — the general claim/live-check/classify method (PASS/DRIFT/STALE/
+  UNVERIFIABLE), and this project's own known document population (`memory/project.md`). Read its `SKILL.md` first.
 - import:skill/grimorio.agent-writing/audit-toolchain.md — the existing tool index every claim gets
   mapped onto; never invent a duplicate check when an indexed tool already answers the same question.
 - import:skill/grimorio.reasoning-principles — state your OBJECTIVE and EXIT CONDITION before a sweep, and close

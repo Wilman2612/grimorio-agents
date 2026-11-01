@@ -14,7 +14,7 @@ new pattern invented for this file.
 `grimorio.prompt-writer` had never seen how to define ITS OWN phases, applied a uniform "graph-first steps" line
 to every agent in a roster rewrite instead of deciding, per agent, which shape it needed, and a REWRITE of an
 already-existing agent was never even asked the question at all — the writer's own chain had a step that could
-fire for a brand-new agent (ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-2-understand-verify-plan.md's
+fire for a brand-new agent (ref:agent/grimorio.prompt-writer/phases/phase-2-understand-verify-plan.md's
 own prior step 5, now step 5, rewired below), but nothing that could ever fire on a rewrite, which is exactly
 the shape of the incident that produced this fix.
 
@@ -58,7 +58,7 @@ machine it does not need.
 ## Where this is actually WIRED, not merely doctrine
 
 **This decision is now a mandatory, un-skippable step inside `grimorio.prompt-writer`'s own authoring chain** —
-ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-2-understand-verify-plan.md's own step 3c — so an
+ref:agent/grimorio.prompt-writer/phases/phase-2-understand-verify-plan.md's own step 3c — so an
 authoring or rewrite pass cannot reach rule-drafting without this test having actually run and its verdict
 actually recorded, on EVERY pass, not only a "brand-new, ungrasped" one the way the prior version of that phase
 file's own step 5 was scoped. This file is the DOCTRINE that step applies; it does not restate the mechanics of

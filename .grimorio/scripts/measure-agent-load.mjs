@@ -4,7 +4,7 @@
 // Reusable, reproducible load measurement for a phased agent's chain — the "before/after with the
 // command that produces it, never an estimate" tool. No chain name is hardcoded anywhere below the CLI
 // flag; every path is derived from the `--chain <agent>` value: --mode new finds the manifest the way the
-// phase engine does and the Phase 0 file beside the agent's folder or its `<agent>-phases/` directory.
+// phase engine does and reads the Phase 0 file from the agent's own folder.
 //
 // Word-count method, stated once so a re-run is reproducible without guessing:
 //   text.split(/\s+/).filter(Boolean).length
@@ -119,7 +119,7 @@ function floorFiles(chain, manifest) {
     { label: "shell", path: firstExisting([`${agentDir}/agent.md`, `.claude/agents/grimorio.${chain}.md`]) },
     {
       label: "behavior (Phase 0)",
-      path: firstExisting([`${agentDir}/behavior.md`, `${dirname(manifest.dir)}/${chain}-behavior.md`, `${AW}/${chain}-behavior.md`]),
+      path: `${agentDir}/behavior.md`,
     },
     { label: "conduct/SKILL.md", path: ".grimorio/skills/grimorio.conduct/SKILL.md" },
     { label: "prompt-reading/SKILL.md", path: ".grimorio/skills/grimorio.prompt-reading/SKILL.md" },

@@ -5,7 +5,7 @@
 > the imports naming it. An empty file left here is worse than no file: it answers the load and says nothing.
 
 **Imported by**
-- `.grimorio/skills/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md`
+- `.grimorio/agents/grimorio.system-keeper/phases/phase-b-placement-authoring.md`
 
 **1 of those imports address a heading in this file BY NAME.** An `#anchor` expects
 that heading to exist, so a missing one stays a dead reference even once this file has content. Find

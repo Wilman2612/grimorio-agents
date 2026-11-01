@@ -316,7 +316,7 @@ write.
 checkout's own `.claude/settings.local.json` (untracked by design, `.gitignore:37`) grants that CONTAINER once,
 covering every present and future worktree under it. `ref:repo/.claude/hooks/worktree-create-from-develop.cjs`'s
 own header comment carries this formula for the platform-created population;
-ref:skill/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md's own "Worktree isolation"
+ref:agent/grimorio.system-keeper/phases/phase-b-placement-authoring.md's own "Worktree isolation"
 section carries the identical formula for a keeper's own manually-created one — one container, both
 populations, never two schemes. **NEVER read a fresh worktree's own missing `settings.local.json` as proof the
 real main checkout lacks the grant** — the gitignore rule is working as intended; check the real main checkout
@@ -351,7 +351,7 @@ Naming note — never restated here.
 The corpus now has TWO physical skill roots, and a THIRD location that is neither: `.grimorio/skills/` holds
 the genuinely cross-cutting AMBIENT skills' real content; `.grimorio/skills-store/` holds the rest, reached
 by an explicit `import:`/`ref:` pointer, never by name-discovery. `.claude/skills/` holds neither body
-directly — it holds 19 bodiless discovery adapters, one per ambient skill, because Claude Code's own
+directly — it holds 18 bodiless discovery adapters, one per ambient skill, because Claude Code's own
 Skill-tool scan lists only `.claude/skills/` and nowhere else; each adapter carries `name`/`description`
 frontmatter copied BYTE-IDENTICALLY from its real skill plus one pointer sentence, never a second copy of
 its doctrine. The full classification (which skill sits in which bucket and why), the per-skill consumer

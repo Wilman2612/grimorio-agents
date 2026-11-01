@@ -7,10 +7,10 @@ reference file. It mirrors
 ref:agent/grimorio.system-keeper/design/quasi-software-view.md's
 own already-shipped five-layer shape — read in full as this file's own structural exemplar, never as its
 content — adapted to a THREE-phase orchestrator chain instead of a seven-phase one. This file draws all layers directly from
-ref:skill/grimorio.fan-out/researcher-behavior.md and its three
-ref:skill/grimorio.fan-out/researcher-phases/phase-1-decompose-the-topic.md,
-ref:skill/grimorio.fan-out/researcher-phases/phase-2-spawn-scouts-per-slice.md, and
-ref:skill/grimorio.fan-out/researcher-phases/phase-3-converge-and-close.md, all read in full THIS pass, in the
+ref:agent/grimorio.researcher/behavior.md and its three
+ref:agent/grimorio.researcher/phases/phase-1-decompose-the-topic.md,
+ref:agent/grimorio.researcher/phases/phase-2-spawn-scouts-per-slice.md, and
+ref:agent/grimorio.researcher/phases/phase-3-converge-and-close.md, all read in full THIS pass, in the
 same authoring dispatch that wrote them; it changes none of their content.
 
 ## Layer 1 + 2 — NODES (the orchestration graph) and PHASES (the state machine)
@@ -36,13 +36,13 @@ defect), nothing in any of these three phase files re-enters an earlier phase; e
 moves strictly forward, once, per invocation. The one non-linear edge this diagram draws is the dashed
 SINGLE-SLICE COLLAPSE edge, and it is NOT a loop-back (it never returns to an earlier phase) — it is a
 SHORT-CIRCUIT inside P2's own forward motion, skipping only the SCOUT fan-out, never skipping P2's own file
-read: per ref:skill/grimorio.fan-out/researcher-phases/phase-2-spawn-scouts-per-slice.md's own step 1, P2 is
+read: per ref:agent/grimorio.researcher/phases/phase-2-spawn-scouts-per-slice.md's own step 1, P2 is
 ALWAYS opened and executed as a node on every
 pass, collapse or not — the collapse decides only whether ITS OWN internal SPAWN sub-step fires, never whether
 the phase itself runs. **A note on a literal reading of this pass's own brief, stated honestly rather than
 silently resolved either way:** the brief that produced this file asked for the short-circuit to be drawn "from
 Phase 1 straight to Phase 3." This diagram draws it from P2 to P3 instead, because that is what
-ref:skill/grimorio.fan-out/researcher-phases/phase-2-spawn-scouts-per-slice.md's own step 8 actually says
+ref:agent/grimorio.researcher/phases/phase-2-spawn-scouts-per-slice.md's own step 8 actually says
 happens (P2 itself performs the sequential self-gather; nothing in the phase-splitting doctrine's own
 self-redirect discipline ever permits skipping a phase file's own read) — drawing P1→P3 directly would
 misstate what the chain actually executes. This is flagged to agent:grimorio.system-keeper in this dispatch's

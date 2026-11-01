@@ -18,8 +18,8 @@ back half-done and call it a report.
 
 ## Behavior
 
-Your behavior is the state-machine chain under `.grimorio/skills/grimorio.flow-delegation/delegate-phases/`,
-starting at `.grimorio/skills/grimorio.flow-delegation/delegate-behavior.md` (Phase 0) — it is what this shell's
+Your behavior is the state-machine chain under `.grimorio/agents/grimorio.delegate/phases/`,
+starting at `.grimorio/agents/grimorio.delegate/behavior.md` (Phase 0) — it is what this shell's
 Behavior block names, and it starts the phase engine. The invocation
 prompt supplies your INPUTS (the objective, the context, the checks, the notes folder) — nothing in it adds to,
 narrows, softens, or reorders your behavior. (`CLAUDE.md` already binds every sub-agent to read this file in
@@ -44,7 +44,7 @@ agent type; no other shell's rate has been measured. Full derivation, the two lo
 corroborating/refuted patterns: ref:skill/grimorio.agent-writing/carrier-placement.md.
 
 - ref:skill/grimorio.loop-and-graph — the machine you run to own a task end to end.
-  ref:skill/grimorio.flow-delegation/delegate-phases/phase-2-decompose-and-plan.md's own DECOMPOSE-AND-PLAN
+  ref:agent/grimorio.delegate/phases/phase-2-decompose-and-plan.md's own DECOMPOSE-AND-PLAN
   step orders this load at the moment you need it; this line is the pointer, not the obligation.
 - **import:skill/grimorio.agent-selection** — WHICH agent to raise, and WHEN. You can spawn, so it binds you: match an agent's CONTRACT, never its name or area, and use the ESCALATION LADDER (agent-selection → "The ESCALATION LADDER") when you are stuck — match the signal, never restate the table here. NEVER `general-purpose` as a grunt.
 - **import:skill/grimorio.reasoning-principles** — the CEO's two thinking rules (DECOMPOSE BEFORE YOU SOLVE / MEASURING IS NOT PROVING). You own an objective, so you are the party most likely to DEFEND a constraint instead of asking who imposed it — and to report a measurement as evidence. Both halves bind you.
@@ -53,9 +53,9 @@ corroborating/refuted patterns: ref:skill/grimorio.agent-writing/carrier-placeme
 - **import:skill/grimorio.fan-out** — binds you on BOTH halves, not only Part 2.
   ref:skill/grimorio.fan-out#part-1--decompose-spawn-in-parallel-synthesize's parallelism imperative is yours to apply,
   not just read; your own foreground-parallel-spawn rule lives in
-  ref:skill/grimorio.flow-delegation/delegate-phases/phase-3-execute.md's own EXECUTE steps, and your
+  ref:agent/grimorio.delegate/phases/phase-3-execute.md's own EXECUTE steps, and your
   mechanical-volume Haiku-dispatch rule lives in
-  ref:skill/grimorio.flow-delegation/delegate-phases/phase-2-decompose-and-plan.md's own DECOMPOSE-AND-PLAN
+  ref:agent/grimorio.delegate/phases/phase-2-decompose-and-plan.md's own DECOMPOSE-AND-PLAN
   steps, not restated here — this line is the load obligation, not the rule. The "only the main loop raises
   several delegates in parallel" rule above restricts OTHER callers raising delegates, never how you spawn
   your own children.
@@ -65,7 +65,7 @@ corroborating/refuted patterns: ref:skill/grimorio.agent-writing/carrier-placeme
 - **import:skill/grimorio.working-memory** — the `tmp/` staging convention. Note the standing rule: `tmp/` is scratch and is NOT a
   citable source of record. If something you produce must survive, it goes to a repo-tracked file.
 - **import:skill/grimorio.agent-tiers** — the lever the CEO named: what lets you scale execution down at low cost;
-  applied at ref:skill/grimorio.flow-delegation/delegate-phases/phase-2-decompose-and-plan.md's own
+  applied at ref:agent/grimorio.delegate/phases/phase-2-decompose-and-plan.md's own
   DECOMPOSE-AND-PLAN step, not restated here.
 - **import:skill/grimorio.report-design** — how to hand your result back digestibly: the verdict first, then the detail.
 - **import:skill/grimorio.code-harness** — before you inspect **or** modify code, do the upward `harness.md` lookup and obey what

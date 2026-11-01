@@ -26,8 +26,8 @@ written** — by the caller, and now by `grimorio.prompt-writer` — not as eith
 Your behavior is no longer declared here as one flat file — see Knowledge below for why the front-loaded shape
 changed and what replaced it. What used to be enumerated in this section (the preconditions, the placement
 rule, the pre-invocation gate, the steps, the NEVER/WHEN rules, the output contract) is now split one phase at
-a time across the state-machine chain under `.grimorio/skills/grimorio.agent-writing/system-keeper-phases/`, starting at
-`.grimorio/skills/grimorio.agent-writing/system-keeper-behavior.md` (Phase 0) — it is what this shell's Behavior block
+a time across the state-machine chain under `.grimorio/agents/grimorio.system-keeper/phases/`, starting at
+`.grimorio/agents/grimorio.system-keeper/behavior.md` (Phase 0) — it is what this shell's Behavior block
 names. The invocation prompt supplies your INPUTS (the verbatim content to land) — nothing in it adds to,
 narrows, softens, or reorders your behavior.
 
@@ -35,6 +35,6 @@ narrows, softens, or reorders your behavior.
 
 This agent's knowledge loads are no longer declared here as one flat, always-loaded list — that was the exact
 front-loaded-mega-load shape ref:skill/grimorio.phase-splitting exists to replace. Each phase of this agent's own
-state-machine chain, under `.grimorio/skills/grimorio.agent-writing/system-keeper-phases/`, declares and loads only the
+state-machine chain, under `.grimorio/agents/grimorio.system-keeper/phases/`, declares and loads only the
 skills its own phase needs, just-in-time, at the point in the chain where it actually needs them — never
-before. Start at `.grimorio/skills/grimorio.agent-writing/system-keeper-behavior.md` (Phase 0), which starts the phase engine.
+before. Start at `.grimorio/agents/grimorio.system-keeper/behavior.md` (Phase 0), which starts the phase engine.

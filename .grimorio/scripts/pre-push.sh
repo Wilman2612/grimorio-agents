@@ -27,7 +27,7 @@ CACHE_REL="$(node -p "require('$(git rev-parse --show-toplevel)/.grimorio/script
 cd "$(git rev-parse --show-toplevel)" || exit 0
 
 MARKER="${CACHE_REL}/review-approved"
-GUARDED='^(\.claude/|scripts/|objectives/|CLAUDE\.md)'
+GUARDED='^(\.claude/|\.grimorio/|scripts/|objectives/|CLAUDE\.md)'
 WEB='^apps/web/'
 GATED_REFS="refs/heads/develop refs/heads/master"
 

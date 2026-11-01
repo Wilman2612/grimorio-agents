@@ -47,7 +47,7 @@ the wrong remedy first is how the same collision happens anyway, just hidden ins
    genuinely N-parallel JOBS, never one job with N helpers.** Every other spawn-capable agent type has no
    standing to reach for it. A DIFFERENT mechanism governs a keeper's own manually-created worktree for ITS OWN
    self-modification work (`git worktree add`, never this `isolation:` parameter) —
-   ref:skill/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md,
+   ref:agent/grimorio.system-keeper/phases/phase-b-placement-authoring.md,
    never conflated with this rule.
 
 Read-only children (critics, reviewers, scouts) and tmp-only writers fan out freely — the hazard is only
@@ -265,7 +265,7 @@ today: a `grimorio.scout` panel, or `grimorio.entropy`'s own divergent lens pane
 several independent read-only passes over the SAME material and reintegrates into ONE agent afterward. His own
 words, translated, 2026-09-11 (Spanish original held in the record that produced this section, not restated in
 an executable file per
-ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-5-content-guardrails.md's own step 4):
+ref:agent/grimorio.prompt-writer/phases/phase-5-content-guardrails.md's own step 4):
 
 > *"When I say a way to parallelize is, you can split the diagnosis work into multiple [agents]. The diagnosis
 > work doesn't collide — or at least it can safely expand into parallel [branches] and then reintegrate into one

@@ -39,7 +39,7 @@ flowchart LR
 
 ## Layer 2 — PHASES: the state machine, script-driven
 
-Every edge below is a real transition in `.grimorio/skills/grimorio.agent-writing/system-keeper-phases/chain.json`'s
+Every edge below is a real transition in `.grimorio/agents/grimorio.system-keeper/phases/chain.json`'s
 own `next` map, per phase — this diagram and that manifest must never drift out of sync; a change to one is a
 change to both, in the same pass.
 
@@ -59,7 +59,7 @@ stateDiagram-v2
 
 | Node | File | Question it answers |
 |---|---|---|
-| entry | `system-keeper-behavior.md` | Phase 0 — carry the caller's inputs forward, call the phase server |
+| entry | `behavior.md` | Phase 0 — carry the caller's inputs forward, call the phase server |
 | A | `phase-a-intake-diagnosis.md` | What was asked, what is actually true, and is it SYSTEMIC? |
 | B | `phase-b-placement-authoring.md` | Where does it go, and who actually writes it? |
 | C | `phase-c-verification-review.md` | Does it hold under the keeper's own eyes, then an independent adversary's? |

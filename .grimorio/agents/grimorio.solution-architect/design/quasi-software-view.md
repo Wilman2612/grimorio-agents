@@ -6,7 +6,7 @@ requirement that every agent-design plan carry one, saved alongside the agent's 
 This file went through THREE passes, all disclosed rather than only the final state kept: a PLAN-FOR-REVIEW
 sketch (Layers 1+2 and 5, plus a PROVISIONAL Layer 3 Half (b)), produced before any phase file existed and
 handed to `agent:grimorio.system-keeper` for review per
-ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-2-understand-verify-plan.md's own step 5; then, on
+ref:agent/grimorio.prompt-writer/phases/phase-2-understand-verify-plan.md's own step 5; then, on
 APPROVAL, a FINAL-AS-OF-THEN pass reconciling Layer 3 Half (b) against the seven real, now-authored phase files;
 then a THIRD, `grimorio.code-reviewer`-driven REWORK-cycle-1 pass — Phase 3, 4, 5, and 6 each gained a new
 trail-logging step, and Phase 3/5/6 gained a new uncertainty-flag step (Phase 4 already carried one), per
