@@ -20,5 +20,8 @@
   },
   "writeGuard": {
     "enabled": false
+  },
+  "gitGates": {
+    "enabled": true
   }
 }
