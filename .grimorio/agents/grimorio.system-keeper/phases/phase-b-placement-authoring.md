@@ -16,12 +16,42 @@ This phase spawns `grimorio.prompt-writer` and/or a CODE-VOLUME delegate — eve
 park waiting on a return. import:skill/grimorio.phase-splitting/loop-owner-turn-discipline.md governs in
 full, root instance at Phase 0.
 
+## Batches, and one review at the end
+
+A node starts cold and costs its own start-up; a review costs a full read of the diff. Splitting a decided change
+into one node per small target, and reviewing each piece, multiplies both and thins the context at every hand-off.
+
+**ALWAYS group the targets into BATCHES before raising any node. A batch is everything one writer can carry in one
+brief: targets with the same kind of content and the same reader go together, however many files they touch.**
+**WHEN a target is big on its own (a new agent, a rewrite of a whole file) or has to be judged apart from the rest
+⟶ it is its own batch.** **NEVER raise a node for one small edit that another batch could carry.** **NEVER raise
+more than three nodes in one pass.**
+
+**ALWAYS hand every node a brief carrying the principal's words verbatim, Phase A's diagnosis, this phase's
+placement for every target in its batch, and each target's checkable done-condition.** A node never rebuilds
+context from file names.
+
+**ALWAYS plan exactly ONE adversarial review, run once by Phase C over the whole assembled diff after every node
+has returned. WHEN the batches are separate deliverables that merge separately ⟶ one review per deliverable,
+saying why.** **NEVER plan a review per node, per target or per chunk.**
+
+**ALWAYS write this phase's deliverable with two fields and record it as `deliverable`:** `BATCHES:` each node,
+the targets it carries, its tier, and why it is not part of another batch; `REVIEW:` the one review at the end, or
+one per separately-merged deliverable and why. The engine refuses to leave this phase without both.
+
+| Situation | Batches | Review |
+|---|---|---|
+| 9 decided edits across 6 skill files, all prompt content | 1: a writer node with all 9 | 1, at the end |
+| a new agent, plus pointer updates in 3 files | 2: the new agent; the 3 pointer updates | 1, at the end |
+| a selftest script, plus the 2 prompts that mention it | 2: the script (code volume); the 2 prompts | 1, at the end |
+| 6 large features that merge separately | one per feature, at most 3 at a time | 1 per feature, since each merges alone |
+
 ## Part 1 — PLACEMENT
 
 **ALWAYS state THE FAN-OUT SPAWNING GRAPH for this phase's own spawns before raising any of them — never a
 phase-position announcement (the engine's own pointer output already makes stating "which phase I'm in"
 redundant): a SELF node that decides placement, THEN one `grimorio.prompt-writer`/CODE-VOLUME node per
-independent target (per Part 2's own dispatch rules), THEN a SELF node that receives every return.**
+BATCH (§ Batches below), THEN a SELF node that receives every return.**
 
 1. **ALWAYS establish WHO READS THIS, AND WHEN, before choosing a file** — the most common defect in this
    system. Place by reader:

@@ -85,13 +85,13 @@ one node per cycle, up to two), THEN a SELF node that routes per the verdict.**
 
 ## Part 2 — ADVERSARIAL REVIEW
 
-**Review placement (per-agent as work completes, vs. once at the end of a fan-out) is the plan author's
-decision, made at `grimorio.fan-out`/`grimorio.feature-workflow`'s own routing sections, never this phase's
-default.** This phase always gates ONE assembled governance diff. Default absent a deliberate call: do the
-work, run the fan-out, THEN run rework cycles through this phase at the end.
+**ALWAYS review once, after every node of Phase B has returned, over the ONE assembled diff — the review Phase B's
+`REVIEW:` field planned.** **WHEN that field names separate deliverables that merge separately ⟶ one review per
+deliverable.** **NEVER raise a review per node, per target or per chunk.**
 
 1. **ALWAYS raise agent:grimorio.code-reviewer on the FULL diff, never a summary, foreground, passing your own
-   agent id** so it can address findings back to you.
+   agent id** so it can address findings back to you, **plus the principal's words verbatim, Phase A's diagnosis
+   and Phase B's placement**, so it reviews against what was asked, not only against the diff.
 2. **ALWAYS declare the reviewer's MODE explicitly: CYCLE 1 ⟶ HUNT (full pass, no accepted-limits list).
    CYCLE 2 (a REWORK re-check) ⟶ FIX-VERIFICATION — hand the PER-FINDING CONTEXT block (original / what
    changed / which finding it closes), never a fresh full diff cold.** This is why a rework cycle no longer

@@ -28,10 +28,14 @@
         "diagnosis-complete"
       ],
       "produces": [
-        "placement-authored"
+        "placement-authored",
+        "deliverable"
       ],
       "next": {
         "authored": "C"
+      },
+      "fingerprints": {
+        "skill/grimorio.fan-out/independence-test.md": "BATCHES + REVIEW"
       }
     },
     {
