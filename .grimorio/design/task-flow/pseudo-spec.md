@@ -1,7 +1,7 @@
 # Task flow — pseudo-spec
 
 The principal's own words on how grimorio should take a task from conversation to a delivered result. Built from
-all 50 messages of session `ab161c11` (2026-10-10 to 2026-11-01), re-read in full, not from a summary. Quotes are
+all 52 messages of session `ab161c11` (2026-10-10 to 2026-11-01), re-read in full, not from a summary. Quotes are
 verbatim Spanish excerpts; `…` marks a cut. U2, U3, U4, U17 and U19 are harness messages, not his words, and are
 left out.
 
@@ -197,7 +197,7 @@ the architecture already agreed:
 | M3 | U50 | "Línea que dice eso, pero la verdad es que no tenemos ningún mecanismo para comprobarlo" | view §1, §9 |
 | M4 | U50 | "¿cómo verificas que no se han dado instrucciones más cortas, ¿no? O sea, si quieres jugar al modelo, ¿sabes? El genio malvado, ¿sabes? El genio que transversa todos tus deseos. ¿Cómo lo harías, básicamente? Y intentar que los checks no pasen."; "Eso sigue dependiendo del modelo, pero es una mejor regla que solo decirles, oye, no pidas menos, ¿no? Ya contra eso, al menos un check se puede ir comprobando." | view §7, §8, §9 |
 | M5 | U50 | "si no le dices al modelo cómo hacer algo, es una regla que voy a destilar"; "La destilación es, ok, mira, que el modelo lo piensa una vez, un modelo inteligente lo piensa una vez, lo haga y se lo hace bien, se destila."; "le dices cómo, pero depende de que el modelo, uno, se acuerde, y dos, de que lo haga bien. Justo en ese momento, porque es aleatorio." | view §9 |
-| M6 | U50 | "así como la introspección, que son dos reglas que estaba poniendo muy poquito en el de remates" | not designed: he has not described it yet |
+| M6 | U50 | "así como la introspección, que son dos reglas que estaba poniendo muy poquito en el de remates" | §5: saved on the backlog, not designed here |
 
 ## 3. Tensions inside his own messages, and how they ended
 
@@ -238,3 +238,6 @@ Kept here so none is lost; none of them is designed in this folder.
 | dissolve `agent-writing` into agent knowledge; skill means auto-discovered | U26 | approved, not done |
 | reduce and group references | U6, U10 | doctrine done; the corpus pass is not |
 | separate the tools so they can be reused | U15 | not done |
+| distillation: what a strong model works out once becomes a script or a fixed check | U50, U51 | saved on the backlog: https://github.com/Wilman2612/grimorio-agents/issues/2 |
+| symbiosis: tools the model calls instead of prose it follows | U51 | saved on the backlog: https://github.com/Wilman2612/grimorio-agents/issues/3 |
+| introspection: read an agent's own transcript to assert what it did and where it failed | U50, U51 | saved on the backlog: https://github.com/Wilman2612/grimorio-agents/issues/4 |
