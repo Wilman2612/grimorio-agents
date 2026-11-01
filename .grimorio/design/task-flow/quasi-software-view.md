@@ -75,7 +75,7 @@ where to arrive. The execution plan is a different language: it says how to get 
 
 | Level | What it leaves | Written by | Today |
 |---|---|---|---|
-| Mission | his asks verbatim, numbered by message, plus the task's vision in the six fields of the vision format | the main loop; the PO when the ask is vague | the synthesizer overwrites its output every run; the PO brief exists for vague asks |
+| Mission | his asks verbatim, numbered by message; the task's vision in the six fields of the vision format; its invariants (below) | the main loop; the PO when the ask is vague | the synthesizer overwrites its output every run; the PO brief exists for vague asks |
 | Architecture | the final result | an architect (solution, web or game), or he and the main loop in conversation | exists: `arch-decision.md` and design documents |
 | Execution plan | logical steps from today's state to the architecture; each step has a gate | **the planner, NEW** | nothing: no agent writes it (A5) |
 | Subtasks | per step: what, owner, tier, output, proof type, state, the asks it covers | drafted by the planner, refined by the step's owner when the step opens | developers split by file, one child per file |
@@ -83,6 +83,11 @@ where to arrive. The execution plan is a different language: it says how to get 
 | Support documents | the three views of §6 | a render script, from all of the above | nothing: the agents' summary reaches him |
 
 A task that needs no design states its target in one line inside the mission, and that line is its architecture.
+
+**Invariants** are what must stay true in every step, such as "every app page sits behind the login wall". Each one
+comes from his words and carries a mechanical check, such as "a request with no session to any app page gets the
+wall". Every step's gate runs them all, and breaking one fails the step (M3). A condition of the whole task is an
+invariant, never a step, because a step is only re-checked once it has been verified (M2).
 
 **The task folder** holds the levels, one task per folder. Its location is OPEN (D3); it is not a branch (I1).
 
@@ -147,7 +152,7 @@ code-reviewer runs once in S6 over everything (E9).
 flowchart TB
     O["open step N<br/>only when step N-1 is verified"] --> RUN["run its subtasks<br/>each with its owner and tier"]
     RUN --> CAP{{"tools capture the evidence<br/>into the step's folder"}}
-    CAP --> G{"gate: every proof holds<br/>and its evidence is on disk?"}
+    CAP --> G{"gate: every proof holds, every invariant<br/>still holds, the evidence is on disk?"}
     G -->|"yes"| BACK{"do the earlier steps<br/>still hold?"}
     BACK -->|"yes"| V["step N verified"]
     V --> NEXT(["open step N+1"])
@@ -160,6 +165,11 @@ flowchart TB
     INS --> O
     W -->|"a decision only he can make"| ASK(["ask him; the rest of the plan waits"])
 ```
+
+**A blocked subtask stops; it never improvises.** When the expected path is blocked, such as a 404 where a page should
+be, or a 401 where the work expected access, the executor never changes its approach and never drops a constraint to
+get the check to pass. It stops with a failure card that asks the question, for example "the home page is a 404 in
+the app: copy it from the static site, or create it?", and the rest of the plan waits (M2).
 
 **Proposed limits:** three tries per subtask, and a stop as soon as the same cause shows up twice, so tries are
 not spent repeating one approach. A subtask whose what and proof are fully decided runs on Haiku, and its owner
@@ -244,7 +254,7 @@ flowchart TB
 |---|---|---|
 | R1 name the kind | the kind of his new messages (J8). The script fetches the delta and bounds it, so nothing is read twice (L7) | the script fetches; the model names the kind |
 | R2 black box | skipped for a continue. A fresh reader in its own context sees only the brief, never the conversation or the record, like a black-box test (L11). It answers: is the brief understood, is it enough to start, does anything contradict, what would the next agent have to ask (L5) | a child the reviewer raises on Sonnet, handed the brief alone |
-| R3 white box | with the brief and what its kind reads (§2), like a white-box test (L11): it answers the black-box questions and adds the missing context, with the history inside the window, such as "asked at message N, reported fixed, still broken at message M" (L5). It lists the asks the brief left out on every review, a continue included (L10, L11). For a new task, every ask in the record also gets a place: this task's mission, ideas, or already done (C1) | the reviewer |
+| R3 white box | with the brief and what its kind reads (§2), like a white-box test (L11): it answers the black-box questions, runs the evil-genie test on every criterion and constraint of the brief against his words (§8), and adds the missing context, with the history inside the window, such as "asked at message N, reported fixed, still broken at message M" (L5). It lists the asks the brief left out on every review, a continue included (L10, L11). For a new task, every ask in the record also gets a place: this task's mission, ideas, or already done (C1) | the reviewer |
 | R4 report | four sections: the corrected brief; each addition with its message number; **the asks the brief left out**, each with its message number, just in case (L10); the contradictions and open questions. For each ask left out, the main loop adds it or says where it goes: another hand-off, ideas, or already done. Contradictions are never settled alone | the model writes it; a script stamps the brief's digest for the gate |
 | R5 clean | runs after the report, so it cleans knowing what mattered (L8): it chooses which spans of the delta to keep | the model marks spans; the script copies them byte for byte and appends them |
 
@@ -307,6 +317,18 @@ heuristics and worked examples (E7).
 4. **One feature per step, and a risky change alone in its own step.**
 5. **Every step leaves everything working**, and its gate is checked before the next step opens.
 6. **What can be tested together is grouped; what cannot is split** (E11).
+7. **Every gate cites the message it comes from, and survives the evil-genie test** (M4). Write the perverse
+   execution that an evil genie, granting the wish while betraying it, would deliver and still pass the gate. If
+   one exists, the gate is weaker than his words: strengthen it from his words until that execution fails, and
+   keep the perverse case beside the gate.
+8. **A condition that holds for the whole task is an invariant, not a step** (§1).
+
+**Exact case, from his lab** (M1, M2):
+
+| | His words | The brief said | The evil genie passes it with | A gate that survives |
+|---|---|---|---|---|
+| criterion | "todas las páginas de la página estática sean iguales en la página dinámica" | "las páginas sean alcanzables" | a new blank page at every address | every static page is screenshot-identical in the app, viewed logged in |
+| constraint | "un wall de autenticación" | dropped | every page public | invariant: a request with no session to any app page gets the wall |
 
 **Worked examples:**
 
@@ -327,8 +349,14 @@ heuristics and worked examples (E7).
 | every step has a gate; every subtask has an owner, a tier, an output and a proof type | whether the steps really are independent |
 | step N+1 does not open while step N lacks its evidence | whether a failure was earned or the tries were wasted |
 | a `verified` subtask has its evidence on disk | whether the evidence convinces him |
+| every gate cites the message it comes from and names the perverse execution it rules out | whether that perverse case is the one that matters |
+| every invariant has a mechanical check, and every step's gate runs all of them | whether an invariant is missing |
 | every plan item names its source; an item whose only source is an unconfirmed agent proposal is flagged | whether a flagged proposal is worth keeping, which is his call |
 | the support documents are rendered from the folder, never written by hand | |
+
+**Distillation** (M5): what a strong model works out once, correctly, becomes a script or a fixed check, so a weaker
+model never has to remember it and get it right at that moment. The invariant checks, the plan checker and the step
+gate are that distillation; the evil-genie test is the procedure that stays with the model.
 
 **Tools this needs, all NEW except the first:** the window reader and the watermark (they exist, and need the
 fixes listed in §7); a plan checker; a step gate; evidence capture (browser screenshots, command output, query

@@ -1,7 +1,7 @@
 # Task flow — pseudo-spec
 
 The principal's own words on how grimorio should take a task from conversation to a delivered result. Built from
-all 48 messages of session `ab161c11` (2026-10-10 to 2026-10-31), re-read in full, not from a summary. Quotes are
+all 50 messages of session `ab161c11` (2026-10-10 to 2026-11-01), re-read in full, not from a summary. Quotes are
 verbatim Spanish excerpts; `…` marks a cut. U2, U3, U4, U17 and U19 are harness messages, not his words, and are
 left out.
 
@@ -187,6 +187,17 @@ the architecture already agreed:
 | L10 | U47 | "yo añadiría el paso que también hace ahorita el cleaner, que es decir, oye, ¿te olvidaste de algo? No, por si acaso."; "no perdemos nada poniendo una sección adicional de cosas que te olvidaste pedir, ¿no?" | view §7 |
 | L11 | U48 | "Yo añadiría que siempre debería revisar por si acaso eso, ¿no?"; "primero que haga las preguntas como un evaluador independiente, uno independiente, o sea, como una prueba de caja negra, ¿sabes? Y luego otro con el ya con el brief y lo complete como prueba de caja blanca"; "Y ya, con eso ya estamos, creo." | view §7 |
 | L9 | U44 | "Claro que ya no te haría el board, ¿no? El board tendría que ser algo más manual. Que no me gusta, por cierto. O dejarlo como está esa parte." | README D8 |
+
+### M. Criteria that cannot be gamed
+
+| # | U | His words | Answered in |
+|---|---|---|---|
+| M1 | U49 | "cuando escribe el brief para el siguiente agente, tiene un problema. Y es que escribe criterios de medición relativamente vagos, ¿no?"; "quiero que todas las páginas de la página estática sean iguales en la página dinámica, ¿no? Como primer paso."; "para todo esto queríamos un wall de autenticación. Y entonces él escribió, ya quiero que las dos páginas sean alcanzables" | view §8 |
+| M2 | U49 | "cuando revisó que la página principal era un 404, en vez de copiar la primera, simplemente hizo una nueva"; "como era 404 y luego retornó, no sé, 401, se olvidó de que estábamos haciendo un wall de autenticación"; "Y ahora todas las páginas son públicas. Perdiendo completamente el sentido de hacer una app, ¿no?" | view §1, §4, §8 |
+| M3 | U50 | "Línea que dice eso, pero la verdad es que no tenemos ningún mecanismo para comprobarlo" | view §1, §9 |
+| M4 | U50 | "¿cómo verificas que no se han dado instrucciones más cortas, ¿no? O sea, si quieres jugar al modelo, ¿sabes? El genio malvado, ¿sabes? El genio que transversa todos tus deseos. ¿Cómo lo harías, básicamente? Y intentar que los checks no pasen."; "Eso sigue dependiendo del modelo, pero es una mejor regla que solo decirles, oye, no pidas menos, ¿no? Ya contra eso, al menos un check se puede ir comprobando." | view §7, §8, §9 |
+| M5 | U50 | "si no le dices al modelo cómo hacer algo, es una regla que voy a destilar"; "La destilación es, ok, mira, que el modelo lo piensa una vez, un modelo inteligente lo piensa una vez, lo haga y se lo hace bien, se destila."; "le dices cómo, pero depende de que el modelo, uno, se acuerde, y dos, de que lo haga bien. Justo en ese momento, porque es aleatorio." | view §9 |
+| M6 | U50 | "así como la introspección, que son dos reglas que estaba poniendo muy poquito en el de remates" | not designed: he has not described it yet |
 
 ## 3. Tensions inside his own messages, and how they ended
 

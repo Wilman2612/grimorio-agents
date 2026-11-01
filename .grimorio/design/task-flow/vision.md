@@ -62,6 +62,9 @@ messages of conversation.
 - **Each subtask's proof is chosen when the plan is written**, not when the report is written [G6, G8].
 - **Evidence is captured by tools and saved to disk**, never retyped by the model [G9].
 - **Every change to the plan is recorded**, so a correction never erases the rest of the route [E12].
+- **Every gate cites the message it comes from and survives the evil-genie test:** no perverse execution passes it
+  while betraying his words [M1, M4].
+- **A condition of the whole task is an invariant with a mechanical check**, and every step's gate runs it [M2, M3].
 
 **INVIOLABLE**
 
@@ -69,6 +72,8 @@ messages of conversation.
   the same place he reads [G10, C8].
 - **What the principal or an architect already decided is adopted, never planned again** [D2, D3].
 - **A failure reopens only the failing step and what depends on it.** Verified steps are never redone [F5, E13].
+- **A constraint is never dropped, and an approach never changed, to make a check pass.** A blocked subtask stops
+  with its failure card [M2].
 - **An agent's proposal never becomes one of his asks unless he said yes.** Silence is not assent; an item that
   rests only on a proposal he never confirmed waits for him [K5].
 
@@ -78,8 +83,9 @@ Checkable, in this order:
 
 1. **Every ask has a place.** Each of his asks lands in this task's plan, in the ideas list, or is marked already
    done. A script lists any ask with no place [B2, C1].
-2. **A plan exists before the first build action.** Each step has a gate, and each subtask has an owner, a tier,
-   an output and a proof type. A script refuses a plan that lacks any of them [E3, F1].
+2. **A plan exists before the first build action.** Each step has a gate that cites his message and names the
+   perverse execution it rules out; each subtask has an owner, a tier, an output and a proof type; each invariant has
+   a mechanical check. A script refuses a plan that lacks any of them [E3, F1, M3, M4].
 3. **The support documents exist from the moment the plan exists**, and update as steps close, in the three
    views: what we are achieving, how it was split, how it is going [G1, G2].
 4. **A failure is located.** The failed step names what failed and why, which earlier steps were re-checked and
@@ -92,7 +98,9 @@ Checkable, in this order:
    brief, then against the conversation. Missing context, dropped instructions, the asks the brief left out, and
    contradictions come back listed with their message numbers. A "continue" costs only reading the delta for asks
    left out [L5, L10, L11, J4, J8].
-8. **Two fixed cases pass.** The paywall migration and the static-to-dynamic conversion each yield a plan whose
+8. **A broken invariant fails the step.** Removing the login wall to reach a page shows up as a failed step, never
+   as a passed one [M2].
+9. **Two fixed cases pass.** The paywall migration and the static-to-dynamic conversion each yield a plan whose
    steps he approves; that is his judgment. A five-step toy plan whose third step fails on purpose ends with steps
    1 and 2 verified, step 3 failed with its finding, and steps 4 and 5 pending; a script checks that [E1, E2].
 
