@@ -59,7 +59,7 @@ stateDiagram-v2
 
 | Node | File | Question it answers |
 |---|---|---|
-| entry | `system-keeper-behavior.md` | Phase 0 — carry the caller's inputs forward, call the phase server |
+| entry | `behavior.md` | Phase 0 — carry the caller's inputs forward, call the phase server |
 | A | `phase-a-intake-diagnosis.md` | What was asked, what is actually true, and is it SYSTEMIC? |
 | B | `phase-b-placement-authoring.md` | Where does it go, and who actually writes it? |
 | C | `phase-c-verification-review.md` | Does it hold under the keeper's own eyes, then an independent adversary's? |

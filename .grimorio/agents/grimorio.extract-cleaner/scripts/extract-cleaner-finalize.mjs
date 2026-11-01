@@ -11,7 +11,7 @@
 // USAGE:
 //   node .grimorio/agents/grimorio.extract-cleaner/scripts/extract-cleaner-finalize.mjs
 //     [--abstract <one-line abstract>]... [--keep-last-user <K>] [--abstracts <path>] [--work-dir <dir>] [--out <path>]
-//   --work-dir <dir>   default: tmp/extract-cleaner/<resolved session id>/ -- MUST be the SAME directory
+//   --work-dir <dir>   default: defaultWorkDir(<session id>) in work-dir.mjs -- MUST be the SAME directory
 //                      extract-cleaner-prepare.mjs already populated (raw-fetch.txt must already exist there).
 //   --out <path>       default: <work-dir>/cleaned-extract.txt
 //
@@ -30,14 +30,10 @@ import { readFileSync, writeFileSync, renameSync, unlinkSync, existsSync, statSy
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseTurnBlocks } from "./verify-cleaned-extract.mjs";
-import { readFileSync as __rfs } from "node:fs";
-// @keep-comment -- the working-memory root lives in ONE place, .grimorio/scripts/refobl/skill-roots.json's
-// `workRoot`. Read, never copied: it was the literal "tmp/" in 8 sites, which is the hand-kept-copy
-// shape that file's own comment warns about.
-const WORK_ROOT = JSON.parse(__rfs(new URL("../../../../.grimorio/scripts/refobl/skill-roots.json", import.meta.url), "utf8")).workRoot;
+import { CLEANER_ROOT, defaultWorkDir } from "./work-dir.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const DEFAULT_SWEEP_ROOT = WORK_ROOT + "extract-cleaner";
+const DEFAULT_SWEEP_ROOT = CLEANER_ROOT;
 
 function error(code, detail) {
   console.error(`Error [${code}]: ${detail}`);
@@ -108,7 +104,7 @@ function main() {
   // Anchor on CLAUDE_PROJECT_DIR, not a bare process.cwd() -- mirrors extract-cleaner-cache.mjs's own
   // runSweepExpired (same rationale: process.cwd() alone is silently wrong the moment this tool is invoked
   // from anywhere other than the repo root, e.g. a worktree subshell).
-  const workDir = flags["--work-dir"] || path.join(process.env.CLAUDE_PROJECT_DIR || process.cwd(), WORK_ROOT, "extract-cleaner", sessionId);
+  const workDir = flags["--work-dir"] || defaultWorkDir(sessionId);
   const rawFetchPath = path.join(workDir, "raw-fetch.txt");
   if (!existsSync(rawFetchPath)) {
     error(
@@ -152,7 +148,7 @@ function main() {
   const projectRoot = process.env.CLAUDE_PROJECT_DIR || process.cwd();
   const finalOutPath = flags["--out"] || prepared.finalOutPath || path.join(workDir, "cleaned-extract.txt");
 
-  // OUT-OF-BOUNDS --out refusal: NEVER write anything outside tmp/extract-cleaner/ -- structurally
+  // OUT-OF-BOUNDS --out refusal: NEVER write anything outside <workRoot>extract-cleaner/ -- structurally
   // impossible by construction, not merely discouraged: refuse WHEN the resolved --out sits outside the one
   // boundary this script is ever allowed to write to.
   const boundary = path.resolve(projectRoot, DEFAULT_SWEEP_ROOT);

@@ -53,7 +53,7 @@ stateDiagram-v2
 
 | Node | File | Question it answers |
 |---|---|---|
-| entry | `prompt-writer-behavior.md` | Phase 0 — carry the caller's inputs forward, call the phase server |
+| entry | `behavior.md` | Phase 0 — carry the caller's inputs forward, call the phase server |
 | 1 | `phase-1-search-first.md` | What does grimorio already know about this artifact and task, before any judgment? |
 | 2 | `phase-2-understand-verify-plan.md` | Given Phase 1's facts, what exactly am I building, and how? |
 | 3 | `phase-3-rule-syntax.md` | Is each individual hard rule correctly formed? |

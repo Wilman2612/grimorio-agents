@@ -728,7 +728,7 @@ is a short pointer to the SKILL.md, not the methodology any more.
     PASS a genuinely filled single- and two-field deliverable, correctly FAIL one that is still a placeholder
     or missing a required field entirely (naming the exact field), correctly stay silent — a vacuous PASS — on
     a phase declaring zero `import:` targets, correctly refuse a usage error, correctly gate a phase from a
-    DIFFERENT chain (`prompt-writer-phases/`, not just `system-keeper-phases/`) with the exact same unmodified
+    DIFFERENT chain (the prompt-writer's `phases/`, not just the system-keeper's `phases/`) with the exact same unmodified
     script, and guard against two real prior regressions (a LOAD section running to true end-of-file with no
     trailing heading; a LOAD bullet that only DISCUSSES the `import:` relation inside backticked prose rather
     than naming a real dependency) — 10 named cases, driven against the real CLI via subprocess and fixture

@@ -816,7 +816,7 @@ const directionViolations = directionScopeFiles.flatMap((f) => {
 });
 
 // GRAPH-FIRST: mechanizes prompt-writer's own Phase 4 step 3
-// (grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md step 3), which today performs this check BY
+// (agents/grimorio.prompt-writer/phases/phase-4-file-structure.md step 3), which today performs this check BY
 // EYE. Checks only where phrasing is unambiguous: the corpus's own two established phrasings ("state ... own
 // graph", "state ... graph") are the patterns matched, nothing invented.
 
