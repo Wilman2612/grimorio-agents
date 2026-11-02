@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Shared parsing for the branch-and-objective methodology. Sourced by open-branch.sh,
-# close-branch.sh and pre-commit.sh — the three places the objective is enforced.
+# Shared parsing for the branch-and-objective methodology. Sourced by the harness scripts (open-branch.sh,
+# close-branch.sh, objective-current.sh, lint-objective.sh, verify-gen.sh, selftest-objective.sh), so it is parsed once.
 #
 # A branch's objective lives at objectives/<branch>.md. The path is derived from the branch name, so
 # it cannot drift: there is no registry to keep in sync and no index to maintain.

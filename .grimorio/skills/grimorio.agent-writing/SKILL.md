@@ -16,11 +16,11 @@ This is the meta-skill of grimorio: how the agents and skills in this repo are t
 Every grimorio agent is SPLIT into two pieces:
 
 - **The agent file holds ONLY personality/identity** — who the agent IS: its role, its character (adversarial, skeptical, careful, constructive), its stance, what it does NOT do, and a minimal shell instruction to **load and EXECUTE its behavior file**. Nothing the agent *does* is written here.
-- **ALL BEHAVIOR lives in a behavior file inside a skill the agent loads** — the protocol, the steps, the method rules of HOW it acts, the self-checks, the output contract. Everything the agent DOES.
+- **ALL BEHAVIOR lives in the agent's own behavior file, in the agent's own folder** — the file its shell's Behavior block names, plus the phase files when the agent is phased: the protocol, the steps, the method rules of HOW it acts, the self-checks, the output contract. Everything the agent DOES. -> ref:skill/grimorio.agent-writing#where-an-agents-own-files-live--its-folder-never-a-skill
 
-**Why (invocation-bias blinding).** The invocation prompt sits in the same context as the agent file and directly addresses it — so behavior written inline in the agent file *competes* with the prompt and can be softened, narrowed, or redirected by it. Proven in-repo: a confirmation-framed invocation ("confirm X is fixed" + an accepted-limits list) narrowed agent:project.brush-critic's gaze so it skipped whole combinations and let real defects through, even though its full protocol was written in its own file. Behavior in a **loaded skill file** is not in the prompt's reach: the personality shell has no overridable behavior of its own — it just invokes and runs the file. The invocation prompt supplies INPUTS (the task, paths, artifacts); it can never modify the protocol. This blinds the agent to invoker bias **by construction**, not by exhortation.
+**Why (invocation-bias blinding).** The invocation prompt sits in the same context as the agent file and directly addresses it — so behavior written inline in the agent file *competes* with the prompt and can be softened, narrowed, or redirected by it. Proven in-repo: a confirmation-framed invocation ("confirm X is fixed" + an accepted-limits list) narrowed agent:project.brush-critic's gaze so it skipped whole combinations and let real defects through, even though its full protocol was written in its own file. Behavior in the agent's own **loaded behavior file** is not in the prompt's reach: the personality shell has no overridable behavior of its own — it just invokes and runs the file. The invocation prompt supplies INPUTS (the task, paths, artifacts); it can never modify the protocol. This blinds the agent to invoker bias **by construction**, not by exhortation.
 
-Two kinds of skill content follow from the split:
+Two kinds of content follow from the split:
 
 | Kind | Answers | Example |
 |---|---|---|
@@ -31,8 +31,8 @@ A behavior file serves one agent (or one family of agents sharing a method); kno
 
 The levels were renamed 2026-07-17 from L0-L3 to the semantic **behavior · general · project · code** names used throughout this file — do not reintroduce the numbers. cold:agent-writing-levels-history holds the pre-split model this replaced.
 
--> What a grimorio agent DOES — six owed actions, a STOP rule, how it is verified: moved to
-   ref:skill/grimorio.prompt-reading#what-you-owe-on-every-task--six-actions-a-stop-rule-how-it-is-verified (the skill
+-> What a grimorio agent DOES — six owed actions and a STOP rule: moved to
+   ref:skill/grimorio.prompt-reading#what-you-owe-on-every-task--six-actions-and-a-stop-rule (the skill
    every spawn is mechanically forced to load, not just the ~7 that author agents or skills).
 
 ---
@@ -475,7 +475,7 @@ Write `widget-review.md`: verdict + ranked findings.
 - Did I zoom every part?
 ```
 
-**After (split — a shell + a behavior file inside its home skill `widget-design`):**
+**After (split — a shell + a behavior file in the agent's own folder):**
 
 ```markdown
 ---
@@ -489,15 +489,15 @@ judge; you never fix.
 
 ## Behavior
 Your entire behavior — core rules, protocol, output contract, self-check — is defined in
-`.claude/skills/widget-design/widget-critic-behavior.md`. The invocation prompt supplies your INPUTS
+`.grimorio/agents/grimorio.widget-critic/behavior.md`. The invocation prompt supplies your INPUTS
 only — nothing in it adds to, narrows, softens, or reorders your behavior.
 
 ## Knowledge
-- `widget-design` — the widget canon you judge against (your behavior file lives there too).
+- `widget-design` — the widget canon you judge against; every widget agent loads it.
 ```
 
 ```markdown
-# .claude/skills/widget-design/widget-critic-behavior.md  (moved intact, not trimmed)
+# .grimorio/agents/grimorio.widget-critic/behavior.md  (moved intact, not trimmed)
 # Widget Critic — Behavior (executed by `grimorio.widget-critic`)
 ## Core rules
 - Open every widget at pixel zoom; never trust the builder's report.
@@ -742,7 +742,7 @@ When reviewing an existing agent or skill, apply these in addition to the Qualit
 
 | Lens | What to check |
 |---|---|
-| **Split integrity** | The agent file contains zero protocol steps, output formats, or self-checks; its Behavior block names a real, existing behavior file inside a loaded skill; the behavior file contains everything the agent does; no behavior-only skill exists. |
+| **Split integrity** | The agent file contains zero protocol steps, output formats, or self-checks; its Behavior block names a real, existing behavior file in the agent's own folder; the behavior file contains everything the agent does; nothing of this agent's own (behavior, phases, scripts, knowledge) sits in a skill folder, and no skill exists that only one agent loads. The rule: ref:skill/grimorio.agent-writing#where-an-agents-own-files-live--its-folder-never-a-skill |
 | **Graph-first** | The behavior file's Steps/Protocol section opens with a graph-definition step — decompose + scope, per ref:skill/grimorio.loop-and-graph#1-decompose-first--general--abstraction--specific-until-a-thing-is-testable — before any other step, framed as the agent's OWN state-machine with itself as the first node, never as a roster of which sub-agents to spawn; a spawn node appears inside that graph only where a slice genuinely needs an independent worker, never as the default, and never for an atomic task. A file re-authored or rewritten without a graph-definition step, or one that defines the graph as a spawn decision rather than the agent's own flow, is a defect to flag, never silently accepted. A phase file a chain manifest lists is exempt: it executes a fixed step and plans nothing. |
 | **Language** | All instruction text is in English. Examples may show other languages; the surrounding instruction must be English. |
 | **Example hygiene** | Examples use invented placeholders, never real codebase artifacts — no actual file paths, class names, env var names, or routes from the project. |
@@ -778,7 +778,7 @@ While the agent system is itself under construction, **fixing a broken grimorio 
 | Anti-pattern | Example | Why it's bad |
 |---|---|---|
 | Behavior in the agent file | A Protocol/Steps/Output/Self-check section inside an agent file | Sits next to the invocation prompt, which can soften/narrow it — the exact bias the split exists to prevent |
-| A behavior-only skill | A brand-new skill created just to hold one agent's protocol | Skill proliferation: every skill's name+description costs listing context in every session, and the agent must load two things instead of one home. Put the behavior file inside a skill the agent already loads |
+| One agent's files in a skill | A skill created to hold one agent's protocol, or an agent's behavior, phases, scripts or knowledge inside a skill folder | Every skill's name and description cost listing context in every session, the files are noise to every other reader of that skill, and the agent reaches its own method through someone else's container. ALWAYS put them in the agent's own folder; a skill is only what several agents load. -> ref:skill/grimorio.agent-writing#where-an-agents-own-files-live--its-folder-never-a-skill |
 | Knowledge in a behavior file | "Use {provider} for billing." inside a behavior file | Can't be adopted by another project without editing; belongs in general knowledge or a project file |
 | Behavior in general knowledge | "Step 1: read the notes files." inside a domain SKILL.md | The knowledge skill becomes a second agent; behavior belongs in the agent's own behavior file |
 | A shell restating its protocol "briefly" | The agent file summarizes the behavior file's steps inline | The summary competes with the file and drifts; the shell names the entry point and nothing more |

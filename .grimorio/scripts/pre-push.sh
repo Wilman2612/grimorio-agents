@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # The review gate for work that never merges. On a feature branch, close-branch.sh is the boundary and
-# the review can hang off it. On develop there IS no merge -- pre-commit.sh skips trunk by design -- so
+# the review can hang off it. On develop there IS no merge, and pre-commit.sh gates content, never a review, so
 # nothing ever gated the instruction system, and 80 commits of it landed in one day unreviewed.
 #
 # The PUSH is develop's boundary: the moment work stops being local and becomes shared. This gate makes
@@ -79,7 +79,7 @@ while read -r local_ref local_sha remote_ref remote_sha; do
 $(printf '%s\n' "$changed" | head -12 | sed 's/^/    /')
 
 This is the boundary review that a feature branch gets from close-branch.sh and that develop
-never had, because pre-commit.sh skips trunk. Run the gate, then record what it approved:
+never had, because pre-commit.sh gates content, never a review. Run the gate, then record what it approved:
 
     # spawn grimorio.code-reviewer on:  git diff $range
     # if and only if it returns APPROVED:

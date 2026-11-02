@@ -34,20 +34,17 @@ modifications, DELETIONS and renames alike — which is what keeps a branch from
 unrelated work. A pattern with no glob character covers the path and everything under it.
 
 ```paths
-.claude
 CLAUDE.md
-.grimorio/skills
-.grimorio/hooks
-.grimorio/scripts
+.claude/settings.json
 .grimorio/design
 ```
 
 ## Feature line — the capability this leaves behind
 
-The keeper batches its targets and reviews once at the end, enforced by its phase engine, in .grimorio/agents/grimorio.system-keeper/.
+Agents own their files in their own folders, the synthesizer's prepare and finalize share one folder, and the keeper batches its work and reviews once at the end.
 
 ## Merge summary
 
-The keeper split decided work into one child per small target and reviewed every chunk, which made it slow and thinned the context at each hand-off. Its placement phase now groups targets into batches worth a child (at most three nodes), hands each node the principal's words, the diagnosis and the placement, and plans one review at the end of the loop; the phase engine refuses to leave placement until BATCHES and REVIEW are written. Its review phase reviews once over the assembled diff and briefs the reviewer with what was asked.
+Three things land together. Everything one agent owns (behavior, phases, scripts, memory) now lives in its own folder under .grimorio/agents/, and the authoring guide no longer contradicts that. The synthesizer's prepare and finalize share one default folder, so a real run no longer stops at PREPARE_NOT_RUN. The keeper groups its targets into batches worth a child (at most three nodes) and plans one review at the end of its loop, and its phase engine refuses to leave placement until BATCHES and REVIEW are written. The gates run through bash when installed by hand, and pre-push guards .grimorio/. Installing the gates automatically was pulled out and waits as issue #6.
 
 ## Log

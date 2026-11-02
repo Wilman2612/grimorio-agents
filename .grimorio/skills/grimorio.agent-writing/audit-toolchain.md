@@ -368,12 +368,13 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
 8. `ref:repo/.grimorio/scripts/install-hooks.sh` — ANSWERS: is the local git pre-commit/pre-push hook actually installed
    for this clone/worktree (`.git/hooks` is not versioned). WHEN: once, right after cloning, or if commits are
    landing without being gated.
-9. `ref:repo/.grimorio/scripts/pre-commit.sh` — ANSWERS: does this commit pass the build/typecheck content gates AND the
-   branch-objective gates (scope fence, milestone). WHEN: automatic — the ONLY thing that blocks an ordinary
+9. `ref:repo/.grimorio/scripts/pre-commit.sh` — ANSWERS: does this commit pass the content gates — build output,
+   apps/web typecheck, comment blocks, agent tiers, comment history, file size, prompt shape, work-product placement
+   and the phase-chain walk. WHEN: automatic — the ONLY thing that blocks an ordinary
    commit.
 10. `ref:repo/.grimorio/scripts/pre-push.sh` — ANSWERS: has this push been reviewed. WHEN: automatic, every push to
-    `develop` — `develop`'s own review boundary, since it never merges so `ref:repo/.grimorio/scripts/pre-commit.sh`
-    (which skips trunk by design) can't be the review point.
+    `develop` or `master` (its `GATED_REFS`) — the review boundary for those refs: `develop` never merges, and
+    `ref:repo/.grimorio/scripts/pre-commit.sh` gates content, never a review.
 11. `ref:repo/.grimorio/scripts/parked-watch.mjs` — ANSWERS: which PARENT is genuinely parked waiting on a background
     child that already finished — joining `.grimorio/.cache/agent-invocations.log` and
     `.grimorio/.cache/agent-completions.log` on the parent↔child correlator, per
@@ -564,13 +565,19 @@ is a short pointer to the SKILL.md, not the methodology any more.
    the `scripts/selftest/` section below, entry 6 — same file, this is its new home).
 3. `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/objective-current.sh` — ANSWERS: what objective governs
    the CURRENT branch, right now. WHEN: whenever a branch's live objective is needed without re-deriving the
-   lookup rule by hand — the commit and close gates both call this resolver, so the gate that refuses against
-   an objective and the objective it reads can never disagree. Nothing injects a branch objective into a prompt
+   lookup rule by hand — it resolves through `obj_resolve` in
+   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/objective-lib.sh` (the branch's own objective, else
+   the one it inherits), and `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh` reads its
+   own-branch file through `obj_path_for` in that same library. Nothing injects a branch objective into a prompt
    or a loop any more — the injection hook that once did this on every spawn is gone.
 4. `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/objective-lib.sh` — LIBRARY ONLY, no CLI: the shared
    parsing library sourced by `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/open-branch.sh`,
-   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh`, and `ref:repo/.grimorio/scripts/pre-commit.sh`
-   so branch-objective lookup exists in exactly ONE implementation rather than three that could drift.
+   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh`,
+   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/objective-current.sh`,
+   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/lint-objective.sh`,
+   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/verify-gen.sh` and
+   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/selftest-objective.sh`
+   so branch-objective lookup exists in exactly ONE implementation rather than a copy per script that could drift.
 5. `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/open-branch.sh` — ANSWERS: how to open a new branch WITH
    its objective, in one act. WHEN: starting any new branch of work — the only sanctioned way a branch gets an
    objective attached, since a branch whose objective is written "later" is the branch that never gets one.
