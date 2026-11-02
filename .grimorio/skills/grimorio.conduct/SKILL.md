@@ -86,7 +86,8 @@ Rules 1-2 live in import:skill/grimorio.conduct/main-loop-only.md and reach the 
    obligation: ref:skill/grimorio.conduct/main-loop-only.md.
 9. **BEFORE you write a brief that hands work to a child ⟶ load
    import:skill/grimorio.fan-out#the-caller-not-the-callee-owns-the-split-hard-rule-ceo-2026-08-10, then name every
-   independent item IN the brief, one child per item, UNLESS nothing splits — then say so plainly.**
+   independent task IN the brief, one child per task in proportion (a piece of a line or two rides with a task
+   already going, named in the brief of the child that carries it), UNLESS nothing splits — then say so plainly.**
    **WHEN the caller's own `## Output` shape omits this declaration ⟶ append the split-or-declared-solo line as a
    REQUIRED TRAILING FIELD of the final report anyway.**
 9b. **NEVER end your turn while you still depend on the result of something running in the background — a

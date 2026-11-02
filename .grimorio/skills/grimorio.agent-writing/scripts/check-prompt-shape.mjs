@@ -332,7 +332,8 @@ for (const file of paths.length ? paths : allPrompts()) {
     const added = addedLines(file);
     const design = added.flatMap((l) => l.match(/(?:import|ref|cite):[^\s)`,;]+/g) || []).filter((r) => DESIGN_DOC_RE.test(r));
     if (design.length) findings.push({ code: "DESIGN_REFERENCE_ADDED", fail: true, detail: `${design.slice(0, 3).join(", ")} -- a design document is never read at runtime; inline what the reader needs` });
-    const story = added.filter((l) => PROVENANCE_RE.test(l));
+    // A date inside a reference anchor is part of the pointer, not a story told in the prose.
+    const story = added.filter((l) => PROVENANCE_RE.test(l.replace(/(?:import|ref|cite):[^\s)`,;]+/g, "")));
     if (story.length) findings.push({ code: "PROVENANCE_ADDED", fail: true, detail: `"${story[0].trim().slice(0, 80)}"${story.length > 1 ? ` (+${story.length - 1} more)` : ""} -- keep the rule, move its story to the commit message` });
   }
   const w = words(text);

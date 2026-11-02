@@ -29,7 +29,7 @@ closing.**
    never patched over or re-asserted. This is the mechanical backing `CLOSE` now rests on, replacing the agent's
    own narrated recollection as the sole proof a phase ran.
 5. **ALWAYS report:** what moved and where; every pointer opened across every phase; what
-   `grimorio.prompt-writer` refused or flagged; `grimorio.code-reviewer`'s FULL verdict history, both cycles if
+   `grimorio.prompt-writer` refused or flagged; `grimorio.code-reviewer`'s FULL verdict history for each planned review, both cycles if
    two ran; the refuted-or-adopted verdict from Phase A; Phase A's own CAN/CANNOT coverage judgment, RESTATED
    as the FIRST field of this report — never left implicit only in an earlier phase's own reasoning where no
    caller reading only this terminal report would see it — alongside Phase A's own LIGHTWEIGHT/FULL-CEREMONY
@@ -54,7 +54,7 @@ FINAL SWEEP RESULT:                         <clean, or what was found uncommitte
 WHAT MOVED:                                 <per artifact: file, level, what changed>
 POINTERS OPENED:                            <carried from Phase C>
 WRITER REFUSALS/FLAGS:                      <carried from Phase B>
-REVIEWER VERDICT HISTORY:                   <every cycle, not only the last>
+REVIEWER VERDICT HISTORY:                   <every cycle of every planned review, not only the last>
 PHASE A VERDICT RESTATED:                   <refuted-or-adopted verdict and true cause>
 MODE OUTCOME:                               <the improve-and-validate mode's own FINAL OUTCOME, or
                                              "N/A — mode not entered">

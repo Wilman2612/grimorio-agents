@@ -16,42 +16,46 @@ This phase spawns `grimorio.prompt-writer` and/or a CODE-VOLUME delegate — eve
 park waiting on a return. import:skill/grimorio.phase-splitting/loop-owner-turn-discipline.md governs in
 full, root instance at Phase 0.
 
-## Batches, and one review at the end
+## Proportionality — nodes and reviews
 
-A node starts cold and costs its own start-up; a review costs a full read of the diff. Splitting a decided change
-into one node per small target, and reviewing each piece, multiplies both and thins the context at every hand-off.
+The Independence Test decides what the separate TASKS are; proportionality decides which of them cost a node.
 
-**ALWAYS group the targets into BATCHES before raising any node. A batch is everything one writer can carry in one
-brief: targets with the same kind of content and the same reader go together, however many files they touch.**
-**WHEN a target is big on its own (a new agent, a rewrite of a whole file) or has to be judged apart from the rest
-⟶ it is its own batch.** **NEVER raise a node for one small edit that another batch could carry.** **NEVER raise
-more than three nodes in one pass.**
+**ALWAYS give each distinct task its own node, as Part 1 step 4's Independence Test decides.**
+**NEVER put unrelated tasks in one node.**
+**WHEN a piece is a line or two ⟶ it is no task and never gets a node: it rides with the task it belongs to, or with a node already going.**
+**WHEN every piece is that small ⟶ one node carries them all.**
+**NEVER raise more than three nodes at once** — the remaining tasks go in the next round.
 
 **ALWAYS hand every node a brief carrying the principal's words verbatim, Phase A's diagnosis, this phase's
-placement for every target in its batch, and each target's checkable done-condition.** A node never rebuilds
-context from file names.
+placement for every target it carries, and each target's checkable done-condition.**
 
-**ALWAYS plan exactly ONE adversarial review, run once by Phase C over the whole assembled diff after every node
-has returned. WHEN the batches are separate deliverables that merge separately ⟶ one review per deliverable,
-saying why.** **NEVER plan a review per node, per target or per chunk.**
+**WHEN the tasks are big and merge separately ⟶ plan one review per task.**
+**WHEN the pieces are small or merge together ⟶ plan one review over everything.**
+**NEVER plan a review per small piece, per target or per chunk.**
 
-**ALWAYS write this phase's deliverable with two fields and record it as `deliverable`:** `BATCHES:` each node,
-the targets it carries, its tier, and why it is not part of another batch; `REVIEW:` the one review at the end, or
-one per separately-merged deliverable and why. The engine refuses to leave this phase without both.
+**ALWAYS write this phase's deliverable to `tmp/<your-agent-id>/` as plain lines starting `BATCHES:` and `REVIEW:`,
+then run `record --run <id> deliverable <path>`.** `BATCHES:` each node, the task and pieces it carries, its tier,
+and why a small piece rides where it does. `REVIEW:` which reviews, and why that proportion.
+**NEVER bold or bullet a field name** — the gate refuses that, and a missing field.
 
-| Situation | Batches | Review |
+```
+BATCHES: node 1, Sonnet: rewrite the intake skill; the one-line typo fix rides in it, same index
+REVIEW: one review over node 1's diff, since the typo fix rides in it
+```
+
+| Situation | Nodes | Review |
 |---|---|---|
-| 9 decided edits across 6 skill files, all prompt content | 1: a writer node with all 9 | 1, at the end |
-| a new agent, plus pointer updates in 3 files | 2: the new agent; the 3 pointer updates | 1, at the end |
-| a selftest script, plus the 2 prompts that mention it | 2: the script (code volume); the 2 prompts | 1, at the end |
-| 6 large features that merge separately | one per feature, at most 3 at a time | 1 per feature, since each merges alone |
+| fix a hook, fix an agent, redesign another agent | 3, one per task | one per task, or one over all three when each is small |
+| fix one line, fix two lines, redesign an agent | 1: the redesign, carrying both small fixes | 1 |
+| 9 decided one-line edits that close one finding | 1 | 1 |
+| 6 large features that merge separately | 1 per feature: 3 this round, 3 the next | 1 per feature |
 
 ## Part 1 — PLACEMENT
 
 **ALWAYS state THE FAN-OUT SPAWNING GRAPH for this phase's own spawns before raising any of them — never a
 phase-position announcement (the engine's own pointer output already makes stating "which phase I'm in"
 redundant): a SELF node that decides placement, THEN one `grimorio.prompt-writer`/CODE-VOLUME node per
-BATCH (§ Batches below), THEN a SELF node that receives every return.**
+TASK (§ Proportionality above), THEN a SELF node that receives every return.**
 
 1. **ALWAYS establish WHO READS THIS, AND WHEN, before choosing a file** — the most common defect in this
    system. Place by reader:
@@ -75,7 +79,7 @@ BATCH (§ Batches below), THEN a SELF node that receives every return.**
 4. **WHEN the decision covers more than one independent target ⟶ decompose per
    ref:skill/grimorio.loop-and-graph#1-decompose-first--general--abstraction--specific-until-a-thing-is-testable,
    give each its own pass condition. BEFORE declaring "N/A — single target" ⟶
-   ALWAYS apply import:skill/grimorio.fan-out/project.independence-test.md#the-independence-test--what-makes-split-or-declared-solo-testable-not-decorative-hard-rule-2026-08-15
+   ALWAYS apply import:skill/grimorio.fan-out/independence-test.md#the-independence-test--what-makes-split-or-declared-solo-testable-not-decorative-hard-rule-2026-08-15
    and name explicitly which of its three questions (Q1 wrong-alone / Q2 verified-alone / Q3 output-not-input)
    fails — a bare "N/A" naming nothing is a decorative non-answer, not a legitimate solo declaration.**
 5. **WHEN Phase A handed forward a SYSTEMIC classification ⟶ this phase's target files MUST include the

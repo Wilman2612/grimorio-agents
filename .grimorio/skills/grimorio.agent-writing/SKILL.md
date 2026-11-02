@@ -798,7 +798,7 @@ The agent shell + its behavior file are **together** the single source of truth 
 
 ### The extension-point philosophy
 
-The skill layers (behavior · general · project · code) are **modification points** — they exist so the agent shell never needs to change when the project changes, and rarely even when the method is tuned. The behavior file holds the method (tune it there); general holds the universal criterion; a project file extends it with a project decision; a code file extends with operational facts. A maintainer customizing an agent for their project will **rarely edit the agent file** — they add to project/code files, and tune method in the behavior file. If you find yourself editing the shell, ask: is this identity, or is it behavior/knowledge that belongs in a skill?
+The skill layers (behavior · general · project · code) are **modification points** — they exist so the agent shell never needs to change when the project changes, and rarely even when the method is tuned. The behavior file holds the method (tune it there); general holds the universal criterion; a project file extends it with a project decision; a code file extends with operational facts. A maintainer customizing an agent for their project will **rarely edit the agent file** — they add to project/code files, and tune method in the behavior file. If you find yourself editing the shell, ask: is this identity, or is it behavior/knowledge that belongs in the agent's own folder? A skill holds only what several agents load. -> ref:skill/grimorio.agent-writing#where-an-agents-own-files-live--its-folder-never-a-skill
 
 ---
 

@@ -20,8 +20,8 @@ full, root instance at Phase 0.
 
 **ALWAYS state THE FAN-OUT SPAWNING GRAPH for this phase's own spawns before raising any of them — never a
 phase-position announcement (the engine's own pointer output already makes stating "which phase I'm in"
-redundant): a SELF node that runs every self-check, THEN a `grimorio.code-reviewer` node (per Part 2, foreground,
-one node per cycle, up to two), THEN a SELF node that routes per the verdict.**
+redundant): a SELF node that runs every self-check, THEN a `grimorio.code-reviewer` node per planned review (per
+Part 2, foreground, one node per cycle, up to two cycles each), THEN a SELF node that routes per the verdicts.**
 
 1. **ALWAYS verify every pointer `grimorio.prompt-writer` wrote by running `node .grimorio/scripts/audit-chain.mjs --dead
    <touched-file>` and `node .grimorio/scripts/audit-chain.mjs --anchors <touched-file>` for every file returned this
@@ -85,13 +85,16 @@ one node per cycle, up to two), THEN a SELF node that routes per the verdict.**
 
 ## Part 2 — ADVERSARIAL REVIEW
 
-**ALWAYS review once, after every node of Phase B has returned, over the ONE assembled diff — the review Phase B's
-`REVIEW:` field planned.** **WHEN that field names separate deliverables that merge separately ⟶ one review per
-deliverable.** **NEVER raise a review per node, per target or per chunk.**
+**ALWAYS run the reviews Phase B's `REVIEW:` field planned: one HUNT per planned review, over that review's
+assembled diff, after every node in that review's scope has returned.**
+**NEVER raise a review per small piece, per target or per chunk.**
+**ALWAYS run a REWORK's cycle-2 FIX-VERIFICATION under step 4 below** — one HUNT per planned review never forbids it.
 
-1. **ALWAYS raise agent:grimorio.code-reviewer on the FULL diff, never a summary, foreground, passing your own
-   agent id** so it can address findings back to you, **plus the principal's words verbatim, Phase A's diagnosis
-   and Phase B's placement**, so it reviews against what was asked, not only against the diff.
+1. **ALWAYS raise agent:grimorio.code-reviewer on the review's FULL diff, never a summary, foreground, passing
+   your own agent id** so it can address findings back to you, **plus the principal's words verbatim and nothing
+   else from the keeper but step 2's MODE and cycle-2 block.**
+   **NEVER hand it Phase A's diagnosis or Phase B's placement** — the placement is what it reviews, and the caller's
+   framing narrows its gaze.
 2. **ALWAYS declare the reviewer's MODE explicitly: CYCLE 1 ⟶ HUNT (full pass, no accepted-limits list).
    CYCLE 2 (a REWORK re-check) ⟶ FIX-VERIFICATION — hand the PER-FINDING CONTEXT block (original / what
    changed / which finding it closes), never a fresh full diff cold.** This is why a rework cycle no longer
@@ -101,7 +104,7 @@ deliverable.** **NEVER raise a review per node, per target or per chunk.**
    again, and only then goes back to `grimorio.code-reviewer` for cycle 2.** Never patch the diff here, never
    re-submit without re-verifying first. **NEVER let the Phase B re-authoring pass touch anything beyond what
    closes the reviewer's own named finding(s).**
-4. **ALWAYS CAP adversarial-review gating at TWO cycles, CUMULATIVE across however many separate reviewer
+4. **ALWAYS CAP each planned review's gating at TWO cycles, CUMULATIVE across however many separate reviewer
    instances it takes to reach that count — never reset by a fresh instance.** **WHEN cycle 2 also returns
    REWORK ⟶ do NOT raise a third cycle: proceed to Phase D and record the true outcome honestly.** **WHEN every
    remaining finding at the cap is LOW/MEDIUM ⟶ classify it non-blocking debt and ship past it, naming each

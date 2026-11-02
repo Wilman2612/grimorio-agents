@@ -80,7 +80,8 @@ Choosing a decomposition axis was never enough on its own — the choice has to 
 thing that reaches a child is the brief it actually reads, not a rule sitting in the child's own skill.
 
 - **BEFORE you write a brief ⟶ ask whether the task splits into items that do not inform each other, and WHEN
-  it does ⟶ name the items IN the brief and instruct one child per item.** Never rely on the receiving agent
+  it does ⟶ name the items IN the brief and instruct one child per independent task, in proportion: a piece of a
+  line or two rides with a task already going.** Never rely on the receiving agent
   noticing: it holds that rule and does not retrieve it under a task cue.
 - **NEVER write the split as a general exhortation to fan out.** Name the actual items. A literal restatement
   at the point of decision is what worked; a pointer to a principle is what did not.

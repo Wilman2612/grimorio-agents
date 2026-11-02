@@ -575,8 +575,9 @@ is a short pointer to the SKILL.md, not the methodology any more.
    `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh`,
    `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/objective-current.sh`,
    `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/lint-objective.sh`,
-   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/verify-gen.sh` and
-   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/selftest-objective.sh`
+   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/verify-gen.sh`,
+   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/selftest-objective.sh` and
+   `ref:repo/.grimorio/scripts/close-landed.sh`
    so branch-objective lookup exists in exactly ONE implementation rather than a copy per script that could drift.
 5. `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/open-branch.sh` — ANSWERS: how to open a new branch WITH
    its objective, in one act. WHEN: starting any new branch of work — the only sanctioned way a branch gets an
