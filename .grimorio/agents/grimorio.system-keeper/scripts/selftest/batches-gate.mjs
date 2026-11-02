@@ -23,7 +23,11 @@ t("Phase A hands over to Phase B", /PHASE B/.test(eng("next", "--run", run, "--o
 eng("record", "--run", run, "placement-authored", file("auth.md", "authored"));
 
 let r = eng("next", "--run", run, "--on", "authored");
-t("Phase B with no deliverable is refused", r.status !== 0 && !/PHASE C/.test(r.stdout), r.stdout + r.stderr);
+t("Phase B with no deliverable is refused, naming the deliverable", r.status !== 0 && /deliverable/.test(r.stdout + r.stderr), r.stdout + r.stderr);
+
+eng("record", "--run", run, "deliverable", file("d0.md", "REVIEW: one code review at the end, over the whole diff\n"));
+r = eng("next", "--run", run, "--on", "authored");
+t("Phase B with REVIEW but no BATCHES is refused", r.status !== 0 && /BATCHES/.test(r.stdout + r.stderr), r.stdout + r.stderr);
 
 eng("record", "--run", run, "deliverable", file("d1.md", "BATCHES: one writer node with all three edits, sonnet\n"));
 r = eng("next", "--run", run, "--on", "authored");
