@@ -16,7 +16,7 @@
 # for pre-commit (fires every local commit); this fires only on a push to develop/master.
 
 # @keep-comment MARKER/GUARDED below are deliberately duplicated with the Tier 0B block in
-# .claude/hooks/worktree-create-from-develop.cjs (see that file's own header for why a shared config
+# .grimorio/hooks/worktree-create-from-develop.mjs (see that file's own header for why a shared config
 # file was rejected in favour of two hand-kept copies). The diff-BASE each file computes differs BY
 # DESIGN and must never be synced: this file's own `remote_sha..local_sha` range is handed a fresh
 # `remote_sha` by git on every push, so it can never go stale the way that hook's old

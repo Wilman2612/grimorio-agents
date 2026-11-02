@@ -65,14 +65,14 @@ export function resolveManifestPath(chainName, manifestFlag) {
     return p;
   }
   // An agent's own canonical name carries the "grimorio." prefix (its chain.json `agent` field stores
-  // it in full); the manifest directory on disk is named bare (`<chain>-phases/`). Accept either form,
+  // it in full); the agent folder on disk is `.grimorio/agents/grimorio.<chain>/phases/`. Accept either form,
   // identical to .grimorio/scripts/measure-agent-load.mjs's own normalization, so `--chain grimorio.system-keeper`
   // and `--chain system-keeper` both resolve to the same manifest.
   const bareChain = chainName.startsWith("grimorio.") ? chainName.slice("grimorio.".length) : chainName;
   const matches = findManifestCandidates(bareChain);
   if (matches.length === 0) {
     usageError(
-      `unknown --chain "${chainName}": no <chain>-phases/chain.json found under .claude/ or .grimorio/. ` +
+      `unknown --chain "${chainName}": no .grimorio/agents/grimorio.<chain>/phases/chain.json and no <chain>-phases/chain.json found. ` +
         `Pass --manifest <path> to point at one explicitly.`,
     );
   }

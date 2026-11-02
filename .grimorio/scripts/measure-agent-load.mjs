@@ -113,7 +113,7 @@ function loadLiveManifest(chain) {
 
 const firstExisting = (paths) => paths.find((p) => existsSync(join(REPO_ROOT, p))) || paths[0];
 
-function floorFiles(chain, manifest) {
+function floorFiles(chain) {
   const agentDir = `.grimorio/agents/grimorio.${chain}`;
   return [
     { label: "shell", path: firstExisting([`${agentDir}/agent.md`, `.claude/agents/grimorio.${chain}.md`]) },
@@ -177,7 +177,7 @@ function walkPath(chain, manifest, pathIds) {
     steps.push({ id, added, cumulative: total });
   }
 
-  addStep("FLOOR", floorFiles(chain, manifest).map((f) => fileEntry(f.label, f.path)));
+  addStep("FLOOR", floorFiles(chain).map((f) => fileEntry(f.label, f.path)));
 
   for (const id of pathIds) {
     const phase = byId.get(id);
@@ -269,7 +269,7 @@ function main() {
   }
   // An agent's own canonical name always carries the "grimorio." prefix (its shell file, and chain.json's
   // own `agent` field, both store it in full) — but the lookup keys below (the old CHAINS table, and the
-  // live manifest's `<chain>-phases/` directory) are bare. Accept either form so `--chain
+  // agent folder `.grimorio/agents/grimorio.<chain>/`) are bare. Accept either form so `--chain
   // grimorio.system-keeper` and `--chain system-keeper` both resolve to the same thing.
   const chain = rawChain.startsWith("grimorio.") ? rawChain.slice("grimorio.".length) : rawChain;
 

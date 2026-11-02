@@ -178,7 +178,7 @@ shown; see also [MEASUREMENTS.md](MEASUREMENTS.md) → finding 4.
 ## Adopting this — what actually happens when you clone it
 
 1. `git clone` this repo, or copy `.claude/`, `scripts/`, and `objectives/` into an existing project.
-2. Run `bash scripts/install-hooks.sh` once per clone (`.git/hooks` isn't versioned). It installs a
+2. Run `bash .grimorio/scripts/install-hooks.sh` once per clone (`.git/hooks` isn't versioned). It installs a
    `pre-commit` gate; it will tell you plainly if it skips the `pre-push` gate (see below — that one's
    project-specific and wasn't exported).
 3. Start Claude Code in that directory. `CLAUDE.md`'s one load instruction pulls in the rest —

@@ -58,7 +58,7 @@ function logSelfHeal(originalToken, healedTarget) {
 }
 
 // @keep-comment -- the MIGRATION ALIAS for a `repo/` path written against the corpus's old location. It
-// fires ONLY when the literal path is absent, so `.claude/skills/` -- still live, holding the 19 discovery
+// fires ONLY when the literal path is absent, so `.claude/skills/` -- still live, holding the 18 discovery
 // adapters -- is never shadowed. Every heal is logged, exactly as the `skill/` store's own grimorio.-prefix
 // heal below is, so a stale reference is recorded rather than silently healed forever. It exists because
 // `.claude/hooks/**` is frozen to every agent here (grimorio-conduct rule 5c, the CEO's alone) and those
