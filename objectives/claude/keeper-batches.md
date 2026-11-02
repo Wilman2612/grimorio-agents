@@ -22,10 +22,10 @@ instead. And a bare, unwrapped `grep` — any flags, or none — fails a PASSING
 is zero matches, because grep exits 1 on no match — wrap it: `test -z "$(grep -rl PATTERN path)" && echo PASS`.
 Full rules: .grimorio/skills/grimorio.objective-harness/SKILL.md#the-two-syntax-pitfalls-that-make-close-branch-reject-a-correct-check
 
-- [ ] C1 Phase B tells the keeper to batch its targets and to plan one review at the end — VERIFY: `test -n "$(grep -l "ALWAYS group the targets into BATCHES" .grimorio/agents/grimorio.system-keeper/phases/phase-b-placement-authoring.md)" && test -n "$(grep -l "NEVER plan a review per node, per target or per chunk" .grimorio/agents/grimorio.system-keeper/phases/phase-b-placement-authoring.md)" && echo PASS`
-- [ ] C2 the phase engine refuses to leave Phase B without BATCHES and REVIEW — VERIFY: `node .grimorio/agents/grimorio.system-keeper/scripts/selftest/batches-gate.mjs`
-- [ ] C3 Phase C reviews once over the assembled diff and no longer hands review placement to another skill — VERIFY: `test -z "$(grep -l "is the plan author's" .grimorio/agents/grimorio.system-keeper/phases/phase-c-verification-review.md)" && test -n "$(grep -l "ALWAYS review once, after every node of Phase B has returned" .grimorio/agents/grimorio.system-keeper/phases/phase-c-verification-review.md)" && echo PASS`
-- [ ] C4 the keeper's chain still walks — VERIFY: `node .grimorio/skills/grimorio.phase-splitting/scripts/check-chain.mjs --manifest .grimorio/agents/grimorio.system-keeper/phases/chain.json --walk`
+- [x] C1 Phase B tells the keeper to batch its targets and to plan one review at the end — VERIFY: `test -n "$(grep -l "ALWAYS group the targets into BATCHES" .grimorio/agents/grimorio.system-keeper/phases/phase-b-placement-authoring.md)" && test -n "$(grep -l "NEVER plan a review per node, per target or per chunk" .grimorio/agents/grimorio.system-keeper/phases/phase-b-placement-authoring.md)" && echo PASS`
+- [x] C2 the phase engine refuses to leave Phase B without BATCHES and REVIEW — VERIFY: `node .grimorio/agents/grimorio.system-keeper/scripts/selftest/batches-gate.mjs`
+- [x] C3 Phase C reviews once over the assembled diff and no longer hands review placement to another skill — VERIFY: `test -z "$(grep -l "is the plan author's" .grimorio/agents/grimorio.system-keeper/phases/phase-c-verification-review.md)" && test -n "$(grep -l "ALWAYS review once, after every node of Phase B has returned" .grimorio/agents/grimorio.system-keeper/phases/phase-c-verification-review.md)" && echo PASS`
+- [x] C4 the keeper's chain still walks — VERIFY: `node .grimorio/skills/grimorio.phase-splitting/scripts/check-chain.mjs --manifest .grimorio/agents/grimorio.system-keeper/phases/chain.json --walk`
 
 ## Out of scope — paths this branch MUST NOT touch (enforced at commit)
 
