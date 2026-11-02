@@ -86,7 +86,8 @@ Rules 1-2 live in import:skill/grimorio.conduct/main-loop-only.md and reach the 
    obligation: ref:skill/grimorio.conduct/main-loop-only.md.
 9. **BEFORE you write a brief that hands work to a child ⟶ load
    import:skill/grimorio.fan-out#the-caller-not-the-callee-owns-the-split-hard-rule-ceo-2026-08-10, then name every
-   independent item IN the brief, one child per item, UNLESS nothing splits — then say so plainly.**
+   independent task IN the brief, one child per task in proportion (a piece of a line or two rides with a task
+   already going, named in the brief of the child that carries it), UNLESS nothing splits — then say so plainly.**
    **WHEN the caller's own `## Output` shape omits this declaration ⟶ append the split-or-declared-solo line as a
    REQUIRED TRAILING FIELD of the final report anyway.**
 9b. **NEVER end your turn while you still depend on the result of something running in the background — a
@@ -171,9 +172,9 @@ injected "Scratchpad Directory" path, which is where this bites most often.** Gi
     **The one exception: a same-type `grimorio.prompt-writer` clone, at any tier, raised by `grimorio.system-keeper`
     for already-decided mechanical authoring volume, SUPERVISED — the spawning parent reviews its output before
     anything lands.** It never reaches any other child type.
-    -> ref:skill/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md,
-    ref:skill/grimorio.agent-writing/system-keeper-phases/phase-c-verification-review.md,
-    ref:skill/grimorio.agent-writing/prompt-writer-behavior.md#clone-executor-mode--entry-point-for-a-haiku-tiered-same-type-clone
+    -> ref:agent/grimorio.system-keeper/phases/phase-b-placement-authoring.md,
+    ref:agent/grimorio.system-keeper/phases/phase-c-verification-review.md,
+    ref:agent/grimorio.prompt-writer/behavior.md#clone-executor-mode--entry-point-for-a-haiku-tiered-same-type-clone
 21. **NEVER write an instruction file or a subagent prompt in anything but English.** User-facing chat replies
     stay in Spanish.
 22. **BEFORE adding to any memory or vision file ⟶ grep it for what is there and SAY what you found.**

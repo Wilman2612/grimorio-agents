@@ -92,4 +92,4 @@ outlives the thing it points at, and the substance is gone.
 
 -> Pipeline instance of this convention (named artifacts per pipeline agent): ref:skill/grimorio.feature-workflow#artifact-directory-structure skill,
    "Artifact Directory Structure".
--> The adviser's use of this convention: ./adviser-behavior.md.
+-> The adviser's use of this convention: ref:agent/grimorio.adviser/behavior.md.

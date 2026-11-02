@@ -130,7 +130,7 @@ techniques any prompt engineer uses; PART 2 holds grimorio's own, each group nam
   bound; Part 0 checks coverage after planning.
 - **F2 — Child independence** (M). Own id, own workspace; a blocker is surfaced, never parked on.
 - **F3 — Guardian** (M). Holds the saved objective; reviews milestones as a separate reader.
-- **F4 — Caller owns the split** (M). The brief names one child per independent item, or declares solo.
+- **F4 — Caller owns the split** (M). The brief names one child per independent task, in proportion (a piece of a line or two rides with a task already going), or declares solo.
 - **F5 — Tier by rule** (M). Haiku executes, Sonnet is standard, Opus or Fable reasons; planning is never Haiku.
 - **F6 — Plan and graph before spawning** (M). One case per stage from ref:skill/grimorio.loop-and-graph/graph-cases.md,
   written as its plan file. *Static test:* the validator of that file exits 0 on the plan.

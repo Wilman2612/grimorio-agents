@@ -3,7 +3,7 @@
 Companion depth file of ref:agent/grimorio.design-orchestrator/exemplar-mama-crm.md (the index —
 provenance, the source's own short overview, and the pointer list to all five companions live there). Reached
 only from the index; **NEVER referenced directly, and NEVER loaded by default** — same standing as the index
-itself. Part of the same split (ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md's own
+itself. Part of the same split (ref:agent/grimorio.prompt-writer/phases/phase-4-file-structure.md's own
 SPLIT-default rule) that keeps the index itself under the ~500-line smell threshold.
 
 Everything from each marker below to its matching closing marker is the source document's own text, byte-for-

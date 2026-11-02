@@ -25,9 +25,8 @@ export function usageError(msg, code = 2) {
   process.exit(code);
 }
 
-// A manifest lives at some `<chain>-phases/chain.json` under .claude/ or .grimorio/ — never a hardcoded
-// per-chain path. The walk is bounded to those two roots (where every grimorio skill/agent lives, split
-// by export boundary per the grimorio-dir-move branch), not the whole repo.
+// An agent's manifest lives at `.grimorio/agents/grimorio.<chain>/phases/chain.json`. Any other chain (a
+// selftest fixture) is a `<chain>-phases/chain.json` found by walking .claude/ and .grimorio/.
 function walkForManifest(dir, target, skip, found) {
   let entries;
   try {
@@ -47,6 +46,8 @@ function walkForManifest(dir, target, skip, found) {
 }
 
 function findManifestCandidates(chainName) {
+  const plain = join(REPO_ROOT, ".grimorio", "agents", `grimorio.${chainName}`, "phases", "chain.json");
+  if (existsSync(plain)) return [plain];
   const target = `${chainName}-phases`;
   const SKIP = new Set(["node_modules", ".git", "tmp", ".cache"]);
   const roots = [join(REPO_ROOT, ".claude"), join(REPO_ROOT, ".grimorio")];
@@ -54,9 +55,6 @@ function findManifestCandidates(chainName) {
   for (const root of roots) {
     if (existsSync(root)) walkForManifest(root, target, SKIP, found);
   }
-  // An agent folder may name its chain directory plainly `phases/`; the folder name carries the chain.
-  const plain = join(REPO_ROOT, ".grimorio", "agents", `grimorio.${chainName}`, "phases", "chain.json");
-  if (!found.length && existsSync(plain)) found.push(plain);
   return found;
 }
 
@@ -67,14 +65,14 @@ export function resolveManifestPath(chainName, manifestFlag) {
     return p;
   }
   // An agent's own canonical name carries the "grimorio." prefix (its chain.json `agent` field stores
-  // it in full); the manifest directory on disk is named bare (`<chain>-phases/`). Accept either form,
+  // it in full); the agent folder on disk is `.grimorio/agents/grimorio.<chain>/phases/`. Accept either form,
   // identical to .grimorio/scripts/measure-agent-load.mjs's own normalization, so `--chain grimorio.system-keeper`
   // and `--chain system-keeper` both resolve to the same manifest.
   const bareChain = chainName.startsWith("grimorio.") ? chainName.slice("grimorio.".length) : chainName;
   const matches = findManifestCandidates(bareChain);
   if (matches.length === 0) {
     usageError(
-      `unknown --chain "${chainName}": no <chain>-phases/chain.json found under .claude/ or .grimorio/. ` +
+      `unknown --chain "${chainName}": no .grimorio/agents/grimorio.<chain>/phases/chain.json and no <chain>-phases/chain.json found. ` +
         `Pass --manifest <path> to point at one explicitly.`,
     );
   }

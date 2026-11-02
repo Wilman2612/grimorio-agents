@@ -36,7 +36,7 @@ subordinate? It isn't one. This is exactly how the architects should be too: the
 instruction."*
 
 **Two different defences, and only one was ever built.** Refuting a CONCLUSION and refusing a FORM are not
-the same defence. The conclusion-refutation defence exists — ref:skill/grimorio.agent-writing/system-keeper-behavior.md
+the same defence. The conclusion-refutation defence exists — ref:agent/grimorio.system-keeper/behavior.md
 carries it five times (never accept a caller's conclusion, default NO, state what would have refuted an
 adopted one). The FORM-refusal defence measures ZERO: none of agent:grimorio.web-architect,
 agent:grimorio.game-architect, agent:grimorio.solution-architect, or agent:grimorio.system-keeper carries any

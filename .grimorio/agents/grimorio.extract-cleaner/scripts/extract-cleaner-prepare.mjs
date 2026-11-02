@@ -12,7 +12,7 @@
 // agent: turns into abstracts. This script does everything else deterministically. @keep-comment
 //
 // USAGE: node .grimorio/agents/grimorio.extract-cleaner/scripts/extract-cleaner-prepare.mjs [--work-dir <dir>] [--out <bundle-path>]
-//   --work-dir <dir>   default: tmp/extract-cleaner/<resolved session id>/ (created if absent)
+//   --work-dir <dir>   default: defaultWorkDir(<session id>) in work-dir.mjs, <workRoot>extract-cleaner/<session id>/ (created if absent)
 //   --out <path>       default: <work-dir>/bundle.txt
 //
 // Exit 0 on success. Exit 1: CLAUDE_CODE_SESSION_ID unset, or any of the four orchestrated steps below
@@ -26,9 +26,7 @@ import { createHash } from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseTurnBlocks } from "./verify-cleaned-extract.mjs";
-import { readFileSync as __rfs } from "node:fs";
-// @keep-comment -- the working-memory root lives in ONE place, .grimorio/scripts/refobl/skill-roots.json's `workRoot`.
-const WORK_ROOT = JSON.parse(__rfs(new URL("../../../../.grimorio/scripts/refobl/skill-roots.json", import.meta.url), "utf8")).workRoot;
+import { defaultWorkDir } from "./work-dir.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 
@@ -90,7 +88,7 @@ function main() {
   // Anchor on CLAUDE_PROJECT_DIR, not a bare process.cwd() -- mirrors extract-cleaner-cache.mjs's own
   // runSweepExpired (same rationale: process.cwd() alone is silently wrong the moment this tool is invoked
   // from anywhere other than the repo root, e.g. a worktree subshell).
-  const workDir = flags["--work-dir"] || path.join(process.env.CLAUDE_PROJECT_DIR || process.cwd(), WORK_ROOT, "extract-cleaner", sessionId);
+  const workDir = flags["--work-dir"] || defaultWorkDir(sessionId);
   mkdirSync(workDir, { recursive: true });
   const outPath = flags["--out"] || path.join(workDir, "bundle.txt");
 

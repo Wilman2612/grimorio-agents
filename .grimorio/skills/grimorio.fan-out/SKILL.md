@@ -47,7 +47,7 @@ the wrong remedy first is how the same collision happens anyway, just hidden ins
    genuinely N-parallel JOBS, never one job with N helpers.** Every other spawn-capable agent type has no
    standing to reach for it. A DIFFERENT mechanism governs a keeper's own manually-created worktree for ITS OWN
    self-modification work (`git worktree add`, never this `isolation:` parameter) —
-   ref:skill/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md,
+   ref:agent/grimorio.system-keeper/phases/phase-b-placement-authoring.md,
    never conflated with this rule.
 
 Read-only children (critics, reviewers, scouts) and tmp-only writers fan out freely — the hazard is only
@@ -80,7 +80,8 @@ Choosing a decomposition axis was never enough on its own — the choice has to 
 thing that reaches a child is the brief it actually reads, not a rule sitting in the child's own skill.
 
 - **BEFORE you write a brief ⟶ ask whether the task splits into items that do not inform each other, and WHEN
-  it does ⟶ name the items IN the brief and instruct one child per item.** Never rely on the receiving agent
+  it does ⟶ name the items IN the brief and instruct one child per independent task, in proportion: a piece of a
+  line or two rides with a task already going.** Never rely on the receiving agent
   noticing: it holds that rule and does not retrieve it under a task cue.
 - **NEVER write the split as a general exhortation to fan out.** Name the actual items. A literal restatement
   at the point of decision is what worked; a pointer to a principle is what did not.
@@ -265,7 +266,7 @@ today: a `grimorio.scout` panel, or `grimorio.entropy`'s own divergent lens pane
 several independent read-only passes over the SAME material and reintegrates into ONE agent afterward. His own
 words, translated, 2026-09-11 (Spanish original held in the record that produced this section, not restated in
 an executable file per
-ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-5-content-guardrails.md's own step 4):
+ref:agent/grimorio.prompt-writer/phases/phase-5-content-guardrails.md's own step 4):
 
 > *"When I say a way to parallelize is, you can split the diagnosis work into multiple [agents]. The diagnosis
 > work doesn't collide — or at least it can safely expand into parallel [branches] and then reintegrate into one

@@ -27,11 +27,7 @@ import { readFileSync, existsSync, writeFileSync, mkdirSync, readdirSync, statSy
 import { createHash } from "node:crypto";
 import path from "node:path";
 import { parseTurnBlocks } from "./verify-cleaned-extract.mjs";
-import { readFileSync as __rfs } from "node:fs";
-// @keep-comment -- the working-memory root lives in ONE place, .grimorio/scripts/refobl/skill-roots.json's
-// `workRoot`. Read, never copied: it was the literal "tmp/" in 8 sites, which is the hand-kept-copy
-// shape that file's own comment warns about.
-const WORK_ROOT = JSON.parse(__rfs(new URL("../../../../.grimorio/scripts/refobl/skill-roots.json", import.meta.url), "utf8")).workRoot;
+import { CLEANER_ROOT } from "./work-dir.mjs";
 
 // @keep-comment The retention window is a single named constant so a future pass can change it without
 // reading the rest of this file. WHY 7: the CEO left the exact number open (7 or 15, "I don't know,
@@ -43,7 +39,7 @@ const WORK_ROOT = JSON.parse(__rfs(new URL("../../../../.grimorio/scripts/refobl
 // vanish. @keep-comment
 export const EXTRACT_CLEANER_RETENTION_DAYS = 7;
 
-const DEFAULT_SWEEP_ROOT = WORK_ROOT + "extract-cleaner";
+const DEFAULT_SWEEP_ROOT = CLEANER_ROOT;
 
 const USAGE =
   "usage: node .grimorio/agents/grimorio.extract-cleaner/scripts/extract-cleaner-cache.mjs read-watermark --cache-dir <dir>\n" +
@@ -194,13 +190,13 @@ function runSweepExpired(argv) {
   // convention (spawn-verbatim-origin-gate.cjs's own hasElementThree: `process.env.CLAUDE_PROJECT_DIR ||
   // "."`), code-review FINDING-04. process.cwd() alone is silently wrong the moment this tool is invoked
   // from anywhere other than the repo root (a worktree subshell, a differently-cwd'd caller): it would
-  // target (or refuse) the WRONG tmp/extract-cleaner rather than the repo's own real one. CLAUDE_PROJECT_DIR
+  // target (or refuse) the WRONG <workRoot>extract-cleaner rather than the repo's own real one. CLAUDE_PROJECT_DIR
   // is set by the harness to the actual project root regardless of the invoking shell's own cwd;
   // process.cwd() is kept only as the fallback for a bare `node` invocation outside that harness (e.g. this
   // file's own selftest), where no such env var exists. @keep-comment
   const projectRoot = process.env.CLAUDE_PROJECT_DIR || process.cwd();
 
-  // NEVER touch anything outside tmp/extract-cleaner/ -- structurally impossible by construction, not merely
+  // NEVER touch anything outside <workRoot>extract-cleaner/ -- structurally impossible by construction, not merely
   // discouraged: refuse (usage error, exit 2) WHEN the resolved --root sits outside the one boundary this
   // tool is ever allowed to sweep, even though the default is the only value any caller in this repo ever
   // passes.

@@ -4,7 +4,7 @@ Companion depth file of ref:agent/grimorio.design-orchestrator/exemplar-grpc-ret
 provenance, the source's own table of contents, and the pointer table to all three companions live there).
 Reached only from the index; **NEVER referenced directly, and NEVER loaded by default** — same standing as the
 index itself. Part of the same split
-(ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md's own SPLIT-default rule) that keeps
+(ref:agent/grimorio.prompt-writer/phases/phase-4-file-structure.md's own SPLIT-default rule) that keeps
 the index itself under the ~500-line smell threshold.
 
 Everything from the marker below to the end of this file is the source document's own text, byte-for-byte —

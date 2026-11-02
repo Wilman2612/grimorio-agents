@@ -8,19 +8,21 @@ set -euo pipefail
 hooks=$(git rev-parse --git-common-dir)/hooks
 mkdir -p "$hooks"
 # A SHIM, not a copy: the hook resolves the script from whichever worktree is committing, so editing
-# .grimorio/scripts/pre-commit.sh takes effect immediately instead of leaving a stale copy behind the gate.
+# .grimorio/scripts/pre-commit.sh takes effect immediately instead of leaving a stale copy behind the gate. It runs
+# the script through bash because git does not keep the scripts' executable bit on every clone.
 cat > "$hooks/pre-commit" <<'SHIM'
 #!/usr/bin/env bash
-exec "$(git rev-parse --show-toplevel)/.grimorio/scripts/pre-commit.sh" "$@"
+exec bash "$(git rev-parse --show-toplevel)/.grimorio/scripts/pre-commit.sh" "$@"
 SHIM
 chmod +x "$hooks/pre-commit"
 cat > "$hooks/pre-push" <<'SHIM'
 #!/usr/bin/env bash
-exec "$(git rev-parse --show-toplevel)/.grimorio/scripts/pre-push.sh" "$@"
+exec bash "$(git rev-parse --show-toplevel)/.grimorio/scripts/pre-push.sh" "$@"
 SHIM
 chmod +x "$hooks/pre-push"
 echo "pre-commit gate installed at $hooks/pre-commit"
-echo "  gates: build output · apps/web typecheck · branch has an objective · branch stays in scope"
+echo "  gates: build output · apps/web typecheck · comment blocks · agent tiers · comment history · file size ·"
+echo "         prompt shape · work-product placement · phase chains walk"
 echo "pre-push gate installed at $hooks/pre-push"
 echo "  gates: instruction-system changes pushed to develop/master carry a code-review verdict"
 echo "  gates: apps/web changes pushed to develop/master pass 'next build'"

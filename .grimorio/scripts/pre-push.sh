@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # The review gate for work that never merges. On a feature branch, close-branch.sh is the boundary and
-# the review can hang off it. On develop there IS no merge -- pre-commit.sh skips trunk by design -- so
+# the review can hang off it. On develop there IS no merge, and pre-commit.sh gates content, never a review, so
 # nothing ever gated the instruction system, and 80 commits of it landed in one day unreviewed.
 #
 # The PUSH is develop's boundary: the moment work stops being local and becomes shared. This gate makes
@@ -16,7 +16,7 @@
 # for pre-commit (fires every local commit); this fires only on a push to develop/master.
 
 # @keep-comment MARKER/GUARDED below are deliberately duplicated with the Tier 0B block in
-# .claude/hooks/worktree-create-from-develop.cjs (see that file's own header for why a shared config
+# .grimorio/hooks/worktree-create-from-develop.mjs (see that file's own header for why a shared config
 # file was rejected in favour of two hand-kept copies). The diff-BASE each file computes differs BY
 # DESIGN and must never be synced: this file's own `remote_sha..local_sha` range is handed a fresh
 # `remote_sha` by git on every push, so it can never go stale the way that hook's old
@@ -27,7 +27,7 @@ CACHE_REL="$(node -p "require('$(git rev-parse --show-toplevel)/.grimorio/script
 cd "$(git rev-parse --show-toplevel)" || exit 0
 
 MARKER="${CACHE_REL}/review-approved"
-GUARDED='^(\.claude/|scripts/|objectives/|CLAUDE\.md)'
+GUARDED='^(\.claude/|\.grimorio/|scripts/|objectives/|CLAUDE\.md)'
 WEB='^apps/web/'
 GATED_REFS="refs/heads/develop refs/heads/master"
 
@@ -79,7 +79,7 @@ while read -r local_ref local_sha remote_ref remote_sha; do
 $(printf '%s\n' "$changed" | head -12 | sed 's/^/    /')
 
 This is the boundary review that a feature branch gets from close-branch.sh and that develop
-never had, because pre-commit.sh skips trunk. Run the gate, then record what it approved:
+never had, because pre-commit.sh gates content, never a review. Run the gate, then record what it approved:
 
     # spawn grimorio.code-reviewer on:  git diff $range
     # if and only if it returns APPROVED:

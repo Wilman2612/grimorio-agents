@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-# Print the objective governing the CURRENT branch. This is the seam the injection hooks call, so that
-# WHICH objective governs a branch is decided in exactly one place — .grimorio/skills/grimorio.objective-harness/scripts/objective-lib.sh — and the
-# party that INJECTS the objective and the gate that REFUSES against it can never disagree. A second
-# implementation in JavaScript would have drifted from this one on the first edit.
+# Print the objective governing the CURRENT branch: its own, else the one it inherits. WHICH objective governs a
+# branch is decided once, by obj_resolve in .grimorio/skills/grimorio.objective-harness/scripts/objective-lib.sh,
+# so every reader that resolves it gets the same answer.
 #
 #   .grimorio/skills/grimorio.objective-harness/scripts/objective-current.sh            # header + the full objective file
 #   .grimorio/skills/grimorio.objective-harness/scripts/objective-current.sh --compact  # header + statement + open checks + out-of-scope paths

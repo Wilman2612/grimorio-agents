@@ -15,7 +15,7 @@ backs it only when a reader genuinely needs to go deeper than that inline statem
 **Why an index plus five companions, not one file** — this exemplar's full arc42 twelve-section text crosses
 the ~500-line smell threshold by a wide margin (ref:skill/grimorio.conduct#branches-commits-and-knowledge rule
 23), and SPLIT is the now-live default remedy for an oversized skill reference/exemplar file
-(ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-4-file-structure.md — step 2 of its own Steps section). This
+(ref:agent/grimorio.prompt-writer/phases/phase-4-file-structure.md — step 2 of its own Steps section). This
 file stays the short index — provenance, the source's own short introduction to the system, and pointers to the
 five companions below — and the five companions hold the rest of the source text VERBATIM, moved, never
 compressed or distilled, two to three arc42 sections apiece, in the source's own numeric order. Nothing here is

@@ -64,7 +64,7 @@ instruction that catches it being silently satisfied by restated function or ide
    founding material, never invented for the occasion.
 2. **OBJECTIVE** — the goal this agent serves, stated at GOAL level, never an operation or subfunction dressed
    up as one — this is the field the bridge parable above is about. **Reuse, do not duplicate the test**:
-   ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-2-understand-verify-plan.md#steps's own step 2c
+   ref:agent/grimorio.prompt-writer/phases/phase-2-understand-verify-plan.md#steps's own step 2c
    already runs Cockburn's own goal-level ("go to lunch") test on exactly this kind of statement — apply that
    SAME test to a Vision's own OBJECTIVE field, never re-derive or restate the test a second time here.
 3. **THE WIRING SHAPE** — three sub-bullets under one heading, unchanged in content from the earlier
@@ -164,13 +164,13 @@ that question.**
 (a) **agent:grimorio.system-keeper's own Phase 5 (VERIFICATION)** independently re-derives and applies this
 file's own two-part WIRING+HARNESS test against the Vision it finds on every newly-authored or newly-split
 agent shell — never trusting `grimorio.prompt-writer`'s own report field alone, per
-ref:skill/grimorio.agent-writing/system-keeper-phases/phase-c-verification-review.md's own VISION CHECK, added
+ref:agent/grimorio.system-keeper/phases/phase-c-verification-review.md's own VISION CHECK, added
 alongside its pre-existing BIRTH-HARNESS CHECK in that file's own established additive style. A missing or
 inadequate Vision is a defect sent back to Phase 4, under the SAME 2-cycle cumulative cap already governing
 every other writer-output property that phase holds.
 
 (b) **A neighbour-authoring pass is forced to read this agent's own Vision before wiring against it.**
-ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-2-understand-verify-plan.md#steps's own step 2e
+ref:agent/grimorio.prompt-writer/phases/phase-2-understand-verify-plan.md#steps's own step 2e
 carries the actual clause: WHEN the agent being authored calls, or is called by, a neighbour that already carries a Vision,
 that neighbour's PROVIDES/INPUT CLASS/OUTPUT CLASS is read FIRST and the new agent's own REQUIRES and WIRING
 SHAPE are grounded in it — never derived independently of what the neighbour already commits to. Point at that

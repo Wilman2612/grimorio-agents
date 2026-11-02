@@ -8,9 +8,9 @@ ref:agent/grimorio.security/design/quasi-software-view.md's own already-shipped
 five-layer shape — read in full as this file's own structural exemplar, never as its content — adapted to a
 FOUR-phase, sequential-but-not-hard-locked chain instead of a six-phase, fully-sequential, hard-locked
 non-recursive one. This file draws all layers directly from
-ref:skill/grimorio.working-memory/adviser-behavior.md and its four
-ref:skill/grimorio.working-memory/adviser-phases/phase-1-search-first.md through
-ref:skill/grimorio.working-memory/adviser-phases/phase-4-plan-and-close.md, all read in full this pass, in the
+ref:agent/grimorio.adviser/behavior.md and its four
+ref:agent/grimorio.adviser/phases/phase-1-search-first.md through
+ref:agent/grimorio.adviser/phases/phase-4-plan-and-close.md, all read in full this pass, in the
 same authoring dispatch that wrote them; it changes none of their content.
 
 ## Layer 1 + 2 — NODES (the orchestration graph) and PHASES (the state machine)
@@ -38,7 +38,7 @@ graph.** `grimorio.adviser`'s own shell carries NO `disallowedTools: Agent` line
 `grimorio.security`, this agent is NOT hard-locked non-recursive. The dotted circular node above, reached only
 from P2 via a dashed conditional edge, is the ONE spawn this whole chain can ever raise: a single bounded,
 Haiku-tiered evidence-gathering child, per
-ref:skill/grimorio.working-memory/adviser-phases/phase-2-absorb-evidence.md's own step 3. It is drawn dashed and
+ref:agent/grimorio.adviser/phases/phase-2-absorb-evidence.md's own step 3. It is drawn dashed and
 explicitly labelled "conditional, not default" — never identical to a solid, always-fires spawn edge — per
 ref:skill/grimorio.phase-splitting/quasi-view-requirements.md's own instruction that a future/optional
 agent-node must never be drawn identically to an actually-wired, unconditional one. This node is real and
@@ -85,7 +85,7 @@ PARALLELIZATION as "none, structurally" because `disallowedTools: Agent` makes e
 SELF node by construction. `grimorio.adviser` is NOT hard-locked, so its own Layer 4 cannot claim the same
 absolute "none" — the honest statement is: the FOUR-PHASE SPINE is sequential by design (each phase's own
 DELIVERABLE is a real, consumed precondition for the next, per Layer 3 above), and the ONE point of concurrency
-this chain can ever exhibit is the single bounded child ref:skill/grimorio.working-memory/adviser-phases/phase-2-absorb-evidence.md's
+this chain can ever exhibit is the single bounded child ref:agent/grimorio.adviser/phases/phase-2-absorb-evidence.md's
 own step 3 MAY raise — which runs alongside nothing else in this chain (this agent still waits on it in the
 foreground before Phase 2's own hand-off, per grimorio-conduct rule 9c's own foreground-spawn discipline, never
 backgrounded), so even that ONE spawn produces no genuine PARALLEL execution inside this agent's own single

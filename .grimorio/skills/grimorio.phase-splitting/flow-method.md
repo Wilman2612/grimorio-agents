@@ -8,7 +8,7 @@ doctrine, cross-referenced rather than restated): this file's own existence is i
 DIGESTIBLE, referenced-not-inlined knowledge (Rule 6) with a single, clear subject (Rule 7) — a companion file
 extracted for exactly the reason ref:skill/grimorio.phase-splitting/quasi-view-requirements.md already models, never a
 new skill of its own
-(ref:skill/grimorio.agent-writing#where-a-behavior-file-lives--never-a-skill-of-its-own's own skill-proliferation
+(ref:skill/grimorio.agent-writing#where-an-agents-own-files-live--its-folder-never-a-skill's own skill-proliferation
 prohibition, applied here to knowledge depth rather than behavior).
 
 ## Rule 1 — FLOW, not prose, for every INSTRUCTION
@@ -48,7 +48,7 @@ Already standing practice in this corpus, cross-referenced rather than restated:
 turns a bare list of information into an OBLIGATION a reader cannot silently skip, and an anti-fake control
 exists because an agent tends to fake, overreach, or skip under haste when nothing forces the check. Two
 existing instances, named rather than re-derived:
-ref:skill/grimorio.agent-writing/system-keeper-phases/phase-a-intake-diagnosis.md's own PHASE 2 DELIVERABLE block already
+ref:agent/grimorio.system-keeper/phases/phase-a-intake-diagnosis.md's own PHASE 2 DELIVERABLE block already
 forces a per-conclusion REFUTE-OR-ADOPT verdict, never a bare summary — a for-each loop wrapped as a
 completion gate; and
 ref:skill/grimorio.prompt-writing-quality#never-judge-by-appearance--demand-evidence-deduce-omissions-the-anti-plausibility-method
@@ -60,9 +60,9 @@ artifact because it merely looks complete.
 Already landed, this same corpus, cross-referenced rather than restated: a hand-off carries its REASONING, not
 only its instruction — a DIAGNOSIS phase hands forward a CAUSE, never only a fix, and a caller briefing a
 writer passes reasoning, not a bare instruction to execute blind.
-ref:skill/grimorio.agent-writing/system-keeper-phases/phase-a-intake-diagnosis.md's own step 4 ("state the CAUSE before the
+ref:agent/grimorio.system-keeper/phases/phase-a-intake-diagnosis.md's own step 4 ("state the CAUSE before the
 fix") already states this on the DIAGNOSIS side;
-ref:skill/grimorio.agent-writing/prompt-writer-phases/phase-2-understand-verify-plan.md's own step 2b (EXPECTED-RESULT
+ref:agent/grimorio.prompt-writer/phases/phase-2-understand-verify-plan.md's own step 2b (EXPECTED-RESULT
 ARTIFACT) and step 5 (PLAN-BEFORE-IMPLEMENTING) already state it on the AUTHORING side.
 
 ## Rule 6 — phases are DIGESTIBLE pieces, never dumped all at once

@@ -368,12 +368,13 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
 8. `ref:repo/.grimorio/scripts/install-hooks.sh` — ANSWERS: is the local git pre-commit/pre-push hook actually installed
    for this clone/worktree (`.git/hooks` is not versioned). WHEN: once, right after cloning, or if commits are
    landing without being gated.
-9. `ref:repo/.grimorio/scripts/pre-commit.sh` — ANSWERS: does this commit pass the build/typecheck content gates AND the
-   branch-objective gates (scope fence, milestone). WHEN: automatic — the ONLY thing that blocks an ordinary
+9. `ref:repo/.grimorio/scripts/pre-commit.sh` — ANSWERS: does this commit pass the content gates — build output,
+   apps/web typecheck, comment blocks, agent tiers, comment history, file size, prompt shape, work-product placement
+   and the phase-chain walk. WHEN: automatic — the ONLY thing that blocks an ordinary
    commit.
 10. `ref:repo/.grimorio/scripts/pre-push.sh` — ANSWERS: has this push been reviewed. WHEN: automatic, every push to
-    `develop` — `develop`'s own review boundary, since it never merges so `ref:repo/.grimorio/scripts/pre-commit.sh`
-    (which skips trunk by design) can't be the review point.
+    `develop` or `master` (its `GATED_REFS`) — the review boundary for those refs: `develop` never merges, and
+    `ref:repo/.grimorio/scripts/pre-commit.sh` gates content, never a review.
 11. `ref:repo/.grimorio/scripts/parked-watch.mjs` — ANSWERS: which PARENT is genuinely parked waiting on a background
     child that already finished — joining `.grimorio/.cache/agent-invocations.log` and
     `.grimorio/.cache/agent-completions.log` on the parent↔child correlator, per
@@ -391,7 +392,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     hand-recalling a conversation when building a spawn's verbatim-originating-words section (the H11 gate,
     `ref:repo/.claude/hooks/spawn-verbatim-origin-gate.cjs`). WHEN: its PRIMARY caller is now
     agent:grimorio.extract-cleaner itself, invoked autonomously against its own session as the first step of its
-    own redesigned behavior (`ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md`'s own Step 1), per
+    own redesigned behavior (`ref:agent/grimorio.extract-cleaner/behavior.md`'s own Step 1), per
     `ref:skill/grimorio.conduct/main-loop-only.md`'s own rule 13 — never the main loop directly anymore,
     though a human or another tool may still run it by hand for a different purpose; the tool itself did not
     become single-purpose, only its main-loop-facing role changed. Prints a `user:`/`agent:` labeled extract,
@@ -437,7 +438,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     INSIDE `extract-cleaner-finalize.mjs`'s own internal `spawnSync` call — now purely a defense-in-depth
     re-validation against the agent's own echoed `--keep-last-user`, never trusting the agent's own copy of the
     window; `splice` still runs INSIDE `extract-cleaner-finalize.mjs` only. WHEN: its own callers are entries 21
-    and 22 below, never this agent directly, per `ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md`.
+    and 22 below, never this agent directly, per `ref:agent/grimorio.extract-cleaner/behavior.md`.
 15. `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/extract-cleaner-prepare.mjs [--work-dir <dir>] [--out <bundle-path>]`
     — ANSWERS (REWRITTEN this pass to the watermark-delta contract — the prior HIT/MISS reuse-cache design is
     GONE): resolves `CLAUDE_CODE_SESSION_ID` itself (fails loudly, exit 1, if unset; default `--work-dir` is
@@ -465,7 +466,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     `read-watermark` replaces it, and there is no "reuse" concept left to validate, since a turn is only ever
     fetched fresh, once. WHEN: its own caller is `agent:grimorio.extract-cleaner`'s own Step 2 (PREPARE), via
     Bash, exactly once per invocation, never with any caller-supplied session/file/count argument, per
-    `ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md`.
+    `ref:agent/grimorio.extract-cleaner/behavior.md`.
 16. `ref:repo/.grimorio/agents/grimorio.extract-cleaner/scripts/extract-cleaner-finalize.mjs --keep-last-user <K> --abstracts <path> [--work-dir <dir>]
     [--out <path>]` — ANSWERS (REWRITTEN this pass — the CASE A/B/BELOW-FLOOR distinction is GONE): given a `K`
     and an abstracts file already written to the SAME work-dir entry 21 resolved, FIRST verifies the
@@ -487,7 +488,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     watermark always advances to "the newest turn this run ever saw" — REPLACES the old `write-cache` call this
     pass, non-fatal on failure, logged, exactly as before), runs `extract-cleaner-cache.mjs sweep-expired`
     (non-gating, UNCHANGED), and reads the project's REGISTER's own "## Open asks" section verbatim (or one
-    of the two literal ABSENT strings `ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md`'s own
+    of the two literal ABSENT strings `ref:agent/grimorio.extract-cleaner/behavior.md`'s own
     OUTPUT section defines for the missing-file/missing-heading cases, UNCHANGED). Prints ONE consolidated
     stdout report (harness verdict — no more CASE A/B + BELOW-FLOOR flag in it — register-relay quote,
     sweep-expired output, final artifact path); exits 0 ONLY on harness PASS after the sweep and relay also ran,
@@ -498,7 +499,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
     SAME turn, a `Write`-tool call that writes the `--abstracts` file at the path entry 21 reported (never a
     heredoc), up to 2 retries (looping back to that agent's own Step 4 (COMPRESS), re-running both the Write and
     this Bash call, never re-invoking entry 21), per
-    `ref:agent/grimorio.extract-cleaner/extract-cleaner-behavior.md`. **`extract-cleaner-cache.mjs` itself, this
+    `ref:agent/grimorio.extract-cleaner/behavior.md`. **`extract-cleaner-cache.mjs` itself, this
     pass, now exposes exactly 3 subcommands** — `read-watermark --cache-dir <dir>` (entry 21's own call),
     `write-watermark --cache-dir <dir> --raw-fetch <path>` (this entry's own call), `sweep-expired` (unchanged)
     — the old `check-reuse`/`write-cache` HIT/MISS machinery and the whole per-turn content-hash reuse-validity
@@ -529,7 +530,7 @@ here: `close-branch.sh`, `lint-objective.sh`, `objective-current.sh`, `objective
 18. `ref:repo/.grimorio/scripts/registration-cost.mjs` — ANSWERS: the total line count across a caller-named list of
     files (a target agent's Knowledge-list files plus its actually-read phase files), replacing a manual
     multi-call `ref:repo/.grimorio/scripts/audit-chain.mjs --shape`-and-add-by-hand sum. WHEN: `grimorio.system-keeper`'s
-    own ref:skill/grimorio.agent-writing/system-keeper-phases/phase-b-placement-authoring.md's own step 8
+    own ref:agent/grimorio.system-keeper/phases/phase-b-placement-authoring.md's own step 8
     REGISTRATION-COST THRESHOLD gate, before deciding whether a mechanical-volume target clears the bar for a
     same-type Haiku clone. POPULATION: exactly the files passed as CLI arguments, in the order given. **NEVER
     read this as a corpus-wide scan** — `--self-test` runs in ADDITION to any file arguments given (never
@@ -564,13 +565,20 @@ is a short pointer to the SKILL.md, not the methodology any more.
    the `scripts/selftest/` section below, entry 6 — same file, this is its new home).
 3. `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/objective-current.sh` — ANSWERS: what objective governs
    the CURRENT branch, right now. WHEN: whenever a branch's live objective is needed without re-deriving the
-   lookup rule by hand — the commit and close gates both call this resolver, so the gate that refuses against
-   an objective and the objective it reads can never disagree. Nothing injects a branch objective into a prompt
+   lookup rule by hand — it resolves through `obj_resolve` in
+   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/objective-lib.sh` (the branch's own objective, else
+   the one it inherits), and `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh` reads its
+   own-branch file through `obj_path_for` in that same library. Nothing injects a branch objective into a prompt
    or a loop any more — the injection hook that once did this on every spawn is gone.
 4. `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/objective-lib.sh` — LIBRARY ONLY, no CLI: the shared
    parsing library sourced by `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/open-branch.sh`,
-   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh`, and `ref:repo/.grimorio/scripts/pre-commit.sh`
-   so branch-objective lookup exists in exactly ONE implementation rather than three that could drift.
+   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/close-branch.sh`,
+   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/objective-current.sh`,
+   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/lint-objective.sh`,
+   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/verify-gen.sh`,
+   `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/selftest-objective.sh` and
+   `ref:repo/.grimorio/scripts/close-landed.sh`
+   so branch-objective lookup exists in exactly ONE implementation rather than a copy per script that could drift.
 5. `ref:repo/.grimorio/skills/grimorio.objective-harness/scripts/open-branch.sh` — ANSWERS: how to open a new branch WITH
    its objective, in one act. WHEN: starting any new branch of work — the only sanctioned way a branch gets an
    objective attached, since a branch whose objective is written "later" is the branch that never gets one.
@@ -728,7 +736,7 @@ is a short pointer to the SKILL.md, not the methodology any more.
     PASS a genuinely filled single- and two-field deliverable, correctly FAIL one that is still a placeholder
     or missing a required field entirely (naming the exact field), correctly stay silent — a vacuous PASS — on
     a phase declaring zero `import:` targets, correctly refuse a usage error, correctly gate a phase from a
-    DIFFERENT chain (`prompt-writer-phases/`, not just `system-keeper-phases/`) with the exact same unmodified
+    DIFFERENT chain (the prompt-writer's `phases/`, not just the system-keeper's `phases/`) with the exact same unmodified
     script, and guard against two real prior regressions (a LOAD section running to true end-of-file with no
     trailing heading; a LOAD bullet that only DISCUSSES the `import:` relation inside backticked prose rather
     than naming a real dependency) — 10 named cases, driven against the real CLI via subprocess and fixture

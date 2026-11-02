@@ -14,7 +14,7 @@ need different things kept in view.
 its function, so a phase-split for an orchestrator is a direct transcription of what the agent does, stage by
 stage. This corpus's own `grimorio.system-keeper` is the worked case: its seven phases — INTAKE, DIAGNOSIS,
 PLACEMENT, AUTHORING-COORDINATION, VERIFICATION, ADVERSARIAL REVIEW, CLOSE-OUT & REPORT — are visibly its own
-job description, stage by stage, already landed at ref:skill/grimorio.agent-writing/system-keeper-phases/.
+job description, stage by stage, already landed at ref:agent/grimorio.system-keeper/phases/.
 
 A PURPOSE-DRIVEN (specific-function) agent's phases are its FUNCTION's stages instead — but it is STILL a
 grimorio agent operating inside a loop, and the standing "being-grimorio" dimensions below are EASY TO FORGET
@@ -60,7 +60,7 @@ b. **LOOP + RELATIONSHIPS (parent / itself / children)** — every grimorio agen
    sanctioned TYPE for gather/search delegation, but as an N-slice PANEL — the SAME axis distinction drawn
    above for the Haiku-tier target. Handing ONE WHOLE phase to a SINGLE scout is a narrower shape those three
    do not establish; the real precedent is `grimorio.system-keeper`'s own Phase 2 step 6,
-   ref:skill/grimorio.agent-writing/system-keeper-phases/phase-a-intake-diagnosis.md — one scout raised for one bounded
+   ref:agent/grimorio.system-keeper/phases/phase-a-intake-diagnosis.md — one scout raised for one bounded
    measurement gap inside one phase, the actual single-scout-for-one-phase shape. However raised, the spawn is
    guarded by
    ref:skill/grimorio.flow-delegation#part-2--the-guardian-protocol-how-you-watch-and-redirect's own protocol, never

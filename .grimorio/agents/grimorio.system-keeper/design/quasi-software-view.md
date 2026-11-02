@@ -31,17 +31,19 @@ flowchart LR
     QA["grimorio.qa<br/>(independent test-file authorship, when CODE-VOLUME is a test)"]
 
     KEEPER -->|"Phase A, bounded"| SCOUT
-    KEEPER -->|"Phase B, foreground, 1 node per PROMPT-CONTENT target"| PW
-    KEEPER -->|"Phase B, foreground, 1 node per CODE-VOLUME target"| DEV
+    KEEPER -->|"Phase B, foreground, 1 node per distinct PROMPT-CONTENT task, max 3 at once"| PW
+    KEEPER -->|"Phase B, foreground, 1 node per distinct CODE-VOLUME task, max 3 at once"| DEV
     DEV -.->|"test-file target, never the same-pass author"| QA
-    KEEPER -->|"Phase C, foreground, up to 2 cycles"| CR
+    KEEPER -->|"Phase C, foreground, 1 review per planned REVIEW, up to 2 cycles each"| CR
 ```
 
 ## Layer 2 — PHASES: the state machine, script-driven
 
-Every edge below is a real transition in `.grimorio/skills/grimorio.agent-writing/system-keeper-phases/chain.json`'s
-own `next` map, per phase — this diagram and that manifest must never drift out of sync; a change to one is a
-change to both, in the same pass.
+Every edge below is a real transition in the `next` map, per phase, of
+ref:agent/grimorio.system-keeper/phases/chain.json — this view and that manifest must never drift out of sync; a
+change to one is a change to both, in the same pass. The same holds for what a phase produces: the manifest lists
+Phase B's `deliverable` and the `BATCHES + REVIEW` fingerprint the engine checks before B leaves, and Layer 3 states
+both.
 
 ```mermaid
 stateDiagram-v2
@@ -59,7 +61,7 @@ stateDiagram-v2
 
 | Node | File | Question it answers |
 |---|---|---|
-| entry | `system-keeper-behavior.md` | Phase 0 — carry the caller's inputs forward, call the phase server |
+| entry | `behavior.md` | Phase 0 — carry the caller's inputs forward, call the phase server |
 | A | `phase-a-intake-diagnosis.md` | What was asked, what is actually true, and is it SYSTEMIC? |
 | B | `phase-b-placement-authoring.md` | Where does it go, and who actually writes it? |
 | C | `phase-c-verification-review.md` | Does it hold under the keeper's own eyes, then an independent adversary's? |
@@ -72,24 +74,30 @@ never a silent shortcut.
 
 ## Layer 3 — INTERNAL artifact flow, per phase
 
-| Phase | Consumes | Produces (carried in reasoning into the next phase, never written to `tmp/`) |
+| Phase | Consumes | Produces (carried in reasoning into the next phase, unless the row says it is recorded) |
 |---|---|---|
 | A | caller's brief, `GRIMORIO-CHAIN.md`, target files | objective/exit condition, verbatim content held, LIGHTWEIGHT/FULL-CEREMONY, refuted-or-adopted verdicts, true cause, SYSTEMIC-vs-SPECIFIC + propagation targets, MODE ENTERED y/n |
-| B | everything A produced | target file(s) + level, delegation decisions (writer / developer / Haiku clone), what the writer/delegate actually returned |
-| C | everything B produced | pointer-check results, the five writer-output properties, selftest results, the reviewer's verdict history |
+| B | everything A produced | the node plan (one node per distinct task, small pieces riding along), target file(s) + level, delegation decisions (writer / developer / Haiku clone), what the writer/delegate actually returned; RECORDED: a `deliverable` written to `tmp/<agent-id>/` as plain `BATCHES:` and `REVIEW:` lines, which the engine's fingerprint gate requires before B leaves |
+| C | everything B produced, including its `REVIEW:` plan | pointer-check results, the five writer-output properties, selftest results, each planned review's verdict history |
 | MODE (conditional) | Phase C's clean disposition | the successor's cold-graded output, the firing-log query, the byte-diff check, PASS/DEGRADATION |
 | D | everything upstream, restated | the final report — `## OUTPUT` block, this file's only durable prose artifact |
 
-Only Phase D's `## OUTPUT` block, the worktree's own commits, and (when MODE fires) the `tmp/<slug>/PLAN-GRAPH.md`
-three-plans artifact are ever written to disk mid-chain — never a per-phase deliverable dump.
+Phase B's recorded `deliverable` (BATCHES and REVIEW), Phase D's `## OUTPUT` block, the worktree's own commits, and
+(when MODE fires) the `tmp/<slug>/PLAN-GRAPH.md` three-plans artifact are the only things written to disk
+mid-chain — no other phase dumps a deliverable.
 
 ## Layer 4 — PARALLELIZATION
 
-Phase B is the only phase that can fan out: one `grimorio.prompt-writer`/CODE-VOLUME node per independent
-target Phase A/B's own Independence Test confirmed. INTERCONNECTED pairs run SEQUENTIALLY; INDEPENDENT pairs
-run as a FOREGROUND PANEL (`run_in_background: false`, one message, capped at 2-3 concurrent) — never
-backgrounded, either shape, absolute. Phase C's reviewer runs one instance at a time, up to 2 cumulative
-cycles. Phase A's optional `grimorio.scout` raise is always a single bounded node.
+Phase B is the only phase that can fan out, and it fans out in proportion: one `grimorio.prompt-writer`/CODE-VOLUME
+node per distinct task its Independence Test confirmed, at most three at once with the rest in the next round. A
+piece of a line or two is no task: it rides with the task it belongs to, or with a node already going. INTERCONNECTED
+pairs run SEQUENTIALLY; INDEPENDENT pairs run as a FOREGROUND PANEL (`run_in_background: false`, one message, capped at
+2-3 concurrent) — never backgrounded, either shape, absolute.
+
+Reviews are proportional too. Phase B's `REVIEW:` plans one review per task when the tasks are big and merge
+separately, one over everything when the pieces are small or merge together, never one per small piece or per chunk.
+Phase C runs one reviewer instance at a time per planned review, up to 2 cumulative cycles each, handing it only the
+diff and the principal's words. Phase A's optional `grimorio.scout` raise is always a single bounded node.
 
 ## Layer 5 — EXPECTED OUTPUTS
 
@@ -101,8 +109,10 @@ cycles. Phase A's optional `grimorio.scout` raise is always a single bounded nod
 
 ## Known errors this design closes — carried forward, never silently dropped
 
-- **tmp/ prose nobody reads** (205KB measured across two passes) — closed by the phase-engine hand-off; no
-  phase writes a deliverable block to disk any more.
+- **tmp/ prose nobody reads** (205KB measured across two passes) — closed by the phase-engine hand-off; the only
+  deliverable a phase writes to disk is Phase B's two-field `deliverable`, and the engine's gate reads it.
+- **Over-splitting and over-reviewing** (a node for a one-line change, a review per chunk) — closed by Phase B's
+  proportionality rule; the BATCHES + REVIEW gate forces the plan to be written down before B leaves.
 - **Exemplar-grounding skipping the HARNESS taxonomy** — Phase A step 3 now names the exact section to check
   before naming a fix's shape.
 - **A prior keeper concluding a capability "cannot" exist without checking `GRIMORIO-INDEX.md`/`.claude/hooks/`

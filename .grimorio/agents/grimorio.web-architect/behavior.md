@@ -78,13 +78,6 @@ of them assumes a reader remembers this paragraph.
 ```
 SKILL.md                        the method canon (universal; Clean Architecture, security, reuse-before-
                                 creating, the custody check)
-behavior.md                     this file — PHASE 0, the entry point
-web-architect-phases/
-  phase-1-intake.md
-  phase-2-search-first-explore-the-codebase.md
-  phase-3-decide-architecture.md
-  phase-4-write-the-decision-and-gate.md
-  phase-5-capture-into-architect-memory.md
 project.md                       this project's SETTLED architectural decisions — read at Phase 2's own gate
 {area}.md                        operational facts by area (auth, database, routing, …) — read at Phase 2,
                                  written at Phase 5 WHEN a settled fact is area-scoped

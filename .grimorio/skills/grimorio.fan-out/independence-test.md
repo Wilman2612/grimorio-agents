@@ -24,6 +24,15 @@ writing several. Independent pieces CHECK each other — a single context has no
 it; one same-session delegate split into six scouts along its own axis, and a sibling scout's independent pass
 is what caught a scout's wrong claim that would otherwise have deleted a live engine.
 
+**WHEN an independent piece is a line or two ⟶ it never gets a delegate of its own; it rides with the task it
+belongs to, or with a delegate already going, and the brief of the delegate that carries it names it.**
+**WHEN an independent piece is big enough to be a task of its own ⟶ it gets its own delegate.** PARTITION is owed
+in proportion to the work: riding along is not bundling unrelated tasks to save a brief, so unrelated big tasks
+still get one delegate each, and the "never a single delegate for the set" clause above stands for them.
+
+**WHEN the delegates are reviewers ⟶ raise one per task when the tasks are big and merge separately, and one
+over everything when the pieces are small or merge together.**
+
 **WHEN any one answer is NO ⟶ genuinely solo is the correct call, BUT the declaration must NAME which question
 failed and how** (e.g. "Q3 fails — the running count each fix reads is the prior fix's own output"). A solo
 declaration that cannot name the failing question is unverified, not proof of anything — this sharpens what
@@ -42,6 +51,8 @@ resource cost, never a reason to skip the test above or under-partition because 
 
 **WHEN the test finds more independent pieces than that ⟶ group them into at most 3 concurrent lanes, batching
 pieces within a lane sequentially, rather than raising a 4th concurrent delegate.**
+
+**WHEN a piece rides along under the proportion rule above ⟶ it never counts as a lane of its own.**
 
 -> deeper: ref:skill/grimorio.fan-out/delegation-decision.md#the-independence-test-applied--two-real-declarations-one-session — the
    test applied to two real same-session declarations, reaching two different verdicts.

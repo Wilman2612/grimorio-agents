@@ -4,7 +4,7 @@ This is `grimorio.po`'s own DRAWN quasi-software design view, produced per
 ref:skill/grimorio.phase-splitting#the-drawn-view's
 standing requirement that every agent-design plan carry one, saved alongside the agent's own design as a
 reference file. PO's own six phase files, authored this same pass under
-`.grimorio/agents/grimorio.po/po-phases/`, plus Phase 0
+`.grimorio/agents/grimorio.po/phases/`, plus Phase 0
 (`.grimorio/agents/grimorio.po/behavior.md`), ARE the state machine — this file draws every layer directly
 from those seven files, read in full for this pass; it changes none of their content.
 
