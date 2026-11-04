@@ -148,12 +148,22 @@ function check(files) {
           );
         }
       } else if (parts.length >= 5) {
+        // @keep-comment
+        // This branch earns declaredConvention for the SAME reason the basename branch above does, and
+        // the old text here promised a door that cannot exist: "say so in the commit message", when
+        // pre-commit runs BEFORE the message does. Measured 2026-11-04: landing this framework into a
+        // fresh repo left 198 files unlandable by any means, because the first commit that tracks
+        // anything inside a skill subfolder makes EVERY architecture-defined subfolder name -- phases/,
+        // memory/, design/ -- novel by construction. Same shape as the `agent.md` incident the basename
+        // branch's own comment records, one level down.
         const subfolder = parts[3];
-        if (!subfolders.has(subfolder)) {
+        if (!subfolders.has(subfolder) && !declaredConvention(subfolder)) {
           violations.push(
             `${f} -- introduces "${subfolder}/", a skill-subfolder name not used anywhere else in ` +
-            `the tracked corpus. If this is a deliberate new convention, say so in the commit ` +
-            `message; if it is a work-product draft, it belongs in tmp/.`
+            `the tracked corpus. If this is a work-product draft, it belongs in tmp/, never directly ` +
+            `inside a skill folder. If it IS a deliberate new corpus convention, name it: ` +
+            `CORPUS_CONVENTION="${subfolder}" git commit ... -- an env var because pre-commit runs BEFORE ` +
+            `the commit message exists, so this gate cannot read one.`
           );
         }
       }

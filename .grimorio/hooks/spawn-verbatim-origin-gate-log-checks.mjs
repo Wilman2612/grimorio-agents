@@ -240,6 +240,23 @@ function isHarnessNoise(text) {
 // WHEN `rec.turnOrigin === "peer"` or `"task_notification"` ⟶ NEVER a CEO turn, POSITIVELY, regardless of text
 // — a harness-generated record (e.g. a context-compaction continuation message) can read as plain, unprefixed
 // text and be wrongly counted as his; this positive check never lets that happen either.
+// @keep-comment
+// HARNESS-AUTHORED RECORD TEST, and WHY IT RUNS FIRST. Two record classes defeat the turnOrigin test on its
+// own, both measured against a real transcript on 2026-11-04 (41 text-bearing `type:"user"` records, one
+// session):
+//   - A skill injection — the body the harness pastes when a Skill is invoked ("Base directory for this
+//     skill: ...", 4 occurrences) and the re-invocation notice ("Skill /<name> was loaded earlier ...", 1) —
+//     carries `isMeta: true` and NO `turnOrigin` at all, so it fell through to the NOISE_PREFIXES fallback,
+//     which does not carry its prefix, and was counted as a genuine CEO turn.
+//   - A context-compaction continuation summary (3 occurrences) carries `isCompactSummary: true` AND
+//     `turnOrigin: "human"`. The turnOrigin test therefore AFFIRMED it positively and returned before the
+//     fallback could ever see it, so NO addition to NOISE_PREFIXES could have caught this class. That is why
+//     this test must run FIRST and why it is a field test, never a prefix.
+// Consequence this closed: in a project whose CLAUDE.md orders a Skill call every turn, a fake "new CEO
+// message" was manufactured on essentially every turn, so ELEMENT 3 declared every synthesis SPENT and no
+// fan-out could reuse one — measured as an unbreakable deadlock against ELEMENT 4 in videoGen.
+// Both flags are POSITIVE, harness-set markers observed in a real transcript, which is the bar the
+// NOISE_PREFIXES comment below sets for its own entries; neither is a "looks synthetic" heuristic.
 // WHEN `rec.turnOrigin` is ABSENT from the record entirely ⟶ fall back to the NOISE_PREFIXES/isHarnessNoise
 // test below, UNCHANGED (same functions, same list, same logic) — `turnOrigin` is a NEW field, and most
 // `type:"user"` records recorded before it first appeared carry no `turnOrigin` at all, which is WHY the
@@ -273,6 +290,8 @@ function hasNewUserTurnSince(transcriptPath, sinceMs) {
     if (rec.type !== "user" || !rec.message) continue;
     const ts = Date.parse(rec.timestamp || "");
     if (!Number.isFinite(ts) || ts <= sinceMs) continue;
+    // HARNESS-AUTHORED RECORD TEST — runs BEFORE the turnOrigin test, and must. See the block comment.
+    if (rec.isCompactSummary || rec.isMeta) continue;
     // TURN-ORIGIN PRIMARY TEST (see the block comment above this function).
     if (rec.turnOrigin === "human") return true;
     if (rec.turnOrigin === "peer" || rec.turnOrigin === "task_notification") continue;

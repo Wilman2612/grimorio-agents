@@ -179,11 +179,11 @@ function withTranscript(payload, name, records) {
   return { ...payload, transcript_path: p };
 }
 
-/** A `type:"user"` transcript record. `turnOrigin` omitted ⟶ the record carries none at all. */
-function userRecord(ts, content, turnOrigin) {
+/** A `type:"user"` record. `turnOrigin` omitted ⟶ none at all; `extra` sets the harness's own markers. */
+function userRecord(ts, content, turnOrigin, extra) {
   const rec = { type: "user", timestamp: ts, message: { role: "user", content } };
   if (turnOrigin !== undefined) rec.turnOrigin = turnOrigin;
-  return rec;
+  return Object.assign(rec, extra || {});
 }
 
 try {
@@ -536,6 +536,33 @@ try {
   ]);
   assertExit0(to2.code, "Case TO2 — turnOrigin:peer compaction-continuation record after the cleaner, hook itself always exits 0");
   assertNotContains(to2.out, '"permissionDecision":"deny"', "Case TO2 — ALLOWED, turnOrigin:peer is never a CEO turn even though its text matches no NOISE_PREFIXES entry");
+
+  // @keep-comment
+  // === Case TO3 — HARNESS-AUTHORED RECORD, SKILL INJECTION: the body the harness pastes when a Skill is
+  // invoked. Measured 2026-11-04: it carries `isMeta: true` and NO `turnOrigin` at all, so turnOrigin
+  // cannot judge it and it fell through to NOISE_PREFIXES, which carries no entry for it -> wrongly DENY.
+  // The isMeta test runs first -> ALLOWED. This is the class that fires on EVERY turn in a project whose
+  // CLAUDE.md orders a Skill call each turn, which is how it deadlocked ELEMENT 3 against ELEMENT 4.
+  // @keep-comment
+  const to3 = noiseCase("SESTO003", [
+    userRecord(offsetIso(-5), "Base directory for this skill: /home/someone/.claude/skills/some-skill", undefined, { isMeta: true }),
+  ]);
+  assertExit0(to3.code, "Case TO3 — isMeta skill-injection record after the cleaner, hook itself always exits 0");
+  assertNotContains(to3.out, '"permissionDecision":"deny"', "Case TO3 — ALLOWED, an isMeta harness record is never a CEO turn even with no turnOrigin and no NOISE_PREFIXES match");
+
+  // @keep-comment
+  // === Case TO4 — HARNESS-AUTHORED RECORD, COMPACTION SUMMARY, and the reason this test must run BEFORE
+  // turnOrigin rather than beside it. Measured 2026-11-04: the continuation summary carries
+  // `isCompactSummary: true` AND `turnOrigin: "human"`. The turnOrigin test AFFIRMS it positively and
+  // returns before any fallback runs, so NO NOISE_PREFIXES entry could ever have caught this class.
+  // Case TO2 above still asserts the older `turnOrigin:"peer"` shape; both shapes have been observed and
+  // neither replaces the other.
+  // @keep-comment
+  const to4 = noiseCase("SESTO004", [
+    userRecord(offsetIso(-5), "This session is being continued from a previous conversation that ran out of context. The conversation is summarized below:", "human", { isCompactSummary: true }),
+  ]);
+  assertExit0(to4.code, "Case TO4 — isCompactSummary record claiming turnOrigin:human, hook itself always exits 0");
+  assertNotContains(to4.out, '"permissionDecision":"deny"', "Case TO4 — ALLOWED, isCompactSummary is read BEFORE turnOrigin, so a summary labelled human is still never a CEO turn");
 
   // === Case V — ELEMENT 3, a SUBAGENT's own child never consumes: a cleaner row completed, THEN a
   // SUBAGENT-originated spawn (caller fields BOTH populated) was dispatched afterward -> still ALLOWED.
