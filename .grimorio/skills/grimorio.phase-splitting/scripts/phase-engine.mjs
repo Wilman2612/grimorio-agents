@@ -34,6 +34,7 @@
 import { existsSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { extname, dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import {
   usageError,
   REPO_ROOT,
@@ -196,7 +197,12 @@ function assertFingerprints(phase, state) {
     console.error(`ERROR: phase "${phase.id}" declares fingerprints; record its filled deliverable first: record --run <id> deliverable <path>`);
     process.exit(1);
   }
-  const gate = join(dirname(new URL(import.meta.url).pathname), "check-phase-fingerprint.mjs");
+  // @keep-comment
+  // On Windows `new URL(import.meta.url).pathname` yields "/E:/..." with a leading slash, and join then
+  // resolves it against the drive, giving a doubled drive letter for a path that does not exist. The engine
+  // could not find its own fingerprint gate, so EVERY phase chain failed identically on Windows, and
+  // fileURLToPath is the correct conversion on both platforms.
+  const gate = join(dirname(fileURLToPath(import.meta.url)), "check-phase-fingerprint.mjs");
   const r = spawnSync(process.execPath, [gate, phase.file, artifact.path, state.chain], { encoding: "utf8", cwd: REPO_ROOT });
   if (r.status !== 0) {
     process.stderr.write(r.stdout + r.stderr);

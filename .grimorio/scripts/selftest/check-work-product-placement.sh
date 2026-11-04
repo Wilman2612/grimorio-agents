@@ -23,6 +23,14 @@ expect_clean() {  # $1 = path, $2 = label
   fi
 }
 
+expect_clean_declared() {  # $1 = path, $2 = CORPUS_CONVENTION value, $3 = label
+  if CORPUS_CONVENTION="$2" node "$SCRIPT" "$1" >/dev/null 2>&1; then
+    echo "PASS (clean once declared): $3 -- $1"; pass=$((pass+1))
+  else
+    echo "FAIL (declared, still blocked): $3 -- $1"; fail=$((fail+1))
+  fi
+}
+
 echo "--- 7 true positives (removed a34b3011 + 2 misplaced drafts) ---"
 expect_block "dev-notes.md" "removed a34b3011"
 expect_block "code-review.md" "removed a34b3011"
@@ -42,6 +50,12 @@ expect_clean "README.md" "legitimate root file"
 echo "--- corpus-sanity: real, currently-committed skill content must never be flagged ---"
 expect_clean ".grimorio/skills/grimorio.conduct/SKILL.md" "real skill-root file"
 expect_clean ".grimorio/agents/grimorio.entropy/phases/phase-1-frame.md" "real, established subfolder"
+
+# --- the subfolder branch, both directions. Before 2026-11-04 it consulted no declaration at all, so a
+# novel subfolder was unlandable by any means and a whole framework install could not be committed.
+echo "--- 2 subfolder-branch cases (novel name, undeclared vs declared) ---"
+expect_block ".grimorio/skills/grimorio.conduct/zzz-novel-subfolder/draft.md" "novel subfolder, undeclared"
+expect_clean_declared ".grimorio/skills/grimorio.conduct/zzz-novel-subfolder/draft.md" "zzz-novel-subfolder" "novel subfolder, declared"
 
 echo ""
 echo "$pass passed, $fail failed"
